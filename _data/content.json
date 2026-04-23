@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "greeting": "Hi, 我是",
+    "name": "Jcsk7049",
+    "title": "Full Stack Developer & Security Researcher",
+    "desc": "專注於打造安全、高效能的應用程式，從資安防護到機器學習，持續探索技術的邊界。"
+  },
+  "about": {
+    "bio1": "熱衷於解決複雜問題的開發者，擅長將想法轉化為實際可用的產品。在資安、機器學習與全端開發領域累積了豐富的實戰經驗。",
+    "bio2": "相信好的軟體不只要能跑，更要安全、易維護、對使用者友善。每個專案都是學習與成長的機會。"
+  },
+  "contact": {
+    "email": "your@email.com"
+  }
+}

@@ -1,0 +1,35 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "personal-website/assets"
+public_folder: "/assets"
+
+collections:
+  - name: "content"
+    label: "網站內容"
+    files:
+      - name: "main"
+        label: "主要內容"
+        file: "personal-website/_data/content.json"
+        format: json
+        fields:
+          - label: "Hero 區塊"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "問候語（Hi, 我是）", name: "greeting", widget: "string"}
+              - {label: "名稱", name: "name", widget: "string"}
+              - {label: "職稱", name: "title", widget: "string"}
+              - {label: "描述文字", name: "desc", widget: "text"}
+          - label: "關於我"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "第一段", name: "bio1", widget: "text"}
+              - {label: "第二段", name: "bio2", widget: "text"}
+          - label: "聯絡資訊"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "Email", name: "email", widget: "string"}
