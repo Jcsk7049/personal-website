@@ -1,14 +1,34 @@
-import Hero            from './components/Hero'
-import Education       from './components/Education'
-import Experience      from './components/Experience'
-import SkillGrid       from './components/SkillGrid'
+import { useEffect } from 'react'
+import Nav            from './components/Nav'
+import Hero           from './components/Hero'
+import Education      from './components/Education'
+import Experience     from './components/Experience'
+import SkillGrid      from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
-import AwardList       from './components/AwardList'
-import cvData          from './data/cvData.json'
+import AwardList      from './components/AwardList'
+import cvData         from './data/cvData.json'
 
 export default function App() {
+  useEffect(() => {
+    const sections = document.querySelectorAll('section:not(#hero)')
+    sections.forEach(s => s.classList.add('reveal'))
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible')
+          observer.unobserve(e.target)
+        }
+      }),
+      { threshold: 0.07 }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="bg-white text-[#1D1D1F] font-sans antialiased">
+      <Nav             name={cvData.profile.name} />
       <Hero            profile={cvData.profile} />
       <Education       education={cvData.education} />
       <Experience      experience={cvData.experience} />

@@ -5,10 +5,12 @@ export default function Experience({ experience }) {
     <section id="experience" className="py-24 px-6 md:px-20 lg:px-36 border-t border-gray-100">
       <SectionHeader en="Experience" zh="經歷" />
 
-      <div className="max-w-3xl space-y-0">
+      <div className="max-w-3xl">
         {experience.map((exp, i) => (
           <div key={i} className="relative pl-6 pb-10 last:pb-0">
-            <div className="absolute left-0 top-2 w-px h-full bg-gray-100 last:hidden" />
+            {i < experience.length - 1 && (
+              <div className="absolute left-0 top-2 w-px h-full bg-gray-100" />
+            )}
             <div className="absolute left-[-3px] top-2 w-[7px] h-[7px] rounded-full bg-[#0071E3]" />
 
             <div className="flex items-start justify-between gap-4 mb-1">
