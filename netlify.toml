@@ -9,6 +9,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_FLAGS    = "--include=dev"
 
 # ── 正式環境 (main branch) ─────────────────────────────────────
 [context.production]
