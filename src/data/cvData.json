@@ -1,0 +1,83 @@
+{
+  "profile": {
+    "name": "江嘉元",
+    "title": "電機工程學系學士在學生",
+    "contact": {
+      "email": "johnjia9491@gmail.com",
+      "phone": "+886 928 530 700",
+      "location": "台北市, 台灣"
+    },
+    "links": {
+      "github": "Jcsk7049",
+      "linkedin": "wangxiaoming"
+    }
+  },
+  "education": [
+    { "school": "元智大學",    "degree": "電機工程學系學士", "period": "2024.09 – 2027.09" },
+    { "school": "明志科技大學", "degree": "電機工程學系學士", "period": "2023.09 – 2024.06" }
+  ],
+  "experience": [
+    {
+      "role": "實驗室專題生",
+      "organization": "元智大學 林書彥教授實驗室",
+      "period": "2025.05 – 現在",
+      "description": "負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質。"
+    },
+    {
+      "role": "學生導師 (Student Mentor)",
+      "organization": "FRC 7645 Technical Support",
+      "period": "2023 – 現在",
+      "description": "負責技術傳承、指導學弟妹進行機器人開發、電控編程與電路設計。"
+    },
+    {
+      "role": "競賽選手",
+      "organization": "南港高工 NK-MTC 7645",
+      "period": "2020.06 – 2023.09",
+      "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽。"
+    }
+  ],
+  "skills_matrix": {
+    "data_analysis": ["數據結構化", "特徵工程", "訊號過濾", "深度學習", "機器學習"],
+    "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
+    "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
+    "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工"]
+  },
+  "projects": [
+    {
+      "id": "vap",
+      "title": "VAP 預測系統",
+      "period": "2025 – 現在",
+      "metric": "AUROC 0.97+",
+      "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
+      "tags": ["PyTorch", "MIMIC-IV", "Medical AI"]
+    },
+    {
+      "id": "aws-hackathon",
+      "title": "AWS x BitoPro 黑客松：BitOGuard",
+      "period": "2024",
+      "description": "整合 AWS 機器學習與規則引擎的 AI 詐騙偵測系統。",
+      "tags": ["AWS", "Machine Learning", "FinTech"]
+    },
+    {
+      "id": "whack-a-mole",
+      "title": "無線打地鼠機 (特教組教具)",
+      "period": "2021 – 2022",
+      "description": "使用 ESP32 (ESP-NOW) 實現之無線通訊趣味教具。",
+      "tags": ["ESP32", "Arduino", "Inclusive Design"]
+    },
+    {
+      "id": "swerve",
+      "title": "Swerve Drive 全向輪控制研究",
+      "period": "2020 – 2023",
+      "description": "FRC 機器人底盤機構優化與 PID 控制算法實作。",
+      "tags": ["LabVIEW", "PID Control", "Robotics"]
+    }
+  ],
+  "awards": [
+    { "title": "AWS x BitoPro 黑客松：AI 詐騙偵測專案獲獎",              "year": "2024" },
+    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022" },
+    { "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",    "year": "2022" },
+    { "title": "第 52 屆全國技能競賽 (技能技藝競賽)：集體創作職類代表",      "year": "2022" },
+    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020" }
+  ]
+}
