@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "id": "bitoguard",
+      "title": "BitOGuard",
+      "desc": "智慧型資安防護解決方案，結合機器學習與規則引擎，實現即時威脅偵測與自動化響應。",
+      "icon": "🛡️",
+      "theme": "security",
+      "tags": ["資安", "Python", "React"],
+      "links": {
+        "detail": "bitoguard.html",
+        "github": "#"
+      },
+      "featured": true
+    },
+    {
+      "id": "vap-prediction",
+      "title": "VAP 預測系統",
+      "desc": "使用 MIMIC-IV 資料庫，透過 LSTM 模型預測呼吸器相關肺炎，AUROC 達 0.97+。",
+      "icon": "🏥",
+      "theme": "medical",
+      "tags": ["機器學習", "PyTorch", "LSTM"],
+      "links": {
+        "detail": "#",
+        "github": "#"
+      }
+    },
+    {
+      "id": "resume-editor",
+      "title": "履歷編輯器",
+      "desc": "線上履歷編輯與匯出工具，即時預覽、支援多種版型，一鍵匯出 PDF。",
+      "icon": "📄",
+      "theme": "resume",
+      "tags": ["Web", "JavaScript"],
+      "links": {
+        "detail": "#",
+        "github": "#"
+      }
+    },
+    {
+      "id": "network-scanner",
+      "title": "網路掃描工具",
+      "desc": "支援 DNS 查詢、WHOIS、HTTP Headers、Port 掃描與反向 IP 的前端資安偵查工具。",
+      "icon": "🔍",
+      "theme": "scanner",
+      "tags": ["資安", "JavaScript", "API"],
+      "links": {
+        "detail": "scanner.html",
+        "github": "#"
+      }
+    }
+  ]
+}
