@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "江嘉元",
-    "title": "電機工程學系學士在學生",
+    "title": "電機工程學系學士 學生",
     "contact": {
       "email": "johnjia9491@gmail.com",
       "phone": "+886 928 530 700",
@@ -21,26 +21,27 @@
       "role": "實驗室專題生",
       "organization": "元智大學 林書彥教授實驗室",
       "period": "2025.05 – 現在",
-      "description": "負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質。"
+      "description": " EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質與機器&深度學習模型訓練。"
     },
     {
       "role": "Student Mentor & Technical Support",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "description": "負責技術傳承、指導學弟妹進行機器人開發、電控編程與電路設計。"
+      "description": "指導學弟妹進行機器人開發、除錯，競賽當中當任教練角色協助團隊競賽。"
     },
     {
       "role": "競賽選手",
       "organization": "南港高工 NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽。"
+      "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。"
     }
   ],
   "skills_matrix": {
-    "data_analysis": ["數據結構化", "特徵工程", "訊號過濾", "深度學習", "機器學習"],
+    "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工"],
     "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
     "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
-    "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工"]
+    "data_analysis": ["數據結構化", "特徵工程", "訊號過濾", "深度學習", "機器學習"]
+    
   },
   "projects": [
     {
@@ -57,6 +58,13 @@
       "period": "2024",
       "description": "整合 AWS 機器學習與規則引擎的 AI 詐騙偵測系統。",
       "tags": ["AWS", "Machine Learning", "FinTech"]
+    },
+    {
+      "id": "QMK&STM32number-keyboard",
+      "title": "QMK x STM32數字鍵盤",
+      "period": "2026",
+      "description": "利用STM32實現鍵盤功能，並使用QMK進行韌體編輯設計。",
+      "tags": ["QMK", "PCB design", "software design "]
     },
     {
       "id": "whack-a-mole",
