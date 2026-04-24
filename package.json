@@ -1,0 +1,9 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jcsk7049 personal portfolio",
+  "scripts": {
+    "save": "sh -c 'git add -A && { git diff --cached --quiet && echo \"Nothing new to commit, pushing anyway...\" || git commit -m \"update: $(date \"+%Y-%m-%d %H:%M\")\"; } && git push'"
+  }
+}

@@ -1,0 +1,33 @@
+# ──────────────────────────────────────────────────────────────
+# Netlify 建置設定
+# 這個檔案讓 Netlify 知道如何部署此靜態網站。
+# 在 Netlify Dashboard 把 repo 連結後，每次 push 到 main
+# 都會自動觸發重新部署，無需手動操作。
+# ──────────────────────────────────────────────────────────────
+
+[build]
+  # 靜態網站，無需執行建置指令，直接發布根目錄
+  publish = "."
+
+# ── 正式環境 (main branch) ─────────────────────────────────────
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+# ── 預覽環境 (其他 branch / PR) ────────────────────────────────
+[context.deploy-preview]
+  environment = { NODE_ENV = "preview" }
+
+# ── HTTP 安全標頭 ───────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options            = "DENY"
+    X-Content-Type-Options     = "nosniff"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Permissions-Policy         = "camera=(), microphone=(), geolocation=()"
+
+# ── _data/ 禁止直接存取 JSON（瀏覽器仍可 fetch，但不能直接瀏覽）─
+[[headers]]
+  for = "/_data/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

@@ -1,0 +1,16 @@
+# 依賴套件（如果之後加 npm 套件）
+node_modules/
+
+# 系統檔案
+.DS_Store
+Thumbs.db
+
+# 編輯器設定
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 環境變數
+.env
+.env.local
