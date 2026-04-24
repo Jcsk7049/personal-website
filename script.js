@@ -1,4 +1,26 @@
-// ─── Reading progress bar ─────────────────────────────────────
+// ─── Scroll reveal (Apple IntersectionObserver) ───────────────
+// Kept at module scope so newly rendered elements can be observed
+let revealIO;
+
+function initReveal() {
+  revealIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -56px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revealIO.observe(el));
+}
+
+function observeNewReveal(container) {
+  if (!revealIO) return;
+  container.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revealIO.observe(el));
+}
+
+// ─── Reading progress bar (Medium) ────────────────────────────
 function initProgress() {
   const bar = document.getElementById('reading-progress');
   if (!bar) return;
@@ -8,23 +30,8 @@ function initProgress() {
   }, { passive: true });
 }
 
-// ─── Scroll reveal  (Apple IntersectionObserver) ──────────────
-function initReveal() {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -56px 0px' });
-
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => io.observe(el));
-}
-
-// ─── Hero animation ───────────────────────────────────────────
+// ─── Hero animation (Apple) ───────────────────────────────────
 function animateHero() {
-  // Character-split the name (Apple-style)
   const nameEl = document.getElementById('hero-name');
   if (nameEl && !nameEl.dataset.split) {
     nameEl.dataset.split = '1';
@@ -37,7 +44,6 @@ function animateHero() {
     }).join('');
   }
 
-  // Staggered fade-up for remaining hero elements
   const items = [
     { id: 'hero-greeting', delay: 0.05 },
     { id: 'hero-title',    delay: 0.55 },
@@ -48,15 +54,14 @@ function animateHero() {
   items.forEach(({ id, delay }) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.style.opacity = '0';
+    el.style.opacity   = '0';
     el.style.transform = 'translateY(24px)';
-    el.style.filter = 'blur(4px)';
+    el.style.filter    = 'blur(4px)';
     el.style.transition = [
       `opacity .85s cubic-bezier(.16,1,.3,1) ${delay}s`,
       `transform .85s cubic-bezier(.16,1,.3,1) ${delay}s`,
       `filter .85s cubic-bezier(.16,1,.3,1) ${delay}s`,
     ].join(',');
-    // Double rAF ensures styles are applied before transition starts
     requestAnimationFrame(() => requestAnimationFrame(() => {
       el.style.opacity   = '1';
       el.style.transform = 'translateY(0)';
@@ -65,7 +70,7 @@ function animateHero() {
   });
 }
 
-// ─── Parallax hero dot-grid ───────────────────────────────────
+// ─── Parallax hero dot-grid (Apple) ───────────────────────────
 function initParallax() {
   const hero = document.querySelector('.hero');
   if (!hero) return;
@@ -89,7 +94,6 @@ function initNav() {
   });
 }
 
-// ─── Active nav link on scroll ────────────────────────────────
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
   const links    = document.querySelectorAll('.nav-menu a[href^="#"]');
@@ -107,7 +111,65 @@ function initActiveNav() {
   sections.forEach(s => io.observe(s));
 }
 
-// ─── Content loader from CMS ──────────────────────────────────
+// ─── Project card renderer ────────────────────────────────────
+function buildCard(project, index) {
+  const stagger = ['d1','d2','d3','d4','d5'][index] || '';
+  const tagsHtml = project.tags
+    .map(t => `<span class="tag">${escHtml(t)}</span>`)
+    .join('');
+  const detailHref = escHtml(project.links?.detail || '#');
+  const githubHref = escHtml(project.links?.github || '#');
+
+  const article = document.createElement('article');
+  article.className = `project-card reveal ${stagger}`;
+  article.innerHTML = `
+    <div class="card-image card-image--${escHtml(project.theme)}">
+      <span class="card-icon">${escHtml(project.icon)}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-tags">${tagsHtml}</div>
+      <h3 class="card-title">${escHtml(project.title)}</h3>
+      <p class="card-desc">${escHtml(project.desc)}</p>
+      <div class="card-footer">
+        <a href="${detailHref}" class="btn btn-sm btn-primary">查看詳情</a>
+        <a href="${githubHref}" class="btn btn-sm btn-ghost">GitHub →</a>
+      </div>
+    </div>
+  `;
+  return article;
+}
+
+function escHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─── Load projects from JSON ──────────────────────────────────
+async function loadProjects() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch('_data/projects.json');
+    if (!res.ok) throw new Error('fetch failed');
+    const { projects } = await res.json();
+
+    grid.innerHTML = '';
+    projects.forEach((p, i) => {
+      grid.appendChild(buildCard(p, i));
+    });
+
+    // Let the IO observe the newly created cards
+    observeNewReveal(grid);
+  } catch (_) {
+    // Silently keep whatever fallback HTML is already in the grid
+  }
+}
+
+// ─── Load site content from CMS JSON ─────────────────────────
 async function loadContent() {
   try {
     const res = await fetch('_data/content.json');
@@ -134,7 +196,6 @@ async function loadContent() {
     }
   } catch (_) {}
 
-  // Animate hero after content is set so the right text gets split
   animateHero();
 }
 
@@ -145,3 +206,4 @@ initParallax();
 initNav();
 initActiveNav();
 loadContent();
+loadProjects();

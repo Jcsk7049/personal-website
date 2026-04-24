@@ -99,74 +99,8 @@
     <div class="container">
       <div class="section-label reveal">Projects</div>
       <h2 class="section-title reveal d1">專案展示</h2>
-      <div class="projects-grid">
-
-        <article class="project-card reveal d1">
-          <div class="card-image card-image--security">
-            <span class="card-icon">🛡️</span>
-          </div>
-          <div class="card-body">
-            <div class="card-tags">
-              <span class="tag">資安</span>
-              <span class="tag">Python</span>
-              <span class="tag">React</span>
-            </div>
-            <h3 class="card-title">BitOGuard</h3>
-            <p class="card-desc">
-              智慧型資安防護解決方案，結合機器學習與規則引擎，
-              實現即時威脅偵測與自動化響應。
-            </p>
-            <div class="card-footer">
-              <a href="bitoguard.html" class="btn btn-sm btn-primary">查看詳情</a>
-              <a href="#" class="btn btn-sm btn-ghost">GitHub →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal d2">
-          <div class="card-image card-image--medical">
-            <span class="card-icon">🏥</span>
-          </div>
-          <div class="card-body">
-            <div class="card-tags">
-              <span class="tag">機器學習</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">LSTM</span>
-            </div>
-            <h3 class="card-title">VAP 預測系統</h3>
-            <p class="card-desc">
-              使用 MIMIC-IV 資料庫，透過 LSTM 模型預測呼吸器相關肺炎，
-              AUROC 達 0.97+。
-            </p>
-            <div class="card-footer">
-              <a href="#" class="btn btn-sm btn-primary">查看詳情</a>
-              <a href="#" class="btn btn-sm btn-ghost">GitHub →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal d3">
-          <div class="card-image card-image--resume">
-            <span class="card-icon">📄</span>
-          </div>
-          <div class="card-body">
-            <div class="card-tags">
-              <span class="tag">Web</span>
-              <span class="tag">JavaScript</span>
-            </div>
-            <h3 class="card-title">履歷編輯器</h3>
-            <p class="card-desc">
-              線上履歷編輯與匯出工具，即時預覽、支援多種版型，
-              一鍵匯出 PDF。
-            </p>
-            <div class="card-footer">
-              <a href="#" class="btn btn-sm btn-primary">查看詳情</a>
-              <a href="#" class="btn btn-sm btn-ghost">GitHub →</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
+      <!-- 由 _data/projects.json 動態渲染，新增專案只需編輯該 JSON -->
+      <div class="projects-grid" id="projects-grid"></div>
     </div>
   </section>
 
