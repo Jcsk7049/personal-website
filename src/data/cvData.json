@@ -24,7 +24,7 @@
       "description": "負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質。"
     },
     {
-      "role": "學生導師 (Student Mentor)",
+      "role": "Student Mentor & Technical Support",
       "organization": "FRC 7645 Technical Support",
       "period": "2023 – 現在",
       "description": "負責技術傳承、指導學弟妹進行機器人開發、電控編程與電路設計。"
