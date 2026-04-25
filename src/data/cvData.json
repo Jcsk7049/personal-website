@@ -46,9 +46,9 @@
   "projects": [
     {
       "id": "vap",
-      "title": "VAP 預測系統",
+      "title": "VAP 深度學習預測系統",
       "period": "2025 – 現在",
-      "metric": "AUROC 0.97+",
+      "metric": "現在測試中",
       "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
       "tags": ["PyTorch", "MIMIC-IV", "Medical AI"]
     },
