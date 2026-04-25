@@ -11,7 +11,7 @@ export default function Hero({ profile }) {
   }, [shown, full])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 md:px-20 lg:px-36 py-24">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 md:px-20 lg:px-36 pt-32 pb-24">
 
       <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
         {profile.contact.location}

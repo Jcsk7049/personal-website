@@ -42,14 +42,14 @@ export default function Nav({ name }) {
           {name}
         </a>
 
-        <div className={`flex items-center gap-6 transition-all duration-300 ${
+        <div className={`flex items-center gap-4 md:gap-6 transition-all duration-300 ${
           scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           {SECTIONS.map(({ id, label }) => (
             <a key={id} href={`#${id}`}
-               className={`text-sm transition-colors ${
+               className={`text-xs md:text-sm transition-colors ${
                  active === id
-                   ? 'text-[#1D1D1F] font-medium'
+                   ? 'text-[#1D1D1F] font-semibold'
                    : 'text-[#86868B] hover:text-[#1D1D1F]'
                }`}>
               {label}
