@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
 export default function Hero({ profile }) {
-  const [shown, setShown] = useState('')
+  const [shown, setShown]           = useState('')
+  const [showScroll, setShowScroll] = useState(true)
   const full = profile.title
 
   useEffect(() => {
@@ -9,6 +10,12 @@ export default function Hero({ profile }) {
     const t = setTimeout(() => setShown(full.slice(0, shown.length + 1)), 65)
     return () => clearTimeout(t)
   }, [shown, full])
+
+  useEffect(() => {
+    const onScroll = () => setShowScroll(window.scrollY < 80)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 overflow-hidden">
@@ -29,20 +36,18 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
               {profile.name}
             </h1>
-
             <div className="flex items-center h-9 mb-14">
               <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
               <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
             </div>
-
             <div className="flex flex-wrap gap-3">
               <a href={`mailto:${profile.contact.email}`}
                  className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                            hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200 shadow-sm shadow-[#0071E3]/20">
+                            hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200
+                            shadow-sm shadow-[#0071E3]/20">
                 {profile.contact.email}
               </a>
               <a href={`tel:${profile.contact.phone}`}
@@ -68,27 +73,23 @@ export default function Hero({ profile }) {
           {/* Right: Photo */}
           <div className="shrink-0 flex justify-center lg:justify-end hero-fade-right">
             <div className="relative">
-              {/* Decorative ring */}
               <div className="absolute -inset-4 rounded-[2.5rem] border border-[#0071E3]/10 pointer-events-none" />
-              {/* Dot decoration */}
               <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#0071E3]/20" />
               <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-[#0071E3]/10" />
-
               <div className="w-52 h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] overflow-hidden
                               bg-gradient-to-br from-[#F0F4FF] to-[#E8EDF5]
                               ring-1 ring-gray-200/80 shadow-2xl shadow-gray-300/40">
                 {profile.avatar ? (
                   <img src={profile.avatar} alt={profile.name}
-                       className="w-full h-full object-cover" />
+                       className="w-full h-full object-cover"
+                       fetchpriority="high" decoding="async" />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center gap-2
                                   bg-gradient-to-br from-[#F5F5F7] to-[#E8ECF4]">
                     <span className="text-7xl lg:text-8xl font-bold tracking-tighter text-[#C7C7CC] select-none">
                       {profile.name[0]}
                     </span>
-                    <span className="text-xs text-[#C7C7CC] tracking-[0.15em] uppercase select-none">
-                      Photo
-                    </span>
+                    <span className="text-xs text-[#C7C7CC] tracking-[0.15em] uppercase select-none">Photo</span>
                   </div>
                 )}
               </div>
@@ -98,9 +99,13 @@ export default function Hero({ profile }) {
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
-        <span className="text-[10px] tracking-[0.2em] uppercase text-[#86868B]">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent" />
+      {/* Scroll indicator — fades out on scroll */}
+      <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
+                       pointer-events-none transition-opacity duration-500
+                       ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
+        <span className="text-[10px] tracking-[0.2em] uppercase text-[#86868B] scroll-bounce">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent scroll-bounce"
+             style={{ animationDelay: '0.15s' }} />
       </div>
     </section>
   )

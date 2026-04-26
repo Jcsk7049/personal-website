@@ -10,7 +10,7 @@ export default function Education({ education }) {
         sub="紮根電機工程，從技職體系一路銜接至大學研究。"
       />
 
-      <div className="grid md:grid-cols-2 gap-4 max-w-3xl card-stagger">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 card-stagger">
         {education.map((edu, i) => (
           <div key={i}
                className="p-7 rounded-2xl bg-white border border-transparent

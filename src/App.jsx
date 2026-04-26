@@ -8,6 +8,7 @@ import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
 import AwardList       from './components/AwardList'
 import ProjectDetail   from './pages/ProjectDetail'
+import NotFound        from './pages/NotFound'
 import cvData          from './data/cvData.json'
 
 function HomePage() {
@@ -29,7 +30,7 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="bg-white text-[#1D1D1F] font-sans antialiased">
+    <div className="page-enter bg-white text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cvData.profile.name} />
       <Hero            profile={cvData.profile} />
       <Education       education={cvData.education} />
@@ -48,8 +49,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"               element={<HomePage />} />
-        <Route path="/projects/:id"   element={<ProjectDetail />} />
+        <Route path="/"             element={<HomePage />}     />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="*"             element={<NotFound />}     />
       </Routes>
     </BrowserRouter>
   )

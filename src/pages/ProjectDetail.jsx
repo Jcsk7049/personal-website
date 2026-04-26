@@ -2,10 +2,18 @@ import { useParams, Link } from 'react-router-dom'
 import cvData from '../data/cvData.json'
 
 const SECTIONS = [
-  { key: 'purpose', label: '用途', en: 'Purpose' },
+  { key: 'purpose', label: '用途',   en: 'Purpose'       },
   { key: 'concept', label: '設計構思', en: 'Design Concept' },
-  { key: 'outcome', label: '成果', en: 'Outcome' },
+  { key: 'outcome', label: '成果',   en: 'Outcome'        },
 ]
+
+const PROJECT_ACCENTS = {
+  'vap':               'from-sky-400 to-blue-600',
+  'aws-hackathon':     'from-amber-400 to-orange-500',
+  'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
+  'whack-a-mole':      'from-teal-400 to-cyan-500',
+  'swerve':            'from-rose-400 to-red-500',
+}
 
 export default function ProjectDetail() {
   const { id } = useParams()
@@ -20,25 +28,28 @@ export default function ProjectDetail() {
     )
   }
 
-  const detail = project.detail || {}
+  const detail      = project.detail || {}
+  const accentClass = PROJECT_ACCENTS[project.id] || 'from-gray-300 to-gray-400'
 
   return (
-    <div className="bg-white min-h-screen font-sans antialiased">
+    <div className="bg-white min-h-screen font-sans antialiased page-enter">
 
       {/* Top nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
           <Link to="/"
                 className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
-            <span>←</span>
-            <span>返回</span>
+            <span>←</span><span>返回</span>
           </Link>
           <p className="text-sm font-semibold text-[#1D1D1F] truncate">{project.title}</p>
           <div className="shrink-0 w-12" />
         </div>
       </nav>
 
-      <main className="pt-32 pb-24 px-6 md:px-10 max-w-4xl mx-auto">
+      {/* Accent bar — visual continuity with card */}
+      <div className={`h-1 w-full bg-gradient-to-r ${accentClass} mt-14`} />
+
+      <main className="pt-16 pb-24 px-6 md:px-10 max-w-4xl mx-auto">
 
         {/* Header */}
         <div className="mb-16">
@@ -48,7 +59,8 @@ export default function ProjectDetail() {
           </h1>
           {project.metric && (
             <div className="flex items-baseline gap-3 mb-6">
-              <span className="text-[4rem] font-bold tracking-[-0.04em] text-[#0071E3] leading-none">
+              <span className={`text-[4rem] font-bold tracking-[-0.04em] leading-none
+                               bg-gradient-to-br ${accentClass} bg-clip-text text-transparent`}>
                 {project.metric.replace(/[a-zA-Z\s]/g, '')}
               </span>
               <span className="text-sm font-mono text-[#86868B] uppercase tracking-widest">
