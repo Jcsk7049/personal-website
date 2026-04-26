@@ -41,7 +41,6 @@
     "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
     "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
     "data_analysis": ["數據結構化", "特徵工程", "訊號過濾", "深度學習", "機器學習"]
-    
   },
   "projects": [
     {
@@ -50,35 +49,65 @@
       "period": "2025 – 現在",
       "metric": "ING",
       "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
-      "tags": ["PyTorch", "MIMIC-IV", "Medical AI"]
+      "tags": ["PyTorch", "MIMIC-IV", "Medical AI"],
+      "detail": {
+        "purpose": "",
+        "concept": "",
+        "outcome": "",
+        "github": ""
+      }
     },
     {
       "id": "aws-hackathon",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2024",
       "description": "整合 AWS 機器學習與規則引擎的 AI 詐騙偵測系統。",
-      "tags": ["AWS", "Machine Learning", "FinTech"]
+      "tags": ["AWS", "Machine Learning", "FinTech"],
+      "detail": {
+        "purpose": "",
+        "concept": "",
+        "outcome": "",
+        "github": ""
+      }
     },
     {
-      "id": "QMK&STM32number-keyboard",
-      "title": "QMK x STM32數字鍵盤",
+      "id": "qmk-stm32-keyboard",
+      "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "利用STM32實現鍵盤功能，並使用QMK進行韌體編輯設計。",
-      "tags": ["QMK", "PCB design", "software design "]
+      "description": "利用 STM32 實現鍵盤功能，並使用 QMK 進行韌體編輯設計。",
+      "tags": ["QMK", "PCB Design", "STM32"],
+      "detail": {
+        "purpose": "",
+        "concept": "",
+        "outcome": "",
+        "github": ""
+      }
     },
     {
       "id": "whack-a-mole",
       "title": "無線打地鼠機 (特教組教具)",
       "period": "2021 – 2022",
       "description": "使用 ESP32 (ESP-NOW) 實現之無線通訊趣味教具。",
-      "tags": ["ESP32", "Arduino", "Inclusive Design"]
+      "tags": ["ESP32", "Arduino", "Inclusive Design"],
+      "detail": {
+        "purpose": "",
+        "concept": "",
+        "outcome": "",
+        "github": ""
+      }
     },
     {
       "id": "swerve",
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",
       "description": "FRC 機器人底盤機構優化與 PID 控制算法實作。",
-      "tags": ["LabVIEW", "PID Control", "Robotics"]
+      "tags": ["LabVIEW", "PID Control", "Robotics"],
+      "detail": {
+        "purpose": "",
+        "concept": "",
+        "outcome": "",
+        "github": ""
+      }
     }
   ],
   "awards": [

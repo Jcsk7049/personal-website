@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
-import Nav            from './components/Nav'
-import Hero           from './components/Hero'
-import Education      from './components/Education'
-import Experience     from './components/Experience'
-import SkillGrid      from './components/SkillGrid'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Nav             from './components/Nav'
+import Hero            from './components/Hero'
+import Education       from './components/Education'
+import Experience      from './components/Experience'
+import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
-import AwardList      from './components/AwardList'
-import cvData         from './data/cvData.json'
+import AwardList       from './components/AwardList'
+import ProjectDetail   from './pages/ProjectDetail'
+import cvData          from './data/cvData.json'
 
-export default function App() {
+function HomePage() {
   useEffect(() => {
     const sections = document.querySelectorAll('section:not(#hero)')
     sections.forEach(s => s.classList.add('reveal'))
@@ -39,5 +41,16 @@ export default function App() {
         © {new Date().getFullYear()} {cvData.profile.name} · Built with React & Tailwind
       </footer>
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"               element={<HomePage />} />
+        <Route path="/projects/:id"   element={<ProjectDetail />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
