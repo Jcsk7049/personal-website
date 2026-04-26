@@ -1,7 +1,6 @@
 {
   "profile": {
     "name": "江嘉元",
-    "title": "電機工程學系學士 學生",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -39,17 +38,16 @@
     }
   ],
   "skills_matrix": {
-    "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工"],
+    "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工","機械建模:autodesk inentor,autoCAD,fushion360"],
     "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
     "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
-    "data_analysis": ["數據結構化", "特徵工程", "訊號過濾", "深度學習", "機器學習"]
+    "data_analysis": ["深度學習", "機器學習","數據結構化", "特徵工程", "訊號過濾" ]
   },
   "projects": [
     {
       "id": "vap",
       "title": "VAP 深度學習預測系統",
       "period": "2025 – 現在",
-      "metric": "ING",
       "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
       "tags": ["PyTorch", "MIMIC-IV", "Medical AI"],
       "detail": {
