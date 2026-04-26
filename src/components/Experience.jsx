@@ -2,7 +2,8 @@ import SectionHeader from './SectionHeader'
 
 export default function Experience({ experience }) {
   return (
-    <section id="experience" className="py-24 px-6 md:px-20 lg:px-36">
+    <section id="experience" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
       <SectionHeader
         en="Experience"
         zh="經歷"
@@ -25,6 +26,7 @@ export default function Experience({ experience }) {
             <p className="text-sm text-[#1D1D1F] leading-relaxed">{exp.description}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

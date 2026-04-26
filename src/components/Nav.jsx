@@ -34,7 +34,7 @@ export default function Nav({ name }) {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-gray-100/80 shadow-sm' : 'bg-transparent'
     }`}>
-      <div className="px-6 md:px-20 lg:px-36 h-14 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
         <a href="#hero"
            className={`text-sm font-semibold text-[#1D1D1F] transition-all duration-300 ${
              scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'

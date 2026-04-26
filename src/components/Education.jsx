@@ -2,7 +2,8 @@ import SectionHeader from './SectionHeader'
 
 export default function Education({ education }) {
   return (
-    <section id="education" className="py-24 px-6 md:px-20 lg:px-36 bg-[#F5F5F7]">
+    <section id="education" className="py-24 bg-[#F5F5F7]">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
       <SectionHeader
         en="Education"
         zh="學歷"
@@ -20,6 +21,7 @@ export default function Education({ education }) {
             <p className="text-sm text-[#86868B]">{edu.degree}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

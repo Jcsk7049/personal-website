@@ -9,7 +9,8 @@ const QUADRANTS = [
 
 export default function SkillGrid({ skills }) {
   return (
-    <section id="skills" className="py-24 px-6 md:px-20 lg:px-36 bg-[#F5F5F7]">
+    <section id="skills" className="py-24 bg-[#F5F5F7]">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
       <SectionHeader
         en="Skills"
         zh="技術矩陣"
@@ -53,6 +54,7 @@ export default function SkillGrid({ skills }) {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

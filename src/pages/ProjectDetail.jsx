@@ -27,7 +27,7 @@ export default function ProjectDetail() {
 
       {/* Top nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-        <div className="px-6 md:px-20 lg:px-36 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
           <Link to="/"
                 className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
             <span>←</span>
@@ -38,7 +38,7 @@ export default function ProjectDetail() {
         </div>
       </nav>
 
-      <main className="pt-32 pb-24 px-6 md:px-20 lg:px-36 max-w-4xl">
+      <main className="pt-32 pb-24 px-6 md:px-10 max-w-4xl mx-auto">
 
         {/* Header */}
         <div className="mb-16">

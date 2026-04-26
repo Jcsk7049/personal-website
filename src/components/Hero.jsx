@@ -11,7 +11,8 @@ export default function Hero({ profile }) {
   }, [shown, full])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 md:px-20 lg:px-36 pt-32 pb-24">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full">
 
       <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
         {profile.contact.location}
@@ -49,6 +50,8 @@ export default function Hero({ profile }) {
                       hover:border-gray-400 active:scale-95 transition-all">
           LinkedIn
         </a>
+      </div>
+
       </div>
 
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">

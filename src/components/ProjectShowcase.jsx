@@ -6,7 +6,8 @@ export default function ProjectShowcase({ projects }) {
   const rest      = projects.filter(p => !p.metric)
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-20 lg:px-36">
+    <section id="projects" className="py-24">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
       <SectionHeader
         en="Projects"
         zh="專案"
@@ -78,6 +79,7 @@ export default function ProjectShowcase({ projects }) {
           ))}
         </div>
 
+      </div>
       </div>
     </section>
   )

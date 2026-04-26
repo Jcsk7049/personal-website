@@ -2,7 +2,8 @@ import SectionHeader from './SectionHeader'
 
 export default function AwardList({ awards }) {
   return (
-    <section id="awards" className="py-24 px-6 md:px-20 lg:px-36 bg-[#F5F5F7]">
+    <section id="awards" className="py-24 bg-[#F5F5F7]">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
       <SectionHeader
         en="Awards"
         zh="獲獎"
@@ -21,6 +22,7 @@ export default function AwardList({ awards }) {
             <p className="text-sm text-[#1D1D1F] leading-snug">{award.title}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )
