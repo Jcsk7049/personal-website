@@ -62,13 +62,13 @@
       "id": "aws-hackathon",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2024",
-      "description": "整合 AWS 機器學習與規則引擎的 AI 詐騙偵測系統。",
-      "tags": ["AWS", "Machine Learning", "FinTech"],
+      "description": "基於 AWS 雲端架構的加密貨幣反洗錢系統，識別 BitoPro 交易所中的可疑人頭帳戶。",
+      "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "Streamlit"],
       "detail": {
-        "purpose": "",
-        "concept": "",
-        "outcome": "於 AWS x BitoPro 黑客松競賽中榮獲獲獎肯定。BitOGuard 系統成功整合 AWS 機器學習服務與自定義規則引擎，能有效識別加密貨幣交易中的異常行為與詐騙模式，在競賽評審中獲得技術可行性與商業價值的正面評價。",
-        "github": ""
+        "purpose": "BitOGuard 是針對 BitoPro 加密貨幣交易所設計的反洗錢（AML）偵測系統，目標為識別利用交易所進行非法資金移轉的「人頭帳戶」。\n\n系統分析用戶的台幣轉帳、USDT 交易與兌換行為，透過機器學習模型對每個帳戶進行風險評分，協助交易所落實金融合規（KYC/AML）義務，防範洗錢與詐騙資金流通。",
+        "concept": "【資料管線】\n・BitoPro API 抓取交易紀錄 → 存入 AWS S3\n・AWS Glue 執行 ETL 清洗與圖形化多跳分析（Graph Hop Analysis）\n・Amazon Athena 以 SQL 查詢特徵聚合結果\n\n【機器學習模型】\n・XGBoost + LightGBM 雙模型 Ensemble 二元分類\n・特徵工程：存提款次數、夜間交易比例、圖論關聯跳數距離\n・SHAP 值分析提供模型可解釋性\n・Amazon Bedrock 整合 XAI（可解釋 AI）產生風險說明報告\n\n【雲端基礎架構】\n・Amazon SageMaker 執行模型訓練、調參與部署\n・AWS Lambda 處理即時診斷與事件觸發邏輯\n・CloudFormation 定義 IaC（基礎設施即程式碼）\n・Streamlit 建立互動式風險審查儀表板\n\n【核心挑戰】\n資料集存在嚴重類別不平衡（黑名單用戶 1,640 筆：正常用戶 49,377 筆，比例約 1:30），初版以三個核心特徵建模，透過 scale_pos_weight 與閾值調整緩解不平衡問題，並為後續特徵工程擴充預留架構空間。",
+        "outcome": "【競賽成果】\n・於 AWS x BitoPro 黑客松競賽中獲獎，雲端架構設計與技術整合受評審肯定\n\n【技術成果】\n・完整實作從 API 資料擷取到模型預測的端對端 AML 管線（81 commits）\n・成功串接 SageMaker、Glue、Athena、Lambda、S3、Bedrock 六項 AWS 服務\n・SHAP 可解釋性模組讓模型判斷結果具備合規說明能力\n・Streamlit 儀表板支援互動式風險帳戶審查\n\n【技術反思】\n初版模型僅以三個特徵建模，類別不平衡（1:30）造成召回率偏低。競賽後規劃引入圖神經網路（GNN）、豐富特徵工程（交易頻率分佈、共用 IP 關聯、帳戶開立時間）與多模型 Ensemble 優化，作為後續改良方向。",
+        "github": "https://github.com/Jcsk7049/bitoguard-aml"
       }
     },
     {
