@@ -30,7 +30,7 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="page-enter bg-white text-[#1D1D1F] font-sans antialiased">
+    <div className="bg-white text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cvData.profile.name} />
       <Hero            profile={cvData.profile} />
       <Education       education={cvData.education} />
