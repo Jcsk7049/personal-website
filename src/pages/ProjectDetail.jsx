@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import cvData from '../data/cvData.json'
 
 const SECTIONS = [
@@ -16,8 +16,14 @@ const PROJECT_ACCENTS = {
 }
 
 export default function ProjectDetail() {
-  const { id } = useParams()
-  const project = cvData.projects.find(p => p.id === id)
+  const { id }   = useParams()
+  const navigate = useNavigate()
+  const project  = cvData.projects.find(p => p.id === id)
+
+  const handleBack = () => {
+    if (window.history.length > 1) window.history.back()
+    else navigate('/')
+  }
 
   if (!project) {
     return (
@@ -37,10 +43,10 @@ export default function ProjectDetail() {
       {/* Top nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
-          <Link to="/"
-                className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
+          <button onClick={handleBack}
+                  className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
             <span>←</span><span>返回</span>
-          </Link>
+          </button>
           <p className="text-sm font-semibold text-[#1D1D1F] truncate">{project.title}</p>
           <div className="shrink-0 w-12" />
         </div>
@@ -53,7 +59,6 @@ export default function ProjectDetail() {
 
         {/* Header */}
         <div className="mb-16">
-          <p className="text-xs font-mono text-[#86868B] mb-4">{project.period}</p>
           <h1 className="text-5xl font-bold tracking-[-0.03em] text-[#1D1D1F] mb-6 leading-tight">
             {project.title}
           </h1>
