@@ -53,7 +53,7 @@
       "detail": {
         "purpose": "",
         "concept": "",
-        "outcome": "",
+        "outcome": "目前模型仍在持續訓練與優化階段，以 MIMIC-IV 大型臨床數據集為基礎，針對呼吸器相關性肺炎（VAP）進行早期預測。在初步實驗中，LSTM 模型於測試集上取得 AUROC 0.97+ 的表現，顯示模型具備高度辨別能力。後續將持續優化特徵工程策略與模型架構，目標應用於臨床輔助決策。",
         "github": ""
       }
     },
@@ -66,7 +66,7 @@
       "detail": {
         "purpose": "",
         "concept": "",
-        "outcome": "",
+        "outcome": "於 AWS x BitoPro 黑客松競賽中榮獲獲獎肯定。BitOGuard 系統成功整合 AWS 機器學習服務與自定義規則引擎，能有效識別加密貨幣交易中的異常行為與詐騙模式，在競賽評審中獲得技術可行性與商業價值的正面評價。",
         "github": ""
       }
     },
@@ -79,7 +79,7 @@
       "detail": {
         "purpose": "",
         "concept": "",
-        "outcome": "",
+        "outcome": "成功完成 17 鍵數字鍵盤的全流程開發，涵蓋 PCB 電路設計、STM32 韌體整合與 QMK 鍵位設定。支援 VIA 與 VIAL 圖形化改鍵介面，使用者無需重新編譯即可即時調整鍵位配置。電路板經實際焊接與功能驗證，各按鍵響應正常，已開源於 GitHub。",
         "github": "https://github.com/Jcsk7049/qmk-stm32-keyboard"
       }
     },
@@ -92,7 +92,7 @@
       "detail": {
         "purpose": "",
         "concept": "",
-        "outcome": "",
+        "outcome": "完成無線打地鼠教具的硬體製作與韌體開發，ESP-NOW 協議確保了低延遲的無線通訊，使遊戲體驗流暢穩定。教具成功應用於特教課程現場，以互動遊戲形式輔助學生進行感覺統合訓練，獲得教師與學生的正面回饋。",
         "github": ""
       }
     },
@@ -105,7 +105,7 @@
       "detail": {
         "purpose": "",
         "concept": "",
-        "outcome": "",
+        "outcome": "完成 Swerve Drive 全向底盤的機構設計與 PID 控制算法實作，機器人具備任意方向平移與原地旋轉能力。實際應用於 FRC TEAM 7645 競賽機器人，參與 2022 台灣鴻海區域賽榮獲亞軍聯盟（Finalist）及控制創新獎，2020 年中科 5G 區域賽獲最佳工業設計獎。",
         "github": ""
       }
     }
