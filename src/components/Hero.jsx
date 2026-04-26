@@ -11,47 +11,91 @@ export default function Hero({ profile }) {
   }, [shown, full])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 overflow-hidden">
 
-      <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
-        {profile.contact.location}
-      </p>
-
-      <h1 className="text-[clamp(3.5rem,10vw,7rem)] font-bold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
-        {profile.name}
-      </h1>
-
-      <div className="flex items-center h-9 mb-14">
-        <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
-        <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
+      {/* Background gradient blobs */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full
+                        bg-[#0071E3] opacity-[0.06] blur-[100px]" />
+        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full
+                        bg-[#0071E3] opacity-[0.04] blur-[80px]" />
       </div>
 
-      <div className="flex flex-wrap gap-3">
-        <a href={`mailto:${profile.contact.email}`}
-           className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                      hover:bg-[#0077ED] active:scale-95 transition-all">
-          {profile.contact.email}
-        </a>
-        <a href={`tel:${profile.contact.phone}`}
-           className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                      hover:border-gray-400 active:scale-95 transition-all">
-          {profile.contact.phone}
-        </a>
-        <a href={`https://github.com/${profile.links.github}`}
-           target="_blank" rel="noopener noreferrer"
-           className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                      hover:border-gray-400 active:scale-95 transition-all">
-          GitHub
-        </a>
-        <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
-           target="_blank" rel="noopener noreferrer"
-           className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                      hover:border-gray-400 active:scale-95 transition-all">
-          LinkedIn
-        </a>
-      </div>
+      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full relative">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
 
+          {/* Left: Text */}
+          <div className="flex-1 hero-fade-left">
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
+              {profile.contact.location}
+            </p>
+
+            <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
+              {profile.name}
+            </h1>
+
+            <div className="flex items-center h-9 mb-14">
+              <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
+              <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <a href={`mailto:${profile.contact.email}`}
+                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
+                            hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200 shadow-sm shadow-[#0071E3]/20">
+                {profile.contact.email}
+              </a>
+              <a href={`tel:${profile.contact.phone}`}
+                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                {profile.contact.phone}
+              </a>
+              <a href={`https://github.com/${profile.links.github}`}
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                GitHub
+              </a>
+              <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Photo */}
+          <div className="shrink-0 flex justify-center lg:justify-end hero-fade-right">
+            <div className="relative">
+              {/* Decorative ring */}
+              <div className="absolute -inset-4 rounded-[2.5rem] border border-[#0071E3]/10 pointer-events-none" />
+              {/* Dot decoration */}
+              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#0071E3]/20" />
+              <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-[#0071E3]/10" />
+
+              <div className="w-52 h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] overflow-hidden
+                              bg-gradient-to-br from-[#F0F4FF] to-[#E8EDF5]
+                              ring-1 ring-gray-200/80 shadow-2xl shadow-gray-300/40">
+                {profile.avatar ? (
+                  <img src={profile.avatar} alt={profile.name}
+                       className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-2
+                                  bg-gradient-to-br from-[#F5F5F7] to-[#E8ECF4]">
+                    <span className="text-7xl lg:text-8xl font-bold tracking-tighter text-[#C7C7CC] select-none">
+                      {profile.name[0]}
+                    </span>
+                    <span className="text-xs text-[#C7C7CC] tracking-[0.15em] uppercase select-none">
+                      Photo
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">

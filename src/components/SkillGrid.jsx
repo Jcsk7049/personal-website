@@ -17,14 +17,14 @@ export default function SkillGrid({ skills }) {
         sub="從底層硬體到 AI 模型，跨域整合是最核心的競爭力。"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
         {QUADRANTS.map(q => (
           <div key={q.key}
-               className={`rounded-2xl p-8 transition-all duration-300
-                           hover:-translate-y-1 hover:shadow-md ${
+               className={`rounded-2xl p-8 border border-transparent transition-all duration-300
+                           hover:-translate-y-1 hover:shadow-xl hover:border-gray-200/60 ${
                  q.dark
-                   ? 'bg-[#1D1D1F] text-white'
-                   : 'bg-white'
+                   ? 'bg-[#1D1D1F] text-white hover:shadow-gray-800/30'
+                   : 'bg-white hover:shadow-gray-200/60'
                }`}>
             <div className="flex items-start justify-between mb-6">
               <div>
