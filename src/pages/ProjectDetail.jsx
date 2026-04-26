@@ -27,12 +27,14 @@ export default function ProjectDetail() {
 
       {/* Top nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-        <div className="px-6 md:px-20 lg:px-36 h-14 flex items-center">
+        <div className="px-6 md:px-20 lg:px-36 h-14 flex items-center justify-between gap-4">
           <Link to="/"
-                className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors">
+                className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
             <span>←</span>
             <span>返回</span>
           </Link>
+          <p className="text-sm font-semibold text-[#1D1D1F] truncate">{project.title}</p>
+          <div className="shrink-0 w-12" />
         </div>
       </nav>
 
