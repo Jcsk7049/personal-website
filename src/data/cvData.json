@@ -77,8 +77,8 @@
       "description": "利用 STM32 實現鍵盤功能，並使用 QMK 進行韌體編輯設計。",
       "tags": ["QMK", "PCB Design", "STM32"],
       "detail": {
-        "purpose": "",
-        "concept": "",
+        "purpose": "本專案為一款基於 STM32 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware 開發。主要用途如下：\n\n・作為日常數據輸入工具（數字鍵盤輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・作為嵌入式系統與鍵盤韌體開發之練習平台\n・驗證自製 PCB、矩陣掃描（Matrix Scanning）與 RGB 控制之整合\n・支援可編譯、可重現之開發流程（QMK + STM32 DFU）",
+        "concept": "本設計以「簡潔、可控、可擴展」為核心，重點如下：\n\n【硬體架構】\n採用 STM32 系列 MCU（支援 DFU 燒錄），使用標準鍵盤矩陣（Matrix）設計降低 IO 使用量，搭配 WS2812（Addressable RGB）實現逐鍵燈效控制，並預留去耦電容（100nF）確保電源穩定性。\n\n【韌體架構（QMK）】\n使用 QMK Firmware 作為核心框架，自定義 LAYOUT_numpad_17 以對應 PCB 實體配置，檔案結構採模組分離：w17.h 定義 Layout、w17.c 設定 RGB Matrix、config.h 管理硬體與功能設定、keymap.c 負責鍵位邏輯。\n\n【Layer 設計】\nLayer 0（預設）為標準數字鍵盤輸入；Layer 1（功能層）支援 RGB Matrix 控制（亮度 / 顏色 / 模式 / 速度），並使用 LT() 實現「長按切層、短按輸入」。\n\n【RGB 設計】\n採用 RGB_MATRIX（非舊版 RGBLIGHT），支援模式切換（RM_NEXT / RM_PREV）、色相（Hue）/ 飽和度（Sat）/ 亮度（Val）調整及動畫速度控制，並設定亮度上限（RGB_MATRIX_MAXIMUM_BRIGHTNESS 120）以避免過流與過熱。\n\n【設計目標】\n降低除錯難度（結構清晰、模組分離），提供可重現開發流程（compile → flash → 測試），作為後續擴展基礎（VIA / VIAL / 自定義功能）。",
         "outcome": "成功完成 17 鍵數字鍵盤的全流程開發，涵蓋 PCB 電路設計、STM32 韌體整合與 QMK 鍵位設定。支援 VIA 與 VIAL 圖形化改鍵介面，使用者無需重新編譯即可即時調整鍵位配置。電路板經實際焊接與功能驗證，各按鍵響應正常，已開源於 GitHub。",
         "github": "https://github.com/Jcsk7049/qmk-stm32-keyboard"
       }
