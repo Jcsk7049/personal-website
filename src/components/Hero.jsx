@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export default function Hero({ profile }) {
   const [shown, setShown]           = useState('')
   const [showScroll, setShowScroll] = useState(true)
-  const full = profile.title
+  const full = profile.title || ''
 
   useEffect(() => {
     if (shown.length >= full.length) return
