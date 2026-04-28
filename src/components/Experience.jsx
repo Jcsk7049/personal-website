@@ -2,7 +2,7 @@ import SectionHeader from './SectionHeader'
 
 export default function Experience({ experience }) {
   return (
-    <section id="experience" className="py-24">
+    <section id="experience" className="py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Experience"
@@ -16,7 +16,7 @@ export default function Experience({ experience }) {
               {/* Timeline line */}
               {i < experience.length - 1 && (
                 <div className="absolute left-[4px] top-5 w-px h-full
-                                bg-gradient-to-b from-[#0071E3]/30 via-gray-200/60 to-transparent" />
+                                bg-gradient-to-b from-[#0071E3]/30 via-slate-200/60 to-transparent" />
               )}
               {/* Timeline dot */}
               <div className="absolute left-0 top-[0.6rem] w-2 h-2 rounded-full bg-[#0071E3]
@@ -24,19 +24,19 @@ export default function Experience({ experience }) {
                               group-hover:shadow-[0_0_0_4px_rgba(0,113,227,0.25)] group-hover:scale-110
                               transition-all duration-300" />
 
-              <div className="p-5 rounded-2xl hover:bg-[#F5F5F7]/70 transition-colors duration-200 -ml-2 pl-7">
+              <div className="p-5 rounded-2xl hover:bg-slate-50/70 transition-colors duration-200 -ml-2 pl-7">
                 <div className="flex items-start justify-between gap-4 mb-1.5">
-                  <h3 className="text-base font-semibold text-[#1D1D1F] leading-snug
+                  <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
                                  group-hover:text-[#0071E3] transition-colors duration-200">
                     {exp.role}
                   </h3>
-                  <span className="text-[10px] text-[#AEAEB2] font-mono bg-[#F5F5F7] px-2.5 py-1
+                  <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1
                                    rounded-full whitespace-nowrap shrink-0 leading-none mt-0.5">
                     {exp.period}
                   </span>
                 </div>
                 <p className="text-sm text-[#0071E3]/80 mb-2.5 font-medium">{exp.organization}</p>
-                <p className="text-sm text-[#86868B] leading-relaxed">{exp.description}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">{exp.description}</p>
               </div>
             </div>
           ))}

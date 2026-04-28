@@ -33,12 +33,12 @@ export default function Nav({ name }) {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled
-        ? 'bg-white/85 backdrop-blur-2xl border-b border-gray-100/60 shadow-sm shadow-black/[0.04]'
+        ? 'bg-white/70 backdrop-blur-md border-b border-slate-100 shadow-sm shadow-slate-200/30'
         : 'bg-transparent'
     }`}>
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
         <a href="#hero"
-           className={`text-sm font-semibold text-[#1D1D1F] tracking-[-0.01em] transition-all duration-300 ${
+           className={`text-sm font-extrabold tracking-tight text-[#1D1D1F] transition-all duration-300 ${
              scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
            }`}>
           {name}
@@ -52,7 +52,7 @@ export default function Nav({ name }) {
                className={`relative text-xs md:text-sm transition-colors duration-200 pb-1 ${
                  active === id
                    ? 'text-[#1D1D1F] font-semibold'
-                   : 'text-[#86868B] hover:text-[#1D1D1F]'
+                   : 'text-slate-400 hover:text-[#1D1D1F]'
                }`}>
               {label}
               <span className={`absolute bottom-0 left-0 right-0 h-px rounded-full bg-[#0071E3]

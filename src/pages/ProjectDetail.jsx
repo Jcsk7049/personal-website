@@ -27,8 +27,8 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-[#86868B]">找不到此專案</p>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-50">
+        <p className="text-slate-400">找不到此專案</p>
         <Link to="/" className="text-sm text-[#0071E3] hover:underline">← 返回首頁</Link>
       </div>
     )
@@ -38,37 +38,37 @@ export default function ProjectDetail() {
   const accentClass = PROJECT_ACCENTS[project.id] || 'from-gray-300 to-gray-400'
 
   return (
-    <div className="bg-white min-h-screen font-sans antialiased page-enter">
+    <div className="bg-slate-50 min-h-screen font-sans antialiased page-enter">
 
       {/* Top nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
           <button onClick={handleBack}
-                  className="flex items-center gap-2 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors shrink-0">
+                  className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#1D1D1F] transition-colors shrink-0">
             <span>←</span><span>返回</span>
           </button>
-          <p className="text-sm font-semibold text-[#1D1D1F] truncate">{project.title}</p>
+          <p className="text-sm font-semibold tracking-tight text-[#1D1D1F] truncate">{project.title}</p>
           <div className="shrink-0 w-12" />
         </div>
       </nav>
 
-      {/* Accent bar — visual continuity with card */}
-      <div className={`h-1 w-full bg-gradient-to-r ${accentClass} mt-14`} />
+      {/* Accent bar */}
+      <div className={`h-[3px] w-full bg-gradient-to-r ${accentClass} mt-14`} />
 
-      <main className="pt-16 pb-24 px-6 md:px-10 max-w-4xl mx-auto">
+      <main className="pt-16 pb-32 px-6 md:px-10 max-w-4xl mx-auto">
 
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-5xl font-bold tracking-[-0.03em] text-[#1D1D1F] mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F] mb-6 leading-tight">
             {project.title}
           </h1>
           {project.metric && (
             <div className="flex items-baseline gap-3 mb-6">
-              <span className={`text-[4rem] font-bold tracking-[-0.04em] leading-none
+              <span className={`text-[4rem] font-extrabold tracking-[-0.04em] leading-none
                                bg-gradient-to-br ${accentClass} bg-clip-text text-transparent`}>
                 {project.metric.replace(/[a-zA-Z\s]/g, '')}
               </span>
-              <span className="text-sm font-mono text-[#86868B] uppercase tracking-widest">
+              <span className="text-sm font-mono text-slate-400 uppercase tracking-widest">
                 {project.metric.replace(/[\d.+]/g, '').trim() || 'AUROC'}
               </span>
             </div>
@@ -76,7 +76,7 @@ export default function ProjectDetail() {
           <div className="flex flex-wrap gap-2">
             {project.tags.map(tag => (
               <span key={tag}
-                    className="px-3 py-1 rounded-full bg-[#F5F5F7] text-[#1D1D1F] text-sm font-medium">
+                    className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 text-sm font-medium">
                 {tag.trim()}
               </span>
             ))}
@@ -84,18 +84,21 @@ export default function ProjectDetail() {
         </div>
 
         {/* Content sections */}
-        <div className="space-y-16">
+        <div className="space-y-14">
           {SECTIONS.map(({ key, label, en }) => (
-            <section key={key}>
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">{en}</p>
-              <h2 className="text-2xl font-bold text-[#1D1D1F] mb-5">{label}</h2>
+            <section key={key} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
+              <div className="flex items-center gap-2.5 mb-4">
+                <span className="block w-4 h-px bg-[#0071E3] rounded-full" />
+                <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-slate-400">{en}</p>
+              </div>
+              <h2 className="text-xl font-extrabold tracking-tight text-[#1D1D1F] mb-4">{label}</h2>
               {detail[key] ? (
-                <p className="text-base text-[#1D1D1F] leading-relaxed max-w-2xl whitespace-pre-line">
+                <p className="text-base text-slate-600 leading-relaxed max-w-2xl whitespace-pre-line">
                   {detail[key]}
                 </p>
               ) : (
-                <div className="h-24 rounded-2xl bg-[#F5F5F7] flex items-center justify-center">
-                  <p className="text-sm text-[#86868B]">（內容待填寫）</p>
+                <div className="h-20 rounded-xl bg-slate-50 flex items-center justify-center">
+                  <p className="text-sm text-slate-400">（內容待填寫）</p>
                 </div>
               )}
             </section>
@@ -103,7 +106,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* GitHub link */}
-        <div className="mt-20 pt-10 border-t border-gray-100">
+        <div className="mt-16 pt-10 border-t border-slate-100">
           {detail.github ? (
             <a href={detail.github}
                target="_blank" rel="noopener noreferrer"
@@ -115,7 +118,7 @@ export default function ProjectDetail() {
               在 GitHub 查看
             </a>
           ) : (
-            <p className="text-sm text-[#86868B]">GitHub 連結待補充</p>
+            <p className="text-sm text-slate-400">GitHub 連結待補充</p>
           )}
         </div>
 

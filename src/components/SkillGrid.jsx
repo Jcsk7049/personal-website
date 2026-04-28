@@ -50,7 +50,7 @@ const QUADRANTS = [
 
 export default function SkillGrid({ skills }) {
   return (
-    <section id="skills" className="py-24 bg-[#F5F5F7]">
+    <section id="skills" className="py-32 bg-slate-50">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Skills"
@@ -61,23 +61,23 @@ export default function SkillGrid({ skills }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
           {QUADRANTS.map(q => (
             <div key={q.key}
-                 className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
+                 className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 ${
                    q.dark
-                     ? 'bg-gradient-to-br from-[#1a1a1f] to-[#111116] border border-white/[0.07] hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)]'
-                     : 'bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]'
+                     ? 'bg-gradient-to-br from-[#1a1a1f] to-[#111116] border border-white/[0.07] hover:shadow-2xl'
+                     : 'bg-white border border-slate-100 shadow-sm hover:shadow-2xl'
                  }`}>
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <p className={`text-[10px] tracking-[0.22em] uppercase mb-1.5 ${
-                    q.dark ? 'text-white/35' : 'text-[#AEAEB2]'
+                    q.dark ? 'text-white/35' : 'text-slate-400'
                   }`}>
                     {q.sublabel}
                   </p>
-                  <h3 className={`text-lg font-semibold ${q.dark ? 'text-white' : 'text-[#1D1D1F]'}`}>
+                  <h3 className={`text-lg font-bold tracking-tight ${q.dark ? 'text-white' : 'text-[#1D1D1F]'}`}>
                     {q.label}
                   </h3>
                 </div>
-                <span className={`mt-1 ${q.dark ? 'text-[#0071E3]' : 'text-[#C7C7CC]'}`}>
+                <span className={`mt-1 ${q.dark ? 'text-[#0071E3]' : 'text-slate-300'}`}>
                   {q.icon}
                 </span>
               </div>
@@ -88,7 +88,7 @@ export default function SkillGrid({ skills }) {
                         className={`px-3 py-1 rounded-full text-xs font-medium transition-colors duration-150 ${
                           q.dark
                             ? 'bg-white/10 text-white/85 border border-white/[0.08]'
-                            : 'bg-[#F5F5F7] text-[#1D1D1F]'
+                            : 'bg-blue-50 text-blue-700 border border-blue-100'
                         }`}>
                     {skill}
                   </span>

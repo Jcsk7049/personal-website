@@ -10,7 +10,7 @@ const GraduationIcon = () => (
 
 export default function Education({ education }) {
   return (
-    <section id="education" className="py-24 bg-[#F5F5F7]">
+    <section id="education" className="py-32 bg-white">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Education"
@@ -20,23 +20,22 @@ export default function Education({ education }) {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 card-stagger">
           {education.map((edu, i) => (
             <div key={i}
-                 className="p-7 rounded-2xl bg-white
-                            shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)]
-                            hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]
+                 className="p-7 rounded-2xl bg-white border border-slate-100 shadow-sm
+                            hover:-translate-y-2 hover:shadow-2xl
                             transition-all duration-300 group">
               <div className="flex items-start justify-between mb-5">
-                <span className="text-[#C7C7CC] group-hover:text-[#0071E3] transition-colors duration-300">
+                <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-300">
                   <GraduationIcon />
                 </span>
-                <span className="text-[10px] text-[#AEAEB2] font-mono bg-[#F5F5F7] px-2.5 py-1 rounded-full leading-none">
+                <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1 rounded-full leading-none">
                   {edu.period}
                 </span>
               </div>
-              <h3 className="text-base font-semibold text-[#1D1D1F] mb-1.5
+              <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] mb-1.5
                              group-hover:text-[#0071E3] transition-colors duration-200">
                 {edu.school}
               </h3>
-              <p className="text-sm text-[#86868B] leading-snug">{edu.degree}</p>
+              <p className="text-sm text-slate-500 leading-relaxed">{edu.degree}</p>
             </div>
           ))}
         </div>

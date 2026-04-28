@@ -36,7 +36,7 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
+            <h1 className="text-[clamp(3rem,8vw,6rem)] font-extrabold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
               {profile.name}
             </h1>
             <div className="flex items-center h-9 mb-14">

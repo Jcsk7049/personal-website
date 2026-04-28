@@ -14,7 +14,7 @@ const TrophyIcon = () => (
 
 export default function AwardList({ awards }) {
   return (
-    <section id="awards" className="py-24 bg-[#F5F5F7]">
+    <section id="awards" className="py-32 bg-white">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Awards"
@@ -25,19 +25,18 @@ export default function AwardList({ awards }) {
         <div className="max-w-3xl space-y-2.5 card-stagger">
           {awards.map((award, i) => (
             <div key={i}
-                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white
-                            shadow-[0_1px_3px_rgba(0,0,0,0.05)]
-                            hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)]
+                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm
+                            hover:-translate-y-2 hover:shadow-2xl
                             transition-all duration-300 group">
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-[#F5F5F7] group-hover:bg-[#0071E3]/8 transition-colors duration-200">
-                <span className="text-[#C7C7CC] group-hover:text-[#0071E3] transition-colors duration-200">
+                              bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200">
+                <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
                   <TrophyIcon />
                 </span>
               </div>
-              <p className="text-sm text-[#1D1D1F] leading-snug flex-1">{award.title}</p>
-              <span className="shrink-0 text-[11px] text-[#AEAEB2] font-mono bg-[#F5F5F7] px-2.5 py-1
-                               rounded-full leading-none group-hover:bg-[#0071E3]/8 group-hover:text-[#0071E3]
+              <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
+              <span className="shrink-0 text-[11px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1
+                               rounded-full leading-none group-hover:bg-blue-50 group-hover:text-blue-600
                                transition-colors duration-200">
                 {award.year}
               </span>
