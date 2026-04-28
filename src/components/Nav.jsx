@@ -32,27 +32,31 @@ export default function Nav({ name }) {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-white/80 backdrop-blur-xl border-b border-gray-100/80 shadow-sm' : 'bg-transparent'
+      scrolled
+        ? 'bg-white/85 backdrop-blur-2xl border-b border-gray-100/60 shadow-sm shadow-black/[0.04]'
+        : 'bg-transparent'
     }`}>
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
         <a href="#hero"
-           className={`text-sm font-semibold text-[#1D1D1F] transition-all duration-300 ${
+           className={`text-sm font-semibold text-[#1D1D1F] tracking-[-0.01em] transition-all duration-300 ${
              scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
            }`}>
           {name}
         </a>
 
-        <div className={`flex items-center gap-4 md:gap-6 transition-all duration-300 ${
+        <div className={`flex items-center gap-5 md:gap-7 transition-all duration-300 ${
           scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           {SECTIONS.map(({ id, label }) => (
             <a key={id} href={`#${id}`}
-               className={`text-xs md:text-sm transition-colors ${
+               className={`relative text-xs md:text-sm transition-colors duration-200 pb-1 ${
                  active === id
                    ? 'text-[#1D1D1F] font-semibold'
                    : 'text-[#86868B] hover:text-[#1D1D1F]'
                }`}>
               {label}
+              <span className={`absolute bottom-0 left-0 right-0 h-px rounded-full bg-[#0071E3]
+                                transition-all duration-300 ${active === id ? 'opacity-100' : 'opacity-0'}`} />
             </a>
           ))}
         </div>

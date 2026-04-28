@@ -38,8 +38,40 @@ function HomePage() {
       <SkillGrid       skills={cvData.skills_matrix} />
       <ProjectShowcase projects={cvData.projects} />
       <AwardList       awards={cvData.awards} />
-      <footer className="py-16 text-center text-sm text-[#86868B] border-t border-gray-100">
-        © {new Date().getFullYear()} {cvData.profile.name} · Built with React & Tailwind
+      <footer className="py-16 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+            <div>
+              <p className="text-sm font-semibold text-[#1D1D1F] tracking-[-0.01em] mb-1">{cvData.profile.name}</p>
+              <p className="text-xs text-[#86868B]">{cvData.profile.title}</p>
+            </div>
+            <nav className="flex gap-10">
+              <div className="flex flex-col gap-2.5">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">內容</p>
+                <a href="#education"  className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">學歷</a>
+                <a href="#experience" className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">經歷</a>
+                <a href="#skills"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">技術</a>
+                <a href="#projects"   className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">專案</a>
+                <a href="#awards"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">獲獎</a>
+              </div>
+              <div className="flex flex-col gap-2.5">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">聯絡</p>
+                <a href={`mailto:${cvData.profile.contact.email}`}
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">Email</a>
+                <a href={`https://github.com/${cvData.profile.links.github}`}
+                   target="_blank" rel="noopener noreferrer"
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">GitHub ↗</a>
+                <a href={`https://linkedin.com/in/${cvData.profile.links.linkedin}`}
+                   target="_blank" rel="noopener noreferrer"
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">LinkedIn ↗</a>
+              </div>
+            </nav>
+          </div>
+          <div className="border-t border-gray-100 pt-6 flex items-center justify-between">
+            <p className="text-xs text-[#C7C7CC]">© {new Date().getFullYear()} {cvData.profile.name}</p>
+            <p className="text-xs text-[#C7C7CC]">Built with React & Tailwind</p>
+          </div>
+        </div>
       </footer>
     </div>
   )

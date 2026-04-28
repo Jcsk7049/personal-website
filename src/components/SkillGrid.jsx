@@ -4,7 +4,7 @@ const QUADRANTS = [
   {
     key: 'data_analysis', label: '數據分析', sublabel: 'Data Analysis', dark: true,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <line x1="18" y1="20" x2="18" y2="10" />
         <line x1="12" y1="20" x2="12" y2="4"  />
         <line x1="6"  y1="20" x2="6"  y2="14" />
@@ -15,7 +15,7 @@ const QUADRANTS = [
   {
     key: 'programming', label: '程式開發', sublabel: 'Programming', dark: false,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18"   />
       </svg>
@@ -24,7 +24,7 @@ const QUADRANTS = [
   {
     key: 'eda', label: '電路設計', sublabel: 'Electronic Design', dark: false,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <rect x="7" y="7" width="10" height="10" rx="1" />
         <line x1="7"  y1="9"  x2="3"  y2="9"  />
         <line x1="7"  y1="15" x2="3"  y2="15" />
@@ -40,7 +40,7 @@ const QUADRANTS = [
   {
     key: 'manufacturing', label: '機構加工', sublabel: 'Manufacturing', dark: false,
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />
         <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
       </svg>
@@ -61,22 +61,23 @@ export default function SkillGrid({ skills }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
           {QUADRANTS.map(q => (
             <div key={q.key}
-                 className={`rounded-2xl p-8 border border-transparent transition-all duration-300
-                             hover:-translate-y-1 hover:shadow-xl hover:border-gray-200/60 ${
+                 className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
                    q.dark
-                     ? 'bg-[#1D1D1F] text-white hover:shadow-gray-800/30'
-                     : 'bg-white hover:shadow-gray-200/60'
+                     ? 'bg-gradient-to-br from-[#1a1a1f] to-[#111116] border border-white/[0.07] hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)]'
+                     : 'bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]'
                  }`}>
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <p className={`text-xs tracking-widest uppercase mb-1 ${q.dark ? 'text-white/50' : 'text-[#86868B]'}`}>
+                  <p className={`text-[10px] tracking-[0.22em] uppercase mb-1.5 ${
+                    q.dark ? 'text-white/35' : 'text-[#AEAEB2]'
+                  }`}>
                     {q.sublabel}
                   </p>
-                  <h3 className={`text-xl font-semibold ${q.dark ? 'text-white' : 'text-[#1D1D1F]'}`}>
+                  <h3 className={`text-lg font-semibold ${q.dark ? 'text-white' : 'text-[#1D1D1F]'}`}>
                     {q.label}
                   </h3>
                 </div>
-                <span className={q.dark ? 'text-[#0071E3]' : 'text-gray-300'}>
+                <span className={`mt-1 ${q.dark ? 'text-[#0071E3]' : 'text-[#C7C7CC]'}`}>
                   {q.icon}
                 </span>
               </div>
@@ -84,9 +85,9 @@ export default function SkillGrid({ skills }) {
               <div className="flex flex-wrap gap-2">
                 {(skills[q.key] || []).map(skill => (
                   <span key={skill}
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        className={`px-3 py-1 rounded-full text-xs font-medium transition-colors duration-150 ${
                           q.dark
-                            ? 'bg-white/10 text-white'
+                            ? 'bg-white/10 text-white/85 border border-white/[0.08]'
                             : 'bg-[#F5F5F7] text-[#1D1D1F]'
                         }`}>
                     {skill}
