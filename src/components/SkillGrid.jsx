@@ -61,35 +61,26 @@ export default function SkillGrid({ skills }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
           {QUADRANTS.map(q => (
             <div key={q.key}
-                 className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 ${
-                   q.dark
-                     ? 'bg-gradient-to-br from-[#1a1a1f] to-[#111116] border border-white/[0.07] hover:shadow-2xl'
-                     : 'bg-white border border-slate-100 shadow-sm hover:shadow-2xl'
-                 }`}>
+                 className="rounded-2xl p-8 bg-white border border-slate-100 shadow-sm
+                            transition-all duration-300 hover:-translate-y-1
+                            hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)]">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <p className={`text-[10px] tracking-[0.22em] uppercase mb-1.5 ${
-                    q.dark ? 'text-white/35' : 'text-slate-400'
-                  }`}>
+                  <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-slate-400">
                     {q.sublabel}
                   </p>
-                  <h3 className={`text-lg font-bold tracking-tight ${q.dark ? 'text-white' : 'text-[#1D1D1F]'}`}>
+                  <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]">
                     {q.label}
                   </h3>
                 </div>
-                <span className={`mt-1 ${q.dark ? 'text-[#0071E3]' : 'text-slate-300'}`}>
-                  {q.icon}
-                </span>
+                <span className="mt-1 text-slate-300">{q.icon}</span>
               </div>
 
               <div className="flex flex-wrap gap-2">
                 {(skills[q.key] || []).map(skill => (
                   <span key={skill}
-                        className={`px-3 py-1 rounded-full text-xs font-medium transition-colors duration-150 ${
-                          q.dark
-                            ? 'bg-white/10 text-white/85 border border-white/[0.08]'
-                            : 'bg-blue-50 text-blue-700 border border-blue-100'
-                        }`}>
+                        className="px-3 py-1 rounded-full text-xs font-medium
+                                   bg-blue-50 text-blue-700 border border-blue-100">
                     {skill}
                   </span>
                 ))}
