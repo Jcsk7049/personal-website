@@ -18,53 +18,67 @@ export default function Hero({ profile }) {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-28 pb-24 overflow-hidden">
 
-      {/* Background gradient blobs */}
+      {/* Background gradient — very subtle, Apple style */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full
-                        bg-[#0071E3] opacity-[0.06] blur-[100px]" />
-        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full
-                        bg-[#0071E3] opacity-[0.04] blur-[80px]" />
+        <div className="absolute top-[-8%] right-[-4%] w-[520px] h-[520px] rounded-full
+                        bg-[#0071E3] opacity-[0.05] blur-[120px]" />
+        <div className="absolute bottom-[-4%] left-[-4%] w-[360px] h-[360px] rounded-full
+                        bg-[#0071E3] opacity-[0.03] blur-[90px]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 md:px-10 w-full relative">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-14 lg:gap-24">
 
           {/* Left: Text */}
           <div className="flex-1 hero-fade-left">
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
-              {profile.contact.location}
-            </p>
-            <h1 className="text-[clamp(3rem,8vw,6rem)] font-extrabold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
+            <div className="flex items-center gap-2 mb-10">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#34C759]" />
+              <p className="text-xs font-medium tracking-[0.18em] uppercase text-[#86868B]">
+                {profile.contact.location}
+              </p>
+            </div>
+
+            <h1 className="text-[clamp(3rem,8vw,5.75rem)] font-extrabold tracking-[-0.04em] leading-[0.95]
+                           text-[#1D1D1F] mb-7">
               {profile.name}
             </h1>
-            <div className="flex items-center h-9 mb-14">
-              <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
-              <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
+
+            <div className="flex items-center h-9 mb-16">
+              <span className="text-lg md:text-xl text-[#6E6E73] font-light tracking-wide">{shown}</span>
+              <span className="ml-1 inline-block w-[1.5px] h-5 bg-[#0071E3] animate-blink" />
             </div>
-            <div className="flex flex-wrap gap-3">
+
+            <div className="flex flex-wrap gap-2.5">
               <a href={`mailto:${profile.contact.email}`}
-                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                            hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200
-                            shadow-sm shadow-[#0071E3]/20">
+                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-[13px] font-medium
+                            hover:bg-[#0077ED] hover:scale-[1.02] active:scale-[0.97]
+                            transition-all duration-300 ease-apple
+                            shadow-[0_2px_8px_rgba(0,113,227,0.25)]">
                 {profile.contact.email}
               </a>
               <a href={`tel:${profile.contact.phone}`}
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                 className="px-5 py-2.5 rounded-full border border-[#D2D2D7] bg-white/60 backdrop-blur-sm
+                            text-[13px] text-[#1D1D1F] hover:border-[#0071E3] hover:text-[#0071E3]
+                            hover:scale-[1.02] active:scale-[0.97]
+                            transition-all duration-300 ease-apple">
                 {profile.contact.phone}
               </a>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                 className="px-5 py-2.5 rounded-full border border-[#D2D2D7] bg-white/60 backdrop-blur-sm
+                            text-[13px] text-[#1D1D1F] hover:border-[#0071E3] hover:text-[#0071E3]
+                            hover:scale-[1.02] active:scale-[0.97]
+                            transition-all duration-300 ease-apple">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                 className="px-5 py-2.5 rounded-full border border-[#D2D2D7] bg-white/60 backdrop-blur-sm
+                            text-[13px] text-[#1D1D1F] hover:border-[#0071E3] hover:text-[#0071E3]
+                            hover:scale-[1.02] active:scale-[0.97]
+                            transition-all duration-300 ease-apple">
                 LinkedIn
               </a>
             </div>
@@ -73,12 +87,12 @@ export default function Hero({ profile }) {
           {/* Right: Photo */}
           <div className="shrink-0 flex justify-center lg:justify-end hero-fade-right">
             <div className="relative">
-              <div className="absolute -inset-4 rounded-[2.5rem] border border-[#0071E3]/10 pointer-events-none" />
-              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#0071E3]/20" />
-              <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-[#0071E3]/10" />
-              <div className="w-52 h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] overflow-hidden
+              <div className="absolute -inset-5 rounded-[2.75rem] border border-[#0071E3]/8 pointer-events-none" />
+              <div className="absolute -top-2 -right-2 w-3 h-3 rounded-full bg-[#0071E3]/15" />
+              <div className="absolute -bottom-3 -left-3 w-5 h-5 rounded-full bg-[#0071E3]/08" />
+              <div className="w-52 h-52 md:w-64 md:h-64 lg:w-[19rem] lg:h-[19rem] rounded-[2rem] overflow-hidden
                               bg-gradient-to-br from-[#F0F4FF] to-[#E8EDF5]
-                              ring-1 ring-gray-200/80 shadow-2xl shadow-gray-300/40">
+                              ring-1 ring-[#E5E5EA] shadow-[0_24px_64px_rgba(0,0,0,0.10),0_4px_16px_rgba(0,0,0,0.06)]">
                 {profile.avatar ? (
                   <img src={profile.avatar} alt={profile.name}
                        className="w-full h-full object-cover"
@@ -99,13 +113,13 @@ export default function Hero({ profile }) {
         </div>
       </div>
 
-      {/* Scroll indicator — fades out on scroll */}
-      <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
-                       pointer-events-none transition-opacity duration-500
+      {/* Scroll indicator */}
+      <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5
+                       pointer-events-none transition-opacity duration-700 ease-apple
                        ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
-        <span className="text-[10px] tracking-[0.2em] uppercase text-[#86868B] scroll-bounce">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent scroll-bounce"
-             style={{ animationDelay: '0.15s' }} />
+        <span className="text-[9px] tracking-[0.25em] uppercase text-[#AEAEB2] scroll-bounce">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-[#AEAEB2] to-transparent scroll-bounce"
+             style={{ animationDelay: '0.12s' }} />
       </div>
     </section>
   )

@@ -1,15 +1,19 @@
 export default function SectionHeader({ en, zh, sub }) {
   return (
-    <div className="mb-14">
-      <div className="flex items-center gap-2.5 mb-5">
-        <span className="block w-5 h-px bg-[#0071E3] rounded-full" />
-        <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-slate-400">{en}</p>
+    <div className="mb-16">
+      <div className="flex items-center gap-2 mb-6">
+        <span className="block w-4 h-px bg-[#0071E3] rounded-full opacity-70" />
+        <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[#86868B]">
+          {en}
+        </p>
       </div>
-      <h2 className="text-[2rem] md:text-[2.75rem] font-extrabold tracking-tight text-[#1D1D1F] mb-4 leading-[1.1]">
+      <h2 className="text-[2.25rem] md:text-[3rem] font-extrabold tracking-[-0.03em] text-[#1D1D1F] mb-5 leading-[1.05]">
         {zh}
       </h2>
       {sub && (
-        <p className="text-base md:text-lg text-slate-500 font-light leading-relaxed max-w-lg">{sub}</p>
+        <p className="text-[0.9375rem] md:text-base text-[#6E6E73] font-light leading-loose max-w-md">
+          {sub}
+        </p>
       )}
     </div>
   )

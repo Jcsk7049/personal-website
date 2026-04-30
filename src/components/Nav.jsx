@@ -13,7 +13,7 @@ export default function Nav({ name }) {
   const [active, setActive]     = useState('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -31,32 +31,34 @@ export default function Nav({ name }) {
   }, [])
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-apple ${
       scrolled
-        ? 'bg-white/70 backdrop-blur-md border-b border-slate-100 shadow-sm shadow-slate-200/30'
+        ? 'bg-white/80 backdrop-blur-xl border-b border-[#E5E5EA]/60 shadow-[0_1px_0_rgba(0,0,0,0.04)]'
         : 'bg-transparent'
     }`}>
-      <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 h-[52px] flex items-center justify-between">
         <a href="#hero"
-           className={`text-sm font-extrabold tracking-tight text-[#1D1D1F] transition-all duration-300 ${
+           className={`text-[13px] font-bold tracking-tight text-[#1D1D1F] transition-all duration-500 ease-apple ${
              scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
            }`}>
           {name}
         </a>
 
-        <div className={`flex items-center gap-5 md:gap-7 transition-all duration-300 ${
+        <div className={`flex items-center gap-6 md:gap-8 transition-all duration-500 ease-apple ${
           scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}>
           {SECTIONS.map(({ id, label }) => (
             <a key={id} href={`#${id}`}
-               className={`relative text-xs md:text-sm transition-colors duration-200 pb-1 ${
+               className={`relative text-[13px] transition-colors duration-200 pb-1 ${
                  active === id
                    ? 'text-[#1D1D1F] font-semibold'
-                   : 'text-slate-400 hover:text-[#1D1D1F]'
+                   : 'text-[#86868B] hover:text-[#1D1D1F]'
                }`}>
               {label}
               <span className={`absolute bottom-0 left-0 right-0 h-px rounded-full bg-[#0071E3]
-                                transition-all duration-300 ${active === id ? 'opacity-100' : 'opacity-0'}`} />
+                                transition-all duration-300 ease-apple ${
+                                  active === id ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+                                }`} />
             </a>
           ))}
         </div>

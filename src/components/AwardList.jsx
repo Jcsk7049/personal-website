@@ -1,8 +1,8 @@
 import SectionHeader from './SectionHeader'
 
 const TrophyIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-       strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
     <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
     <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
     <path d="M4 22h16"/>
@@ -14,7 +14,7 @@ const TrophyIcon = () => (
 
 export default function AwardList({ awards }) {
   return (
-    <section id="awards" className="py-32 bg-white">
+    <section id="awards" className="py-32 bg-[#F5F5F7]">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Awards"
@@ -22,22 +22,25 @@ export default function AwardList({ awards }) {
           sub="國際競賽與黑客松的實戰成果。"
         />
 
-        <div className="max-w-3xl space-y-2.5 card-stagger">
+        <div className="max-w-3xl space-y-2 card-stagger">
           {awards.map((award, i) => (
             <div key={i}
-                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm
-                            hover:-translate-y-2 hover:shadow-2xl
-                            transition-all duration-300 group">
+                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-[#E5E5EA]
+                            shadow-card hover:shadow-card-hover hover:-translate-y-[3px]
+                            transition-all duration-500 ease-apple group cursor-default">
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200">
-                <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
+                              bg-[#F5F5F7] group-hover:bg-[#0071E3]/8
+                              transition-colors duration-500 ease-apple">
+                <span className="text-[#C7C7CC] group-hover:text-[#0071E3]
+                                 transition-colors duration-300 ease-apple">
                   <TrophyIcon />
                 </span>
               </div>
-              <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
-              <span className="shrink-0 text-[11px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1
-                               rounded-full leading-none group-hover:bg-blue-50 group-hover:text-blue-600
-                               transition-colors duration-200">
+              <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1 font-medium">{award.title}</p>
+              <span className="shrink-0 text-[11px] text-[#86868B] font-mono bg-[#F5F5F7]
+                               border border-[#E5E5EA] px-2.5 py-1 rounded-full leading-none
+                               group-hover:border-[#0071E3]/20 group-hover:text-[#0071E3]
+                               transition-all duration-300 ease-apple">
                 {award.year}
               </span>
             </div>

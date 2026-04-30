@@ -7,7 +7,9 @@ export default {
         apple: {
           blue:      '#0071E3',
           text:      '#1D1D1F',
-          secondary: '#86868B',
+          secondary: '#6E6E73',
+          tertiary:  '#86868B',
+          separator: '#E5E5EA',
           bg:        '#F5F5F7',
         },
       },
@@ -21,8 +23,11 @@ export default {
           'sans-serif',
         ],
       },
+      transitionTimingFunction: {
+        'apple': 'cubic-bezier(0.23, 1, 0.32, 1)',
+      },
       animation: {
-        blink:   'blink 1s step-end infinite',
+        blink:        'blink 1s step-end infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
@@ -35,6 +40,10 @@ export default {
         '2xl':  '1rem',
         '3xl':  '1.5rem',
         '4xl':  '2rem',
+      },
+      boxShadow: {
+        'card':       '0 1px 4px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.04)',
+        'card-hover': '0 12px 40px rgba(0,0,0,0.09), 0 4px 16px rgba(0,0,0,0.05)',
       },
     },
   },
