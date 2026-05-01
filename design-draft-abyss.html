@@ -89,9 +89,12 @@
             padding: 28px;
             position: relative;
             overflow: hidden;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.6s ease, box-shadow 0.6s ease;
         }
-        .card:hover { border-color: var(--border-hover); }
+        .card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+        }
 
         /* ── HERO ── */
         .bento-hero {
@@ -197,7 +200,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            transition: border-color 0.2s, background 0.2s;
+            transition: border-color 0.6s ease, background 0.6s ease;
         }
         .contact-pill:hover {
             border-color: var(--accent);
@@ -337,7 +340,8 @@
             border-color: rgba(0,113,227,0.1);
             cursor: pointer;
         }
-        .card-featured:hover { border-color: rgba(0,113,227,0.3); box-shadow: 0 0 48px rgba(0,113,227,0.06); }
+        .card-featured { transition: border-color 0.6s ease, box-shadow 0.6s ease; }
+        .card-featured:hover { border-color: rgba(0,113,227,0.25); box-shadow: 0 8px 40px rgba(0,113,227,0.05); }
 
         .accent-bar { position:absolute; top:0; left:0; right:0; height:2px; }
         .bar-sky    { background: linear-gradient(90deg,#38bdf8,#2563eb); }
