@@ -3,65 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>江嘉元 — Abyss Performance Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>江嘉元 — 個人履歷</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap" rel="stylesheet">
     <style>
-        /* ── Vibe-Architect · Abyss Performance Edition ── */
         :root {
-            --void:          #050505;
-            --surface:       #121212;
-            --surface-hi:    #181818;
-            --border:        rgba(255,255,255,0.05);
-            --border-hover:  rgba(255,255,255,0.10);
-            --text-1:        #EDEDED;
-            --text-2:        #A0A0A0;
-            --text-3:        #444444;
-            --blue:          #0071E3;
-            --blue-glow:     rgba(0,113,227,0.18);
-            --green:         #39FF14;
-            --green-glow:    rgba(57,255,20,0.15);
-            --radius:        12px;
-            --radius-lg:     16px;
+            --bg:       #0d1117;
+            --s1:       #161b22;
+            --s2:       #21262d;
+            --border:   #30363d;
+            --border-hi:#3d444e;
+            --t1:       #e6edf3;
+            --t2:       #8b949e;
+            --t3:       #484f58;
+            --blue:     #58a6ff;
+            --blue-dim: rgba(88,166,255,0.1);
+            --green:    #3fb950;
+            --r:        8px;
         }
 
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            background: var(--void);
-            color: var(--text-1);
-            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--t1);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            position: relative;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        /* ── NOISE TEXTURE OVERLAY ── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.032;
-            pointer-events: none;
-            z-index: 9998;
-        }
-
-        /* ── NAV (Notion-style) ── */
+        /* ── NAV ── */
         nav {
             position: fixed;
             inset: 0 0 auto 0;
             z-index: 100;
-            height: 48px;
+            height: 56px;
             display: flex;
             align-items: center;
-            background: rgba(5,5,5,0.82);
-            backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(13,17,23,0.88);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
         .nav-inner {
-            max-width: 1200px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 0 32px;
             width: 100%;
@@ -70,552 +55,367 @@
             justify-content: space-between;
         }
         .nav-logo {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-1);
-            letter-spacing: -0.02em;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--t1);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            letter-spacing: -0.01em;
         }
-        .nav-logo-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 6px var(--green);
-        }
-        .nav-links { display:flex; align-items:center; gap:1px; }
+        .nav-links { display:flex; align-items:center; gap:4px; }
         .nav-link {
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 500;
-            color: var(--text-3);
+            color: var(--t2);
             text-decoration: none;
-            transition: background 0.15s, color 0.15s;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.04em;
+            transition: color 0.15s, background 0.15s;
         }
-        .nav-link:hover { background: rgba(255,255,255,0.06); color: var(--text-1); }
-        .nav-sys {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-3);
-            letter-spacing: 0.12em;
-        }
+        .nav-link:hover { color: var(--t1); background: var(--s2); }
 
-        /* ── LAYOUT ── */
+        /* ── MAIN ── */
         main {
-            max-width: 1200px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 72px 32px 96px;
+            padding: 96px 32px 96px;
         }
 
-        .bento { display: grid; gap: 10px; }
-
-        /* ── CARD BASE ── */
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-            transition:
-                border-color 0.6s ease,
-                box-shadow 0.6s ease,
-                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 0 15px rgba(0,113,227,0.12), 0 8px 32px rgba(0,0,0,0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Card corner metadata */
-        .card-meta {
-            position: absolute;
-            top: 12px; right: 14px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px;
-            color: var(--text-3);
-            letter-spacing: 0.1em;
-            user-select: none;
-        }
-
-        /* ── HERO (65 / 35 asymmetric) ── */
-        .bento-hero {
-            grid-template-columns: 1.85fr 1fr;
-            grid-template-rows: 1fr auto;
-        }
-
-        .card-identity {
-            grid-column: 1;
-            grid-row: 1;
-            padding: 40px 40px 36px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 280px;
-            background:
-                linear-gradient(140deg, #080c16 0%, #0a1020 60%, #050a18 100%);
-        }
-        .card-identity::before {
-            content: '';
-            position: absolute;
-            top: -80px; right: -40px;
-            width: 400px; height: 400px;
-            background: var(--blue-glow);
-            border-radius: 50%;
-            filter: blur(90px);
-            pointer-events: none;
-        }
-
-        .hero-loc {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            color: var(--text-3);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-            display: flex;
+        /* ── HERO ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 48px;
             align-items: center;
-            gap: 8px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid var(--border);
         }
-        .hero-loc::before {
-            content: '';
-            display: inline-block;
-            width: 16px; height: 1px;
-            background: var(--text-3);
+        .hero-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--s1);
+            flex-shrink: 0;
+        }
+        .hero-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .avatar-ph {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 64px; font-weight: 700;
+            color: var(--t3);
+        }
+        .hero-loc {
+            font-size: 12px;
+            color: var(--t3);
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
         }
         .hero-name {
-            font-size: clamp(3rem, 5.5vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            line-height: 0.95;
-            color: var(--text-1);
-            margin-bottom: 16px;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--t1);
+            margin-bottom: 12px;
         }
         .hero-title {
+            font-size: 16px;
+            color: var(--t2);
+            font-weight: 400;
+            margin-bottom: 28px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-2);
-            font-weight: 400;
+            gap: 6px;
         }
         .cursor {
             display: inline-block;
-            width: 2px; height: 14px;
+            width: 2px; height: 16px;
             background: var(--blue);
             border-radius: 1px;
             animation: blink 1s step-end infinite;
         }
-        @keyframes blink { 50% { opacity:0; } }
-
-        /* Avatar — right column spans both rows */
-        .card-avatar {
-            grid-column: 2;
-            grid-row: 1 / 3;
-            padding: 0;
-            min-height: 380px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background: linear-gradient(160deg, #0e1830 0%, #080d18 100%);
-            display: flex;
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .hero-link {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-        }
-        .card-avatar:hover { transform: none; }
-        .card-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
-        .avatar-ph {
-            font-size: 96px;
-            font-weight: 900;
-            color: rgba(255,255,255,0.04);
-            letter-spacing: -0.05em;
-            user-select: none;
-        }
-
-        /* Contact pills row */
-        .card-contacts {
-            grid-column: 1;
-            grid-row: 2;
-            display: flex;
-            gap: 10px;
-            background: transparent;
-            border: none;
-            padding: 0;
-            border-radius: 0;
-            overflow: visible;
-        }
-        .card-contacts:hover { transform: none; box-shadow: none; }
-
-        .contact-pill {
-            flex: 1;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            transition:
-                border-color 0.6s ease,
-                box-shadow 0.6s ease,
-                background 0.6s ease;
-        }
-        .contact-pill:hover {
-            border-color: rgba(0,113,227,0.4);
-            background: rgba(0,113,227,0.05);
-            box-shadow: 0 0 15px rgba(0,113,227,0.12);
-        }
-        .pill-icon {
-            width: 28px; height: 28px;
+            gap: 6px;
+            padding: 6px 14px;
             border-radius: 6px;
-            background: rgba(255,255,255,0.04);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-3);
-            flex-shrink: 0;
-            transition: color 0.3s, background 0.3s;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
         }
-        .contact-pill:hover .pill-icon { color: var(--blue); background: rgba(0,113,227,0.1); }
-        .pill-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px; color: var(--text-3);
-            text-transform: uppercase; letter-spacing: 0.14em;
-            margin-bottom: 2px;
+        .hero-link-primary {
+            background: var(--blue);
+            color: #0d1117;
+            border: 1px solid var(--blue);
         }
-        .pill-val {
-            font-size: 12px; font-weight: 500;
-            color: var(--text-2);
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            transition: color 0.3s;
+        .hero-link-primary:hover { background: #79baff; border-color: #79baff; }
+        .hero-link-secondary {
+            background: var(--s2);
+            color: var(--t1);
+            border: 1px solid var(--border);
         }
-        .contact-pill:hover .pill-val { color: var(--text-1); }
+        .hero-link-secondary:hover { border-color: var(--border-hi); background: #2d333b; }
 
-        /* ── SECTION HEADER ── */
-        .section { margin-top: 48px; }
+        /* ── SECTION ── */
+        .section {
+            padding-top: 56px;
+        }
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
         .sec-head {
-            display: flex; align-items: baseline;
-            gap: 12px; margin-bottom: 14px;
-            padding-left: 2px;
+            margin-bottom: 24px;
         }
-        .sec-en {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px; color: var(--text-3);
-            letter-spacing: 0.22em; text-transform: uppercase;
+        .sec-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--t1);
         }
-        .sec-zh {
-            font-size: 20px; font-weight: 700;
-            letter-spacing: -0.025em; color: var(--text-1);
+        .sec-sub {
+            font-size: 13px;
+            color: var(--t2);
+            margin-top: 4px;
         }
 
-        /* ── EDUCATION (3 equal) ── */
-        .bento-edu { grid-template-columns: repeat(3, 1fr); }
-        .edu-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 28px; font-weight: 700;
-            color: rgba(255,255,255,0.04);
-            letter-spacing: -0.04em; margin-bottom: 12px;
+        /* ── CARD ── */
+        .card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 20px;
+            transition: border-color 0.3s ease;
         }
-        .edu-school { font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 4px; letter-spacing: -0.01em; }
-        .edu-degree { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
-        .edu-period { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-3); }
+        .card:hover { border-color: var(--border-hi); }
+
+        /* ── EDUCATION ── */
+        .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .edu-school { font-size: 14px; font-weight: 600; color: var(--t1); margin-bottom: 4px; }
+        .edu-degree { font-size: 13px; color: var(--t2); margin-bottom: 8px; }
+        .edu-period { font-size: 12px; color: var(--t3); }
 
         /* ── EXPERIENCE ── */
-        .exp-list { display: flex; flex-direction: column; gap: 24px; }
-        .exp-row { display: flex; gap: 18px; }
-        .exp-tl { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
-        .exp-dot {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: var(--blue);
-            box-shadow: 0 0 8px rgba(0,113,227,0.5);
-            margin-top: 3px; flex-shrink: 0;
+        .exp-list { display: flex; flex-direction: column; }
+        .exp-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
         }
-        .exp-line { width:1px; flex:1; background: linear-gradient(to bottom, rgba(0,113,227,0.2), transparent); margin-top:6px; }
-        .exp-role { font-size: 14px; font-weight: 600; color: var(--text-1); letter-spacing: -0.01em; margin-bottom: 3px; }
-        .exp-org { font-size: 12px; font-weight: 500; color: var(--blue); opacity:.75; margin-bottom:6px; }
-        .exp-badge {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px; color: var(--text-3);
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 2px 7px; margin-bottom: 8px;
+        .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .exp-item:first-child { padding-top: 0; }
+        .exp-period {
+            font-size: 12px;
+            color: var(--t3);
+            white-space: nowrap;
+            min-width: 120px;
+            padding-top: 2px;
         }
-        .exp-desc { font-size: 12px; color: var(--text-2); line-height: 1.7; }
+        .exp-role { font-size: 14px; font-weight: 600; color: var(--t1); margin-bottom: 3px; }
+        .exp-org { font-size: 13px; color: var(--blue); margin-bottom: 8px; font-weight: 500; }
+        .exp-desc { font-size: 13px; color: var(--t2); line-height: 1.65; }
 
-        /* ── SKILLS (60/40 asymmetric) ── */
-        .bento-skills {
-            grid-template-columns: 1.4fr 1fr;
-            grid-template-rows: auto auto;
-        }
-        .card-skill-hero {
-            grid-column: 1; grid-row: 1 / 3;
-            background: linear-gradient(150deg, #06101e 0%, #0a1828 100%);
-            border-color: rgba(0,113,227,0.1);
-        }
-        .card-skill-hero:hover {
-            border-color: rgba(0,113,227,0.25);
-            box-shadow: 0 0 15px rgba(0,113,227,0.15), 0 8px 32px rgba(0,0,0,0.5);
-        }
-        .sk-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:18px; }
-        .sk-sublabel { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text-3); text-transform:uppercase; letter-spacing:0.22em; margin-bottom:4px; }
-        .sk-label { font-size: 15px; font-weight: 700; color: var(--text-1); letter-spacing: -0.02em; }
-        .sk-icon { color: rgba(255,255,255,0.08); margin-top:2px; }
-        .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
+        /* ── SKILLS ── */
+        .sk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .sk-label { font-size: 13px; font-weight: 600; color: var(--t1); margin-bottom: 12px; }
+        .sk-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .sk-tag {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px; font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(255,255,255,0.04);
-            color: var(--text-2);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: border-color 0.3s, color 0.3s;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            background: var(--s2);
+            color: var(--t2);
+            border: 1px solid var(--border);
+            transition: border-color 0.2s, color 0.2s;
         }
-        .sk-tag:hover { border-color: rgba(0,113,227,0.3); color: var(--text-1); }
-        .sk-tag-hi {
-            background: rgba(0,113,227,0.08);
-            color: #60a5fa;
-            border-color: rgba(0,113,227,0.18);
+        .sk-tag:hover { border-color: var(--border-hi); color: var(--t1); }
+        .sk-tag-blue {
+            background: rgba(88,166,255,0.08);
+            color: var(--blue);
+            border-color: rgba(88,166,255,0.2);
         }
         .sk-tag-green {
-            background: rgba(57,255,20,0.06);
-            color: #7fff58;
-            border-color: rgba(57,255,20,0.15);
+            background: rgba(63,185,80,0.08);
+            color: var(--green);
+            border-color: rgba(63,185,80,0.2);
         }
 
         /* ── PROJECTS ── */
-        .bento-projects { grid-template-columns: 1fr 1fr; }
-
-        .card-featured {
-            grid-column: 1 / 3;
-            background: linear-gradient(140deg, #050f1e 0%, #08122a 100%);
-            border-color: rgba(0,113,227,0.08);
-            cursor: pointer;
-        }
-        .card-featured:hover {
-            border-color: rgba(0,113,227,0.28);
-            box-shadow: 0 0 15px rgba(0,113,227,0.18), 0 12px 48px rgba(0,0,0,0.5);
-            transform: translateY(-3px);
-        }
-
-        .accent-bar { position:absolute; top:0; left:0; right:0; height:2px; }
-        .bar-sky    { background: linear-gradient(90deg,#38bdf8,#2563eb); }
-        .bar-amber  { background: linear-gradient(90deg,#fbbf24,#f97316); }
-        .bar-violet { background: linear-gradient(90deg,#a78bfa,#7c3aed); }
-        .bar-teal   { background: linear-gradient(90deg,#2dd4bf,#06b6d4); }
-        .bar-rose   { background: linear-gradient(90deg,#fb7185,#ef4444); }
-
-        .proj-meta { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
-        .proj-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
-        .proj-period { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-3); }
-        .proj-id { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--text-3); margin-left:auto; }
-
-        .proj-title {
-            font-size: 18px; font-weight: 700;
-            letter-spacing: -0.025em; color: var(--text-1);
-            margin-bottom: 8px;
-            transition: color 0.3s;
-        }
-        .card-featured:hover .proj-title,
-        .card-proj:hover .proj-title { color: #60a5fa; }
-
-        .proj-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
-        .proj-tags { display:flex; flex-wrap:wrap; gap:5px; }
-        .proj-tag {
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px; font-weight: 500;
-            background: rgba(255,255,255,0.04);
-            color: var(--text-3);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Featured layout: 70/30 */
-        .feat-layout { display:flex; align-items:flex-end; justify-content:space-between; gap:32px; }
-        .feat-left { flex:1; min-width:0; }
-        .feat-metric {
-            font-size: clamp(3.2rem,5vw,4.8rem);
-            font-weight: 900;
-            letter-spacing: -0.06em; line-height: 1;
-            background: linear-gradient(135deg,#39FF14 0%,#00c9ff 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            flex-shrink: 0;
-            text-align: right;
-        }
-        .feat-metric-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px; color: var(--text-3);
-            letter-spacing: 0.22em; text-transform: uppercase;
-            margin-top: 4px; text-align: right;
-        }
-
-        .arrow-hint {
-            display: inline-block;
-            font-size: 11px; font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--blue);
-            margin-top: 12px;
-            opacity: 0; transform: translateX(-6px);
-            transition: opacity 0.25s, transform 0.25s;
-        }
-        .card-featured:hover .arrow-hint,
-        .card-proj:hover .arrow-hint { opacity:1; transform:translateX(0); }
-
-        .card-proj {
-            cursor: pointer;
-        }
-        .card-proj .proj-title { font-size: 15px; }
-        .card-proj .proj-desc { font-size: 12px; }
-        .card-proj:hover {
-            box-shadow: 0 0 15px rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.4);
-        }
-
-        /* ── AWARDS (3/2 asymmetric) ── */
-        .bento-awards { grid-template-columns: 1.5fr 1fr; }
-        .award-year { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-3); letter-spacing:0.14em; margin-bottom:8px; }
-        .award-title { font-size:13px; font-weight:500; color:var(--text-2); line-height:1.55; }
-        .award-hi { color: var(--text-1); }
-
-        /* ── MODE BADGE ── */
-        .mode-badge {
-            position: fixed; bottom: 20px; right: 20px;
-            background: var(--surface);
+        .proj-featured {
+            background: var(--s1);
             border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 6px 12px;
-            display: flex; align-items: center; gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px; color: var(--text-3);
-            letter-spacing: 0.14em; z-index: 200;
-            user-select: none;
+            border-radius: var(--r);
+            padding: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 32px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.3s ease;
         }
-        .mode-dot { width:5px; height:5px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); }
+        .proj-featured:hover { border-color: var(--blue); }
+        .proj-featured:hover .proj-title { color: var(--blue); }
+
+        .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .proj-card {
+            background: var(--s1);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: border-color 0.3s ease;
+        }
+        .proj-card:hover { border-color: var(--border-hi); }
+        .proj-card:hover .proj-title { color: var(--blue); }
+
+        .proj-period { font-size: 12px; color: var(--t3); margin-bottom: 8px; }
+        .proj-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--t1);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+            transition: color 0.2s;
+        }
+        .proj-desc { font-size: 13px; color: var(--t2); line-height: 1.6; margin-bottom: 14px; }
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .proj-tag {
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--s2);
+            color: var(--t3);
+            border: 1px solid var(--border);
+        }
+        .proj-metric {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .metric-num {
+            font-size: 3.6rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            color: var(--blue);
+        }
+        .metric-label {
+            font-size: 11px;
+            color: var(--t3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        /* ── AWARDS ── */
+        .award-list { display: flex; flex-direction: column; }
+        .award-item {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .award-item:last-child { border-bottom: none; }
+        .award-item:first-child { padding-top: 0; }
+        .award-year { font-size: 12px; color: var(--t3); min-width: 36px; flex-shrink: 0; }
+        .award-title { font-size: 13px; color: var(--t2); line-height: 1.5; }
+        .award-title-hi { color: var(--t1); font-weight: 500; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            margin-top: 64px;
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-name { font-size: 13px; font-weight: 600; color: var(--t1); }
+        .footer-copy { font-size: 12px; color: var(--t3); }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
     <div class="nav-inner">
-        <a href="#" class="nav-logo">
-            <span class="nav-logo-dot"></span>
-            江嘉元
-        </a>
-        <span class="nav-sys">SYS_PORT/3000</span>
+        <a href="#" class="nav-logo">江嘉元</a>
         <div class="nav-links">
-            <a href="#education"  class="nav-link">EDU</a>
-            <a href="#experience" class="nav-link">EXP</a>
-            <a href="#skills"     class="nav-link">SKL</a>
-            <a href="#projects"   class="nav-link">PRJ</a>
-            <a href="#awards"     class="nav-link">AWD</a>
+            <a href="#education"  class="nav-link">學歷</a>
+            <a href="#experience" class="nav-link">經歷</a>
+            <a href="#skills"     class="nav-link">技術</a>
+            <a href="#projects"   class="nav-link">專案</a>
+            <a href="#awards"     class="nav-link">獲獎</a>
         </div>
     </div>
 </nav>
 
 <main>
 
-    <!-- ── HERO ── -->
-    <div class="bento bento-hero">
-
-        <div class="card card-identity">
-            <span class="card-meta">COORD_25.05N_121.56E</span>
+    <!-- HERO -->
+    <div class="hero">
+        <div>
             <p class="hero-loc">台北市 · 台灣</p>
             <h1 class="hero-name">江嘉元</h1>
             <div class="hero-title">
                 <span>硬體 × AI 跨域工程師</span>
                 <span class="cursor"></span>
             </div>
-        </div>
-
-        <div class="card card-avatar">
-            <img src="/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg"
-                 alt="江嘉元"
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="avatar-ph" style="display:none">JJ</div>
-        </div>
-
-        <div class="card-contacts">
-            <a href="mailto:johnjia9491@gmail.com" class="contact-pill">
-                <div class="pill-icon">
+            <div class="hero-links">
+                <a href="mailto:johnjia9491@gmail.com" class="hero-link hero-link-primary">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2"/>
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                     </svg>
-                </div>
-                <div>
-                    <div class="pill-label">Email</div>
-                    <div class="pill-val">johnjia9491@gmail.com</div>
-                </div>
-            </a>
-            <a href="tel:+886928530700" class="contact-pill">
-                <div class="pill-icon">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
-                    </svg>
-                </div>
-                <div>
-                    <div class="pill-label">Phone</div>
-                    <div class="pill-val">+886 928 530 700</div>
-                </div>
-            </a>
-            <a href="https://github.com/Jcsk7049" target="_blank" class="contact-pill">
-                <div class="pill-icon">
+                    johnjia9491@gmail.com
+                </a>
+                <a href="https://github.com/Jcsk7049" target="_blank" class="hero-link hero-link-secondary">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
                     </svg>
-                </div>
-                <div>
-                    <div class="pill-label">GitHub</div>
-                    <div class="pill-val">Jcsk7049</div>
-                </div>
-            </a>
-            <a href="https://linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344" target="_blank" class="contact-pill">
-                <div class="pill-icon">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-                        <circle cx="4" cy="4" r="2"/>
-                    </svg>
-                </div>
-                <div>
-                    <div class="pill-label">LinkedIn</div>
-                    <div class="pill-val">江嘉元</div>
-                </div>
-            </a>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344" target="_blank" class="hero-link hero-link-secondary">LinkedIn</a>
+                <a href="tel:+886928530700" class="hero-link hero-link-secondary">+886 928 530 700</a>
+            </div>
         </div>
-
+        <div class="hero-avatar">
+            <img src="/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg" alt="江嘉元"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="avatar-ph" style="display:none">江</div>
+        </div>
     </div>
 
-    <!-- ── EDUCATION ── -->
+    <!-- EDUCATION -->
     <div class="section" id="education">
         <div class="sec-head">
-            <span class="sec-en">Education</span>
-            <span class="sec-zh">學歷</span>
+            <div class="sec-title">學歷</div>
         </div>
-        <div class="bento bento-edu">
+        <div class="edu-grid">
             <div class="card">
-                <span class="card-meta">EDU_001</span>
-                <div class="edu-num">01</div>
                 <div class="edu-school">元智大學</div>
                 <div class="edu-degree">電機工程學系學士</div>
                 <div class="edu-period">2024.09 – 2027.09</div>
             </div>
             <div class="card">
-                <span class="card-meta">EDU_002</span>
-                <div class="edu-num">02</div>
                 <div class="edu-school">明志科技大學</div>
                 <div class="edu-degree">電機工程學系學士</div>
                 <div class="edu-period">2023.09 – 2024.06</div>
             </div>
             <div class="card">
-                <span class="card-meta">EDU_003</span>
-                <div class="edu-num">03</div>
                 <div class="edu-school">南港高工</div>
                 <div class="edu-degree">電子科</div>
                 <div class="edu-period">2020.09 – 2023.06</div>
@@ -623,157 +423,84 @@
         </div>
     </div>
 
-    <!-- ── EXPERIENCE ── -->
+    <!-- EXPERIENCE -->
     <div class="section" id="experience">
         <div class="sec-head">
-            <span class="sec-en">Experience</span>
-            <span class="sec-zh">經歷</span>
+            <div class="sec-title">經歷</div>
         </div>
-        <div class="bento">
-            <div class="card">
-                <span class="card-meta">EXP_LOG/3</span>
-                <div class="exp-list">
-                    <div class="exp-row">
-                        <div class="exp-tl">
-                            <div class="exp-dot"></div>
-                            <div class="exp-line"></div>
-                        </div>
-                        <div>
-                            <div class="exp-role">實驗室專題生</div>
-                            <div class="exp-org">元智大學 林書彥教授實驗室</div>
-                            <div class="exp-badge">2025.05 – PRESENT</div>
-                            <div class="exp-desc">負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質，並進行機器學習與深度學習模型訓練。</div>
-                        </div>
+        <div class="card">
+            <div class="exp-list">
+                <div class="exp-item">
+                    <div class="exp-period">2025.05 – 現在</div>
+                    <div>
+                        <div class="exp-role">實驗室專題生</div>
+                        <div class="exp-org">元智大學 林書彥教授實驗室</div>
+                        <div class="exp-desc">負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質，並進行機器學習與深度學習模型訓練。</div>
                     </div>
-                    <div class="exp-row">
-                        <div class="exp-tl">
-                            <div class="exp-dot" style="background:#a78bfa;box-shadow:0 0 7px rgba(167,139,250,0.4)"></div>
-                            <div class="exp-line"></div>
-                        </div>
-                        <div>
-                            <div class="exp-role">Student Mentor & Technical Support</div>
-                            <div class="exp-org" style="color:#a78bfa">FRC TEAM 7645</div>
-                            <div class="exp-badge">2023 – PRESENT</div>
-                            <div class="exp-desc">指導學弟妹進行機器人開發、除錯，競賽當中當任教練角色協助團隊競賽。</div>
-                        </div>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-period">2023 – 現在</div>
+                    <div>
+                        <div class="exp-role">Student Mentor & Technical Support</div>
+                        <div class="exp-org">FRC TEAM 7645</div>
+                        <div class="exp-desc">指導學弟妹進行機器人開發、除錯，競賽當中擔任教練角色協助團隊競賽。</div>
                     </div>
-                    <div class="exp-row">
-                        <div class="exp-tl">
-                            <div class="exp-dot" style="background:#2dd4bf;box-shadow:0 0 7px rgba(45,212,191,0.4)"></div>
-                        </div>
-                        <div>
-                            <div class="exp-role">競賽選手</div>
-                            <div class="exp-org" style="color:#2dd4bf">南港高工 NK-MTC 7645</div>
-                            <div class="exp-badge">2020.06 – 2023.09</div>
-                            <div class="exp-desc">負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。</div>
-                        </div>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-period">2020.06 – 2023.09</div>
+                    <div>
+                        <div class="exp-role">競賽選手</div>
+                        <div class="exp-org">南港高工 NK-MTC 7645</div>
+                        <div class="exp-desc">負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ── SKILLS (60/40 asymmetric) ── -->
+    <!-- SKILLS -->
     <div class="section" id="skills">
         <div class="sec-head">
-            <span class="sec-en">Skills</span>
-            <span class="sec-zh">技術矩陣</span>
+            <div class="sec-title">技術</div>
+            <div class="sec-sub">從底層硬體到 AI 模型，跨域整合是最核心的競爭力。</div>
         </div>
-        <div class="bento bento-skills">
-            <!-- Data Analysis — large left -->
-            <div class="card card-skill-hero">
-                <span class="card-meta">SKL_MATRIX/A</span>
-                <div class="sk-head">
-                    <div>
-                        <div class="sk-sublabel">Primary Domain</div>
-                        <div class="sk-label">數據分析</div>
-                    </div>
-                    <div class="sk-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
-                        </svg>
-                    </div>
-                </div>
+        <div class="sk-grid">
+            <div class="card">
+                <div class="sk-label">數據分析</div>
                 <div class="sk-tags">
-                    <span class="sk-tag sk-tag-green">深度學習</span>
-                    <span class="sk-tag sk-tag-green">機器學習</span>
-                    <span class="sk-tag sk-tag-hi">數據結構化</span>
-                    <span class="sk-tag sk-tag-hi">特徵工程</span>
+                    <span class="sk-tag sk-tag-blue">深度學習</span>
+                    <span class="sk-tag sk-tag-blue">機器學習</span>
+                    <span class="sk-tag">數據結構化</span>
+                    <span class="sk-tag">特徵工程</span>
                     <span class="sk-tag">訊號過濾</span>
                 </div>
             </div>
-            <!-- Programming -->
             <div class="card">
-                <span class="card-meta">SKL_MATRIX/B</span>
-                <div class="sk-head">
-                    <div>
-                        <div class="sk-sublabel">Programming</div>
-                        <div class="sk-label">程式開發</div>
-                    </div>
-                    <div class="sk-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-                        </svg>
-                    </div>
-                </div>
+                <div class="sk-label">程式開發</div>
                 <div class="sk-tags">
                     <span class="sk-tag">C/C++</span>
                     <span class="sk-tag">Python</span>
-                    <span class="sk-tag">ITS 證照</span>
+                    <span class="sk-tag sk-tag-green">ITS 證照</span>
                     <span class="sk-tag">LabVIEW</span>
                     <span class="sk-tag">Arduino</span>
                     <span class="sk-tag">MATLAB</span>
                 </div>
             </div>
-            <!-- EDA -->
             <div class="card">
-                <span class="card-meta">SKL_MATRIX/C</span>
-                <div class="sk-head">
-                    <div>
-                        <div class="sk-sublabel">Electronic Design</div>
-                        <div class="sk-label">電路設計</div>
-                    </div>
-                    <div class="sk-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="7" y="7" width="10" height="10" rx="1"/>
-                            <line x1="7" y1="9" x2="3" y2="9"/><line x1="7" y1="15" x2="3" y2="15"/>
-                            <line x1="17" y1="9" x2="21" y2="9"/><line x1="17" y1="15" x2="21" y2="15"/>
-                            <line x1="9" y1="7" x2="9" y2="3"/><line x1="15" y1="7" x2="15" y2="3"/>
-                            <line x1="9" y1="17" x2="9" y2="21"/><line x1="15" y1="17" x2="15" y2="21"/>
-                        </svg>
-                    </div>
-                </div>
+                <div class="sk-label">電路設計</div>
                 <div class="sk-tags">
                     <span class="sk-tag">Altium Designer</span>
                     <span class="sk-tag">KiCAD</span>
                     <span class="sk-tag">OrCAD</span>
                 </div>
             </div>
-        </div>
-
-        <!-- Manufacturing separate row -->
-        <div class="bento" style="margin-top:10px;">
             <div class="card">
-                <span class="card-meta">SKL_MATRIX/D</span>
-                <div class="sk-head">
-                    <div>
-                        <div class="sk-sublabel">Manufacturing</div>
-                        <div class="sk-label">機構加工</div>
-                    </div>
-                    <div class="sk-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-                        </svg>
-                    </div>
-                </div>
+                <div class="sk-label">機構加工</div>
                 <div class="sk-tags">
                     <span class="sk-tag">CNC 銑床</span>
                     <span class="sk-tag">3D 列印</span>
                     <span class="sk-tag">金屬焊接</span>
                     <span class="sk-tag">雷射切割</span>
-                    <span class="sk-tag">基礎機械加工</span>
                     <span class="sk-tag">Autodesk Inventor</span>
                     <span class="sk-tag">AutoCAD</span>
                     <span class="sk-tag">Fusion 360</span>
@@ -782,47 +509,34 @@
         </div>
     </div>
 
-    <!-- ── PROJECTS ── -->
+    <!-- PROJECTS -->
     <div class="section" id="projects">
         <div class="sec-head">
-            <span class="sec-en">Projects</span>
-            <span class="sec-zh">專案</span>
+            <div class="sec-title">專案</div>
+            <div class="sec-sub">以醫療 AI 數據分析為核心，延伸至嵌入式系統與機器人控制。</div>
         </div>
-        <div class="bento bento-projects">
 
-            <div class="card card-featured">
-                <span class="card-meta">PRJ_001 / ACTIVE</span>
-                <div class="accent-bar bar-sky"></div>
-                <div class="feat-layout">
-                    <div class="feat-left">
-                        <div class="proj-meta">
-                            <div class="proj-dot" style="background:linear-gradient(135deg,#38bdf8,#2563eb)"></div>
-                            <span class="proj-period">2025 – PRESENT</span>
-                        </div>
-                        <div class="proj-title">VAP 深度學習預測系統</div>
-                        <div class="proj-desc" style="max-width:520px">基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化與呼吸器相關性肺炎早期預警。</div>
-                        <div class="proj-tags">
-                            <span class="proj-tag">PyTorch</span>
-                            <span class="proj-tag">MIMIC-IV</span>
-                            <span class="proj-tag">Medical AI</span>
-                            <span class="proj-tag">LSTM</span>
-                        </div>
-                        <span class="arrow-hint">查看詳情 →</span>
-                    </div>
-                    <div style="flex-shrink:0;text-align:right">
-                        <div class="feat-metric">0.97+</div>
-                        <div class="feat-metric-label">AUROC SCORE</div>
-                    </div>
+        <a class="proj-featured" href="#">
+            <div>
+                <div class="proj-period">2025 – 現在</div>
+                <div class="proj-title">VAP 深度學習預測系統</div>
+                <div class="proj-desc" style="max-width:500px">基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化與呼吸器相關性肺炎早期預警。</div>
+                <div class="proj-tags">
+                    <span class="proj-tag">PyTorch</span>
+                    <span class="proj-tag">MIMIC-IV</span>
+                    <span class="proj-tag">Medical AI</span>
+                    <span class="proj-tag">LSTM</span>
                 </div>
             </div>
+            <div class="proj-metric">
+                <div class="metric-num">0.97+</div>
+                <div class="metric-label">AUROC</div>
+            </div>
+        </a>
 
-            <div class="card card-proj">
-                <span class="card-meta">PRJ_002</span>
-                <div class="accent-bar bar-amber"></div>
-                <div class="proj-meta">
-                    <div class="proj-dot" style="background:linear-gradient(135deg,#fbbf24,#f97316)"></div>
-                    <span class="proj-period">2026</span>
-                </div>
+        <div class="proj-grid">
+            <a class="proj-card" href="#">
+                <div class="proj-period">2026</div>
                 <div class="proj-title">AWS x BitoPro：BitOGuard</div>
                 <div class="proj-desc">基於 AWS 雲端架構的加密貨幣反洗錢系統，識別交易所中的可疑人頭帳戶。</div>
                 <div class="proj-tags">
@@ -830,16 +544,9 @@
                     <span class="proj-tag">AWS SageMaker</span>
                     <span class="proj-tag">Streamlit</span>
                 </div>
-                <span class="arrow-hint">查看詳情 →</span>
-            </div>
-
-            <div class="card card-proj">
-                <span class="card-meta">PRJ_003</span>
-                <div class="accent-bar bar-violet"></div>
-                <div class="proj-meta">
-                    <div class="proj-dot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)"></div>
-                    <span class="proj-period">2026</span>
-                </div>
+            </a>
+            <a class="proj-card" href="#">
+                <div class="proj-period">2026</div>
                 <div class="proj-title">QMK x STM32 數字鍵盤</div>
                 <div class="proj-desc">利用 STM32 實現鍵盤功能，使用 QMK 韌體設計，支援 VIA/VIAL 即時改鍵。</div>
                 <div class="proj-tags">
@@ -847,16 +554,9 @@
                     <span class="proj-tag">PCB Design</span>
                     <span class="proj-tag">STM32</span>
                 </div>
-                <span class="arrow-hint">查看詳情 →</span>
-            </div>
-
-            <div class="card card-proj">
-                <span class="card-meta">PRJ_004</span>
-                <div class="accent-bar bar-teal"></div>
-                <div class="proj-meta">
-                    <div class="proj-dot" style="background:linear-gradient(135deg,#2dd4bf,#06b6d4)"></div>
-                    <span class="proj-period">2021 – 2022</span>
-                </div>
+            </a>
+            <a class="proj-card" href="#">
+                <div class="proj-period">2021 – 2022</div>
                 <div class="proj-title">無線打地鼠機（特教教具）</div>
                 <div class="proj-desc">南港高工特教組委託，ESP-NOW 多機無線通訊，室內外皆可使用。</div>
                 <div class="proj-tags">
@@ -864,16 +564,9 @@
                     <span class="proj-tag">ESP-NOW</span>
                     <span class="proj-tag">Arduino</span>
                 </div>
-                <span class="arrow-hint">查看詳情 →</span>
-            </div>
-
-            <div class="card card-proj">
-                <span class="card-meta">PRJ_005</span>
-                <div class="accent-bar bar-rose"></div>
-                <div class="proj-meta">
-                    <div class="proj-dot" style="background:linear-gradient(135deg,#fb7185,#ef4444)"></div>
-                    <span class="proj-period">2020 – 2023</span>
-                </div>
+            </a>
+            <a class="proj-card" href="#">
+                <div class="proj-period">2020 – 2023</div>
                 <div class="proj-title">Swerve Drive 全向輪控制</div>
                 <div class="proj-desc">FRC 機器人底盤機構優化與 PID 控制算法，獲 2022 控制創新獎。</div>
                 <div class="proj-tags">
@@ -881,53 +574,46 @@
                     <span class="proj-tag">PID Control</span>
                     <span class="proj-tag">Robotics</span>
                 </div>
-                <span class="arrow-hint">查看詳情 →</span>
-            </div>
-
+            </a>
         </div>
     </div>
 
-    <!-- ── AWARDS ── -->
+    <!-- AWARDS -->
     <div class="section" id="awards">
         <div class="sec-head">
-            <span class="sec-en">Awards</span>
-            <span class="sec-zh">獲獎</span>
+            <div class="sec-title">獲獎</div>
         </div>
-        <div class="bento bento-awards">
-            <div class="card">
-                <span class="card-meta">AWD_2026</span>
-                <div class="award-year">2026</div>
-                <div class="award-title award-hi">AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽</div>
-            </div>
-            <div class="card">
-                <span class="card-meta">AWD_2022_A</span>
-                <div class="award-year">2022</div>
-                <div class="award-title">2022 FRC 台灣鴻海區域賽：亞軍聯盟 & 控制創新獎</div>
-            </div>
-            <div class="card">
-                <span class="card-meta">AWD_2022_B</span>
-                <div class="award-year">2022</div>
-                <div class="award-title">111 學年度工業類學生技藝競賽：數位電子職類代表</div>
-            </div>
-            <div class="card">
-                <span class="card-meta">AWD_2022_C</span>
-                <div class="award-year">2022</div>
-                <div class="award-title">第 52 屆全國技能競賽：集體創作職類代表</div>
-            </div>
-            <div class="card">
-                <span class="card-meta">AWD_2020</span>
-                <div class="award-year">2020</div>
-                <div class="award-title">2020 FRC 中科 5G 區域賽：最佳工業設計獎</div>
+        <div class="card">
+            <div class="award-list">
+                <div class="award-item">
+                    <span class="award-year">2026</span>
+                    <span class="award-title award-title-hi">AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2022</span>
+                    <span class="award-title">2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2022</span>
+                    <span class="award-title">111 學年度工業類學生技藝競賽：數位電子職類代表</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2022</span>
+                    <span class="award-title">第 52 屆全國技能競賽：集體創作職類代表</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-year">2020</span>
+                    <span class="award-title">2020 FRC 中科 5G 區域賽：最佳工業設計獎</span>
+                </div>
             </div>
         </div>
     </div>
 
+    <footer>
+        <span class="footer-name">江嘉元</span>
+        <span class="footer-copy">© 2026</span>
+    </footer>
+
 </main>
-
-<div class="mode-badge">
-    <div class="mode-dot"></div>
-    ABYSS · PERF_EDITION
-</div>
-
 </body>
 </html>
