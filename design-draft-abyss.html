@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設計草稿 — 江嘉元 × Vibe-Architect Abyss</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Vibe-Architect v2.0 · Abyss Mode ── */
+        :root {
+            --bg:            #050505;
+            --surface:       #121212;
+            --surface-2:     #1a1a1a;
+            --border:        rgba(255,255,255,0.06);
+            --border-hover:  rgba(255,255,255,0.13);
+            --text-1:        #EDEDED;
+            --text-2:        #A0A0A0;
+            --text-3:        #505050;
+            --accent:        #0071E3;
+            --accent-glow:   rgba(0,113,227,0.12);
+            --radius:        12px;
+            --radius-lg:     20px;
+            --gap:           12px;
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-1);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        /* ── NAV (Notion-style) ── */
+        nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            background: rgba(5,5,5,0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 32px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-1);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+        .nav-links { display:flex; align-items:center; gap:2px; }
+        .nav-link {
+            padding: 5px 11px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.07); color: var(--text-1); }
+
+        /* ── LAYOUT ── */
+        main {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 80px 32px 80px;
+        }
+        .bento { display:grid; gap: var(--gap); }
+
+        /* ── CARD BASE ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { border-color: var(--border-hover); }
+
+        /* ── HERO ── */
+        .bento-hero {
+            grid-template-columns: 1fr 1fr 260px;
+            grid-template-rows: auto auto;
+        }
+
+        .card-identity {
+            grid-column: 1 / 3;
+            grid-row: 1;
+            padding: 44px 44px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 256px;
+            background: linear-gradient(140deg, #0b0b0f 0%, #0e1526 100%);
+        }
+        .card-identity::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -60px;
+            width: 360px; height: 360px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .hero-loc {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero-name {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.045em;
+            line-height: 1;
+            color: var(--text-1);
+            margin-bottom: 14px;
+        }
+        .hero-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: var(--text-2);
+            font-weight: 400;
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px; height: 16px;
+            background: var(--accent);
+            border-radius: 1px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity:0; } }
+
+        /* Avatar */
+        .card-avatar {
+            grid-column: 3;
+            grid-row: 1 / 3;
+            padding: 0;
+            min-height: 360px;
+            background: linear-gradient(140deg, #101828 0%, #0d1020 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .avatar-ph {
+            font-size: 72px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.06);
+            letter-spacing: -0.04em;
+            user-select: none;
+        }
+
+        /* Contact pills row */
+        .card-contacts {
+            grid-column: 1 / 3;
+            grid-row: 2;
+            display: flex;
+            gap: var(--gap);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+        }
+        .contact-pill {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .contact-pill:hover {
+            border-color: var(--accent);
+            background: rgba(0,113,227,0.06);
+        }
+        .pill-icon {
+            width: 30px; height: 30px;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.04);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-3);
+            flex-shrink: 0;
+            transition: color 0.2s, background 0.2s;
+        }
+        .contact-pill:hover .pill-icon {
+            color: var(--accent);
+            background: rgba(0,113,227,0.1);
+        }
+        .pill-text { overflow: hidden; }
+        .pill-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 2px;
+        }
+        .pill-val {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.2s;
+        }
+        .contact-pill:hover .pill-val { color: var(--text-1); }
+
+        /* ── SECTION HEADER ── */
+        .section { margin-top: 48px; }
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .sec-en {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .sec-zh {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-1);
+        }
+
+        /* ── EDUCATION ── */
+        .bento-edu { grid-template-columns: repeat(3, 1fr); }
+        .edu-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.04);
+            letter-spacing: -0.04em;
+            margin-bottom: 14px;
+        }
+        .edu-school { font-size: 15px; font-weight: 600; color: var(--text-1); margin-bottom: 5px; letter-spacing: -0.01em; }
+        .edu-degree { font-size: 13px; color: var(--text-2); margin-bottom: 10px; }
+        .edu-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; color: var(--text-3);
+        }
+
+        /* ── EXPERIENCE ── */
+        .exp-list { display: flex; flex-direction: column; gap: 28px; }
+        .exp-row { display: flex; gap: 20px; }
+        .exp-tl { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+        .exp-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(0,113,227,0.5);
+            margin-top: 4px; flex-shrink: 0;
+        }
+        .exp-line { width: 1px; flex: 1; background: linear-gradient(to bottom, rgba(0,113,227,0.2), transparent); margin-top: 8px; }
+        .exp-body { flex: 1; }
+        .exp-role { font-size: 15px; font-weight: 600; color: var(--text-1); letter-spacing: -0.01em; margin-bottom: 3px; }
+        .exp-org { font-size: 13px; font-weight: 500; color: var(--accent); opacity: 0.8; margin-bottom: 8px; }
+        .exp-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; color: var(--text-3);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 2px 8px;
+            margin-bottom: 10px;
+        }
+        .exp-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+        /* ── SKILLS ── */
+        .bento-skills { grid-template-columns: repeat(2, 1fr); }
+        .card-skill-dark {
+            background: linear-gradient(140deg, #08101f 0%, #0c1422 100%);
+            border-color: rgba(0,113,227,0.14);
+        }
+        .sk-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom: 20px; }
+        .sk-sublabel { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 4px; }
+        .sk-label { font-size: 16px; font-weight: 700; color: var(--text-1); letter-spacing: -0.02em; }
+        .sk-icon { color: rgba(255,255,255,0.1); margin-top: 2px; }
+        .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
+        .sk-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px; font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-2);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .sk-tag-hi {
+            background: rgba(0,113,227,0.1);
+            color: #60a5fa;
+            border-color: rgba(0,113,227,0.2);
+        }
+
+        /* ── PROJECTS ── */
+        .bento-projects { grid-template-columns: 1fr 1fr; }
+
+        .card-featured {
+            grid-column: 1 / 3;
+            background: linear-gradient(140deg, #06101f 0%, #091625 100%);
+            border-color: rgba(0,113,227,0.1);
+            cursor: pointer;
+        }
+        .card-featured:hover { border-color: rgba(0,113,227,0.3); box-shadow: 0 0 48px rgba(0,113,227,0.06); }
+
+        .accent-bar { position:absolute; top:0; left:0; right:0; height:2px; }
+        .bar-sky    { background: linear-gradient(90deg,#38bdf8,#2563eb); }
+        .bar-amber  { background: linear-gradient(90deg,#fbbf24,#f97316); }
+        .bar-violet { background: linear-gradient(90deg,#a78bfa,#7c3aed); }
+        .bar-teal   { background: linear-gradient(90deg,#2dd4bf,#06b6d4); }
+        .bar-rose   { background: linear-gradient(90deg,#fb7185,#ef4444); }
+
+        .proj-meta { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+        .proj-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+        .proj-period { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); }
+        .proj-title {
+            font-size: 20px; font-weight: 700;
+            letter-spacing: -0.025em; color: var(--text-1);
+            margin-bottom: 10px; transition: color 0.2s;
+        }
+        .card-featured:hover .proj-title,
+        .card-proj:hover .proj-title { color: #60a5fa; }
+
+        .proj-desc { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; max-width: 560px; }
+        .proj-tags { display:flex; flex-wrap:wrap; gap:6px; }
+        .proj-tag {
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 500;
+            background: rgba(255,255,255,0.04);
+            color: var(--text-3);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .feat-layout { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+        .feat-left { flex:1; }
+        .feat-metric {
+            font-size: clamp(2.8rem,4.5vw,4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.05em; line-height: 1;
+            background: linear-gradient(135deg,#38bdf8,#2563eb);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .feat-metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; color: var(--text-3);
+            letter-spacing: 0.2em; text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .arrow-hint {
+            display: inline-block;
+            font-size: 12px; font-weight: 500; color: var(--accent);
+            margin-top: 14px;
+            opacity: 0; transform: translateX(-4px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .card-featured:hover .arrow-hint,
+        .card-proj:hover .arrow-hint { opacity:1; transform:translateX(0); }
+
+        .card-proj {
+            cursor: pointer;
+        }
+        .card-proj .proj-title { font-size: 16px; }
+        .card-proj .proj-desc { font-size: 13px; }
+
+        /* ── AWARDS ── */
+        .bento-awards { grid-template-columns: repeat(2, 1fr); }
+        .award-year { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.12em; margin-bottom:8px; }
+        .award-title { font-size:14px; font-weight:500; color:var(--text-2); line-height:1.55; }
+
+        /* ── MODE BADGE ── */
+        .mode-badge {
+            position: fixed; bottom: 24px; right: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 7px 14px;
+            display: flex; align-items: center; gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; color: var(--text-3);
+            letter-spacing: 0.12em;
+            z-index: 50;
+            user-select: none;
+        }
+        .mode-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 6px var(--accent); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">江嘉元</a>
+        <div class="nav-links">
+            <a href="#education"  class="nav-link">學歷</a>
+            <a href="#experience" class="nav-link">經歷</a>
+            <a href="#skills"     class="nav-link">技術</a>
+            <a href="#projects"   class="nav-link">專案</a>
+            <a href="#awards"     class="nav-link">獲獎</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+    <!-- ── HERO ── -->
+    <div class="bento bento-hero">
+
+        <div class="card card-identity">
+            <p class="hero-loc">台北市 · 台灣</p>
+            <h1 class="hero-name">江嘉元</h1>
+            <div class="hero-title">
+                <span>硬體 × AI 跨域工程師</span>
+                <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="card card-avatar">
+            <img src="/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg"
+                 alt="江嘉元"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="avatar-ph" style="display:none">JJ</div>
+        </div>
+
+        <div class="card-contacts">
+            <a href="mailto:johnjia9491@gmail.com" class="contact-pill">
+                <div class="pill-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </div>
+                <div class="pill-text">
+                    <div class="pill-label">Email</div>
+                    <div class="pill-val">johnjia9491@gmail.com</div>
+                </div>
+            </a>
+            <a href="tel:+886928530700" class="contact-pill">
+                <div class="pill-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+                    </svg>
+                </div>
+                <div class="pill-text">
+                    <div class="pill-label">Phone</div>
+                    <div class="pill-val">+886 928 530 700</div>
+                </div>
+            </a>
+            <a href="https://github.com/Jcsk7049" target="_blank" class="contact-pill">
+                <div class="pill-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                </div>
+                <div class="pill-text">
+                    <div class="pill-label">GitHub</div>
+                    <div class="pill-val">Jcsk7049</div>
+                </div>
+            </a>
+            <a href="https://linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344" target="_blank" class="contact-pill">
+                <div class="pill-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </div>
+                <div class="pill-text">
+                    <div class="pill-label">LinkedIn</div>
+                    <div class="pill-val">江嘉元</div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ── EDUCATION ── -->
+    <div class="section" id="education">
+        <div class="sec-head">
+            <span class="sec-en">Education</span>
+            <span class="sec-zh">學歷</span>
+        </div>
+        <div class="bento bento-edu">
+            <div class="card">
+                <div class="edu-num">01</div>
+                <div class="edu-school">元智大學</div>
+                <div class="edu-degree">電機工程學系學士</div>
+                <div class="edu-period">2024.09 – 2027.09</div>
+            </div>
+            <div class="card">
+                <div class="edu-num">02</div>
+                <div class="edu-school">明志科技大學</div>
+                <div class="edu-degree">電機工程學系學士</div>
+                <div class="edu-period">2023.09 – 2024.06</div>
+            </div>
+            <div class="card">
+                <div class="edu-num">03</div>
+                <div class="edu-school">南港高工</div>
+                <div class="edu-degree">電子科</div>
+                <div class="edu-period">2020.09 – 2023.06</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── EXPERIENCE ── -->
+    <div class="section" id="experience">
+        <div class="sec-head">
+            <span class="sec-en">Experience</span>
+            <span class="sec-zh">經歷</span>
+        </div>
+        <div class="bento">
+            <div class="card">
+                <div class="exp-list">
+                    <div class="exp-row">
+                        <div class="exp-tl">
+                            <div class="exp-dot"></div>
+                            <div class="exp-line"></div>
+                        </div>
+                        <div class="exp-body">
+                            <div class="exp-role">實驗室專題生</div>
+                            <div class="exp-org">元智大學 林書彥教授實驗室</div>
+                            <div class="exp-badge">2025.05 – 現在</div>
+                            <div class="exp-desc">負責 EIT & VAP 生理訊號處理，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質，並進行機器學習與深度學習模型訓練。</div>
+                        </div>
+                    </div>
+                    <div class="exp-row">
+                        <div class="exp-tl">
+                            <div class="exp-dot" style="background:#a78bfa;box-shadow:0 0 8px rgba(167,139,250,0.4)"></div>
+                            <div class="exp-line"></div>
+                        </div>
+                        <div class="exp-body">
+                            <div class="exp-role">Student Mentor & Technical Support</div>
+                            <div class="exp-org" style="color:#a78bfa">FRC TEAM 7645</div>
+                            <div class="exp-badge">2023 – 現在</div>
+                            <div class="exp-desc">指導學弟妹進行機器人開發、除錯，競賽當中當任教練角色協助團隊競賽。</div>
+                        </div>
+                    </div>
+                    <div class="exp-row">
+                        <div class="exp-tl">
+                            <div class="exp-dot" style="background:#2dd4bf;box-shadow:0 0 8px rgba(45,212,191,0.4)"></div>
+                        </div>
+                        <div class="exp-body">
+                            <div class="exp-role">競賽選手</div>
+                            <div class="exp-org" style="color:#2dd4bf">南港高工 NK-MTC 7645</div>
+                            <div class="exp-badge">2020.06 – 2023.09</div>
+                            <div class="exp-desc">負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SKILLS ── -->
+    <div class="section" id="skills">
+        <div class="sec-head">
+            <span class="sec-en">Skills</span>
+            <span class="sec-zh">技術矩陣</span>
+        </div>
+        <div class="bento bento-skills">
+            <div class="card card-skill-dark">
+                <div class="sk-head">
+                    <div>
+                        <div class="sk-sublabel">Data Analysis</div>
+                        <div class="sk-label">數據分析</div>
+                    </div>
+                    <div class="sk-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag sk-tag-hi">深度學習</span>
+                    <span class="sk-tag sk-tag-hi">機器學習</span>
+                    <span class="sk-tag">數據結構化</span>
+                    <span class="sk-tag">特徵工程</span>
+                    <span class="sk-tag">訊號過濾</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="sk-head">
+                    <div>
+                        <div class="sk-sublabel">Programming</div>
+                        <div class="sk-label">程式開發</div>
+                    </div>
+                    <div class="sk-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">C/C++</span>
+                    <span class="sk-tag">Python</span>
+                    <span class="sk-tag">ITS 證照</span>
+                    <span class="sk-tag">LabVIEW</span>
+                    <span class="sk-tag">Arduino</span>
+                    <span class="sk-tag">MATLAB</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="sk-head">
+                    <div>
+                        <div class="sk-sublabel">Electronic Design</div>
+                        <div class="sk-label">電路設計</div>
+                    </div>
+                    <div class="sk-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="7" y="7" width="10" height="10" rx="1"/>
+                            <line x1="7" y1="9" x2="3" y2="9"/><line x1="7" y1="15" x2="3" y2="15"/>
+                            <line x1="17" y1="9" x2="21" y2="9"/><line x1="17" y1="15" x2="21" y2="15"/>
+                            <line x1="9" y1="7" x2="9" y2="3"/><line x1="15" y1="7" x2="15" y2="3"/>
+                            <line x1="9" y1="17" x2="9" y2="21"/><line x1="15" y1="17" x2="15" y2="21"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">Altium Designer</span>
+                    <span class="sk-tag">KiCAD</span>
+                    <span class="sk-tag">OrCAD</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="sk-head">
+                    <div>
+                        <div class="sk-sublabel">Manufacturing</div>
+                        <div class="sk-label">機構加工</div>
+                    </div>
+                    <div class="sk-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">CNC 銑床</span>
+                    <span class="sk-tag">3D 列印</span>
+                    <span class="sk-tag">金屬焊接</span>
+                    <span class="sk-tag">雷射切割</span>
+                    <span class="sk-tag">Autodesk Inventor</span>
+                    <span class="sk-tag">AutoCAD</span>
+                    <span class="sk-tag">Fusion 360</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PROJECTS ── -->
+    <div class="section" id="projects">
+        <div class="sec-head">
+            <span class="sec-en">Projects</span>
+            <span class="sec-zh">專案</span>
+        </div>
+        <div class="bento bento-projects">
+
+            <!-- Featured -->
+            <div class="card card-featured">
+                <div class="accent-bar bar-sky"></div>
+                <div class="feat-layout">
+                    <div class="feat-left">
+                        <div class="proj-meta">
+                            <div class="proj-dot" style="background:linear-gradient(135deg,#38bdf8,#2563eb)"></div>
+                            <span class="proj-period">2025 – 現在</span>
+                        </div>
+                        <div class="proj-title">VAP 深度學習預測系統</div>
+                        <div class="proj-desc">基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化與早期預測。</div>
+                        <div class="proj-tags">
+                            <span class="proj-tag">PyTorch</span>
+                            <span class="proj-tag">MIMIC-IV</span>
+                            <span class="proj-tag">Medical AI</span>
+                        </div>
+                        <span class="arrow-hint">查看詳情 →</span>
+                    </div>
+                    <div style="text-align:right;flex-shrink:0">
+                        <div class="feat-metric">0.97+</div>
+                        <div class="feat-metric-label">AUROC</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-proj">
+                <div class="accent-bar bar-amber"></div>
+                <div class="proj-meta">
+                    <div class="proj-dot" style="background:linear-gradient(135deg,#fbbf24,#f97316)"></div>
+                    <span class="proj-period">2026</span>
+                </div>
+                <div class="proj-title">AWS x BitoPro：BitOGuard</div>
+                <div class="proj-desc">基於 AWS 雲端架構的加密貨幣反洗錢系統，識別交易所中的可疑人頭帳戶。</div>
+                <div class="proj-tags">
+                    <span class="proj-tag">XGBoost</span>
+                    <span class="proj-tag">AWS SageMaker</span>
+                    <span class="proj-tag">Streamlit</span>
+                </div>
+                <span class="arrow-hint">查看詳情 →</span>
+            </div>
+
+            <div class="card card-proj">
+                <div class="accent-bar bar-violet"></div>
+                <div class="proj-meta">
+                    <div class="proj-dot" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)"></div>
+                    <span class="proj-period">2026</span>
+                </div>
+                <div class="proj-title">QMK x STM32 數字鍵盤</div>
+                <div class="proj-desc">利用 STM32 實現鍵盤功能，使用 QMK 進行韌體設計，支援 VIA/VIAL 即時改鍵。</div>
+                <div class="proj-tags">
+                    <span class="proj-tag">QMK</span>
+                    <span class="proj-tag">PCB Design</span>
+                    <span class="proj-tag">STM32</span>
+                </div>
+                <span class="arrow-hint">查看詳情 →</span>
+            </div>
+
+            <div class="card card-proj">
+                <div class="accent-bar bar-teal"></div>
+                <div class="proj-meta">
+                    <div class="proj-dot" style="background:linear-gradient(135deg,#2dd4bf,#06b6d4)"></div>
+                    <span class="proj-period">2021 – 2022</span>
+                </div>
+                <div class="proj-title">無線打地鼠機（特教組教具）</div>
+                <div class="proj-desc">南港高工特教組委託，為特教生設計可室內外通用的 ESP-NOW 無線互動教具。</div>
+                <div class="proj-tags">
+                    <span class="proj-tag">ESP32</span>
+                    <span class="proj-tag">ESP-NOW</span>
+                    <span class="proj-tag">Arduino</span>
+                </div>
+                <span class="arrow-hint">查看詳情 →</span>
+            </div>
+
+            <div class="card card-proj">
+                <div class="accent-bar bar-rose"></div>
+                <div class="proj-meta">
+                    <div class="proj-dot" style="background:linear-gradient(135deg,#fb7185,#ef4444)"></div>
+                    <span class="proj-period">2020 – 2023</span>
+                </div>
+                <div class="proj-title">Swerve Drive 全向輪控制研究</div>
+                <div class="proj-desc">FRC 機器人底盤機構優化與 PID 控制算法實作，獲 2022 控制創新獎。</div>
+                <div class="proj-tags">
+                    <span class="proj-tag">LabVIEW</span>
+                    <span class="proj-tag">PID Control</span>
+                    <span class="proj-tag">Robotics</span>
+                </div>
+                <span class="arrow-hint">查看詳情 →</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── AWARDS ── -->
+    <div class="section" id="awards">
+        <div class="sec-head">
+            <span class="sec-en">Awards</span>
+            <span class="sec-zh">獲獎</span>
+        </div>
+        <div class="bento bento-awards">
+            <div class="card">
+                <div class="award-year">2026</div>
+                <div class="award-title">AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽</div>
+            </div>
+            <div class="card">
+                <div class="award-year">2022</div>
+                <div class="award-title">2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎</div>
+            </div>
+            <div class="card">
+                <div class="award-year">2022</div>
+                <div class="award-title">111 學年度工業類學生技藝競賽：數位電子職類代表</div>
+            </div>
+            <div class="card">
+                <div class="award-year">2022</div>
+                <div class="award-title">第 52 屆全國技能競賽：集體創作職類代表</div>
+            </div>
+            <div class="card">
+                <div class="award-year">2020</div>
+                <div class="award-title">2020 FRC 中科 5G 區域賽：最佳工業設計獎</div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<div class="mode-badge">
+    <div class="mode-dot"></div>
+    ABYSS · DRAFT
+</div>
+
+</body>
+</html>
