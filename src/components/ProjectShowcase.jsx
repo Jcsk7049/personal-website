@@ -33,8 +33,8 @@ export default function ProjectShowcase({ projects }) {
             {featured.map(proj => (
               <Link key={proj.id} to={`/projects/${proj.id}`}
                     className="block rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
-                               hover:-translate-y-2 hover:shadow-2xl
-                               transition-all duration-300 group">
+                               hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
+                               transition-all duration-500 group">
                 <div className={`h-[3px] w-full bg-gradient-to-r ${accent(proj.id)}`} />
                 <div className="p-8 md:p-10">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
@@ -58,12 +58,13 @@ export default function ProjectShowcase({ projects }) {
                         ))}
                       </div>
                     </div>
-                    <div className="shrink-0 flex flex-col items-end justify-center text-right">
-                      <div className={`text-[4.5rem] font-extrabold leading-none tracking-[-0.04em]
+                    <div className="shrink-0 flex flex-col items-end justify-center text-right
+                                    bg-slate-50/60 rounded-2xl px-8 py-5 border border-slate-100/80">
+                      <div className={`text-[5rem] font-extrabold leading-none tracking-[-0.05em]
                                       bg-gradient-to-br ${accent(proj.id)} bg-clip-text text-transparent`}>
                         {proj.metric.replace(/[a-zA-Z\s]/g, '')}
                       </div>
-                      <p className="text-[10px] font-mono text-slate-400 tracking-widest uppercase mt-1">
+                      <p className="text-[10px] font-mono text-slate-400 tracking-[0.2em] uppercase mt-2">
                         {proj.metric.replace(/[\d.+]/g, '').trim() || 'AUROC'}
                       </p>
                     </div>

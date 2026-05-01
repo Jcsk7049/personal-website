@@ -62,8 +62,8 @@ export default function SkillGrid({ skills }) {
           {QUADRANTS.map(q => (
             <div key={q.key}
                  className="rounded-2xl p-8 bg-white border border-slate-100 shadow-sm
-                            transition-all duration-300 hover:-translate-y-1
-                            hover:shadow-[0_8px_24px_rgba(0,0,0,0.07)]">
+                            transition-all duration-500 hover:-translate-y-1
+                            hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-slate-400">

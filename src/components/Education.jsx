@@ -21,8 +21,8 @@ export default function Education({ education }) {
           {education.map((edu, i) => (
             <div key={i}
                  className="p-7 rounded-2xl bg-white border border-slate-100 shadow-sm
-                            hover:-translate-y-2 hover:shadow-2xl
-                            transition-all duration-300 group">
+                            hover:-translate-y-1 hover:shadow-md hover:border-slate-200
+                            transition-all duration-500 group">
               <div className="flex items-start justify-between mb-5">
                 <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-300">
                   <GraduationIcon />

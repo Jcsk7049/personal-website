@@ -25,8 +25,8 @@ export default function AwardList({ awards }) {
         <div className="max-w-3xl space-y-2.5 card-stagger">
           {awards.map((award, i) => (
             <div key={i}
-                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm
-                            hover:-translate-y-2 hover:shadow-2xl
+                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100
+                            hover:bg-slate-50 hover:border-slate-200
                             transition-all duration-300 group">
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
                               bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200">
