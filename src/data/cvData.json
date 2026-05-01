@@ -61,7 +61,7 @@
     {
       "id": "aws-hackathon",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
-      "period": "2024",
+      "period": "2026",
       "description": "基於 AWS 雲端架構的加密貨幣反洗錢系統，識別 BitoPro 交易所中的可疑人頭帳戶。",
       "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "Streamlit"],
       "detail": {
