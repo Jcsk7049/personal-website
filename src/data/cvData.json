@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "江嘉元",
-    "title": "硬體 × AI 跨域工程師",
+    "title": "",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -49,7 +49,6 @@
       "id": "vap",
       "title": "VAP 深度學習預測系統",
       "period": "2025 – 現在",
-      "metric": "AUROC 0.97+",
       "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
       "tags": ["PyTorch", "MIMIC-IV", "Medical AI"],
       "detail": {
