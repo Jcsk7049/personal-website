@@ -8,6 +8,7 @@ import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
 import AwardList       from './components/AwardList'
 import ProjectDetail   from './pages/ProjectDetail'
+import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
 import cvData          from './data/cvData.json'
 
@@ -83,6 +84,7 @@ export default function App() {
       <Routes>
         <Route path="/"             element={<HomePage />}     />
         <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/skills/:id"   element={<SkillDetail />}  />
         <Route path="*"             element={<NotFound />}     />
       </Routes>
     </BrowserRouter>

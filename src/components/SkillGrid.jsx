@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 
 const QUADRANTS = [
@@ -60,16 +61,18 @@ export default function SkillGrid({ skills }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
           {QUADRANTS.map(q => (
-            <div key={q.key}
+            <Link key={q.key} to={`/skills/${q.key}`}
                  className="rounded-2xl p-8 bg-white border border-slate-100 shadow-sm
                             transition-all duration-500 hover:-translate-y-1
-                            hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)]">
+                            hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-slate-200
+                            group block">
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-slate-400">
                     {q.sublabel}
                   </p>
-                  <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]">
+                  <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]
+                                 group-hover:text-[#0071E3] transition-colors duration-200">
                     {q.label}
                   </h3>
                 </div>
@@ -85,7 +88,13 @@ export default function SkillGrid({ skills }) {
                   </span>
                 ))}
               </div>
-            </div>
+
+              <p className="text-xs text-[#0071E3] font-medium mt-5
+                            opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
+                            transition-all duration-200">
+                查看詳情 →
+              </p>
+            </Link>
           ))}
         </div>
       </div>
