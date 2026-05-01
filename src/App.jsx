@@ -10,6 +10,7 @@ import AwardList       from './components/AwardList'
 import ProjectDetail   from './pages/ProjectDetail'
 import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
+import ScrollToTop     from './components/ScrollToTop'
 import cvData          from './data/cvData.json'
 
 function HomePage() {
@@ -81,6 +82,7 @@ function HomePage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/"             element={<HomePage />}     />
         <Route path="/projects/:id" element={<ProjectDetail />} />
