@@ -1,3 +1,11 @@
+---
+name: Vibe-Architect
+description: |
+  Apply Vibe-Architect v2.0 design rules when building UI.
+  Use this skill when the user wants to create or redesign UI components, pages, or layouts
+  following the Abyss (dark) or Ivory (light) design system with Bento Grid structure.
+---
+
 # Project Rules: Vibe-Architect v2.0
 
 ## 🛠 Design Manifesto
