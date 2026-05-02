@@ -1,6 +1,7 @@
 import SectionHeader from './SectionHeader'
 
-const FRC_LOGO = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
+const FRC_LOGO        = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
+const WORLDSKILLS_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/3/3e/The_WorldSkills_logo.svg'
 
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -34,6 +35,8 @@ export default function AwardList({ awards }) {
                               bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
                 {award.frc ? (
                   <img src={FRC_LOGO} alt="FRC" className="w-full h-full object-cover" />
+                ) : award.worldskills ? (
+                  <img src={WORLDSKILLS_LOGO} alt="WorldSkills" className="w-5 h-5 object-contain" />
                 ) : (
                   <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
                     <TrophyIcon />
