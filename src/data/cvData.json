@@ -29,12 +29,14 @@
       "role": "Student Mentor & Technical Support",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
+      "frc": true,
       "description": "指導學弟妹進行機器人開發、除錯，競賽當中當任教練角色協助團隊競賽。"
     },
     {
       "role": "競賽選手",
       "organization": "南港高工 NK-MTC 7645",
       "period": "2020.06 – 2023.09",
+      "frc": true,
       "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。"
     }
   ],
@@ -187,6 +189,7 @@
       "id": "swerve",
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",
+      "frc": true,
       "description": "FRC 機器人底盤機構優化與 PID 控制算法實作。",
       "tags": ["LabVIEW", "PID Control", "Robotics"],
       "detail": {
@@ -199,9 +202,9 @@
   ],
   "awards": [
     { "title": "AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽",              "year": "2026" },
-    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022" },
+    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022", "frc": true },
     { "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",    "year": "2022" },
     { "title": "第 52 屆全國技能競賽 (技能技藝競賽)：集體創作職類代表",      "year": "2022" },
-    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020" }
+    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020", "frc": true }
   ]
 }

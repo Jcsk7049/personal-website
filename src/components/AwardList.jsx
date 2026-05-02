@@ -1,5 +1,7 @@
 import SectionHeader from './SectionHeader'
 
+const FRC_LOGO = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
+
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
        strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -29,10 +31,14 @@ export default function AwardList({ awards }) {
                             hover:bg-slate-50 hover:border-slate-200
                             transition-all duration-300 group">
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200">
-                <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
-                  <TrophyIcon />
-                </span>
+                              bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
+                {award.frc ? (
+                  <img src={FRC_LOGO} alt="FRC" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
+                    <TrophyIcon />
+                  </span>
+                )}
               </div>
               <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
               <span className="shrink-0 text-[11px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1

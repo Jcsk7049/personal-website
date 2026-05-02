@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 
+const FRC_LOGO = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
+
 const PROJECT_ACCENTS = {
   'vap':               'from-sky-400 to-blue-600',
   'aws-hackathon':     'from-amber-400 to-orange-500',
@@ -85,7 +87,11 @@ export default function ProjectShowcase({ projects }) {
                 <div className="p-7 flex flex-col gap-3 flex-1">
                   <div>
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
+                      {proj.frc ? (
+                        <img src={FRC_LOGO} alt="FRC" className="w-4 h-4 rounded-full object-cover shrink-0" />
+                      ) : (
+                        <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
+                      )}
                       <p className="text-[11px] text-slate-400 font-mono tracking-wide">{proj.period}</p>
                     </div>
                     <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
