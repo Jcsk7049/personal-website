@@ -2,7 +2,7 @@ import SectionHeader from './SectionHeader'
 
 const FRC_LOGO = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
 
-({ experience }) {
+export default function Experience({ experience }) {
   return (
     <section id="experience" className="py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
