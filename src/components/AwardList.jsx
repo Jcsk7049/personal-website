@@ -1,7 +1,7 @@
 import SectionHeader from './SectionHeader'
 
 const FRC_LOGO        = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
-const WORLDSKILLS_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/3/3e/The_WorldSkills_logo.svg'
+const WORLDSKILLS_LOGO = '/worldskills-logo.svg'
 
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
