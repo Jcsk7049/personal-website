@@ -36,7 +36,7 @@ export default function Nav({ name }) {
         ? 'bg-white/70 backdrop-blur-md border-b border-slate-100 shadow-sm shadow-slate-200/30'
         : 'bg-transparent'
     }`}>
-      <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
         <a href="#hero"
            className={`text-sm font-extrabold tracking-tight text-[#1D1D1F] transition-all duration-300 ${
              scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'

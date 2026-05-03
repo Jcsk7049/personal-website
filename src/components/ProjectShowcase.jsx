@@ -21,7 +21,7 @@ export default function ProjectShowcase({ projects }) {
 
   return (
     <section id="projects" className="py-32">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Projects"
           zh="專案"

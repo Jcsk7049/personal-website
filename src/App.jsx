@@ -41,7 +41,7 @@ function HomePage() {
       <ProjectShowcase projects={cvData.projects} />
       <AwardList       awards={cvData.awards} />
       <footer className="py-16 bg-white border-t border-slate-100">
-        <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
             <div>
               <p className="text-sm font-semibold text-[#1D1D1F] tracking-[-0.01em] mb-1">{cvData.profile.name}</p>

@@ -28,7 +28,7 @@ export default function Hero({ profile }) {
                         bg-[#0071E3] opacity-[0.04] blur-[80px]" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
 
           {/* Left: Text */}

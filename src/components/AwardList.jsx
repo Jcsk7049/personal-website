@@ -18,14 +18,14 @@ const TrophyIcon = () => (
 export default function AwardList({ awards }) {
   return (
     <section id="awards" className="py-32 bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Awards"
           zh="獲獎"
           sub="國際競賽與黑客松的實戰成果。"
         />
 
-        <div className="max-w-3xl space-y-2.5 card-stagger">
+        <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
           {awards.map((award, i) => (
             <div key={i}
                  className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100

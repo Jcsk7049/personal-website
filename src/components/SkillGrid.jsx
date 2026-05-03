@@ -52,14 +52,14 @@ const QUADRANTS = [
 export default function SkillGrid({ skills }) {
   return (
     <section id="skills" className="py-32 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Skills"
           zh="技術矩陣"
           sub="從底層硬體到 AI 模型，跨域整合是最核心的競爭力。"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl card-stagger">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 card-stagger">
           {QUADRANTS.map(q => (
             <Link key={q.key} to={`/skills/${q.key}`}
                  className="rounded-2xl p-8 bg-white border border-slate-100 shadow-sm

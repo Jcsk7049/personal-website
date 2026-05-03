@@ -11,7 +11,7 @@ const GraduationIcon = () => (
 export default function Education({ education }) {
   return (
     <section id="education" className="py-32 bg-white">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Education"
           zh="學歷"
