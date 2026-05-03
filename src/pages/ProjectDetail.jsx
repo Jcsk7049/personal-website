@@ -52,10 +52,9 @@ export default function ProjectDetail() {
         </div>
       </nav>
 
-      {/* Accent bar */}
-      <div className={`h-[3px] w-full bg-gradient-to-r ${accentClass} mt-14`} />
-
-      <main className="pt-16 pb-32 px-6 md:px-10 max-w-4xl mx-auto">
+      <div className="pt-14">
+        <div className={`h-[3px] w-full bg-gradient-to-r ${accentClass}`} />
+        <main className="pt-16 pb-32 px-6 md:px-10 max-w-4xl mx-auto">
 
         {/* Header */}
         <div className="mb-16">
@@ -123,6 +122,7 @@ export default function ProjectDetail() {
         </div>
 
       </main>
+      </div>
     </div>
   )
 }

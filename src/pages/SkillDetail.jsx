@@ -62,10 +62,9 @@ export default function SkillDetail() {
         </div>
       </nav>
 
-      {/* Accent bar */}
-      <div className={`h-[3px] w-full bg-gradient-to-r ${accent} mt-14`} />
-
-      <main className="pt-16 pb-32 px-6 md:px-10 max-w-7xl mx-auto">
+      <div className="pt-14">
+        <div className={`h-[3px] w-full bg-gradient-to-r ${accent}`} />
+        <main className="pt-16 pb-32 px-6 md:px-10 max-w-7xl mx-auto">
 
         {/* Header */}
         <div className="mb-14 max-w-2xl">
@@ -132,6 +131,7 @@ export default function SkillDetail() {
         </div>
 
       </main>
+      </div>
     </div>
   )
 }
