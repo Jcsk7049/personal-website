@@ -49,18 +49,36 @@
       "title": "數據分析",
       "en": "Data Analysis",
       "overview": "以生醫訊號與臨床數據為主要應用場景，從原始資料清洗、特徵工程到模型訓練與評估，建立端對端的機器學習管線。",
-      "sections": [
+      "skills": [
         {
-          "label": "核心方法",
-          "content": "深度學習模型（LSTM、CNN）捕捉時序依賴；傳統機器學習（XGBoost、LightGBM）處理結構化特徵。訊號前處理包含帶通濾波、Z-score 標準化與缺失值插補，確保模型輸入品質。"
+          "name": "深度學習",
+          "level": "進階",
+          "desc": "熟悉 LSTM、CNN 時序模型架構，具備完整的資料前處理、模型訓練與超參數調整流程，應用於生醫訊號的序列預測任務。",
+          "projects": ["VAP 深度學習預測系統"]
         },
         {
-          "label": "特徵工程",
-          "content": "針對生理訊號萃取時域（均值、標準差、峰值）與頻域（FFT 功率譜）特徵；針對電子病歷進行時序聚合與 One-Hot 編碼，處理醫療數據常見的高缺失率與類別不平衡問題。"
+          "name": "機器學習",
+          "level": "進階",
+          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值實現模型可解釋性，有效處理嚴重類別不平衡的金融詐欺場景。",
+          "projects": ["AWS x BitoPro 黑客松"]
         },
         {
-          "label": "應用專案",
-          "content": "VAP 預測系統：以 MIMIC-IV 臨床數據訓練 LSTM，於測試集達到 AUROC 0.97+。\nAWS x BitoPro 黑客松：XGBoost + LightGBM Ensemble 進行反洗錢帳戶分類，結合 SHAP 值提供模型可解釋性。"
+          "name": "特徵工程",
+          "level": "進階",
+          "desc": "萃取時域（均值、峰值）與頻域（FFT 功率譜）特徵；對電子病歷進行時序聚合與 One-Hot 編碼，處理高缺失率醫療數據。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+        },
+        {
+          "name": "訊號過濾",
+          "level": "熟悉",
+          "desc": "帶通濾波、Z-score 標準化與缺失值插補，確保生理訊號輸入品質，降低模型對雜訊的敏感度。",
+          "projects": ["VAP 深度學習預測系統"]
+        },
+        {
+          "name": "數據結構化",
+          "level": "熟悉",
+          "desc": "電子病歷 ETL 清洗、AWS Glue 圖形化多跳分析管線，將非結構化原始資料轉為可訓練的特徵矩陣。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
         }
       ]
     },
@@ -68,41 +86,61 @@
       "title": "程式開發",
       "en": "Programming",
       "overview": "橫跨嵌入式韌體、科學計算與機器學習管線，依場景選用最合適的語言與框架。",
-      "sections": [
+      "skills": [
         {
-          "label": "C / C++",
-          "content": "用於 FRC 機器人控制、STM32 韌體開發與 QMK 鍵盤客製化。掌握記憶體管理、GPIO 控制與中斷處理，能在資源受限的嵌入式環境中撰寫穩定的底層程式。"
+          "name": "C / C++",
+          "level": "進階",
+          "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，能在資源受限環境下撰寫穩定的底層驅動程式。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統", "QMK x STM32 客製鍵盤"]
         },
         {
-          "label": "Python",
-          "content": "取得 ITS Python 國際認證。主要用於機器學習管線（PyTorch、scikit-learn、pandas）、數據視覺化（Matplotlib）與雲端服務整合（AWS SDK）。"
+          "name": "Python",
+          "level": "進階",
+          "desc": "取得 ITS Python 國際認證。應用於 ML 管線（PyTorch、scikit-learn、pandas）、數據視覺化（Matplotlib）與 AWS SDK 雲端整合。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
         },
         {
-          "label": "LabVIEW",
-          "content": "用於 FRC Swerve Drive 全向輪控制系統開發，實作向量合成運動學演算法與 PID 閉迴路控制，獲 2022 FRC 控制創新獎。"
+          "name": "LabVIEW",
+          "level": "熟悉",
+          "desc": "圖形化程式設計，實作向量合成運動學演算法與 PID 閉迴路控制，應用於競賽機器人即時控制，獲 2022 FRC 控制創新獎肯定。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
         },
         {
-          "label": "Arduino / MATLAB",
-          "content": "Arduino 用於快速原型開發（ESP32 無線打地鼠機、感測器測試）。MATLAB 用於訊號處理分析與演算法驗證。"
+          "name": "Arduino",
+          "level": "熟悉",
+          "desc": "快速原型開發平台，整合 ESP32 無線通訊、感測器讀值與繼電器驅動，適合在短時間內完成硬體功能驗證。",
+          "projects": ["ESP32 無線打地鼠機"]
+        },
+        {
+          "name": "MATLAB",
+          "level": "基礎",
+          "desc": "用於訊號處理分析與演算法原型驗證，方便在實作前以視覺化方式確認濾波效果與模型邏輯。",
+          "projects": []
         }
       ]
     },
     "eda": {
       "title": "電路設計",
       "en": "Electronic Design Automation",
-      "overview": "具備從電路圖設計到 PCB Layout 的完整流程能力，熟悉電源管理、MCU 外圍電路與 RF 模組設計。",
-      "sections": [
+      "overview": "具備從電路圖設計到 PCB Layout 的完整流程能力，熟悉電源管理、MCU 外圍電路與保護電路設計。",
+      "skills": [
         {
-          "label": "PCB 設計工具",
-          "content": "主力使用 Altium Designer 與 KiCAD 進行多層板設計，涵蓋電源規劃、阻抗匹配與 DFM（可製造性設計）原則。OrCAD 用於電路圖繪製與 SPICE 模擬。"
+          "name": "Altium Designer",
+          "level": "進階",
+          "desc": "多層 PCB 設計主力工具，涵蓋電源規劃、阻抗匹配與 DFM（可製造性設計）原則，能獨立完成從原理圖到 Gerber 輸出的完整流程。",
+          "projects": ["QMK x STM32 客製鍵盤"]
         },
         {
-          "label": "實作經驗",
-          "content": "QMK x STM32 數字鍵盤：自製 PCB，整合 STM32 MCU、鍵盤矩陣掃描電路與 WS2812 RGB 控制，通過實際焊接與功能驗證。\n無線打地鼠機：ESP32 電路設計含 7805 穩壓電路、電晶體驅動繼電器與飛輪二極體保護。"
+          "name": "KiCAD",
+          "level": "熟悉",
+          "desc": "開源 EDA 工具，用於個人專案快速出板，熟悉元件庫管理與 3D 封裝預覽，適合概念驗證階段使用。",
+          "projects": ["QMK x STM32 客製鍵盤"]
         },
         {
-          "label": "電路除錯",
-          "content": "具備實際排查 7805 過熱、GPIO 電流不足與電源去耦問題的經驗，理解電容、二極體等被動元件在實際電路中的保護作用。"
+          "name": "OrCAD",
+          "level": "基礎",
+          "desc": "電路圖繪製與 SPICE 模擬基礎應用，用於驗證被動元件選型與電源電路行為。",
+          "projects": []
         }
       ]
     },
@@ -110,22 +148,54 @@
       "title": "機構加工",
       "en": "Manufacturing",
       "overview": "從概念設計到實體製作的完整製程能力，熟悉減法加工、積層製造與連接工藝，具備 CNC 數值加工與 3D 建模實戰經驗。",
-      "sections": [
+      "skills": [
         {
-          "label": "CNC 與機械加工",
-          "content": "操作 CNC 銑床進行鋁合金零件加工，包含刀具路徑規劃與夾具設計。應用於 FRC 機器人底盤的輕量化偷料與 Swerve Drive 模組化鋁板製作，相較手工銑床大幅提升加工精度與重現性。"
+          "name": "CNC 銑床",
+          "level": "進階",
+          "desc": "操作 CNC 銑床進行鋁合金精密加工，熟悉刀具路徑規劃與夾具設計，相較手工銑床大幅提升加工精度與重現性。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
         },
         {
-          "label": "3D 列印與快速原型",
-          "content": "使用 FDM 列印進行機構原型驗證與客製化零件製作，如打地鼠機上蓋、Swerve Drive 內部齒輪等非承力件，以降低重量與加工成本。"
+          "name": "3D 列印",
+          "level": "進階",
+          "desc": "FDM 快速原型製作，用於機構干涉驗證與客製化非承力件，在不影響結構強度的前提下有效降低重量與加工成本。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統", "ESP32 無線打地鼠機"]
         },
         {
-          "label": "CAD 建模",
-          "content": "以 Autodesk Inventor 為主力進行機構三維建模與組件干涉分析，AutoCAD 用於二維工程圖，Fusion 360 用於快速概念建模。"
+          "name": "Autodesk Inventor",
+          "level": "進階",
+          "desc": "三維機構建模主力工具，進行組件干涉分析與動態模擬，確保設計在實際組裝前已消除衝突與公差問題。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
         },
         {
-          "label": "其他工藝",
-          "content": "金屬焊接（MIG/TIG 基礎）、雷射切割用於板金件與壓克力結構件。設計理念以「化繁為簡、易於維修」為核心，確保競賽現場能快速排障。"
+          "name": "AutoCAD",
+          "level": "熟悉",
+          "desc": "二維工程圖繪製與加工圖面輸出，提供給 CNC 操作員或外包廠商清晰的尺寸標註與公差規格。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "Fusion 360",
+          "level": "熟悉",
+          "desc": "快速概念建模與 CAM 整合，適合初期設計探索，能直接從 3D 模型生成加工路徑進行小批量製作。",
+          "projects": []
+        },
+        {
+          "name": "金屬焊接",
+          "level": "熟悉",
+          "desc": "MIG / TIG 基礎焊接技術，用於 FRC 機器人底盤鋼管結構的連接，注重焊道均勻性與結構強度。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "雷射切割",
+          "level": "熟悉",
+          "desc": "板金件與壓克力結構件的精密裁切，配合 CAD 圖面快速製作自訂尺寸的薄板結構與標示面板。",
+          "projects": []
+        },
+        {
+          "name": "基礎機械加工",
+          "level": "熟悉",
+          "desc": "手工銑床、車床基礎操作，具備量具使用與工件夾持概念，為 CNC 進階加工建立紮實的手動加工底子。",
+          "projects": []
         }
       ]
     }
