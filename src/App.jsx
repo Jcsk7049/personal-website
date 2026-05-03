@@ -37,7 +37,7 @@ function HomePage() {
       <Hero            profile={cvData.profile} />
       <Education       education={cvData.education} />
       <Experience      experience={cvData.experience} />
-      <SkillGrid       skills={cvData.skills_matrix} />
+      <SkillGrid       skills={cvData.skills_matrix} detail={cvData.skills_detail} />
       <ProjectShowcase projects={cvData.projects} />
       <AwardList       awards={cvData.awards} />
       <footer className="py-16 bg-white border-t border-slate-100">
