@@ -67,13 +67,13 @@ export default function SkillGrid({ skills, detail }) {
           {QUADRANTS.map(q => {
             const d = detail?.[q.key]
             const tags = skills[q.key] || []
-            const sectionCount = d?.sections?.length ?? 0
+            const sectionCount = d?.skills?.length ?? 0
             return (
               <Link key={q.key} to={`/skills/${q.key}`}
                    className="rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
                               transition-all duration-500 hover:-translate-y-1
                               hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-slate-200
-                              group block flex flex-col">
+                              group flex flex-col">
 
                 {/* accent bar */}
                 <div className={`h-[3px] w-full bg-gradient-to-r ${q.accent}`} />
