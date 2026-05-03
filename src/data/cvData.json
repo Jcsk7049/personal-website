@@ -29,14 +29,12 @@
       "role": "Student Mentor & Technical Support",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "frc": true,
       "description": "指導學弟妹進行機器人開發、除錯，競賽當中當任教練角色協助團隊競賽。"
     },
     {
       "role": "競賽選手",
       "organization": "南港高工 NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "frc": true,
       "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。"
     }
   ],
