@@ -104,7 +104,7 @@ export default function SkillGrid({ skills, detail }) {
                   )}
 
                   {/* tools */}
-                  <div className="flex flex-wrap gap-2 flex-1">
+                  <div className="flex flex-wrap gap-2 flex-1 items-start content-start">
                     {tags.map(skill => (
                       <span key={skill}
                             className="px-3 py-1 rounded-full text-xs font-medium
