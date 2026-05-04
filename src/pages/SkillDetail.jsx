@@ -81,13 +81,15 @@ export default function SkillDetail() {
 
         {/* Skill cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {(detail.skills || []).map((skill, i) => {
+          {(detail.skills || []).map((skill, i, arr) => {
             const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
+            const isLastOdd = i === arr.length - 1 && arr.length % 2 !== 0
             return (
               <div key={i}
-                   className="bg-white border border-slate-100 rounded-2xl p-7 shadow-sm
+                   className={`bg-white border border-slate-100 rounded-2xl p-7 shadow-sm
                               hover:border-slate-200 hover:shadow-md transition-all duration-300
-                              flex flex-col gap-4">
+                              flex flex-col gap-4
+                              ${isLastOdd ? 'md:col-span-2 xl:col-span-1' : ''}`}>
 
                 {/* Card header */}
                 <div className="flex items-start justify-between gap-3">
