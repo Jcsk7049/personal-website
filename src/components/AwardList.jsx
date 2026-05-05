@@ -28,24 +28,25 @@ export default function AwardList({ awards }) {
         <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
           {awards.map((award, i, arr) => (
             <div key={i}
-                 className={`flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100
-                            hover:bg-slate-50 hover:border-slate-200
-                            transition-all duration-300 group
+                 className={`flex items-center gap-4 px-5 py-4 rounded-2xl
+                            shadow-[0_1px_6px_rgba(0,0,0,0.05)]
+                            hover:shadow-[0_4px_16px_rgba(0,0,0,0.09)] hover:bg-[#f5f5f7]
+                            transition-all duration-300 group bg-white
                             ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
+                              bg-[#f5f5f7] group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
                 {award.frc ? (
                   <img src={FRC_LOGO} alt="FRC" className="w-full h-full object-cover" />
                 ) : award.worldskills ? (
                   <img src={WORLDSKILLS_LOGO} alt="WorldSkills" className="w-5 h-5 object-contain" />
                 ) : (
-                  <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-200">
+                  <span className="text-[#c7c7cc] group-hover:text-[#0071E3] transition-colors duration-200">
                     <TrophyIcon />
                   </span>
                 )}
               </div>
               <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
-              <span className="shrink-0 text-[11px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1
+              <span className="shrink-0 text-[11px] text-[#6e6e73] font-mono bg-[#f5f5f7] px-2.5 py-1
                                rounded-full leading-none group-hover:bg-blue-50 group-hover:text-blue-600
                                transition-colors duration-200">
                 {award.year}

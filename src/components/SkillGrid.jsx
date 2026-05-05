@@ -55,7 +55,7 @@ const QUADRANTS = [
 
 export default function SkillGrid({ skills, detail }) {
   return (
-    <section id="skills" className="py-32 bg-slate-50">
+    <section id="skills" className="py-32 bg-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader
           en="Skills"
@@ -74,9 +74,10 @@ export default function SkillGrid({ skills, detail }) {
 
             return (
               <Link key={q.key} to={`/skills/${q.key}`}
-                   className="rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
-                              transition-all duration-500 hover:-translate-y-1
-                              hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-slate-200
+                   className="rounded-2xl overflow-hidden bg-white
+                              shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+                              transition-all duration-500 hover:-translate-y-0.5
+                              hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
                               group flex flex-col">
 
                 {/* accent bar */}
@@ -87,7 +88,7 @@ export default function SkillGrid({ skills, detail }) {
                   {/* header */}
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-slate-400">
+                      <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-[#6e6e73]">
                         {q.sublabel}
                       </p>
                       <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]
@@ -102,7 +103,7 @@ export default function SkillGrid({ skills, detail }) {
 
                   {/* overview */}
                   {d?.overview && (
-                    <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-[#6e6e73] leading-relaxed line-clamp-2">
                       {d.overview}
                     </p>
                   )}
@@ -113,22 +114,22 @@ export default function SkillGrid({ skills, detail }) {
                       <div className="flex h-1.5 rounded-full overflow-hidden gap-0.5">
                         {counts['進階'] > 0 && <div className="bg-violet-400 rounded-full transition-all duration-300" style={{ flex: counts['進階'] }} />}
                         {counts['熟悉'] > 0 && <div className="bg-blue-400 rounded-full transition-all duration-300"   style={{ flex: counts['熟悉'] }} />}
-                        {counts['基礎'] > 0 && <div className="bg-slate-300 rounded-full transition-all duration-300"  style={{ flex: counts['基礎'] }} />}
+                        {counts['基礎'] > 0 && <div className="bg-[#c7c7cc] rounded-full transition-all duration-300"  style={{ flex: counts['基礎'] }} />}
                       </div>
                       <div className="flex gap-3">
                         {counts['進階'] > 0 && (
-                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                          <span className="flex items-center gap-1 text-[11px] text-[#6e6e73]">
                             <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />進階 {counts['進階']}
                           </span>
                         )}
                         {counts['熟悉'] > 0 && (
-                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                          <span className="flex items-center gap-1 text-[11px] text-[#6e6e73]">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />熟悉 {counts['熟悉']}
                           </span>
                         )}
                         {counts['基礎'] > 0 && (
-                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                            <span className="w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0" />基礎 {counts['基礎']}
+                          <span className="flex items-center gap-1 text-[11px] text-[#6e6e73]">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#c7c7cc] shrink-0" />基礎 {counts['基礎']}
                           </span>
                         )}
                       </div>
@@ -147,9 +148,9 @@ export default function SkillGrid({ skills, detail }) {
                   </div>
 
                   {/* footer */}
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-50">
+                  <div className="flex items-center justify-between pt-2 border-t border-black/[0.05]">
                     {skillList.length > 0 && (
-                      <span className="text-[11px] text-slate-400 font-mono">
+                      <span className="text-[11px] text-[#6e6e73] font-mono">
                         {skillList.length} 項技能
                       </span>
                     )}

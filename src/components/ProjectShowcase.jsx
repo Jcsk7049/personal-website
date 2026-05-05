@@ -34,8 +34,9 @@ export default function ProjectShowcase({ projects }) {
           <div className="space-y-5 card-stagger">
             {featured.map(proj => (
               <Link key={proj.id} to={`/projects/${proj.id}`}
-                    className="block rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
-                               hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
+                    className="rounded-2xl overflow-hidden bg-white
+                               shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+                               hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
                                transition-all duration-500 group">
                 <div className={`h-[3px] w-full bg-gradient-to-r ${accent(proj.id)}`} />
                 <div className="p-8 md:p-10">
@@ -43,13 +44,13 @@ export default function ProjectShowcase({ projects }) {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
                         <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
-                        <p className="text-[11px] text-slate-400 font-mono tracking-wide">{proj.period}</p>
+                        <p className="text-[11px] text-[#6e6e73] font-mono tracking-wide">{proj.period}</p>
                       </div>
                       <h3 className="text-xl font-bold tracking-tight text-[#1D1D1F] mb-3
                                      group-hover:text-[#0071E3] transition-colors duration-200">
                         {proj.title}
                       </h3>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-5 max-w-lg">{proj.description}</p>
+                      <p className="text-sm text-[#6e6e73] leading-relaxed mb-5 max-w-lg">{proj.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {proj.tags.map(tag => (
                           <span key={tag}
@@ -61,7 +62,7 @@ export default function ProjectShowcase({ projects }) {
                       </div>
                     </div>
                     <div className="shrink-0 flex flex-col items-end justify-center text-right
-                                    bg-slate-50/60 rounded-2xl px-8 py-5 border border-slate-100/80">
+                                    bg-[#f5f5f7] rounded-2xl px-8 py-5">
                       <div className={`text-[5rem] font-extrabold leading-none tracking-[-0.05em]
                                       bg-gradient-to-br ${accent(proj.id)} bg-clip-text text-transparent`}>
                         {proj.metric.replace(/[a-zA-Z\s]/g, '')}
@@ -92,14 +93,14 @@ export default function ProjectShowcase({ projects }) {
                       ) : (
                         <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
                       )}
-                      <p className="text-[11px] text-slate-400 font-mono tracking-wide">{proj.period}</p>
+                      <p className="text-[11px] text-[#6e6e73] font-mono tracking-wide">{proj.period}</p>
                     </div>
                     <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
                                    group-hover:text-[#0071E3] transition-colors duration-200">
                       {proj.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-slate-500 leading-relaxed flex-1">{proj.description}</p>
+                  <p className="text-sm text-[#6e6e73] leading-relaxed flex-1">{proj.description}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tags.map(tag => (
                       <span key={tag}

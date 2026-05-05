@@ -20,14 +20,15 @@ export default function Education({ education }) {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 card-stagger">
           {education.map((edu, i) => (
             <div key={i}
-                 className="p-7 rounded-2xl bg-white border border-slate-100 shadow-sm
-                            hover:-translate-y-1 hover:shadow-md hover:border-slate-200
+                 className="p-7 rounded-2xl bg-white
+                            shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+                            hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,0,0,0.10)]
                             transition-all duration-500 group">
               <div className="flex items-start justify-between mb-5">
-                <span className="text-slate-300 group-hover:text-[#0071E3] transition-colors duration-300">
+                <span className="text-[#c7c7cc] group-hover:text-[#0071E3] transition-colors duration-300">
                   <GraduationIcon />
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono bg-slate-50 px-2.5 py-1 rounded-full leading-none">
+                <span className="text-[10px] text-[#6e6e73] font-mono bg-[#f5f5f7] px-2.5 py-1 rounded-full leading-none">
                   {edu.period}
                 </span>
               </div>
@@ -35,7 +36,7 @@ export default function Education({ education }) {
                              group-hover:text-[#0071E3] transition-colors duration-200">
                 {edu.school}
               </h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{edu.degree}</p>
+              <p className="text-sm text-[#6e6e73] leading-relaxed">{edu.degree}</p>
             </div>
           ))}
         </div>
