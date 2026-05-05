@@ -80,9 +80,9 @@ export default function ProjectShowcase({ projects }) {
           <div className="grid md:grid-cols-2 gap-4 card-stagger">
             {rest.map(proj => (
               <Link key={proj.id} to={`/projects/${proj.id}`}
-                    className="block rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
-                               hover:-translate-y-2 hover:shadow-2xl
-                               transition-all duration-300 group flex flex-col">
+                    className="rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
+                               hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
+                               transition-all duration-500 group flex flex-col">
                 <div className={`h-[3px] w-full bg-gradient-to-r ${accent(proj.id)}`} />
                 <div className="p-7 flex flex-col gap-3 flex-1">
                   <div>

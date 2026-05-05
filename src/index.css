@@ -29,11 +29,17 @@
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.is-visible .card-stagger > *:nth-child(1) { opacity: 1; transform: none; transition-delay:  50ms; }
-.is-visible .card-stagger > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 120ms; }
-.is-visible .card-stagger > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 190ms; }
-.is-visible .card-stagger > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 260ms; }
-.is-visible .card-stagger > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 330ms; }
+.is-visible .card-stagger > *:nth-child(1)  { opacity: 1; transform: none; transition-delay:  50ms; }
+.is-visible .card-stagger > *:nth-child(2)  { opacity: 1; transform: none; transition-delay: 120ms; }
+.is-visible .card-stagger > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: 190ms; }
+.is-visible .card-stagger > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: 260ms; }
+.is-visible .card-stagger > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: 330ms; }
+.is-visible .card-stagger > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: 380ms; }
+.is-visible .card-stagger > *:nth-child(7)  { opacity: 1; transform: none; transition-delay: 430ms; }
+.is-visible .card-stagger > *:nth-child(8)  { opacity: 1; transform: none; transition-delay: 480ms; }
+.is-visible .card-stagger > *:nth-child(9)  { opacity: 1; transform: none; transition-delay: 510ms; }
+.is-visible .card-stagger > *:nth-child(10) { opacity: 1; transform: none; transition-delay: 540ms; }
+.is-visible .card-stagger > *:nth-child(n+11) { opacity: 1; transform: none; transition-delay: 560ms; }
 
 /* ── Hero entrance — forwards avoids pre-delay invisible flash ── */
 .hero-fade-left {

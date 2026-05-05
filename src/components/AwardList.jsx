@@ -26,11 +26,12 @@ export default function AwardList({ awards }) {
         />
 
         <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
-          {awards.map((award, i) => (
+          {awards.map((award, i, arr) => (
             <div key={i}
-                 className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100
+                 className={`flex items-center gap-4 px-5 py-4 rounded-2xl bg-white border border-slate-100
                             hover:bg-slate-50 hover:border-slate-200
-                            transition-all duration-300 group">
+                            transition-all duration-300 group
+                            ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
                               bg-slate-50 group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
                 {award.frc ? (

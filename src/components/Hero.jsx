@@ -39,10 +39,12 @@ export default function Hero({ profile }) {
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-extrabold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
               {profile.name}
             </h1>
-            <div className="flex items-center h-9 mb-14">
-              <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
-              <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
-            </div>
+            {full && (
+              <div className="flex items-center h-9 mb-14">
+                <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
+                <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
+              </div>
+            )}
             <div className="flex flex-wrap gap-3">
               <a href={`mailto:${profile.contact.email}`}
                  className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
