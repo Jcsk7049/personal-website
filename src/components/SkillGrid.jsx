@@ -74,14 +74,11 @@ export default function SkillGrid({ skills, detail }) {
 
             return (
               <Link key={q.key} to={`/skills/${q.key}`}
-                   className="rounded-2xl overflow-hidden bg-white
+                   className="rounded-2xl bg-white
                               shadow-[0_2px_12px_rgba(0,0,0,0.06)]
                               transition-all duration-500 hover:-translate-y-0.5
                               hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
                               group flex flex-col">
-
-                {/* accent bar */}
-                <div className={`h-[3px] w-full bg-gradient-to-r ${q.accent}`} />
 
                 <div className="p-8 flex flex-col flex-1 gap-5">
 

@@ -20,13 +20,7 @@ export default function Hero({ profile }) {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 overflow-hidden">
 
-      {/* Background gradient blobs */}
-      <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full
-                        bg-[#0071E3] opacity-[0.06] blur-[100px]" />
-        <div className="absolute bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full
-                        bg-[#0071E3] opacity-[0.04] blur-[80px]" />
-      </div>
+      {/* Background — clean, no blobs */}
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
@@ -36,7 +30,7 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-extrabold tracking-[-0.04em] leading-none text-[#1D1D1F] mb-6">
+            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-6">
               {profile.name}
             </h1>
             {full && (
@@ -75,12 +69,9 @@ export default function Hero({ profile }) {
           {/* Right: Photo */}
           <div className="shrink-0 flex justify-center lg:justify-end hero-fade-right">
             <div className="relative">
-              <div className="absolute -inset-4 rounded-[2.5rem] border border-[#0071E3]/10 pointer-events-none" />
-              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#0071E3]/20" />
-              <div className="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-[#0071E3]/10" />
               <div className="w-52 h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] overflow-hidden
-                              bg-gradient-to-br from-[#F0F4FF] to-[#E8EDF5]
-                              ring-1 ring-gray-200/80 shadow-2xl shadow-gray-300/40">
+                              bg-[#f5f5f7]
+                              shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
                 {profile.avatar ? (
                   <img src={profile.avatar} alt={profile.name}
                        className="w-full h-full object-cover"

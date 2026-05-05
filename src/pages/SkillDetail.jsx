@@ -68,10 +68,10 @@ export default function SkillDetail() {
 
         {/* Header */}
         <div className="mb-14 max-w-2xl">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-slate-400 mb-3">
+          <p className="text-[13px] font-semibold text-[#0071E3] mb-3">
             {detail.en}
           </p>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F] mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-6 leading-tight">
             {detail.title}
           </h1>
           <p className="text-base text-slate-500 leading-relaxed">

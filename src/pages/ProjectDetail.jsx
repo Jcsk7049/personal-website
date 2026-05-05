@@ -58,7 +58,7 @@ export default function ProjectDetail() {
 
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F] mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-6 leading-tight">
             {project.title}
           </h1>
           {project.metric && (
@@ -88,9 +88,9 @@ export default function ProjectDetail() {
             <section key={key} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-2.5 mb-4">
                 <span className="block w-4 h-px bg-[#0071E3] rounded-full" />
-                <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-slate-400">{en}</p>
+                <p className="text-[13px] font-semibold text-[#0071E3]">{en}</p>
               </div>
-              <h2 className="text-xl font-extrabold tracking-tight text-[#1D1D1F] mb-4">{label}</h2>
+              <h2 className="text-xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-4">{label}</h2>
               {detail[key] ? (
                 <p className="text-base text-slate-600 leading-relaxed max-w-2xl whitespace-pre-line">
                   {detail[key]}

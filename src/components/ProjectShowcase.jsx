@@ -34,11 +34,10 @@ export default function ProjectShowcase({ projects }) {
           <div className="space-y-5 card-stagger">
             {featured.map(proj => (
               <Link key={proj.id} to={`/projects/${proj.id}`}
-                    className="rounded-2xl overflow-hidden bg-white
+                    className="rounded-2xl bg-white
                                shadow-[0_2px_12px_rgba(0,0,0,0.06)]
                                hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
                                transition-all duration-500 group">
-                <div className={`h-[3px] w-full bg-gradient-to-r ${accent(proj.id)}`} />
                 <div className="p-8 md:p-10">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                     <div className="flex-1">
@@ -81,10 +80,10 @@ export default function ProjectShowcase({ projects }) {
           <div className="grid md:grid-cols-2 gap-4 card-stagger">
             {rest.map(proj => (
               <Link key={proj.id} to={`/projects/${proj.id}`}
-                    className="rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
-                               hover:-translate-y-1 hover:shadow-lg hover:border-slate-200
+                    className="rounded-2xl bg-white
+                               shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+                               hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
                                transition-all duration-500 group flex flex-col">
-                <div className={`h-[3px] w-full bg-gradient-to-r ${accent(proj.id)}`} />
                 <div className="p-7 flex flex-col gap-3 flex-1">
                   <div>
                     <div className="flex items-center gap-2 mb-1.5">
