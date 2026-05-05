@@ -67,7 +67,11 @@ export default function SkillGrid({ skills, detail }) {
           {QUADRANTS.map(q => {
             const d = detail?.[q.key]
             const tags = skills[q.key] || []
-            const sectionCount = d?.skills?.length ?? 0
+            const skillList = d?.skills || []
+
+            const counts = { '進階': 0, '熟悉': 0, '基礎': 0 }
+            skillList.forEach(s => { if (s.level in counts) counts[s.level]++ })
+
             return (
               <Link key={q.key} to={`/skills/${q.key}`}
                    className="rounded-2xl overflow-hidden bg-white border border-slate-100 shadow-sm
@@ -103,6 +107,34 @@ export default function SkillGrid({ skills, detail }) {
                     </p>
                   )}
 
+                  {/* proficiency bar */}
+                  {skillList.length > 0 && (
+                    <div className="space-y-2">
+                      <div className="flex h-1.5 rounded-full overflow-hidden gap-0.5">
+                        {counts['進階'] > 0 && <div className="bg-violet-400 rounded-full transition-all duration-300" style={{ flex: counts['進階'] }} />}
+                        {counts['熟悉'] > 0 && <div className="bg-blue-400 rounded-full transition-all duration-300"   style={{ flex: counts['熟悉'] }} />}
+                        {counts['基礎'] > 0 && <div className="bg-slate-300 rounded-full transition-all duration-300"  style={{ flex: counts['基礎'] }} />}
+                      </div>
+                      <div className="flex gap-3">
+                        {counts['進階'] > 0 && (
+                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />進階 {counts['進階']}
+                          </span>
+                        )}
+                        {counts['熟悉'] > 0 && (
+                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />熟悉 {counts['熟悉']}
+                          </span>
+                        )}
+                        {counts['基礎'] > 0 && (
+                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                            <span className="w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0" />基礎 {counts['基礎']}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   {/* tools */}
                   <div className="flex flex-wrap gap-2 flex-1 items-start content-start">
                     {tags.map(skill => (
@@ -116,9 +148,9 @@ export default function SkillGrid({ skills, detail }) {
 
                   {/* footer */}
                   <div className="flex items-center justify-between pt-2 border-t border-slate-50">
-                    {sectionCount > 0 && (
+                    {skillList.length > 0 && (
                       <span className="text-[11px] text-slate-400 font-mono">
-                        {sectionCount} 個核心領域
+                        {skillList.length} 項技能
                       </span>
                     )}
                     <span className="text-xs text-[#0071E3] font-medium ml-auto
