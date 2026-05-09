@@ -41,7 +41,7 @@
   "skills_matrix": {
     "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工", "Autodesk Inventor", "AutoCAD", "Fusion 360"],
     "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
-    "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
+    "eda":           ["Altium Designer", "EasyEDA Pro (立創EDA)", "KiCAD", "OrCAD"],
     "data_analysis": ["深度學習", "機器學習","數據結構化", "特徵工程", "訊號過濾" ]
   },
   "skills_detail": {
@@ -90,7 +90,7 @@
         {
           "name": "C / C++",
           "level": "進階",
-          "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，能在資源受限環境下撰寫穩定的底層驅動程式。",
+          "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，熟悉 ChibiOS HAL 外設配置（chconf / halconf / mcuconf）與 QMK Firmware 架構，能在資源受限的 STM32 環境下撰寫穩定的底層驅動程式。",
           "projects": ["FRC Swerve Drive 全向輪控制系統", "QMK x STM32 客製鍵盤"]
         },
         {
@@ -131,10 +131,16 @@
           "projects": ["QMK x STM32 客製鍵盤"]
         },
         {
+          "name": "EasyEDA Pro（立創EDA）",
+          "level": "熟悉",
+          "desc": "雲端原生 EDA 工具，整合立創商城元件庫，可直接調用廠商封裝並一鍵下單打樣。用於 QMK 數字鍵盤 PCB 設計，涵蓋原理圖繪製、PCB Layout 與 Gerber 匯出。",
+          "projects": ["QMK x STM32 數字鍵盤"]
+        },
+        {
           "name": "KiCAD",
           "level": "熟悉",
           "desc": "開源 EDA 工具，用於個人專案快速出板，熟悉元件庫管理與 3D 封裝預覽，適合概念驗證階段使用。",
-          "projects": ["QMK x STM32 客製鍵盤"]
+          "projects": []
         },
         {
           "name": "OrCAD",
@@ -231,12 +237,12 @@
       "id": "qmk-stm32-keyboard",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "利用 STM32 實現鍵盤功能，並使用 QMK 進行韌體編輯設計。",
-      "tags": ["QMK", "PCB Design", "STM32"],
+      "description": "基於 STM32F072 微控制器設計之 17 鍵數字小鍵盤，完整走完 EasyEDA Pro PCB 設計、ChibiOS HAL 韌體配置、QMK RGB Matrix 整合至 DFU 燒錄的全流程。支援 VIA / VIAL 圖形化改鍵，已開源。",
+      "tags": ["QMK Firmware", "STM32", "ChibiOS / HAL", "EasyEDA Pro", "RGB Matrix", "VIA / VIAL"],
       "detail": {
-        "purpose": "本專案為一款基於 STM32 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware 開發。主要用途如下：\n\n・作為日常數據輸入工具（數字鍵盤輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・作為嵌入式系統與鍵盤韌體開發之練習平台\n・驗證自製 PCB、矩陣掃描（Matrix Scanning）與 RGB 控制之整合\n・支援可編譯、可重現之開發流程（QMK + STM32 DFU）",
-        "concept": "本設計以「簡潔、可控、可擴展」為核心，重點如下：\n\n【硬體架構】\n採用 STM32 系列 MCU（支援 DFU 燒錄），使用標準鍵盤矩陣（Matrix）設計降低 IO 使用量，搭配 WS2812（Addressable RGB）實現逐鍵燈效控制，並預留去耦電容（100nF）確保電源穩定性。\n\n【韌體架構（QMK）】\n使用 QMK Firmware 作為核心框架，自定義 LAYOUT_numpad_17 以對應 PCB 實體配置，檔案結構採模組分離：w17.h 定義 Layout、w17.c 設定 RGB Matrix、config.h 管理硬體與功能設定、keymap.c 負責鍵位邏輯。\n\n【Layer 設計】\nLayer 0（預設）為標準數字鍵盤輸入；Layer 1（功能層）支援 RGB Matrix 控制（亮度 / 顏色 / 模式 / 速度），並使用 LT() 實現「長按切層、短按輸入」。\n\n【RGB 設計】\n採用 RGB_MATRIX（非舊版 RGBLIGHT），支援模式切換（RM_NEXT / RM_PREV）、色相（Hue）/ 飽和度（Sat）/ 亮度（Val）調整及動畫速度控制，並設定亮度上限（RGB_MATRIX_MAXIMUM_BRIGHTNESS 120）以避免過流與過熱。\n\n【設計目標】\n降低除錯難度（結構清晰、模組分離），提供可重現開發流程（compile → flash → 測試），作為後續擴展基礎（VIA / VIAL / 自定義功能）。",
-        "outcome": "成功完成 17 鍵數字鍵盤的全流程開發，涵蓋 PCB 電路設計、STM32 韌體整合與 QMK 鍵位設定。支援 VIA 與 VIAL 圖形化改鍵介面，使用者無需重新編譯即可即時調整鍵位配置。電路板經實際焊接與功能驗證，各按鍵響應正常，已開源於 GitHub。",
+        "purpose": "本專案為一款基於 STM32F072 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware + ChibiOS RTOS 開發。主要目的如下：\n\n・作為日常數字輸入工具（Numpad 輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・驗證自製 PCB（EasyEDA Pro）、矩陣掃描（Matrix Scanning）與 RGB Matrix 整合\n・練習 ChibiOS HAL 配置（chconf.h / halconf.h / mcuconf.h）與 STM32 DFU 燒錄流程\n・實現可編譯、可重現的開源開發流程（QMK + STM32 DFU Bootloader）",
+        "concept": "本設計以「結構清晰、可重現、可擴展」為核心：\n\n【硬體架構】\n・MCU：STM32F072（支援 USB DFU 燒錄，無需額外燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・使用 QMK Firmware 搭配 ChibiOS HAL 作為核心框架\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n・Hue / Sat / Val 三維色彩調整\n\n【VIA / VIAL 支援】\n・支援 VIA 與 VIAL 圖形化改鍵介面\n・使用者無需重新編譯即可即時調整鍵位",
+        "outcome": "・完成 17 鍵數字鍵盤全流程開發：EasyEDA Pro PCB 設計 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置正確，USB HID 穩定運作\n・RGB Matrix 各動畫模式運作正常，亮度限制設定防止過流\n・支援 VIA / VIAL 圖形化改鍵，無需重新編譯即可調整鍵位\n・電路板經實際焊接與按鍵響應驗證，已開源於 GitHub",
         "github": "https://github.com/Jcsk7049/qmk-stm32-keyboard"
       }
     },
