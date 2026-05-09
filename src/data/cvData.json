@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "江嘉元",
-    "title": "硬體 × AI 跨域工程師",
+    "title": "",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -41,15 +41,176 @@
   "skills_matrix": {
     "manufacturing": ["CNC 銑床", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工", "Autodesk Inventor", "AutoCAD", "Fusion 360"],
     "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
-    "eda":           ["Altium Designer", "KiCAD", "OrCAD"],
+    "eda":           ["Altium Designer", "EasyEDA Pro (立創EDA)", "KiCAD", "OrCAD"],
     "data_analysis": ["深度學習", "機器學習","數據結構化", "特徵工程", "訊號過濾" ]
+  },
+  "skills_detail": {
+    "data_analysis": {
+      "title": "數據分析",
+      "en": "Data Analysis",
+      "overview": "以生醫訊號與臨床數據為主要應用場景，從原始資料清洗、特徵工程到模型訓練與評估，建立端對端的機器學習管線。",
+      "skills": [
+        {
+          "name": "深度學習",
+          "level": "進階",
+          "desc": "熟悉 LSTM、CNN 時序模型架構，具備完整的資料前處理、模型訓練與超參數調整流程，應用於生醫訊號的序列預測任務。",
+          "projects": ["VAP 深度學習預測系統"]
+        },
+        {
+          "name": "機器學習",
+          "level": "進階",
+          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值實現模型可解釋性，有效處理嚴重類別不平衡的金融詐欺場景。",
+          "projects": ["AWS x BitoPro 黑客松"]
+        },
+        {
+          "name": "特徵工程",
+          "level": "進階",
+          "desc": "萃取時域（均值、峰值）與頻域（FFT 功率譜）特徵；對電子病歷進行時序聚合與 One-Hot 編碼，處理高缺失率醫療數據。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+        },
+        {
+          "name": "訊號過濾",
+          "level": "熟悉",
+          "desc": "帶通濾波、Z-score 標準化與缺失值插補，確保生理訊號輸入品質，降低模型對雜訊的敏感度。",
+          "projects": ["VAP 深度學習預測系統"]
+        },
+        {
+          "name": "數據結構化",
+          "level": "熟悉",
+          "desc": "電子病歷 ETL 清洗、AWS Glue 圖形化多跳分析管線，將非結構化原始資料轉為可訓練的特徵矩陣。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+        }
+      ]
+    },
+    "programming": {
+      "title": "程式開發",
+      "en": "Programming",
+      "overview": "橫跨嵌入式韌體、科學計算與機器學習管線，依場景選用最合適的語言與框架。",
+      "skills": [
+        {
+          "name": "C / C++",
+          "level": "進階",
+          "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，熟悉 ChibiOS HAL 外設配置（chconf / halconf / mcuconf）與 QMK Firmware 架構，能在資源受限的 STM32 環境下撰寫穩定的底層驅動程式。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統", "QMK x STM32 客製鍵盤"]
+        },
+        {
+          "name": "Python",
+          "level": "進階",
+          "desc": "取得 ITS Python 國際認證。應用於 ML 管線（PyTorch、scikit-learn、pandas）、數據視覺化（Matplotlib）與 AWS SDK 雲端整合。",
+          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+        },
+        {
+          "name": "LabVIEW",
+          "level": "熟悉",
+          "desc": "圖形化程式設計，實作向量合成運動學演算法與 PID 閉迴路控制，應用於競賽機器人即時控制，獲 2022 FRC 控制創新獎肯定。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "Arduino",
+          "level": "熟悉",
+          "desc": "快速原型開發平台，整合 ESP32 無線通訊、感測器讀值與繼電器驅動，適合在短時間內完成硬體功能驗證。",
+          "projects": ["ESP32 無線打地鼠機"]
+        },
+        {
+          "name": "MATLAB",
+          "level": "基礎",
+          "desc": "用於訊號處理分析與演算法原型驗證，方便在實作前以視覺化方式確認濾波效果與模型邏輯。",
+          "projects": []
+        }
+      ]
+    },
+    "eda": {
+      "title": "電路設計",
+      "en": "Electronic Design Automation",
+      "overview": "具備從電路圖設計到 PCB Layout 的完整流程能力，熟悉電源管理、MCU 外圍電路與保護電路設計。",
+      "skills": [
+        {
+          "name": "Altium Designer",
+          "level": "進階",
+          "desc": "多層 PCB 設計主力工具，涵蓋電源規劃、阻抗匹配與 DFM（可製造性設計）原則，能獨立完成從原理圖到 Gerber 輸出的完整流程。",
+          "projects": ["QMK x STM32 客製鍵盤"]
+        },
+        {
+          "name": "EasyEDA Pro（立創EDA）",
+          "level": "熟悉",
+          "desc": "雲端原生 EDA 工具，整合立創商城元件庫，可直接調用廠商封裝並一鍵下單打樣。用於 QMK 數字鍵盤 PCB 設計，涵蓋原理圖繪製、PCB Layout 與 Gerber 匯出。",
+          "projects": ["QMK x STM32 數字鍵盤"]
+        },
+        {
+          "name": "KiCAD",
+          "level": "熟悉",
+          "desc": "開源 EDA 工具，用於個人專案快速出板，熟悉元件庫管理與 3D 封裝預覽，適合概念驗證階段使用。",
+          "projects": []
+        },
+        {
+          "name": "OrCAD",
+          "level": "基礎",
+          "desc": "電路圖繪製與 SPICE 模擬基礎應用，用於驗證被動元件選型與電源電路行為。",
+          "projects": []
+        }
+      ]
+    },
+    "manufacturing": {
+      "title": "機構加工",
+      "en": "Manufacturing",
+      "overview": "從概念設計到實體製作的完整製程能力，熟悉減法加工、積層製造與連接工藝，具備 CNC 數值加工與 3D 建模實戰經驗。",
+      "skills": [
+        {
+          "name": "CNC 銑床",
+          "level": "進階",
+          "desc": "操作 CNC 銑床進行鋁合金精密加工，熟悉刀具路徑規劃與夾具設計，相較手工銑床大幅提升加工精度與重現性。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "3D 列印",
+          "level": "進階",
+          "desc": "FDM 快速原型製作，用於機構干涉驗證與客製化非承力件，在不影響結構強度的前提下有效降低重量與加工成本。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統", "ESP32 無線打地鼠機"]
+        },
+        {
+          "name": "Autodesk Inventor",
+          "level": "進階",
+          "desc": "三維機構建模主力工具，進行組件干涉分析與動態模擬，確保設計在實際組裝前已消除衝突與公差問題。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "AutoCAD",
+          "level": "熟悉",
+          "desc": "二維工程圖繪製與加工圖面輸出，提供給 CNC 操作員或外包廠商清晰的尺寸標註與公差規格。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "Fusion 360",
+          "level": "熟悉",
+          "desc": "快速概念建模與 CAM 整合，適合初期設計探索，能直接從 3D 模型生成加工路徑進行小批量製作。",
+          "projects": []
+        },
+        {
+          "name": "金屬焊接",
+          "level": "熟悉",
+          "desc": "MIG / TIG 基礎焊接技術，用於 FRC 機器人底盤鋼管結構的連接，注重焊道均勻性與結構強度。",
+          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+        },
+        {
+          "name": "雷射切割",
+          "level": "熟悉",
+          "desc": "板金件與壓克力結構件的精密裁切，配合 CAD 圖面快速製作自訂尺寸的薄板結構與標示面板。",
+          "projects": []
+        },
+        {
+          "name": "基礎機械加工",
+          "level": "熟悉",
+          "desc": "手工銑床、車床基礎操作，具備量具使用與工件夾持概念，為 CNC 進階加工建立紮實的手動加工底子。",
+          "projects": []
+        }
+      ]
+    }
   },
   "projects": [
     {
       "id": "vap",
       "title": "VAP 深度學習預測系統",
       "period": "2025 – 現在",
-      "metric": "AUROC 0.97+",
       "description": "基於 MIMIC-IV 與生理訊號數據開發之 LSTM 預測模型，專注於醫療數據結構化。",
       "tags": ["PyTorch", "MIMIC-IV", "Medical AI"],
       "detail": {
@@ -76,12 +237,12 @@
       "id": "qmk-stm32-keyboard",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "利用 STM32 實現鍵盤功能，並使用 QMK 進行韌體編輯設計。",
-      "tags": ["QMK", "PCB Design", "STM32"],
+      "description": "基於 STM32F072 微控制器設計之 17 鍵數字小鍵盤，完整走完 EasyEDA Pro PCB 設計、ChibiOS HAL 韌體配置、QMK RGB Matrix 整合至 DFU 燒錄的全流程。支援 VIA / VIAL 圖形化改鍵，已開源。",
+      "tags": ["QMK Firmware", "STM32", "ChibiOS / HAL", "EasyEDA Pro", "RGB Matrix", "VIA / VIAL"],
       "detail": {
-        "purpose": "本專案為一款基於 STM32 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware 開發。主要用途如下：\n\n・作為日常數據輸入工具（數字鍵盤輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・作為嵌入式系統與鍵盤韌體開發之練習平台\n・驗證自製 PCB、矩陣掃描（Matrix Scanning）與 RGB 控制之整合\n・支援可編譯、可重現之開發流程（QMK + STM32 DFU）",
-        "concept": "本設計以「簡潔、可控、可擴展」為核心，重點如下：\n\n【硬體架構】\n採用 STM32 系列 MCU（支援 DFU 燒錄），使用標準鍵盤矩陣（Matrix）設計降低 IO 使用量，搭配 WS2812（Addressable RGB）實現逐鍵燈效控制，並預留去耦電容（100nF）確保電源穩定性。\n\n【韌體架構（QMK）】\n使用 QMK Firmware 作為核心框架，自定義 LAYOUT_numpad_17 以對應 PCB 實體配置，檔案結構採模組分離：w17.h 定義 Layout、w17.c 設定 RGB Matrix、config.h 管理硬體與功能設定、keymap.c 負責鍵位邏輯。\n\n【Layer 設計】\nLayer 0（預設）為標準數字鍵盤輸入；Layer 1（功能層）支援 RGB Matrix 控制（亮度 / 顏色 / 模式 / 速度），並使用 LT() 實現「長按切層、短按輸入」。\n\n【RGB 設計】\n採用 RGB_MATRIX（非舊版 RGBLIGHT），支援模式切換（RM_NEXT / RM_PREV）、色相（Hue）/ 飽和度（Sat）/ 亮度（Val）調整及動畫速度控制，並設定亮度上限（RGB_MATRIX_MAXIMUM_BRIGHTNESS 120）以避免過流與過熱。\n\n【設計目標】\n降低除錯難度（結構清晰、模組分離），提供可重現開發流程（compile → flash → 測試），作為後續擴展基礎（VIA / VIAL / 自定義功能）。",
-        "outcome": "成功完成 17 鍵數字鍵盤的全流程開發，涵蓋 PCB 電路設計、STM32 韌體整合與 QMK 鍵位設定。支援 VIA 與 VIAL 圖形化改鍵介面，使用者無需重新編譯即可即時調整鍵位配置。電路板經實際焊接與功能驗證，各按鍵響應正常，已開源於 GitHub。",
+        "purpose": "本專案為一款基於 STM32F072 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware + ChibiOS RTOS 開發。主要目的如下：\n\n・作為日常數字輸入工具（Numpad 輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・驗證自製 PCB（EasyEDA Pro）、矩陣掃描（Matrix Scanning）與 RGB Matrix 整合\n・練習 ChibiOS HAL 配置（chconf.h / halconf.h / mcuconf.h）與 STM32 DFU 燒錄流程\n・實現可編譯、可重現的開源開發流程（QMK + STM32 DFU Bootloader）",
+        "concept": "本設計以「結構清晰、可重現、可擴展」為核心：\n\n【硬體架構】\n・MCU：STM32F072（支援 USB DFU 燒錄，無需額外燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・使用 QMK Firmware 搭配 ChibiOS HAL 作為核心框架\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n・Hue / Sat / Val 三維色彩調整\n\n【VIA / VIAL 支援】\n・支援 VIA 與 VIAL 圖形化改鍵介面\n・使用者無需重新編譯即可即時調整鍵位",
+        "outcome": "・完成 17 鍵數字鍵盤全流程開發：EasyEDA Pro PCB 設計 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置正確，USB HID 穩定運作\n・RGB Matrix 各動畫模式運作正常，亮度限制設定防止過流\n・支援 VIA / VIAL 圖形化改鍵，無需重新編譯即可調整鍵位\n・電路板經實際焊接與按鍵響應驗證，已開源於 GitHub",
         "github": "https://github.com/Jcsk7049/qmk-stm32-keyboard"
       }
     },
@@ -102,6 +263,7 @@
       "id": "swerve",
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",
+      "frc": true,
       "description": "FRC 機器人底盤機構優化與 PID 控制算法實作。",
       "tags": ["LabVIEW", "PID Control", "Robotics"],
       "detail": {
@@ -114,9 +276,9 @@
   ],
   "awards": [
     { "title": "AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽",              "year": "2026" },
-    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022" },
+    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022", "frc": true },
     { "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",    "year": "2022" },
     { "title": "第 52 屆全國技能競賽 (技能技藝競賽)：集體創作職類代表",      "year": "2022" },
-    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020" }
+    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020", "frc": true }
   ]
 }
