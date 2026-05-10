@@ -5,6 +5,7 @@ const SECTIONS = [
   { key: 'purpose', label: '用途',   en: 'Purpose'       },
   { key: 'concept', label: '設計構思', en: 'Design Concept' },
   { key: 'outcome', label: '成果',   en: 'Outcome'        },
+  { key: 'tech',    label: '使用技術', en: 'Tech Stack'     },
 ]
 
 const PROJECT_ACCENTS = {
@@ -91,7 +92,28 @@ export default function ProjectDetail() {
                 <p className="text-[13px] font-semibold text-[#0071E3]">{en}</p>
               </div>
               <h2 className="text-xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-4">{label}</h2>
-              {detail[key] ? (
+              {key === 'tech' && Array.isArray(detail.tech) ? (
+                <div className="space-y-6">
+                  {detail.tech.map(group => (
+                    <div key={group.group}>
+                      <p className="text-xs font-semibold tracking-[0.12em] uppercase text-slate-400 mb-2">
+                        {group.group}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {group.items.map(item => (
+                          <div key={item.name}
+                               className="flex gap-3 bg-[#f5f5f7] rounded-xl px-4 py-3">
+                            <span className="shrink-0 font-semibold text-sm text-[#1D1D1F] min-w-[7rem]">
+                              {item.name}
+                            </span>
+                            <span className="text-sm text-[#6e6e73] leading-snug">{item.desc}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : detail[key] ? (
                 <p className="text-base text-slate-600 leading-relaxed max-w-2xl whitespace-pre-line">
                   {detail[key]}
                 </p>
