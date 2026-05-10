@@ -211,7 +211,6 @@
       "id": "vap",
       "title": "呼吸器相關肺炎（VAP）早期預測模型研究",
       "period": "2025 – 現在",
-      "metric": "AUROC 0.97+",
       "description": "以 LSTM 深度學習模型分析 ICU 連續生理數據，在 VAP 發生前 6–24 小時提前預警。發現並修正公開論文中的 Data Leakage 問題，建立正確的 Stay-level 評估框架。",
       "tags": ["TensorFlow", "LSTM", "MIMIC-IV", "Medical AI", "Integrated Gradients", "SMOTE"],
       "detail": {
