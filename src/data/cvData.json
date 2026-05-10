@@ -212,7 +212,7 @@
       "title": "呼吸器相關肺炎（VAP）早期預測模型研究",
       "period": "2025 – 現在",
       "description": "以 LSTM 深度學習模型分析 ICU 連續生理數據，在 VAP 發生前 6–24 小時提前預警。發現並修正公開論文中的 Data Leakage 問題，建立正確的 Stay-level 評估框架。",
-      "tags": ["TensorFlow", "LSTM", "MIMIC-IV", "Medical AI", "Integrated Gradients", "SMOTE"],
+      "tags": ["LSTM", "MIMIC-IV", "Integrated Gradients", "SMOTE"],
       "detail": {
         "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，發生率約 10–20%，死亡率可高達 30%。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案目標是透過深度學習模型自動分析病患的連續生理數據，在 VAP 發生前 6、12、24 小時提前發出預警，讓臨床團隊能及早介入、降低感染風險與住院死亡率。最終實現的模型不依賴人工特徵工程，僅需 4 項臨床常規監測指標即可達到高效預測。",
         "concept": "【一、論文復刻與問題發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構模型。復刻過程中發現原論文採用 Window-level Cross Validation，導致同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為資料洩漏（Data Leakage）。\n\n【二、正確方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以台灣亞東醫院 110 位病患（55 VAP、55 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理正負樣本不平衡問題。\n\n【三、特徵工程與優化】\n擴充特徵集至 12 項（5 生命徵象 + 7 呼吸器參數），並引入 Integrated Gradients 可解釋 AI 方法計算各特徵對模型預測的貢獻度，選出最重要的 5 項特徵。進一步透過 Ablation Study（逐步移除特徵）驗證各特徵的真實不可取代性，發現排名第一的分鐘通氣量實為其他特徵的衍生值，最終確立最具性價比的 4 特徵組合。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n・滑動視窗：24 小時觀測窗，每小時逐步滑動\n・框架：TensorFlow 2.17 + GPU（RTX 4080）\n・可解釋性：Integrated Gradients（積分梯度法）",
