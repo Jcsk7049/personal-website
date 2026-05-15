@@ -209,21 +209,21 @@
   "projects": [
     {
       "id": "vap",
-      "title": "呼吸器相關肺炎（VAP）早期預測模型研究",
+      "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
-      "description": "以 LSTM 深度學習模型分析 ICU 連續生理數據，在 VAP 發生前 6–24 小時提前預警。發現並修正公開論文中的 Data Leakage 問題，建立正確的 Stay-level 評估框架。",
-      "tags": ["LSTM", "MIMIC-IV", "Integrated Gradients", "SMOTE"],
+      "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。台灣首個以本土 ICU 真實資料驗證的 VAP 預測模型，論文撰寫中。",
+      "tags": ["PyTorch", "LSTM", "Integrated Gradients", "SMOTE", "Medical AI"],
       "detail": {
-        "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，發生率約 10–20%，死亡率可高達 30%。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案目標是透過深度學習模型自動分析病患的連續生理數據，在 VAP 發生前 6、12、24 小時提前發出預警，讓臨床團隊能及早介入、降低感染風險與住院死亡率。最終實現的模型不依賴人工特徵工程，僅需 4 項臨床常規監測指標即可達到高效預測。",
-        "concept": "【一、論文復刻與問題發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構模型。復刻過程中發現原論文採用 Window-level Cross Validation，導致同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為資料洩漏（Data Leakage）。\n\n【二、正確方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以台灣亞東醫院 110 位病患（55 VAP、55 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理正負樣本不平衡問題。\n\n【三、特徵工程與優化】\n擴充特徵集至 12 項（5 生命徵象 + 7 呼吸器參數），並引入 Integrated Gradients 可解釋 AI 方法計算各特徵對模型預測的貢獻度，選出最重要的 5 項特徵。進一步透過 Ablation Study（逐步移除特徵）驗證各特徵的真實不可取代性，發現排名第一的分鐘通氣量實為其他特徵的衍生值，最終確立最具性價比的 4 特徵組合。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n・滑動視窗：24 小時觀測窗，每小時逐步滑動\n・框架：TensorFlow 2.17 + GPU（RTX 4080）\n・可解釋性：Integrated Gradients（積分梯度法）",
-        "outcome": "【模型效能（亞東醫院本地訓練，Stay-level CV）】\n\n預警時間　　AUROC　AUPRC　Sensitivity　Specificity\n提前 6 小時　0.973　0.792　74.4%　　　99.8%\n提前 12 小時　0.992　0.902　86.1%　　　99.8%\n提前 24 小時　0.988　0.918　86.1%　　　99.6%\n\n【最佳特徵組合（4 項，性價比最高）】\n・呼吸器總呼吸速率 × 潮氣量（呼吸器側）\n・呼吸速率 × 血氧飽和度（病患生理側）\n\n移除排名第一的分鐘通氣量後，12h AUPRC 完全不變（0.902），驗證其為可衍生的冗餘特徵，體現了模型的精簡化潛力。\n\n【研究貢獻】\n・發現並修正公開論文中的 Data Leakage 問題，建立正確的 Stay-level 評估框架\n・跨資料集驗證：MIMIC-IV（美國）→ 亞東醫院（台灣），量化 Domain Shift 影響（AUROC 從 0.58 降至 0.43–0.53）\n・結合 Integrated Gradients + Ablation Study 雙重驗證特徵重要性，揭示分鐘通氣量在多特徵模型中的冗餘本質\n・最終模型僅需 4 項常規監測指標，具備實際臨床部署可行性",
+        "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案與亞東紀念醫院合作，以真實臨床電子病歷（EHR）為基礎，開發一套能提前 6～72 小時預警 VAP 的深度學習系統。最終實現的模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。",
+        "concept": "【一、論文復刻與問題發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構模型。復刻過程中發現原論文採用 Window-level Cross Validation，導致同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為資料洩漏（Data Leakage）。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，109 位機械通氣患者：19 VAP、90 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理高度類別不平衡問題。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，計算各特徵對模型預測的貢獻度，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
+        "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n📄 論文撰寫中，預計投稿 IEEE GCCE 2025 / 2026",
         "tech": [
           {
             "group": "機器學習 / 深度學習",
             "items": [
-              { "name": "TensorFlow 2.17", "desc": "LSTM 模型建構、訓練、推論" },
-              { "name": "LSTM × 3 層",     "desc": "時間序列特徵學習，各 50 units + Dropout" },
-              { "name": "SMOTE",           "desc": "正負樣本不平衡處理（1:10 過採樣）" },
+              { "name": "PyTorch",              "desc": "LSTM 模型建構、訓練、推論" },
+              { "name": "LSTM × 3 層",          "desc": "時間序列特徵學習，各 50 units + Dropout" },
+              { "name": "SMOTE",                "desc": "正負樣本不平衡處理（1:10 過採樣）" },
               { "name": "Integrated Gradients", "desc": "可解釋 AI，計算各特徵對預測的貢獻度" },
               { "name": "Stratified K-Fold",    "desc": "Stay-level 5 折交叉驗證，防止 Data Leakage" }
             ]
@@ -231,38 +231,39 @@
           {
             "group": "資料處理 / 特徵工程",
             "items": [
-              { "name": "Pandas",       "desc": "資料清洗、時間序列重採樣、Excel/CSV 讀取" },
-              { "name": "NumPy",        "desc": "滑動視窗建構、陣列操作、正規化" },
-              { "name": "Scikit-learn", "desc": "評估指標：AUROC、AUPRC、Sensitivity、Specificity" },
+              { "name": "Pandas",           "desc": "資料清洗、時間序列重採樣、Excel/CSV 讀取" },
+              { "name": "NumPy",            "desc": "滑動視窗建構、陣列操作、正規化" },
+              { "name": "Scikit-learn",     "desc": "評估指標：AUROC、AUPRC、Sensitivity、Specificity" },
               { "name": "imbalanced-learn", "desc": "SMOTE 過採樣實作" },
-              { "name": "OpenPyXL",    "desc": "醫院 Excel 臨床資料讀取" }
+              { "name": "OpenPyXL",         "desc": "醫院 Excel 臨床資料讀取" },
+              { "name": "Matplotlib",       "desc": "特徵重要性長條圖、訓練曲線視覺化" }
             ]
           },
           {
             "group": "資料集",
             "items": [
-              { "name": "MIMIC-IV 2.2 / 3.1", "desc": "美國 Beth Israel 醫院 ICU 公開資料集" },
-              { "name": "亞東醫院臨床資料",     "desc": "台灣本地 110 位病患（55 VAP + 55 non-VAP）" }
+              { "name": "亞東紀念醫院 ICU", "desc": "台灣本地資料，2019–2023 年，109 位機械通氣患者（19 VAP + 90 non-VAP）" },
+              { "name": "MIMIC-IV 2.2 / 3.1", "desc": "美國 Beth Israel 醫院 ICU 公開資料集（論文復刻與 Domain Shift 驗證用）" }
             ]
           },
           {
             "group": "開發環境 / 工具",
             "items": [
-              { "name": "Python 3.12",        "desc": "主要開發語言" },
-              { "name": "WSL2 Ubuntu",        "desc": "GPU 訓練環境（Windows 上的 Linux 子系統）" },
-              { "name": "NVIDIA RTX 4080",    "desc": "GPU 加速訓練" },
-              { "name": "CUDA / cuDNN",       "desc": "GPU 深度學習加速" },
-              { "name": "tmux",               "desc": "長時間訓練背景執行管理" }
+              { "name": "Python 3.12",     "desc": "主要開發語言" },
+              { "name": "WSL2 Ubuntu",     "desc": "GPU 訓練環境（Windows 上的 Linux 子系統）" },
+              { "name": "NVIDIA RTX 4080", "desc": "GPU 加速訓練（Laptop）" },
+              { "name": "CUDA / cuDNN",    "desc": "GPU 深度學習加速" },
+              { "name": "tmux",            "desc": "長時間訓練背景執行管理" }
             ]
           },
           {
             "group": "研究方法",
             "items": [
-              { "name": "Stay-level CV",         "desc": "以病患為單位切分，消除 Data Leakage" },
-              { "name": "Window-level Sliding",  "desc": "24 小時滑動視窗，逐小時預測" },
-              { "name": "Ablation Study",        "desc": "逐步移除特徵，驗證真實貢獻度" },
-              { "name": "Per-fold Normalization","desc": "每折獨立計算 mean/std，防止正規化洩漏" },
-              { "name": "Propensity Matching",   "desc": "MIMIC-IV 族群平衡驗證（SAPS-II / 年齡 / 性別）" }
+              { "name": "Stay-level CV",          "desc": "以病患為單位切分，消除 Data Leakage" },
+              { "name": "Window-level Sliding",   "desc": "24 小時滑動視窗，逐小時預測" },
+              { "name": "Ablation Study",         "desc": "逐步移除特徵，驗證各特徵真實貢獻度" },
+              { "name": "Per-fold Normalization", "desc": "每折獨立計算 mean/std，防止正規化洩漏" },
+              { "name": "Propensity Matching",    "desc": "MIMIC-IV 族群平衡驗證（SAPS-II / 年齡 / 性別）" }
             ]
           }
         ],
