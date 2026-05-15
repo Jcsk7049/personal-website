@@ -211,7 +211,7 @@
       "id": "vap",
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
-      "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。台灣首個以本土 ICU 真實資料驗證的 VAP 預測模型，論文撰寫中。",
+      "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。",
       "tags": ["PyTorch", "LSTM", "Integrated Gradients", "SMOTE", "Medical AI"],
       "detail": {
         "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案與亞東紀念醫院合作，以真實臨床電子病歷（EHR）為基礎，開發一套能提前 6～72 小時預警 VAP 的深度學習系統。最終實現的模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。",
@@ -274,12 +274,43 @@
       "id": "aws-hackathon",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2026",
-      "description": "基於 AWS 雲端架構的加密貨幣反洗錢系統，識別 BitoPro 交易所中的可疑人頭帳戶。",
-      "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "Streamlit"],
+      "description": "針對 BitoPro 加密貨幣交易所設計的反洗錢偵測系統，分析 63,770 筆用戶資料與逾 41 萬筆交易紀錄，以 31 項行為特徵識別可疑人頭帳戶，串接六項 AWS 服務完成端對端 AML 管線。",
+      "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "SHAP", "Streamlit"],
       "detail": {
-        "purpose": "BitOGuard 是針對 BitoPro 加密貨幣交易所設計的反洗錢（AML）偵測系統，目標為識別利用交易所進行非法資金移轉的「人頭帳戶」。\n\n系統分析用戶的台幣轉帳、USDT 交易與兌換行為，透過機器學習模型對每個帳戶進行風險評分，協助交易所落實金融合規（KYC/AML）義務，防範洗錢與詐騙資金流通。",
-        "concept": "【資料管線】\n・BitoPro API 抓取交易紀錄 → 存入 AWS S3\n・AWS Glue 執行 ETL 清洗與圖形化多跳分析（Graph Hop Analysis）\n・Amazon Athena 以 SQL 查詢特徵聚合結果\n\n【機器學習模型】\n・XGBoost + LightGBM 雙模型 Ensemble 二元分類\n・特徵工程：存提款次數、夜間交易比例、圖論關聯跳數距離\n・SHAP 值分析提供模型可解釋性\n・Amazon Bedrock 整合 XAI（可解釋 AI）產生風險說明報告\n\n【雲端基礎架構】\n・Amazon SageMaker 執行模型訓練、調參與部署\n・AWS Lambda 處理即時診斷與事件觸發邏輯\n・CloudFormation 定義 IaC（基礎設施即程式碼）\n・Streamlit 建立互動式風險審查儀表板\n\n【核心挑戰】\n資料集存在嚴重類別不平衡（黑名單用戶 1,640 筆：正常用戶 49,377 筆，比例約 1:30），初版以三個核心特徵建模，透過 scale_pos_weight 與閾值調整緩解不平衡問題，並為後續特徵工程擴充預留架構空間。",
-        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，雲端架構設計與技術整合獲評審正面評價\n\n【技術成果】\n・完整實作從 API 資料擷取到模型預測的端對端 AML 管線（81 commits）\n・成功串接 SageMaker、Glue、Athena、Lambda、S3、Bedrock 六項 AWS 服務\n・SHAP 可解釋性模組讓模型判斷結果具備合規說明能力\n・Streamlit 儀表板支援互動式風險帳戶審查\n\n【技術反思】\n初版模型僅以三個特徵建模，類別不平衡（1:30）造成召回率偏低。競賽後規劃引入圖神經網路（GNN）、豐富特徵工程（交易頻率分佈、共用 IP 關聯、帳戶開立時間）與多模型 Ensemble 優化，作為後續改良方向。",
+        "purpose": "加密貨幣交易所是洗錢犯罪的高風險場域。人頭帳戶（Shell Account）是最常見的手法之一——犯罪集團利用他人身份開戶，透過快速存提、換匯、轉出等操作掩蓋資金來源。BitoPro 作為台灣主流交易所，具備落實 KYC/AML 合規義務的需求。\n\nBitOGuard 以 BitoPro 提供的真實競賽資料集為基礎：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 位用戶）\n・USDT 交易紀錄：217,634 筆（33,587 位用戶）\n・標記人頭帳戶：1,640 筆（佔訓練集 3.21%）\n\n目標是以機器學習對每個帳戶計算風險分數，識別出高風險的可疑人頭帳戶。",
+        "concept": "【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
+        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（5-fold CV）】\n・Precision：9.83%（± 8.12%）\n・Recall：0.43%（± 0.36%）\n・F1 Score：0.82%\n競賽提交版以保守閾值（0.65）共標記 2 個高風險帳戶。\n\n【技術反思】\n初版模型的低召回率直接反映了 AML 場景的核心難題：標記樣本僅佔 3.21%（1:30 不平衡）、特徵維度不足、閾值偏保守。真實 AML 系統通常也面臨類似取捨——提高 Recall 必然增加誤報成本。後續改良方向：引入圖神經網路（GNN）建模黑名單鄰居關係、以 SMOTE/ADASYN 處理不平衡、擴充帳戶年齡與 IP 共用關聯特徵。",
+        "tech": [
+          {
+            "group": "機器學習",
+            "items": [
+              { "name": "XGBoost", "desc": "主力模型，梯度提升決策樹，5-fold Stratified CV 訓練" },
+              { "name": "LightGBM", "desc": "輔助模型，用於 Ensemble 與快速特徵驗證" },
+              { "name": "SHAP", "desc": "模型可解釋性分析，計算各特徵對個別預測的貢獻度" },
+              { "name": "scikit-learn", "desc": "交叉驗證、評估指標、資料預處理" }
+            ]
+          },
+          {
+            "group": "AWS 雲端服務",
+            "items": [
+              { "name": "Amazon SageMaker", "desc": "模型訓練、超參數調整與推論部署" },
+              { "name": "AWS Glue", "desc": "ETL 清洗與圖形化多跳關聯分析（Graph Hop Analysis）" },
+              { "name": "Amazon Athena", "desc": "以 SQL 查詢聚合 S3 上的特徵資料" },
+              { "name": "AWS Lambda", "desc": "即時診斷邏輯與事件驅動推論" },
+              { "name": "Amazon S3", "desc": "原始資料、特徵與模型產出的統一儲存層" },
+              { "name": "Amazon Bedrock", "desc": "整合 XAI，為高風險帳戶自動生成合規說明報告" },
+              { "name": "CloudFormation", "desc": "IaC 定義全套基礎設施，確保環境可重現" }
+            ]
+          },
+          {
+            "group": "資料處理 / 前端",
+            "items": [
+              { "name": "Pandas / NumPy", "desc": "特徵聚合、時序計算、缺失值處理" },
+              { "name": "Streamlit", "desc": "互動式風險審查儀表板，已部署上線" },
+              { "name": "BitoPro API", "desc": "交易所官方 API，抓取台幣轉帳與 USDT 交易紀錄" }
+            ]
+          }
+        ],
         "github": "https://github.com/Jcsk7049/bitoguard-aml",
         "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/"
       }

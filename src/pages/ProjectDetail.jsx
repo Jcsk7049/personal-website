@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import cvData from '../data/cvData.json'
 import VapCharts from '../components/VapCharts'
+import BitoCharts from '../components/BitoCharts'
 
 const SECTIONS = [
   { key: 'purpose', label: '用途',   en: 'Purpose'       },
@@ -96,6 +97,11 @@ export default function ProjectDetail() {
               {key === 'outcome' && project.id === 'vap' && (
                 <div className="mb-8">
                   <VapCharts />
+                </div>
+              )}
+              {key === 'outcome' && project.id === 'aws-hackathon' && (
+                <div className="mb-8">
+                  <BitoCharts />
                 </div>
               )}
               {key === 'tech' && Array.isArray(detail.tech) ? (
