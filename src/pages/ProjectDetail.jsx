@@ -132,8 +132,8 @@ export default function ProjectDetail() {
           ))}
         </div>
 
-        {/* GitHub link */}
-        <div className="mt-16 pt-10 border-t border-slate-100">
+        {/* Links */}
+        <div className="mt-16 pt-10 border-t border-slate-100 flex flex-wrap gap-3">
           {detail.github ? (
             <a href={detail.github}
                target="_blank" rel="noopener noreferrer"
@@ -146,6 +146,20 @@ export default function ProjectDetail() {
             </a>
           ) : (
             <p className="text-sm text-slate-400">GitHub 連結待補充</p>
+          )}
+          {detail.demo && (
+            <a href={detail.demo}
+               target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full
+                          border border-[#1D1D1F] text-[#1D1D1F] text-sm font-medium
+                          hover:bg-[#1D1D1F] hover:text-white active:scale-95 transition-all">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Live Demo
+            </a>
           )}
         </div>
 
