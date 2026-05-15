@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import cvData from '../data/cvData.json'
+import VapCharts from '../components/VapCharts'
 
 const SECTIONS = [
   { key: 'purpose', label: '用途',   en: 'Purpose'       },
@@ -76,7 +77,7 @@ export default function ProjectDetail() {
           <div className="flex flex-wrap gap-2">
             {project.tags.map(tag => (
               <span key={tag}
-                    className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 text-sm font-medium">
+                    className="px-3 py-1 rounded-full bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05] text-sm font-medium">
                 {tag.trim()}
               </span>
             ))}
@@ -92,6 +93,11 @@ export default function ProjectDetail() {
                 <p className="text-[13px] font-semibold text-[#0071E3]">{en}</p>
               </div>
               <h2 className="text-xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-4">{label}</h2>
+              {key === 'outcome' && project.id === 'vap' && (
+                <div className="mb-8">
+                  <VapCharts />
+                </div>
+              )}
               {key === 'tech' && Array.isArray(detail.tech) ? (
                 <div className="space-y-6">
                   {detail.tech.map(group => (

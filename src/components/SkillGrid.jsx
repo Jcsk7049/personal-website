@@ -57,11 +57,7 @@ export default function SkillGrid({ skills, detail }) {
   return (
     <section id="skills" className="py-32 bg-[#f5f5f7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader
-          en="Skills"
-          zh="技術矩陣"
-          sub="從底層硬體到 AI 模型，跨域整合是最核心的競爭力。"
-        />
+        <SectionHeader zh="技術矩陣" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 card-stagger">
           {QUADRANTS.map(q => {
@@ -138,7 +134,7 @@ export default function SkillGrid({ skills, detail }) {
                     {tags.map(skill => (
                       <span key={skill}
                             className="px-3 py-1 rounded-full text-xs font-medium
-                                       bg-blue-50 text-blue-700 border border-blue-100">
+                                       bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05]">
                         {skill}
                       </span>
                     ))}

@@ -46,11 +46,6 @@ export default function Hero({ profile }) {
                             shadow-sm shadow-[#0071E3]/20">
                 {profile.contact.email}
               </a>
-              <a href={`tel:${profile.contact.phone}`}
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
-                {profile.contact.phone}
-              </a>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]

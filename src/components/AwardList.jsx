@@ -1,8 +1,5 @@
 import SectionHeader from './SectionHeader'
 
-const FRC_LOGO        = 'https://www.plasmarobotics.org/wp-content/uploads/2012/01/FRCicon_RGB.jpg'
-const WORLDSKILLS_LOGO = '/worldskills-logo.svg'
-
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
        strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -19,11 +16,7 @@ export default function AwardList({ awards }) {
   return (
     <section id="awards" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader
-          en="Awards"
-          zh="獲獎"
-          sub="國際競賽與黑客松的實戰成果。"
-        />
+        <SectionHeader zh="獲獎" />
 
         <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
           {awards.map((award, i, arr) => (
@@ -35,15 +28,9 @@ export default function AwardList({ awards }) {
                             ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
                               bg-[#f5f5f7] group-hover:bg-blue-50 transition-colors duration-200 overflow-hidden">
-                {award.frc ? (
-                  <img src={FRC_LOGO} alt="FRC" className="w-full h-full object-cover" />
-                ) : award.worldskills ? (
-                  <img src={WORLDSKILLS_LOGO} alt="WorldSkills" className="w-5 h-5 object-contain" />
-                ) : (
-                  <span className="text-[#c7c7cc] group-hover:text-[#0071E3] transition-colors duration-200">
-                    <TrophyIcon />
-                  </span>
-                )}
+                <span className="text-[#c7c7cc] group-hover:text-[#0071E3] transition-colors duration-200">
+                  <TrophyIcon />
+                </span>
               </div>
               <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
               <span className="shrink-0 text-[11px] text-[#6e6e73] font-mono bg-[#f5f5f7] px-2.5 py-1
