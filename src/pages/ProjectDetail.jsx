@@ -16,6 +16,8 @@ const PROJECT_ACCENTS = {
   'aws-hackathon':     'from-amber-400 to-orange-500',
   'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
   'whack-a-mole':      'from-teal-400 to-cyan-500',
+  'auto-sanitizer':    'from-emerald-400 to-green-600',
+  'team-robot':        'from-orange-400 to-amber-600',
   'swerve':            'from-rose-400 to-red-500',
 }
 
