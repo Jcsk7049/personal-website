@@ -12,11 +12,7 @@ export default function Education({ education }) {
   return (
     <section id="education" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader
-          en="Education"
-          zh="學歷"
-          sub="紮根電機工程，從技職體系一路銜接至大學研究。"
-        />
+        <SectionHeader zh="學歷" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 card-stagger">
           {education.map((edu, i) => (
             <div key={i}
