@@ -380,7 +380,21 @@
             ]
           }
         ],
-        "github": ""
+        "github": "",
+        "images": [
+          { "src": "/images/swerve/swerve-cad-iso.jpg",          "caption": "第三代 Swerve Drive — 3D CAD 等角視圖" },
+          { "src": "/images/swerve/swerve-cad-4view.jpg",        "caption": "第三代 Swerve Drive — 四視圖工程圖" },
+          { "src": "/images/swerve/swerve-assembled-top.jpg",    "caption": "組裝完成 — 俯視（可見齒輪傳動系統）" },
+          { "src": "/images/swerve/swerve-assembled-side.jpg",   "caption": "組裝完成 — 側視（馬達與底盤結構）" },
+          { "src": "/images/swerve/swerve-gears-internal.jpg",   "caption": "內部齒輪組（3D 列印齒輪 + 金屬件）" },
+          { "src": "/images/swerve/swerve-bevel-gear.jpg",       "caption": "直齒斜齒輪與驅動馬達 CAD 模型" },
+          { "src": "/images/swerve/swerve-plate-cnc.jpg",        "caption": "CNC 加工完成的鋁板" },
+          { "src": "/images/swerve/swerve-gear-drill.jpg",       "caption": "金屬斜齒輪鑽孔加工" },
+          { "src": "/images/swerve/swerve-wire-cut-action.jpg",  "caption": "線切割加工齒輪內孔（進行中）" },
+          { "src": "/images/swerve/swerve-wire-cut-panel.jpg",   "caption": "線切割機控制面板 — 六角形路徑模擬" },
+          { "src": "/images/swerve/swerve-flowchart-algo.png",   "caption": "LabVIEW 向量合成運動學演算法流程圖" },
+          { "src": "/images/swerve/swerve-wiring.png",           "caption": "FRC 機器人電路系統配線圖" }
+        ]
       }
     }
   ],
