@@ -58,8 +58,9 @@ function HomePage() {
               </div>
               <div className="flex flex-col gap-2.5">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">聯絡</p>
-                <a href={`mailto:${cvData.profile.contact.email}`}
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">Email</a>
+                <button
+                   onClick={() => { window.location.href = `mailto:${cvData.profile.contact.email}` }}
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150 text-left">Email</button>
                 <a href={`https://github.com/${cvData.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
                    className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">GitHub ↗</a>

@@ -1,4 +1,5 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
+import { useEffect } from 'react'
 import cvData from '../data/cvData.json'
 
 const SKILL_ACCENTS = {
@@ -28,14 +29,20 @@ function LevelDots({ level }) {
 }
 
 export default function SkillDetail() {
-  const { id }   = useParams()
-  const navigate = useNavigate()
-  const detail   = cvData.skills_detail?.[id]
-  const accent   = SKILL_ACCENTS[id] || 'from-gray-300 to-gray-400'
+  const { id }         = useParams()
+  const navigate       = useNavigate()
+  const navigationType = useNavigationType()
+  const detail         = cvData.skills_detail?.[id]
+  const accent         = SKILL_ACCENTS[id] || 'from-gray-300 to-gray-400'
+
+  useEffect(() => {
+    if (detail) document.title = `${detail.title} — 江嘉元`
+    return () => { document.title = '江嘉元 — 個人履歷' }
+  }, [detail])
 
   const handleBack = () => {
-    if (window.history.length > 1) window.history.back()
-    else navigate('/')
+    if (navigationType === 'POP') navigate('/')
+    else navigate(-1)
   }
 
   if (!detail) {

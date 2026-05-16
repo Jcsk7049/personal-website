@@ -51,12 +51,13 @@ export default function ProjectGallery({ images }) {
             />
             <p className="text-center text-white/70 text-sm mt-4">{images[active].caption}</p>
 
-            {/* Prev / Next */}
+            {/* Prev / Next — 手機版置於圖片內側，桌面版移出容器外 */}
             {active > 0 && (
               <button
                 onClick={() => setActive(a => a - 1)}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12
-                           w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+                className="absolute left-2 md:left-0 md:-translate-x-12 top-1/2 -translate-y-1/2
+                           w-10 h-10 rounded-full bg-black/40 md:bg-white/10
+                           hover:bg-black/60 md:hover:bg-white/20
                            flex items-center justify-center text-white transition-colors"
               >
                 ←
@@ -65,8 +66,9 @@ export default function ProjectGallery({ images }) {
             {active < images.length - 1 && (
               <button
                 onClick={() => setActive(a => a + 1)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12
-                           w-10 h-10 rounded-full bg-white/10 hover:bg-white/20
+                className="absolute right-2 md:right-0 md:translate-x-12 top-1/2 -translate-y-1/2
+                           w-10 h-10 rounded-full bg-black/40 md:bg-white/10
+                           hover:bg-black/60 md:hover:bg-white/20
                            flex items-center justify-center text-white transition-colors"
               >
                 →

@@ -40,12 +40,13 @@ export default function Hero({ profile }) {
               </div>
             )}
             <div className="flex flex-wrap gap-3">
-              <a href={`mailto:${profile.contact.email}`}
-                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                            hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200
-                            shadow-sm shadow-[#0071E3]/20">
+              <button
+                onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
+                className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
+                           hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200
+                           shadow-sm shadow-[#0071E3]/20">
                 {profile.contact.email}
-              </a>
+              </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]

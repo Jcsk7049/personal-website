@@ -1,4 +1,5 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
+import { useEffect } from 'react'
 import cvData from '../data/cvData.json'
 import VapCharts from '../components/VapCharts'
 import BitoCharts from '../components/BitoCharts'
@@ -22,13 +23,19 @@ const PROJECT_ACCENTS = {
 }
 
 export default function ProjectDetail() {
-  const { id }   = useParams()
-  const navigate = useNavigate()
-  const project  = cvData.projects.find(p => p.id === id)
+  const { id }          = useParams()
+  const navigate        = useNavigate()
+  const navigationType  = useNavigationType()
+  const project         = cvData.projects.find(p => p.id === id)
+
+  useEffect(() => {
+    if (project) document.title = `${project.title} — 江嘉元`
+    return () => { document.title = '江嘉元 — 個人履歷' }
+  }, [project])
 
   const handleBack = () => {
-    if (window.history.length > 1) window.history.back()
-    else navigate('/')
+    if (navigationType === 'POP') navigate('/')
+    else navigate(-1)
   }
 
   if (!project) {
@@ -148,7 +155,7 @@ export default function ProjectDetail() {
 
         {/* Links */}
         <div className="mt-16 pt-10 border-t border-slate-100 flex flex-wrap gap-3">
-          {detail.github ? (
+          {detail.github && (
             <a href={detail.github}
                target="_blank" rel="noopener noreferrer"
                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#1D1D1F] text-white
@@ -158,8 +165,6 @@ export default function ProjectDetail() {
               </svg>
               在 GitHub 查看
             </a>
-          ) : (
-            <p className="text-sm text-slate-400">GitHub 連結待補充</p>
           )}
           {detail.demo && (
             <a href={detail.demo}
