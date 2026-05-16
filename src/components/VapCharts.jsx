@@ -1,8 +1,6 @@
 import '../lib/chartSetup'
 import { Line, Bar } from 'react-chartjs-2'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend)
-
 const HORIZONS = ['6h', '12h', '24h', '48h', '72h']
 
 const legendOpts = {
