@@ -15,6 +15,7 @@ const SECTIONS = [
 const PROJECT_ACCENTS = {
   'vap':               'from-sky-400 to-blue-600',
   'aws-hackathon':     'from-amber-400 to-orange-500',
+  'audio-amplifier':   'from-lime-400 to-green-600',
   'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
   'whack-a-mole':      'from-teal-400 to-cyan-500',
   'auto-sanitizer':    'from-emerald-400 to-green-600',
