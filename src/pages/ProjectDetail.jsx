@@ -4,6 +4,7 @@ import cvData from '../data/cvData.json'
 import VapCharts from '../components/VapCharts'
 import BitoCharts from '../components/BitoCharts'
 import ProjectGallery from '../components/ProjectGallery'
+import { CategoryBadge } from '../components/ProjectShowcase'
 
 const SECTIONS = [
   { key: 'purpose', label: '用途',   en: 'Purpose'       },
@@ -86,7 +87,8 @@ export default function ProjectDetail() {
               </span>
             </div>
           )}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 items-center">
+            {project.category && <CategoryBadge category={project.category} />}
             {project.tags.map(tag => (
               <span key={tag}
                     className="px-3 py-1 rounded-full bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05] text-sm font-medium">

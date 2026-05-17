@@ -215,6 +215,7 @@
   "projects": [
     {
       "id": "vap",
+      "category": "大學專題作品",
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
       "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。",
@@ -277,6 +278,7 @@
     },
     {
       "id": "aws-hackathon",
+      "category": "大學校外作品",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2026",
       "description": "針對 BitoPro 加密貨幣交易所設計的反洗錢偵測系統，分析 63,770 筆用戶資料與逾 41 萬筆交易紀錄，以 31 項行為特徵識別可疑人頭帳戶，串接六項 AWS 服務完成端對端 AML 管線。",
@@ -322,6 +324,7 @@
     },
     {
       "id": "audio-amplifier",
+      "category": "大學課程作品",
       "title": "音訊放大器電路板",
       "period": "2024",
       "description": "大一期末專案，設計並實作兩級 BJT 音訊放大電路（CE + CC 架構），負責完整 PCB Layout、感光板製作、鑽孔焊接與除錯，歷經兩次洗板重製最終順利驅動 8Ω 喇叭。",
@@ -362,6 +365,7 @@
     },
     {
       "id": "qmk-stm32-keyboard",
+      "category": "大學校外作品",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
       "description": "基於 STM32F103 微控制器設計之 17 鍵數字小鍵盤，完整走完 EasyEDA Pro PCB 設計、ChibiOS HAL 韌體配置、QMK RGB Matrix 整合至 DFU 燒錄的全流程。支援 VIA / VIAL 圖形化改鍵，已開源。",
@@ -401,6 +405,7 @@
     },
     {
       "id": "whack-a-mole",
+      "category": "高職選手作品",
       "title": "無線打地鼠機 (特教組教具)",
       "period": "2021 – 2022",
       "description": "南港高工特教組委託專案，以 ESP32 + ESP-NOW 串聯一主四從五台機台，搭配電晶體繼電器驅動電路與 3D 列印機構，為特教生打造可室內外通用的無線互動教具，獲特教組正式感謝狀。",
@@ -439,6 +444,7 @@
     },
     {
       "id": "auto-sanitizer",
+      "category": "高職選手作品",
       "title": "自動酒精機（教育部科普列車）",
       "period": "2021",
       "description": "受邀參加 2021 教育部科普列車，以 Arduino + HC-SR04 超聲波感測器製作感應式自動噴灑酒精機，歷經 2.0 桌上型版本與 3.0 FRC 機器人整合版兩代迭代。",
@@ -466,6 +472,7 @@
     },
     {
       "id": "team-robot",
+      "category": "高職選手作品",
       "title": "集體創作競賽機器人",
       "period": "2022",
       "description": "代表南港高工參加第 52 屆全國技能競賽集體創作職類，三人團隊聯合設計競賽用夾取機器人，以 24V 鉛酸電池驅動，繼電器 H 橋控制膠輪馬達方向，可夾取圓柱體與正方體物件。",
@@ -479,6 +486,7 @@
     },
     {
       "id": "swerve",
+      "category": "高職選手作品",
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",
       "frc": true,
