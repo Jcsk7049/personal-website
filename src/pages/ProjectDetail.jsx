@@ -122,6 +122,21 @@ export default function ProjectDetail() {
                   <ProjectGallery images={detail.images} />
                 </div>
               )}
+              {key === 'outcome' && detail.video && (
+                <div className="mb-8 flex justify-center">
+                  <div className="relative w-[260px] rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-[#1D1D1F] bg-black">
+                    <div className="aspect-[9/16]">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${detail.video}?autoplay=0&rel=0`}
+                        title="Demo video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
               {key === 'tech' && Array.isArray(detail.tech) ? (
                 <div className="space-y-6">
                   {detail.tech.map(group => (
