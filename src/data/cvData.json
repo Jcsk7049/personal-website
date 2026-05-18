@@ -683,7 +683,24 @@
           }
         ],
         "github": "",
-        "images": []
+        "images": [
+          {
+            "src": "/images/team-robot/cad-drawing.jpg",
+            "caption": "機器人 3D 設計稿與夾取物規格圖（圓柱 & 正方體）"
+          },
+          {
+            "src": "/images/team-robot/robot-side.jpg",
+            "caption": "完成品側視圖 — 夾爪機構與底盤結構"
+          },
+          {
+            "src": "/images/team-robot/circuit-schematic.jpg",
+            "caption": "繼電器 H 橋電路設計圖（24V 四馬達驅動）"
+          },
+          {
+            "src": "/images/team-robot/competition.jpg",
+            "caption": "第 52 屆全國技能競賽現場操作"
+          }
+        ]
       }
     },
     {
