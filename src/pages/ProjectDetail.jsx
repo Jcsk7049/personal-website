@@ -117,7 +117,7 @@ export default function ProjectDetail() {
                   <BitoCharts />
                 </div>
               )}
-              {key === 'outcome' && project.id === 'swerve' && detail.images?.length > 0 && (
+              {key === 'outcome' && detail.images?.length > 0 && (
                 <div className="mb-8">
                   <ProjectGallery images={detail.images} />
                 </div>

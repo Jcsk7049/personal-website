@@ -14,9 +14,21 @@
     }
   },
   "education": [
-    { "school": "元智大學",    "degree": "電機工程學系學士", "period": "2024.09 – 2027.09" },
-    { "school": "明志科技大學", "degree": "電機工程學系學士", "period": "2023.09 – 2024.06" },
-    { "school": "南港高工",    "degree": "電子科",           "period": "2020.09 – 2023.06" }
+    {
+      "school": "元智大學",
+      "degree": "電機工程學系學士",
+      "period": "2024.09 – 2027.09"
+    },
+    {
+      "school": "明志科技大學",
+      "degree": "電機工程學系學士",
+      "period": "2023.09 – 2024.06"
+    },
+    {
+      "school": "南港高工",
+      "degree": "電子科",
+      "period": "2020.09 – 2023.06"
+    }
   ],
   "experience": [
     {
@@ -39,10 +51,37 @@
     }
   ],
   "skills_matrix": {
-    "manufacturing": ["CNC 銑床", "Mastercam", "3D 列印", "金屬焊接", "雷射切割", "基礎機械加工", "Autodesk Inventor", "AutoCAD", "Fusion 360"],
-    "programming":   ["C/C++", "Python (ITS 證照)", "LabVIEW", "Arduino", "MATLAB"],
-    "eda":           ["Altium Designer", "EasyEDA Pro (立創EDA)", "KiCAD", "OrCAD"],
-    "data_analysis": ["深度學習", "機器學習","數據結構化", "特徵工程", "訊號過濾" ]
+    "manufacturing": [
+      "CNC 銑床",
+      "Mastercam",
+      "3D 列印",
+      "金屬焊接",
+      "雷射切割",
+      "基礎機械加工",
+      "Autodesk Inventor",
+      "AutoCAD",
+      "Fusion 360"
+    ],
+    "programming": [
+      "C/C++",
+      "Python (ITS 證照)",
+      "LabVIEW",
+      "Arduino",
+      "MATLAB"
+    ],
+    "eda": [
+      "Altium Designer",
+      "EasyEDA Pro (立創EDA)",
+      "KiCAD",
+      "OrCAD"
+    ],
+    "data_analysis": [
+      "深度學習",
+      "機器學習",
+      "數據結構化",
+      "特徵工程",
+      "訊號過濾"
+    ]
   },
   "skills_detail": {
     "data_analysis": {
@@ -54,31 +93,43 @@
           "name": "深度學習",
           "level": "進階",
           "desc": "熟悉 LSTM、CNN 時序模型架構，具備完整的資料前處理、模型訓練與超參數調整流程，應用於生醫訊號的序列預測任務。",
-          "projects": ["VAP 深度學習預測系統"]
+          "projects": [
+            "VAP 深度學習預測系統"
+          ]
         },
         {
           "name": "機器學習",
           "level": "進階",
           "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值實現模型可解釋性，有效處理嚴重類別不平衡的金融詐欺場景。",
-          "projects": ["AWS x BitoPro 黑客松"]
+          "projects": [
+            "AWS x BitoPro 黑客松"
+          ]
         },
         {
           "name": "特徵工程",
           "level": "進階",
           "desc": "萃取時域（均值、峰值）與頻域（FFT 功率譜）特徵；對電子病歷進行時序聚合與 One-Hot 編碼，處理高缺失率醫療數據。",
-          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+          "projects": [
+            "VAP 深度學習預測系統",
+            "AWS x BitoPro 黑客松"
+          ]
         },
         {
           "name": "訊號過濾",
           "level": "熟悉",
           "desc": "帶通濾波、Z-score 標準化與缺失值插補，確保生理訊號輸入品質，降低模型對雜訊的敏感度。",
-          "projects": ["VAP 深度學習預測系統"]
+          "projects": [
+            "VAP 深度學習預測系統"
+          ]
         },
         {
           "name": "數據結構化",
           "level": "熟悉",
           "desc": "電子病歷 ETL 清洗、AWS Glue 圖形化多跳分析管線，將非結構化原始資料轉為可訓練的特徵矩陣。",
-          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+          "projects": [
+            "VAP 深度學習預測系統",
+            "AWS x BitoPro 黑客松"
+          ]
         }
       ]
     },
@@ -91,25 +142,35 @@
           "name": "C / C++",
           "level": "進階",
           "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，熟悉 ChibiOS HAL 外設配置（chconf / halconf / mcuconf）與 QMK Firmware 架構，能在資源受限的 STM32 環境下撰寫穩定的底層驅動程式。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統", "QMK x STM32 客製鍵盤"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統",
+            "QMK x STM32 客製鍵盤"
+          ]
         },
         {
           "name": "Python",
           "level": "進階",
           "desc": "取得 ITS Python 國際認證。應用於 ML 管線（PyTorch、scikit-learn、pandas）、數據視覺化（Matplotlib）與 AWS SDK 雲端整合。",
-          "projects": ["VAP 深度學習預測系統", "AWS x BitoPro 黑客松"]
+          "projects": [
+            "VAP 深度學習預測系統",
+            "AWS x BitoPro 黑客松"
+          ]
         },
         {
           "name": "LabVIEW",
           "level": "熟悉",
           "desc": "圖形化程式設計，實作向量合成運動學演算法與 PID 閉迴路控制，應用於競賽機器人即時控制，獲 2022 FRC 控制創新獎肯定。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "Arduino",
           "level": "熟悉",
           "desc": "快速原型開發平台，整合 ESP32 無線通訊、感測器讀值與繼電器驅動，適合在短時間內完成硬體功能驗證。",
-          "projects": ["ESP32 無線打地鼠機"]
+          "projects": [
+            "ESP32 無線打地鼠機"
+          ]
         },
         {
           "name": "MATLAB",
@@ -128,13 +189,17 @@
           "name": "Altium Designer",
           "level": "進階",
           "desc": "多層 PCB 設計主力工具，涵蓋電源規劃、阻抗匹配與 DFM（可製造性設計）原則，能獨立完成從原理圖到 Gerber 輸出的完整流程。",
-          "projects": ["QMK x STM32 客製鍵盤"]
+          "projects": [
+            "QMK x STM32 客製鍵盤"
+          ]
         },
         {
           "name": "EasyEDA Pro（立創EDA）",
           "level": "熟悉",
           "desc": "雲端原生 EDA 工具，整合立創商城元件庫，可直接調用廠商封裝並一鍵下單打樣。用於 QMK 數字鍵盤 PCB 設計，涵蓋原理圖繪製、PCB Layout 與 Gerber 匯出。",
-          "projects": ["QMK x STM32 數字鍵盤"]
+          "projects": [
+            "QMK x STM32 數字鍵盤"
+          ]
         },
         {
           "name": "KiCAD",
@@ -159,31 +224,42 @@
           "name": "CNC 銑床",
           "level": "進階",
           "desc": "操作 CNC 銑床進行鋁合金精密加工，熟悉刀具路徑規劃與夾具設計，相較手工銑床大幅提升加工精度與重現性。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "Mastercam",
           "level": "熟悉",
           "desc": "CNC 加工 CAM 軟體，匯入 3D 模型後規劃多種刀具路徑（鑽孔、深孔啄鑽、2D/3D 挖槽、輪廓銑削、動態銑削、倒角），模擬確認後輸出 NC 程式，應用於 Swerve Drive 全向輪鋁板與傳動心軸加工。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "3D 列印",
           "level": "進階",
           "desc": "FDM 快速原型製作，用於機構干涉驗證與客製化非承力件，在不影響結構強度的前提下有效降低重量與加工成本。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統", "ESP32 無線打地鼠機"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統",
+            "ESP32 無線打地鼠機"
+          ]
         },
         {
           "name": "Autodesk Inventor",
           "level": "進階",
           "desc": "三維機構建模主力工具，進行組件干涉分析與動態模擬，確保設計在實際組裝前已消除衝突與公差問題。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "AutoCAD",
           "level": "熟悉",
           "desc": "二維工程圖繪製與加工圖面輸出，提供給 CNC 操作員或外包廠商清晰的尺寸標註與公差規格。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "Fusion 360",
@@ -195,7 +271,9 @@
           "name": "金屬焊接",
           "level": "熟悉",
           "desc": "MIG / TIG 基礎焊接技術，用於 FRC 機器人底盤鋼管結構的連接，注重焊道均勻性與結構強度。",
-          "projects": ["FRC Swerve Drive 全向輪控制系統"]
+          "projects": [
+            "FRC Swerve Drive 全向輪控制系統"
+          ]
         },
         {
           "name": "雷射切割",
@@ -219,7 +297,13 @@
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
       "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。",
-      "tags": ["PyTorch", "LSTM", "Integrated Gradients", "SMOTE", "Medical AI"],
+      "tags": [
+        "PyTorch",
+        "LSTM",
+        "Integrated Gradients",
+        "SMOTE",
+        "Medical AI"
+      ],
       "detail": {
         "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案與亞東紀念醫院合作，以真實臨床電子病歷（EHR）為基礎，開發一套能提前 6～72 小時預警 VAP 的深度學習系統。最終實現的模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。",
         "concept": "【一、論文復刻與問題發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構模型。復刻過程中發現原論文採用 Window-level Cross Validation，導致同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為資料洩漏（Data Leakage）。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，109 位機械通氣患者：19 VAP、90 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理高度類別不平衡問題。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，計算各特徵對模型預測的貢獻度，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
@@ -228,24 +312,48 @@
           {
             "group": "深度學習",
             "items": [
-              { "name": "LSTM 時序建模",      "desc": "獨立設計 3 層 LSTM（各 50 units）+ Dropout 架構，掌握時序窗口切割、Dropout 正則化與超參數調整；以 PyTorch 實作完整訓練迴圈" },
-              { "name": "類別不平衡處理",     "desc": "對 1:5 嚴重不平衡數據套用 SMOTE 1:10 過採樣，理解過採樣時機與 Data Leakage 邊界——過採樣必須在切分後的訓練集內進行" },
-              { "name": "可解釋 AI（XAI）",   "desc": "以 Integrated Gradients 歸因各特徵對每筆預測的貢獻，進而設計 Ablation Study 驗證 Top 4 特徵的不可取代性" }
+              {
+                "name": "LSTM 時序建模",
+                "desc": "獨立設計 3 層 LSTM（各 50 units）+ Dropout 架構，掌握時序窗口切割、Dropout 正則化與超參數調整；以 PyTorch 實作完整訓練迴圈"
+              },
+              {
+                "name": "類別不平衡處理",
+                "desc": "對 1:5 嚴重不平衡數據套用 SMOTE 1:10 過採樣，理解過採樣時機與 Data Leakage 邊界——過採樣必須在切分後的訓練集內進行"
+              },
+              {
+                "name": "可解釋 AI（XAI）",
+                "desc": "以 Integrated Gradients 歸因各特徵對每筆預測的貢獻，進而設計 Ablation Study 驗證 Top 4 特徵的不可取代性"
+              }
             ]
           },
           {
             "group": "實驗設計",
             "items": [
-              { "name": "防洩漏驗證設計",     "desc": "自行設計 Stay-level CV（以病患為單位切分），解決原論文 Window-level CV 造成同一病患橫跨訓練/測試集的 Data Leakage，AUROC 從虛高 0.99 降至真實 0.58" },
-              { "name": "Per-fold 正規化",    "desc": "每折獨立計算 mean/std 後再正規化，避免測試集統計量滲漏進訓練過程，掌握正規化與切分順序的嚴謹性邊界" },
-              { "name": "Ablation Study",     "desc": "逐步移除特徵並比較 AUROC 變化量，確認各特徵的真實貢獻，而非僅依賴相關係數排序" }
+              {
+                "name": "防洩漏驗證設計",
+                "desc": "自行設計 Stay-level CV（以病患為單位切分），解決原論文 Window-level CV 造成同一病患橫跨訓練/測試集的 Data Leakage，AUROC 從虛高 0.99 降至真實 0.58"
+              },
+              {
+                "name": "Per-fold 正規化",
+                "desc": "每折獨立計算 mean/std 後再正規化，避免測試集統計量滲漏進訓練過程，掌握正規化與切分順序的嚴謹性邊界"
+              },
+              {
+                "name": "Ablation Study",
+                "desc": "逐步移除特徵並比較 AUROC 變化量，確認各特徵的真實貢獻，而非僅依賴相關係數排序"
+              }
             ]
           },
           {
             "group": "特徵工程",
             "items": [
-              { "name": "滑動視窗建構",       "desc": "以 24 小時固定長度逐小時滑動，處理不等長 ICU 時序記錄的窗口對齊與邊界截斷問題" },
-              { "name": "生理訊號前處理",     "desc": "帶通濾波、Z-score 標準化、缺失值插補，確保連續監測資料輸入品質；以 pandas / NumPy 實作 ETL 管線" }
+              {
+                "name": "滑動視窗建構",
+                "desc": "以 24 小時固定長度逐小時滑動，處理不等長 ICU 時序記錄的窗口對齊與邊界截斷問題"
+              },
+              {
+                "name": "生理訊號前處理",
+                "desc": "帶通濾波、Z-score 標準化、缺失值插補，確保連續監測資料輸入品質；以 pandas / NumPy 實作 ETL 管線"
+              }
             ]
           }
         ],
@@ -258,7 +366,14 @@
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2026",
       "description": "針對 BitoPro 加密貨幣交易所設計的反洗錢偵測系統，分析 63,770 筆用戶資料與逾 41 萬筆交易紀錄，以 31 項行為特徵識別可疑人頭帳戶，串接六項 AWS 服務完成端對端 AML 管線。",
-      "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "SHAP", "Streamlit"],
+      "tags": [
+        "XGBoost",
+        "LightGBM",
+        "AWS SageMaker",
+        "AWS Glue",
+        "SHAP",
+        "Streamlit"
+      ],
       "detail": {
         "purpose": "加密貨幣交易所是洗錢犯罪的高風險場域。人頭帳戶（Shell Account）是最常見的手法之一——犯罪集團利用他人身份開戶，透過快速存提、換匯、轉出等操作掩蓋資金來源。BitoPro 作為台灣主流交易所，具備落實 KYC/AML 合規義務的需求。\n\nBitOGuard 以 BitoPro 提供的真實競賽資料集為基礎：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 位用戶）\n・USDT 交易紀錄：217,634 筆（33,587 位用戶）\n・標記人頭帳戶：1,640 筆（佔訓練集 3.21%）\n\n目標是以機器學習對每個帳戶計算風險分數，識別出高風險的可疑人頭帳戶。",
         "concept": "【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
@@ -267,17 +382,35 @@
           {
             "group": "機器學習",
             "items": [
-              { "name": "梯度提升二元分類",   "desc": "以 XGBoost（depth=8, 1000 rounds, early stopping）處理 1:30 類別不平衡，掌握 scale_pos_weight 設定與 0.3–0.9 閾值掃描對 Precision-Recall 曲線的影響" },
-              { "name": "行為特徵工程",       "desc": "從台幣與 USDT 交易記錄中萃取 31 項行為指標（交易頻率、深夜比例、黑名單鄰居數等），驗證特徵從初版 3 項擴充後對模型的實際增益" },
-              { "name": "SHAP 可解釋性",      "desc": "計算每筆帳戶各特徵的邊際貢獻，區分特徵重要性（全局）與個別帳戶判斷依據（局部），使模型結果具備 AML 合規說明能力" }
+              {
+                "name": "梯度提升二元分類",
+                "desc": "以 XGBoost（depth=8, 1000 rounds, early stopping）處理 1:30 類別不平衡，掌握 scale_pos_weight 設定與 0.3–0.9 閾值掃描對 Precision-Recall 曲線的影響"
+              },
+              {
+                "name": "行為特徵工程",
+                "desc": "從台幣與 USDT 交易記錄中萃取 31 項行為指標（交易頻率、深夜比例、黑名單鄰居數等），驗證特徵從初版 3 項擴充後對模型的實際增益"
+              },
+              {
+                "name": "SHAP 可解釋性",
+                "desc": "計算每筆帳戶各特徵的邊際貢獻，區分特徵重要性（全局）與個別帳戶判斷依據（局部），使模型結果具備 AML 合規說明能力"
+              }
             ]
           },
           {
             "group": "雲端架構",
             "items": [
-              { "name": "端對端資料管線",     "desc": "設計 S3 → Glue ETL → Athena → SageMaker → Lambda 六服務串接，掌握各節點的資料格式轉換、錯誤傳遞與權限設計；CloudFormation IaC 確保環境可重現" },
-              { "name": "圖形化多跳關聯分析", "desc": "以 Glue + Athena SQL 實作黑名單鄰居的二階連結查詢，理解圖論特徵在關聯式資料庫中的近似計算方式與查詢複雜度" },
-              { "name": "事件驅動推論",       "desc": "Lambda 接收觸發事件後呼叫 SageMaker 端點完成即時預測，理解冷啟動延遲與同步/非同步呼叫對 AML 即時偵測場景的取捨" }
+              {
+                "name": "端對端資料管線",
+                "desc": "設計 S3 → Glue ETL → Athena → SageMaker → Lambda 六服務串接，掌握各節點的資料格式轉換、錯誤傳遞與權限設計；CloudFormation IaC 確保環境可重現"
+              },
+              {
+                "name": "圖形化多跳關聯分析",
+                "desc": "以 Glue + Athena SQL 實作黑名單鄰居的二階連結查詢，理解圖論特徵在關聯式資料庫中的近似計算方式與查詢複雜度"
+              },
+              {
+                "name": "事件驅動推論",
+                "desc": "Lambda 接收觸發事件後呼叫 SageMaker 端點完成即時預測，理解冷啟動延遲與同步/非同步呼叫對 AML 即時偵測場景的取捨"
+              }
             ]
           }
         ],
@@ -291,7 +424,13 @@
       "title": "音訊放大器電路板",
       "period": "2024",
       "description": "大一期末專案，設計並實作兩級 BJT 音訊放大電路（CE + CC 架構），負責完整 PCB Layout、感光板製作、鑽孔焊接與除錯，歷經兩次洗板重製最終順利驅動 8Ω 喇叭。",
-      "tags": ["BJT 放大電路", "PCB Layout", "感光板製作", "電路模擬", "SPICE"],
+      "tags": [
+        "BJT 放大電路",
+        "PCB Layout",
+        "感光板製作",
+        "電路模擬",
+        "SPICE"
+      ],
       "detail": {
         "purpose": "大一電子學期末專案（第 12 組），目標是設計並實作一套可驅動 8Ω 喇叭的音訊放大電路。電路需包含可調增益功能，並完成從電路模擬、麵包板驗證到實際 PCB 製作的完整流程。\n\n本人主要負責 PCB 全流程：邏輯圖繪製、線路圖設計、感光板製作（曝光、顯影、酸洗）、鑽孔、焊接與除錯。",
         "concept": "【電路架構：兩級 BJT 放大】\n・輸入級：可變電阻 Rv1a / Rv1b 調整輸入增益；R3 / R4 提供直流偏壓使 Q1 穩定工作於主動區\n・第一級 CE（共射極）放大：Q1 提供主要電壓增益，集極電阻 RC 將電流變化轉換為輸出電壓\n・偏壓穩定：D1–D4 四個二極體串聯穩定 Q2、Q3 基極電壓差；C3 吸收反向電壓避免二極體擊穿\n・第二級 CC（共集極 / 射極隨耦器）：高輸入阻抗、低輸出阻抗，透過發射極電阻 RE 的負回授提升穩定性並降低失真，電壓增益約為 1\n・可變電阻 Rv2 調整整體直流工作點，在不失真的條件下找到最大增益\n\n【PCB 製作流程】\n感光 FR4 雙面板（15 cm × 12.5 cm），手工製作流程：\n① Layout 繪製 → 縮減白線交叉點，元件下方走線壓縮面積\n② 底片輸出 → 曝光 → 顯影 → 酸洗蝕刻 → 清洗\n③ 鑽孔 → 元件焊接 → 通電測試\n\n【兩次重製過程】\n第一次失敗：酸洗後有殘銅未清除乾淨，通電後短路。逐一確認二極體導通、電晶體工作狀態均正常後，確認問題出在板子本身。重新繪製 Layout 加急重製。\n\n第二次問題：焊接完成後仍無法運作。隊友發現 PCB 圖紙需「從下往上看」——功率 IC 和電晶體腳位全數鏡像，重新焊接後電路出現斷續訊號且電壓五秒後下跌。再次確認所有焊點導通後，電路順暢運作。",
@@ -300,23 +439,44 @@
           {
             "group": "類比電路設計",
             "items": [
-              { "name": "CE 放大器偏壓設計", "desc": "計算 R3 / R4 分壓偏壓使 Q1 穩定工作於主動區，理解 β 值、直流工作點與熱穩定度三者在選值時的取捨" },
-              { "name": "CC 射極隨耦器",     "desc": "以發射極電阻 RE 引入負回授實現低輸出阻抗，有效降低前後級的負載效應，電壓增益接近 1" },
-              { "name": "偏壓穩定設計",      "desc": "D1–D4 串聯提供穩定電壓差給 Q2/Q3 基極；C3 吸收關斷瞬間反向電壓，理解二極體正向壓降的溫度特性對偏壓穩定度的影響" },
-              { "name": "可變增益調整",      "desc": "Rv1a/Rv1b 控制輸入信號強度，Rv2 微調直流工作點，實驗中在不失真前提下找到最大線性增益的操作邊界" }
+              {
+                "name": "CE 放大器偏壓設計",
+                "desc": "計算 R3 / R4 分壓偏壓使 Q1 穩定工作於主動區，理解 β 值、直流工作點與熱穩定度三者在選值時的取捨"
+              },
+              {
+                "name": "CC 射極隨耦器",
+                "desc": "以發射極電阻 RE 引入負回授實現低輸出阻抗，有效降低前後級的負載效應，電壓增益接近 1"
+              },
+              {
+                "name": "偏壓穩定設計",
+                "desc": "D1–D4 串聯提供穩定電壓差給 Q2/Q3 基極；C3 吸收關斷瞬間反向電壓，理解二極體正向壓降的溫度特性對偏壓穩定度的影響"
+              },
+              {
+                "name": "可變增益調整",
+                "desc": "Rv1a/Rv1b 控制輸入信號強度，Rv2 微調直流工作點，實驗中在不失真前提下找到最大線性增益的操作邊界"
+              }
             ]
           },
           {
             "group": "PCB 製作",
             "items": [
-              { "name": "Layout 佈線設計",   "desc": "手工繪製雙面 PCB，以元件下方走線策略減少白線交叉點，實際走完曝光→顯影→酸洗蝕刻製程" },
-              { "name": "系統性電路除錯",    "desc": "兩次重製建立從元件逐一驗證（導通、飽和、充能）到板層短路定位的除錯流程，分別識別殘銅短路與腳位鏡像兩種根本原因" }
+              {
+                "name": "Layout 佈線設計",
+                "desc": "手工繪製雙面 PCB，以元件下方走線策略減少白線交叉點，實際走完曝光→顯影→酸洗蝕刻製程"
+              },
+              {
+                "name": "系統性電路除錯",
+                "desc": "兩次重製建立從元件逐一驗證（導通、飽和、充能）到板層短路定位的除錯流程，分別識別殘銅短路與腳位鏡像兩種根本原因"
+              }
             ]
           },
           {
             "group": "量測與驗證",
             "items": [
-              { "name": "電路模擬與實測對比", "desc": "先以 SPICE 模擬時域波形與頻率響應波德圖，再以示波器量測實際輸出，分析非理想元件特性（電阻溫度係數、電容漏電流）對結果造成的偏差" }
+              {
+                "name": "電路模擬與實測對比",
+                "desc": "先以 SPICE 模擬時域波形與頻率響應波德圖，再以示波器量測實際輸出，分析非理想元件特性（電阻溫度係數、電容漏電流）對結果造成的偏差"
+              }
             ]
           }
         ],
@@ -329,7 +489,14 @@
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
       "description": "基於 STM32F103 微控制器設計之 17 鍵數字小鍵盤，完整走完 EasyEDA Pro PCB 設計、ChibiOS HAL 韌體配置、QMK RGB Matrix 整合至 DFU 燒錄的全流程。支援 VIA / VIAL 圖形化改鍵，已開源。",
-      "tags": ["QMK Firmware", "STM32", "ChibiOS / HAL", "EasyEDA Pro", "RGB Matrix", "VIA / VIAL"],
+      "tags": [
+        "QMK Firmware",
+        "STM32",
+        "ChibiOS / HAL",
+        "EasyEDA Pro",
+        "RGB Matrix",
+        "VIA / VIAL"
+      ],
       "detail": {
         "purpose": "本專案為一款基於 STM32F103 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware + ChibiOS RTOS 開發。主要目的如下：\n\n・作為日常數字輸入工具（Numpad 輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・驗證自製 PCB（EasyEDA Pro）、矩陣掃描（Matrix Scanning）與 RGB Matrix 整合\n・練習 ChibiOS HAL 配置（chconf.h / halconf.h / mcuconf.h）與 STM32 DFU 燒錄流程\n・實現可編譯、可重現的開源開發流程（QMK + STM32 DFU Bootloader）",
         "concept": "本設計以「結構清晰、可重現、可擴展」為核心：\n\n【硬體架構】\n・MCU：STM32F072（支援 USB DFU 燒錄，無需額外燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・使用 QMK Firmware 搭配 ChibiOS HAL 作為核心框架\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n・Hue / Sat / Val 三維色彩調整\n\n【VIA / VIAL 支援】\n・支援 VIA 與 VIAL 圖形化改鍵介面\n・使用者無需重新編譯即可即時調整鍵位",
@@ -338,16 +505,31 @@
           {
             "group": "嵌入式韌體",
             "items": [
-              { "name": "HAL 外設配置",      "desc": "獨立完成 ChibiOS chconf / halconf / mcuconf 三件組，設定 STM32 USB、GPIO 時鐘來源與 PLL，理解 RTOS tick 與外設初始化順序的依賴關係；QMK + ChibiOS 框架" },
-              { "name": "鍵盤矩陣掃描",      "desc": "設計 5×4 ROW2COL 矩陣搭配 5 ms debounce，以最少 IO 支援 17 鍵；理解鬼鍵（ghost key）成因與二極體防護原理" },
-              { "name": "RGB Matrix 驅動",   "desc": "整合 WS2812B 逐鍵定址，掌握 Hue/Sat/Val 三維色彩控制；設定最大亮度 120 防 USB 過流，理解動畫模式切換與 SPI 時序配置" },
-              { "name": "Layer 與 tap-hold", "desc": "以 LT() 實現長按切層、短按輸入，理解 QMK tap-hold 決策窗口（tapping_term）對打字手感的影響與調整方式" }
+              {
+                "name": "HAL 外設配置",
+                "desc": "獨立完成 ChibiOS chconf / halconf / mcuconf 三件組，設定 STM32 USB、GPIO 時鐘來源與 PLL，理解 RTOS tick 與外設初始化順序的依賴關係；QMK + ChibiOS 框架"
+              },
+              {
+                "name": "鍵盤矩陣掃描",
+                "desc": "設計 5×4 ROW2COL 矩陣搭配 5 ms debounce，以最少 IO 支援 17 鍵；理解鬼鍵（ghost key）成因與二極體防護原理"
+              },
+              {
+                "name": "RGB Matrix 驅動",
+                "desc": "整合 WS2812B 逐鍵定址，掌握 Hue/Sat/Val 三維色彩控制；設定最大亮度 120 防 USB 過流，理解動畫模式切換與 SPI 時序配置"
+              },
+              {
+                "name": "Layer 與 tap-hold",
+                "desc": "以 LT() 實現長按切層、短按輸入，理解 QMK tap-hold 決策窗口（tapping_term）對打字手感的影響與調整方式"
+              }
             ]
           },
           {
             "group": "PCB 設計",
             "items": [
-              { "name": "MCU 外圍電路設計",  "desc": "完成 STM32 USB FS 電路、100 nF 去耦電容佈局與 DFU Bootloader 引腳配置，確保免燒錄器的 USB 燒錄路徑可靠；EasyEDA Pro 實作" }
+              {
+                "name": "MCU 外圍電路設計",
+                "desc": "完成 STM32 USB FS 電路、100 nF 去耦電容佈局與 DFU Bootloader 引腳配置，確保免燒錄器的 USB 燒錄路徑可靠；EasyEDA Pro 實作"
+              }
             ]
           }
         ],
@@ -361,7 +543,13 @@
       "title": "無線打地鼠機 (特教組教具)",
       "period": "2021 – 2022",
       "description": "南港高工特教組委託專案，以 ESP32 + ESP-NOW 串聯一主四從五台機台，搭配電晶體繼電器驅動電路與 3D 列印機構，為特教生打造可室內外通用的無線互動教具，獲特教組正式感謝狀。",
-      "tags": ["ESP32", "ESP-NOW", "電路設計", "3D列印", "Arduino"],
+      "tags": [
+        "ESP32",
+        "ESP-NOW",
+        "電路設計",
+        "3D列印",
+        "Arduino"
+      ],
       "detail": {
         "purpose": "南港高工特教組委託專案，為特教生設計可在室內外通用的互動教具。需求重點：\n\n・數量少、結構簡單、易維修收納\n・操作直覺，適合特教生使用\n・室外場合不依賴電源插座\n\n參考投籃機、漂浮冰球台等遊樂器材後，選擇打地鼠機台形式，並加上無線傳輸功能實現戶外使用。",
         "concept": "【系統架構：ESP-NOW 點對點通訊】\n選用 ESP32 + ESP-NOW 通訊協定：\n・不需 WiFi／路由器，點對點直連\n・斷線或重啟後自動重連，免操作\n・一台主機 + 四台從機，主機隨機選號發送；被選中的從機亮燈，玩家按鈕後從機回傳訊號\n\n【電路設計】\n電源 11.1V（三顆 18650 串聯）→ 7805 降壓至 5V 給 ESP32 → ESP32 GPIO 輸出 → 9013 電晶體放大 → 繼電器切換 11.1V 給 LED\n\n關鍵元件考量：\n・飛輪二極體（1N4001）並聯繼電器線圈，吸收反電動勢防止電弧損毀\n・電晶體放大解決 ESP32 GPIO 電流不足以驅動繼電器的問題\n・104 陶瓷電容於 7805 輸入輸出端去耦，穩定電壓\n\n【程式邏輯】\n主機（Master）：隨機產生 1–4 廣播給從機 → 進入 200 次迴圈等待回傳（約 10 秒）→ 收到回傳則廣播 0 重置進入下一輪；超時直接進入下一輪。\n從機（Slave）：接收編號比對自身編號決定是否亮燈 → 亮燈期間偵測按鈕 → 按下時回傳 1 → 延遲 0.1 秒後回傳 0 重置狀態（避免主機資料卡在 1）\n\n【機構設計】\n・上蓋：3D 列印（第一版）→ 木板 + 螺絲（改良版），便於替換維修\n・外殼：鋁方管 + 上蓋，頂部設計 3.5° 外傾螺絲孔強化固定\n・底蓋：強力磁鐵吸附，免工具開蓋換電池\n・主軸思維：化繁為簡，加工不過度複雜，維修要快",
@@ -370,22 +558,40 @@
           {
             "group": "無線通訊",
             "items": [
-              { "name": "多機 P2P 協同",     "desc": "設計一主四從廣播狀態機，掌握 ESP-NOW 在無路由器環境下的設備配對、廣播重置與斷線重連機制；以 Arduino C++ 實作主從邏輯" }
+              {
+                "name": "多機 P2P 協同",
+                "desc": "設計一主四從廣播狀態機，掌握 ESP-NOW 在無路由器環境下的設備配對、廣播重置與斷線重連機制；以 Arduino C++ 實作主從邏輯"
+              }
             ]
           },
           {
             "group": "電路設計",
             "items": [
-              { "name": "電晶體電流放大",    "desc": "計算 9013 NPN 基極限流電阻確保飽和導通，解決 ESP32 GPIO 驅動電流不足以直接驅動繼電器的問題" },
-              { "name": "高壓負載隔離",      "desc": "繼電器將 3.3V 控制端與 11.1V 負載端完全隔離，理解接點容量限制與切換頻率對接點壽命的影響" },
-              { "name": "反電動勢保護",      "desc": "1N4001 飛輪二極體並聯繼電器線圈，吸收關斷瞬間的感性反電動勢；透過實際排查 ESP32 損壞問題後才理解其必要性" },
-              { "name": "電源穩壓去耦",      "desc": "7805 線性穩壓搭配陶瓷去耦電容，消除馬達/繼電器切換產生的電源毛刺；實際排查 7805 過熱原因，理解線性穩壓的功耗限制" }
+              {
+                "name": "電晶體電流放大",
+                "desc": "計算 9013 NPN 基極限流電阻確保飽和導通，解決 ESP32 GPIO 驅動電流不足以直接驅動繼電器的問題"
+              },
+              {
+                "name": "高壓負載隔離",
+                "desc": "繼電器將 3.3V 控制端與 11.1V 負載端完全隔離，理解接點容量限制與切換頻率對接點壽命的影響"
+              },
+              {
+                "name": "反電動勢保護",
+                "desc": "1N4001 飛輪二極體並聯繼電器線圈，吸收關斷瞬間的感性反電動勢；透過實際排查 ESP32 損壞問題後才理解其必要性"
+              },
+              {
+                "name": "電源穩壓去耦",
+                "desc": "7805 線性穩壓搭配陶瓷去耦電容，消除馬達/繼電器切換產生的電源毛刺；實際排查 7805 過熱原因，理解線性穩壓的功耗限制"
+              }
             ]
           },
           {
             "group": "面向維修的機構設計",
             "items": [
-              { "name": "快速替換結構",      "desc": "以「化繁為簡」為原則，上蓋從 3D 列印改為木板縮短替換時間；強力磁鐵底蓋免工具換電池，針對特教場景的現場維修需求做針對性設計" }
+              {
+                "name": "快速替換結構",
+                "desc": "以「化繁為簡」為原則，上蓋從 3D 列印改為木板縮短替換時間；強力磁鐵底蓋免工具換電池，針對特教場景的現場維修需求做針對性設計"
+              }
             ]
           }
         ],
@@ -397,24 +603,39 @@
       "category": "高職選手作品",
       "title": "自動酒精機（教育部科普列車）",
       "period": "2021",
-      "description": "受邀參加 2021 教育部科普列車，以 Arduino + HC-SR04 超聲波感測器製作感應式自動噴灑酒精機，歷經 2.0 桌上型版本與 3.0 FRC 機器人整合版兩代迭代。",
-      "tags": ["Arduino", "HC-SR04", "繼電器", "雷射切割", "18650 電池"],
+      "description": "受邀參加 2021 教育部科普列車，以 Arduino + HC-SR04 超聲波感測器製作感應式自動噴灑酒精機，歷經桌上型展示版與 FRC 機器人整合版兩代迭代。",
+      "tags": [
+        "Arduino",
+        "HC-SR04",
+        "繼電器",
+        "雷射切割",
+        "18650 電池"
+      ],
       "detail": {
-        "purpose": "疫情期間，受邀以南港高工 FRC 戰隊成員身分參加 2021 年教育部科普列車，代表學校到各地高中巡迴展示科技作品。選擇製作感應式自動酒精噴灑機——既有疫情防護的實用性，又能向現場同學展示超聲波感測器、繼電器與嵌入式控制系統的基本原理。\n\n製作分兩個版本迭代：\n・2.0 版：獨立桌上型，壓克力雷射切割外殼，方便攜帶展示\n・3.0 版：整合至 FRC 機器人車體，供競賽場地出入口使用，無需額外空間擺放",
+        "purpose": "疫情期間，受邀以南港高工 FRC 戰隊成員身分參加 2021 年教育部科普列車，代表學校到各地高中巡迴展示科技作品。選擇製作感應式自動酒精噴灑機——既有疫情防護的實用性，又能向現場同學展示超聲波感測器、繼電器與嵌入式控制系統的基本原理。\n\n製作分兩個版本迭代：\n・桌上型版：獨立展示機台，壓克力雷射切割外殼，方便各校巡迴攜帶\n・機器人整合版：縮小電路佈局整合至 FRC 機器人側板，供競賽場地出入口使用，不佔額外空間",
         "concept": "【感測與觸發邏輯】\nHC-SR04 超聲波感測器持續測量前方距離，當偵測到手部進入觸發範圍（約 10–15 cm），Arduino UNO 輸出高電位給繼電器模組，繼電器切換閉合後驅動抽水馬達，將酒精從儲液瓶抽取後由噴嘴噴出；手部離開後馬達立即停止。\n\n【電源設計】\n2 顆 18650 鋰電池串聯提供 7.6V，透過 7805 穩壓模組降至 5V 供 Arduino 使用，馬達直接由電池端取電，繼電器隔離控制端與高電流驅動端。\n\n【機構設計】\n・2.0：壓克力板雷射切割成型，各零件卡榫拼接，外觀整齊且易拆卸更換酒精\n・3.0：縮小電路板佈局，整合至 FRC 機器人側板，噴嘴高度可調，供不同身高使用者感應",
-        "outcome": "・順利完成 2021 教育部科普列車活動，向多所高中學生展示作品並進行現場說明\n・從 2.0 桌上型迭代至 3.0 機器人整合版，理解「產品依場景優化」的設計思維\n・實作收穫：超聲波測距原理、繼電器驅動電路、7805 電源穩壓與去耦電容選配",
+        "outcome": "・順利完成 2021 教育部科普列車活動，向多所高中學生展示作品並進行現場說明\n・從桌上型版迭代至機器人整合版，理解「產品依場景優化」的設計思維\n・實作收穫：超聲波測距原理、繼電器驅動電路、7805 電源穩壓與去耦電容選配",
         "tech": [
           {
             "group": "感測與控制",
             "items": [
-              { "name": "超聲波測距觸發",    "desc": "以 HC-SR04 持續量測前方距離，設定 10–15 cm 觸發閾值輸出高電位驅動繼電器；理解聲速修正與感測盲區對觸發靈敏度的影響" },
-              { "name": "繼電器馬達驅動",    "desc": "控制端與抽水馬達高電流端隔離，手部離開後立即斷電停馬達，掌握繼電器在嵌入式控制中的單向閥式應用模式" }
+              {
+                "name": "超聲波測距觸發",
+                "desc": "以 HC-SR04 持續量測前方距離，設定 10–15 cm 觸發閾值輸出高電位驅動繼電器；理解聲速修正與感測盲區對觸發靈敏度的影響"
+              },
+              {
+                "name": "繼電器馬達驅動",
+                "desc": "控制端與抽水馬達高電流端隔離，手部離開後立即斷電停馬達，掌握繼電器在嵌入式控制中的單向閥式應用模式"
+              }
             ]
           },
           {
             "group": "機構設計",
             "items": [
-              { "name": "場景導向迭代設計",  "desc": "2.0 版壓克力卡榫外殼便於攜帶展示；3.0 版縮小電路佈局整合至 FRC 機器人側板，實踐依使用場景調整設計優先序的產品思維" }
+              {
+                "name": "場景導向迭代設計",
+                "desc": "桌上型版壓克力卡榫外殼便於攜帶展示；機器人整合版縮小電路佈局整合至 FRC 機器人側板，實踐依使用場景調整設計優先序的產品思維"
+              }
             ]
           }
         ],
@@ -427,27 +648,42 @@
       "title": "集體創作競賽機器人",
       "period": "2022",
       "description": "代表南港高工參加第 52 屆全國技能競賽集體創作職類，三人團隊聯合設計競賽用夾取機器人，以 24V 鉛酸電池驅動，繼電器 H 橋控制膠輪馬達方向，可夾取圓柱體與正方體物件。",
-      "tags": ["競賽機器人", "繼電器控制", "機構設計", "三人團隊"],
+      "tags": [
+        "競賽機器人",
+        "繼電器控制",
+        "機構設計",
+        "三人團隊"
+      ],
       "detail": {
         "purpose": "代表南港高工參加第 52 屆全國技能競賽（2022）集體創作職類。競賽規則要求三人團隊在限定時間內聯合設計並製作一台具備特定功能的機器人，目標為在場地中移動並夾取圓柱體與正方體物件。\n\n此競賽強調跨專業協作能力：機構設計、電路配線與程式控制三方必須高度整合，才能在競賽時間限制內完成有效的機器人。",
-        "concept": "【底盤與驅動】\n採用膠輪底盤，24V 鉛酸電池組提供主電源。以繼電器組實作 H 橋電路，每個驅動軸使用兩個繼電器切換馬達電流方向，控制前進/後退，電路結構直觀可靠。\n\n【夾爪機構】\n夾口設計同時兼容圓柱體與正方體：弧面段貼合圓柱，平面段穩定夾持方形物件，確保搬運過程不滑落。\n\n【三人分工】\n・機構設計與加工：江嘉元\n・電路設計與配線：團隊成員\n・程式控制邏輯：團隊成員",
+        "concept": "【底盤與驅動】\n採用膠輪底盤，24V 鉛酸電池組提供主電源。以繼電器組實作 H 橋電路，每個驅動軸使用兩個繼電器切換馬達電流方向，控制前進/後退，電路結構直觀可靠。\n\n【夾爪機構】\n夾口設計同時兼容圓柱體與正方體：弧面段貼合圓柱，平面段穩定夾持方形物件，確保搬運過程不滑落。\n\n【三人分工】\n・機構設計與加工（江嘉元）：底盤結構、夾爪設計與全機構件加工\n・電路設計與配線（團隊成員）：H 橋繼電器驅動電路、24V 系統配線\n・程式控制邏輯（團隊成員）：馬達方向控制程式",
         "outcome": "・代表南港高工完賽第 52 屆全國技能競賽集體創作職類\n・實作收穫：高功率繼電器 H 橋電路設計、24V 系統配線規範、多人同步開發協作流程\n・理解競賽機器人開發與 FRC 長期開發模式的差異——在極短時間內完成功能性整合",
         "tech": [
           {
             "group": "電路設計",
             "items": [
-              { "name": "繼電器 H 橋驅動",   "desc": "以兩個繼電器組成單軸 H 橋，切換馬達電流方向控制前進/後退；理解 H 橋同側繼電器同時導通的短路風險與互鎖設計" },
-              { "name": "24V 高壓系統配線",  "desc": "鉛酸電池組高電流配線規範，理解導線截面積與連接器接觸電阻對功率損耗的影響" }
+              {
+                "name": "繼電器 H 橋驅動",
+                "desc": "以兩個繼電器組成單軸 H 橋，切換馬達電流方向控制前進/後退；理解 H 橋同側繼電器同時導通的短路風險與互鎖設計"
+              },
+              {
+                "name": "24V 高壓系統配線",
+                "desc": "鉛酸電池組高電流配線規範，理解導線截面積與連接器接觸電阻對功率損耗的影響"
+              }
             ]
           },
           {
             "group": "機構設計",
             "items": [
-              { "name": "通用夾爪設計",       "desc": "夾口弧面段貼合圓柱、平面段夾持方形物件，在不換夾具的前提下兼容兩種截面形狀，理解幾何約束對夾持穩定性的設計原則" }
+              {
+                "name": "通用夾爪設計",
+                "desc": "夾口弧面段貼合圓柱、平面段夾持方形物件，在不換夾具的前提下兼容兩種截面形狀，理解幾何約束對夾持穩定性的設計原則"
+              }
             ]
           }
         ],
-        "github": ""
+        "github": "",
+        "images": []
       }
     },
     {
@@ -457,7 +693,14 @@
       "period": "2020 – 2023",
       "frc": true,
       "description": "從零自行開發三代 FRC 競賽全向輪底盤，涵蓋運動學演算法、齒輪傳動設計、CNC 精密加工與 LabVIEW PID 控制，獲 2022 FRC 台灣區控制創新獎。",
-      "tags": ["LabVIEW", "PID Control", "CNC 加工", "線切割", "Robotics", "3D 列印"],
+      "tags": [
+        "LabVIEW",
+        "PID Control",
+        "CNC 加工",
+        "線切割",
+        "Robotics",
+        "3D 列印"
+      ],
       "detail": {
         "purpose": "國外強隊普遍採用 Swerve Drive，其四輪獨立轉向架構在保有全向移動優勢的同時，解決了麥克納姆輪抓地力不足、容易受外界衝擊影響的問題。然而國內幾乎沒有相關研究資料，也沒有標準中文名稱。\n\n團隊決定從零自行開發，歷經三代迭代（2020、2022、2023+），研究目標涵蓋：\n\n① 以機械結構達成全向移動載具的所有運動模式\n② 提升機器人在競賽整體的運作效率與機動性\n③ 第三代以輕量化為核心設計方向\n④ 模組化鋁板設計：驅動馬達與轉向馬達位置可互換，驅動減速比可透過換齒調整，降低組裝與維修複雜度\n⑤ 達到全程自行開發、自行加工的目標\n⑥ 在競賽現場與國際隊伍進行機構技術交流",
         "concept": "【三代演進】\n・第一代（2020）：由學長設計，用於中科 5G 區域賽，驗證 Swerve Drive 基本可行性\n・第二代（2022）：重新設計並實際參賽，獲台灣鴻海區域賽控制創新獎\n・第三代（2022 後）：以輕量化與模組化為核心持續改良，為下一賽季備戰\n\n【運動學演算法（LabVIEW 實作）】\n以向量 X∠θ 表示輪子的方向與力道，將運動拆成三種模式疊加：\n・平移運動：四輪輸入相同角度與力道，車體不旋轉全向移動\n・迴旋運動：以四輪中心為圓心，各輪方向分別為 θ、-θ、180+θ、180-θ，原地旋轉\n・弧形運動：平移向量 + 迴旋向量加總，可以任意點為圓心做弧形軌跡\n取最大力道輪作分母正規化，確保輸出不超過馬達飽和值。\n\n【電路與控制系統】\n・驅動馬達：Falcon 500（內建 Talon FX 控制器，支援閉迴路速度控制）\n・轉向馬達：NEO 550（搭配行星減速箱）\n・旋轉編碼器：各輪獨立角度回饋，閉迴路控制轉向角度\n・主控器：roboRIO + LabVIEW 圖形化程式\n\n【減速比設計】\n・驅動：Falcon 500（6380 rpm）→ 1:7 → 911 rpm，換算線速度約 110 m/min\n・轉向：NEO 550（11000 rpm）→ 行星減速 1:28.1 → 齒輪 1:2 → 總比 1:56.2 → 196 rpm\n\n【第三代機構設計】\n・模組化鋁板：驅動馬達與轉向馬達孔位對應，可互換安裝位置；驅動齒輪區設計可換齒位，直接改變減速比\n・輕量化：多數內部齒輪改用 3D 列印（FDM），只保留馬達軸齒輪為金屬件；鋁板 CNC 偷料降重\n・防撞設計：馬達整體藏入機構內部，減少競賽碰撞損傷\n・自製車輪：取代原廠輪，抓地力提升\n\n【齒輪規格與加工】\n・M1.25/T15 正齒輪（驅動馬達軸）：線切割製作外形與內孔\n・M1.5/T24 正齒輪（轉向傳動）：線切割製作\n・M1.5/T15 直齒斜齒輪（車輪驅動換向）：線切割加工內孔\n・傳動心軸（六角柱 & 方槽截面）：CNC 銑床 + 4 爪精密夾盤，兩面分次銑削確保對稱\n・線切割作業流程：壓板固定 → 尋邊校正 XY 誤差 → 穿線 → 路徑模擬 → 切割 → 觀察剖面確認精度",
@@ -466,48 +709,119 @@
           {
             "group": "控制系統",
             "items": [
-              { "name": "向量合成運動學",    "desc": "以向量 X∠θ 分解平移、迴旋、弧形三種運動模式並疊加，取最大力道輪正規化輸出防馬達飽和；以 LabVIEW 圖形化實作完整演算法" },
-              { "name": "PID 閉迴路控制",    "desc": "各輪獨立編碼器回饋，PID 控制轉向角度，掌握積分飽和（wind-up）與微分濾波在競賽高動態環境下的調參與穩定性取捨" }
+              {
+                "name": "向量合成運動學",
+                "desc": "以向量 X∠θ 分解平移、迴旋、弧形三種運動模式並疊加，取最大力道輪正規化輸出防馬達飽和；以 LabVIEW 圖形化實作完整演算法"
+              },
+              {
+                "name": "PID 閉迴路控制",
+                "desc": "各輪獨立編碼器回饋，PID 控制轉向角度，掌握積分飽和（wind-up）與微分濾波在競賽高動態環境下的調參與穩定性取捨"
+              }
             ]
           },
           {
             "group": "機構設計",
             "items": [
-              { "name": "模組化傳動架構",    "desc": "驅動與轉向馬達孔位共用、齒輪區可換齒調整減速比，不修改鋁板即可適配不同馬達規格；三代迭代中實際驗證模組化對維修速度的提升" },
-              { "name": "輕量化結構設計",    "desc": "以材料替換策略降重：內部傳動齒輪改 FDM 列印，保留馬達軸金屬件；鋁板 CNC 偷料在保持結構強度前提下減少板材用量" }
+              {
+                "name": "模組化傳動架構",
+                "desc": "驅動與轉向馬達孔位共用、齒輪區可換齒調整減速比，不修改鋁板即可適配不同馬達規格；三代迭代中實際驗證模組化對維修速度的提升"
+              },
+              {
+                "name": "輕量化結構設計",
+                "desc": "以材料替換策略降重：內部傳動齒輪改 FDM 列印，保留馬達軸金屬件；鋁板 CNC 偷料在保持結構強度前提下減少板材用量"
+              }
             ]
           },
           {
             "group": "精密加工",
             "items": [
-              { "name": "CNC 數值銑削",      "desc": "加工傳動心軸（六角柱 & 方槽截面），以 4 爪夾盤定位，兩面分次銑削確保截面對稱；相較手工銑床大幅提升尺寸精度與批量重現性" },
-              { "name": "數值線切割",        "desc": "完成 M1.25–M1.5 正齒輪與直齒斜齒輪的外形與內孔切割，掌握壓板固定、尋邊校正 XY 誤差、路徑模擬確認的完整作業流程" }
+              {
+                "name": "CNC 數值銑削",
+                "desc": "加工傳動心軸（六角柱 & 方槽截面），以 4 爪夾盤定位，兩面分次銑削確保截面對稱；相較手工銑床大幅提升尺寸精度與批量重現性"
+              },
+              {
+                "name": "數值線切割",
+                "desc": "完成 M1.25–M1.5 正齒輪與直齒斜齒輪的外形與內孔切割，掌握壓板固定、尋邊校正 XY 誤差、路徑模擬確認的完整作業流程"
+              }
             ]
           }
         ],
         "github": "",
         "images": [
-          { "src": "/images/swerve/swerve-cad-iso.jpg",          "caption": "第三代 Swerve Drive — 3D CAD 等角視圖" },
-          { "src": "/images/swerve/swerve-cad-4view.jpg",        "caption": "第三代 Swerve Drive — 四視圖工程圖" },
-          { "src": "/images/swerve/swerve-assembled-top.jpg",    "caption": "組裝完成 — 俯視（可見齒輪傳動系統）" },
-          { "src": "/images/swerve/swerve-assembled-side.jpg",   "caption": "組裝完成 — 側視（馬達與底盤結構）" },
-          { "src": "/images/swerve/swerve-gears-internal.jpg",   "caption": "內部齒輪組（3D 列印齒輪 + 金屬件）" },
-          { "src": "/images/swerve/swerve-bevel-gear.jpg",       "caption": "直齒斜齒輪與驅動馬達 CAD 模型" },
-          { "src": "/images/swerve/swerve-plate-cnc.jpg",        "caption": "CNC 加工完成的鋁板" },
-          { "src": "/images/swerve/swerve-gear-drill.jpg",       "caption": "金屬斜齒輪鑽孔加工" },
-          { "src": "/images/swerve/swerve-wire-cut-action.jpg",  "caption": "線切割加工齒輪內孔（進行中）" },
-          { "src": "/images/swerve/swerve-wire-cut-panel.jpg",   "caption": "線切割機控制面板 — 六角形路徑模擬" },
-          { "src": "/images/swerve/swerve-flowchart-algo.png",   "caption": "LabVIEW 向量合成運動學演算法流程圖" },
-          { "src": "/images/swerve/swerve-wiring.png",           "caption": "FRC 機器人電路系統配線圖" }
+          {
+            "src": "/images/swerve/swerve-cad-iso.jpg",
+            "caption": "第三代 Swerve Drive — 3D CAD 等角視圖"
+          },
+          {
+            "src": "/images/swerve/swerve-cad-4view.jpg",
+            "caption": "第三代 Swerve Drive — 四視圖工程圖"
+          },
+          {
+            "src": "/images/swerve/swerve-assembled-top.jpg",
+            "caption": "組裝完成 — 俯視（可見齒輪傳動系統）"
+          },
+          {
+            "src": "/images/swerve/swerve-assembled-side.jpg",
+            "caption": "組裝完成 — 側視（馬達與底盤結構）"
+          },
+          {
+            "src": "/images/swerve/swerve-gears-internal.jpg",
+            "caption": "內部齒輪組（3D 列印齒輪 + 金屬件）"
+          },
+          {
+            "src": "/images/swerve/swerve-bevel-gear.jpg",
+            "caption": "直齒斜齒輪與驅動馬達 CAD 模型"
+          },
+          {
+            "src": "/images/swerve/swerve-plate-cnc.jpg",
+            "caption": "CNC 加工完成的鋁板"
+          },
+          {
+            "src": "/images/swerve/swerve-gear-drill.jpg",
+            "caption": "金屬斜齒輪鑽孔加工"
+          },
+          {
+            "src": "/images/swerve/swerve-wire-cut-action.jpg",
+            "caption": "線切割加工齒輪內孔（進行中）"
+          },
+          {
+            "src": "/images/swerve/swerve-wire-cut-panel.jpg",
+            "caption": "線切割機控制面板 — 六角形路徑模擬"
+          },
+          {
+            "src": "/images/swerve/swerve-flowchart-algo.png",
+            "caption": "LabVIEW 向量合成運動學演算法流程圖"
+          },
+          {
+            "src": "/images/swerve/swerve-wiring.png",
+            "caption": "FRC 機器人電路系統配線圖"
+          }
         ]
       }
     }
   ],
   "awards": [
-    { "title": "AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽",              "year": "2026" },
-    { "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎", "year": "2022", "frc": true },
-    { "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",    "year": "2022" },
-    { "title": "第 52 屆全國技能競賽 (技能技藝競賽)：集體創作職類代表",      "year": "2022" },
-    { "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",                "year": "2020", "frc": true }
+    {
+      "title": "AWS x BitoPro 黑客松：AI 詐騙偵測專案完賽",
+      "year": "2026"
+    },
+    {
+      "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎",
+      "year": "2022",
+      "frc": true
+    },
+    {
+      "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",
+      "year": "2022"
+    },
+    {
+      "title": "第 52 屆全國技能競賽 (技能技藝競賽)：集體創作職類代表",
+      "year": "2022"
+    },
+    {
+      "title": "2020 FRC 中科 5G 區域賽：最佳工業設計獎",
+      "year": "2020",
+      "frc": true
+    }
   ]
 }
