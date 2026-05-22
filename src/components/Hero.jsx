@@ -30,11 +30,16 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-6">
+            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">
               {profile.name}
             </h1>
+            <p className="hero-subtitle text-sm md:text-[15px] text-gray-400 font-light tracking-[0.05em] mb-11">
+              AIoT &amp; Embedded Systems
+              <span className="mx-2.5 text-gray-300 opacity-60">|</span>
+              Deep Learning Application
+            </p>
             {full && (
-              <div className="flex items-center h-9 mb-14">
+              <div className="flex items-center h-9 mb-5">
                 <span className="text-xl md:text-2xl text-[#86868B] font-light">{shown}</span>
                 <span className="ml-1 inline-block w-[2px] h-6 bg-[#0071E3] animate-blink" />
               </div>

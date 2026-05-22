@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import cvData from '../data/cvData.json'
 import VapCharts from '../components/VapCharts'
 import BitoCharts from '../components/BitoCharts'
@@ -29,11 +29,18 @@ export default function ProjectDetail() {
   const navigate        = useNavigate()
   const navigationType  = useNavigationType()
   const project         = cvData.projects.find(p => p.id === id)
+  const [archOpen, setArchOpen] = useState(false)
 
   useEffect(() => {
     if (project) document.title = `${project.title} — 江嘉元`
     return () => { document.title = '江嘉元 — 個人履歷' }
   }, [project])
+
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') setArchOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
 
   const handleBack = () => {
     if (navigationType === 'POP') navigate('/')
@@ -198,7 +205,72 @@ export default function ProjectDetail() {
               Live Demo
             </a>
           )}
+          {!detail.github && (
+            <button
+              onClick={() => setArchOpen(true)}
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full
+                         border border-slate-200 text-[#6e6e73] text-sm font-medium
+                         hover:border-[#1D1D1F] hover:text-[#1D1D1F] active:scale-95 transition-all">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+              View Architecture
+            </button>
+          )}
         </div>
+
+        {/* Architecture modal */}
+        {archOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            onClick={() => setArchOpen(false)}
+          >
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+            <div
+              className="arch-modal-enter relative z-10 bg-white/90 backdrop-blur-xl rounded-2xl p-8
+                         w-full max-w-2xl shadow-[0_32px_80px_rgba(0,0,0,0.18)] border border-white/60"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-[11px] text-[#6e6e73] tracking-[0.15em] uppercase mb-1">Architecture</p>
+                  <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]">{project.title}</h3>
+                </div>
+                <button
+                  onClick={() => setArchOpen(false)}
+                  className="w-8 h-8 rounded-full bg-[#f5f5f7] flex items-center justify-center
+                             text-[#6e6e73] hover:bg-[#e8e8ed] transition-colors text-sm font-medium"
+                >✕</button>
+              </div>
+
+              <div className="rounded-xl bg-[#f5f5f7] border border-black/[0.05] min-h-[260px]
+                              flex flex-col items-center justify-center gap-4 text-center p-10">
+                <div className="w-12 h-12 rounded-xl bg-white shadow-sm border border-black/[0.06]
+                                flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6e6e73" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-[#1D1D1F] mb-1.5">架構圖即將上線</p>
+                  <p className="text-xs text-[#86868B] leading-relaxed max-w-xs">
+                    此區塊預留用於放置系統架構圖、SHAP 示意圖或流程圖。<br/>
+                    上傳至{' '}
+                    <code className="bg-white px-1.5 py-0.5 rounded text-[11px] text-[#0071E3] border border-black/[0.06]">
+                      public/images/{project.id}/
+                    </code>
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-4 text-[11px] text-[#C7C7CC] text-center">
+                按 <kbd className="px-1.5 py-0.5 rounded bg-[#f5f5f7] border border-black/[0.08] text-[10px] font-mono">Esc</kbd> 或點擊外側關閉
+              </p>
+            </div>
+          </div>
+        )}
 
       </main>
       </div>

@@ -78,6 +78,24 @@
 }
 .page-enter { animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
+/* ── Hero subtitle ── */
+.hero-subtitle {
+  animation: subtitleFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+@keyframes subtitleFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Architecture modal ── */
+.arch-modal-enter {
+  animation: archModalIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes archModalIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
 /* ── Accessibility ── */
 @media (prefers-reduced-motion: reduce) {
   .reveal, .card-stagger > * {
@@ -90,7 +108,9 @@
     transform: none !important;
     animation: none !important;
   }
-  .animate-blink { animation: none !important; }
-  .scroll-bounce { animation: none !important; }
-  .page-enter    { animation: none !important; }
+  .hero-subtitle  { animation: none !important; opacity: 1 !important; }
+  .arch-modal-enter { animation: none !important; }
+  .animate-blink  { animation: none !important; }
+  .scroll-bounce  { animation: none !important; }
+  .page-enter     { animation: none !important; }
 }
