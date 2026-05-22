@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 
 const QUADRANTS = [
@@ -57,6 +57,7 @@ const LEVEL_STYLE = {
 }
 
 export default function SkillGrid({ skills, detail }) {
+  const location = useLocation()
   return (
     <section id="skills" className="py-32 bg-[#0d0d0f]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -76,6 +77,7 @@ export default function SkillGrid({ skills, detail }) {
               <Link
                 key={q.key}
                 to={`/skills/${q.key}`}
+                state={{ background: location }}
                 className={`col-span-1 ${isFeatured ? 'md:col-span-2' : ''}
                            rounded-2xl bg-[#141418] border border-white/[0.06]
                            hover:border-white/[0.13] hover:-translate-y-0.5 hover:bg-[#1a1a20]

@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
+import { useParams, Link, useNavigate, useNavigationType, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import cvData from '../data/cvData.json'
 
@@ -32,6 +32,8 @@ export default function SkillDetail() {
   const { id }         = useParams()
   const navigate       = useNavigate()
   const navigationType = useNavigationType()
+  const location       = useLocation()
+  const isModal        = !!location.state?.background
   const detail         = cvData.skills_detail?.[id]
   const accent         = SKILL_ACCENTS[id] || 'from-gray-300 to-gray-400'
 
@@ -40,9 +42,21 @@ export default function SkillDetail() {
     return () => { document.title = '江嘉元 — 個人履歷' }
   }, [detail])
 
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape' && isModal) navigate(-1) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [isModal, navigate])
+
+  useEffect(() => {
+    if (!isModal) return
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [isModal])
+
   const handleBack = () => {
-    if (navigationType === 'POP') navigate('/')
-    else navigate(-1)
+    if (isModal || navigationType !== 'POP') navigate(-1)
+    else navigate('/')
   }
 
   if (!detail) {
@@ -54,10 +68,105 @@ export default function SkillDetail() {
     )
   }
 
+  const total    = detail.skills?.length || 0
+  const gridCols = total <= 3
+    ? 'grid-cols-1 md:grid-cols-3'
+    : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+
+  const mainContent = (
+    <>
+      {/* Header */}
+      <div className="mb-14 max-w-2xl">
+        <p className="text-[13px] font-semibold text-[#0071E3] mb-3">
+          {detail.en}
+        </p>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-6 leading-tight">
+          {detail.title}
+        </h1>
+        <p className="text-base text-slate-500 leading-relaxed">
+          {detail.overview}
+        </p>
+      </div>
+
+      {/* Skill cards */}
+      <div className={`grid ${gridCols} gap-4`}>
+        {(detail.skills || []).map((skill, i) => {
+          const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
+          return (
+            <div key={i}
+                 className="bg-white border border-slate-100 rounded-2xl p-7 shadow-sm
+                            hover:border-slate-200 hover:shadow-md transition-all duration-300
+                            flex flex-col gap-4">
+
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug">
+                  {skill.name}
+                </h2>
+                <span className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none ${cfg.badge}`}>
+                  {skill.level}
+                </span>
+              </div>
+
+              <LevelDots level={skill.level} />
+
+              <p className="text-sm text-slate-500 leading-relaxed flex-1">
+                {skill.desc}
+              </p>
+
+              {skill.projects?.length > 0 && (
+                <div className="pt-3 border-t border-slate-50">
+                  <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-2">
+                    應用專案
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {skill.projects.map(proj => (
+                      <span key={proj}
+                            className="px-2.5 py-1 rounded-full text-xs font-medium
+                                       bg-blue-50 text-blue-700 border border-blue-100">
+                        {proj}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
+
+  if (isModal) {
+    return (
+      <div className="fixed inset-0 z-50" onClick={() => navigate(-1)}>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+        <div
+          className="modal-panel-enter absolute top-0 right-0 bottom-0 w-full max-w-4xl
+                     bg-slate-50 overflow-y-auto shadow-2xl"
+          onClick={e => e.stopPropagation()}
+        >
+          <div className={`h-[3px] w-full bg-gradient-to-r ${accent}`} />
+          <nav className="sticky top-0 z-10 bg-white/70 backdrop-blur-md border-b border-slate-100">
+            <div className="px-6 md:px-10 h-14 flex items-center justify-between gap-4">
+              <button onClick={() => navigate(-1)}
+                      className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#1D1D1F] transition-colors shrink-0">
+                <span>←</span><span>關閉</span>
+              </button>
+              <p className="text-sm font-semibold tracking-tight text-[#1D1D1F] truncate">{detail.title}</p>
+              <div className="shrink-0 w-12" />
+            </div>
+          </nav>
+          <main className="pt-10 pb-32 px-6 md:px-10 max-w-7xl mx-auto">
+            {mainContent}
+          </main>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-slate-50 min-h-screen font-sans antialiased page-enter">
-
-      {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
           <button onClick={handleBack}
@@ -68,84 +177,11 @@ export default function SkillDetail() {
           <div className="shrink-0 w-12" />
         </div>
       </nav>
-
       <div className="pt-14">
         <div className={`h-[3px] w-full bg-gradient-to-r ${accent}`} />
         <main className="pt-16 pb-32 px-6 md:px-10 max-w-7xl mx-auto">
-
-        {/* Header */}
-        <div className="mb-14 max-w-2xl">
-          <p className="text-[13px] font-semibold text-[#0071E3] mb-3">
-            {detail.en}
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-6 leading-tight">
-            {detail.title}
-          </h1>
-          <p className="text-base text-slate-500 leading-relaxed">
-            {detail.overview}
-          </p>
-        </div>
-
-        {/* Skill cards */}
-        {(() => {
-          const total = detail.skills?.length || 0
-          const gridCols = total <= 3
-            ? 'grid-cols-1 md:grid-cols-3'
-            : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
-          return (
-          <div className={`grid ${gridCols} gap-4`}>
-          {(detail.skills || []).map((skill, i) => {
-            const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
-            return (
-              <div key={i}
-                   className="bg-white border border-slate-100 rounded-2xl p-7 shadow-sm
-                              hover:border-slate-200 hover:shadow-md transition-all duration-300
-                              flex flex-col gap-4">
-
-                {/* Card header */}
-                <div className="flex items-start justify-between gap-3">
-                  <h2 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug">
-                    {skill.name}
-                  </h2>
-                  <span className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none ${cfg.badge}`}>
-                    {skill.level}
-                  </span>
-                </div>
-
-                {/* Level dots */}
-                <LevelDots level={skill.level} />
-
-                {/* Description */}
-                <p className="text-sm text-slate-500 leading-relaxed flex-1">
-                  {skill.desc}
-                </p>
-
-                {/* Projects */}
-                {skill.projects?.length > 0 && (
-                  <div className="pt-3 border-t border-slate-50">
-                    <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-slate-400 mb-2">
-                      應用專案
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {skill.projects.map(proj => (
-                        <span key={proj}
-                              className="px-2.5 py-1 rounded-full text-xs font-medium
-                                         bg-blue-50 text-blue-700 border border-blue-100">
-                          {proj}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            )
-          })}
-        </div>
-          )
-        })()}
-
-      </main>
+          {mainContent}
+        </main>
       </div>
     </div>
   )

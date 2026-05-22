@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 
 const PROJECT_ACCENTS = {
@@ -74,6 +74,7 @@ function SpotlightCard({ children, className = '' }) {
 }
 
 export default function ProjectShowcase({ projects }) {
+  const location = useLocation()
   const featured = projects.filter(p => p.metric)
   const rest      = projects.filter(p => !p.metric)
 
@@ -89,6 +90,7 @@ export default function ProjectShowcase({ projects }) {
             {featured.map(proj => (
               <SpotlightCard key={proj.id}>
                 <Link to={`/projects/${proj.id}`}
+                      state={{ background: location }}
                       className="rounded-2xl bg-white
                                  shadow-[0_2px_12px_rgba(0,0,0,0.06)]
                                  hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
@@ -138,6 +140,7 @@ export default function ProjectShowcase({ projects }) {
             {rest.map(proj => (
               <SpotlightCard key={proj.id} className="flex flex-col">
                 <Link to={`/projects/${proj.id}`}
+                      state={{ background: location }}
                       className="rounded-2xl bg-white
                                  shadow-[0_2px_12px_rgba(0,0,0,0.06)]
                                  hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
