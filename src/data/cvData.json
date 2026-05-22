@@ -296,7 +296,7 @@
       "category": "大學專題作品",
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
-      "description": "與亞東紀念醫院合作，以 LSTM 深度學習模型分析 ICU 連續生理數據，達成 VAP 發生前 72 小時超前預警（AUROC 0.99）。",
+      "description": "與亞東紀念醫院合作，復刻 JCM 2025 論文期間發現 Window-level CV 資料洩漏，以 Stay-level CV 修正驗證邏輯；用台灣本土 ICU 電子病歷訓練 LSTM，僅需 4 項常規生理指標達成 72 小時超前 VAP 預警（AUROC 0.99，AUPRC 0.93）。",
       "tags": [
         "PyTorch",
         "LSTM",
@@ -305,8 +305,8 @@
         "Medical AI"
       ],
       "detail": {
-        "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房中最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀明顯時才介入，錯失最佳預防時機。\n\n本專案與亞東紀念醫院合作，以真實臨床電子病歷（EHR）為基礎，開發一套能提前 6～72 小時預警 VAP 的深度學習系統。最終實現的模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。",
-        "concept": "【一、論文復刻與問題發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構模型。復刻過程中發現原論文採用 Window-level Cross Validation，導致同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為資料洩漏（Data Leakage）。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，109 位機械通氣患者：19 VAP、90 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理高度類別不平衡問題。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，計算各特徵對模型預測的貢獻度，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
+        "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀已明顯時才介入，錯失最佳預防窗口。\n\n本專案與亞東紀念醫院合作，以真實電子病歷（EHR）為基礎，開發能提前 6～72 小時預警 VAP 的深度學習系統。最終模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。\n\n【為何選用 LSTM，而非 GRU 或 Transformer？】\nVAP 是一種時序演化疾病：機械通氣患者的生理指標在感染前 48–72 小時會出現連續細微漂移，單一時間點的靜態特徵無法捕捉此類長程依賴。LSTM 的 cell state 與 gate 機制天然適合多變量時序分類；相較於 GRU，LSTM 在預測窗口延伸至 72 小時時對長程依賴的表現更穩定。而 Transformer 在本案 109 位患者的小樣本場景下過擬合風險過高，放棄採用。對比測試中 LSTM 在所有預警窗口均顯著優於 LR、RF、SVM。",
+        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為 Data Leakage。這個發現本身成為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，109 位機械通氣患者：19 VAP、90 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理高度類別不平衡問題。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
         "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n📄 論文撰寫中，預計投稿 IEEE GCCE 2025 / 2026",
         "tech": [
           {
@@ -376,8 +376,8 @@
       ],
       "detail": {
         "purpose": "加密貨幣交易所是洗錢犯罪的高風險場域。人頭帳戶（Shell Account）是最常見的手法之一——犯罪集團利用他人身份開戶，透過快速存提、換匯、轉出等操作掩蓋資金來源。BitoPro 作為台灣主流交易所，具備落實 KYC/AML 合規義務的需求。\n\nBitOGuard 以 BitoPro 提供的真實競賽資料集為基礎：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 位用戶）\n・USDT 交易紀錄：217,634 筆（33,587 位用戶）\n・標記人頭帳戶：1,640 筆（佔訓練集 3.21%）\n\n目標是以機器學習對每個帳戶計算風險分數，識別出高風險的可疑人頭帳戶。",
-        "concept": "【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
-        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（5-fold CV）】\n・Precision：9.83%（± 8.12%）\n・Recall：0.43%（± 0.36%）\n・F1 Score：0.82%\n競賽提交版以保守閾值（0.65）共標記 2 個高風險帳戶。\n\n【技術反思】\n初版模型的低召回率直接反映了 AML 場景的核心難題：標記樣本僅佔 3.21%（1:30 不平衡）、特徵維度不足、閾值偏保守。真實 AML 系統通常也面臨類似取捨——提高 Recall 必然增加誤報成本。後續改良方向：引入圖神經網路（GNN）建模黑名單鄰居關係、以 SMOTE/ADASYN 處理不平衡、擴充帳戶年齡與 IP 共用關聯特徵。",
+        "concept": "【為何選用 XGBoost，而非深度學習？】\nAML 合規系統的核心需求是可解釋性：監管機構要求對每筆標記帳戶提供「哪些特徵觸發高風險」的具體依據，而非黑盒分數。XGBoost 配合 SHAP 值分析可直接輸出每個特徵對單一帳戶預測的貢獻量，滿足合規說明義務。此外，相較於神經網路，XGBoost 在此規模的結構化交易資料（<65K 帳戶）訓練更快、超參數更穩定，且原生支援 scale_pos_weight 直接緩解 1:30 類別不平衡。\n\n【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
+        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（5-fold Stratified CV）】\n・Precision：9.83%（± 8.12%）\n・Recall：0.43%（± 0.36%）\n・F1 Score：0.82%\n競賽提交版採保守閾值（0.65），共標記 2 個高風險帳戶——此設計決策刻意偏向 Precision，避免對正常用戶的誤判造成合規風險。\n\n【誠實的技術反思：為什麼這些指標是合理的起點？】\n低 Recall 直接反映 AML 場景的三重難題：① 標記樣本僅佔 3.21%（1:30 不平衡）；② 競賽資料集欠缺設備指紋、IP 關聯等高判別力特徵；③ 人頭帳戶的行為模式與正常高頻交易者高度重疊。真實金融機構的 AML 系統同樣面臨 Precision vs. Recall 的根本取捨——提高 Recall 必然增加誤報成本與人工審查負擔。後續改良方向：圖神經網路（GNN）建模黑名單鄰居關係、SMOTE/ADASYN 處理不平衡、擴充帳戶年齡與 IP 共用特徵。",
         "tech": [
           {
             "group": "機器學習",
@@ -488,7 +488,7 @@
       "category": "大學校外作品",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "基於 STM32F103 微控制器設計之 17 鍵數字小鍵盤，完整走完 EasyEDA Pro PCB 設計、ChibiOS HAL 韌體配置、QMK RGB Matrix 整合至 DFU 燒錄的全流程。支援 VIA / VIAL 圖形化改鍵，已開源。",
+      "description": "以 STM32F072 設計之 17 鍵 USB HID 數字鍵盤：EasyEDA Pro PCB 設計、ChibiOS HAL 韌體、QMK RGB Matrix 全流程自製。選用 F072 內建 USB FS 周邊實現免燒錄器 DFU 燒錄；支援 VIA / VIAL 即時改鍵，已開源於 GitHub。",
       "tags": [
         "QMK Firmware",
         "STM32",
@@ -498,9 +498,9 @@
         "VIA / VIAL"
       ],
       "detail": {
-        "purpose": "本專案為一款基於 STM32F103 微控制器之 17 鍵數字小鍵盤，使用 QMK Firmware + ChibiOS RTOS 開發。主要目的如下：\n\n・作為日常數字輸入工具（Numpad 輸入）\n・提供可自定義之 Layer 切換功能（功能鍵 / RGB 控制）\n・驗證自製 PCB（EasyEDA Pro）、矩陣掃描（Matrix Scanning）與 RGB Matrix 整合\n・練習 ChibiOS HAL 配置（chconf.h / halconf.h / mcuconf.h）與 STM32 DFU 燒錄流程\n・實現可編譯、可重現的開源開發流程（QMK + STM32 DFU Bootloader）",
-        "concept": "本設計以「結構清晰、可重現、可擴展」為核心：\n\n【硬體架構】\n・MCU：STM32F072（支援 USB DFU 燒錄，無需額外燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・使用 QMK Firmware 搭配 ChibiOS HAL 作為核心框架\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n・Hue / Sat / Val 三維色彩調整\n\n【VIA / VIAL 支援】\n・支援 VIA 與 VIAL 圖形化改鍵介面\n・使用者無需重新編譯即可即時調整鍵位",
-        "outcome": "・完成 17 鍵數字鍵盤全流程開發：EasyEDA Pro PCB 設計 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置正確，USB HID 穩定運作\n・RGB Matrix 各動畫模式運作正常，亮度限制設定防止過流\n・支援 VIA / VIAL 圖形化改鍵，無需重新編譯即可調整鍵位\n・電路板經實際焊接與按鍵響應驗證，已開源於 GitHub",
+        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源設計——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F072 DFU 燒錄流程（BOOT0 腳位控制，免燒錄器）\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
+        "concept": "【核心技術選型決策】\n・STM32F072 vs. Arduino Pro Micro（ATmega32U4）\n  F072 內建 USB FS 周邊，透過 BOOT0 腳直接進入 DFU 模式——一根 USB 線完成燒錄與使用，免去 ISP 燒錄器。Pro Micro 雖入門友善，但 Flash 僅 32KB，限制 QMK 進階功能（RGB Matrix、VIAL）的編譯空間。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的非 Arduino 目標（STM32 系列）官方使用 ChibiOS 作為 RTOS 抽象層，確保 USB HID 掃描時序的跨 MCU 可移植性。裸機 HAL 雖更輕量，但需自行處理 USB 中斷優先級與 GPIO 掃描衝突。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，首次 PCB 專案迭代速度顯著更快。\n\n【硬體架構】\n・MCU：STM32F072（內建 USB FS，支援 DFU 免燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
+        "outcome": "・完成 17 鍵 USB HID 鍵盤全流程：EasyEDA Pro PCB 設計 → 立創商城打板 → 手焊組裝 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）正確配置，USB HID 穩定識別，按鍵響應延遲實測 < 5ms\n・RGB Matrix 各動畫模式運作正常；RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 限制有效防止 LED 串過流\n・VIA / VIAL 圖形化改鍵驗證通過，Layer 切換與 RGB 控制均可即時調整，無需重新編譯\n・排查並修復 PCB 腳位鏡像問題（EasyEDA 封裝預設 Top/Bottom 層方向差異），為後續 PCB 設計留下可複用的 Checklist\n・完整原始碼已開源於 GitHub，含 EasyEDA 工程檔、QMK 韌體、ChibiOS 配置說明",
         "tech": [
           {
             "group": "嵌入式韌體",
@@ -555,10 +555,22 @@
         "concept": "【系統架構：ESP-NOW 點對點通訊】\n選用 ESP32 + ESP-NOW 通訊協定：\n・不需 WiFi／路由器，點對點直連\n・斷線或重啟後自動重連，免操作\n・一台主機 + 四台從機，主機隨機選號發送；被選中的從機亮燈，玩家按鈕後從機回傳訊號\n\n【電路設計】\n電源 11.1V（三顆 18650 串聯）→ 7805 降壓至 5V 給 ESP32 → ESP32 GPIO 輸出 → 9013 電晶體放大 → 繼電器切換 11.1V 給 LED\n\n關鍵元件考量：\n・飛輪二極體（1N4001）並聯繼電器線圈，吸收反電動勢防止電弧損毀\n・電晶體放大解決 ESP32 GPIO 電流不足以驅動繼電器的問題\n・104 陶瓷電容於 7805 輸入輸出端去耦，穩定電壓\n\n【程式邏輯】\n主機（Master）：隨機產生 1–4 廣播給從機 → 進入 200 次迴圈等待回傳（約 10 秒）→ 收到回傳則廣播 0 重置進入下一輪；超時直接進入下一輪。\n從機（Slave）：接收編號比對自身編號決定是否亮燈 → 亮燈期間偵測按鈕 → 按下時回傳 1 → 延遲 0.1 秒後回傳 0 重置狀態（避免主機資料卡在 1）\n\n【機構設計】\n・上蓋：3D 列印（第一版）→ 木板 + 螺絲（改良版），便於替換維修\n・外殼：鋁方管 + 上蓋，頂部設計 3.5° 外傾螺絲孔強化固定\n・底蓋：強力磁鐵吸附，免工具開蓋換電池\n・主軸思維：化繁為簡，加工不過度複雜，維修要快",
         "outcome": "【功能達成】\n・五台機台（一主四從）完整運作，室內外皆可使用\n・無線通訊穩定，斷電重啟自動重連\n・操作直覺，符合特教組需求\n・獲特教組正式感謝狀\n\n【技術突破】\n・第一次用 ESP32 + ESP-NOW 做多機通訊\n・排查 7805 過熱、ESP32 無故損壞等實務問題，理解去耦電容、飛輪二極體的實際作用\n・從單機控制進階到多機協同\n\n【製作心得】\n為特殊生製作教具需考慮更多面向——不容易受傷、方便替換零件、化繁為簡。電路花了大量時間研究 7805 過熱與 ESP32 損壞問題，維修過程中學到的學科知識比設計階段更多。\n\n【分工（兩人專案）】\n・機構設計與加工：江嘉元\n・電路設計、製作、程式：江嘉元 + 杜權祐",
         "images": [
-          { "src": "/images/whack-a-mole/machines-group.jpg", "caption": "五台機台（一主四從）亮燈實況——黃、紅、藍三色 LED 按鈕" },
-          { "src": "/images/whack-a-mole/machine-single.jpg", "caption": "單台成品外觀：鋁方管外殼 + 木板上蓋 + 大型 LED 按鈕" },
-          { "src": "/images/whack-a-mole/circuit-schematic.jpg", "caption": "電路設計手稿：11.1V → 7805 → ESP32 → 9013 電晶體 → 繼電器 → LED" },
-          { "src": "/images/whack-a-mole/circuit-board.jpg", "caption": "電路實體：ESP32 + 繼電器接線，含 1N4001 飛輪二極體保護" }
+          {
+            "src": "/images/whack-a-mole/machines-group.jpg",
+            "caption": "五台機台（一主四從）亮燈實況——黃、紅、藍三色 LED 按鈕"
+          },
+          {
+            "src": "/images/whack-a-mole/machine-single.jpg",
+            "caption": "單台成品外觀：鋁方管外殼 + 木板上蓋 + 大型 LED 按鈕"
+          },
+          {
+            "src": "/images/whack-a-mole/circuit-schematic.jpg",
+            "caption": "電路設計手稿：11.1V → 7805 → ESP32 → 9013 電晶體 → 繼電器 → LED"
+          },
+          {
+            "src": "/images/whack-a-mole/circuit-board.jpg",
+            "caption": "電路實體：ESP32 + 繼電器接線，含 1N4001 飛輪二極體保護"
+          }
         ],
         "tech": [
           {
