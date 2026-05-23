@@ -313,8 +313,8 @@
           { "src": "/images/vap/fig-lstm-performance.png",   "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）" }
         ],
         "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀已明顯時才介入，錯失最佳預防窗口。\n\n本專案與亞東紀念醫院合作，以真實電子病歷（EHR）為基礎，開發能提前 6～72 小時預警 VAP 的深度學習系統。最終模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。\n\n【為何選用 LSTM，而非 GRU 或 Transformer？】\nVAP 是一種時序演化疾病：機械通氣患者的生理指標在感染前 48–72 小時會出現連續細微漂移，單一時間點的靜態特徵無法捕捉此類長程依賴。LSTM 的 cell state 與 gate 機制天然適合多變量時序分類；相較於 GRU，LSTM 在預測窗口延伸至 72 小時時對長程依賴的表現更穩定。而 Transformer 在本案 109 位患者的小樣本場景下過擬合風險過高，放棄採用。對比測試中 LSTM 在所有預警窗口均顯著優於 LR、RF、SVM。",
-        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為 Data Leakage。這個發現本身成為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，109 位機械通氣患者：19 VAP、90 non-VAP）進行本地訓練，並以 SMOTE 1:10 過採樣處理高度類別不平衡問題。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
-        "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n📄 論文撰寫中，預計投稿 IEEE GCCE 2025 / 2026",
+        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為 Data Leakage。這個發現本身成為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，納入 110 人，排除機械通氣時間不足 72 小時者 1 例，有效 109 人：VAP 54 例、非VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
+        "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n【消融實驗：mv_total 排除驗證】\nmv_total（分鐘通氣量）IG 歸因排名第一（0.00989），但因 mv≡Vt×RR 為數學冗餘特徵，移除後 24 小時 AUROC 反升 +0.004、AUPRC 升 +0.014，確認冗餘特徵應以模型行為驗證，而非單憑歸因分數決定取捨。\n\n📄 論文題目：基於 Stay-Level 交叉驗證與延長預測窗口之 LSTM 呼吸器相關肺炎早期預測研究\n論文完稿（2026.05），預計投稿 IEEE GCCE 2026",
         "tech": [
           {
             "group": "深度學習",
@@ -325,7 +325,7 @@
               },
               {
                 "name": "類別不平衡處理",
-                "desc": "對 1:5 嚴重不平衡數據套用 SMOTE 1:10 過採樣，理解過採樣時機與 Data Leakage 邊界——過採樣必須在切分後的訓練集內進行"
+                "desc": "各折訓練集內套用 SMOTE（1:10），理解過採樣必須在切分後執行的 Data Leakage 邊界；資料集整體近乎平衡（54 VAP：55 非VAP），但各折訓練子集比例仍有波動，SMOTE 確保每折訓練穩定"
               },
               {
                 "name": "可解釋 AI（XAI）",
@@ -346,7 +346,7 @@
               },
               {
                 "name": "Ablation Study",
-                "desc": "逐步移除特徵並比較 AUROC 變化量，確認各特徵的真實貢獻，而非僅依賴相關係數排序"
+                "desc": "移除 IG 排名第一的 mv_total（mv≡Vt×RR 數學冗餘），24h AUROC 反升 +0.004、AUPRC 升 +0.014，驗證特徵重要度應以模型行為而非歸因分數單一判斷；Cdyn（第11名）與 ΔP（第13名）歸因偏低一併排除"
               }
             ]
           },
