@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate, useNavigationType, useLocation } from 'react-router-dom'
+import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
 import { useEffect } from 'react'
 import cvData from '../data/cvData.json'
 
@@ -32,8 +32,6 @@ export default function SkillDetail() {
   const { id }         = useParams()
   const navigate       = useNavigate()
   const navigationType = useNavigationType()
-  const location       = useLocation()
-  const isModal        = !!location.state?.background
   const detail         = cvData.skills_detail?.[id]
   const accent         = SKILL_ACCENTS[id] || 'from-gray-300 to-gray-400'
 
@@ -42,20 +40,8 @@ export default function SkillDetail() {
     return () => { document.title = '江嘉元 — 個人履歷' }
   }, [detail])
 
-  useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape' && isModal) navigate(-1) }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [isModal, navigate])
-
-  useEffect(() => {
-    if (!isModal) return
-    document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = '' }
-  }, [isModal])
-
   const handleBack = () => {
-    if (isModal || navigationType !== 'POP') navigate(-1)
+    if (navigationType !== 'POP') navigate(-1)
     else navigate('/')
   }
 
@@ -136,34 +122,6 @@ export default function SkillDetail() {
       </div>
     </>
   )
-
-  if (isModal) {
-    return (
-      <div className="fixed inset-0 z-50" onClick={() => navigate(-1)}>
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-        <div
-          className="modal-panel-enter absolute top-0 right-0 bottom-0 w-full max-w-4xl
-                     bg-slate-50 overflow-y-auto shadow-2xl"
-          onClick={e => e.stopPropagation()}
-        >
-          <div className={`h-[3px] w-full bg-gradient-to-r ${accent}`} />
-          <nav className="sticky top-0 z-10 bg-white/70 backdrop-blur-md border-b border-slate-100">
-            <div className="px-6 md:px-10 h-14 flex items-center justify-between gap-4">
-              <button onClick={() => navigate(-1)}
-                      className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#1D1D1F] transition-colors shrink-0">
-                <span>←</span><span>關閉</span>
-              </button>
-              <p className="text-sm font-semibold tracking-tight text-[#1D1D1F] truncate">{detail.title}</p>
-              <div className="shrink-0 w-12" />
-            </div>
-          </nav>
-          <main className="pt-10 pb-32 px-6 md:px-10 max-w-7xl mx-auto">
-            {mainContent}
-          </main>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans antialiased page-enter">

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 
 const PROJECT_ACCENTS = {
@@ -75,7 +75,6 @@ function SpotlightCard({ children, className = '' }) {
 }
 
 export default function ProjectShowcase({ projects }) {
-  const location = useLocation()
   const [activeCategory, setActiveCategory] = useState('全部')
 
   const filtered = activeCategory === '全部'
@@ -117,7 +116,6 @@ export default function ProjectShowcase({ projects }) {
             <SpotlightCard key={proj.id} className="flex flex-col">
               <Link
                 to={`/projects/${proj.id}`}
-                state={{ background: location }}
                 className="rounded-2xl bg-white overflow-hidden
                            shadow-[0_2px_12px_rgba(0,0,0,0.06)]
                            hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]

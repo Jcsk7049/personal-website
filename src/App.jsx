@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
 import Education       from './components/Education'
@@ -81,24 +81,15 @@ function HomePage() {
 }
 
 function AppRoutes() {
-  const location   = useLocation()
-  const background = location.state?.background
-
   return (
     <>
       <ScrollToTop />
-      <Routes location={background || location}>
+      <Routes>
         <Route path="/"             element={<HomePage />}      />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/skills/:id"   element={<SkillDetail />}   />
         <Route path="*"             element={<NotFound />}      />
       </Routes>
-      {background && (
-        <Routes>
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/skills/:id"   element={<SkillDetail />}   />
-        </Routes>
-      )}
     </>
   )
 }
