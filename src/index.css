@@ -87,6 +87,11 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Hero bio ── */
+.hero-bio {
+  animation: subtitleFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+}
+
 /* ── Architecture modal ── */
 .arch-modal-enter {
   animation: archModalIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -118,6 +123,7 @@
     animation: none !important;
   }
   .hero-subtitle  { animation: none !important; opacity: 1 !important; }
+  .hero-bio       { animation: none !important; opacity: 1 !important; }
   .arch-modal-enter { animation: none !important; }
   .animate-blink  { animation: none !important; }
   .scroll-bounce  { animation: none !important; }
