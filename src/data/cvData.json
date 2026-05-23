@@ -539,6 +539,7 @@
     },
     {
       "id": "whack-a-mole",
+      "cover": "/images/whack-a-mole/machines-group.jpg",
       "category": "高職選手作品",
       "title": "無線打地鼠機 (特教組教具)",
       "period": "2021 – 2022",
@@ -662,6 +663,7 @@
     },
     {
       "id": "team-robot",
+      "cover": "/images/team-robot/competition.jpg",
       "category": "高職選手作品",
       "title": "集體創作競賽機器人",
       "period": "2022",
@@ -723,6 +725,7 @@
     },
     {
       "id": "swerve",
+      "cover": "/images/swerve/swerve-assembled-side.jpg",
       "category": "高職選手作品",
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",

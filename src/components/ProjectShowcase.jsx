@@ -8,6 +8,8 @@ const PROJECT_ACCENTS = {
   'audio-amplifier':   'from-lime-400 to-green-600',
   'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
   'whack-a-mole':      'from-teal-400 to-cyan-500',
+  'auto-sanitizer':    'from-emerald-400 to-green-600',
+  'team-robot':        'from-orange-400 to-amber-600',
   'swerve':            'from-rose-400 to-red-500',
 }
 
@@ -17,6 +19,8 @@ const CATEGORY_STYLES = {
   '大學專題作品': 'bg-violet-50 text-violet-700 border-violet-200',
   '大學校外作品': 'bg-teal-50 text-teal-700 border-teal-200',
 }
+
+const CATEGORIES = ['全部', '高職選手作品', '大學課程作品', '大學專題作品', '大學校外作品']
 
 export function accent(id) {
   return PROJECT_ACCENTS[id] || 'from-gray-300 to-gray-400'
@@ -32,7 +36,6 @@ export function CategoryBadge({ category, className = '' }) {
   )
 }
 
-/* ── Mouse spotlight wrapper ── */
 function SpotlightCard({ children, className = '' }) {
   const ref = useRef(null)
   const [mouse, setMouse] = useState({ x: 0, y: 0, on: false })
@@ -47,7 +50,6 @@ function SpotlightCard({ children, className = '' }) {
       }}
       onMouseLeave={() => setMouse(m => ({ ...m, on: false }))}
     >
-      {/* 1px border gradient glow */}
       <div
         className="pointer-events-none absolute -inset-px z-0"
         style={{
@@ -57,7 +59,6 @@ function SpotlightCard({ children, className = '' }) {
           transition: 'opacity 0.3s ease',
         }}
       />
-      {/* fill overlay */}
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl z-10"
         style={{
@@ -75,114 +76,122 @@ function SpotlightCard({ children, className = '' }) {
 
 export default function ProjectShowcase({ projects }) {
   const location = useLocation()
-  const featured = projects.filter(p => p.metric)
-  const rest      = projects.filter(p => !p.metric)
+  const [activeCategory, setActiveCategory] = useState('全部')
+
+  const filtered = activeCategory === '全部'
+    ? projects
+    : projects.filter(p => p.category === activeCategory)
 
   return (
     <section id="projects" className="py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader zh="專案" />
 
-        <div className="space-y-5">
-
-          {/* Featured cards */}
-          <div className="space-y-5 card-stagger">
-            {featured.map(proj => (
-              <SpotlightCard key={proj.id}>
-                <Link to={`/projects/${proj.id}`}
-                      state={{ background: location }}
-                      className="rounded-2xl bg-white
-                                 shadow-[0_2px_12px_rgba(0,0,0,0.06)]
-                                 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
-                                 transition-all duration-500 group block">
-                  <div className="p-8 md:p-10">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
-                          <p className="text-[11px] text-[#6e6e73] font-mono tracking-wide">{proj.period}</p>
-                          <CategoryBadge category={proj.category} />
-                        </div>
-                        <h3 className="text-xl font-bold tracking-tight text-[#1D1D1F] mb-3
-                                       group-hover:text-[#0071E3] transition-colors duration-200">
-                          {proj.title}
-                        </h3>
-                        <p className="text-sm text-[#6e6e73] leading-relaxed mb-5 max-w-lg">{proj.description}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {proj.tags.map(tag => (
-                            <span key={tag}
-                                  className="px-3 py-1 rounded-full bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05]
-                                             text-xs font-medium">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="shrink-0 flex flex-col items-end justify-center text-right
-                                      bg-[#f5f5f7] rounded-2xl px-8 py-5">
-                        <div className={`text-[5rem] font-extrabold leading-none tracking-[-0.05em]
-                                        bg-gradient-to-br ${accent(proj.id)} bg-clip-text text-transparent`}>
-                          {proj.metric.replace(/[a-zA-Z\s]/g, '')}
-                        </div>
-                        <p className="text-[10px] font-mono text-slate-400 tracking-[0.2em] uppercase mt-2">
-                          {proj.metric.replace(/[\d.+]/g, '').trim() || 'AUROC'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </SpotlightCard>
-            ))}
-          </div>
-
-          {/* Regular cards */}
-          <div className="grid md:grid-cols-2 gap-4 card-stagger">
-            {rest.map(proj => (
-              <SpotlightCard key={proj.id} className="flex flex-col">
-                <Link to={`/projects/${proj.id}`}
-                      state={{ background: location }}
-                      className="rounded-2xl bg-white
-                                 shadow-[0_2px_12px_rgba(0,0,0,0.06)]
-                                 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)]
-                                 transition-all duration-500 group flex flex-col flex-1">
-                  <div className="p-7 flex flex-col gap-3 flex-1">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                        {proj.frc ? (
-                          <span className="text-[10px] font-bold tracking-[0.08em] text-[#0071E3]">FRC</span>
-                        ) : (
-                          <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${accent(proj.id)} shrink-0`} />
-                        )}
-                        <p className="text-[11px] text-[#6e6e73] font-mono tracking-wide">{proj.period}</p>
-                        <CategoryBadge category={proj.category} />
-                      </div>
-                      <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
-                                     group-hover:text-[#0071E3] transition-colors duration-200">
-                        {proj.title}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-[#6e6e73] leading-relaxed flex-1">{proj.description}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {proj.tags.map(tag => (
-                        <span key={tag}
-                              className="px-2.5 py-0.5 rounded-full bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05]
-                                         text-xs font-medium">
-                          {tag.trim()}
-                        </span>
-                      ))}
-                    </div>
-                    <span className="text-xs text-[#0071E3] font-medium mt-1
-                                     opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                     transition-all duration-200">
-                      查看詳情 →
-                    </span>
-                  </div>
-                </Link>
-              </SpotlightCard>
-            ))}
-          </div>
-
+        {/* Filter tabs */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {CATEGORIES.map(cat => {
+            const count = cat === '全部' ? projects.length : projects.filter(p => p.category === cat).length
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium
+                            transition-all duration-200 border
+                            ${activeCategory === cat
+                              ? 'bg-[#1D1D1F] text-white border-[#1D1D1F]'
+                              : 'bg-white text-[#6e6e73] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
+                            }`}
+              >
+                {cat}
+                <span className={`text-[11px] font-mono ${activeCategory === cat ? 'text-white/60' : 'text-[#AEAEB2]'}`}>
+                  {count}
+                </span>
+              </button>
+            )
+          })}
         </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 card-stagger">
+          {filtered.map(proj => (
+            <SpotlightCard key={proj.id} className="flex flex-col">
+              <Link
+                to={`/projects/${proj.id}`}
+                state={{ background: location }}
+                className="rounded-2xl bg-white overflow-hidden
+                           shadow-[0_2px_12px_rgba(0,0,0,0.06)]
+                           hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]
+                           transition-all duration-500 group flex flex-col flex-1"
+              >
+                {/* Cover image / gradient area */}
+                <div className={`relative h-48 bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0`}>
+                  {proj.cover ? (
+                    <img
+                      src={proj.cover}
+                      alt={proj.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: 'radial-gradient(rgba(255,255,255,0.13) 1.5px, transparent 1.5px)',
+                        backgroundSize: '22px 22px',
+                      }}
+                    />
+                  )}
+                  {/* Gradient fade at bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/30 to-transparent" />
+                  {/* Category badge */}
+                  <div className="absolute top-3 left-3">
+                    <CategoryBadge category={proj.category} />
+                  </div>
+                  {/* FRC badge */}
+                  {proj.frc && (
+                    <div className="absolute bottom-3 right-3">
+                      <span className="px-2 py-0.5 rounded-full bg-black/30 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-white/20">
+                        FRC
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Info */}
+                <div className="p-5 flex flex-col gap-2 flex-1">
+                  <p className="text-[11px] text-[#AEAEB2] font-mono tracking-wide">{proj.period}</p>
+                  <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
+                                 group-hover:text-[#0071E3] transition-colors duration-200">
+                    {proj.title}
+                  </h3>
+                  <p className="text-sm text-[#6e6e73] leading-relaxed line-clamp-2 flex-1">
+                    {proj.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {proj.tags.slice(0, 3).map(tag => (
+                      <span key={tag}
+                            className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#6e6e73]
+                                       border border-black/[0.05] text-xs font-medium">
+                        {tag.trim()}
+                      </span>
+                    ))}
+                    {proj.tags.length > 3 && (
+                      <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#6e6e73]
+                                       border border-black/[0.05] text-xs font-medium">
+                        +{proj.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs text-[#0071E3] font-medium mt-0.5
+                                   opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
+                                   transition-all duration-200">
+                    查看詳情 →
+                  </span>
+                </div>
+              </Link>
+            </SpotlightCard>
+          ))}
+        </div>
+
       </div>
     </section>
   )
