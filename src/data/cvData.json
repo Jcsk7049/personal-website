@@ -441,11 +441,13 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/audio-amplifier/circuit-assembled.jpg",       "caption": "完成品：BJT 兩級放大電路板 + 8Ω 喇叭，實際驅動音訊輸出" },
-          { "src": "/images/audio-amplifier/pcb-raw.jpg",                 "caption": "感光板酸洗蝕刻後的 PCB：走線清晰，準備鑽孔焊接" },
-          { "src": "/images/audio-amplifier/pcb-layout-components.jpg",   "caption": "PCB 元件配置圖（正面）：109.2 × 45.7 mm，含電晶體、電容、可變電阻佈局" },
-          { "src": "/images/audio-amplifier/pcb-layout-bottom.jpg",       "caption": "PCB 元件配置圖（底面）：確認元件腳位鏡像方向" },
-          { "src": "/images/audio-amplifier/pcb-traces.jpg",              "caption": "PCB 銅箔走線圖：CE 放大級 + CC 射極隨耦器完整佈線" }
+          { "src": "/images/audio-amplifier/circuit-assembled.jpg",         "caption": "完成品：BJT 兩級放大電路板 + 8Ω 喇叭，實際驅動音訊輸出" },
+          { "src": "/images/audio-amplifier/pcb-etched.png",                "caption": "感光板酸洗蝕刻後的 PCB 生板：走線清晰，準備鑽孔焊接" },
+          { "src": "/images/audio-amplifier/circuit-schematic.png",          "caption": "EDA 電路原理圖：CE 放大級 + 偏壓網路 + CC 射極隨耦器完整設計" },
+          { "src": "/images/audio-amplifier/pcb-layout-components.png",      "caption": "PCB 元件配置圖（正面）：109.2 × 45.7 mm，含電晶體、電容、可變電阻佈局" },
+          { "src": "/images/audio-amplifier/pcb-layout-bottom.png",          "caption": "PCB 元件配置圖（底面）：確認元件腳位鏡像方向，兩次重製的關鍵學習點" },
+          { "src": "/images/audio-amplifier/pcb-traces.png",                 "caption": "PCB 銅箔走線圖：CE 放大級 + CC 射極隨耦器完整佈線" },
+          { "src": "/images/audio-amplifier/pcb-drill-pattern.png",          "caption": "PCB 鑽孔孔位圖：所有元件腳位與固定孔的加工基準" }
         ],
         "purpose": "大一電子學期末專案（第 12 組），目標是設計並實作一套可驅動 8Ω 喇叭的音訊放大電路。電路需包含可調增益功能，並完成從電路模擬、麵包板驗證到實際 PCB 製作的完整流程。\n\n本人主要負責 PCB 全流程：邏輯圖繪製、線路圖設計、感光板製作（曝光、顯影、酸洗）、鑽孔、焊接與除錯。",
         "concept": "【電路架構：兩級 BJT 放大】\n・輸入級：可變電阻 Rv1a / Rv1b 調整輸入增益；R3 / R4 提供直流偏壓使 Q1 穩定工作於主動區\n・第一級 CE（共射極）放大：Q1 提供主要電壓增益，集極電阻 RC 將電流變化轉換為輸出電壓\n・偏壓穩定：D1–D4 四個二極體串聯穩定 Q2、Q3 基極電壓差；C3 吸收反向電壓避免二極體擊穿\n・第二級 CC（共集極 / 射極隨耦器）：高輸入阻抗、低輸出阻抗，透過發射極電阻 RE 的負回授提升穩定性並降低失真，電壓增益約為 1\n・可變電阻 Rv2 調整整體直流工作點，在不失真的條件下找到最大增益\n\n【PCB 製作流程】\n感光 FR4 雙面板（15 cm × 12.5 cm），手工製作流程：\n① Layout 繪製 → 縮減白線交叉點，元件下方走線壓縮面積\n② 底片輸出 → 曝光 → 顯影 → 酸洗蝕刻 → 清洗\n③ 鑽孔 → 元件焊接 → 通電測試\n\n【兩次重製過程】\n第一次失敗：酸洗後有殘銅未清除乾淨，通電後短路。逐一確認二極體導通、電晶體工作狀態均正常後，確認問題出在板子本身。重新繪製 Layout 加急重製。\n\n第二次問題：焊接完成後仍無法運作。隊友發現 PCB 圖紙需「從下往上看」——功率 IC 和電晶體腳位全數鏡像，重新焊接後電路出現斷續訊號且電壓五秒後下跌。再次確認所有焊點導通後，電路順暢運作。",
