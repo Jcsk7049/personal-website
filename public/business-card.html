@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<title>江嘉元 — 名片</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── Screen ── */
+body{
+  font-family:'PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif;
+  background:#e5e5e5;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:32px 16px;
+  gap:24px;
+}
+
+/* ── URL 設定欄（列印時隱藏）── */
+.config{
+  background:#fff;
+  border-radius:12px;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,.1);
+  width:100%;
+  max-width:700px;
+}
+.config label{font-size:13px;font-weight:600;color:#1a1a1a;white-space:nowrap;}
+.config input{
+  flex:1;
+  border:1.5px solid #d0d0d0;
+  border-radius:8px;
+  padding:7px 12px;
+  font-size:13px;
+  outline:none;
+  transition:border-color .2s;
+}
+.config input:focus{border-color:#0071E3;}
+.config button{
+  background:#0071E3;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:7px 16px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+/* ── A4 列印框 ── */
+.page{
+  width:210mm;
+  background:#fff;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:0;
+}
+
+/* ── 單張名片：90mm × 55mm ── */
+.card{
+  width:105mm;
+  height:74.25mm; /* 297mm/4 */
+  padding:8mm 8mm 6mm 8mm;
+  display:flex;
+  gap:6mm;
+  align-items:stretch;
+  border:0.5px solid #e0e0e0;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+}
+
+/* 左色塊 */
+.card-stripe{
+  width:2.5mm;
+  background:linear-gradient(160deg,#0071E3 0%,#00A3FF 100%);
+  border-radius:2px;
+  flex-shrink:0;
+  align-self:stretch;
+}
+
+/* 右內容 */
+.card-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-width:0;
+}
+
+.card-top{}
+.card-name{
+  font-size:14pt;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#1a1a1a;
+  line-height:1;
+  margin-bottom:1.5mm;
+}
+.card-title{
+  font-size:7pt;
+  font-weight:500;
+  color:#6e6e73;
+  line-height:1.4;
+}
+
+.card-contacts{
+  display:flex;
+  flex-direction:column;
+  gap:1.5mm;
+}
+.card-contact-row{
+  display:flex;
+  align-items:center;
+  gap:2.5mm;
+}
+.contact-icon{
+  width:3.5mm;
+  height:3.5mm;
+  flex-shrink:0;
+  color:#0071E3;
+}
+.contact-text{
+  font-size:6.5pt;
+  color:#444;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* QR 區 */
+.card-qr{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  gap:1.5mm;
+  flex-shrink:0;
+}
+.qr-wrap{
+  width:18mm;
+  height:18mm;
+  border:1px solid #e8e8e8;
+  border-radius:3px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+.qr-wrap canvas,.qr-wrap img{
+  width:16mm !important;
+  height:16mm !important;
+}
+.qr-label{
+  font-size:5pt;
+  color:#aaa;
+  text-align:center;
+  line-height:1.3;
+}
+
+/* 角落裝飾圓 */
+.card::after{
+  content:'';
+  position:absolute;
+  right:-8mm;top:-8mm;
+  width:22mm;height:22mm;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,113,227,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* ── 列印模式 ── */
+@page{size:A4 portrait;margin:0;}
+@media print{
+  body{background:#fff;padding:0;display:block;}
+  .config,.print-hint{display:none!important;}
+  .page{
+    width:210mm;height:297mm;
+    box-shadow:none;
+    grid-template-rows:148.5mm 148.5mm;
+  }
+  .card{
+    height:148.5mm;
+    padding:10mm 10mm 8mm 10mm;
+  }
+  .card-name{font-size:16pt;}
+  .card-title{font-size:8pt;}
+  .contact-text{font-size:7.5pt;}
+  .qr-wrap{width:22mm;height:22mm;}
+  .qr-wrap canvas,.qr-wrap img{width:20mm!important;height:20mm!important;}
+  .card-stripe{width:3mm;}
+}
+
+.print-hint{
+  font-size:12px;color:#aaa;text-align:center;
+  background:#fff;border-radius:8px;
+  padding:10px 20px;
+  box-shadow:0 1px 6px rgba(0,0,0,.08);
+}
+</style>
+</head>
+<body>
+
+<!-- ── 設定欄 ── -->
+<div class="config no-print">
+  <label>網站 URL（QR Code）</label>
+  <input id="url-input" type="url" placeholder="https://yourname.netlify.app" value="https://yourname.netlify.app"/>
+  <button onclick="rebuildQR()">更新 QR Code</button>
+</div>
+
+<!-- ── A4 頁面（4 張名片）── -->
+<div class="page" id="card-page">
+
+  <!-- 名片 ×4（共用同一組 QR，由 JS 複製）-->
+  <div class="card" id="card-0">
+    <div class="card-stripe"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-name">江嘉元</div>
+        <div class="card-title">元智大學 電機工程學系<br>ICU AI 研究 · FRC 機器人 · 嵌入式韌體</div>
+      </div>
+      <div class="card-contacts">
+        <!-- Email -->
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="contact-text">johnjia9491@gmail.com</span>
+        </div>
+        <!-- GitHub -->
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="contact-text">github.com/Jcsk7049</span>
+        </div>
+        <!-- Phone -->
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="contact-text">+886 928 530 700</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-wrap" id="qr-0"></div>
+      <div class="qr-label">個人網站<br>掃碼查看</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-1">
+    <div class="card-stripe"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-name">江嘉元</div>
+        <div class="card-title">元智大學 電機工程學系<br>ICU AI 研究 · FRC 機器人 · 嵌入式韌體</div>
+      </div>
+      <div class="card-contacts">
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="contact-text">johnjia9491@gmail.com</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="contact-text">github.com/Jcsk7049</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="contact-text">+886 928 530 700</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-wrap" id="qr-1"></div>
+      <div class="qr-label">個人網站<br>掃碼查看</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-2">
+    <div class="card-stripe"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-name">江嘉元</div>
+        <div class="card-title">元智大學 電機工程學系<br>ICU AI 研究 · FRC 機器人 · 嵌入式韌體</div>
+      </div>
+      <div class="card-contacts">
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="contact-text">johnjia9491@gmail.com</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="contact-text">github.com/Jcsk7049</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="contact-text">+886 928 530 700</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-wrap" id="qr-2"></div>
+      <div class="qr-label">個人網站<br>掃碼查看</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-3">
+    <div class="card-stripe"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="card-name">江嘉元</div>
+        <div class="card-title">元智大學 電機工程學系<br>ICU AI 研究 · FRC 機器人 · 嵌入式韌體</div>
+      </div>
+      <div class="card-contacts">
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="contact-text">johnjia9491@gmail.com</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="contact-text">github.com/Jcsk7049</span>
+        </div>
+        <div class="card-contact-row">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="contact-text">+886 928 530 700</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-qr">
+      <div class="qr-wrap" id="qr-3"></div>
+      <div class="qr-label">個人網站<br>掃碼查看</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<p class="print-hint">Ctrl+P（Mac: ⌘+P）→ 邊界選「無」→ 儲存為 PDF ，再送印刷廠裁切</p>
+
+<script>
+const QR_SIZE = 64; // px for canvas
+
+function buildQR(url) {
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById('qr-' + i);
+    el.innerHTML = '';
+    new QRCode(el, {
+      text: url,
+      width: QR_SIZE,
+      height: QR_SIZE,
+      colorDark: '#1a1a1a',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+  }
+}
+
+function rebuildQR() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) return;
+  buildQR(url);
+}
+
+// 初始化
+window.addEventListener('load', () => {
+  buildQR(document.getElementById('url-input').value);
+});
+
+// Enter 觸發更新
+document.getElementById('url-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') rebuildQR();
+});
+</script>
+</body>
+</html>

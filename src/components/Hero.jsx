@@ -63,8 +63,9 @@ export default function Hero({ profile }) {
               </a>
               <a href={resumeHref}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                 className="px-5 py-2.5 rounded-full text-sm font-medium
+                            border-2 border-[#0071E3] text-[#0071E3]
+                            hover:bg-[#0071E3] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
                 {t.resumeBtn}
               </a>
             </div>
