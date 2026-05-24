@@ -18,7 +18,7 @@ export default function Hero({ profile }) {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
 
       {/* Background — clean, no blobs */}
 

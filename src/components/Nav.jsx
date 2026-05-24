@@ -8,15 +8,11 @@ const SECTIONS = [
   { id: 'awards',    label: '獲獎' },
 ]
 
-export default function Nav({ name }) {
-  const [scrolled, setScrolled] = useState(false)
-  const [active, setActive]     = useState('')
+const ease = { transitionTimingFunction: 'cubic-bezier(0,0,0.2,1)' }
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+export default function Nav({ name }) {
+  const [active,     setActive]     = useState('')
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,37 +26,125 @@ export default function Nav({ name }) {
     return () => observer.disconnect()
   }, [])
 
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled
-        ? 'bg-[#F5F5F7]/85 backdrop-blur-xl border-b border-black/[0.08]'
-        : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
-        <a href="#hero"
-           className={`text-sm font-extrabold tracking-tight text-[#1D1D1F] transition-all duration-300 ${
-             scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
-           }`}>
-          {name}
-        </a>
+  /* close mobile menu on resize */
+  useEffect(() => {
+    const close = () => { if (window.innerWidth >= 768) setMobileOpen(false) }
+    window.addEventListener('resize', close)
+    return () => window.removeEventListener('resize', close)
+  }, [])
 
-        <div className={`flex items-center gap-5 md:gap-7 transition-all duration-300 ${
-          scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}>
-          {SECTIONS.map(({ id, label }) => (
-            <a key={id} href={`#${id}`}
-               className={`relative text-xs md:text-sm transition-colors duration-[125ms] pb-1 ${
-                 active === id
-                   ? 'text-[#1D1D1F] font-semibold'
-                   : 'text-slate-400 hover:text-[#1D1D1F]'
-               }`}>
-              {label}
-              <span className={`absolute bottom-0 left-0 right-0 h-px rounded-full bg-[#0071E3]
-                                transition-all duration-[125ms] ${active === id ? 'opacity-100' : 'opacity-0'}`} />
-            </a>
-          ))}
+  return (
+    <>
+      {/* ── Wooting Nav ── sticky / white / 64px / no blur / no border */}
+      <nav
+        className="sticky top-0 z-50 w-full h-16 bg-white"
+        style={{ transition: 'background-color 0.125s cubic-bezier(0,0,0.2,1)' }}
+      >
+        <div className="max-w-[1200px] mx-auto h-full px-4 flex items-center justify-between">
+
+          {/* Brand */}
+          <a
+            href="#hero"
+            className="text-[15px] font-bold text-[#09090B]"
+            style={{ transition: 'color 0.125s cubic-bezier(0,0,0.2,1)' }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#FFB900')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#09090B')}
+          >
+            {name}
+          </a>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-7">
+            {SECTIONS.map(({ id, label }) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="relative text-[16px] leading-6 pb-[3px]"
+                style={{
+                  color: active === id ? '#09090B' : '#71717A',
+                  fontWeight: active === id ? 500 : 400,
+                  transition: 'color 0.125s cubic-bezier(0,0,0.2,1)',
+                }}
+                onMouseEnter={e => { if (active !== id) e.currentTarget.style.color = '#09090B' }}
+                onMouseLeave={e => { if (active !== id) e.currentTarget.style.color = '#71717A' }}
+              >
+                {label}
+                {/* Wooting accent underline */}
+                <span
+                  className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-[#FFB900]"
+                  style={{
+                    opacity: active === id ? 1 : 0,
+                    transition: 'opacity 0.125s cubic-bezier(0,0,0.2,1)',
+                  }}
+                />
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8"
+            onClick={() => setMobileOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            <span
+              className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
+              style={{
+                width: '20px',
+                transform: mobileOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
+                transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+              }}
+            />
+            <span
+              className="block h-[1.5px] bg-[#09090B] rounded-full"
+              style={{
+                width: '20px',
+                opacity: mobileOpen ? 0 : 1,
+                transition: 'opacity 0.125s cubic-bezier(0,0,0.2,1)',
+              }}
+            />
+            <span
+              className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
+              style={{
+                width: '20px',
+                transform: mobileOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
+                transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+              }}
+            />
+          </button>
         </div>
+      </nav>
+
+      {/* Mobile dropdown — plain white, no blur */}
+      <div
+        className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white overflow-hidden"
+        style={{
+          maxHeight: mobileOpen ? `${SECTIONS.length * 56}px` : '0px',
+          transition: 'max-height 0.125s cubic-bezier(0,0,0.2,1)',
+        }}
+      >
+        {SECTIONS.map(({ id, label }, i) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center px-4 h-14"
+            style={{
+              color: active === id ? '#09090B' : '#71717A',
+              fontWeight: active === id ? 500 : 400,
+              fontSize: '16px',
+              lineHeight: '24px',
+              borderTop: i === 0 ? '1px solid #F4F4F5' : '1px solid #F4F4F5',
+              transition: 'color 0.125s cubic-bezier(0,0,0.2,1)',
+            }}
+          >
+            {active === id && (
+              <span className="w-[3px] h-4 rounded-full bg-[#FFB900] mr-3 shrink-0" />
+            )}
+            {label}
+          </a>
+        ))}
       </div>
-    </nav>
+    </>
   )
 }

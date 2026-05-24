@@ -40,40 +40,74 @@ function HomePage() {
       <ProjectShowcase projects={cvData.projects} />
       <SkillGrid       skills={cvData.skills_matrix} detail={cvData.skills_detail} />
       <AwardList       awards={cvData.awards} />
-      <footer className="py-16 bg-[#F5F5F7] border-t border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
-            <div>
-              <p className="text-sm font-semibold text-[#1D1D1F] tracking-[-0.01em] mb-1">{cvData.profile.name}</p>
-              <p className="text-xs text-[#86868B]">{cvData.profile.title}</p>
+      {/* ── Apple Footer ── #F5F5F7 / 12px / rgba opacity system / 0.32s ease */}
+      <footer className="bg-[#F5F5F7] border-t border-black/[0.1]">
+        <div className="max-w-[980px] mx-auto px-6">
+
+          {/* Top: brand + columns */}
+          <div className="pt-10 pb-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10">
+
+            {/* Brand block */}
+            <div className="max-w-xs">
+              <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.88)] mb-2 tracking-tight">
+                {cvData.profile.name}
+              </p>
+              <p className="text-[12px] leading-[1.6] text-[rgba(0,0,0,0.56)]">
+                {cvData.profile.bio}
+              </p>
             </div>
-            <nav className="flex gap-10">
+
+            {/* Link columns */}
+            <div className="flex gap-12 shrink-0">
               <div className="flex flex-col gap-2.5">
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">內容</p>
-                <a href="#education"  className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">學歷</a>
-                <a href="#experience" className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">經歷</a>
-                <a href="#skills"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">技術</a>
-                <a href="#projects"   className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">專案</a>
-                <a href="#awards"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">獲獎</a>
+                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">內容</p>
+                {[
+                  { href: '#education',  label: '學歷' },
+                  { href: '#experience', label: '經歷' },
+                  { href: '#skills',     label: '技術' },
+                  { href: '#projects',   label: '專案' },
+                  { href: '#awards',     label: '獲獎' },
+                ].map(({ href, label }) => (
+                  <a key={href} href={href}
+                     className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#1D1D1F]"
+                     style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
+                    {label}
+                  </a>
+                ))}
               </div>
+
               <div className="flex flex-col gap-2.5">
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">聯絡</p>
+                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">聯絡</p>
                 <button
-                   onClick={() => { window.location.href = `mailto:${cvData.profile.contact.email}` }}
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms] text-left">Email</button>
+                  onClick={() => { window.location.href = `mailto:${cvData.profile.contact.email}` }}
+                  className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC] text-left"
+                  style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
+                  Email
+                </button>
                 <a href={`https://github.com/${cvData.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms]">GitHub ↗</a>
+                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
+                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
+                  GitHub ↗
+                </a>
                 <a href={`https://linkedin.com/in/${cvData.profile.links.linkedin}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms]">LinkedIn ↗</a>
+                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
+                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
+                  LinkedIn ↗
+                </a>
               </div>
-            </nav>
+            </div>
           </div>
-          <div className="border-t border-gray-100 pt-6 flex items-center justify-between">
-            <p className="text-xs text-[#C7C7CC]">© {new Date().getFullYear()} {cvData.profile.name}</p>
-            <p className="text-xs text-[#C7C7CC]">Built with React & Tailwind</p>
+
+          {/* Bottom bar */}
+          <div className="border-t border-black/[0.1] py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <p className="text-[12px] text-[rgba(0,0,0,0.48)]">
+              Copyright © {new Date().getFullYear()} {cvData.profile.name}. All rights reserved.
+            </p>
+            <p className="text-[12px] text-[rgba(0,0,0,0.48)]">Built with React &amp; Tailwind</p>
           </div>
+
         </div>
       </footer>
     </div>
