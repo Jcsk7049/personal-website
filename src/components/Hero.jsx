@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 export default function Hero({ profile }) {
   const [shown, setShown]           = useState('')
   const [showScroll, setShowScroll] = useState(true)
+  const { lang }                    = useLanguage()
+  const t                           = uiText[lang]
   const full = profile.title || ''
 
   useEffect(() => {
@@ -17,10 +21,10 @@ export default function Hero({ profile }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const resumeHref = lang === 'en' ? '/resume-zh.html' : '/resume-zh.html'
+
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
-
-      {/* Background — clean, no blobs */}
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
@@ -57,6 +61,12 @@ export default function Hero({ profile }) {
                             hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
                 LinkedIn
               </a>
+              <a href={resumeHref}
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                {t.resumeBtn}
+              </a>
             </div>
           </div>
 
@@ -86,7 +96,7 @@ export default function Hero({ profile }) {
         </div>
       </div>
 
-      {/* Scroll indicator — fades out on scroll */}
+      {/* Scroll indicator */}
       <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
                        pointer-events-none transition-opacity duration-500
                        ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
