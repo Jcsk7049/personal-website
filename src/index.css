@@ -13,47 +13,47 @@
   ::-webkit-scrollbar-thumb:hover { background: #AEAEB2; }
 }
 
-/* ── Scroll reveal ── */
+/* ── Scroll reveal — Apple: 0.32s / 0.08s delay ── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.32s 0.08s cubic-bezier(0.4, 0, 0.6, 1),
+              transform 0.32s 0.08s cubic-bezier(0.4, 0, 0.6, 1);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-/* ── Staggered cards ── */
+/* ── Staggered cards — 0.3s, tighter delays ── */
 .card-stagger > * {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.6, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.6, 1);
 }
-.is-visible .card-stagger > *:nth-child(1)  { opacity: 1; transform: none; transition-delay:  50ms; }
-.is-visible .card-stagger > *:nth-child(2)  { opacity: 1; transform: none; transition-delay: 120ms; }
-.is-visible .card-stagger > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: 190ms; }
-.is-visible .card-stagger > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: 260ms; }
-.is-visible .card-stagger > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: 330ms; }
-.is-visible .card-stagger > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: 380ms; }
-.is-visible .card-stagger > *:nth-child(7)  { opacity: 1; transform: none; transition-delay: 430ms; }
-.is-visible .card-stagger > *:nth-child(8)  { opacity: 1; transform: none; transition-delay: 480ms; }
-.is-visible .card-stagger > *:nth-child(9)  { opacity: 1; transform: none; transition-delay: 510ms; }
-.is-visible .card-stagger > *:nth-child(10) { opacity: 1; transform: none; transition-delay: 540ms; }
-.is-visible .card-stagger > *:nth-child(n+11) { opacity: 1; transform: none; transition-delay: 560ms; }
+.is-visible .card-stagger > *:nth-child(1)  { opacity: 1; transform: none; transition-delay:  40ms; }
+.is-visible .card-stagger > *:nth-child(2)  { opacity: 1; transform: none; transition-delay:  90ms; }
+.is-visible .card-stagger > *:nth-child(3)  { opacity: 1; transform: none; transition-delay: 140ms; }
+.is-visible .card-stagger > *:nth-child(4)  { opacity: 1; transform: none; transition-delay: 190ms; }
+.is-visible .card-stagger > *:nth-child(5)  { opacity: 1; transform: none; transition-delay: 240ms; }
+.is-visible .card-stagger > *:nth-child(6)  { opacity: 1; transform: none; transition-delay: 280ms; }
+.is-visible .card-stagger > *:nth-child(7)  { opacity: 1; transform: none; transition-delay: 310ms; }
+.is-visible .card-stagger > *:nth-child(8)  { opacity: 1; transform: none; transition-delay: 340ms; }
+.is-visible .card-stagger > *:nth-child(9)  { opacity: 1; transform: none; transition-delay: 360ms; }
+.is-visible .card-stagger > *:nth-child(10) { opacity: 1; transform: none; transition-delay: 380ms; }
+.is-visible .card-stagger > *:nth-child(n+11) { opacity: 1; transform: none; transition-delay: 400ms; }
 
-/* ── Hero entrance — forwards avoids pre-delay invisible flash ── */
+/* ── Hero entrance — 0.45s Apple easing ── */
 .hero-fade-left {
-  animation: heroFadeLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: heroFadeLeft 0.45s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 .hero-fade-right {
-  animation: heroFadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  animation: heroFadeRight 0.45s cubic-bezier(0.4, 0, 0.6, 1) 0.1s both;
 }
 @keyframes heroFadeLeft {
-  from { opacity: 0; transform: translateX(-14px); }
+  from { opacity: 0; transform: translateX(-12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes heroFadeRight {
-  from { opacity: 0; transform: translateX(14px); }
+  from { opacity: 0; transform: translateX(12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
@@ -80,7 +80,7 @@
 
 /* ── Hero subtitle ── */
 .hero-subtitle {
-  animation: subtitleFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.25s both;
 }
 @keyframes subtitleFade {
   from { opacity: 0; transform: translateY(6px); }
@@ -89,7 +89,7 @@
 
 /* ── Hero bio ── */
 .hero-bio {
-  animation: subtitleFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.35s both;
 }
 
 /* ── Architecture modal ── */

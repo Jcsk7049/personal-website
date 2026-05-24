@@ -79,7 +79,7 @@ export default function SkillGrid({ skills, detail }) {
                 className={`col-span-1 ${isFeatured ? 'md:col-span-2' : ''}
                            rounded-2xl bg-[#141418] border border-white/[0.06]
                            hover:border-white/[0.13] hover:-translate-y-0.5 hover:bg-[#1a1a20]
-                           transition-all duration-500 group flex flex-col`}
+                           transition-all duration-300 group flex flex-col`}
               >
                 <div className={`${isFeatured ? 'p-8 md:p-10' : 'p-7'} flex flex-col flex-1 gap-5`}>
 
@@ -90,12 +90,12 @@ export default function SkillGrid({ skills, detail }) {
                         {q.sublabel}
                       </p>
                       <h3 className="text-lg font-bold tracking-tight text-white/85
-                                     group-hover:text-white transition-colors duration-200">
+                                     group-hover:text-white transition-colors duration-[125ms]">
                         {q.label}
                       </h3>
                     </div>
                     <span className={`mt-0.5 bg-gradient-to-br ${q.accent} bg-clip-text text-transparent
-                                     opacity-40 group-hover:opacity-75 transition-opacity duration-300`}>
+                                     opacity-40 group-hover:opacity-75 transition-opacity duration-[125ms]`}>
                       {q.icon}
                     </span>
                   </div>
@@ -158,7 +158,7 @@ export default function SkillGrid({ skills, detail }) {
                     )}
                     <span className="text-xs text-sky-400 font-medium ml-auto
                                      opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                     transition-all duration-200">
+                                     transition-all duration-[125ms]">
                       查看詳情 →
                     </span>
                   </div>

@@ -95,7 +95,7 @@ export default function ProjectShowcase({ projects }) {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium
-                            transition-all duration-200 border
+                            transition-all duration-[125ms] border
                             ${activeCategory === cat
                               ? 'bg-[#1D1D1F] text-white border-[#1D1D1F]'
                               : 'bg-white text-[#6e6e73] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
@@ -117,9 +117,9 @@ export default function ProjectShowcase({ projects }) {
               <Link
                 to={`/projects/${proj.id}`}
                 className="rounded-2xl bg-white overflow-hidden
-                           shadow-[0_2px_12px_rgba(0,0,0,0.06)]
-                           hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]
-                           transition-all duration-500 group flex flex-col flex-1"
+                           shadow-[0_0_0_1px_#E4E4E7]
+                           hover:-translate-y-1 hover:shadow-[0_0_0_1px_#C8C8CA]
+                           transition-all duration-300 group flex flex-col flex-1"
               >
                 {/* Cover image / gradient area */}
                 <div className={`relative h-48 bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0`}>
@@ -127,7 +127,7 @@ export default function ProjectShowcase({ projects }) {
                     <img
                       src={proj.cover}
                       alt={proj.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                     />
                   ) : (
                     <div
@@ -158,7 +158,7 @@ export default function ProjectShowcase({ projects }) {
                 <div className="p-5 flex flex-col gap-2 flex-1">
                   <p className="text-[11px] text-[#AEAEB2] font-mono tracking-wide">{proj.period}</p>
                   <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
-                                 group-hover:text-[#0071E3] transition-colors duration-200">
+                                 group-hover:text-[#0071E3] transition-colors duration-[125ms]">
                     {proj.title}
                   </h3>
                   <p className="text-sm text-[#6e6e73] leading-relaxed line-clamp-2 flex-1">
@@ -181,7 +181,7 @@ export default function ProjectShowcase({ projects }) {
                   </div>
                   <span className="text-xs text-[#0071E3] font-medium mt-0.5
                                    opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                   transition-all duration-200">
+                                   transition-all duration-[125ms]">
                     查看詳情 →
                   </span>
                 </div>

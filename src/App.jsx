@@ -32,7 +32,7 @@ function HomePage() {
   }, [])
 
   return (
-    <div className="bg-white text-[#1D1D1F] font-sans antialiased">
+    <div className="bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cvData.profile.name} />
       <Hero            profile={cvData.profile} />
       <Education       education={cvData.education} />
@@ -40,7 +40,7 @@ function HomePage() {
       <ProjectShowcase projects={cvData.projects} />
       <SkillGrid       skills={cvData.skills_matrix} detail={cvData.skills_detail} />
       <AwardList       awards={cvData.awards} />
-      <footer className="py-16 bg-white border-t border-black/[0.06]">
+      <footer className="py-16 bg-[#F5F5F7] border-t border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
             <div>
@@ -50,23 +50,23 @@ function HomePage() {
             <nav className="flex gap-10">
               <div className="flex flex-col gap-2.5">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">內容</p>
-                <a href="#education"  className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">學歷</a>
-                <a href="#experience" className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">經歷</a>
-                <a href="#skills"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">技術</a>
-                <a href="#projects"   className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">專案</a>
-                <a href="#awards"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-150">獲獎</a>
+                <a href="#education"  className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">學歷</a>
+                <a href="#experience" className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">經歷</a>
+                <a href="#skills"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">技術</a>
+                <a href="#projects"   className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">專案</a>
+                <a href="#awards"     className="text-xs text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms]">獲獎</a>
               </div>
               <div className="flex flex-col gap-2.5">
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#C7C7CC] mb-0.5">聯絡</p>
                 <button
                    onClick={() => { window.location.href = `mailto:${cvData.profile.contact.email}` }}
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150 text-left">Email</button>
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms] text-left">Email</button>
                 <a href={`https://github.com/${cvData.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">GitHub ↗</a>
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms]">GitHub ↗</a>
                 <a href={`https://linkedin.com/in/${cvData.profile.links.linkedin}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-150">LinkedIn ↗</a>
+                   className="text-xs text-[#86868B] hover:text-[#0071E3] transition-colors duration-[125ms]">LinkedIn ↗</a>
               </div>
             </nav>
           </div>

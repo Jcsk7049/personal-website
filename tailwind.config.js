@@ -13,10 +13,10 @@ export default {
       },
       fontFamily: {
         sans: [
+          'Figtree',
           '-apple-system',
           'BlinkMacSystemFont',
           '"SF Pro Display"',
-          'Inter',
           'system-ui',
           'sans-serif',
         ],

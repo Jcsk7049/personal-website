@@ -42,20 +42,19 @@ export default function Hero({ profile }) {
               <button
                 onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                           hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200
-                           shadow-sm shadow-[#0071E3]/20">
+                           hover:bg-[#0077ED] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
                 {profile.contact.email}
               </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                 className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-2.5 rounded-full border border-gray-200 text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                 className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
                 LinkedIn
               </a>
             </div>
