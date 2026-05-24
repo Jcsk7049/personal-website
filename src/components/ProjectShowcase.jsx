@@ -167,6 +167,12 @@ export default function ProjectShowcase({ projects }) {
                                  group-hover:text-[#0071E3] transition-colors duration-[125ms]">
                     {proj.title}
                   </h3>
+                  {proj.badge && (
+                    <span className="self-start px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide
+                                     bg-amber-50 text-amber-700 border border-amber-300">
+                      {proj.badge}
+                    </span>
+                  )}
                   <p className="text-sm text-[#6e6e73] leading-relaxed line-clamp-2 flex-1">
                     {proj.description}
                   </p>

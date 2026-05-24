@@ -2,7 +2,7 @@
   "profile": {
     "name": "江嘉元",
     "title": "",
-    "bio": "就讀元智大學電機工程學系，目前在林書彥教授實驗室進行 ICU 生理訊號 AI 研究。從 FRC 競賽機器人選手出發，橫跨嵌入式韌體、電路設計到深度學習，喜歡把想法從零打造成真實的東西。",
+    "bio": "元智大學電機工程學系三年級，專攻嵌入式韌體與邊緣 AI 整合。在林書彥教授實驗室主導 ICU 生理訊號早期預警研究，論文投稿 IEEE GCCE 2026；具備從 PCB Layout、STM32 底層韌體到 ML 管線的全棧硬體工程能力。",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -36,13 +36,13 @@
       "role": "實驗室專題生",
       "organization": "元智大學 林書彥教授實驗室",
       "period": "2025.05 – 現在",
-      "description": "目前在做 EIT & VAP 生理訊號處理專題，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質，並進行機器學習與深度學習模型訓練。"
+      "description": "主導 ICU VAP 早期預警研究：設計 Stay-Level 5-Fold 交叉驗證消除公開基準中的 Patient-Level Data Leakage，以 Integrated Gradients 特徵歸因縮減至 4 項非侵入指標，LSTM 達 72h AUROC 0.98–0.99。論文投稿 IEEE GCCE 2026。"
     },
     {
-      "role": "Student Mentor & Technical Support",
+      "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "description": "指導學弟妹進行機器人開發、除錯，競賽期間擔任教練角色，協助指揮策略與現場決策。"
+      "description": "主導機器人系統架構設計，涵蓋多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面規範制定；引入 AI 輔助工具加速韌體原型迭代週期，在競賽 deadline 壓力下確保系統整合如期交付。"
     },
     {
       "role": "競賽選手",
@@ -64,11 +64,13 @@
       "Fusion 360"
     ],
     "programming": [
-      "C/C++",
-      "Python (ITS 證照)",
-      "LabVIEW",
-      "Arduino",
-      "MATLAB"
+      "C / C++ (STM32 / Cortex-M)",
+      "QMK / ChibiOS HAL",
+      "UART / SPI / I2C",
+      "FreeRTOS (研究中)",
+      "Python",
+      "Arduino / ESP32",
+      "LabVIEW"
     ],
     "eda": [
       "Altium Designer",
@@ -77,11 +79,13 @@
       "OrCAD"
     ],
     "data_analysis": [
-      "深度學習",
-      "機器學習",
-      "數據結構化",
-      "特徵工程",
-      "訊號過濾"
+      "TensorFlow / Keras",
+      "PyTorch",
+      "LSTM · Time-Series",
+      "Feature Engineering",
+      "Signal Processing",
+      "TinyML",
+      "SHAP / XAI"
     ]
   },
   "skills_detail": {
@@ -298,11 +302,12 @@
       "category": "大學專題作品",
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
-      "description": "Stay-level CV 修正 Window-level 洩漏（AUROC 0.99→0.58）；IG 特徵歸因篩選 MAP / RR / Vt / SpO₂，TensorFlow/Keras LSTM × 亞東 ICU（n=109，VAP 54 / 非VAP 55）達 6–72 h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。",
+      "description": "消除公開基準（PREDICT 2025）中的 Patient-Level Data Leakage（AUROC 虛高 0.99 → 真實 0.58）。Integrated Gradients 歸因剔除數學冗餘（mv_total，mv≡Vt×RR），以 4 項非侵入指標（MAP、RR、Vt、SpO₂）在亞東 ICU（n=109）達 72h AUROC 0.98–0.99 / AUPRC 0.81–0.93。",
+      "badge": "IEEE GCCE 2026 · Under Review",
       "tags": [
-        "PyTorch",
-        "LSTM",
+        "LSTM · Time-Series",
         "Integrated Gradients",
+        "Stay-Level CV",
         "SMOTE",
         "Medical AI"
       ],
@@ -514,14 +519,13 @@
       "category": "大學校外作品",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "STM32F072（USB FS DFU bootloader）× EasyEDA Pro PCB × QMK + ChibiOS HAL；chconf / halconf / mcuconf 三件組完整配置，5×4 矩陣掃描，WS2812B RGB Matrix，VIA / VIAL 即時改鍵，延遲 < 5 ms，Gerber + 韌體已開源。",
+      "description": "EasyEDA Pro 全流程 PCB 設計（DRC 驗證、去耦電容佈局）× STM32F072 USB FS + QMK/ChibiOS HAL；韌體實作：5×4 矩陣掃描、去抖動演算法、WS2812B SPI LED 驅動、UART/SPI/I2C 周邊配置；VIA/VIAL 即時改鍵支援；FreeRTOS 任務調度整合研究中。",
       "tags": [
-        "QMK Firmware",
-        "STM32",
-        "ChibiOS / HAL",
-        "EasyEDA Pro",
-        "RGB Matrix",
-        "VIA / VIAL"
+        "STM32 / Cortex-M",
+        "QMK / ChibiOS HAL",
+        "SPI · UART · I2C",
+        "EasyEDA Pro PCB",
+        "FreeRTOS (進行中)"
       ],
       "detail": {
         "images": [

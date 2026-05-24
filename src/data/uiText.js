@@ -32,8 +32,8 @@ export const uiText = {
     archDismiss: '按 Esc 或點擊外側關閉',
     footer: { content: '內容', contact: '聯絡' },
     quadrants: {
-      data_analysis: { label: '數據分析',  sublabel: 'Data Analysis'        },
-      programming:   { label: '程式開發',  sublabel: 'Programming'          },
+      data_analysis: { label: 'ML / Edge AI',  sublabel: 'Machine Learning & Edge AI' },
+      programming:   { label: '嵌入式韌體',    sublabel: 'Firmware & Embedded'        },
       eda:           { label: '電路設計',  sublabel: 'Electronic Design'    },
       manufacturing: { label: '機構加工',  sublabel: 'Manufacturing'        },
     },
@@ -84,8 +84,8 @@ export const uiText = {
     archDismiss: 'Press Esc or click outside to close',
     footer: { content: 'Content', contact: 'Contact' },
     quadrants: {
-      data_analysis: { label: 'Data Analysis',   sublabel: 'Data Analysis'        },
-      programming:   { label: 'Programming',     sublabel: 'Programming'          },
+      data_analysis: { label: 'ML / Edge AI',   sublabel: 'Machine Learning & Edge AI' },
+      programming:   { label: 'Firmware & Embedded', sublabel: 'Firmware & Embedded'  },
       eda:           { label: 'Electronic Design',sublabel: 'Electronic Design'   },
       manufacturing: { label: 'Manufacturing',   sublabel: 'Manufacturing'        },
     },

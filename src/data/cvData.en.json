@@ -2,7 +2,7 @@
   "profile": {
     "name": "Chiang Jia Yuan",
     "title": "",
-    "bio": "EE student at Yuan Ze University, conducting ICU physiological signal AI research in Prof. Lin Shu-Yan's lab. Started as an FRC robotics competitor, I work across embedded firmware, circuit design, and deep learning — I like turning ideas into real things from scratch.",
+    "bio": "3rd-year EE at Yuan Ze University, specializing in embedded firmware and edge AI integration. Leading ICU physiological signal prediction research (IEEE GCCE 2026 submission) in Prof. Lin's lab. Full-stack hardware engineer: PCB layout → STM32 bare-metal firmware → ML pipeline — no handoffs.",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -36,13 +36,13 @@
       "role": "Research Intern",
       "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
       "period": "2025.05 – Present",
-      "description": "Working on EIT & VAP physiological signal processing: feature engineering, signal filtering, and end-to-end ML/DL model training on ICU continuous monitoring data."
+      "description": "Leading ICU VAP early-warning research: designed Stay-Level 5-Fold CV to eliminate patient-level data leakage found in public baselines (AUROC inflated 0.99 → true 0.58). Used Integrated Gradients to distill 14 features to 4 non-invasive metrics; LSTM achieves 72h AUROC 0.98–0.99. Paper submitted IEEE GCCE 2026."
     },
     {
-      "role": "Student Mentor & Technical Support",
+      "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Mentoring students in robot development and debugging; serving as drive coach during competitions to direct strategy and on-field decisions.",
+      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface specification. Introduced AI-assisted tools to accelerate firmware prototyping cycles and deliver system integration on time under competition deadlines.",
       "frc": true
     },
     {
@@ -58,13 +58,16 @@
       "Laser Cutting", "Basic Machining", "Autodesk Inventor", "AutoCAD", "Fusion 360"
     ],
     "programming": [
-      "C/C++", "Python (ITS Cert.)", "LabVIEW", "Arduino", "MATLAB"
+      "C / C++ (STM32 / Cortex-M)", "QMK / ChibiOS HAL",
+      "UART / SPI / I2C", "FreeRTOS (Learning)",
+      "Python", "Arduino / ESP32", "LabVIEW"
     ],
     "eda": [
       "Altium Designer", "EasyEDA Pro (LCEDA)", "KiCAD", "OrCAD"
     ],
     "data_analysis": [
-      "Deep Learning", "Machine Learning", "Data Structuring", "Feature Engineering", "Signal Filtering"
+      "TensorFlow / Keras", "PyTorch", "LSTM · Time-Series",
+      "Feature Engineering", "Signal Processing", "TinyML", "SHAP / XAI"
     ]
   },
   "skills_detail": {
@@ -242,8 +245,9 @@
       "category": "大學專題作品",
       "title": "ICU VAP Early-Warning System",
       "period": "2025 – Present",
-      "description": "Stay-level CV corrects window-level data leakage (AUROC 0.99→0.58); IG feature attribution selects MAP/RR/Vt/SpO₂; LSTM × Far Eastern ICU (n=109, VAP 54/non-VAP 55) achieves 6–72h warning with AUROC 0.98–0.99 / AUPRC 0.81–0.93.",
-      "tags": ["PyTorch", "LSTM", "Integrated Gradients", "SMOTE", "Medical AI"],
+      "description": "Eradicated patient-level data leakage in public baselines (PREDICT 2025: AUROC inflated 0.99 → true 0.58). Integrated Gradients eliminated co-linear redundancy (mv_total where mv≡Vt×RR), distilling 14 features to 4 non-invasive metrics (MAP, RR, Vt, SpO₂). LSTM achieves 72h AUROC 0.98–0.99 / AUPRC 0.81–0.93 on Far Eastern ICU (n=109).",
+      "badge": "IEEE GCCE 2026 · Under Review",
+      "tags": ["LSTM · Time-Series", "Integrated Gradients", "Stay-Level CV", "SMOTE", "Medical AI"],
       "detail": {
         "images": [
           { "src": "/images/vap/fig-pipeline.png",          "caption": "Pipeline: feature selection → sliding window → LSTM → multi-horizon evaluation" },
@@ -439,8 +443,8 @@
       "category": "大學校外作品",
       "title": "QMK × STM32 Custom Numpad",
       "period": "2026",
-      "description": "STM32F072 (USB FS DFU bootloader) × EasyEDA Pro PCB × QMK + ChibiOS HAL; full chconf/halconf/mcuconf configuration, 5×4 matrix scan, WS2812B RGB Matrix, VIA/VIAL live remap, latency < 5ms. Gerber + firmware open-sourced.",
-      "tags": ["QMK Firmware", "STM32", "ChibiOS / HAL", "EasyEDA Pro", "RGB Matrix", "VIA / VIAL"],
+      "description": "Full PCB design flow in EasyEDA Pro (DRC validation + decoupling layout) × STM32F072 USB FS + QMK/ChibiOS HAL. Firmware: 5×4 matrix scan with debounce algorithm, WS2812B SPI LED driver, UART/SPI/I2C peripheral config (chconf/halconf/mcuconf). VIA/VIAL live keymap; FreeRTOS task scheduling integration in progress.",
+      "tags": ["STM32 / Cortex-M", "QMK / ChibiOS HAL", "SPI · UART · I2C", "EasyEDA Pro PCB", "FreeRTOS (In Progress)"],
       "detail": {
         "images": [
           { "src": "/images/qmk-stm32-keyboard/numpad-top.jpg",  "caption": "Completed numpad — top view" },
