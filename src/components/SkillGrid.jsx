@@ -58,7 +58,7 @@ const LEVEL_STYLE = {
 
 export default function SkillGrid({ skills, detail }) {
   return (
-    <section id="skills" className="py-32 bg-[#0d0d0f]">
+    <section id="skills" className="py-16 md:py-32 bg-[#0d0d0f]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader zh="技術矩陣" invert />
 

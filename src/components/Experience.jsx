@@ -2,7 +2,7 @@ import SectionHeader from './SectionHeader'
 
 export default function Experience({ experience }) {
   return (
-    <section id="experience" className="py-32 bg-[#1D1D1F]">
+    <section id="experience" className="py-16 md:py-32 bg-[#1D1D1F]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader zh="經歷" invert />
 

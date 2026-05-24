@@ -298,7 +298,7 @@
       "category": "大學專題作品",
       "title": "加護病房 VAP 早期預測系統",
       "period": "2025 – 現在",
-      "description": "與亞東紀念醫院合作，復刻 JCM 2025 論文期間發現 Window-level CV 資料洩漏，以 Stay-level CV 修正驗證邏輯；用台灣本土 ICU 電子病歷訓練 LSTM，僅需 4 項常規生理指標達成 72 小時超前 VAP 預警（AUROC 0.99，AUPRC 0.93）。",
+      "description": "Stay-level CV 修正 Window-level 洩漏（AUROC 0.99→0.58）；IG 特徵歸因篩選 MAP / RR / Vt / SpO₂，TensorFlow/Keras LSTM × 亞東 ICU（n=109，VAP 54 / 非VAP 55）達 6–72 h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。",
       "tags": [
         "PyTorch",
         "LSTM",
@@ -312,8 +312,8 @@
           { "src": "/images/vap/fig-lstm-vs-baseline.png",   "caption": "Fig. 1　LSTM vs 傳統 ML 基準（AUROC / AUPRC / Sensitivity / Specificity）" },
           { "src": "/images/vap/fig-lstm-performance.png",   "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）" }
         ],
-        "purpose": "呼吸器相關肺炎（Ventilator-Associated Pneumonia, VAP）是加護病房最嚴重的院內感染之一，死亡率高達 20–50%，且診斷往往延誤 48 小時以上。傳統臨床判斷仰賴醫師經驗與定期檢查，往往在症狀已明顯時才介入，錯失最佳預防窗口。\n\n本專案與亞東紀念醫院合作，以真實電子病歷（EHR）為基礎，開發能提前 6～72 小時預警 VAP 的深度學習系統。最終模型僅需 4 項臨床常規監測指標（MAP、Vent Rate、Tidal Volume、SpO₂），無需額外侵入性檢查，即可達到高效預測。\n\n【為何選用 LSTM，而非 GRU 或 Transformer？】\nVAP 是一種時序演化疾病：機械通氣患者的生理指標在感染前 48–72 小時會出現連續細微漂移，單一時間點的靜態特徵無法捕捉此類長程依賴。LSTM 的 cell state 與 gate 機制天然適合多變量時序分類；相較於 GRU，LSTM 在預測窗口延伸至 72 小時時對長程依賴的表現更穩定。而 Transformer 在本案 109 位患者的小樣本場景下過擬合風險過高，放棄採用。對比測試中 LSTM 在所有預警窗口均顯著優於 LR、RF、SVM。",
-        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，實為 Data Leakage。這個發現本身成為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，納入 110 人，排除機械通氣時間不足 72 小時者 1 例，有效 109 人：VAP 54 例、非VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
+        "purpose": "VAP 發生率約 5–15%（機械通氣病患），死亡率 20–50%，臨床診斷通常滯後 48 小時以上；現行方法依賴定期評估，無法利用連續監測訊號的時序趨勢。\n\n本研究以亞東紀念醫院 ICU 2019–2023 年資料（n=109：VAP 54 例、非VAP 55 例），建立 LSTM 時序分類管線，以 4 項常規生命徵象（MAP、呼吸速率、潮氣容積、SpO₂）提前 6–72 小時預警 VAP。\n\n模型選擇：LSTM vs GRU / Transformer\nVAP 生理變化呈連續時序漂移（感染前 48–72 小時可見），靜態特徵不足以捕捉長程依賴。LSTM cell state 在 72 小時窗口下梯度穩定性優於 GRU；Transformer 在 n=109 小樣本下過擬合，對比測試均不及 LSTM。最終確立 LSTM 為主模型，在所有窗口 AUROC / AUPRC 均顯著高於 LR、RF、SVM。",
+        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，屬 Data Leakage。此發現為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，納入 110 人，排除機械通氣時間不足 72 小時者 1 例，有效 109 人：VAP 54 例、非VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
         "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n【消融實驗：mv_total 排除驗證】\nmv_total（分鐘通氣量）IG 歸因排名第一（0.00989），但因 mv≡Vt×RR 為數學冗餘特徵，移除後 24 小時 AUROC 反升 +0.004、AUPRC 升 +0.014，確認冗餘特徵應以模型行為驗證，而非單憑歸因分數決定取捨。\n\n📄 論文題目：基於 Stay-Level 交叉驗證與延長預測窗口之 LSTM 呼吸器相關肺炎早期預測研究\n論文完稿（2026.05），預計投稿 IEEE GCCE 2026",
         "tech": [
           {
@@ -373,7 +373,7 @@
       "category": "大學校外作品",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2026",
-      "description": "針對 BitoPro 加密貨幣交易所設計的反洗錢偵測系統，分析 63,770 筆用戶資料與逾 41 萬筆交易紀錄，以 31 項行為特徵識別可疑人頭帳戶，串接六項 AWS 服務完成端對端 AML 管線。",
+      "description": "XGBoost / LightGBM × S3 → Glue → Athena → SageMaker → Lambda → Bedrock 六服務端對端 AML 管線；63,770 帳戶 / 413,235 筆交易，31 項行為特徵（含圖論黑名單鄰居）+ SHAP 合規報告識別人頭帳戶，Streamlit 儀表板已部署上線。",
       "tags": [
         "XGBoost",
         "LightGBM",
@@ -390,7 +390,7 @@
           { "src": "/images/AWS-bito-guard/dashboard-model-eval.png",  "caption": "模型評估：特徵重要性（total_volume 最高）+ 決策門檻分析（最佳門檻 0.24）" },
           { "src": "/images/AWS-bito-guard/dashboard-predictions.png", "caption": "預測結果：12,753 位用戶，501 筆標記風險（3.93%）、12,252 筆正常（96.07%）" }
         ],
-        "purpose": "加密貨幣交易所是洗錢犯罪的高風險場域。人頭帳戶（Shell Account）是最常見的手法之一——犯罪集團利用他人身份開戶，透過快速存提、換匯、轉出等操作掩蓋資金來源。BitoPro 作為台灣主流交易所，具備落實 KYC/AML 合規義務的需求。\n\nBitOGuard 以 BitoPro 提供的真實競賽資料集為基礎：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 位用戶）\n・USDT 交易紀錄：217,634 筆（33,587 位用戶）\n・標記人頭帳戶：1,640 筆（佔訓練集 3.21%）\n\n目標是以機器學習對每個帳戶計算風險分數，識別出高風險的可疑人頭帳戶。",
+        "purpose": "BitoPro 加密貨幣交易所 AML 合規競賽資料集：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 用戶）\n・USDT 交易紀錄：217,634 筆（33,587 用戶）\n・標記人頭帳戶：1,640 筆（訓練集 3.21%）\n\n目標是對每個帳戶輸出風險分數，識別高風險可疑帳戶，同時滿足監管機構對 AML 合規說明的可解釋性要求（不接受黑盒輸出）。\n\n選用 XGBoost 而非深度學習的理由：AML 合規場景要求對每筆標記帳戶提供特徵層級的判斷依據，XGBoost + SHAP 可直接輸出個別帳戶的特徵貢獻值；在 <65K 結構化資料規模下，訓練速度與超參數穩定性亦優於神經網路。",
         "concept": "【為何選用 XGBoost，而非深度學習？】\nAML 合規系統的核心需求是可解釋性：監管機構要求對每筆標記帳戶提供「哪些特徵觸發高風險」的具體依據，而非黑盒分數。XGBoost 配合 SHAP 值分析可直接輸出每個特徵對單一帳戶預測的貢獻量，滿足合規說明義務。此外，相較於神經網路，XGBoost 在此規模的結構化交易資料（<65K 帳戶）訓練更快、超參數更穩定，且原生支援 scale_pos_weight 直接緩解 1:30 類別不平衡。\n\n【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
         "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（5-fold Stratified CV）】\n・Precision：9.83%（± 8.12%）\n・Recall：0.43%（± 0.36%）\n・F1 Score：0.82%\n競賽提交版採保守閾值（0.65），共標記 2 個高風險帳戶——此設計決策刻意偏向 Precision，避免對正常用戶的誤判造成合規風險。\n\n【誠實的技術反思：為什麼這些指標是合理的起點？】\n低 Recall 直接反映 AML 場景的三重難題：① 標記樣本僅佔 3.21%（1:30 不平衡）；② 競賽資料集欠缺設備指紋、IP 關聯等高判別力特徵；③ 人頭帳戶的行為模式與正常高頻交易者高度重疊。真實金融機構的 AML 系統同樣面臨 Precision vs. Recall 的根本取捨——提高 Recall 必然增加誤報成本與人工審查負擔。後續改良方向：圖神經網路（GNN）建模黑名單鄰居關係、SMOTE/ADASYN 處理不平衡、擴充帳戶年齡與 IP 共用特徵。",
         "tech": [
@@ -514,7 +514,7 @@
       "category": "大學校外作品",
       "title": "QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "以 STM32F072 設計之 17 鍵 USB HID 數字鍵盤：EasyEDA Pro PCB 設計、ChibiOS HAL 韌體、QMK RGB Matrix 全流程自製。選用 F072 內建 USB FS 周邊實現免燒錄器 DFU 燒錄；支援 VIA / VIAL 即時改鍵，已開源於 GitHub。",
+      "description": "STM32F072（USB FS DFU bootloader）× EasyEDA Pro PCB × QMK + ChibiOS HAL；chconf / halconf / mcuconf 三件組完整配置，5×4 矩陣掃描，WS2812B RGB Matrix，VIA / VIAL 即時改鍵，延遲 < 5 ms，Gerber + 韌體已開源。",
       "tags": [
         "QMK Firmware",
         "STM32",

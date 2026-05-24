@@ -18,7 +18,7 @@ export default function Hero({ profile }) {
   }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden">
 
       {/* Background — clean, no blobs */}
 
@@ -34,7 +34,7 @@ export default function Hero({ profile }) {
               {profile.name}
             </h1>
             {profile.bio && (
-              <p className="hero-bio text-[15px] text-[#6e6e73] leading-[1.7] max-w-[500px] mb-8">
+              <p className="hero-bio text-[15px] text-[#6e6e73] leading-[1.8] max-w-[500px] mb-8 text-wrap-pretty">
                 {profile.bio}
               </p>
             )}

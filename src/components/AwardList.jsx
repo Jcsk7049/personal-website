@@ -14,7 +14,7 @@ const TrophyIcon = () => (
 
 export default function AwardList({ awards }) {
   return (
-    <section id="awards" className="py-32 bg-white">
+    <section id="awards" className="py-16 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader zh="獲獎" />
 
