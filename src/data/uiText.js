@@ -3,8 +3,8 @@ export const uiText = {
     nav: [
       { id: 'education',  label: '學歷' },
       { id: 'experience', label: '經歷' },
-      { id: 'skills',     label: '技術' },
       { id: 'projects',   label: '專案' },
+      { id: 'skills',     label: '技術' },
       { id: 'awards',     label: '獲獎' },
     ],
     sections: {
@@ -48,8 +48,8 @@ export const uiText = {
     nav: [
       { id: 'education',  label: 'Education'  },
       { id: 'experience', label: 'Experience' },
-      { id: 'skills',     label: 'Skills'     },
       { id: 'projects',   label: 'Projects'   },
+      { id: 'skills',     label: 'Skills'     },
       { id: 'awards',     label: 'Awards'     },
     ],
     sections: {
