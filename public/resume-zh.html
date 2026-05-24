@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>江嘉元 — 履歷</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: A4;
+    margin: 18mm 16mm 16mm 16mm;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 28px 32px;
+  }
+
+  /* ── Header ── */
+  .header { margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid #1a1a1a; }
+  .header h1 { font-size: 22pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+  .header .contact {
+    display: flex; flex-wrap: wrap; gap: 4px 18px;
+    font-size: 8.5pt; color: #555;
+  }
+  .header .contact a { color: #0057b8; text-decoration: none; }
+
+  /* ── Section ── */
+  section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+  }
+
+  /* ── Entry ── */
+  .entry { margin-bottom: 10px; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .entry-title { font-weight: 700; font-size: 9.5pt; }
+  .entry-period {
+    font-size: 8pt;
+    color: #777;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .entry-sub {
+    font-size: 8.5pt;
+    color: #0057b8;
+    font-weight: 500;
+    margin-top: 1px;
+  }
+  .entry-desc {
+    font-size: 8.5pt;
+    color: #444;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
+  .skill-group { }
+  .skill-group-title {
+    font-weight: 700;
+    font-size: 8.5pt;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    font-size: 7.5pt;
+    color: #444;
+  }
+  .tag {
+    background: #f3f3f3;
+    border: 1px solid #e0e0e0;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .tag.expert { background: #eef2ff; border-color: #c7d2fe; color: #4338ca; }
+  .tag.proficient { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+
+  /* ── Projects ── */
+  .project-entry { margin-bottom: 9px; }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .project-title { font-weight: 700; font-size: 9pt; }
+  .project-period { font-size: 8pt; color: #777; white-space: nowrap; }
+  .project-cat {
+    display: inline-block;
+    font-size: 7pt;
+    background: #f5f5f7;
+    border: 1px solid #e0e0e0;
+    padding: 0px 5px;
+    border-radius: 3px;
+    color: #666;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .project-desc {
+    font-size: 8.5pt;
+    color: #444;
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+  .project-tags {
+    margin-top: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .project-tag {
+    font-size: 7pt;
+    background: #f3f3f3;
+    border: 1px solid #e0e0e0;
+    padding: 0px 5px;
+    border-radius: 3px;
+    color: #555;
+  }
+  .github-link {
+    font-size: 7.5pt;
+    color: #0057b8;
+    text-decoration: none;
+  }
+
+  /* ── Awards ── */
+  .award-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .award-row:last-child { border-bottom: none; }
+  .award-title { font-size: 8.5pt; color: #1a1a1a; }
+  .award-year { font-size: 8pt; color: #777; white-space: nowrap; }
+
+  /* ── Print ── */
+  @media print {
+    body { padding: 0; max-width: 100%; }
+    a { color: inherit; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ────────── HEADER ────────── -->
+<div class="header">
+  <h1>江嘉元</h1>
+  <div class="contact">
+    <span>📍 台北市, 台灣</span>
+    <span>📞 +886 928 530 700</span>
+    <a href="mailto:johnjia9491@gmail.com">✉ johnjia9491@gmail.com</a>
+    <a href="https://github.com/Jcsk7049" target="_blank">GitHub: Jcsk7049</a>
+  </div>
+</div>
+
+<!-- ────────── 個人簡介 ────────── -->
+<section>
+  <div class="section-title">個人簡介</div>
+  <p class="entry-desc">
+    就讀元智大學電機工程學系，目前在林書彥教授實驗室進行 ICU 生理訊號 AI 研究。從 FRC 競賽機器人選手出發，橫跨嵌入式韌體、電路設計到深度學習，喜歡把想法從零打造成真實的東西。
+  </p>
+</section>
+
+<!-- ────────── 學歷 ────────── -->
+<section>
+  <div class="section-title">學歷</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">元智大學</span>
+      <span class="entry-period">2024.09 – 2027.09</span>
+    </div>
+    <div class="entry-sub">電機工程學系學士</div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">明志科技大學</span>
+      <span class="entry-period">2023.09 – 2024.06</span>
+    </div>
+    <div class="entry-sub">電機工程學系學士</div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">南港高工</span>
+      <span class="entry-period">2020.09 – 2023.06</span>
+    </div>
+    <div class="entry-sub">電子科</div>
+  </div>
+</section>
+
+<!-- ────────── 經歷 ────────── -->
+<section>
+  <div class="section-title">經歷</div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">實驗室專題生</span>
+      <span class="entry-period">2025.05 – 現在</span>
+    </div>
+    <div class="entry-sub">元智大學 林書彥教授實驗室</div>
+    <div class="entry-desc">
+      進行 EIT &amp; VAP 生理訊號處理專題，透過特徵工程與訊號過濾優化機器學習模型之前端資料品質，並進行機器學習與深度學習模型訓練。
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Student Mentor &amp; Technical Support</span>
+      <span class="entry-period">2023 – 現在</span>
+    </div>
+    <div class="entry-sub">FRC TEAM 7645</div>
+    <div class="entry-desc">
+      指導學弟妹進行機器人開發、除錯，競賽期間擔任教練角色，協助指揮策略與現場決策。
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">競賽選手</span>
+      <span class="entry-period">2020.06 – 2023.09</span>
+    </div>
+    <div class="entry-sub">南港高工 NK-MTC 7645</div>
+    <div class="entry-desc">
+      負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。
+    </div>
+  </div>
+</section>
+
+<!-- ────────── 技術矩陣 ────────── -->
+<section>
+  <div class="section-title">技術</div>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <div class="skill-group-title">數據分析</div>
+      <div class="skill-tags">
+        <span class="tag expert">深度學習</span>
+        <span class="tag expert">機器學習</span>
+        <span class="tag expert">特徵工程</span>
+        <span class="tag proficient">訊號過濾</span>
+        <span class="tag proficient">數據結構化</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">程式開發</div>
+      <div class="skill-tags">
+        <span class="tag expert">C / C++</span>
+        <span class="tag expert">Python (ITS 認證)</span>
+        <span class="tag proficient">LabVIEW</span>
+        <span class="tag proficient">Arduino</span>
+        <span class="tag">MATLAB</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:6px">
+      <div class="skill-group-title">電路設計</div>
+      <div class="skill-tags">
+        <span class="tag expert">Altium Designer</span>
+        <span class="tag proficient">EasyEDA Pro</span>
+        <span class="tag proficient">KiCAD</span>
+        <span class="tag">OrCAD</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:6px">
+      <div class="skill-group-title">機構加工</div>
+      <div class="skill-tags">
+        <span class="tag expert">CNC 銑床</span>
+        <span class="tag expert">3D 列印</span>
+        <span class="tag expert">Autodesk Inventor</span>
+        <span class="tag proficient">Mastercam</span>
+        <span class="tag proficient">AutoCAD</span>
+        <span class="tag proficient">Fusion 360</span>
+        <span class="tag proficient">金屬焊接</span>
+        <span class="tag proficient">雷射切割</span>
+      </div>
+    </div>
+
+  </div>
+  <p style="font-size:7.5pt; color:#999; margin-top:6px;">
+    <span style="display:inline-block; background:#eef2ff; border:1px solid #c7d2fe; color:#4338ca; padding:0 5px; border-radius:3px; font-size:7pt;">進階</span>
+    &nbsp;
+    <span style="display:inline-block; background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8; padding:0 5px; border-radius:3px; font-size:7pt;">熟悉</span>
+    &nbsp;
+    <span style="display:inline-block; background:#f3f3f3; border:1px solid #e0e0e0; color:#555; padding:0 5px; border-radius:3px; font-size:7pt;">基礎</span>
+  </p>
+</section>
+
+<!-- ────────── 專案 ────────── -->
+<section>
+  <div class="section-title">專案</div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">大學專題作品</span>
+        <span class="project-title">加護病房 VAP 早期預測系統</span>
+      </div>
+      <span class="project-period">2025 – 現在</span>
+    </div>
+    <div class="project-desc">
+      Stay-level CV 修正 Window-level 洩漏（AUROC 0.99→0.58）；IG 特徵歸因篩選 MAP / RR / Vt / SpO₂，TensorFlow/Keras LSTM × 亞東 ICU（n=109）達 6–72h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。論文完稿（2026.05），預計投稿 IEEE GCCE 2026。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">PyTorch</span>
+      <span class="project-tag">LSTM</span>
+      <span class="project-tag">Integrated Gradients</span>
+      <span class="project-tag">SMOTE</span>
+      <span class="project-tag">Medical AI</span>
+    </div>
+  </div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">大學校外作品</span>
+        <span class="project-title">AWS × BitoPro 黑客松：BitOGuard</span>
+      </div>
+      <span class="project-period">2026</span>
+    </div>
+    <div class="project-desc">
+      XGBoost / LightGBM × S3→Glue→Athena→SageMaker→Lambda→Bedrock 六服務端對端 AML 管線；63,770 帳戶 / 413,235 筆交易，31 項行為特徵（含圖論黑名單鄰居）+ SHAP 合規報告，Streamlit 儀表板已部署。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">XGBoost</span>
+      <span class="project-tag">AWS SageMaker</span>
+      <span class="project-tag">SHAP</span>
+      <span class="project-tag">Streamlit</span>
+      <a class="github-link" href="https://github.com/Jcsk7049/bitoguard-aml">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">大學校外作品</span>
+        <span class="project-title">QMK × STM32 數字鍵盤</span>
+      </div>
+      <span class="project-period">2026</span>
+    </div>
+    <div class="project-desc">
+      STM32F072（USB FS DFU）× EasyEDA Pro PCB × QMK + ChibiOS HAL；chconf / halconf / mcuconf 完整配置，5×4 矩陣掃描，WS2812B RGB Matrix，VIA / VIAL 即時改鍵，延遲 &lt;5ms，Gerber + 韌體已開源。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">QMK Firmware</span>
+      <span class="project-tag">STM32</span>
+      <span class="project-tag">ChibiOS / HAL</span>
+      <span class="project-tag">EasyEDA Pro</span>
+      <a class="github-link" href="https://github.com/Jcsk7049/qmk-stm32-keyboard">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">大學課程作品</span>
+        <span class="project-title">音訊放大器電路板</span>
+      </div>
+      <span class="project-period">2024</span>
+    </div>
+    <div class="project-desc">
+      兩級 BJT 音訊放大電路（CE + CC 架構），完整 PCB 流程（感光板曝光→酸洗→鑽孔→焊接），歷經兩次重製除錯，最終順利驅動 8Ω 喇叭。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">BJT 放大電路</span>
+      <span class="project-tag">PCB Layout</span>
+      <span class="project-tag">感光板製作</span>
+      <span class="project-tag">SPICE 模擬</span>
+    </div>
+  </div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">高職選手作品</span>
+        <span class="project-title">Swerve Drive 全向輪控制研究</span>
+      </div>
+      <span class="project-period">2020 – 2023</span>
+    </div>
+    <div class="project-desc">
+      三代 FRC 競賽全向輪底盤，涵蓋向量合成運動學、齒輪傳動設計、CNC 精密加工與 LabVIEW PID 控制，獲 2022 FRC 台灣區控制創新獎。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">LabVIEW</span>
+      <span class="project-tag">PID Control</span>
+      <span class="project-tag">CNC 加工</span>
+      <span class="project-tag">Robotics</span>
+    </div>
+  </div>
+
+  <div class="project-entry">
+    <div class="project-header">
+      <div>
+        <span class="project-cat">高職選手作品</span>
+        <span class="project-title">無線打地鼠機（特教組教具）</span>
+      </div>
+      <span class="project-period">2021 – 2022</span>
+    </div>
+    <div class="project-desc">
+      南港高工特教組委託，ESP32 + ESP-NOW 一主四從五台機台，搭配電晶體繼電器驅動電路與 3D 列印機構，獲特教組正式感謝狀。
+    </div>
+    <div class="project-tags">
+      <span class="project-tag">ESP32</span>
+      <span class="project-tag">ESP-NOW</span>
+      <span class="project-tag">Arduino</span>
+      <span class="project-tag">3D 列印</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ────────── 獲獎 ────────── -->
+<section>
+  <div class="section-title">獲獎</div>
+
+  <div class="award-row">
+    <span class="award-title">AWS × BitoPro 黑客松：AI 詐騙偵測專案完賽</span>
+    <span class="award-year">2026</span>
+  </div>
+  <div class="award-row">
+    <span class="award-title">2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) &amp; 控制創新獎</span>
+    <span class="award-year">2022</span>
+  </div>
+  <div class="award-row">
+    <span class="award-title">111 學年度工業類學生技藝競賽（工科賽）：數位電子職類代表</span>
+    <span class="award-year">2022</span>
+  </div>
+  <div class="award-row">
+    <span class="award-title">第 52 屆全國技能競賽（技能技藝競賽）：集體創作職類代表</span>
+    <span class="award-year">2022</span>
+  </div>
+  <div class="award-row">
+    <span class="award-title">2020 FRC 中科 5G 區域賽：最佳工業設計獎</span>
+    <span class="award-year">2020</span>
+  </div>
+</section>
+
+<!-- Print hint -->
+<p class="no-print" style="margin-top:24px; font-size:8pt; color:#aaa; text-align:center;">
+  在瀏覽器按 Ctrl+P（Mac: ⌘+P）→ 儲存為 PDF
+</p>
+
+</body>
+</html>
