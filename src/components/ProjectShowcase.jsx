@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 const PROJECT_ACCENTS = {
   'vap':               'from-sky-400 to-blue-600',
@@ -27,11 +29,13 @@ export function accent(id) {
 }
 
 export function CategoryBadge({ category, className = '' }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
   if (!category) return null
   const style = CATEGORY_STYLES[category] || 'bg-gray-50 text-gray-500 border-gray-200'
   return (
     <span className={`inline-block px-2.5 py-0.5 rounded-full border text-[11px] font-medium tracking-wide ${style} ${className}`}>
-      {category}
+      {t.categoryLabel(category)}
     </span>
   )
 }
@@ -75,6 +79,8 @@ function SpotlightCard({ children, className = '' }) {
 }
 
 export default function ProjectShowcase({ projects }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
   const [activeCategory, setActiveCategory] = useState('全部')
 
   const filtered = activeCategory === '全部'
@@ -84,7 +90,7 @@ export default function ProjectShowcase({ projects }) {
   return (
     <section id="projects" className="py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader zh="專案" />
+        <SectionHeader label={t.sections.projects} />
 
         {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
@@ -101,7 +107,7 @@ export default function ProjectShowcase({ projects }) {
                               : 'bg-white text-[#6e6e73] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
                             }`}
               >
-                {cat}
+                {t.categoryLabel(cat)}
                 <span className={`text-[11px] font-mono ${activeCategory === cat ? 'text-white/60' : 'text-[#AEAEB2]'}`}>
                   {count}
                 </span>
@@ -182,7 +188,7 @@ export default function ProjectShowcase({ projects }) {
                   <span className="text-xs text-[#0071E3] font-medium mt-0.5
                                    opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
                                    transition-all duration-[125ms]">
-                    查看詳情 →
+                    {t.viewDetail}
                   </span>
                 </div>
               </Link>

@@ -1,17 +1,13 @@
 import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import cvData from '../data/cvData.json'
+import cvDataZh from '../data/cvData.json'
+import cvDataEn from '../data/cvData.en.json'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 import VapCharts from '../components/VapCharts'
 import BitoCharts from '../components/BitoCharts'
 import ProjectGallery from '../components/ProjectGallery'
 import { CategoryBadge } from '../components/ProjectShowcase'
-
-const SECTIONS = [
-  { key: 'purpose', label: '用途',   en: 'Purpose'       },
-  { key: 'concept', label: '設計構思', en: 'Design Concept' },
-  { key: 'outcome', label: '成果',   en: 'Outcome'        },
-  { key: 'tech',    label: '使用技術', en: 'Tech Stack'     },
-]
 
 const PROJECT_ACCENTS = {
   'vap':               'from-sky-400 to-blue-600',
@@ -28,6 +24,9 @@ export default function ProjectDetail() {
   const { id }          = useParams()
   const navigate        = useNavigate()
   const navigationType  = useNavigationType()
+  const { lang }        = useLanguage()
+  const t               = uiText[lang]
+  const cvData          = lang === 'en' ? cvDataEn : cvDataZh
   const project         = cvData.projects.find(p => p.id === id)
   const [archOpen, setArchOpen] = useState(false)
 
@@ -50,14 +49,15 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-50">
-        <p className="text-slate-400">找不到此專案</p>
-        <Link to="/" className="text-sm text-[#0071E3] hover:underline">← 返回首頁</Link>
+        <p className="text-slate-400">{t.notFoundProject}</p>
+        <Link to="/" className="text-sm text-[#0071E3] hover:underline">{t.backHome}</Link>
       </div>
     )
   }
 
   const detail      = project.detail || {}
   const accentClass = PROJECT_ACCENTS[project.id] || 'from-gray-300 to-gray-400'
+  const sections    = t.projectSections
 
   const mainContent = (
     <>
@@ -90,7 +90,7 @@ export default function ProjectDetail() {
 
       {/* Content sections */}
       <div className="space-y-14">
-        {SECTIONS.map(({ key, label, en }) => (
+        {sections.map(({ key, label, en }) => (
           <section key={key} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
             <div className="flex items-center gap-2.5 mb-4">
               <span className="block w-4 h-px bg-[#0071E3] rounded-full" />
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
               </p>
             ) : (
               <div className="h-20 rounded-xl bg-slate-50 flex items-center justify-center">
-                <p className="text-sm text-slate-400">（內容待填寫）</p>
+                <p className="text-sm text-slate-400">{lang === 'en' ? '(Content coming soon)' : '（內容待填寫）'}</p>
               </div>
             )}
           </section>
@@ -171,7 +171,7 @@ export default function ProjectDetail() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
             </svg>
-            在 GitHub 查看
+            {t.githubBtn}
           </a>
         )}
         {detail.demo && (
@@ -198,7 +198,7 @@ export default function ProjectDetail() {
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
               <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
             </svg>
-            View Architecture
+            {t.archBtn}
           </button>
         )}
       </div>
@@ -237,10 +237,9 @@ export default function ProjectDetail() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-medium text-[#1D1D1F] mb-1.5">架構圖即將上線</p>
+                <p className="text-sm font-medium text-[#1D1D1F] mb-1.5">{t.archComingSoon}</p>
                 <p className="text-xs text-[#86868B] leading-relaxed max-w-xs">
-                  此區塊預留用於放置系統架構圖、SHAP 示意圖或流程圖。<br/>
-                  上傳至{' '}
+                  {t.archUpload}{' '}
                   <code className="bg-white px-1.5 py-0.5 rounded text-[11px] text-[#0071E3] border border-black/[0.06]">
                     public/images/{project.id}/
                   </code>
@@ -249,7 +248,7 @@ export default function ProjectDetail() {
             </div>
 
             <p className="mt-4 text-[11px] text-[#C7C7CC] text-center">
-              按 <kbd className="px-1.5 py-0.5 rounded bg-[#f5f5f7] border border-black/[0.08] text-[10px] font-mono">Esc</kbd> 或點擊外側關閉
+              {t.archDismiss}
             </p>
           </div>
         </div>
@@ -263,7 +262,7 @@ export default function ProjectDetail() {
         <div className="max-w-6xl mx-auto px-6 md:px-10 h-14 flex items-center justify-between gap-4">
           <button onClick={handleBack}
                   className="flex items-center gap-2 text-sm text-slate-400 hover:text-[#1D1D1F] transition-colors shrink-0">
-            <span>←</span><span>返回</span>
+            <span>←</span><span>{t.back}</span>
           </button>
           <p className="text-sm font-semibold tracking-tight text-[#1D1D1F] truncate">{project.title}</p>
           <div className="shrink-0 w-12" />

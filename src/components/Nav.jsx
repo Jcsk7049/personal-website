@@ -1,37 +1,34 @@
 import { useState, useEffect } from 'react'
-
-const SECTIONS = [
-  { id: 'education', label: '學歷' },
-  { id: 'experience', label: '經歷' },
-  { id: 'skills',    label: '技術' },
-  { id: 'projects',  label: '專案' },
-  { id: 'awards',    label: '獲獎' },
-]
-
-const ease = { transitionTimingFunction: 'cubic-bezier(0,0,0.2,1)' }
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 export default function Nav({ name }) {
+  const { lang, setLang } = useLanguage()
+  const t = uiText[lang]
+
   const [active,     setActive]     = useState('')
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
+    const sections = t.nav
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }),
       { rootMargin: '-40% 0px -55% 0px' }
     )
-    SECTIONS.forEach(({ id }) => {
+    sections.forEach(({ id }) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, [t.nav])
 
-  /* close mobile menu on resize */
   useEffect(() => {
     const close = () => { if (window.innerWidth >= 768) setMobileOpen(false) }
     window.addEventListener('resize', close)
     return () => window.removeEventListener('resize', close)
   }, [])
+
+  const navLinks = t.nav
 
   return (
     <>
@@ -53,9 +50,9 @@ export default function Nav({ name }) {
             {name}
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop links + lang toggle */}
           <div className="hidden md:flex items-center gap-7">
-            {SECTIONS.map(({ id, label }) => (
+            {navLinks.map(({ id, label }) => (
               <a
                 key={id}
                 href={`#${id}`}
@@ -69,7 +66,6 @@ export default function Nav({ name }) {
                 onMouseLeave={e => { if (active !== id) e.currentTarget.style.color = '#71717A' }}
               >
                 {label}
-                {/* Wooting accent underline */}
                 <span
                   className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full bg-[#FFB900]"
                   style={{
@@ -79,39 +75,71 @@ export default function Nav({ name }) {
                 />
               </a>
             ))}
+
+            {/* Language toggle */}
+            <button
+              onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')}
+              className="flex items-center gap-0.5 text-[13px] font-medium leading-6"
+              style={{ transition: 'color 0.125s cubic-bezier(0,0,0.2,1)' }}
+              aria-label="Switch language"
+            >
+              <span style={{
+                color: lang === 'zh' ? '#FFB900' : '#71717A',
+                fontWeight: lang === 'zh' ? 600 : 400,
+                transition: 'color 0.125s cubic-bezier(0,0,0.2,1)',
+              }}>中</span>
+              <span className="text-[#C4C4C6] mx-0.5">/</span>
+              <span style={{
+                color: lang === 'en' ? '#FFB900' : '#71717A',
+                fontWeight: lang === 'en' ? 600 : 400,
+                transition: 'color 0.125s cubic-bezier(0,0,0.2,1)',
+              }}>EN</span>
+            </button>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8"
-            onClick={() => setMobileOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
-            <span
-              className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
-              style={{
-                width: '20px',
-                transform: mobileOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
-                transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
-              }}
-            />
-            <span
-              className="block h-[1.5px] bg-[#09090B] rounded-full"
-              style={{
-                width: '20px',
-                opacity: mobileOpen ? 0 : 1,
-                transition: 'opacity 0.125s cubic-bezier(0,0,0.2,1)',
-              }}
-            />
-            <span
-              className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
-              style={{
-                width: '20px',
-                transform: mobileOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
-                transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
-              }}
-            />
-          </button>
+          {/* Mobile right side: lang toggle + hamburger */}
+          <div className="md:hidden flex items-center gap-4">
+            <button
+              onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')}
+              className="flex items-center gap-0.5 text-[13px] font-medium"
+              aria-label="Switch language"
+            >
+              <span style={{ color: lang === 'zh' ? '#FFB900' : '#71717A', fontWeight: lang === 'zh' ? 600 : 400 }}>中</span>
+              <span className="text-[#C4C4C6] mx-0.5">/</span>
+              <span style={{ color: lang === 'en' ? '#FFB900' : '#71717A', fontWeight: lang === 'en' ? 600 : 400 }}>EN</span>
+            </button>
+
+            <button
+              className="flex flex-col justify-center gap-[5px] w-8 h-8"
+              onClick={() => setMobileOpen(o => !o)}
+              aria-label="Toggle menu"
+            >
+              <span
+                className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
+                style={{
+                  width: '20px',
+                  transform: mobileOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
+                  transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+                }}
+              />
+              <span
+                className="block h-[1.5px] bg-[#09090B] rounded-full"
+                style={{
+                  width: '20px',
+                  opacity: mobileOpen ? 0 : 1,
+                  transition: 'opacity 0.125s cubic-bezier(0,0,0.2,1)',
+                }}
+              />
+              <span
+                className="block h-[1.5px] bg-[#09090B] rounded-full origin-center"
+                style={{
+                  width: '20px',
+                  transform: mobileOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
+                  transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+                }}
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -119,11 +147,11 @@ export default function Nav({ name }) {
       <div
         className="md:hidden fixed top-16 left-0 right-0 z-40 bg-white overflow-hidden"
         style={{
-          maxHeight: mobileOpen ? `${SECTIONS.length * 56}px` : '0px',
+          maxHeight: mobileOpen ? `${navLinks.length * 56}px` : '0px',
           transition: 'max-height 0.125s cubic-bezier(0,0,0.2,1)',
         }}
       >
-        {SECTIONS.map(({ id, label }, i) => (
+        {navLinks.map(({ id, label }, i) => (
           <a
             key={id}
             href={`#${id}`}
@@ -134,7 +162,7 @@ export default function Nav({ name }) {
               fontWeight: active === id ? 500 : 400,
               fontSize: '16px',
               lineHeight: '24px',
-              borderTop: i === 0 ? '1px solid #F4F4F5' : '1px solid #F4F4F5',
+              borderTop: '1px solid #F4F4F5',
               transition: 'color 0.125s cubic-bezier(0,0,0.2,1)',
             }}
           >

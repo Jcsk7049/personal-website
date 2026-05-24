@@ -1,10 +1,14 @@
 import SectionHeader from './SectionHeader'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 export default function Experience({ experience }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
   return (
     <section id="experience" className="py-16 md:py-32 bg-[#1D1D1F]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader zh="經歷" invert />
+        <SectionHeader label={t.sections.experience} invert />
 
         <div className="max-w-4xl card-stagger">
           {experience.map((exp, i) => (

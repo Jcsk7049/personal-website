@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { LanguageProvider, useLanguage } from './context/LanguageContext'
+import { uiText } from './data/uiText'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
 import Education       from './components/Education'
@@ -11,9 +13,14 @@ import ProjectDetail   from './pages/ProjectDetail'
 import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
 import ScrollToTop     from './components/ScrollToTop'
-import cvData          from './data/cvData.json'
+import cvDataZh        from './data/cvData.json'
+import cvDataEn        from './data/cvData.en.json'
 
 function HomePage() {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
+  const cv = lang === 'en' ? cvDataEn : cvDataZh
+
   useEffect(() => {
     const sections = document.querySelectorAll('section:not(#hero)')
     sections.forEach(s => s.classList.add('reveal'))
@@ -33,14 +40,15 @@ function HomePage() {
 
   return (
     <div className="bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
-      <Nav             name={cvData.profile.name} />
-      <Hero            profile={cvData.profile} />
-      <Education       education={cvData.education} />
-      <Experience      experience={cvData.experience} />
-      <ProjectShowcase projects={cvData.projects} />
-      <SkillGrid       skills={cvData.skills_matrix} detail={cvData.skills_detail} />
-      <AwardList       awards={cvData.awards} />
-      {/* ── Apple Footer ── #F5F5F7 / 12px / rgba opacity system / 0.32s ease */}
+      <Nav             name={cv.profile.name} />
+      <Hero            profile={cv.profile} />
+      <Education       education={cv.education} />
+      <Experience      experience={cv.experience} />
+      <ProjectShowcase projects={cv.projects} />
+      <SkillGrid       skills={cv.skills_matrix} detail={cv.skills_detail} />
+      <AwardList       awards={cv.awards} />
+
+      {/* ── Apple Footer ── */}
       <footer className="bg-[#F5F5F7] border-t border-black/[0.1]">
         <div className="max-w-[980px] mx-auto px-6">
 
@@ -50,25 +58,19 @@ function HomePage() {
             {/* Brand block */}
             <div className="max-w-xs">
               <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.88)] mb-2 tracking-tight">
-                {cvData.profile.name}
+                {cv.profile.name}
               </p>
               <p className="text-[12px] leading-[1.6] text-[rgba(0,0,0,0.56)]">
-                {cvData.profile.bio}
+                {cv.profile.bio}
               </p>
             </div>
 
             {/* Link columns */}
             <div className="flex gap-12 shrink-0">
               <div className="flex flex-col gap-2.5">
-                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">內容</p>
-                {[
-                  { href: '#education',  label: '學歷' },
-                  { href: '#experience', label: '經歷' },
-                  { href: '#skills',     label: '技術' },
-                  { href: '#projects',   label: '專案' },
-                  { href: '#awards',     label: '獲獎' },
-                ].map(({ href, label }) => (
-                  <a key={href} href={href}
+                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">{t.footer.content}</p>
+                {t.nav.map(({ id, label }) => (
+                  <a key={id} href={`#${id}`}
                      className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#1D1D1F]"
                      style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                     {label}
@@ -77,20 +79,20 @@ function HomePage() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">聯絡</p>
+                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">{t.footer.contact}</p>
                 <button
-                  onClick={() => { window.location.href = `mailto:${cvData.profile.contact.email}` }}
+                  onClick={() => { window.location.href = `mailto:${cv.profile.contact.email}` }}
                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC] text-left"
                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   Email
                 </button>
-                <a href={`https://github.com/${cvData.profile.links.github}`}
+                <a href={`https://github.com/${cv.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
                    className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
                    style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   GitHub ↗
                 </a>
-                <a href={`https://linkedin.com/in/${cvData.profile.links.linkedin}`}
+                <a href={`https://linkedin.com/in/${cv.profile.links.linkedin}`}
                    target="_blank" rel="noopener noreferrer"
                    className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
                    style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
@@ -103,7 +105,7 @@ function HomePage() {
           {/* Bottom bar */}
           <div className="border-t border-black/[0.1] py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
             <p className="text-[12px] text-[rgba(0,0,0,0.48)]">
-              Copyright © {new Date().getFullYear()} {cvData.profile.name}. All rights reserved.
+              Copyright © {new Date().getFullYear()} {cv.profile.name}. All rights reserved.
             </p>
             <p className="text-[12px] text-[rgba(0,0,0,0.48)]">Built with React &amp; Tailwind</p>
           </div>
@@ -130,8 +132,10 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </LanguageProvider>
   )
 }

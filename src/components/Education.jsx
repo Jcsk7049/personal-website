@@ -1,4 +1,6 @@
 import SectionHeader from './SectionHeader'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 const GraduationIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -9,10 +11,12 @@ const GraduationIcon = () => (
 )
 
 export default function Education({ education }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
   return (
     <section id="education" className="py-16 md:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader zh="學歷" />
+        <SectionHeader label={t.sections.education} />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 card-stagger">
           {education.map((edu, i) => (
             <div key={i}

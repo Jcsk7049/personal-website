@@ -1,0 +1,737 @@
+{
+  "profile": {
+    "name": "江嘉元",
+    "title": "",
+    "bio": "EE student at Yuan Ze University, conducting ICU physiological signal AI research in Prof. Lin Shu-Yan's lab. Started as an FRC robotics competitor, I work across embedded firmware, circuit design, and deep learning — I like turning ideas into real things from scratch.",
+    "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
+    "contact": {
+      "email": "johnjia9491@gmail.com",
+      "phone": "+886 928 530 700",
+      "location": "Taipei, Taiwan"
+    },
+    "links": {
+      "github": "Jcsk7049",
+      "linkedin": "%E5%98%89%E5%85%83-%E6%B1%9F-662764344"
+    }
+  },
+  "education": [
+    {
+      "school": "Yuan Ze University",
+      "degree": "B.S. Electrical Engineering",
+      "period": "2024.09 – 2027.09"
+    },
+    {
+      "school": "Ming Chi University of Technology",
+      "degree": "B.S. Electrical Engineering",
+      "period": "2023.09 – 2024.06"
+    },
+    {
+      "school": "Nangang Vocational H.S.",
+      "degree": "Electronics Program",
+      "period": "2020.09 – 2023.06"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Research Intern",
+      "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
+      "period": "2025.05 – Present",
+      "description": "Working on EIT & VAP physiological signal processing: feature engineering, signal filtering, and end-to-end ML/DL model training on ICU continuous monitoring data."
+    },
+    {
+      "role": "Student Mentor & Technical Support",
+      "organization": "FRC TEAM 7645",
+      "period": "2023 – Present",
+      "description": "Mentoring students in robot development and debugging; serving as drive coach during competitions to direct strategy and on-field decisions.",
+      "frc": true
+    },
+    {
+      "role": "Competitive Athlete",
+      "organization": "Nangang VHS NK-MTC 7645",
+      "period": "2020.06 – 2023.09",
+      "description": "Responsible for robot wiring, programming, and small mechanical parts fabrication; competed in multiple international regional competitions and national skills contests."
+    }
+  ],
+  "skills_matrix": {
+    "manufacturing": [
+      "CNC Milling", "Mastercam", "3D Printing", "Metal Welding",
+      "Laser Cutting", "Basic Machining", "Autodesk Inventor", "AutoCAD", "Fusion 360"
+    ],
+    "programming": [
+      "C/C++", "Python (ITS Cert.)", "LabVIEW", "Arduino", "MATLAB"
+    ],
+    "eda": [
+      "Altium Designer", "EasyEDA Pro (LCEDA)", "KiCAD", "OrCAD"
+    ],
+    "data_analysis": [
+      "Deep Learning", "Machine Learning", "Data Structuring", "Feature Engineering", "Signal Filtering"
+    ]
+  },
+  "skills_detail": {
+    "data_analysis": {
+      "title": "Data Analysis",
+      "en": "Data Analysis",
+      "overview": "Primary domain: biomedical signals and clinical data. Full end-to-end ML pipeline from raw data cleaning and feature engineering to model training and evaluation.",
+      "skills": [
+        {
+          "name": "Deep Learning",
+          "level": "進階",
+          "desc": "Proficient in LSTM and CNN time-series architectures with complete pipelines for preprocessing, training, and hyperparameter tuning — applied to biomedical signal sequence prediction.",
+          "projects": ["ICU VAP Early-Warning System"]
+        },
+        {
+          "name": "Machine Learning",
+          "level": "進階",
+          "desc": "XGBoost / LightGBM ensemble binary classification with SHAP interpretability, effectively handling severe class imbalance in financial fraud detection.",
+          "projects": ["AWS × BitoPro Hackathon"]
+        },
+        {
+          "name": "Feature Engineering",
+          "level": "進階",
+          "desc": "Extracting time-domain (mean, peak) and frequency-domain (FFT power spectrum) features; time-series aggregation and one-hot encoding of EHR data with high missing-value rates.",
+          "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
+        },
+        {
+          "name": "Signal Filtering",
+          "level": "熟悉",
+          "desc": "Band-pass filtering, Z-score normalization, and missing-value imputation to ensure physiological signal input quality and reduce model sensitivity to noise.",
+          "projects": ["ICU VAP Early-Warning System"]
+        },
+        {
+          "name": "Data Structuring",
+          "level": "熟悉",
+          "desc": "EHR ETL cleaning and AWS Glue graph-based multi-hop analysis pipelines, converting unstructured raw data into trainable feature matrices.",
+          "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
+        }
+      ]
+    },
+    "programming": {
+      "title": "Programming",
+      "en": "Programming",
+      "overview": "Spanning embedded firmware, scientific computing, and ML pipelines — selecting the best language and framework for each context.",
+      "skills": [
+        {
+          "name": "C / C++",
+          "level": "進階",
+          "desc": "Primary embedded firmware language. GPIO control, interrupt handling, memory management; ChibiOS HAL configuration (chconf/halconf/mcuconf) and QMK Firmware for resource-constrained STM32 environments.",
+          "projects": ["FRC Swerve Drive Research", "QMK × STM32 Custom Numpad"]
+        },
+        {
+          "name": "Python",
+          "level": "進階",
+          "desc": "ITS Python international certification. Applied to ML pipelines (PyTorch, scikit-learn, pandas), data visualization (Matplotlib), and AWS SDK cloud integration.",
+          "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
+        },
+        {
+          "name": "LabVIEW",
+          "level": "熟悉",
+          "desc": "Graphical programming for vector-composition kinematics and PID closed-loop control in competition robot real-time control, recognized with the 2022 FRC Innovation in Control Award.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "Arduino",
+          "level": "熟悉",
+          "desc": "Rapid prototyping platform integrating ESP32 wireless communication, sensor readings, and relay driving for quick hardware validation.",
+          "projects": ["Wireless Whack-a-Mole"]
+        },
+        {
+          "name": "MATLAB",
+          "level": "基礎",
+          "desc": "Signal processing analysis and algorithm prototype verification — confirming filter effects and model logic visually before implementation.",
+          "projects": []
+        }
+      ]
+    },
+    "eda": {
+      "title": "Electronic Design",
+      "en": "Electronic Design Automation",
+      "overview": "Full flow from schematic design to PCB layout, with experience in power management, MCU peripheral circuitry, and protection circuit design.",
+      "skills": [
+        {
+          "name": "Altium Designer",
+          "level": "進階",
+          "desc": "Multi-layer PCB design covering power planning, impedance matching, and DFM principles — independently completing schematic-to-Gerber output.",
+          "projects": ["QMK × STM32 Custom Numpad"]
+        },
+        {
+          "name": "EasyEDA Pro (LCEDA)",
+          "level": "熟悉",
+          "desc": "Cloud-native EDA integrated with LCSC library for one-click PCB ordering. Used for QMK numpad: schematic, PCB layout, and Gerber export.",
+          "projects": ["QMK × STM32 Custom Numpad"]
+        },
+        {
+          "name": "KiCAD",
+          "level": "熟悉",
+          "desc": "Open-source EDA for rapid personal project prototyping; familiar with library management and 3D footprint preview.",
+          "projects": []
+        },
+        {
+          "name": "OrCAD",
+          "level": "基礎",
+          "desc": "Schematic drawing and SPICE simulation basics for verifying passive component selection and power circuit behavior.",
+          "projects": []
+        }
+      ]
+    },
+    "manufacturing": {
+      "title": "Manufacturing",
+      "en": "Manufacturing",
+      "overview": "Full fabrication capability from concept to physical product: subtractive machining, additive manufacturing, and joining processes with hands-on CNC and 3D modeling experience.",
+      "skills": [
+        {
+          "name": "CNC Milling",
+          "level": "進階",
+          "desc": "Aluminum alloy precision machining; proficient in toolpath planning and fixture design, achieving significantly higher accuracy and repeatability than manual milling.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "Mastercam",
+          "level": "熟悉",
+          "desc": "CAM software for CNC: planning toolpaths (drilling, 2D/3D pocketing, contour milling, dynamic milling, chamfering) from 3D models and outputting verified NC programs.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "3D Printing",
+          "level": "進階",
+          "desc": "FDM rapid prototyping for interference verification and custom non-structural parts, reducing weight and machining cost without compromising structural integrity.",
+          "projects": ["FRC Swerve Drive Research", "Wireless Whack-a-Mole"]
+        },
+        {
+          "name": "Autodesk Inventor",
+          "level": "進階",
+          "desc": "Primary 3D mechanism modeling tool for assembly interference analysis and dynamic simulation, eliminating conflicts before physical assembly.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "AutoCAD",
+          "level": "熟悉",
+          "desc": "2D engineering drawing and machining output with clear dimension annotations and tolerance specs for CNC operators or vendors.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "Fusion 360",
+          "level": "熟悉",
+          "desc": "Quick concept modeling with integrated CAM for direct machining path generation in small-batch production.",
+          "projects": []
+        },
+        {
+          "name": "Metal Welding",
+          "level": "熟悉",
+          "desc": "MIG/TIG basic welding for FRC robot steel tube chassis connections, focusing on weld bead uniformity and structural strength.",
+          "projects": ["FRC Swerve Drive Research"]
+        },
+        {
+          "name": "Laser Cutting",
+          "level": "熟悉",
+          "desc": "Precision cutting of sheet metal and acrylic structural parts from CAD drawings for custom-size thin-plate structures and label panels.",
+          "projects": []
+        },
+        {
+          "name": "Basic Machining",
+          "level": "熟悉",
+          "desc": "Manual mill and lathe fundamentals including measuring instruments and workpiece clamping — the foundation for advanced CNC machining.",
+          "projects": []
+        }
+      ]
+    }
+  },
+  "projects": [
+    {
+      "id": "vap",
+      "cover": "/images/vap/cover-ai.jpg",
+      "category": "大學專題作品",
+      "title": "ICU VAP Early-Warning System",
+      "period": "2025 – Present",
+      "description": "Stay-level CV corrects window-level data leakage (AUROC 0.99→0.58); IG feature attribution selects MAP/RR/Vt/SpO₂; LSTM × Far Eastern ICU (n=109, VAP 54/non-VAP 55) achieves 6–72h warning with AUROC 0.98–0.99 / AUPRC 0.81–0.93.",
+      "tags": ["PyTorch", "LSTM", "Integrated Gradients", "SMOTE", "Medical AI"],
+      "detail": {
+        "images": [
+          { "src": "/images/vap/fig-pipeline.png",          "caption": "Pipeline: feature selection → sliding window → LSTM → multi-horizon evaluation" },
+          { "src": "/images/vap/fig-lstm-vs-baseline.png",  "caption": "Fig. 1  LSTM vs. traditional ML baselines (AUROC / AUPRC / Sensitivity / Specificity)" },
+          { "src": "/images/vap/fig-lstm-performance.png",  "caption": "Fig. 2  LSTM 4-feat performance across warning horizons (6–72 h)" }
+        ],
+        "purpose": "VAP incidence is ~5–15% in mechanically ventilated patients with 20–50% mortality, and clinical diagnosis typically lags 48+ hours behind onset. Current methods rely on periodic assessment and cannot leverage the temporal trends available from continuous monitoring.\n\nUsing Far Eastern Memorial Hospital ICU data (2019–2023, n=109: VAP 54, non-VAP 55), we built an LSTM time-series classification pipeline using 4 routine vital signs (MAP, respiratory rate, tidal volume, SpO₂) to provide 6–72 hour early warning of VAP.\n\nModel selection — LSTM vs. GRU/Transformer:\nVAP physiological changes exhibit continuous temporal drift (visible 48–72 hours before infection onset), so static features are insufficient to capture long-range dependencies. LSTM cell state shows better gradient stability than GRU on 72-hour windows; Transformer overfits on the n=109 small dataset. LSTM achieved consistently higher AUROC/AUPRC than LR, RF, and SVM across all windows.",
+        "concept": "[1. Paper Replication & Data Leakage Discovery]\nBased on the PREDICT paper (JCM 2025), we fully replicated its 3-layer LSTM architecture using the MIMIC-IV public dataset. During replication, we discovered that the original paper used Window-level Cross Validation — the same patient's time windows appeared in both training and test sets, inflating AUROC to 0.99. This data leakage finding is one of the core contributions of this research.\n\n[2. Correct Validation Methodology]\nSwitching to Stay-level Cross Validation (patient-wise splitting) eliminated the leakage and revealed true performance (AUROC ≈ 0.58) on MIMIC-IV, confirming the limitations of the original paper's results.\n\nFor the local Far Eastern ICU dataset (2019–2023, 110 enrolled, 1 excluded for <72h ventilation, effective n=109: VAP 54, non-VAP 55; VAP group had significantly higher APACHE II on admission: 25.9 vs 20.1, p<0.001), SMOTE (1:10) was applied within each training fold only, ensuring oversampling did not cross train/test boundaries.\n\n[3. Feature Engineering & Interpretability]\n14 physiological and ventilation features were analyzed with Integrated Gradients (IG), yielding the top 4 most predictive features: MAP (mean arterial pressure), Vent Rate (ventilator set rate), Tidal Volume, SpO₂. Ablation studies further validated the indispensability of each.\n\n[4. Technical Architecture]\n- Model: 3-layer LSTM (50 units each) + Dropout, binary classification output\n  (Depth rationale: 2 layers show gradient vanishing on 72h windows; 4 layers overfit on small samples; 3 layers is optimal)\n- Input: 24-hour sliding window × 4 features, sliding by 1 hour\n- Framework: PyTorch + GPU (NVIDIA RTX 4080 Laptop)\n- Interpretability: Integrated Gradients\n- Baselines: Logistic Regression, Random Forest, SVM (same settings, fair comparison)",
+        "outcome": "[Model Performance — Far Eastern ICU, Stay-level 5-fold CV]\n\nHorizon      AUROC    AUPRC    Sensitivity  Specificity\n6 hours      0.9800   0.8136   78.95%       99.83%\n12 hours     0.9817   0.8565   81.06%       99.71%\n24 hours     0.9919   0.9325   88.72%       99.64%\n48 hours     0.9908   0.9352   87.46%       99.18%\n72 hours     0.9865   0.9210   86.34%       98.67%\n\nThe model achieves its best balance at the 24-hour prediction window (AUROC=0.99), alerting clinicians one full day in advance. LSTM significantly outperforms LR, RF, and SVM across all windows.\n\n[Core Features — Top 4, IG Analysis]\n- MAP (Mean Arterial Pressure)\n- Vent Rate (Ventilator Set Rate)\n- Tidal Volume\n- SpO₂ (Oxygen Saturation)\n\n[Research Contributions]\n- Taiwan-localized data: first VAP prediction model validated on real Taiwan ICU data\n- Extended prediction window: beyond the 24h literature limit, achieving 72h early warning\n- Rigorous validation: Stay-level CV + per-fold normalization to prevent data leakage\n- Lightweight feature set: only 4 routine monitoring indicators, no invasive procedures\n- Clinical interpretability: IG analysis surfaces model reasoning to build physician trust\n\n[Ablation Study: mv_total exclusion]\nmv_total (minute ventilation) ranked #1 in IG attribution (0.00989) but is mathematically redundant (mv≡Vt×RR). Removing it actually improved 24h AUROC by +0.004 and AUPRC by +0.014, confirming that feature importance should be validated by model behavior, not attribution scores alone.\n\n📄 Paper: \"LSTM-Based Early Prediction of Ventilator-Associated Pneumonia Using Stay-Level Cross-Validation and Extended Prediction Windows\"\nManuscript completed (2026.05), targeting IEEE GCCE 2026",
+        "tech": [
+          {
+            "group": "Deep Learning",
+            "items": [
+              {
+                "name": "LSTM Time-Series Modeling",
+                "desc": "Independently designed 3-layer LSTM (50 units each) + Dropout; implemented complete PyTorch training loop with sliding window design, dropout regularization, and hyperparameter tuning"
+              },
+              {
+                "name": "Class Imbalance Handling",
+                "desc": "SMOTE (1:10) applied within each training fold; understanding that oversampling must be performed after splitting to prevent data leakage across boundaries"
+              },
+              {
+                "name": "Explainable AI (XAI)",
+                "desc": "Integrated Gradients to attribute each feature's contribution per prediction, combined with ablation studies to validate the indispensability of the Top 4 features"
+              }
+            ]
+          },
+          {
+            "group": "Experimental Design",
+            "items": [
+              {
+                "name": "Leakage-Free Validation",
+                "desc": "Self-designed Stay-level CV (patient-wise splits) to address window-level CV leakage in the original paper, reducing inflated AUROC from 0.99 to the true 0.58"
+              },
+              {
+                "name": "Per-fold Normalization",
+                "desc": "Independent mean/std computed per fold before normalization, preventing test set statistics from contaminating training — mastering the strict ordering of normalization and splitting"
+              },
+              {
+                "name": "Ablation Study",
+                "desc": "Removing IG-top-ranked mv_total (mathematically redundant: mv≡Vt×RR) improved 24h AUROC +0.004 and AUPRC +0.014, validating that model behavior — not attribution scores alone — should determine feature selection"
+              }
+            ]
+          },
+          {
+            "group": "Feature Engineering",
+            "items": [
+              {
+                "name": "Sliding Window Construction",
+                "desc": "Fixed 24-hour windows sliding hourly, handling variable-length ICU time-series with window alignment and boundary truncation"
+              },
+              {
+                "name": "Physiological Signal Preprocessing",
+                "desc": "Band-pass filtering, Z-score normalization, missing-value imputation for continuous monitoring data quality; ETL pipeline implemented with pandas/NumPy"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "aws-hackathon",
+      "cover": "/images/AWS-bito-guard/dashboard-cover.png",
+      "category": "大學校外作品",
+      "title": "AWS × BitoPro Hackathon: BitOGuard",
+      "period": "2026",
+      "description": "XGBoost/LightGBM × S3→Glue→Athena→SageMaker→Lambda→Bedrock end-to-end AML pipeline; 63,770 accounts / 413,235 transactions; 31 behavioral features (incl. graph-theory blacklist neighbors) + SHAP compliance reports to identify money mule accounts. Streamlit dashboard live.",
+      "tags": ["XGBoost", "LightGBM", "AWS SageMaker", "AWS Glue", "SHAP", "Streamlit"],
+      "detail": {
+        "images": [
+          { "src": "/images/AWS-bito-guard/dashboard-overview.png",    "caption": "Dashboard overview: AUC 83.2%, Precision 27.5%, Recall 33.2%, confusion matrix + 5-fold CV bar chart" },
+          { "src": "/images/AWS-bito-guard/dashboard-risk-query.png",  "caption": "Account risk query: USER ID 971465 scored 82.1% — classified as extreme high risk, blacklisted" },
+          { "src": "/images/AWS-bito-guard/dashboard-risk-table.png",  "caption": "Risk ranking: Top 50 high-risk (CRITICAL) vs. Top 50 low-risk accounts" },
+          { "src": "/images/AWS-bito-guard/dashboard-model-eval.png",  "caption": "Model evaluation: feature importance (total_volume highest) + decision threshold analysis (optimal 0.24)" },
+          { "src": "/images/AWS-bito-guard/dashboard-predictions.png", "caption": "Predictions: 12,753 users — 501 flagged as risk (3.93%), 12,252 normal (96.07%)" }
+        ],
+        "purpose": "BitoPro cryptocurrency exchange AML compliance competition dataset:\n- User records: 63,770 accounts\n- TWD transfer records: 195,601 (56,111 users)\n- USDT transaction records: 217,634 (33,587 users)\n- Labeled money mule accounts: 1,640 (3.21% of training set)\n\nGoal: output a risk score per account to identify high-risk suspicious accounts while satisfying regulators' demand for explainability in AML compliance (black-box outputs not accepted).\n\nWhy XGBoost over deep learning:\nAML compliance requires feature-level justification for every flagged account. XGBoost + SHAP directly outputs each feature's contribution per account, satisfying compliance reporting obligations. On <65K structured data, XGBoost also trains faster and is more stable than neural networks.",
+        "concept": "[Why XGBoost, Not Deep Learning?]\nAML compliance systems require explainability: regulators demand \"which features triggered high risk\" for every flagged account. XGBoost with SHAP values directly outputs per-feature contributions for individual accounts, meeting compliance reporting requirements. On this scale of structured transactional data (<65K accounts), XGBoost also trains faster with more stable hyperparameters and natively supports scale_pos_weight to handle 1:30 class imbalance.\n\n[Data Pipeline — AWS End-to-End Architecture]\n① BitoPro API ingestion → ingest_to_s3.py → AWS S3 (raw data layer)\n② AWS Glue ETL + glue_graph_hops.py for graph-based multi-hop association analysis\n③ Amazon Athena SQL queries to aggregate feature results (athena_graph_hops.sql)\n④ Amazon SageMaker for XGBoost model training, hyperparameter tuning, and deployment\n⑤ AWS Lambda + lambda_diagnosis.py for real-time inference and event-driven logic\n⑥ Amazon Bedrock integrates SHAP + XAI to auto-generate explainability reports per high-risk account\n⑦ Streamlit dashboard (app.py) for interactive risk review\n⑧ CloudFormation template.yaml defines full IaC\n\n[Feature Engineering — 31 Behavioral Indicators]\nCompetition version started with 3 core features (TWD deposit/withdrawal count, late-night transaction ratio), expanded post-competition to 31 indicators:\n- Transaction behavior: total_volume, tx_per_day, avg_twd_amount, swap_twd_volume\n- Temporal features: min_retention_minutes, night_tx_ratio\n- Graph features: blacklist_neighbor_count, is_direct_neighbor\n- Risk flags: high_speed_risk, ip_anomaly, deposit_only_flag\nTop 3 by importance: total_volume, account age, swap_twd_volume\n\n[Model Design]\n- XGBoost (max_depth=8, lr=0.05, 1000 rounds, early stopping=30)\n- 5-fold Stratified CV with consistent positive/negative ratios per fold\n- scale_pos_weight + threshold sweep (0.3–0.9) to mitigate 1:30 imbalance\n- SHAP analysis shows per-feature contribution for individual accounts",
+        "outcome": "[Competition Result]\n- Completed AWS × BitoPro Hackathon; end-to-end cloud architecture received positive feedback from judges\n- 81 commits, fully implementing the pipeline from API data ingestion to model prediction\n\n[Technical Achievements]\n- Successfully chained 6 AWS services: SageMaker, Glue, Athena, Lambda, S3, Bedrock\n- Feature engineering expanded from 3 competition features to 31 behavioral indicators\n- SHAP interpretability module provides AML-compliant explanations\n- Streamlit dashboard supports interactive account risk review — deployed live\n\n[Model Performance — 5-fold Stratified CV]\n- Precision: 9.83% (±8.12%)\n- Recall: 0.43% (±0.36%)\n- F1 Score: 0.82%\nCompetition submission used a conservative threshold (0.65), flagging only 2 high-risk accounts — intentionally biased toward precision to avoid false positives against legitimate users.\n\n[Honest Technical Reflection: Why These Metrics Are a Reasonable Starting Point]\nLow recall directly reflects AML's triple challenge: ① only 3.21% labeled samples (1:30 imbalance); ② dataset lacks high-discriminating features like device fingerprints and IP associations; ③ money mule behavior patterns heavily overlap with legitimate high-frequency traders. Real financial AML systems face the same fundamental Precision vs. Recall tradeoff. Future improvements: graph neural networks (GNN) for blacklist neighbor relationships, SMOTE/ADASYN for imbalance, expanded account age and IP-sharing features.",
+        "tech": [
+          {
+            "group": "Machine Learning",
+            "items": [
+              {
+                "name": "Gradient Boosting Classification",
+                "desc": "XGBoost (depth=8, 1000 rounds, early stopping) for 1:30 class imbalance; mastering scale_pos_weight configuration and 0.3–0.9 threshold sweeps' effect on the Precision-Recall curve"
+              },
+              {
+                "name": "Behavioral Feature Engineering",
+                "desc": "Extracting 31 behavioral indicators from TWD and USDT transaction records (frequency, late-night ratio, blacklist neighbor count, etc.), verifying actual model gains from expanding the initial 3-feature set"
+              },
+              {
+                "name": "SHAP Interpretability",
+                "desc": "Computing each feature's marginal contribution per account; distinguishing global feature importance from per-account local explanations to support AML compliance reporting"
+              }
+            ]
+          },
+          {
+            "group": "Cloud Architecture",
+            "items": [
+              {
+                "name": "End-to-End Data Pipeline",
+                "desc": "Designed S3→Glue ETL→Athena→SageMaker→Lambda 6-service chain; mastering data format transformation, error propagation, and permission design between nodes; CloudFormation IaC for reproducibility"
+              },
+              {
+                "name": "Graph-Based Multi-hop Analysis",
+                "desc": "Glue + Athena SQL for second-degree blacklist neighbor query; understanding the approximate computation of graph-theory features in relational databases and query complexity"
+              },
+              {
+                "name": "Event-Driven Inference",
+                "desc": "Lambda receives trigger events and calls SageMaker endpoints for real-time prediction; understanding cold-start latency and sync/async tradeoffs for AML real-time detection"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/bitoguard-aml",
+        "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/"
+      }
+    },
+    {
+      "id": "audio-amplifier",
+      "cover": "/images/audio-amplifier/circuit-assembled.jpg",
+      "category": "大學課程作品",
+      "title": "Audio Amplifier PCB",
+      "period": "2024",
+      "description": "Freshman final project: designed and implemented a two-stage BJT audio amplifier (CE + CC topology), handling full PCB layout, photosensitive board etching, drilling, soldering, and debugging — rebuilt twice before successfully driving an 8Ω speaker.",
+      "tags": ["BJT Amplifier", "PCB Layout", "Photoresist Etching", "Circuit Simulation", "SPICE"],
+      "detail": {
+        "images": [
+          { "src": "/images/audio-amplifier/circuit-assembled.jpg",       "caption": "Final product: two-stage BJT amplifier board + 8Ω speaker, driving audio output" },
+          { "src": "/images/audio-amplifier/pcb-etched.png",              "caption": "Photoresist-etched PCB blank: clear traces, ready for drilling and soldering" },
+          { "src": "/images/audio-amplifier/circuit-schematic.png",        "caption": "EDA schematic: CE amplifier stage + bias network + CC emitter follower" },
+          { "src": "/images/audio-amplifier/pcb-layout-components.png",    "caption": "PCB component placement (top): 109.2×45.7mm, transistors, capacitors, trimpots" },
+          { "src": "/images/audio-amplifier/pcb-layout-bottom.png",        "caption": "PCB component placement (bottom): confirming mirrored pin orientation — key lesson from two rebuilds" },
+          { "src": "/images/audio-amplifier/pcb-traces.png",               "caption": "PCB copper traces: full routing for CE + CC stages" },
+          { "src": "/images/audio-amplifier/pcb-drill-pattern.png",        "caption": "PCB drill pattern: all component pads and mounting hole machining reference" }
+        ],
+        "purpose": "Freshman Electronics final project (Group 12): design and implement an audio amplifier circuit capable of driving an 8Ω speaker. The circuit needed adjustable gain and required completing the full flow from circuit simulation and breadboard verification to actual PCB fabrication.\n\nPersonal responsibilities: full PCB flow — schematic drawing, layout design, photoresist board fabrication (exposure, development, acid etching), drilling, soldering, and debugging.",
+        "concept": "[Circuit Topology: Two-Stage BJT Amplification]\n- Input stage: trimpots Rv1a/Rv1b adjust input gain; R3/R4 DC bias stabilizes Q1 in active region\n- First stage — CE (Common Emitter): Q1 provides main voltage gain; collector resistor RC converts current changes to output voltage\n- Bias stabilization: D1–D4 (4 series diodes) stabilize base voltage for Q2/Q3; C3 absorbs reverse voltage spikes to prevent diode breakdown\n- Second stage — CC (Common Collector / Emitter Follower): high input impedance, low output impedance; emitter resistor RE provides negative feedback for stability and low distortion, voltage gain ≈1\n- Trimpot Rv2 adjusts overall DC operating point to find maximum gain without distortion\n\n[PCB Fabrication Flow]\nPhotosensitive FR4 double-sided board (15cm × 12.5cm), hand-fabricated:\n① Layout → minimize white-line crossings, compress routing under components\n② Film output → exposure → development → acid etching → rinse\n③ Drilling → component soldering → power-on testing\n\n[Two Rebuilds]\nFirst failure: residual copper after acid etching caused shorts. After verifying all diodes conducting and transistors operating normally, confirmed the board itself was the issue. Redesigned layout and urgently rebuilt.\n\nSecond problem: circuit still non-functional after soldering. Teammate discovered that PCB artwork must be viewed \"from below\" — all power IC and transistor pins were mirrored. After re-soldering, circuit showed intermittent signal with voltage dropping after 5 seconds. After confirming all solder joint continuity, the circuit operated smoothly.",
+        "outcome": "- Circuit successfully drives an 8Ω laboratory speaker with clear audio output\n- Completed the full flow: circuit simulation → breadboard verification → PCB fabrication\n- Power: 12V DC power supply / 9V battery (portable use)\n- Input: 3.5mm stereo cable from computer\n\n[Personal Reflection]\nThis project gave me a clear understanding of audio amplification principles and deepened my hands-on PCB fabrication skills. The two rebuilds taught me the most — not about design itself, but about systematic debugging: from component-by-component verification to finally identifying the pin mirror issue. Each step required a clear expectation of circuit behavior to eliminate unexpected conditions.",
+        "tech": [
+          {
+            "group": "Analog Circuit Design",
+            "items": [
+              {
+                "name": "CE Amplifier Bias Design",
+                "desc": "Calculating R3/R4 voltage divider bias to stabilize Q1 in active region; understanding the tradeoffs between β, DC operating point, and thermal stability in component selection"
+              },
+              {
+                "name": "CC Emitter Follower",
+                "desc": "Emitter resistor RE introduces negative feedback for low output impedance, reducing loading effects between stages; voltage gain approaches 1"
+              },
+              {
+                "name": "Bias Stabilization Design",
+                "desc": "D1–D4 in series provide stable voltage difference to Q2/Q3 bases; C3 absorbs turn-off transient reverse voltage; understanding how diode forward voltage temperature characteristics affect bias stability"
+              },
+              {
+                "name": "Variable Gain Adjustment",
+                "desc": "Rv1a/Rv1b control input signal strength; Rv2 fine-tunes DC operating point; experimentally finding the maximum linear gain boundary without distortion"
+              }
+            ]
+          },
+          {
+            "group": "PCB Fabrication",
+            "items": [
+              {
+                "name": "Layout Routing Design",
+                "desc": "Hand-drawn double-sided PCB; routing under components to reduce white-line crossings; completed full exposure→development→acid etching process"
+              },
+              {
+                "name": "Systematic Circuit Debugging",
+                "desc": "Two rebuilds established a debugging flow from component-by-component verification (continuity, saturation, charge) to board-layer short detection; identified residual-copper shorts and pin mirror errors as root causes"
+              }
+            ]
+          },
+          {
+            "group": "Measurement & Verification",
+            "items": [
+              {
+                "name": "Simulation vs. Real-World Comparison",
+                "desc": "SPICE simulation of time-domain waveform and Bode plot frequency response, then oscilloscope measurement of actual output; analyzing deviations caused by non-ideal component characteristics"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "qmk-stm32-keyboard",
+      "cover": "/images/qmk-stm32-keyboard/numpad-hero.jpg",
+      "category": "大學校外作品",
+      "title": "QMK × STM32 Custom Numpad",
+      "period": "2026",
+      "description": "STM32F072 (USB FS DFU bootloader) × EasyEDA Pro PCB × QMK + ChibiOS HAL; full chconf/halconf/mcuconf configuration, 5×4 matrix scan, WS2812B RGB Matrix, VIA/VIAL live remap, latency < 5ms. Gerber + firmware open-sourced.",
+      "tags": ["QMK Firmware", "STM32", "ChibiOS / HAL", "EasyEDA Pro", "RGB Matrix", "VIA / VIAL"],
+      "detail": {
+        "images": [
+          { "src": "/images/qmk-stm32-keyboard/numpad-top.jpg",  "caption": "Completed numpad — top view" },
+          { "src": "/images/qmk-stm32-keyboard/numpad-hero.jpg", "caption": "In use alongside main keyboard" }
+        ],
+        "purpose": "Most commercial USB numpads run closed firmware with no way to customize key logic, lighting effects, or layer switching. For those entering the QMK ecosystem, most tutorials target Pro Micro (ATmega32U4), with very little documentation on ChibiOS HAL configuration for STM32 targets.\n\nThis project aimed to complete the full flow from blank PCB to a working USB HID keyboard, producing a reproducible open-source design — including EasyEDA Pro project files, QMK firmware source, and ChibiOS triple-config documentation.\n\nSpecific verification goals:\n- Full PCB design and LCSC board ordering flow\n- STM32F072 DFU flashing flow (BOOT0 pin control, no programmer needed)\n- QMK + ChibiOS HAL triple config (chconf / halconf / mcuconf)\n- WS2812B RGB Matrix animation integration and overcurrent protection\n- VIA / VIAL GUI key remapping support",
+        "concept": "[Core Technology Decisions]\n- STM32F072 vs. Arduino Pro Micro (ATmega32U4):\n  F072 has built-in USB FS peripheral and enters DFU mode via BOOT0 pin — one USB cable handles both flashing and operation, no ISP programmer required. Pro Micro is more beginner-friendly but its 32KB Flash limits advanced QMK features (RGB Matrix, VIAL).\n\n- ChibiOS vs. Bare-metal HAL:\n  QMK Firmware officially uses ChibiOS as an RTOS abstraction layer for non-Arduino targets (STM32 series), ensuring USB HID scan timing portability across MCUs. Bare-metal HAL is lighter but requires manually handling USB interrupt priority and GPIO scan conflicts.\n\n- EasyEDA Pro vs. KiCad:\n  LCEDA Pro is deeply integrated with LCSC — component selection, DRC, and board ordering all in one platform, significantly faster iteration for a first PCB project.\n\n[Hardware Architecture]\n- MCU: STM32F072 (built-in USB FS, DFU bootloader, no programmer needed)\n- PCB designed in EasyEDA Pro (LCEDA), full project files uploaded\n- Standard keyboard matrix design to minimize IO usage\n- WS2812B addressable RGB for per-key independent lighting\n- 100nF decoupling capacitors for power stability\n\n[Firmware Architecture — QMK + ChibiOS]\n- chconf.h: ChibiOS kernel thread and tick configuration\n- halconf.h: enable required peripherals (USB, GPIO, SPI)\n- mcuconf.h: STM32 clock, PLL, peripheral clock source settings\n- Custom LAYOUT_numpad_17 mapping to PCB physical layout\n- Module separation: w17.h (layout) / w17.c (RGB Matrix init) / config.h (hardware params) / keymap.c (key logic)\n\n[Layer Design]\n- Layer 0: Standard numpad input\n- Layer 1: RGB Matrix control (RM_NEXT/PREV, Hue/Sat/Val/Speed)\n- LT() for \"hold to switch layer, tap to input\"\n\n[RGB Design]\n- RGB_MATRIX (not legacy RGBLIGHT) for animation mode switching\n- RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 to prevent overcurrent and overheating\n\n[VIA / VIAL Support]\n- Users can remap keys and adjust layers in real time without recompiling",
+        "outcome": "- Completed full 17-key USB HID keyboard flow: EasyEDA Pro PCB design → LCSC board ordering → hand-soldering → STM32 DFU flashing → QMK firmware integration\n- ChibiOS HAL triple config (chconf/halconf/mcuconf) correctly configured; USB HID recognized stably, key response latency measured < 5ms\n- RGB Matrix animation modes all working; RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 effectively prevents LED string overcurrent\n- VIA/VIAL GUI remapping verified; layer switching and RGB control adjustable in real time without recompiling\n- Identified and fixed PCB pin mirror issue (EasyEDA footprint default Top/Bottom layer orientation difference) — reusable checklist for future PCB designs\n- Full source code open-sourced on GitHub: EasyEDA project, QMK firmware, ChibiOS configuration notes",
+        "tech": [
+          {
+            "group": "Embedded Firmware",
+            "items": [
+              {
+                "name": "HAL Peripheral Configuration",
+                "desc": "Independently completed ChibiOS chconf/halconf/mcuconf triple config; set STM32 USB, GPIO clock sources, and PLL; understood RTOS tick and peripheral initialization ordering dependencies"
+              },
+              {
+                "name": "Keyboard Matrix Scanning",
+                "desc": "Designed 5×4 ROW2COL matrix with 5ms debounce supporting 17 keys on minimal IO; understood ghost key causes and diode protection principles"
+              },
+              {
+                "name": "RGB Matrix Driver",
+                "desc": "Integrated WS2812B per-key addressing; Hue/Sat/Val 3D color control; set max brightness 120 to prevent USB overcurrent; understood animation mode switching and SPI timing"
+              },
+              {
+                "name": "Layer & Tap-Hold",
+                "desc": "LT() for hold-to-layer, tap-to-input; understanding how QMK tap-hold decision window (tapping_term) affects typing feel and tuning"
+              }
+            ]
+          },
+          {
+            "group": "PCB Design",
+            "items": [
+              {
+                "name": "MCU Peripheral Circuit",
+                "desc": "STM32 USB FS circuit, 100nF decoupling capacitor layout, and DFU bootloader pin configuration ensuring reliable programmer-free USB flashing path; implemented in EasyEDA Pro"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/qmk-stm32-keyboard",
+        "video": "UQ_tA-CO8Yw"
+      }
+    },
+    {
+      "id": "whack-a-mole",
+      "cover": "/images/whack-a-mole/machines-group.jpg",
+      "category": "高職選手作品",
+      "title": "Wireless Whack-a-Mole (Special Ed Aid)",
+      "period": "2021 – 2022",
+      "description": "Commissioned by Nangang VHS special education dept: ESP32 + ESP-NOW links one master to four slave units with transistor-relay drive circuits and 3D-printed enclosures — a wireless interactive aid for special-needs students. Received official letter of appreciation.",
+      "tags": ["ESP32", "ESP-NOW", "Circuit Design", "3D Printing", "Arduino"],
+      "detail": {
+        "purpose": "Commissioned project for Nangang VHS special education department to design interactive teaching aids usable both indoors and outdoors for special-needs students. Key requirements:\n\n- Small quantity, simple structure, easy maintenance and storage\n- Intuitive operation suitable for special-needs students\n- No dependence on power outlets for outdoor use\n\nAfter referencing basketball machines and air hockey tables, the whack-a-mole format was chosen with wireless communication for outdoor use.",
+        "concept": "[System Architecture: ESP-NOW Peer-to-Peer Communication]\nESP32 + ESP-NOW protocol chosen:\n- No WiFi/router needed — direct peer-to-peer connection\n- Auto-reconnects after power loss or restart, no operation required\n- One master + four slaves: master randomly selects a number and broadcasts; selected slave lights up; player presses button, slave sends response signal back\n\n[Circuit Design]\nPower: 11.1V (3× 18650 in series) → 7805 step-down to 5V for ESP32 → ESP32 GPIO output → 9013 transistor amplification → relay switches 11.1V to LED\n\nKey component considerations:\n- Flyback diode (1N4001) across relay coil absorbs back-EMF to prevent arcing damage\n- Transistor amplification solves ESP32 GPIO current insufficient to directly drive relay\n- 104 ceramic capacitors at 7805 input/output for decoupling and voltage stability\n\n[Program Logic]\nMaster: randomly generates 1–4 and broadcasts → enters 200-loop waiting cycle (~10 sec) → on response broadcast 0 to reset and enter next round; timeout advances to next round automatically.\nSlave: receives number, compares to self ID to decide whether to light → detects button while lit → sends 1 on press → 0.1s delay then sends 0 to reset (prevents master data stuck at 1)\n\n[Mechanical Design]\n- Top cover: 3D printed (v1) → wood + screws (improved v2) for easy replacement\n- Enclosure: aluminum square tube + top cover; 3.5° outward-tilted screw holes for stronger attachment\n- Bottom cover: strong magnet attachment — tool-free battery access\n- Core design philosophy: simplify, avoid over-engineering, prioritize quick repair",
+        "outcome": "[Functional Results]\n- All 5 units (1 master + 4 slaves) fully operational, usable indoors and outdoors\n- Wireless communication stable, auto-reconnects after power loss\n- Intuitive operation meeting special education requirements\n- Received official letter of appreciation from special education department\n\n[Technical Breakthroughs]\n- First use of ESP32 + ESP-NOW for multi-unit communication\n- Diagnosed 7805 overheating and ESP32 unexplained failure — understood the practical necessity of decoupling capacitors and flyback diodes\n- Advanced from single-unit to multi-unit coordinated control\n\n[Reflection]\nBuilding aids for special-needs students requires additional considerations — safety against injury, easy part replacement, simplicity. The circuit troubleshooting of 7805 overheating and ESP32 failure taught more practical knowledge than the design phase.\n\n[Division of Work — 2-person project]\n- Mechanical design and fabrication: Chiang Jia-Yuan\n- Circuit design, fabrication, programming: Chiang Jia-Yuan + Du Chuan-You",
+        "images": [
+          { "src": "/images/whack-a-mole/machines-group.jpg",   "caption": "All 5 units (1 master + 4 slaves) lit up — yellow, red, blue LED buttons" },
+          { "src": "/images/whack-a-mole/machine-single.jpg",   "caption": "Single unit: aluminum tube enclosure + wood top cover + large LED button" },
+          { "src": "/images/whack-a-mole/circuit-schematic.jpg","caption": "Circuit design sketch: 11.1V → 7805 → ESP32 → 9013 transistor → relay → LED" },
+          { "src": "/images/whack-a-mole/circuit-board.jpg",    "caption": "Circuit board: ESP32 + relay wiring with 1N4001 flyback diode protection" },
+          { "src": "/images/whack-a-mole/esp32-buttons.jpg",    "caption": "Close-up of 5-unit LED buttons: yellow/red/blue large buttons, student demonstration" },
+          { "src": "/images/whack-a-mole/esp32-circuit.jpg",    "caption": "ESP32 + relay board: blue relay modules and 18650 battery wiring" },
+          { "src": "/images/whack-a-mole/esp32-internal.jpg",   "caption": "Internal assembly: ESP32 board mounted in 3D-printed frame, magnetic bottom cover" }
+        ],
+        "tech": [
+          {
+            "group": "Wireless Communication",
+            "items": [
+              {
+                "name": "Multi-Unit P2P Coordination",
+                "desc": "Designed 1-master 4-slave broadcast state machine; mastered ESP-NOW device pairing, broadcast reset, and auto-reconnect in a router-free environment; implemented master/slave logic in Arduino C++"
+              }
+            ]
+          },
+          {
+            "group": "Circuit Design",
+            "items": [
+              {
+                "name": "Transistor Current Amplification",
+                "desc": "Calculated 9013 NPN base current-limiting resistor for saturation conduction, solving ESP32 GPIO current insufficient to directly drive relay"
+              },
+              {
+                "name": "High-Voltage Load Isolation",
+                "desc": "Relay fully isolates 3.3V control from 11.1V load; understanding contact capacity limits and switching frequency effects on contact lifespan"
+              },
+              {
+                "name": "Back-EMF Protection",
+                "desc": "1N4001 flyback diode across relay coil absorbs inductive back-EMF on turn-off; necessity understood only after diagnosing actual ESP32 failure in the field"
+              },
+              {
+                "name": "Power Regulation & Decoupling",
+                "desc": "7805 linear regulator with ceramic decoupling capacitors to eliminate power glitches from motor/relay switching; diagnosed 7805 overheating and understood linear regulator power dissipation limits"
+              }
+            ]
+          },
+          {
+            "group": "Maintenance-Oriented Mechanical Design",
+            "items": [
+              {
+                "name": "Quick-Swap Structure",
+                "desc": "\"Keep it simple\" principle: top cover changed from 3D print to wood to shorten replacement time; magnetic bottom cover for tool-free battery access, designed specifically for on-site special education maintenance needs"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "auto-sanitizer",
+      "cover": "/images/auto-sanitizer/device-full.jpg",
+      "category": "高職選手作品",
+      "title": "Auto Sanitizer (MoE Science Outreach)",
+      "period": "2021",
+      "description": "Invited to the 2021 Ministry of Education Science Outreach Train: Arduino + HC-SR04 ultrasonic sensor–triggered automatic alcohol dispenser, iterated through a desktop demo version and an FRC robot–integrated version.",
+      "tags": ["Arduino", "HC-SR04", "Relay", "Laser Cutting", "18650 Battery"],
+      "detail": {
+        "purpose": "During the pandemic, invited as an FRC team member from Nangang VHS to participate in the 2021 Ministry of Education Science Outreach Train — touring high schools across Taiwan to showcase technology projects.\n\nChose to build an automatic touch-free alcohol dispenser: both practically useful for pandemic prevention and a demonstration of ultrasonic sensing, relay circuits, and embedded control for on-site students.\n\nTwo iterated versions:\n- Desktop version: standalone exhibition unit with acrylic laser-cut enclosure, portable for school tours\n- Robot-integrated version: miniaturized circuit integrated into FRC robot side panel for use at competition venue entrances without occupying extra space",
+        "concept": "[Sensing & Trigger Logic]\nHC-SR04 continuously measures forward distance; when a hand enters the trigger zone (~10–15 cm), Arduino UNO outputs HIGH to relay module. Relay closes, driving the water pump to extract alcohol from the reservoir through the nozzle. Motor stops immediately when hand withdraws.\n\n[Power Design]\n2× 18650 lithium batteries in series provide 7.6V; 7805 step-down module to 5V for Arduino; motor draws directly from battery; relay isolates control from high-current drive.\n\n[Mechanical Design]\n- v2.0: Acrylic laser-cut panels with interlocking tabs for clean appearance and easy alcohol refilling\n- v3.0: Miniaturized circuit board integrated into FRC robot side panel; adjustable nozzle height for different user heights",
+        "outcome": "- Successfully completed 2021 MoE Science Outreach Train, presenting to students at multiple high schools\n- Iterated from desktop version to robot-integrated version, learning \"design optimization per use case\" product thinking\n- Technical takeaways: ultrasonic ranging principles, relay drive circuits, 7805 power regulation and decoupling capacitor selection",
+        "images": [
+          { "src": "/images/auto-sanitizer/device-full.jpg",    "caption": "Full view: FRC robot-integrated version with ultrasonic sensor and nozzle" },
+          { "src": "/images/auto-sanitizer/device-closeup.jpg", "caption": "Dispensing mechanism close-up: relay-driven pump, HC-SR04 sensor trigger control" }
+        ],
+        "tech": [
+          {
+            "group": "Sensing & Control",
+            "items": [
+              {
+                "name": "Ultrasonic Distance Trigger",
+                "desc": "HC-SR04 continuous forward distance measurement with 10–15cm trigger threshold outputting HIGH to drive relay; understanding speed-of-sound correction and sensing dead zones' effect on trigger sensitivity"
+              },
+              {
+                "name": "Relay Motor Drive",
+                "desc": "Control and pump high-current sides fully isolated; motor stops immediately when hand withdraws; mastering relay as a unidirectional valve in embedded control"
+              }
+            ]
+          },
+          {
+            "group": "Mechanical Design",
+            "items": [
+              {
+                "name": "Scenario-Driven Iterative Design",
+                "desc": "Desktop version's acrylic snap-fit enclosure for portable exhibition; robot-integrated version's miniaturized circuit on FRC side panel — practicing design priority adjustment based on use scenario"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "team-robot",
+      "cover": "/images/team-robot/competition.jpg",
+      "category": "高職選手作品",
+      "title": "Team-Built Competition Robot",
+      "period": "2022",
+      "description": "Represented Nangang VHS in the 52nd National Skills Competition (Team Project category): three-member team jointly designed a pick-and-place robot driven by a 24V lead-acid battery with relay H-bridge motor control, capable of handling both cylindrical and rectangular objects.",
+      "tags": ["Competition Robot", "Relay Control", "Mechanical Design", "3-Person Team"],
+      "detail": {
+        "purpose": "Represented Nangang VHS in the 52nd National Skills Competition (2022), Team Project category. Rules required a three-person team to jointly design and build a functional robot within a time limit — goal: move across the field and pick and place cylindrical and rectangular objects.\n\nThe competition emphasizes cross-disciplinary collaboration: mechanical design, circuit wiring, and programming control must be tightly integrated to complete an effective robot within the competition time constraint.",
+        "concept": "[Chassis & Drive]\nRubber wheel chassis driven by a 24V lead-acid battery pack. Relay bank implements H-bridge circuit — two relays per drive axis switch motor current direction to control forward/reverse. Direct, reliable circuit structure.\n\n[Gripper Mechanism]\nGripper designed to handle both cylinders and rectangular objects simultaneously: curved inner surface conforms to cylinders, flat surface stably grips rectangular objects — ensuring no slippage during transport.\n\n[Three-Person Division of Work]\n- Mechanical design and fabrication (Chiang Jia-Yuan): chassis structure, gripper design, and all mechanical part machining\n- Circuit design and wiring (team members): H-bridge relay drive circuit, 24V system wiring\n- Programming and control logic (team members): motor direction control program",
+        "outcome": "- Represented Nangang VHS and completed the 52nd National Skills Competition, Team Project category\n- Technical takeaways: high-power relay H-bridge circuit design, 24V system wiring standards, multi-person synchronized development\n- Understanding the difference between competition robot development and FRC's longer development cycle — functional integration under extreme time constraints",
+        "tech": [
+          {
+            "group": "Circuit Design",
+            "items": [
+              {
+                "name": "Relay H-Bridge Drive",
+                "desc": "Two relays per axis form a single-axis H-bridge to switch motor current direction; understanding H-bridge same-side relay simultaneous conduction short-circuit risk and interlock design"
+              },
+              {
+                "name": "24V High-Voltage Wiring",
+                "desc": "Lead-acid battery pack high-current wiring standards; understanding the effect of wire cross-section and connector contact resistance on power loss"
+              }
+            ]
+          },
+          {
+            "group": "Mechanical Design",
+            "items": [
+              {
+                "name": "Universal Gripper Design",
+                "desc": "Curved gripping surface for cylinders, flat surface for rectangular objects — accommodating two cross-sections without tool changes; understanding geometric constraints for gripping stability"
+              }
+            ]
+          }
+        ],
+        "github": "",
+        "images": [
+          { "src": "/images/team-robot/cad-drawing.jpg",      "caption": "Robot 3D design and object specs (cylinder & rectangular block)" },
+          { "src": "/images/team-robot/robot-side.jpg",       "caption": "Completed robot side view — gripper mechanism and chassis structure" },
+          { "src": "/images/team-robot/circuit-schematic.jpg","caption": "Relay H-bridge circuit design (24V 4-motor drive)" },
+          { "src": "/images/team-robot/competition.jpg",      "caption": "52nd National Skills Competition — field operation" }
+        ]
+      }
+    },
+    {
+      "id": "swerve",
+      "cover": "/images/swerve/swerve-assembled-side.jpg",
+      "category": "高職選手作品",
+      "title": "Swerve Drive Omnidirectional Research",
+      "period": "2020 – 2023",
+      "frc": true,
+      "description": "Self-developed three generations of FRC swerve drive chassis from scratch, covering kinematics algorithms, gear transmission design, CNC precision machining, and LabVIEW PID control. Earned 2022 FRC Taiwan Innovation in Control Award.",
+      "tags": ["LabVIEW", "PID Control", "CNC Machining", "Wire EDM", "Robotics", "3D Printing"],
+      "detail": {
+        "purpose": "Top international FRC teams widely use Swerve Drive — its four-wheel independent steering architecture provides omnidirectional movement advantages while solving mecanum wheels' traction deficiency and vulnerability to impacts. However, virtually no domestic research material existed in Taiwan, and no standardized Chinese terminology had been established.\n\nThe team decided to develop from scratch, iterating through three generations (2020, 2022, 2023+), with research goals covering:\n\n① Achieving all motion modes of an omnidirectional mobile platform through mechanical structure\n② Improving robot operational efficiency and maneuverability in competition\n③ Third generation: lightweight design as core direction\n④ Modular aluminum plate design: drive and steering motor positions interchangeable; drive reduction ratio adjustable by swapping gears — reducing assembly and maintenance complexity\n⑤ Achieve fully self-designed, self-machined goals\n⑥ Exchange mechanism technology with international teams at competition venues",
+        "concept": "[Three-Generation Evolution]\n- Gen 1 (2020): Designed by senior members, used at CSIA 5G Regional — validated basic Swerve Drive feasibility\n- Gen 2 (2022): Redesigned and competed, earned Taiwan Foxconn Regional Innovation in Control Award\n- Gen 3 (2022+): Continued refinement with lightweight and modular design as core, preparing for next season\n\n[Kinematics Algorithm — LabVIEW Implementation]\nRepresenting wheel direction and force as vector X∠θ, decomposing motion into three additive modes:\n- Translation: all 4 wheels input same angle and force, no body rotation\n- Rotation: center at all-wheel intersection, wheels at θ, -θ, 180+θ, 180-θ — rotate in place\n- Arc: translation vector + rotation vector = arbitrary-center arc trajectory\nNormalize by the maximum-force wheel as denominator to ensure output doesn't exceed motor saturation.\n\n[Electrical & Control System]\n- Drive motors: Falcon 500 (integrated Talon FX controller with closed-loop speed control)\n- Steering motors: NEO 550 (with planetary gearbox)\n- Rotary encoders: per-wheel independent angle feedback for closed-loop steering control\n- Main controller: roboRIO + LabVIEW graphical programming\n\n[Reduction Ratio Design]\n- Drive: Falcon 500 (6380 rpm) → 1:7 → 911 rpm, approximately 110 m/min linear speed\n- Steering: NEO 550 (11000 rpm) → planetary 1:28.1 → gear 1:2 → total 1:56.2 → 196 rpm\n\n[Gen 3 Mechanical Design]\n- Modular aluminum plates: drive and steering motor mounting holes correspond and are interchangeable; drive gear zone has swappable gear positions for reduction ratio adjustment without modifying aluminum plates\n- Lightweight: most internal gears switched to 3D printing (FDM), retaining only motor shaft gears as metal; aluminum plate CNC material removal for weight reduction\n- Collision protection: motors fully enclosed in mechanism interior, reducing competition collision damage\n- Custom wheels: replaced OEM wheels, improved traction\n\n[Gear Specs & Machining]\n- M1.25/T15 spur gears (drive motor shaft): wire EDM for profile and bore\n- M1.5/T24 spur gears (steering transmission): wire EDM\n- M1.5/T15 bevel gears (wheel drive direction change): wire EDM for bore\n- Transmission shafts (hex & square cross-sections): CNC mill + 4-jaw precision chuck, two-pass bilateral milling for symmetry\n- Wire EDM workflow: clamp plate → edge-finding XY correction → thread wire → path simulation → cut → inspect cross-section for accuracy",
+        "outcome": "[Competition Results]\n- 2022 FRC Taiwan Foxconn Regional: Finalist Alliance + Innovation in Control Award\n- 2020 FRC CSIA 5G Digital Regional: Best Industrial Design Award\n\n[Gen 3 vs Gen 2 Improvements]\nStructural:\n① Lightweight: most gears switched to 3D printing, significant overall weight reduction\n② Disassembly: reduced complexity, faster repair and replacement\n③ Modular: drive/steering motor holes shared, compatible with NEO or Falcon 500\n④ Collision protection: motors fully enclosed, reduced field collision damage risk\n⑤ Wheels: custom design, improved traction over old wheels\n\nPower:\n① Drive gear tooth count swappable — reduction ratio adjustable without modifying aluminum plates\n② NEO upgraded to Falcon 500, approximately 1000 rpm speed increase\n\n[Personal Takeaways]\n- Design→Build→Test→Iterate complete cycle from a product development perspective\n- Machining skills advanced from manual mill/lathe basics to CNC and wire EDM\n- Cross-domain integration: mechanical design (Inventor) + electrical control + LabVIEW programming + competition field engineering decisions",
+        "tech": [
+          {
+            "group": "Control System",
+            "items": [
+              {
+                "name": "Vector-Composition Kinematics",
+                "desc": "Decomposing translation, rotation, and arc motion modes as X∠θ vectors and superimposing them; normalizing by max-force wheel to prevent motor saturation; fully implemented in LabVIEW graphical programming"
+              },
+              {
+                "name": "PID Closed-Loop Control",
+                "desc": "Per-wheel independent encoder feedback for PID steering angle control; mastering integral windup and derivative filtering tuning in high-dynamic competition environments"
+              }
+            ]
+          },
+          {
+            "group": "Mechanical Design",
+            "items": [
+              {
+                "name": "Modular Transmission Architecture",
+                "desc": "Drive and steering motor holes shared; gear zone swappable for reduction ratio adjustment without modifying aluminum plates; three-generation iteration validated modular design's improvement in repair speed"
+              },
+              {
+                "name": "Lightweight Structural Design",
+                "desc": "Material substitution for weight reduction: internal gears switched to FDM printing, retaining metal motor shaft gears; CNC material removal from aluminum plates while maintaining structural strength"
+              }
+            ]
+          },
+          {
+            "group": "Precision Machining",
+            "items": [
+              {
+                "name": "CNC Numerical Milling",
+                "desc": "Machining transmission shafts (hex & square cross-sections) with 4-jaw chuck positioning; bilateral milling for cross-sectional symmetry; significantly improved dimensional accuracy and batch reproducibility over manual milling"
+              },
+              {
+                "name": "Wire EDM",
+                "desc": "M1.25–M1.5 spur and bevel gear profile and bore cutting; mastering clamp plate fixturing, edge-finding XY error correction, and path simulation verification workflow"
+              }
+            ]
+          }
+        ],
+        "github": "",
+        "images": [
+          { "src": "/images/swerve/swerve-cad-iso.jpg",          "caption": "Gen 3 Swerve Drive — 3D CAD isometric view" },
+          { "src": "/images/swerve/swerve-cad-4view.jpg",        "caption": "Gen 3 Swerve Drive — 4-view engineering drawing" },
+          { "src": "/images/swerve/swerve-assembled-top.jpg",    "caption": "Assembled — top view (gear transmission system visible)" },
+          { "src": "/images/swerve/swerve-assembled-side.jpg",   "caption": "Assembled — side view (motors and chassis structure)" },
+          { "src": "/images/swerve/swerve-gears-internal.jpg",   "caption": "Internal gear set (3D printed gears + metal parts)" },
+          { "src": "/images/swerve/swerve-bevel-gear.jpg",       "caption": "Bevel gear and drive motor CAD model" },
+          { "src": "/images/swerve/swerve-plate-cnc.jpg",        "caption": "CNC-machined aluminum plate" },
+          { "src": "/images/swerve/swerve-gear-drill.jpg",       "caption": "Metal bevel gear drilling" },
+          { "src": "/images/swerve/swerve-wire-cut-action.jpg",  "caption": "Wire EDM cutting gear bore (in progress)" },
+          { "src": "/images/swerve/swerve-wire-cut-panel.jpg",   "caption": "Wire EDM control panel — hexagonal path simulation" },
+          { "src": "/images/swerve/swerve-flowchart-algo.png",   "caption": "LabVIEW vector-composition kinematics algorithm flowchart" },
+          { "src": "/images/swerve/swerve-wiring.png",           "caption": "FRC robot electrical system wiring diagram" }
+        ]
+      }
+    }
+  ],
+  "awards": [
+    {
+      "title": "AWS × BitoPro Hackathon: AI Fraud Detection — Completed",
+      "year": "2026"
+    },
+    {
+      "title": "2022 FRC Taiwan Foxconn Regional: Finalist Alliance & Innovation in Control Award",
+      "year": "2022",
+      "frc": true
+    },
+    {
+      "title": "2022 Industrial Student Skills Competition: Digital Electronics Representative",
+      "year": "2022"
+    },
+    {
+      "title": "52nd National Skills Competition: Team Project Category Representative",
+      "year": "2022"
+    },
+    {
+      "title": "2020 FRC CSIA 5G Digital Regional: Best Industrial Design Award",
+      "year": "2020",
+      "frc": true
+    }
+  ]
+}

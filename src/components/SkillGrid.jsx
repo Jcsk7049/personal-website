@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
-const QUADRANTS = [
+const QUADRANT_META = [
   {
-    key: 'data_analysis', label: '數據分析', sublabel: 'Data Analysis',
+    key: 'data_analysis',
     accent: 'from-sky-400 to-blue-500',
     span: 2,
     icon: (
@@ -14,7 +16,7 @@ const QUADRANTS = [
     ),
   },
   {
-    key: 'programming', label: '程式開發', sublabel: 'Programming',
+    key: 'programming',
     accent: 'from-violet-400 to-purple-500',
     span: 1,
     icon: (
@@ -24,7 +26,7 @@ const QUADRANTS = [
     ),
   },
   {
-    key: 'eda', label: '電路設計', sublabel: 'Electronic Design',
+    key: 'eda',
     accent: 'from-amber-400 to-orange-500',
     span: 1,
     icon: (
@@ -38,7 +40,7 @@ const QUADRANTS = [
     ),
   },
   {
-    key: 'manufacturing', label: '機構加工', sublabel: 'Manufacturing',
+    key: 'manufacturing',
     accent: 'from-teal-400 to-cyan-500',
     span: 2,
     icon: (
@@ -57,17 +59,21 @@ const LEVEL_STYLE = {
 }
 
 export default function SkillGrid({ skills, detail }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
+
   return (
     <section id="skills" className="py-16 md:py-32 bg-[#0d0d0f]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader zh="技術矩陣" invert />
+        <SectionHeader label={t.sections.skills} invert />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 card-stagger">
-          {QUADRANTS.map(q => {
+          {QUADRANT_META.map(q => {
             const d        = detail?.[q.key]
             const tags     = skills[q.key] || []
             const skillList = d?.skills || []
             const isFeatured = q.span === 2
+            const qLabels  = t.quadrants[q.key]
 
             const counts = { '進階': 0, '熟悉': 0, '基礎': 0 }
             skillList.forEach(s => { if (s.level in counts) counts[s.level]++ })
@@ -87,11 +93,11 @@ export default function SkillGrid({ skills, detail }) {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-white/35">
-                        {q.sublabel}
+                        {qLabels.sublabel}
                       </p>
                       <h3 className="text-lg font-bold tracking-tight text-white/85
                                      group-hover:text-white transition-colors duration-[125ms]">
-                        {q.label}
+                        {qLabels.label}
                       </h3>
                     </div>
                     <span className={`mt-0.5 bg-gradient-to-br ${q.accent} bg-clip-text text-transparent
@@ -117,7 +123,7 @@ export default function SkillGrid({ skills, detail }) {
                                         border border-white/[0.05]">
                           <span className="text-sm font-medium text-white/75 truncate mr-2">{s.name}</span>
                           <span className={`shrink-0 text-[10px] font-mono px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
-                            {s.level}
+                            {t.levels[s.level] ?? s.level}
                           </span>
                         </div>
                       ))}
@@ -133,9 +139,9 @@ export default function SkillGrid({ skills, detail }) {
                         {counts['基礎'] > 0 && <div className="bg-white/15 rounded-full"       style={{ flex: counts['基礎'] }} />}
                       </div>
                       <div className="flex gap-3">
-                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-violet-400/60 shrink-0" />進階 {counts['進階']}</span>}
-                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-blue-400/60 shrink-0" />熟悉 {counts['熟悉']}</span>}
-                        {counts['基礎'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-white/15 shrink-0" />基礎 {counts['基礎']}</span>}
+                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-violet-400/60 shrink-0" />{t.levels['進階']} {counts['進階']}</span>}
+                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-blue-400/60 shrink-0" />{t.levels['熟悉']} {counts['熟悉']}</span>}
+                        {counts['基礎'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-white/15 shrink-0" />{t.levels['基礎']} {counts['基礎']}</span>}
                       </div>
                     </div>
                   )}
@@ -154,12 +160,12 @@ export default function SkillGrid({ skills, detail }) {
                   {/* footer */}
                   <div className="flex items-center justify-between pt-2 border-t border-white/[0.06]">
                     {skillList.length > 0 && (
-                      <span className="text-[11px] text-white/25 font-mono">{skillList.length} 項技能</span>
+                      <span className="text-[11px] text-white/25 font-mono">{t.skillCount(skillList.length)}</span>
                     )}
                     <span className="text-xs text-sky-400 font-medium ml-auto
                                      opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
                                      transition-all duration-[125ms]">
-                      查看詳情 →
+                      {t.viewDetail}
                     </span>
                   </div>
 

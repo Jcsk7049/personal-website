@@ -1,4 +1,6 @@
 import SectionHeader from './SectionHeader'
+import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 
 const TrophyIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -13,10 +15,12 @@ const TrophyIcon = () => (
 )
 
 export default function AwardList({ awards }) {
+  const { lang } = useLanguage()
+  const t = uiText[lang]
   return (
     <section id="awards" className="py-16 md:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader zh="獲獎" />
+        <SectionHeader label={t.sections.awards} />
 
         <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
           {awards.map((award, i, arr) => (
