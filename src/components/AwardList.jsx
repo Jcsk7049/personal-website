@@ -37,7 +37,7 @@ export default function AwardList({ awards }) {
                 </span>
               </div>
               <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
-              <span className="shrink-0 text-[11px] text-[#6e6e73] font-mono bg-[#EBEBED] px-2.5 py-1
+              <span className="shrink-0 text-[11px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1
                                rounded-full leading-none group-hover:bg-blue-50 group-hover:text-blue-600
                                transition-colors duration-[125ms]">
                 {award.year}

@@ -81,7 +81,7 @@ export default function ProjectDetail() {
           {project.category && <CategoryBadge category={project.category} />}
           {project.tags.map(tag => (
             <span key={tag}
-                  className="px-3 py-1 rounded-full bg-[#f5f5f7] text-[#6e6e73] border border-black/[0.05] text-sm font-medium">
+                  className="px-3 py-1 rounded-full bg-[#f5f5f7] text-[#3F3F46] border border-black/[0.05] text-sm font-medium">
               {tag.trim()}
             </span>
           ))}
@@ -141,7 +141,7 @@ export default function ProjectDetail() {
                           <span className="shrink-0 font-semibold text-sm text-[#1D1D1F] min-w-[7rem]">
                             {item.name}
                           </span>
-                          <span className="text-sm text-[#6e6e73] leading-snug">{item.desc}</span>
+                          <span className="text-sm text-[#3F3F46] leading-snug">{item.desc}</span>
                         </div>
                       ))}
                     </div>
@@ -192,7 +192,7 @@ export default function ProjectDetail() {
           <button
             onClick={() => setArchOpen(true)}
             className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full
-                       border border-slate-200 text-[#6e6e73] text-sm font-medium
+                       border border-slate-200 text-[#3F3F46] text-sm font-medium
                        hover:border-[#1D1D1F] hover:text-[#1D1D1F] active:scale-95 transition-all">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -217,13 +217,13 @@ export default function ProjectDetail() {
           >
             <div className="flex items-center justify-between mb-6">
               <div>
-                <p className="text-[11px] text-[#6e6e73] tracking-[0.15em] uppercase mb-1">Architecture</p>
+                <p className="text-[11px] text-[#3F3F46] tracking-[0.15em] uppercase mb-1">Architecture</p>
                 <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]">{project.title}</h3>
               </div>
               <button
                 onClick={() => setArchOpen(false)}
                 className="w-8 h-8 rounded-full bg-[#f5f5f7] flex items-center justify-center
-                           text-[#6e6e73] hover:bg-[#e8e8ed] transition-colors text-sm font-medium"
+                           text-[#3F3F46] hover:bg-[#e8e8ed] transition-colors text-sm font-medium"
               >✕</button>
             </div>
 
@@ -231,7 +231,7 @@ export default function ProjectDetail() {
                             flex flex-col items-center justify-center gap-4 text-center p-10">
               <div className="w-12 h-12 rounded-xl bg-white shadow-sm border border-black/[0.06]
                               flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6e6e73" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3F3F46" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
                   <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
                 </svg>

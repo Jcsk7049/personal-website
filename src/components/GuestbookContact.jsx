@@ -92,7 +92,7 @@ export default function GuestbookContact({ profile }) {
           {/* ── Left: Guestbook ── */}
           <div>
             <SectionHeader label={zh ? '留言板' : 'Guestbook'} />
-            <p className="text-sm text-[#6e6e73] mt-3 mb-2">
+            <p className="text-sm text-[#3F3F46] mt-3 mb-2">
               {zh
                 ? '有什麼想說的都可以留在這裡，需要 GitHub 帳號。'
                 : 'Leave a note or question — GitHub login required.'}
@@ -149,7 +149,7 @@ export default function GuestbookContact({ profile }) {
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-[#1D1D1F]">{label}</p>
-                    <p className={`text-xs text-[#6e6e73] mt-0.5 truncate ${hoverText} transition-colors`}>
+                    <p className={`text-xs text-[#3F3F46] mt-0.5 truncate ${hoverText} transition-colors`}>
                       {getSub(key)}
                     </p>
                   </div>

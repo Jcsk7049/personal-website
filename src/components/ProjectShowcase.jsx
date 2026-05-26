@@ -125,7 +125,7 @@ export default function ProjectShowcase({ projects }) {
                 className="rounded-2xl bg-white overflow-hidden
                            shadow-[0_0_0_1px_#E4E4E7]
                            hover:-translate-y-1 hover:shadow-[0_0_0_1px_#C8C8CA]
-                           transition-all duration-300 group flex flex-col flex-1"
+                           transition-all duration-[125ms] group flex flex-col flex-1"
               >
                 {/* Cover image / gradient area */}
                 <div className={`relative h-48 bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0`}>
@@ -173,19 +173,19 @@ export default function ProjectShowcase({ projects }) {
                       {proj.badge}
                     </span>
                   )}
-                  <p className="text-sm text-[#6e6e73] leading-relaxed line-clamp-2 flex-1">
+                  <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2 flex-1">
                     {proj.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {proj.tags.slice(0, 3).map(tag => (
                       <span key={tag}
-                            className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#6e6e73]
+                            className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                        border border-black/[0.05] text-xs font-medium">
                         {tag.trim()}
                       </span>
                     ))}
                     {proj.tags.length > 3 && (
-                      <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#6e6e73]
+                      <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                        border border-black/[0.05] text-xs font-medium">
                         +{proj.tags.length - 3}
                       </span>

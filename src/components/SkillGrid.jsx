@@ -85,7 +85,7 @@ export default function SkillGrid({ skills, detail }) {
                 className={`col-span-1 ${isFeatured ? 'md:col-span-2' : ''}
                            rounded-2xl bg-[#141418] border border-white/[0.06]
                            hover:border-white/[0.13] hover:-translate-y-0.5 hover:bg-[#1a1a20]
-                           transition-all duration-300 group flex flex-col`}
+                           transition-all duration-[125ms] group flex flex-col`}
               >
                 <div className={`${isFeatured ? 'p-8 md:p-10' : 'p-7'} flex flex-col flex-1 gap-5`}>
 

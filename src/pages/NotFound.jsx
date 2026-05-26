@@ -12,7 +12,7 @@ export default function NotFound() {
       </div>
       <Link to="/"
             className="px-6 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                       hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-200">
+                       hover:bg-[#0077ED] hover:scale-[1.03] active:scale-95 transition-all duration-[125ms]">
         返回首頁
       </Link>
     </div>

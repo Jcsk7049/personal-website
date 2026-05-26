@@ -34,11 +34,11 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">
+            <h1 className="text-[clamp(3rem,7vw,5rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">
               {profile.name}
             </h1>
             {profile.bio && (
-              <p className="hero-bio text-[15px] text-[#6e6e73] leading-[1.8] max-w-[500px] mb-8 text-wrap-pretty">
+              <p className="hero-bio text-[15px] text-[#3F3F46] leading-[1.8] max-w-[500px] mb-8 text-wrap-pretty">
                 {profile.bio}
               </p>
             )}

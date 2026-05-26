@@ -87,7 +87,7 @@ export default function SkillDetail() {
           return (
             <div key={i}
                  className="bg-white border border-slate-100 rounded-2xl p-7 shadow-sm
-                            hover:border-slate-200 hover:shadow-md transition-all duration-300
+                            hover:border-slate-200 hover:shadow-md transition-all duration-[125ms]
                             flex flex-col gap-4">
 
               <div className="flex items-start justify-between gap-3">
