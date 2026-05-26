@@ -100,11 +100,11 @@ export default function ProjectShowcase({ projects }) {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium
-                            transition-all duration-[125ms] border
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold
+                            transition-colors duration-[125ms] border
                             ${activeCategory === cat
-                              ? 'bg-[#1D1D1F] text-white border-[#1D1D1F]'
-                              : 'bg-white text-[#6e6e73] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
+                              ? 'bg-[#27272A] text-[#FAFAFA] border-[#27272A]'
+                              : 'bg-white text-[#3F3F46] border-[#E4E4E7] hover:border-[#27272A] hover:text-[#09090B]'
                             }`}
               >
                 {t.categoryLabel(cat)}
