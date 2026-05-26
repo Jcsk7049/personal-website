@@ -6,6 +6,7 @@ export const uiText = {
       { id: 'projects',   label: '專案' },
       { id: 'skills',     label: '技術' },
       { id: 'awards',     label: '獲獎' },
+      { id: 'guestbook',  label: '留言板' },
     ],
     sections: {
       education:  '學歷',
@@ -52,6 +53,7 @@ export const uiText = {
       { id: 'projects',   label: 'Projects'   },
       { id: 'skills',     label: 'Skills'     },
       { id: 'awards',     label: 'Awards'     },
+      { id: 'guestbook',  label: 'Guestbook'  },
     ],
     sections: {
       education:  'Education',
