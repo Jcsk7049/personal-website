@@ -4,7 +4,6 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { uiText } from './data/uiText'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
-import Education       from './components/Education'
 import Experience      from './components/Experience'
 import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
@@ -45,8 +44,7 @@ function HomePage() {
       <DotNav />
       <Nav             name={cv.profile.name} />
       <Hero            profile={cv.profile} />
-      <Education       education={cv.education} />
-      <Experience      experience={cv.experience} />
+      <Experience      experience={cv.experience} education={cv.education} />
       <ProjectShowcase projects={cv.projects} />
       <SkillGrid       skills={cv.skills_matrix} detail={cv.skills_detail} />
       <AwardList       awards={cv.awards} />

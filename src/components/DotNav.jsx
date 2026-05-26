@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
-const SECTION_IDS = ['education', 'experience', 'projects', 'skills', 'awards', 'guestbook']
+const SECTION_IDS = ['experience', 'projects', 'skills', 'awards', 'guestbook']
 
 export default function DotNav() {
   const { lang } = useLanguage()
