@@ -15,7 +15,7 @@ export default function Experience({ experience, education }) {
   const t = uiText[lang]
 
   return (
-    <section id="experience" className="py-16 md:py-32 bg-[#1D1D1F]">
+    <section id="experience" className="min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader label={t.sections.experience} invert />
 

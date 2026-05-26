@@ -88,7 +88,7 @@ export default function ProjectShowcase({ projects }) {
     : projects.filter(p => p.category === activeCategory)
 
   return (
-    <section id="projects" className="py-16 md:py-32">
+    <section id="projects" className="min-h-screen py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader label={t.sections.projects} />
 
