@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
+import { ActiveSectionProvider } from './context/ActiveSectionContext'
 import { uiText } from './data/uiText'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
@@ -40,6 +41,7 @@ function HomePage() {
   }, [])
 
   return (
+    <ActiveSectionProvider>
     <div className="bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
       <DotNav />
       <Nav             name={cv.profile.name} />
@@ -115,6 +117,7 @@ function HomePage() {
         </div>
       </footer>
     </div>
+    </ActiveSectionProvider>
   )
 }
 

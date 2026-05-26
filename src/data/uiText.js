@@ -1,6 +1,7 @@
 export const uiText = {
   zh: {
     nav: [
+      { id: 'hero',       label: '首頁' },
       { id: 'experience', label: '經歷' },
       { id: 'projects',   label: '專案' },
       { id: 'skills',     label: '技術' },
@@ -46,6 +47,7 @@ export const uiText = {
 
   en: {
     nav: [
+      { id: 'hero',       label: 'Home'       },
       { id: 'experience', label: 'Experience' },
       { id: 'projects',   label: 'Projects'   },
       { id: 'skills',     label: 'Skills'     },

@@ -1,26 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import { useActiveSection } from '../context/ActiveSectionContext'
 
 export default function Nav({ name }) {
   const { lang, setLang } = useLanguage()
   const t = uiText[lang]
+  const active = useActiveSection()
 
-  const [active,     setActive]     = useState('')
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const sections = t.nav
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }),
-      { rootMargin: '-40% 0px -55% 0px' }
-    )
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [t.nav])
 
   useEffect(() => {
     const close = () => { if (window.innerWidth >= 768) setMobileOpen(false) }

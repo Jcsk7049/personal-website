@@ -1,30 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import { useActiveSection } from '../context/ActiveSectionContext'
 
-const SECTION_IDS = ['experience', 'projects', 'skills', 'awards', 'guestbook']
+const SECTION_IDS = ['hero', 'experience', 'projects', 'skills', 'awards', 'guestbook']
+
+const HomeIcon = () => (
+  <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+  </svg>
+)
 
 export default function DotNav() {
   const { lang } = useLanguage()
   const t = uiText[lang]
-  const [active, setActive] = useState(null)
+  const active = useActiveSection()
   const [hovered, setHovered] = useState(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) setActive(e.target.id)
-        })
-      },
-      { rootMargin: '-25% 0px -50% 0px', threshold: 0 }
-    )
-    SECTION_IDS.forEach(id => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [])
 
   const getLabel = id => {
     const nav = t.nav.find(n => n.id === id)
@@ -51,11 +42,14 @@ export default function DotNav() {
             onMouseEnter={() => setHovered(id)}
             onMouseLeave={() => setHovered(null)}
             aria-label={getLabel(id)}
-            className={`w-2 h-2 rounded-full transition-all duration-300
-                        ${active === id
-                          ? 'bg-[#0071E3] scale-150'
-                          : 'bg-black/20 hover:bg-black/50 hover:scale-110'}`}
-          />
+            className={`flex items-center justify-center transition-all duration-300
+                        ${id === 'hero'
+                          ? `w-3 h-3 rounded-full ${active === id ? 'bg-[#0071E3] text-white scale-110' : 'bg-black/20 text-black/40 hover:bg-black/50'}`
+                          : `w-2 h-2 rounded-full ${active === id ? 'bg-[#0071E3] scale-150' : 'bg-black/20 hover:bg-black/50 hover:scale-110'}`
+                        }`}
+          >
+            {id === 'hero' && <HomeIcon />}
+          </button>
         </div>
       ))}
     </nav>
