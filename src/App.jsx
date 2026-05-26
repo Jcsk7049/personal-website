@@ -8,7 +8,9 @@ import Education       from './components/Education'
 import Experience      from './components/Experience'
 import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
-import AwardList       from './components/AwardList'
+import AwardList           from './components/AwardList'
+import DotNav              from './components/DotNav'
+import GuestbookContact    from './components/GuestbookContact'
 import ProjectDetail   from './pages/ProjectDetail'
 import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
@@ -40,6 +42,7 @@ function HomePage() {
 
   return (
     <div className="bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
+      <DotNav />
       <Nav             name={cv.profile.name} />
       <Hero            profile={cv.profile} />
       <Education       education={cv.education} />
@@ -47,6 +50,7 @@ function HomePage() {
       <ProjectShowcase projects={cv.projects} />
       <SkillGrid       skills={cv.skills_matrix} detail={cv.skills_detail} />
       <AwardList       awards={cv.awards} />
+      <GuestbookContact profile={cv.profile} />
 
       {/* ── Apple Footer ── */}
       <footer className="bg-[#F5F5F7] border-t border-black/[0.1]">

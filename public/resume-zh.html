@@ -118,6 +118,32 @@ a  { color: #0057b8; text-decoration: none; }
 .legend { display: flex; gap: 8px; margin-top: 4px; }
 .leg-item { display: flex; align-items: center; gap: 3px; font-size: 6.5pt; color: #888; }
 
+/* ── Download button ── */
+.dl-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #0057b8;
+  color: #fff;
+  font-family: inherit;
+  font-size: 9pt;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,87,184,0.35);
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  letter-spacing: 0.01em;
+}
+.dl-btn:hover  { background: #0047a0; box-shadow: 0 4px 16px rgba(0,87,184,0.45); transform: translateY(-1px); }
+.dl-btn:active { transform: translateY(0); }
+.dl-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
 /* ── Print ── */
 @media print {
   body { padding: 0; width: 100%; }
@@ -381,10 +407,13 @@ a  { color: #0057b8; text-decoration: none; }
 </div><!-- /col-side -->
 </div><!-- /columns -->
 
-<!-- Screen-only print hint -->
-<p class="no-print" style="margin-top:20px; font-size:7.5pt; color:#bbb; text-align:center;">
-  Ctrl+P（Mac: ⌘+P）→ 儲存為 PDF　|　紙張：A4　邊界：預設
-</p>
+<!-- Download button (screen only) -->
+<button class="dl-btn no-print" onclick="window.print()">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/>
+  </svg>
+  下載 PDF
+</button>
 
 </body>
 </html>
