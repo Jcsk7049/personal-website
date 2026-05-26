@@ -6,6 +6,9 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   }
   ::-webkit-scrollbar       { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -17,8 +20,8 @@
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.32s 0.08s cubic-bezier(0.4, 0, 0.6, 1),
-              transform 0.32s 0.08s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: opacity 0.32s 0.08s cubic-bezier(0, 0, 0.2, 1),
+              transform 0.32s 0.08s cubic-bezier(0, 0, 0.2, 1);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -26,8 +29,8 @@
 .card-stagger > * {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.6, 1),
-              transform 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 .is-visible .card-stagger > *:nth-child(1)  { opacity: 1; transform: none; transition-delay:  40ms; }
 .is-visible .card-stagger > *:nth-child(2)  { opacity: 1; transform: none; transition-delay:  90ms; }
@@ -43,10 +46,10 @@
 
 /* ── Hero entrance — 0.45s Apple easing ── */
 .hero-fade-left {
-  animation: heroFadeLeft 0.45s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  animation: heroFadeLeft 0.45s cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 .hero-fade-right {
-  animation: heroFadeRight 0.45s cubic-bezier(0.4, 0, 0.6, 1) 0.1s both;
+  animation: heroFadeRight 0.45s cubic-bezier(0, 0, 0.2, 1) 0.1s both;
 }
 @keyframes heroFadeLeft {
   from { opacity: 0; transform: translateX(-12px); }
@@ -80,7 +83,7 @@
 
 /* ── Hero subtitle ── */
 .hero-subtitle {
-  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.25s both;
+  animation: subtitleFade 0.32s cubic-bezier(0, 0, 0.2, 1) 0.25s both;
 }
 @keyframes subtitleFade {
   from { opacity: 0; transform: translateY(6px); }
@@ -89,7 +92,7 @@
 
 /* ── Hero bio ── */
 .hero-bio {
-  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.35s both;
+  animation: subtitleFade 0.32s cubic-bezier(0, 0, 0.2, 1) 0.35s both;
 }
 
 /* ── Architecture modal ── */

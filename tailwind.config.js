@@ -13,17 +13,18 @@ export default {
       },
       fontFamily: {
         sans: [
-          'Figtree',
           '-apple-system',
           'BlinkMacSystemFont',
           '"SF Pro Display"',
-          'system-ui',
+          '"SF Pro Text"',
+          '"Helvetica Neue"',
+          'Arial',
           'sans-serif',
         ],
       },
       animation: {
         blink:   'blink 1s step-end infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
       keyframes: {
         blink: {
