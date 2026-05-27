@@ -66,8 +66,8 @@
     "programming": [
       "C / C++ (STM32 / Cortex-M)",
       "QMK / ChibiOS HAL",
-      "UART / SPI / I2C",
-      "FreeRTOS (研究中)",
+      "UART/SPI/I2C（UART 實戰偵錯，I2C/SPI 擴充中）",
+      "FreeRTOS（小型專案學習基礎，持續研究中）",
       "Python",
       "Arduino / ESP32",
       "LabVIEW"
@@ -300,9 +300,9 @@
       "id": "vap",
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",
-      "title": "加護病房 VAP 早期預測系統",
+      "title": "ICU VAP 早期預測：試驗性方法論驗證研究",
       "period": "2025 – 現在",
-      "description": "消除公開基準（PREDICT 2025）中的 Patient-Level Data Leakage（AUROC 虛高 0.99 → 真實 0.58）。Integrated Gradients 歸因剔除數學冗餘（mv_total，mv≡Vt×RR），以 4 項非侵入指標（MAP、RR、Vt、SpO₂）在亞東 ICU（n=109）達 72h AUROC 0.98–0.99 / AUPRC 0.81–0.93。",
+      "description": "單中心試驗性方法論驗證（亞東紀念醫院 ICU，n=109）。核心貢獻：設計 Stay-Level 5-Fold Stratified CV，識別並修正 PREDICT 2025 基準中的 Patient-Level Data Leakage（AUROC 虛高 0.99 → 真實 0.58）；Integrated Gradients 消除數學共線冗餘特徵（mv_total，mv≡Vt×RR），從 14 項篩選至 4 項非侵入指標。研究定位：試驗性方法論驗證，非臨床部署產品。",
       "badge": "IEEE GCCE 2026 · Under Review",
       "tags": [
         "LSTM · Time-Series",
@@ -317,7 +317,7 @@
           { "src": "/images/vap/fig-lstm-vs-baseline.png",   "caption": "Fig. 1　LSTM vs 傳統 ML 基準（AUROC / AUPRC / Sensitivity / Specificity）" },
           { "src": "/images/vap/fig-lstm-performance.png",   "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）" }
         ],
-        "purpose": "VAP 發生率約 5–15%（機械通氣病患），死亡率 20–50%，臨床診斷通常滯後 48 小時以上；現行方法依賴定期評估，無法利用連續監測訊號的時序趨勢。\n\n本研究以亞東紀念醫院 ICU 2019–2023 年資料（n=109：VAP 54 例、非VAP 55 例），建立 LSTM 時序分類管線，以 4 項常規生命徵象（MAP、呼吸速率、潮氣容積、SpO₂）提前 6–72 小時預警 VAP。\n\n模型選擇：LSTM vs GRU / Transformer\nVAP 生理變化呈連續時序漂移（感染前 48–72 小時可見），靜態特徵不足以捕捉長程依賴。LSTM cell state 在 72 小時窗口下梯度穩定性優於 GRU；Transformer 在 n=109 小樣本下過擬合，對比測試均不及 LSTM。最終確立 LSTM 為主模型，在所有窗口 AUROC / AUPRC 均顯著高於 LR、RF、SVM。",
+        "purpose": "VAP 發生率約 5–15%（機械通氣病患），死亡率 20–50%，臨床診斷通常滯後 48 小時以上；現行方法依賴定期評估，無法利用連續監測訊號的時序趨勢。\n\n本研究以亞東紀念醫院 ICU 2019–2023 年資料（n=109：VAP 54 例、非VAP 55 例），建立 LSTM 時序分類管線，以 4 項常規生命徵象（MAP、呼吸速率、潮氣容積、SpO₂）提前 6–72 小時預警 VAP。\n\n模型選擇：LSTM vs GRU / Transformer\nVAP 生理變化呈連續時序漂移（感染前 48–72 小時可見），靜態特徵不足以捕捉長程依賴。LSTM cell state 在 72 小時窗口下梯度穩定性優於 GRU；Transformer 在 n=109 小樣本下過擬合，對比測試均不及 LSTM。最終確立 LSTM 為主模型，在所有窗口 AUROC / AUPRC 均顯著高於 LR、RF、SVM。\n\n【研究侷限與誠實邊界】\n本研究是試驗性方法論驗證，非臨床可部署系統。三項核心限制：(1) 單中心資料（亞東紀念醫院），泛化至其他 ICU 族群的能力尚未建立。(2) 小樣本（n=109）——研究結果證明了 Stay-Level CV 方法論的有效性，不應被解讀為部署級臨床效能的依據。(3) 在考慮任何臨床應用前，需於多中心、更大樣本的資料集上完成外部驗證。本地資料的高 AUROC 反映的是嚴格防洩漏實驗設計在小型同質樣本上的結果。",
         "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，屬 Data Leakage。此發現為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，納入 110 人，排除機械通氣時間不足 72 小時者 1 例，有效 109 人：VAP 54 例、非VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
         "outcome": "【模型效能（亞東紀念醫院，Stay-level 5-fold CV）】\n\n預警時間　　　AUROC　 AUPRC　 Sensitivity　Specificity\n提前  6 小時　0.9800　0.8136　78.95%　　　99.83%\n提前 12 小時　0.9817　0.8565　81.06%　　　99.71%\n提前 24 小時　0.9919　0.9325　88.72%　　　99.64%\n提前 48 小時　0.9908　0.9352　87.46%　　　99.18%\n提前 72 小時　0.9865　0.9210　86.34%　　　98.67%\n\n模型在 24 小時預測窗口達到最佳平衡（AUROC=0.99），提前一天警示臨床人員採取防護措施。同樣設定下，LSTM 在所有窗口皆顯著優於 LR、RF、SVM 等傳統模型。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・台灣本土化資料：首個以台灣 ICU 真實資料驗證的 VAP 預測模型\n・延長預測窗口：突破文獻常見的 24 小時限制，達成 72 小時超前預警\n・嚴謹驗證設計：Stay-level CV + Per-fold 正規化，確保泛化能力，杜絕 Data Leakage\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據，提升醫師信任度\n\n【消融實驗：mv_total 排除驗證】\nmv_total（分鐘通氣量）IG 歸因排名第一（0.00989），但因 mv≡Vt×RR 為數學冗餘特徵，移除後 24 小時 AUROC 反升 +0.004、AUPRC 升 +0.014，確認冗餘特徵應以模型行為驗證，而非單憑歸因分數決定取捨。\n\n📄 論文題目：基於 Stay-Level 交叉驗證與延長預測窗口之 LSTM 呼吸器相關肺炎早期預測研究\n論文完稿（2026.05），預計投稿 IEEE GCCE 2026",
         "tech": [
@@ -442,9 +442,9 @@
       "id": "audio-amplifier",
       "cover": "/images/audio-amplifier/circuit-assembled.jpg",
       "category": "大學課程作品",
-      "title": "音訊放大器電路板",
+      "title": "類比電路實作：音訊放大器 PCB 設計",
       "period": "2024",
-      "description": "大一期末專案，設計並實作兩級 BJT 音訊放大電路（CE + CC 架構），負責完整 PCB Layout、感光板製作、鑽孔焊接與除錯，歷經兩次洗板重製最終順利驅動 8Ω 喇叭。",
+      "description": "大一課程專案，建立基礎硬體素養：電路圖判讀、通孔元件焊接與基礎 PCB 佈線拓撲，實作兩級 BJT 音訊放大電路（CE + CC 架構）。完成感光板蝕刻製程，歷經兩次系統性除錯（分別診斷殘銅短路與元件腳位鏡像問題），最終順利驅動 8Ω 喇叭。",
       "tags": [
         "BJT 放大電路",
         "PCB Layout",
@@ -517,9 +517,9 @@
       "id": "qmk-stm32-keyboard",
       "cover": "/images/qmk-stm32-keyboard/numpad-hero.jpg",
       "category": "大學校外作品",
-      "title": "QMK x STM32 數字鍵盤",
+      "title": "開源硬體整合：QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "EasyEDA Pro 全流程 PCB 設計（DRC 驗證、去耦電容佈局）× STM32F072 USB FS + QMK/ChibiOS HAL；韌體實作：5×4 矩陣掃描、去抖動演算法、WS2812B SPI LED 驅動、UART/SPI/I2C 周邊配置；VIA/VIAL 即時改鍵支援；FreeRTOS 任務調度整合研究中。",
+      "description": "整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F072）。實際貢獻：識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔實現完整硬體功能——USB HID 穩定識別、RGB Matrix 運作正常、VIA/VIAL 即時改鍵驗證完成。",
       "tags": [
         "STM32 / Cortex-M",
         "QMK / ChibiOS HAL",
@@ -532,7 +532,7 @@
           { "src": "/images/qmk-stm32-keyboard/numpad-top.jpg",  "caption": "完成品俯視" },
           { "src": "/images/qmk-stm32-keyboard/numpad-hero.jpg", "caption": "與主鍵盤並用" }
         ],
-        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源設計——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F072 DFU 燒錄流程（BOOT0 腳位控制，免燒錄器）\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
+        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n專案範疇說明：本專案以現有開源鍵盤 PCB Layout 為基礎（於 EasyEDA Pro 改版以對接立創商城打板），整合 QMK 開源韌體框架，並非從零設計硬體。核心工程挑戰在於診斷並解決 QMK/ChibiOS 開源框架與 STM32F072 目標硬體之間的編譯失敗與時序衝突問題，並借助 LLM 輔助偵錯工具逆向工程正確的 ChibiOS HAL 配置。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源整合紀錄——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F072 DFU 燒錄流程（BOOT0 腳位控制，免燒錄器）\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
         "concept": "【核心技術選型決策】\n・STM32F072 vs. Arduino Pro Micro（ATmega32U4）\n  F072 內建 USB FS 周邊，透過 BOOT0 腳直接進入 DFU 模式——一根 USB 線完成燒錄與使用，免去 ISP 燒錄器。Pro Micro 雖入門友善，但 Flash 僅 32KB，限制 QMK 進階功能（RGB Matrix、VIAL）的編譯空間。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的非 Arduino 目標（STM32 系列）官方使用 ChibiOS 作為 RTOS 抽象層，確保 USB HID 掃描時序的跨 MCU 可移植性。裸機 HAL 雖更輕量，但需自行處理 USB 中斷優先級與 GPIO 掃描衝突。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，首次 PCB 專案迭代速度顯著更快。\n\n【硬體架構】\n・MCU：STM32F072（內建 USB FS，支援 DFU 免燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
         "outcome": "・完成 17 鍵 USB HID 鍵盤全流程：EasyEDA Pro PCB 設計 → 立創商城打板 → 手焊組裝 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）正確配置，USB HID 穩定識別，按鍵響應延遲實測 < 5ms\n・RGB Matrix 各動畫模式運作正常；RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 限制有效防止 LED 串過流\n・VIA / VIAL 圖形化改鍵驗證通過，Layer 切換與 RGB 控制均可即時調整，無需重新編譯\n・排查並修復 PCB 腳位鏡像問題（EasyEDA 封裝預設 Top/Bottom 層方向差異），為後續 PCB 設計留下可複用的 Checklist\n・完整原始碼已開源於 GitHub，含 EasyEDA 工程檔、QMK 韌體、ChibiOS 配置說明",
         "tech": [
@@ -541,7 +541,7 @@
             "items": [
               {
                 "name": "HAL 外設配置",
-                "desc": "獨立完成 ChibiOS chconf / halconf / mcuconf 三件組，設定 STM32 USB、GPIO 時鐘來源與 PLL，理解 RTOS tick 與外設初始化順序的依賴關係；QMK + ChibiOS 框架"
+                "desc": "以 LLM 輔助偵錯工具逆向工程並重構 ChibiOS chconf / halconf / mcuconf 三件組，解決開源 QMK 框架與 STM32F072 硬體間的編譯失敗與時序衝突；正確設定 USB、GPIO 時鐘來源與 PLL，掌握 RTOS tick 與外設初始化順序的依賴關係"
               },
               {
                 "name": "鍵盤矩陣掃描",
