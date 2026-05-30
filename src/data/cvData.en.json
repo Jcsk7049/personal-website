@@ -490,6 +490,68 @@
       }
     },
     {
+      "id": "team7645-cms",
+      "cover": "/images/team7645-cms/cover.png",
+      "category": "大學校外作品",
+      "title": "FRC Team 7645 — Team Website & CMS",
+      "period": "2025",
+      "description": "20% codebase contributor on a React / Firebase / Vite team site built by a senior engineer (80%: core architecture, Auth, 3D exhibition hall, design system). My scope: 30-day localStorage cache for The Blue Alliance API (eliminating rate-limit risk at competition peaks); Cloudflare Pages CI/CD pipeline with custom domain routing (nkhs.team7645.com); componentization of TeamTimeline.jsx and Competition.jsx; CMS module consolidation to simplify non-technical editor workflows.",
+      "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "localStorage Cache", "CI/CD"],
+      "detail": {
+        "purpose": "FRC Team 7645 (Nangang VHS) needed a public team website and a CMS for non-technical members to manage match schedules, rosters, news, and sponsor content without developer intervention.\n\nCodebase ownership breakdown:\n- Senior engineer (80%): Core React / Firebase / Vite boilerplate, Firebase Auth, 3D exhibition hall, design system foundations.\n- My contribution (20%): Production performance optimization, frontend componentization, CI/CD deployment automation, and CMS UX consolidation.\n\nThis document describes only my 20% contribution scope.",
+        "concept": "[1. TBA API Caching — 30-day localStorage Layer]\nThe Blue Alliance (TBA) API provides real-time FRC match and ranking data. During competition peaks, uncached clients risk hitting API rate limits, causing blank data states for visitors.\n\nImplemented a 30-day localStorage caching layer keyed by endpoint + query string. Cache freshness is validated on each request; stale or missing entries trigger a fresh fetch and re-cache. Result: redundant network requests eliminated, rate-limit risk removed at competition traffic peaks, and client-side render latency significantly reduced for repeat visitors.\n\n[2. CI/CD Pipeline — Cloudflare Pages]\nBuilt the production deployment pipeline using Cloudflare Pages connected to the GitHub repository. Configured automatic preview deployments on pull requests and production deployments on main branch merges. Engineered custom domain routing for nkhs.team7645.com with edge caching to ensure high availability during competition days.\n\n[3. Componentization & UI Refactoring]\nRefactored global Navigation and Homepage architecture for maintainability:\n- TeamTimeline.jsx: modular milestone / history tracker rendering chronological team events from a data array, fully decoupled from page layout.\n- Competition.jsx: reusable match data card consuming TBA API cache; handles loading, error, and empty states independently.\n- Replaced legacy marquee-based homepage elements with floating bubble card components, eliminating scroll jank and improving perceived performance.\n\n[4. CMS UX Consolidation]\nThe original CMS had fragmented administrative modules causing confusion for non-technical editors:\n- Merged \"Carousel\" + \"Cards\" panels → unified \"Homepage Management\" module.\n- Merged \"Contact\" + \"Socials\" → single \"Contact & Socials\" module.\n- Re-integrated the \"Advisor Tab\" that was dropped during a prior refactor.\nResult: reduced admin panel count, simplified content update workflow, eliminated duplicate data entry paths.",
+        "outcome": "- Production site live at nkhs.team7645.com with zero downtime since deployment\n- TBA API cache eliminated rate-limit incidents during competition peak traffic\n- Cloudflare edge caching achieves sub-100ms TTFB for cached routes\n- CMS module consolidation directly reduced administrative surface for non-technical editors\n- TeamTimeline.jsx and Competition.jsx reused across multiple site sections without modification",
+        "tech": [
+          {
+            "group": "Performance & Caching",
+            "items": [
+              {
+                "name": "TBA API localStorage Cache",
+                "desc": "30-day cache layer keyed by endpoint + query string; freshness validated on each request; eliminates redundant fetches and rate-limit risk at competition traffic peaks"
+              }
+            ]
+          },
+          {
+            "group": "Deployment & DevOps",
+            "items": [
+              {
+                "name": "Cloudflare Pages CI/CD",
+                "desc": "Automated pipeline: PR preview deploys + production deploys on main merge; custom domain routing for nkhs.team7645.com; edge cache configuration for high availability"
+              }
+            ]
+          },
+          {
+            "group": "Frontend Componentization",
+            "items": [
+              {
+                "name": "TeamTimeline.jsx",
+                "desc": "Modular milestone tracker rendering chronological events from a data array; fully decoupled from page layout for reuse across sections"
+              },
+              {
+                "name": "Competition.jsx",
+                "desc": "Reusable match data card consuming TBA API cache; independently handles loading, error, and empty states"
+              },
+              {
+                "name": "Bubble Card Refactor",
+                "desc": "Replaced legacy marquee-based homepage elements with floating bubble card components; eliminated scroll jank and improved perceived performance"
+              }
+            ]
+          },
+          {
+            "group": "CMS Architecture",
+            "items": [
+              {
+                "name": "Module Consolidation",
+                "desc": "Carousel + Cards → Homepage Management; Contact + Socials → single module; re-integrated Advisor Tab. Reduced admin surface for non-technical editors"
+              }
+            ]
+          }
+        ],
+        "demo": "https://nkhs.team7645.com/cms",
+        "github": ""
+      }
+    },
+    {
       "id": "whack-a-mole",
       "cover": "/images/whack-a-mole/machines-group.jpg",
       "category": "高職選手作品",

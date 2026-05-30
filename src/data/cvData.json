@@ -572,6 +572,68 @@
       }
     },
     {
+      "id": "team7645-cms",
+      "cover": "/images/team7645-cms/cover.png",
+      "category": "大學校外作品",
+      "title": "FRC 戰隊 7645 — 官網與後台 CMS",
+      "period": "2025",
+      "description": "20% 程式碼貢獻者，核心工作聚焦部署自動化與前端效能優化（學長負責 80%：React/Firebase/Vite 核心架構、Auth、3D 展覽廳、設計系統）。個人貢獻：為 The Blue Alliance (TBA) API 建立 30 天 localStorage 快取層（消除比賽尖峰時段 API 限流風險）、Cloudflare Pages CI/CD 管線與自訂域名路由（nkhs.team7645.com）、TeamTimeline.jsx 與 Competition.jsx 組件化重構，以及整併 CMS 管理模組以簡化非技術成員的內容工作流程。",
+      "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "localStorage 快取", "CI/CD"],
+      "detail": {
+        "purpose": "FRC 戰隊 7645（南港高工）需要一個對外公開的官網，以及供非技術成員管理比賽資訊、隊員名單、新聞與贊助商內容的後台 CMS，目標是讓內容更新不需要開發者介入。\n\n程式碼貢獻比例：\n・學長（80%）：React / Firebase / Vite 核心架構、Firebase Auth、3D 展覽廳、設計系統基礎。\n・本人（20%）：生產環境效能優化、前端組件化、CI/CD 部署自動化、CMS UX 整併。\n\n本文件僅描述本人 20% 貢獻範疇。",
+        "concept": "【一、TBA API 快取——30 天 localStorage 層】\nThe Blue Alliance（TBA）API 提供 FRC 即時賽況與排名數據。競賽尖峰期間，未快取的客戶端容易觸發 API 限流，導致訪客看到空白數據頁面。\n\n實作以端點 + 查詢字串為 key 的 30 天 localStorage 快取層。每次請求時驗證快取新鮮度：過期或遺失則重新 fetch 並更新快取。結果：消除重複網路請求、移除競賽尖峰時段限流風險、大幅降低回訪者的客戶端渲染延遲。\n\n【二、CI/CD 管線——Cloudflare Pages】\n以 Cloudflare Pages 串接 GitHub 儲存庫建立生產部署管線。設定 PR 預覽部署與主分支合併觸發正式部署。完成 nkhs.team7645.com 自訂域名路由與邊緣快取配置，確保比賽日高可用性。\n\n【三、組件化與 UI 重構】\n重構全域導覽列與首頁架構以提升可維護性：\n・TeamTimeline.jsx：從數據陣列渲染戰隊里程碑時間軸，與頁面佈局完全解耦，可跨頁面複用。\n・Competition.jsx：消費 TBA API 快取的可複用賽事數據卡片組件，獨立處理 loading、錯誤與空數據狀態。\n・以浮動泡泡卡片組件取代首頁遺留的 marquee 元素，消除捲動卡頓並改善感知效能。\n\n【四、CMS UX 整併】\n原始 CMS 的管理模組分散，造成非技術編輯操作混亂：\n・合併「Carousel」+「Cards」管理面板 → 統一的「Homepage Management」模組。\n・合併「Contact」+「Socials」→ 單一「聯絡與社群」模組。\n・將先前重構中遺失的「Advisor Tab」重新整合回 CMS 架構。\n結果：減少編輯者需面對的模組數量，簡化內容更新流程，消除重複資料輸入路徑。",
+        "outcome": "・正式站台 nkhs.team7645.com 自部署以來零停機\n・TBA API 快取消除競賽尖峰流量期間的限流事故\n・Cloudflare 邊緣快取使快取路由 TTFB 達到 100ms 以下\n・CMS 模組整併直接降低非技術編輯的管理面板複雜度\n・TeamTimeline.jsx 與 Competition.jsx 跨多個頁面區塊複用，零修改",
+        "tech": [
+          {
+            "group": "效能與快取",
+            "items": [
+              {
+                "name": "TBA API localStorage 快取",
+                "desc": "以端點 + 查詢字串為 key 的 30 天快取層；每次請求驗證新鮮度；消除重複 fetch 與競賽尖峰時段限流風險"
+              }
+            ]
+          },
+          {
+            "group": "部署與 DevOps",
+            "items": [
+              {
+                "name": "Cloudflare Pages CI/CD",
+                "desc": "自動化管線：PR 預覽 + 主分支合併觸發正式部署；nkhs.team7645.com 自訂域名路由；邊緣快取配置確保高可用性"
+              }
+            ]
+          },
+          {
+            "group": "前端組件化",
+            "items": [
+              {
+                "name": "TeamTimeline.jsx",
+                "desc": "從數據陣列渲染戰隊里程碑的模組化時間軸組件，與頁面佈局完全解耦，可跨區塊複用"
+              },
+              {
+                "name": "Competition.jsx",
+                "desc": "消費 TBA API 快取的可複用賽事卡片組件，獨立處理 loading、錯誤與空數據狀態"
+              },
+              {
+                "name": "浮動泡泡卡片重構",
+                "desc": "以浮動泡泡卡片組件取代首頁遺留 marquee 元素，消除捲動卡頓，改善感知效能"
+              }
+            ]
+          },
+          {
+            "group": "CMS 架構",
+            "items": [
+              {
+                "name": "模組整併",
+                "desc": "Carousel + Cards → Homepage Management；Contact + Socials → 單一模組；重新整合 Advisor Tab。降低非技術編輯的管理介面複雜度"
+              }
+            ]
+          }
+        ],
+        "demo": "https://nkhs.team7645.com/cms",
+        "github": ""
+      }
+    },
+    {
       "id": "whack-a-mole",
       "cover": "/images/whack-a-mole/machines-group.jpg",
       "category": "高職選手作品",
