@@ -493,7 +493,7 @@
       "id": "team7645-cms",
       "cover": "/images/team7645-cms/cover.png",
       "category": "大學校外作品",
-      "title": "FRC Team 7645 — Team Website & CMS",
+      "title": "FRC 7645 — Team Website & CMS",
       "period": "2025",
       "description": "20% codebase contributor on a React / Firebase / Vite team site built by a senior engineer (80%: core architecture, Auth, 3D exhibition hall, design system). My scope: 30-day localStorage cache for The Blue Alliance API (eliminating rate-limit risk at competition peaks); Cloudflare Pages CI/CD pipeline with custom domain routing (nkhs.team7645.com); componentization of TeamTimeline.jsx and Competition.jsx; CMS module consolidation to simplify non-technical editor workflows.",
       "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "localStorage Cache", "CI/CD"],

@@ -575,7 +575,7 @@
       "id": "team7645-cms",
       "cover": "/images/team7645-cms/cover.png",
       "category": "大學校外作品",
-      "title": "FRC 戰隊 7645 — 官網與後台 CMS",
+      "title": "FRC 7645 — 官網與後台 CMS",
       "period": "2025",
       "description": "20% 程式碼貢獻者，核心工作聚焦部署自動化與前端效能優化（學長負責 80%：React/Firebase/Vite 核心架構、Auth、3D 展覽廳、設計系統）。個人貢獻：為 The Blue Alliance (TBA) API 建立 30 天 localStorage 快取層（消除比賽尖峰時段 API 限流風險）、Cloudflare Pages CI/CD 管線與自訂域名路由（nkhs.team7645.com）、TeamTimeline.jsx 與 Competition.jsx 組件化重構，以及整併 CMS 管理模組以簡化非技術成員的內容工作流程。",
       "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "localStorage 快取", "CI/CD"],
