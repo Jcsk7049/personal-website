@@ -111,7 +111,16 @@ function HomePage() {
             <p className="text-[12px] text-[rgba(0,0,0,0.48)]">
               Copyright © {new Date().getFullYear()} {cv.profile.name}. All rights reserved.
             </p>
-            <p className="text-[12px] text-[rgba(0,0,0,0.48)]">Built with React &amp; Tailwind</p>
+            <div className="flex items-center gap-3">
+              <p className="text-[12px] text-[rgba(0,0,0,0.48)]">Built with React &amp; Tailwind</p>
+              <span className="text-[rgba(0,0,0,0.2)] text-[10px]">·</span>
+              <a href="https://nkhs.team7645.com/cms"
+                 target="_blank" rel="noopener noreferrer"
+                 className="text-[12px] text-[rgba(0,0,0,0.48)] hover:text-[#0066CC]"
+                 style={{ transition: 'color 0.32s cubic-bezier(0,0,0.2,1)' }}>
+                Co-designed with Team 7645 ↗
+              </a>
+            </div>
           </div>
 
         </div>
