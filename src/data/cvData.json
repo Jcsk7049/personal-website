@@ -580,8 +580,8 @@
       "description": "35% 程式碼貢獻者。學長（65%）主導 React/Firebase/Vite 核心架構、Auth 系統、Three.js 3D 展覽廳與 Firestore 安全規則。我接手後負責：首頁大改版、留言系統（Contact 表單 → Firestore → CMS 管理 Tab 端對端）、組別身分系統、Code Splitting（JS bundle 2.7MB → 820KB）、Cloudflare Pages 部署與 TBA API 30 天快取。",
       "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "Code Splitting", "localStorage 快取"],
       "detail": {
-        "purpose": "FRC 7645（南港高工）需要一個對外公開的官網，以及供非技術成員管理比賽資訊、隊員名單、新聞與贊助商內容的後台 CMS。\n\n程式碼貢獻比例：\n・學長（65%）：React / Firebase / Vite 核心架構與 routing、Firebase Auth 與 i18n、TipTap 富文字編輯器與圖片壓縮上傳、Three.js 3D 展覽廳（.glb 爆炸拆解動畫）、Firestore 安全規則、設計系統（CSS 變數、bento grid、carousel）、多頁面（Blog、Robots、Sponsors、About、Profile）、SEO（sitemap、JSON-LD）。\n・本人（35%）：首頁大改版、留言系統、組別身分系統、效能優化、Cloudflare Pages 部署、TBA API 快取、CMS 重整。\n\n本文件描述本人 35% 貢獻範疇。",
-        "concept": "【一、效能優化——Code Splitting & Lazy Loading】\n接手時整包 JS bundle 約 2.7MB，首屏載入明顯拖慢。以 Vite 動態 import 拆分路由層級的 chunk，配合 React.lazy + Suspense 實作 lazy loading，只在進入對應路由時才載入該頁的 JS。結果：bundle 從 2.7MB 降到 820KB（減少約 70%），FCP 明顯改善。\n\n【二、TBA API 快取——30 天 localStorage 層】\nTBA API 在比賽日高峰流量下容易觸發限流，訪客會看到空白賽況頁面。實作以端點 + 查詢字串為 key 的 30 天 localStorage 快取，每次請求驗證快取新鮮度，過期才重新 fetch 並更新快取。消除比賽日重複請求，移除限流風險。\n\n【三、留言系統——端對端實作】\nContact 頁表單送出後寫入 Firestore `messages` collection。CMS 新增「留言管理 Tab」，管理員可直接在後台查看、刪除留言，不需開 Firebase Console。從前端表單到後台管理介面都是這次新做的。\n\n【四、組別身分系統】\nAdmin 新增多選 pill UI，讓管理員在後台勾選隊員所屬的功能組別（機構、電控、程式等）。Profile schema 新增 `showInDivision` 欄位，TeamGroup 組件根據此欄位自動過濾並顯示對應成員，取代原本需要手動維護多份靜態名單的方式。\n\n【五、首頁大改版】\n浮動贊助商泡泡以 CSS keyframe animation 實作，取代原本的 marquee 捲動元素，消除捲動卡頓。新增團隊簡介區塊與統計數字（歷屆賽季、獎項數量）。重構全域導覽列，新增 TeamTimeline.jsx（從資料陣列渲染戰隊里程碑）、Competition.jsx（消費 TBA 快取的賽事卡片，獨立處理 loading / error / empty 狀態）、MessagesPanel（CMS 留言管理）。\n\n【六、CI/CD 部署——Cloudflare Pages】\n連接 GitHub repo，設定 PR 預覽部署與 main 合併觸發正式部署。完成 nkhs.team7645.com 自訂域名路由與 Cloudflare 邊緣快取配置，快取路由 TTFB 在 100ms 以下。\n\n【七、CMS 重整】\n原始 CMS tab 分散，合併 Carousel + Cards → Homepage Management、Contact + Socials → 聯絡與社群，重新整合遺失的 Advisor Tab，新增作者 / 組別拆分欄位與留言管理 Tab。",
+        "purpose": "FRC 7645（南港高工）需要一個對外公開的官網，以及供非技術成員管理比賽資訊、隊員名單、新聞與贊助商內容的後台 CMS。\n\n程式碼貢獻比例：\n・學長（65%）：React / Firebase / Vite 核心架構與 routing、Firebase Auth 與 i18n、TipTap 富文字編輯器與圖片壓縮上傳、Three.js 3D 展覽廳（.glb 爆炸拆解動畫）、Firestore 安全規則、設計系統（CSS 變數、bento grid、carousel）、多頁面（Blog、Robots、Sponsors、About、Profile）、SEO（sitemap、JSON-LD）。\n・本人（35%）：首頁大改版、留言系統、組別身分系統、效能優化、Cloudflare Pages 部署、TBA API 快取、CMS 重整、CLAUDE.md 工作記憶框架建立。\n\n本文件描述本人 35% 貢獻範疇。",
+        "concept": "【一、效能優化——Code Splitting & Lazy Loading】\n接手時整包 JS bundle 約 2.7MB，首屏載入明顯拖慢。以 Vite 動態 import 拆分路由層級的 chunk，配合 React.lazy + Suspense 實作 lazy loading，只在進入對應路由時才載入該頁的 JS。結果：bundle 從 2.7MB 降到 820KB（減少約 70%），FCP 明顯改善。\n\n【二、TBA API 快取——30 天 localStorage 層】\nTBA API 在比賽日高峰流量下容易觸發限流，訪客會看到空白賽況頁面。實作以端點 + 查詢字串為 key 的 30 天 localStorage 快取，每次請求驗證快取新鮮度，過期才重新 fetch 並更新快取。消除比賽日重複請求，移除限流風險。\n\n【三、留言系統——端對端實作】\nContact 頁表單送出後寫入 Firestore `messages` collection。CMS 新增「留言管理 Tab」，管理員可直接在後台查看、刪除留言，不需開 Firebase Console。從前端表單到後台管理介面都是這次新做的。\n\n【四、組別身分系統】\nAdmin 新增多選 pill UI，讓管理員在後台勾選隊員所屬的功能組別（機構、電控、程式等）。Profile schema 新增 `showInDivision` 欄位，TeamGroup 組件根據此欄位自動過濾並顯示對應成員，取代原本需要手動維護多份靜態名單的方式。\n\n【五、首頁大改版】\n浮動贊助商泡泡以 CSS keyframe animation 實作，取代原本的 marquee 捲動元素，消除捲動卡頓。新增團隊簡介區塊與統計數字（歷屆賽季、獎項數量）。重構全域導覽列，新增 TeamTimeline.jsx（從資料陣列渲染戰隊里程碑）、Competition.jsx（消費 TBA 快取的賽事卡片，獨立處理 loading / error / empty 狀態）、MessagesPanel（CMS 留言管理）。\n\n【六、CI/CD 部署——Cloudflare Pages】\n連接 GitHub repo，設定 PR 預覽部署與 main 合併觸發正式部署。完成 nkhs.team7645.com 自訂域名路由與 Cloudflare 邊緣快取配置，快取路由 TTFB 在 100ms 以下。\n\n【七、CMS 重整】\n原始 CMS tab 分散，合併 Carousel + Cards → Homepage Management、Contact + Socials → 聯絡與社群，重新整合遺失的 Advisor Tab，新增作者 / 組別拆分欄位與留言管理 Tab。\n\n【八、CLAUDE.md 工作記憶框架】\n在多輪迭代開發過程中，以 CLAUDE.md 紀錄專案架構、命名規範與禁止修改範圍，搭配固定目錄結構，確保跨 session 的 LLM 上下文一致，避免多次重構中產生規範漂移。",
         "outcome": "・Code Splitting 把 JS bundle 從 2.7MB 降到 820KB，FCP 明顯改善\n・留言系統上線後，聯絡資料統一進 CMS，不再需要手動轉傳\n・TBA API 快取消除比賽日限流風險\n・nkhs.team7645.com 部署以來零停機，Cloudflare 邊緣快取使快取路由 TTFB 在 100ms 以下\n・組別身分系統讓成員管理從維護靜態名單改為 Admin UI 操作",
         "tech": [
           {
@@ -638,6 +638,15 @@
               {
                 "name": "模組整併與新 Tab",
                 "desc": "Carousel + Cards → Homepage Management；Contact + Socials → 聯絡模組；補回 Advisor Tab；新增留言管理 Tab 與作者/組別拆分欄位"
+              }
+            ]
+          },
+          {
+            "group": "開發基礎建設",
+            "items": [
+              {
+                "name": "CLAUDE.md 工作記憶框架",
+                "desc": "紀錄專案架構、命名規範與禁止修改範圍，搭配固定目錄結構，確保跨 session LLM 上下文一致，避免多輪重構產生規範漂移"
               }
             ]
           }
