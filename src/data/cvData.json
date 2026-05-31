@@ -42,7 +42,7 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "description": "主導機器人系統架構設計，涵蓋多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面規範制定；引入 AI 輔助工具加速韌體原型迭代週期，在競賽 deadline 壓力下確保系統整合如期交付。"
+      "description": "負責機器人系統架構：多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面定義；引入 LLM 輔助工具縮短韌體原型迭代週期，2023 年起持續擔任 Engineering Advisor。"
     },
     {
       "role": "競賽選手",
@@ -97,7 +97,7 @@
         {
           "name": "深度學習",
           "level": "進階",
-          "desc": "熟悉 LSTM、CNN 時序模型架構，具備完整的資料前處理、模型訓練與超參數調整流程，應用於生醫訊號的序列預測任務。",
+          "desc": "用過 LSTM、CNN 時序模型，從資料前處理到超參數調整都自己跑過，主要應用場景是生醫訊號的序列預測。",
           "projects": [
             "VAP 深度學習預測系統"
           ]
@@ -105,7 +105,7 @@
         {
           "name": "機器學習",
           "level": "進階",
-          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值實現模型可解釋性，有效處理嚴重類別不平衡的金融詐欺場景。",
+          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值輸出特徵貢獻，在 1:30 不平衡的人頭帳戶偵測資料集上測試過。",
           "projects": [
             "AWS x BitoPro 黑客松"
           ]
@@ -141,7 +141,7 @@
     "programming": {
       "title": "程式開發",
       "en": "Programming",
-      "overview": "橫跨嵌入式韌體、科學計算與機器學習管線，依場景選用最合適的語言與框架。",
+      "overview": "從嵌入式韌體到 ML 管線都有用過，C/C++ 負責硬體這側，Python 負責資料與模型那側。",
       "skills": [
         {
           "name": "C / C++",
@@ -188,7 +188,7 @@
     "eda": {
       "title": "電路設計",
       "en": "Electronic Design Automation",
-      "overview": "具備從電路圖設計到 PCB Layout 的完整流程能力，熟悉電源管理、MCU 外圍電路與保護電路設計。",
+      "overview": "從電路圖設計到 PCB Layout 都自己做過，走過 Altium、EasyEDA Pro、KiCAD，比較熟電源管理和 MCU 外圍電路。",
       "skills": [
         {
           "name": "Altium Designer",
@@ -223,7 +223,7 @@
     "manufacturing": {
       "title": "機構加工",
       "en": "Manufacturing",
-      "overview": "從概念設計到實體製作的完整製程能力，熟悉減法加工、積層製造與連接工藝，具備 CNC 數值加工與 3D 建模實戰經驗。",
+      "overview": "從設計到實體都做過：CNC 銑床、3D 列印、金屬焊接、雷射切割，建模用 Inventor，程式路徑用 Mastercam。",
       "skills": [
         {
           "name": "CNC 銑床",

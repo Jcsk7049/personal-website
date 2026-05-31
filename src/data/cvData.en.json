@@ -42,7 +42,7 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface specification. Introduced AI-assisted tools to accelerate firmware prototyping cycles and deliver system integration on time under competition deadlines.",
+      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools to shorten firmware prototyping cycles. Engineering Advisor since 2023.",
       "frc": true
     },
     {
@@ -79,13 +79,13 @@
         {
           "name": "Deep Learning",
           "level": "進階",
-          "desc": "Proficient in LSTM and CNN time-series architectures with complete pipelines for preprocessing, training, and hyperparameter tuning — applied to biomedical signal sequence prediction.",
+          "desc": "Worked with LSTM and CNN time-series architectures, running the full pipeline from preprocessing through hyperparameter tuning — applied to biomedical signal prediction.",
           "projects": ["ICU VAP Early-Warning System"]
         },
         {
           "name": "Machine Learning",
           "level": "進階",
-          "desc": "XGBoost / LightGBM ensemble binary classification with SHAP interpretability, effectively handling severe class imbalance in financial fraud detection.",
+          "desc": "XGBoost / LightGBM ensemble binary classification with SHAP for per-account feature attribution, tested on a 1:30 imbalanced money-mule detection dataset.",
           "projects": ["AWS × BitoPro Hackathon"]
         },
         {
@@ -111,7 +111,7 @@
     "programming": {
       "title": "Programming",
       "en": "Programming",
-      "overview": "Spanning embedded firmware, scientific computing, and ML pipelines — selecting the best language and framework for each context.",
+      "overview": "Spans embedded firmware to ML pipelines — C/C++ on the hardware side, Python on the data and model side.",
       "skills": [
         {
           "name": "C / C++",
@@ -148,7 +148,7 @@
     "eda": {
       "title": "Electronic Design",
       "en": "Electronic Design Automation",
-      "overview": "Full flow from schematic design to PCB layout, with experience in power management, MCU peripheral circuitry, and protection circuit design.",
+      "overview": "Done the full flow from schematic to PCB layout — Altium, EasyEDA Pro, and KiCAD. More experienced with power management and MCU peripheral circuits.",
       "skills": [
         {
           "name": "Altium Designer",
@@ -179,7 +179,7 @@
     "manufacturing": {
       "title": "Manufacturing",
       "en": "Manufacturing",
-      "overview": "Full fabrication capability from concept to physical product: subtractive machining, additive manufacturing, and joining processes with hands-on CNC and 3D modeling experience.",
+      "overview": "From design to physical parts: CNC milling, 3D printing, metal welding, and laser cutting. Modeling in Inventor, toolpaths in Mastercam.",
       "skills": [
         {
           "name": "CNC Milling",
