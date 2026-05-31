@@ -6,7 +6,7 @@ import { uiText } from '../data/uiText'
 const QUADRANT_META = [
   {
     key: 'data_analysis',
-    accent: 'from-sky-400 to-blue-500',
+    accent: 'from-indigo-400 to-blue-500',
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -17,7 +17,7 @@ const QUADRANT_META = [
   },
   {
     key: 'programming',
-    accent: 'from-violet-400 to-purple-500',
+    accent: 'from-emerald-400 to-teal-500',
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -27,7 +27,7 @@ const QUADRANT_META = [
   },
   {
     key: 'eda',
-    accent: 'from-amber-400 to-orange-500',
+    accent: 'from-rose-400 to-pink-500',
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -41,7 +41,7 @@ const QUADRANT_META = [
   },
   {
     key: 'manufacturing',
-    accent: 'from-teal-400 to-cyan-500',
+    accent: 'from-orange-400 to-amber-500',
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -53,8 +53,8 @@ const QUADRANT_META = [
 ]
 
 const LEVEL_STYLE = {
-  '進階': 'bg-violet-400/15 text-violet-300',
-  '熟悉': 'bg-blue-400/15 text-blue-300',
+  '進階': 'bg-indigo-400/15 text-indigo-300',
+  '熟悉': 'bg-emerald-400/15 text-emerald-300',
   '基礎': 'bg-white/10 text-white/40',
 }
 
@@ -134,13 +134,13 @@ export default function SkillGrid({ skills, detail }) {
                   {skillList.length > 0 && (
                     <div className="space-y-2">
                       <div className="flex h-[3px] rounded-full overflow-hidden gap-0.5">
-                        {counts['進階'] > 0 && <div className="bg-violet-400/60 rounded-full" style={{ flex: counts['進階'] }} />}
-                        {counts['熟悉'] > 0 && <div className="bg-blue-400/60 rounded-full"   style={{ flex: counts['熟悉'] }} />}
+                        {counts['進階'] > 0 && <div className="bg-indigo-400/60 rounded-full" style={{ flex: counts['進階'] }} />}
+                        {counts['熟悉'] > 0 && <div className="bg-emerald-400/60 rounded-full"   style={{ flex: counts['熟悉'] }} />}
                         {counts['基礎'] > 0 && <div className="bg-white/15 rounded-full"       style={{ flex: counts['基礎'] }} />}
                       </div>
                       <div className="flex gap-3">
-                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-violet-400/60 shrink-0" />{t.levels['進階']} {counts['進階']}</span>}
-                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-blue-400/60 shrink-0" />{t.levels['熟悉']} {counts['熟悉']}</span>}
+                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0" />{t.levels['進階']} {counts['進階']}</span>}
+                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60 shrink-0" />{t.levels['熟悉']} {counts['熟悉']}</span>}
                         {counts['基礎'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-white/15 shrink-0" />{t.levels['基礎']} {counts['基礎']}</span>}
                       </div>
                     </div>
@@ -162,7 +162,7 @@ export default function SkillGrid({ skills, detail }) {
                     {skillList.length > 0 && (
                       <span className="text-[11px] text-white/25 font-mono">{t.skillCount(skillList.length)}</span>
                     )}
-                    <span className="text-xs text-sky-400 font-medium ml-auto
+                    <span className="text-xs text-indigo-400 font-medium ml-auto
                                      opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
                                      transition-all duration-[125ms]">
                       {t.viewDetail}
