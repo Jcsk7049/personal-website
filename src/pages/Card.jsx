@@ -48,9 +48,9 @@ const LINKS = [
 ]
 
 const HIGHLIGHTS = [
-  { label: 'ICU VAP 預測', desc: 'LSTM × Stay-Level CV，IEEE GCCE 2026 投稿中' },
-  { label: 'FRC Team 7645', desc: '2022 Taiwan Innovation in Control Award — Systems Integration & Firmware' },
-  { label: 'AWS × BitoPro', desc: '六服務 AML 管線，31 項行為特徵 + SHAP' },
+  { label: 'ICU VAP 預測', labelEn: 'ICU VAP Early Prediction', desc: 'LSTM × Stay-Level CV，IEEE GCCE 2026 投稿中', descEn: 'LSTM × Stay-Level CV — IEEE GCCE 2026 Under Review' },
+  { label: 'FRC Team 7645', desc: '2023 Taiwan Regional Finalist — Systems Integration & Firmware' },
+  { label: 'AWS × BitoPro', labelEn: 'AWS × BitoPro Hackathon', desc: '六服務 AML 管線，31 項行為特徵 + SHAP', descEn: '6-service AML pipeline, 31 behavioral features + SHAP' },
 ]
 
 export default function Card() {
@@ -134,8 +134,18 @@ export default function Card() {
             padding: '14px 16px',
             boxShadow: 'rgba(0,0,0,0.06) 0 1px 4px',
           }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: '#1D1D1F', marginBottom: 2 }}>{h.label}</div>
-            <div style={{ fontSize: 13, color: '#6E6E73', lineHeight: 1.4 }}>{h.desc}</div>
+            {h.labelEn ? (
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: '#1D1D1F' }}>{h.label}</span>
+                <span style={{ fontSize: 11, fontWeight: 500, color: '#C7C7CC' }}>{h.labelEn}</span>
+              </div>
+            ) : (
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#1D1D1F', marginBottom: 2 }}>{h.label}</div>
+            )}
+            <div style={{ fontSize: 13, color: '#6E6E73', lineHeight: 1.5 }}>{h.desc}</div>
+            {h.descEn && (
+              <div style={{ fontSize: 12, color: '#AEAEB2', lineHeight: 1.4, marginTop: 2 }}>{h.descEn}</div>
+            )}
           </div>
         ))}
       </div>
