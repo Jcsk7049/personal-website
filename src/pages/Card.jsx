@@ -27,7 +27,7 @@ const LINKS = {
     {
       href: 'https://www.linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344',
       label: 'LinkedIn',
-      sub: 'Chia-Yuan Chiang',
+      sub: 'Jia Yuan Chiang',
     },
     {
       href: '/',
@@ -114,7 +114,7 @@ export default function Card() {
   const links = LINKS[lang]
 
   useEffect(() => {
-    document.title = lang === 'zh' ? '江嘉元 — 名片' : 'Chia-Yuan Chiang'
+    document.title = lang === 'zh' ? '江嘉元 — 名片' : 'Jia Yuan Chiang'
     return () => { document.title = '江嘉元' }
   }, [lang])
 
@@ -178,10 +178,9 @@ export default function Card() {
           color: '#1D1D1F', letterSpacing: '-0.02em',
           lineHeight: 1.15, margin: '0 0 4px',
         }}>
-          {lang === 'zh' ? '江嘉元' : 'Chia-Yuan Chiang'}
+          {lang === 'zh' ? '江嘉元' : 'Jia Yuan Chiang'}
         </h1>
         {lang === 'en' && (
-          <p style={{ fontSize: 13, color: '#AEAEB2', margin: '0 0 4px' }}>Jiā-Yuán Jiāng</p>
         )}
         <p style={{ fontSize: 15, fontWeight: 400, color: '#6E6E73', margin: 0, lineHeight: 1.4 }}>
           {c.subtitle}
