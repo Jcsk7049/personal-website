@@ -180,8 +180,6 @@ export default function Card() {
         }}>
           {lang === 'zh' ? '江嘉元' : 'Jia Yuan Chiang'}
         </h1>
-        {lang === 'en' && (
-        )}
         <p style={{ fontSize: 15, fontWeight: 400, color: '#6E6E73', margin: 0, lineHeight: 1.4 }}>
           {c.subtitle}
         </p>
