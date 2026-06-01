@@ -49,7 +49,7 @@ const LINKS = [
 
 const HIGHLIGHTS = [
   { label: 'ICU VAP 預測', desc: 'LSTM × Stay-Level CV，IEEE GCCE 2026 投稿中' },
-  { label: 'FRC 戰隊', desc: '2022 台灣區控制創新獎，系統整合 & 韌體' },
+  { label: 'FRC Team 7645', desc: '2022 Taiwan Innovation in Control Award — Systems Integration & Firmware' },
   { label: 'AWS × BitoPro', desc: '六服務 AML 管線，31 項行為特徵 + SHAP' },
 ]
 
