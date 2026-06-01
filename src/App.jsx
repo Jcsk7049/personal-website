@@ -15,6 +15,7 @@ import ProjectDetail   from './pages/ProjectDetail'
 import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
 import Card            from './pages/Card'
+import QRPage          from './pages/QRPage'
 import ScrollToTop     from './components/ScrollToTop'
 import cvDataZh        from './data/cvData.json'
 import cvDataEn        from './data/cvData.en.json'
@@ -131,6 +132,7 @@ function AppRoutes() {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/skills/:id"   element={<SkillDetail />}   />
         <Route path="/card"         element={<Card />}          />
+        <Route path="/qr"           element={<QRPage />}        />
         <Route path="*"             element={<NotFound />}      />
       </Routes>
     </>
