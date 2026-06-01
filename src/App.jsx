@@ -14,6 +14,7 @@ import GuestbookContact    from './components/GuestbookContact'
 import ProjectDetail   from './pages/ProjectDetail'
 import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
+import Card            from './pages/Card'
 import ScrollToTop     from './components/ScrollToTop'
 import cvDataZh        from './data/cvData.json'
 import cvDataEn        from './data/cvData.en.json'
@@ -129,6 +130,7 @@ function AppRoutes() {
         <Route path="/"             element={<HomePage />}      />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/skills/:id"   element={<SkillDetail />}   />
+        <Route path="/card"         element={<Card />}          />
         <Route path="*"             element={<NotFound />}      />
       </Routes>
     </>
