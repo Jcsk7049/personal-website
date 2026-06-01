@@ -3,16 +3,6 @@ import { useEffect, useState } from 'react'
 const LINKS = {
   zh: [
     {
-      href: 'mailto:johnjia9491@gmail.com',
-      label: 'Email',
-      sub: 'johnjia9491@gmail.com',
-    },
-    {
-      href: 'https://github.com/Jcsk7049',
-      label: 'GitHub',
-      sub: 'Jcsk7049',
-    },
-    {
       href: 'https://www.linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344',
       label: 'LinkedIn',
       sub: '江嘉元',
@@ -22,18 +12,18 @@ const LINKS = {
       label: '個人網站',
       sub: '完整作品集',
     },
-  ],
-  en: [
-    {
-      href: 'mailto:johnjia9491@gmail.com',
-      label: 'Email',
-      sub: 'johnjia9491@gmail.com',
-    },
     {
       href: 'https://github.com/Jcsk7049',
       label: 'GitHub',
       sub: 'Jcsk7049',
     },
+    {
+      href: 'mailto:johnjia9491@gmail.com',
+      label: 'Email',
+      sub: 'johnjia9491@gmail.com',
+    },
+  ],
+  en: [
     {
       href: 'https://www.linkedin.com/in/%E5%98%89%E5%85%83-%E6%B1%9F-662764344',
       label: 'LinkedIn',
@@ -43,6 +33,16 @@ const LINKS = {
       href: '/',
       label: 'Portfolio',
       sub: 'Full project showcase',
+    },
+    {
+      href: 'https://github.com/Jcsk7049',
+      label: 'GitHub',
+      sub: 'Jcsk7049',
+    },
+    {
+      href: 'mailto:johnjia9491@gmail.com',
+      label: 'Email',
+      sub: 'johnjia9491@gmail.com',
     },
   ],
 }
@@ -87,7 +87,7 @@ const ICONS = {
   ),
 }
 
-const LINK_ICONS = ['email', 'github', 'linkedin', 'web']
+const LINK_ICONS = ['linkedin', 'web', 'github', 'email']
 
 const CHEVRON = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C7C7CC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
