@@ -42,7 +42,7 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "description": "主導機器人系統架構設計，涵蓋多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面規範制定；引入 AI 輔助工具加速韌體原型迭代週期，在競賽 deadline 壓力下確保系統整合如期交付。"
+      "description": "負責機器人系統架構：多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面定義；引入 LLM 輔助工具縮短韌體原型迭代週期，2023 年起持續擔任 Engineering Advisor。"
     },
     {
       "role": "競賽選手",
@@ -97,7 +97,7 @@
         {
           "name": "深度學習",
           "level": "進階",
-          "desc": "熟悉 LSTM、CNN 時序模型架構，具備完整的資料前處理、模型訓練與超參數調整流程，應用於生醫訊號的序列預測任務。",
+          "desc": "用過 LSTM、CNN 時序模型，從資料前處理到超參數調整都自己跑過，主要應用場景是生醫訊號的序列預測。",
           "projects": [
             "VAP 深度學習預測系統"
           ]
@@ -105,7 +105,7 @@
         {
           "name": "機器學習",
           "level": "進階",
-          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值實現模型可解釋性，有效處理嚴重類別不平衡的金融詐欺場景。",
+          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值輸出特徵貢獻，在 1:30 不平衡的人頭帳戶偵測資料集上測試過。",
           "projects": [
             "AWS x BitoPro 黑客松"
           ]
@@ -141,7 +141,7 @@
     "programming": {
       "title": "程式開發",
       "en": "Programming",
-      "overview": "橫跨嵌入式韌體、科學計算與機器學習管線，依場景選用最合適的語言與框架。",
+      "overview": "從嵌入式韌體到 ML 管線都有用過，C/C++ 負責硬體這側，Python 負責資料與模型那側。",
       "skills": [
         {
           "name": "C / C++",
@@ -188,7 +188,7 @@
     "eda": {
       "title": "電路設計",
       "en": "Electronic Design Automation",
-      "overview": "具備從電路圖設計到 PCB Layout 的完整流程能力，熟悉電源管理、MCU 外圍電路與保護電路設計。",
+      "overview": "從電路圖設計到 PCB Layout 都自己做過，走過 Altium、EasyEDA Pro、KiCAD，比較熟電源管理和 MCU 外圍電路。",
       "skills": [
         {
           "name": "Altium Designer",
@@ -223,7 +223,7 @@
     "manufacturing": {
       "title": "機構加工",
       "en": "Manufacturing",
-      "overview": "從概念設計到實體製作的完整製程能力，熟悉減法加工、積層製造與連接工藝，具備 CNC 數值加工與 3D 建模實戰經驗。",
+      "overview": "從設計到實體都做過：CNC 銑床、3D 列印、金屬焊接、雷射切割，建模用 Inventor，程式路徑用 Mastercam。",
       "skills": [
         {
           "name": "CNC 銑床",
@@ -506,6 +506,69 @@
               {
                 "name": "電路模擬與實測對比",
                 "desc": "先以 SPICE 模擬時域波形與頻率響應波德圖，再以示波器量測實際輸出，分析非理想元件特性（電阻溫度係數、電容漏電流）對結果造成的偏差"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "pcb-defect-detection",
+      "cover": "/images/pcb-defect-detection/cover.png",
+      "category": "大學課程作品",
+      "title": "PCB 元件瑕疵偵測：Azure Custom Vision 物件偵測",
+      "period": "2026",
+      "description": "用 Azure Custom Vision 訓練物件偵測模型，框出 PCB 元件上的兩類瑕疵（Bad_podu 破洞、Bad_qiaojiao 翹腳）。1064 + 609 張標註影像，General [A1] domain 訓練後 Precision 67.4%、Recall 97.5%、mAP 87.4%。另寫了一支腳本算預測框與標註框的 IoU，用 ≥0.5 當驗證門檻。",
+      "tags": [
+        "Azure Custom Vision",
+        "Object Detection",
+        "Pascal VOC",
+        "IoU 驗證",
+        "Python"
+      ],
+      "detail": {
+        "images": [
+          { "src": "/images/pcb-defect-detection/cover.png",        "caption": "標註後的訓練影像：兩類瑕疵標籤 Bad_podu（破洞）與 Bad_qiaojiao（翹腳）" },
+          { "src": "/images/pcb-defect-detection/performance.png",  "caption": "Iteration 1 訓練結果：整體 Precision 67.4% / Recall 97.5% / mAP 87.4%，分標籤效能見下方數據" },
+          { "src": "/images/pcb-defect-detection/quick-test.png",   "caption": "Quick Test：對單張測試影像即時推論，框出 Bad_podu 區域並標示信心度" }
+        ],
+        "purpose": "PCB 上的破洞（podu）與翹腳（qiaojiao）肉眼檢查容易漏判，尤其產線速度快的時候。這個專案是練習把整套物件偵測流程搬到雲端：標註資料、訓練、發布、推論、再寫腳本驗證模型有沒有真的框對地方，而不是只看 confidence 高低。",
+        "concept": "【資料處理與上傳】\n用 `xml.etree.ElementTree` 解析 Pascal VOC 格式的標註 XML，把像素座標的 bounding box 換算成 Custom Vision API 要求的 0–1 正規化座標（left/top/width/height）。同時讀取 train_data 與 train_data_augmentation 兩個目錄，合併後分批上傳（Azure 限制單批最多 64 張）。\n\n【訓練】\n建立 Object Detection 專案，標籤分別是 Bad_podu（破洞）與 Bad_qiaojiao（翹腳），用 General [A1] domain 訓練。Bad_podu 1064 張、Bad_qiaojiao 609 張，合計約 1673 張標註影像參與訓練。\n\n【驗證：IoU 而不是只看 confidence】\n光看模型回傳的信心度沒辦法確認框的位置對不對，所以另外寫了 validate_test.py：從測試集隨機抽圖、解析對應的 ground truth XML、呼叫 Prediction API 取得預測框，再計算每個預測框與所有 GT 框的最大 IoU（交併比）。設定 confidence ≥ 50%、IoU ≥ 0.5 為通過門檻，並用 matplotlib 把 GT（綠框）、通過的預測（橘框）、未通過的預測（紅框）畫在同一張圖上輸出比對。",
+        "outcome": "【Iteration 1 整體效能（threshold=0.5）】\nPrecision 67.4%　Recall 97.5%　mAP 87.4%\n\n【分標籤效能】\nBad_podu　　　Precision 69.6%　Recall 99.2%　AP 91.4%（1064 張）\nBad_qiaojiao　Precision 59.7%　Recall 91.3%　AP 83.3%（609 張）\n\nRecall 普遍偏高、Precision 相對較低，代表模型傾向「寧可多框、不要漏框」——對瑕疵檢測這種漏判成本高的場景方向是對的，但代表會有不少假陽性，要嘛調高 confidence threshold、要嘛靠人工複檢過濾。Bad_qiaojiao 的 Precision（59.7%）比 Bad_podu（69.6%）低，可能是翹腳的形狀變化比破洞更不規則，標註樣本數也少了將近一半（609 vs 1064），這塊如果要往下做，應該先補資料再重訓。\n\n【關於那兩支腳本】\n上課作業繳交的版本裡，Azure 的 TRAINING_KEY、PREDICTION_KEY 直接寫死在程式碼中——這是練習階段圖方便的做法，正式專案不會這樣寫，金鑰應該放進環境變數或 .env 並排除在版控之外。",
+        "tech": [
+          {
+            "group": "雲端 AI 服務",
+            "items": [
+              {
+                "name": "Azure Custom Vision Training / Prediction SDK",
+                "desc": "用 Python SDK 走完建專案、建標籤、批次上傳、觸發訓練、輪詢狀態、發布 Iteration 的完整流程，不用自己管 GPU 訓練環境"
+              }
+            ]
+          },
+          {
+            "group": "資料處理",
+            "items": [
+              {
+                "name": "Pascal VOC 標註解析與座標轉換",
+                "desc": "用 xml.etree.ElementTree 解析 bndbox 標籤，並把像素座標換算成 Custom Vision 要求的 0–1 正規化座標"
+              },
+              {
+                "name": "資料增強合併",
+                "desc": "合併 train_data 與 train_data_augmentation 兩批標註資料，分批（每批 ≤64 張）上傳符合 Azure API 限制"
+              }
+            ]
+          },
+          {
+            "group": "驗證與視覺化",
+            "items": [
+              {
+                "name": "IoU 計算與通過率統計",
+                "desc": "自己實作 IoU 公式（交集面積 / 聯集面積），對每個預測框找出與所有 GT 框的最大 IoU，以 ≥0.5 判定是否通過"
+              },
+              {
+                "name": "matplotlib 比對視覺化",
+                "desc": "把 ground truth、通過驗證的預測、未通過的預測用不同顏色框疊圖輸出，方便直接看出模型框錯在哪裡而不是只看數字"
               }
             ]
           }
