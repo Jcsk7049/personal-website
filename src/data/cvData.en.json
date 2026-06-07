@@ -438,6 +438,69 @@
       }
     },
     {
+      "id": "pcb-defect-detection",
+      "cover": "/images/pcb-defect-detection/cover.png",
+      "category": "大學課程作品",
+      "title": "PCB Component Defect Detection: Object Detection with Azure Custom Vision",
+      "period": "2026",
+      "description": "Trained an object detection model on Azure Custom Vision to localize two PCB defect types (Bad_podu / pad lift, Bad_qiaojiao / lifted leads). 1064 + 609 labeled images, trained on the General [A1] domain: Precision 67.4%, Recall 97.5%, mAP 87.4%. Also wrote a script that computes IoU between predicted and ground-truth boxes, using ≥0.5 as the pass threshold.",
+      "tags": [
+        "Azure Custom Vision",
+        "Object Detection",
+        "Pascal VOC",
+        "IoU Validation",
+        "Python"
+      ],
+      "detail": {
+        "images": [
+          { "src": "/images/pcb-defect-detection/cover.png",        "caption": "Annotated training images: two defect labels, Bad_podu (pad lift) and Bad_qiaojiao (lifted leads)" },
+          { "src": "/images/pcb-defect-detection/performance.png",  "caption": "Iteration 1 results: overall Precision 67.4% / Recall 97.5% / mAP 87.4%, per-tag breakdown below" },
+          { "src": "/images/pcb-defect-detection/quick-test.png",   "caption": "Quick Test: real-time inference on a single test image, drawing a Bad_podu box with confidence score" }
+        ],
+        "purpose": "Pad lift (podu) and lifted leads (qiaojiao) on a PCB are easy to miss with the naked eye, especially at production-line speed. This project was a chance to run a full object-detection pipeline in the cloud: label data, train, publish, run inference, and then write a script that checks whether the model actually draws the box in the right place — not just whether its confidence score is high.",
+        "concept": "**Data processing and upload**\nUsed `xml.etree.ElementTree` to parse Pascal VOC annotation XML, converting pixel-coordinate bounding boxes into the 0–1 normalized coordinates (left/top/width/height) the Custom Vision API expects. Read from both train_data and train_data_augmentation, merged them, and uploaded in batches (Azure caps batches at 64 images).\n\n**Training**\nCreated an Object Detection project with two tags — Bad_podu (pad lift) and Bad_qiaojiao (lifted leads) — trained on the General [A1] domain. 1064 images for Bad_podu, 609 for Bad_qiaojiao, about 1673 labeled images total.\n\n**Validation: IoU, not just confidence**\nA confidence score alone doesn't tell you whether the box is in the right place, so I wrote validate_test.py separately: pull a random image from the test set, parse its ground-truth XML, call the Prediction API for predicted boxes, then compute the max IoU (intersection over union) between each prediction and all ground-truth boxes. Pass threshold set at confidence ≥ 50% and IoU ≥ 0.5, with matplotlib drawing ground truth (green), passing predictions (orange), and failing predictions (red) on the same image for direct comparison.",
+        "outcome": "**Iteration 1 overall performance (threshold = 0.5)**\nPrecision 67.4%　Recall 97.5%　mAP 87.4%\n\n**Per-tag performance**\nBad_podu　　　Precision 69.6%　Recall 99.2%　AP 91.4% (1064 images)\nBad_qiaojiao　Precision 59.7%　Recall 91.3%　AP 83.3% (609 images)\n\nRecall is consistently high and Precision lower — the model would rather over-flag than miss a defect, which is the right tradeoff for a task where missed defects are costly, but it also means a fair number of false positives: either raise the confidence threshold or add a manual review pass. Bad_qiaojiao's lower Precision (59.7% vs. 69.6% for Bad_podu) is probably because lifted-lead shapes vary more than pad lifts, and it has nearly half as many labeled samples (609 vs. 1064) — if I were to take this further, I'd collect more data for that class before retraining.\n\n**About those two scripts**\nIn the version submitted for the course, the Azure TRAINING_KEY and PREDICTION_KEY are hardcoded directly in the source — a shortcut taken for a class exercise. A real project wouldn't do this; keys belong in environment variables / a .env file excluded from version control.",
+        "tech": [
+          {
+            "group": "Cloud AI Services",
+            "items": [
+              {
+                "name": "Azure Custom Vision Training / Prediction SDK",
+                "desc": "Used the Python SDK to handle the full pipeline — create project, create tags, batch upload, trigger training, poll status, publish iteration — without managing any GPU training infrastructure"
+              }
+            ]
+          },
+          {
+            "group": "Data Processing",
+            "items": [
+              {
+                "name": "Pascal VOC parsing and coordinate conversion",
+                "desc": "Parsed bndbox tags with xml.etree.ElementTree and converted pixel coordinates into the 0–1 normalized format Custom Vision requires"
+              },
+              {
+                "name": "Augmented data merging",
+                "desc": "Merged train_data and train_data_augmentation annotation sets and uploaded in batches (≤64 images per batch) to stay within Azure's API limits"
+              }
+            ]
+          },
+          {
+            "group": "Validation and Visualization",
+            "items": [
+              {
+                "name": "IoU computation and pass-rate stats",
+                "desc": "Implemented the IoU formula myself (intersection area / union area), found the max IoU between each prediction and all ground-truth boxes, and used ≥0.5 as the pass threshold"
+              },
+              {
+                "name": "matplotlib comparison overlay",
+                "desc": "Rendered ground truth, passing predictions, and failing predictions in different colored boxes on one image, so you can see where the model got it wrong instead of just reading numbers"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
       "id": "qmk-stm32-keyboard",
       "cover": "/images/qmk-stm32-keyboard/numpad-hero.jpg",
       "category": "大學校外作品",
