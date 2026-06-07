@@ -453,7 +453,6 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/pcb-defect-detection/cover.png",        "caption": "Annotated training images: two defect labels, Bad_podu (pad lift) and Bad_qiaojiao (lifted leads)" },
           { "src": "/images/pcb-defect-detection/performance.png",  "caption": "Iteration 1 results: overall Precision 67.4% / Recall 97.5% / mAP 87.4%, per-tag breakdown below" },
           { "src": "/images/pcb-defect-detection/quick-test.png",   "caption": "Quick Test: real-time inference on a single test image, drawing a Bad_podu box with confidence score" }
         ],

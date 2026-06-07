@@ -529,7 +529,6 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/pcb-defect-detection/cover.png",        "caption": "標註後的訓練影像：兩類瑕疵標籤 Bad_podu（破洞）與 Bad_qiaojiao（翹腳）" },
           { "src": "/images/pcb-defect-detection/performance.png",  "caption": "Iteration 1 訓練結果：整體 Precision 67.4% / Recall 97.5% / mAP 87.4%，分標籤效能見下方數據" },
           { "src": "/images/pcb-defect-detection/quick-test.png",   "caption": "Quick Test：對單張測試影像即時推論，框出 Bad_podu 區域並標示信心度" }
         ],
