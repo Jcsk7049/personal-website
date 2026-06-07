@@ -42,14 +42,14 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools to shorten firmware prototyping cycles. Engineering Advisor since 2023.",
+      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools that cut roughly a week off the trial-and-error firmware debugging cycle, and now coach newer members to debug from root cause rather than guess-and-check. Engineering Advisor since 2023.",
       "frc": true
     },
     {
       "role": "Competitive Athlete",
       "organization": "Nangang VHS NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "Responsible for robot wiring, programming, and small mechanical parts fabrication; competed in multiple international regional competitions and national skills contests."
+      "description": "Responsible for robot wiring, programming, and small mechanical parts fabrication; competed in 3 FRC international regional events over 3 years (including the 2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and represented the school at the National Skills Competition."
     }
   ],
   "skills_matrix": {

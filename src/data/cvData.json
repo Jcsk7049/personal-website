@@ -42,13 +42,13 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – 現在",
-      "description": "負責機器人系統架構：多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面定義；引入 LLM 輔助工具縮短韌體原型迭代週期，2023 年起持續擔任 Engineering Advisor。"
+      "description": "負責機器人系統架構：多感測器融合、PID 馬達閉迴路控制調校與軟硬體介面定義；引入 LLM 輔助工具，把原本反覆試錯的韌體除錯流程縮短約一週，並把這套除錯思路教給後進，讓他們能從根因分析切入而非逐行亂試；2023 年起持續擔任 Engineering Advisor。"
     },
     {
       "role": "競賽選手",
       "organization": "南港高工 NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "負責機器人配線、程式設計與小型機械零件加工，參與多次國際區域賽與技能競賽。"
+      "description": "負責機器人配線、程式設計與小型機械零件加工，3 年內出賽 3 場 FRC 國際區域賽（含 2020 中科 5G 區域賽、2022 台灣鴻海區域賽），並代表參加全國技能競賽。"
     }
   ],
   "skills_matrix": {
