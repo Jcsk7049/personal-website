@@ -541,7 +541,7 @@
             "group": "雲端 AI 服務",
             "items": [
               {
-                "name": "Azure Custom Vision Training / Prediction SDK",
+                "name": "Azure Custom Vision SDK",
                 "desc": "用 Python SDK 走完建專案、建標籤、批次上傳、觸發訓練、輪詢狀態、發布 Iteration 的完整流程，不用自己管 GPU 訓練環境"
               }
             ]
@@ -550,7 +550,7 @@
             "group": "資料處理",
             "items": [
               {
-                "name": "Pascal VOC 標註解析與座標轉換",
+                "name": "Pascal VOC 解析與座標轉換",
                 "desc": "用 xml.etree.ElementTree 解析 bndbox 標籤，並把像素座標換算成 Custom Vision 要求的 0–1 正規化座標"
               },
               {
@@ -563,11 +563,11 @@
             "group": "驗證與視覺化",
             "items": [
               {
-                "name": "IoU 計算與通過率統計",
+                "name": "IoU 計算",
                 "desc": "自己實作 IoU 公式（交集面積 / 聯集面積），對每個預測框找出與所有 GT 框的最大 IoU，以 ≥0.5 判定是否通過"
               },
               {
-                "name": "matplotlib 比對視覺化",
+                "name": "matplotlib 視覺化",
                 "desc": "把 ground truth、通過驗證的預測、未通過的預測用不同顏色框疊圖輸出，方便直接看出模型框錯在哪裡而不是只看數字"
               }
             ]

@@ -465,7 +465,7 @@
             "group": "Cloud AI Services",
             "items": [
               {
-                "name": "Azure Custom Vision Training / Prediction SDK",
+                "name": "Azure Custom Vision SDK",
                 "desc": "Used the Python SDK to handle the full pipeline — create project, create tags, batch upload, trigger training, poll status, publish iteration — without managing any GPU training infrastructure"
               }
             ]
@@ -474,7 +474,7 @@
             "group": "Data Processing",
             "items": [
               {
-                "name": "Pascal VOC parsing and coordinate conversion",
+                "name": "Pascal VOC parsing",
                 "desc": "Parsed bndbox tags with xml.etree.ElementTree and converted pixel coordinates into the 0–1 normalized format Custom Vision requires"
               },
               {
@@ -487,11 +487,11 @@
             "group": "Validation and Visualization",
             "items": [
               {
-                "name": "IoU computation and pass-rate stats",
+                "name": "IoU computation",
                 "desc": "Implemented the IoU formula myself (intersection area / union area), found the max IoU between each prediction and all ground-truth boxes, and used ≥0.5 as the pass threshold"
               },
               {
-                "name": "matplotlib comparison overlay",
+                "name": "matplotlib overlay",
                 "desc": "Rendered ground truth, passing predictions, and failing predictions in different colored boxes on one image, so you can see where the model got it wrong instead of just reading numbers"
               }
             ]
