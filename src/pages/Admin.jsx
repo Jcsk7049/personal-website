@@ -825,30 +825,16 @@ function ResumeTab({ toast }) {
 
   if (!data) return <p className="text-sm text-[#86868B]">載入中…</p>
 
-  if (preview) {
-    const html = generateResumeHTML(data)
-    return (
-      <div className="space-y-3">
-        <div className="flex gap-2">
-          <Btn variant="ghost" onClick={() => setPreview(false)}>← 返回編輯</Btn>
-          <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存並發布'}</Btn>
-        </div>
-        <div className="bg-white rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-auto" style={{minHeight:'80vh'}}>
-          <iframe srcDoc={html} className="w-full border-0" style={{height:'80vh'}} title="resume preview" />
-        </div>
-      </div>
-    )
-  }
+  const previewHTML = generateResumeHTML(data)
 
   return (
-    <div className="max-w-2xl space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-sm font-semibold text-[#1D1D1F]">履歷編輯</p>
-        <div className="flex gap-2">
-          <Btn variant="ghost" onClick={() => setPreview(true)}>預覽</Btn>
+    <div className="flex gap-5" style={{minHeight:'calc(100vh - 80px)'}}>
+      {/* ── Left: editor ── */}
+      <div className="w-[420px] shrink-0 space-y-3">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-semibold text-[#1D1D1F]">履歷編輯</p>
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存並發布'}</Btn>
         </div>
-      </div>
 
       {/* Header */}
       <RSection title="基本資訊" defaultOpen>
@@ -968,6 +954,18 @@ function ResumeTab({ toast }) {
           )}
         />
       </RSection>
+      </div>
+
+      {/* ── Right: live preview ── */}
+      <div className="flex-1 min-w-0 sticky top-14 self-start" style={{height:'calc(100vh - 80px)'}}>
+        <div className="h-full rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden bg-white flex flex-col">
+          <div className="px-4 py-2 border-b border-black/[0.06] flex items-center gap-2 shrink-0">
+            <span className="text-xs font-medium text-[#86868B]">即時預覽</span>
+            <span className="text-xs text-[#86868B]">（編輯後自動更新）</span>
+          </div>
+          <iframe srcDoc={previewHTML} className="flex-1 w-full border-0" title="resume preview" />
+        </div>
+      </div>
     </div>
   )
 }
@@ -1029,7 +1027,7 @@ export default function Admin() {
           </div>
         </div>
       </div>
-      <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className={`mx-auto px-6 py-8 ${tab === 'resume' ? 'max-w-full' : 'max-w-5xl'}`}>
         {renderTab()}
       </div>
       <Toast msg={toastMsg} ok={toastOk} />
