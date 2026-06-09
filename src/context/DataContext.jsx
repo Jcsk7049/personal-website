@@ -7,10 +7,12 @@ const DataContext = createContext(null)
 
 const SECTION_KEYS = ['profile', 'education', 'experience', 'skills_matrix', 'skills_detail', 'awards']
 
-async function fetchCV(lang) {
+async function fetchCV(lang, fallback) {
   const [sections, projects] = await Promise.all([
-    Promise.all(SECTION_KEYS.map(k => api.getSection(k, lang).then(v => [k, v]))),
-    api.getProjects(lang),
+    Promise.all(SECTION_KEYS.map(k =>
+      api.getSection(k, lang).then(v => [k, v ?? fallback[k]])
+    )),
+    api.getProjects(lang).then(v => (Array.isArray(v) && v.length > 0 ? v : fallback.projects)),
   ])
   const cv = Object.fromEntries(sections)
   cv.projects = projects
@@ -23,7 +25,7 @@ export function DataProvider({ children }) {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    Promise.all([fetchCV('zh'), fetchCV('en')])
+    Promise.all([fetchCV('zh', cvDataZhFallback), fetchCV('en', cvDataEnFallback)])
       .then(([zh, en]) => {
         setCvZh(zh)
         setCvEn(en)
