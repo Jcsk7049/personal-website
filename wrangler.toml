@@ -5,4 +5,4 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "personal-website-db"
-database_id = "YOUR_D1_DATABASE_ID"   # ← 換成你的 D1 Database ID
+database_id = "3db5daf1-ec20-484c-89de-8bd0c2ffdb4b"
