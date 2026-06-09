@@ -156,15 +156,15 @@ function ImagesEditor({ value = [], onChange }) {
       <ImageUploadBtn onUploaded={path => onChange([...value, { src: path, caption: '' }])} />
       {value.map((img, i) => (
         <div key={i} className="bg-black/[0.03] rounded-xl p-3 space-y-2">
-          <div className="flex gap-2 items-center">
-            {img.src && (
-              <img src={img.src} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0 bg-black/10" onError={e => e.target.style.display='none'} />
-            )}
+          {img.src && (
+            <img src={img.src} alt="" className="w-full max-h-48 rounded-lg object-contain bg-black/5" onError={e => e.target.style.display='none'} />
+          )}
+          <div className="flex gap-2 items-start">
             <div className="flex-1 space-y-2">
               <input className={inp} placeholder="圖片路徑 /api/images/xxx 或 /images/xxx/cover.png" value={img.src || ''} onChange={e => set(i, 'src', e.target.value)} />
               <input className={inp} placeholder="說明文字（選填）" value={img.caption || ''} onChange={e => set(i, 'caption', e.target.value)} />
             </div>
-            <button type="button" onClick={() => remove(i)} className="text-[#86868B] hover:text-red-500 text-xl leading-none shrink-0">×</button>
+            <button type="button" onClick={() => remove(i)} className="mt-2 text-[#86868B] hover:text-red-500 text-xl leading-none shrink-0">×</button>
           </div>
         </div>
       ))}
