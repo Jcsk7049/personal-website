@@ -50,7 +50,7 @@ function SectionCard({ title, action, children }) {
 }
 
 const inp = 'w-full px-3 py-2 rounded-lg border border-black/10 text-sm focus:outline-none focus:border-[#0071E3] bg-white'
-const ta  = `${inp} resize-y`
+const ta  = `${inp} resize-y overflow-y-auto leading-relaxed`
 
 function F({ label, hint, children }) {
   return (
@@ -213,7 +213,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
       </div>
 
       <F label="摘要">
-        <textarea className={ta} rows={2} value={d.description || ''} onChange={e => set('description', e.target.value)} />
+        <textarea className={ta} rows={5} value={d.description || ''} onChange={e => set('description', e.target.value)} />
       </F>
 
       <F label="Tags" hint="逗號分隔">
@@ -223,13 +223,13 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
       <div className="border-t border-black/[0.06] pt-4 space-y-4">
         <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">詳細說明（Detail）</p>
         <F label="做這個的原因">
-          <textarea className={ta} rows={6} value={d.detail?.purpose || ''} onChange={e => setDet('purpose', e.target.value)} />
+          <textarea className={ta} rows={10} value={d.detail?.purpose || ''} onChange={e => setDet('purpose', e.target.value)} />
         </F>
         <F label="怎麼做的">
-          <textarea className={ta} rows={8} value={d.detail?.concept || ''} onChange={e => setDet('concept', e.target.value)} />
+          <textarea className={ta} rows={14} value={d.detail?.concept || ''} onChange={e => setDet('concept', e.target.value)} />
         </F>
         <F label="結果 / 成效">
-          <textarea className={ta} rows={6} value={d.detail?.outcome || ''} onChange={e => setDet('outcome', e.target.value)} />
+          <textarea className={ta} rows={10} value={d.detail?.outcome || ''} onChange={e => setDet('outcome', e.target.value)} />
         </F>
         <F label="GitHub">
           <input className={inp} value={d.detail?.github || ''} onChange={e => setDet('github', e.target.value)} placeholder="https://github.com/..." />
@@ -351,7 +351,7 @@ function ProfileTab({ toast }) {
             <F label="職稱 / Title"><input className={inp} value={d.title || ''} onChange={e => set('title', e.target.value)} placeholder="選填" /></F>
           </div>
           <F label="個人簡介 / Bio">
-            <textarea className={ta} rows={6} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
+            <textarea className={ta} rows={8} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
           </F>
           <F label="頭像路徑（兩語共用）">
             <input className={inp} value={zh.avatar || ''} onChange={e => { setZh(p => ({ ...p, avatar: e.target.value })); setEn(p => ({ ...p, avatar: e.target.value })) }} />
@@ -410,7 +410,7 @@ function ExpItem({ zh, en, onZh, onEn, onDelete }) {
           </div>
           <F label="時間（兩語共用）"><input className={inp} value={zh.period || ''} onChange={e => { onZh({ ...zh, period: e.target.value }); onEn({ ...en, period: e.target.value }) }} /></F>
           <F label="描述">
-            <textarea className={ta} rows={6} value={d.description || ''} onChange={e => on({ ...d, description: e.target.value })} />
+            <textarea className={ta} rows={10} value={d.description || ''} onChange={e => on({ ...d, description: e.target.value })} />
           </F>
         </div>
       )}
