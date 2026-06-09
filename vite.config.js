@@ -3,6 +3,12 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      // 本地開發時把 /api 轉發到 wrangler pages dev（port 8788）
+      '/api': { target: 'http://localhost:8788', changeOrigin: true },
+    },
+  },
   build: {
     rollupOptions: {
       output: {
@@ -14,3 +20,4 @@ export default defineConfig({
     },
   },
 })
+

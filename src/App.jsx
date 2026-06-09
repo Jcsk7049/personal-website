@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { ActiveSectionProvider } from './context/ActiveSectionContext'
+import { DataProvider, useData } from './context/DataContext'
 import { uiText } from './data/uiText'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
@@ -16,14 +17,14 @@ import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
 import Card            from './pages/Card'
 import QRPage          from './pages/QRPage'
+import Admin           from './pages/Admin'
 import ScrollToTop     from './components/ScrollToTop'
-import cvDataZh        from './data/cvData.json'
-import cvDataEn        from './data/cvData.en.json'
 
 function HomePage() {
   const { lang } = useLanguage()
+  const { cvZh, cvEn } = useData()
   const t = uiText[lang]
-  const cv = lang === 'en' ? cvDataEn : cvDataZh
+  const cv = lang === 'en' ? cvEn : cvZh
 
   useEffect(() => {
     const sections = document.querySelectorAll('section:not(#hero)')
@@ -133,6 +134,7 @@ function AppRoutes() {
         <Route path="/skills/:id"   element={<SkillDetail />}   />
         <Route path="/card"         element={<Card />}          />
         <Route path="/qr"           element={<QRPage />}        />
+        <Route path="/admin/*"      element={<Admin />}         />
         <Route path="*"             element={<NotFound />}      />
       </Routes>
     </>
@@ -142,9 +144,11 @@ function AppRoutes() {
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <DataProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </DataProvider>
     </LanguageProvider>
   )
 }
