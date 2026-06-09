@@ -1,4 +1,4 @@
-import { json } from '../_shared/cors.js'
+import { json } from './_shared/cors.js'
 
 export async function onRequestGet(context) {
   const { env, request } = context
