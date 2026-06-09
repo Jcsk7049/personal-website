@@ -10,12 +10,18 @@ const SECTION_KEYS = ['profile', 'education', 'experience', 'skills_matrix', 'sk
 async function fetchCV(lang, fallback) {
   const [sections, projects] = await Promise.all([
     Promise.all(SECTION_KEYS.map(k =>
-      api.getSection(k, lang).then(v => [k, v ?? fallback[k]])
+      api.getSection(k, lang)
+        .then(v => [k, v ?? fallback[k]])
+        .catch(() => [k, fallback[k]])
     )),
-    api.getProjects(lang).then(v => (Array.isArray(v) && v.length > 0 ? v : fallback.projects)),
+    api.getProjects(lang)
+      .then(v => (Array.isArray(v) && v.length > 0 ? v : fallback.projects))
+      .catch(() => fallback.projects),
   ])
   const cv = Object.fromEntries(sections)
   cv.projects = projects
+  // 若關鍵欄位仍然是 null，直接用 fallback 整包
+  if (!cv.profile) return fallback
   return cv
 }
 
@@ -25,20 +31,23 @@ export function DataProvider({ children }) {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    Promise.all([fetchCV('zh', cvDataZhFallback), fetchCV('en', cvDataEnFallback)])
+    Promise.all([
+      fetchCV('zh', cvDataZhFallback),
+      fetchCV('en', cvDataEnFallback),
+    ])
       .then(([zh, en]) => {
         setCvZh(zh)
         setCvEn(en)
         setReady(true)
       })
-      .catch(() => {
-        // API not available (local dev without wrangler) — keep JSON fallback
-        setReady(true)
-      })
+      .catch(() => setReady(true))
   }, [])
 
   const refresh = () =>
-    Promise.all([fetchCV('zh'), fetchCV('en')]).then(([zh, en]) => {
+    Promise.all([
+      fetchCV('zh', cvDataZhFallback),
+      fetchCV('en', cvDataEnFallback),
+    ]).then(([zh, en]) => {
       setCvZh(zh)
       setCvEn(en)
     })
