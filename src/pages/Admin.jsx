@@ -111,20 +111,64 @@ function TechEditor({ value = [], onChange }) {
   )
 }
 
+function ImageUploadBtn({ onUploaded }) {
+  const [uploading, setUploading] = useState(false)
+  const [drag, setDrag] = useState(false)
+
+  const upload = async (file) => {
+    if (!file || !file.type.startsWith('image/')) return
+    setUploading(true)
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch('/api/images', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${localStorage.getItem('admin_token')}` },
+        body: form,
+      })
+      const data = await res.json()
+      if (data.path) onUploaded(data.path)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  return (
+    <label
+      onDragOver={e => { e.preventDefault(); setDrag(true) }}
+      onDragLeave={() => setDrag(false)}
+      onDrop={e => { e.preventDefault(); setDrag(false); upload(e.dataTransfer.files[0]) }}
+      className={`flex items-center justify-center gap-2 h-16 rounded-xl border-2 border-dashed cursor-pointer transition-colors text-sm
+        ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#86868B] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
+    >
+      {uploading ? '上傳中…' : '📎 點擊或拖曳圖片上傳'}
+      <input type="file" accept="image/*" className="hidden" onChange={e => upload(e.target.files[0])} />
+    </label>
+  )
+}
+
 function ImagesEditor({ value = [], onChange }) {
   const add    = () => onChange([...value, { src: '', caption: '' }])
   const remove = i => onChange(value.filter((_, j) => j !== i))
   const set    = (i, f, v) => onChange(value.map((img, j) => j === i ? { ...img, [f]: v } : img))
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
+      <ImageUploadBtn onUploaded={path => onChange([...value, { src: path, caption: '' }])} />
       {value.map((img, i) => (
-        <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-center">
-          <input className={inp} placeholder="/images/xxx/cover.png" value={img.src || ''} onChange={e => set(i, 'src', e.target.value)} />
-          <input className={inp} placeholder="說明文字（選填）" value={img.caption || ''} onChange={e => set(i, 'caption', e.target.value)} />
-          <button type="button" onClick={() => remove(i)} className="text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+        <div key={i} className="bg-black/[0.03] rounded-xl p-3 space-y-2">
+          <div className="flex gap-2 items-center">
+            {img.src && img.src.startsWith('/api/images/') && (
+              <img src={img.src} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0" />
+            )}
+            <div className="flex-1 space-y-2">
+              <input className={inp} placeholder="圖片路徑 /api/images/xxx 或 /images/xxx/cover.png" value={img.src || ''} onChange={e => set(i, 'src', e.target.value)} />
+              <input className={inp} placeholder="說明文字（選填）" value={img.caption || ''} onChange={e => set(i, 'caption', e.target.value)} />
+            </div>
+            <button type="button" onClick={() => remove(i)} className="text-[#86868B] hover:text-red-500 text-xl leading-none shrink-0">×</button>
+          </div>
         </div>
       ))}
-      <button type="button" onClick={add} className="text-xs text-[#0071E3] hover:underline">+ 新增圖片</button>
+      <button type="button" onClick={add} className="text-xs text-[#0071E3] hover:underline">+ 手動輸入路徑</button>
     </div>
   )
 }
@@ -179,13 +223,13 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
       <div className="border-t border-black/[0.06] pt-4 space-y-4">
         <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">詳細說明（Detail）</p>
         <F label="做這個的原因">
-          <textarea className={ta} rows={3} value={d.detail?.purpose || ''} onChange={e => setDet('purpose', e.target.value)} />
+          <textarea className={ta} rows={6} value={d.detail?.purpose || ''} onChange={e => setDet('purpose', e.target.value)} />
         </F>
         <F label="怎麼做的">
-          <textarea className={ta} rows={3} value={d.detail?.concept || ''} onChange={e => setDet('concept', e.target.value)} />
+          <textarea className={ta} rows={8} value={d.detail?.concept || ''} onChange={e => setDet('concept', e.target.value)} />
         </F>
         <F label="結果 / 成效">
-          <textarea className={ta} rows={3} value={d.detail?.outcome || ''} onChange={e => setDet('outcome', e.target.value)} />
+          <textarea className={ta} rows={6} value={d.detail?.outcome || ''} onChange={e => setDet('outcome', e.target.value)} />
         </F>
         <F label="GitHub">
           <input className={inp} value={d.detail?.github || ''} onChange={e => setDet('github', e.target.value)} placeholder="https://github.com/..." />
@@ -307,7 +351,7 @@ function ProfileTab({ toast }) {
             <F label="職稱 / Title"><input className={inp} value={d.title || ''} onChange={e => set('title', e.target.value)} placeholder="選填" /></F>
           </div>
           <F label="個人簡介 / Bio">
-            <textarea className={ta} rows={4} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
+            <textarea className={ta} rows={6} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
           </F>
           <F label="頭像路徑（兩語共用）">
             <input className={inp} value={zh.avatar || ''} onChange={e => { setZh(p => ({ ...p, avatar: e.target.value })); setEn(p => ({ ...p, avatar: e.target.value })) }} />
@@ -366,7 +410,7 @@ function ExpItem({ zh, en, onZh, onEn, onDelete }) {
           </div>
           <F label="時間（兩語共用）"><input className={inp} value={zh.period || ''} onChange={e => { onZh({ ...zh, period: e.target.value }); onEn({ ...en, period: e.target.value }) }} /></F>
           <F label="描述">
-            <textarea className={ta} rows={4} value={d.description || ''} onChange={e => on({ ...d, description: e.target.value })} />
+            <textarea className={ta} rows={6} value={d.description || ''} onChange={e => on({ ...d, description: e.target.value })} />
           </F>
         </div>
       )}
@@ -550,7 +594,21 @@ function ResumeTab({ toast }) {
   const [loaded, setLoaded] = useState(false)
   const [saving, setSaving] = useState(false)
   const [preview, setPreview] = useState(false)
-  useEffect(() => { api.getResume('zh').then(r => { setHtml(r.html); setLoaded(true) }).catch(() => setLoaded(true)) }, [])
+  useEffect(() => {
+    api.getResume('zh')
+      .then(async r => {
+        if (r.html) { setHtml(r.html); setLoaded(true); return }
+        // DB empty — load from static file as starting point
+        const fallback = await fetch('/resume-zh.html').then(res => res.text()).catch(() => '')
+        setHtml(fallback)
+        setLoaded(true)
+      })
+      .catch(async () => {
+        const fallback = await fetch('/resume-zh.html').then(res => res.text()).catch(() => '')
+        setHtml(fallback)
+        setLoaded(true)
+      })
+  }, [])
   const save = async () => {
     setSaving(true)
     try { await api.setResume('zh', html); toast('已儲存', true) }
@@ -560,12 +618,13 @@ function ResumeTab({ toast }) {
   if (!loaded) return <p className="text-sm text-[#86868B]">載入中…</p>
   return (
     <div className="space-y-3">
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         <Btn variant="ghost" onClick={() => setPreview(p => !p)}>{preview ? '← 編輯' : '預覽'}</Btn>
         <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存'}</Btn>
+        {!preview && <span className="text-xs text-[#86868B] ml-1">儲存後網站才會更新</span>}
       </div>
       {preview
-        ? <div className="bg-white rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-8 h-[74vh] overflow-auto" dangerouslySetInnerHTML={{ __html: html }} />
+        ? <div className="bg-white rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-8 min-h-[74vh] overflow-auto" dangerouslySetInnerHTML={{ __html: html }} />
         : <textarea className="w-full font-mono text-xs bg-[#1D1D1F] text-green-400 rounded-xl p-4 h-[74vh] resize-y border border-transparent focus:outline-none focus:border-[#0071E3]" value={html} onChange={e => setHtml(e.target.value)} spellCheck={false} />
       }
     </div>
