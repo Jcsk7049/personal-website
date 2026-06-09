@@ -157,8 +157,8 @@ function ImagesEditor({ value = [], onChange }) {
       {value.map((img, i) => (
         <div key={i} className="bg-black/[0.03] rounded-xl p-3 space-y-2">
           <div className="flex gap-2 items-center">
-            {img.src && img.src.startsWith('/api/images/') && (
-              <img src={img.src} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0" />
+            {img.src && (
+              <img src={img.src} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0 bg-black/10" onError={e => e.target.style.display='none'} />
             )}
             <div className="flex-1 space-y-2">
               <input className={inp} placeholder="圖片路徑 /api/images/xxx 或 /images/xxx/cover.png" value={img.src || ''} onChange={e => set(i, 'src', e.target.value)} />
