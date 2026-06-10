@@ -18,6 +18,13 @@ export async function createToken(secret) {
   return `${ts}.${sig}`
 }
 
+export function timingSafeEqual(a, b) {
+  if (a.length !== b.length) return false
+  let diff = 0
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
+  return diff === 0
+}
+
 export async function verifyToken(token, secret) {
   try {
     const dot = token.indexOf('.')
@@ -26,7 +33,7 @@ export async function verifyToken(token, secret) {
     const sig = token.slice(dot + 1)
     if (Date.now() - parseInt(ts) > TOKEN_TTL) return false
     const expected = await hmac(ts, secret)
-    return expected === sig
+    return timingSafeEqual(expected, sig)
   } catch {
     return false
   }

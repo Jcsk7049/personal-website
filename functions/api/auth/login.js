@@ -1,4 +1,4 @@
-import { createToken } from '../_shared/auth.js'
+import { createToken, timingSafeEqual } from '../_shared/auth.js'
 import { json } from '../_shared/cors.js'
 
 export async function onRequestPost(context) {
@@ -6,7 +6,9 @@ export async function onRequestPost(context) {
   const { password } = await request.json()
 
   if (!env.ADMIN_PASSWORD) return json({ error: 'Server misconfigured' }, 500, request)
-  if (password !== env.ADMIN_PASSWORD) return json({ error: 'Wrong password' }, 401, request)
+  if (typeof password !== 'string' || !timingSafeEqual(password, env.ADMIN_PASSWORD)) {
+    return json({ error: 'Wrong password' }, 401, request)
+  }
 
   const token = await createToken(env.ADMIN_PASSWORD)
   return json({ token }, 200, request)

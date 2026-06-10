@@ -3,17 +3,9 @@ import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
 export default function Hero({ profile }) {
-  const [shown, setShown]           = useState('')
   const [showScroll, setShowScroll] = useState(true)
   const { lang }                    = useLanguage()
   const t                           = uiText[lang]
-  const full = profile.title || ''
-
-  useEffect(() => {
-    if (shown.length >= full.length) return
-    const t = setTimeout(() => setShown(full.slice(0, shown.length + 1)), 65)
-    return () => clearTimeout(t)
-  }, [shown, full])
 
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY < 80)
@@ -21,7 +13,7 @@ export default function Hero({ profile }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const resumeHref = lang === 'en' ? '/resume-zh.html' : '/resume-zh.html'
+  const resumeHref = '/resume-zh.html'
 
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://personal-website-1kf.pages.dev/sitemap.xml
