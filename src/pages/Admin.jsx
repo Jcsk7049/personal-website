@@ -112,6 +112,20 @@ function LoginPage({ onLogin }) {
 const CATS_ZH = ['大學課程作品', '大學校外作品', '大學專題作品', '高職選手作品']
 const EMPTY_PROJ = () => ({ id: '', category: '', title: '', period: '', description: '', tags: [], detail: { images: [], purpose: '', concept: '', outcome: '', tech: [], github: '' } })
 
+const CATEGORY_STYLES = {
+  '高職選手作品': 'bg-amber-50 text-amber-700 border-amber-200',
+  '大學課程作品': 'bg-sky-50 text-sky-700 border-sky-200',
+  '大學專題作品': 'bg-violet-50 text-violet-700 border-violet-200',
+  '大學校外作品': 'bg-teal-50 text-teal-700 border-teal-200',
+}
+
+const PROJECT_SECTIONS = [
+  { key: 'purpose', label: '用途', en: 'Purpose' },
+  { key: 'concept', label: '設計構思', en: 'Design Concept' },
+  { key: 'outcome', label: '成果', en: 'Outcome' },
+  { key: 'tech',    label: '使用技術', en: 'Tech Stack' },
+]
+
 function TechEditor({ value = [], onChange }) {
   const add    = () => onChange([...value, { name: '', items: [], note: '' }])
   const remove = i => onChange(value.filter((_, j) => j !== i))
@@ -199,8 +213,97 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
   const set    = (f, v) => on({ ...d, [f]: v })
   const setDet = (f, v) => on({ ...d, detail: { ...d.detail, [f]: v } })
 
+  const detail = d.detail || {}
+
   return (
-    <div className="space-y-5">
+    <EditorWithPreview
+      preview={
+        <div className="max-w-2xl">
+          {/* Hero */}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              {d.category && (
+                <span className={`inline-block px-2.5 py-0.5 rounded-full border text-[11px] font-medium tracking-wide ${CATEGORY_STYLES[d.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
+                  {d.category}
+                </span>
+              )}
+              {d.period && <span className="text-[12px] font-mono text-[#86868B] tracking-wide">{d.period}</span>}
+            </div>
+            <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-4 leading-[1.07]">
+              {d.title || '（標題）'}
+            </h1>
+            {detail.github && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1D1D1F] text-white text-xs font-medium">
+                  GitHub
+                </span>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-2 items-center">
+              {(d.tags || []).map(tag => (
+                <span key={tag} className="px-2.5 py-1 rounded-full bg-white text-[#3F3F46] shadow-[0_0_0_1px_rgba(0,0,0,0.08)] text-xs font-medium">
+                  {tag.trim()}
+                </span>
+              ))}
+            </div>
+            {d.description && (
+              <p className="mt-5 text-sm text-[#3F3F46] leading-relaxed max-w-xl whitespace-pre-line">
+                {d.description}
+              </p>
+            )}
+          </div>
+
+          {/* Editorial sections */}
+          <div className="divide-y divide-black/[0.06]">
+            {PROJECT_SECTIONS.map(({ key, label, en: enLabel }) => (
+              <div key={key} className="py-10 first:pt-0">
+                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">{enLabel}</p>
+                <h2 className="text-xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-5 leading-tight">{label}</h2>
+
+                {key === 'outcome' && (detail.images || []).length > 0 && (
+                  <div className="mb-6 grid grid-cols-2 gap-2">
+                    {detail.images.map((img, i) => img.src && (
+                      <img key={i} src={img.src} alt={img.caption || ''} className="w-full h-32 object-cover rounded-xl bg-black/5"
+                           onError={e => { e.target.style.display = 'none' }} />
+                    ))}
+                  </div>
+                )}
+
+                {key === 'tech' && Array.isArray(detail.tech) && detail.tech.length > 0 ? (
+                  <div className="space-y-6">
+                    {detail.tech.map((group, gi) => (
+                      <div key={gi}>
+                        <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">{group.group}</p>
+                        <div className="grid grid-cols-1 gap-2">
+                          {(group.items || []).map((item, ii) => (
+                            typeof item === 'string' ? (
+                              <div key={ii} className="bg-white rounded-xl px-4 py-2.5 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] text-sm text-[#1D1D1F] font-semibold">
+                                {item}
+                              </div>
+                            ) : (
+                              <div key={ii} className="flex gap-3 bg-white rounded-xl px-4 py-2.5 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
+                                <span className="shrink-0 font-semibold text-sm text-[#1D1D1F] min-w-[6rem]">{item.name}</span>
+                                <span className="text-sm text-[#3F3F46] leading-snug">{item.desc}</span>
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : key !== 'tech' && detail[key] ? (
+                  <p className="text-sm text-[#3F3F46] leading-[1.6] max-w-xl whitespace-pre-line">{detail[key]}</p>
+                ) : (
+                  <div className="h-16 rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)] flex items-center justify-center">
+                    <p className="text-xs text-[#86868B]">（內容待填寫）</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      }
+    >
       {/* Shared fields */}
       <div className="grid grid-cols-2 gap-3">
         <F label="ID（唯一識別，不可重複）">
@@ -262,7 +365,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
           </F>
         )}
       </div>
-    </div>
+    </EditorWithPreview>
   )
 }
 
@@ -296,7 +399,7 @@ function ProjectsTab({ toast }) {
   }
 
   if (editing) return (
-    <div className="space-y-5 max-w-2xl">
+    <div className="space-y-5">
       <div className="flex items-center gap-3">
         <Btn variant="ghost" onClick={() => setEditing(null)}>← 返回</Btn>
         <h2 className="font-semibold">{editId ? `編輯：${editId}` : '新增專案'}</h2>
