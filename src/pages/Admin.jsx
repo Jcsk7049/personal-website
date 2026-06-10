@@ -914,7 +914,7 @@ function SkillChips({ items, onChange, levelOf }) {
             onKeyDown={e => { if (e.key === 'Enter') commitEdit(); if (e.key === 'Escape') setEditingIdx(null) }}
           />
         ) : (() => {
-          const level = levelOf?.(s)
+          const level = levelOf?.(s, i)
           const cfg = level ? SKILL_LEVEL_CONFIG[level] : null
           return (
             <span key={i}
@@ -1174,9 +1174,13 @@ function SkillsTab({ toast }) {
                   <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))}
                     levelOf={name => detailZh[cat]?.skills?.find(s => s.name === name)?.level} />
                 </F>
-                <F label="EN labels">
+                <F label="EN labels" hint="顏色與同位置的中文標籤同步">
                   <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))}
-                    levelOf={name => detailEn[cat]?.skills?.find(s => s.name === name)?.level} />
+                    levelOf={(name, i) => {
+                      const zhName = (matrixZh[cat] || [])[i]
+                      return detailZh[cat]?.skills?.find(s => s.name === zhName)?.level
+                          ?? detailEn[cat]?.skills?.find(s => s.name === name)?.level
+                    }} />
                 </F>
               </div>
               <button type="button" onClick={() => setEditingDetail(cat)}
