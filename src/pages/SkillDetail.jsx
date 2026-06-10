@@ -135,14 +135,14 @@ export default function SkillDetail() {
 
             {/* level summary */}
             <div className="flex flex-wrap items-center gap-2 mt-8">
-              <span className="px-3 py-1.5 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
+              <span className="px-3 py-1.5 rounded-full bg-white
                                text-xs font-medium text-[#1D1D1F]">
                 {t.skillCount ? t.skillCount(total) : `${total}`}
               </span>
               {['進階', '熟悉', '基礎'].map(lv => counts[lv] > 0 && (
                 <span key={lv}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white
-                                 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] text-xs font-medium text-[#3F3F46]">
+                                 text-xs font-medium text-[#3F3F46]">
                   <span className={`w-1.5 h-1.5 rounded-full ${LEVEL_CONFIG[lv].bar}`} />
                   {t.levels?.[lv] ?? lv} {counts[lv]}
                 </span>
@@ -156,11 +156,9 @@ export default function SkillDetail() {
               const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
               return (
                 <div key={i}
-                     className="bg-white rounded-2xl p-7
-                                shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
-                                hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14),0_4px_20px_rgba(0,0,0,0.06)]
-                                hover:-translate-y-0.5
-                                transition-all duration-[125ms]
+                     className="bg-white rounded-[18px] p-7
+                                hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
+                                transition-shadow duration-[240ms]
                                 flex flex-col gap-4">
 
                   <div className="flex items-start justify-between gap-3">

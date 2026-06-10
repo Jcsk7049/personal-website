@@ -53,9 +53,15 @@ const QUADRANT_META = [
 ]
 
 const LEVEL_STYLE = {
-  '進階': 'bg-indigo-400/15 text-indigo-300',
-  '熟悉': 'bg-emerald-400/15 text-emerald-300',
-  '基礎': 'bg-white/10 text-white/40',
+  '進階': 'bg-[#F2EEFF] text-[#5E3DE8]',
+  '熟悉': 'bg-[#EEF5FF] text-[#0066CC]',
+  '基礎': 'bg-[#F5F5F7] text-[#86868B]',
+}
+
+const LEVEL_BAR = {
+  '進階': 'bg-[#7C3AED]',
+  '熟悉': 'bg-[#0071E3]',
+  '基礎': 'bg-black/15',
 }
 
 export default function SkillGrid({ skills, detail }) {
@@ -63,11 +69,11 @@ export default function SkillGrid({ skills, detail }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
+    <section id="skills" className="min-h-screen py-16 md:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader label={t.sections.skills} invert />
+        <SectionHeader label={t.sections.skills} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 card-stagger">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 card-stagger">
           {QUADRANT_META.map(q => {
             const d        = detail?.[q.key]
             const tags     = skills[q.key] || []
@@ -83,32 +89,31 @@ export default function SkillGrid({ skills, detail }) {
                 key={q.key}
                 to={`/skills/${q.key}`}
                 className={`col-span-1 ${isFeatured ? 'md:col-span-2' : ''}
-                           rounded-2xl bg-[#141418] border border-white/[0.06]
-                           hover:border-white/[0.13] hover:-translate-y-0.5 hover:bg-[#1a1a20]
-                           transition-all duration-[125ms] group flex flex-col`}
+                           relative rounded-[18px] bg-white
+                           hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
+                           transition-shadow duration-[240ms] group flex flex-col`}
               >
-                <div className={`${isFeatured ? 'p-8 md:p-10' : 'p-7'} flex flex-col flex-1 gap-5`}>
+                <div className={`${isFeatured ? 'p-8 md:p-10' : 'p-7 md:p-8'} flex flex-col flex-1 gap-5`}>
 
-                  {/* header */}
+                  {/* eyebrow + headline */}
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="text-[10px] tracking-[0.22em] uppercase mb-1.5 text-white/35">
+                      <p className="text-xs font-semibold text-[#6E6E73] mb-2">
                         {qLabels.sublabel}
                       </p>
-                      <h3 className="text-lg font-bold tracking-tight text-white/85
-                                     group-hover:text-white transition-colors duration-[125ms]">
+                      <h3 className="text-[24px] font-semibold tracking-[0.009em] leading-[1.29] text-[#1D1D1F]">
                         {qLabels.label}
                       </h3>
                     </div>
                     <span className={`mt-0.5 bg-gradient-to-br ${q.accent} bg-clip-text text-transparent
-                                     opacity-40 group-hover:opacity-75 transition-opacity duration-[125ms]`}>
+                                     opacity-60 group-hover:opacity-100 transition-opacity duration-[240ms]`}>
                       {q.icon}
                     </span>
                   </div>
 
                   {/* overview */}
                   {d?.overview && (
-                    <p className={`text-sm text-white/45 leading-relaxed ${isFeatured ? '' : 'line-clamp-2'}`}>
+                    <p className={`text-[15px] text-[#3F3F46] leading-[1.47] ${isFeatured ? '' : 'line-clamp-3'}`}>
                       {d.overview}
                     </p>
                   )}
@@ -119,10 +124,9 @@ export default function SkillGrid({ skills, detail }) {
                       {skillList.slice(0, 4).map(s => (
                         <div key={s.name}
                              className="flex items-center justify-between
-                                        bg-white/[0.04] rounded-xl px-3.5 py-2.5
-                                        border border-white/[0.05]">
-                          <span className="text-sm font-medium text-white/75 truncate mr-2">{s.name}</span>
-                          <span className={`shrink-0 text-[10px] font-mono px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
+                                        bg-[#F5F5F7] rounded-xl px-3.5 py-2.5">
+                          <span className="text-sm font-medium text-[#1D1D1F] truncate mr-2">{s.name}</span>
+                          <span className={`shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
                             {t.levels[s.level] ?? s.level}
                           </span>
                         </div>
@@ -134,14 +138,14 @@ export default function SkillGrid({ skills, detail }) {
                   {skillList.length > 0 && (
                     <div className="space-y-2">
                       <div className="flex h-[3px] rounded-full overflow-hidden gap-0.5">
-                        {counts['進階'] > 0 && <div className="bg-indigo-400/60 rounded-full" style={{ flex: counts['進階'] }} />}
-                        {counts['熟悉'] > 0 && <div className="bg-emerald-400/60 rounded-full"   style={{ flex: counts['熟悉'] }} />}
-                        {counts['基礎'] > 0 && <div className="bg-white/15 rounded-full"       style={{ flex: counts['基礎'] }} />}
+                        {counts['進階'] > 0 && <div className={`${LEVEL_BAR['進階']} rounded-full`} style={{ flex: counts['進階'] }} />}
+                        {counts['熟悉'] > 0 && <div className={`${LEVEL_BAR['熟悉']} rounded-full`} style={{ flex: counts['熟悉'] }} />}
+                        {counts['基礎'] > 0 && <div className={`${LEVEL_BAR['基礎']} rounded-full`} style={{ flex: counts['基礎'] }} />}
                       </div>
                       <div className="flex gap-3">
-                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-indigo-400/60 shrink-0" />{t.levels['進階']} {counts['進階']}</span>}
-                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60 shrink-0" />{t.levels['熟悉']} {counts['熟悉']}</span>}
-                        {counts['基礎'] > 0 && <span className="flex items-center gap-1 text-[11px] text-white/35"><span className="w-1.5 h-1.5 rounded-full bg-white/15 shrink-0" />{t.levels['基礎']} {counts['基礎']}</span>}
+                        {counts['進階'] > 0 && <span className="flex items-center gap-1 text-[11px] text-[#86868B]"><span className={`w-1.5 h-1.5 rounded-full shrink-0 ${LEVEL_BAR['進階']}`} />{t.levels['進階']} {counts['進階']}</span>}
+                        {counts['熟悉'] > 0 && <span className="flex items-center gap-1 text-[11px] text-[#86868B]"><span className={`w-1.5 h-1.5 rounded-full shrink-0 ${LEVEL_BAR['熟悉']}`} />{t.levels['熟悉']} {counts['熟悉']}</span>}
+                        {counts['基礎'] > 0 && <span className="flex items-center gap-1 text-[11px] text-[#86868B]"><span className={`w-1.5 h-1.5 rounded-full shrink-0 ${LEVEL_BAR['基礎']}`} />{t.levels['基礎']} {counts['基礎']}</span>}
                       </div>
                     </div>
                   )}
@@ -151,21 +155,23 @@ export default function SkillGrid({ skills, detail }) {
                     {tags.map(skill => (
                       <span key={skill}
                             className="px-2.5 py-1 rounded-full text-xs font-medium
-                                       bg-white/[0.05] text-white/45 border border-white/[0.06]">
+                                       bg-[#F5F5F7] text-[#3F3F46]">
                         {skill}
                       </span>
                     ))}
                   </div>
 
-                  {/* footer */}
-                  <div className="flex items-center justify-between pt-2 border-t border-white/[0.06]">
-                    {skillList.length > 0 && (
-                      <span className="text-[11px] text-white/25 font-mono">{t.skillCount(skillList.length)}</span>
-                    )}
-                    <span className="text-xs text-indigo-400 font-medium ml-auto
-                                     opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                     transition-all duration-[125ms]">
-                      {t.viewDetail}
+                  {/* footer: count + Apple-style plus button */}
+                  <div className="flex items-end justify-between pt-1">
+                    {skillList.length > 0 ? (
+                      <span className="text-[11px] text-[#86868B] font-mono">{t.skillCount(skillList.length)}</span>
+                    ) : <span />}
+                    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#1D1D1F] text-white
+                                     group-hover:bg-[#0071E3] transition-colors duration-[240ms]"
+                          aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                        <line x1="7" y1="1.5" x2="7" y2="12.5" /><line x1="1.5" y1="7" x2="12.5" y2="7" />
+                      </svg>
                     </span>
                   </div>
 

@@ -988,9 +988,9 @@ function SkillsTab({ toast }) {
   }
 
   const LEVEL_STYLE = {
-    '進階': 'bg-indigo-400/15 text-indigo-300',
-    '熟悉': 'bg-emerald-400/15 text-emerald-300',
-    '基礎': 'bg-white/10 text-white/40',
+    '進階': 'bg-[#F2EEFF] text-[#5E3DE8]',
+    '熟悉': 'bg-[#EEF5FF] text-[#0066CC]',
+    '基礎': 'bg-[#F5F5F7] text-[#86868B]',
   }
 
   if (editingDetail) return (
@@ -1010,7 +1010,6 @@ function SkillsTab({ toast }) {
         <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存'}</Btn>
       </div>
       <EditorWithPreview
-        previewBg="#1D1D1F"
         preview={
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {cats.map(cat => {
@@ -1019,31 +1018,31 @@ function SkillsTab({ toast }) {
               const counts = { '進階': 0, '熟悉': 0, '基礎': 0 }
               skillList.forEach(s => { if (s.level in counts) counts[s.level]++ })
               return (
-                <div key={cat} className="rounded-2xl bg-[#141418] border border-white/[0.06] p-6 flex flex-col gap-4">
-                  <h3 className="text-base font-bold tracking-tight text-white/85">
+                <div key={cat} className="rounded-[18px] bg-white p-6 flex flex-col gap-4">
+                  <h3 className="text-lg font-semibold tracking-tight text-[#1D1D1F]">
                     {detailZh[cat]?.title || SKILL_CAT_LABELS[cat] || cat}
                   </h3>
                   {detailZh[cat]?.overview && (
-                    <p className="text-sm text-white/45 leading-relaxed line-clamp-2">{detailZh[cat].overview}</p>
+                    <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2">{detailZh[cat].overview}</p>
                   )}
                   {skillList.length > 0 && (
                     <div className="space-y-2">
                       <div className="flex h-[3px] rounded-full overflow-hidden gap-0.5">
-                        {counts['進階'] > 0 && <div className="bg-indigo-400/60 rounded-full" style={{ flex: counts['進階'] }} />}
-                        {counts['熟悉'] > 0 && <div className="bg-emerald-400/60 rounded-full" style={{ flex: counts['熟悉'] }} />}
-                        {counts['基礎'] > 0 && <div className="bg-white/15 rounded-full" style={{ flex: counts['基礎'] }} />}
+                        {counts['進階'] > 0 && <div className="bg-[#7C3AED] rounded-full" style={{ flex: counts['進階'] }} />}
+                        {counts['熟悉'] > 0 && <div className="bg-[#0071E3] rounded-full" style={{ flex: counts['熟悉'] }} />}
+                        {counts['基礎'] > 0 && <div className="bg-black/15 rounded-full" style={{ flex: counts['基礎'] }} />}
                       </div>
                     </div>
                   )}
                   <div className="flex flex-wrap gap-1.5">
                     {tags.map(skill => (
-                      <span key={skill} className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/[0.05] text-white/45 border border-white/[0.06]">
+                      <span key={skill} className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#F5F5F7] text-[#3F3F46]">
                         {skill}
                       </span>
                     ))}
                   </div>
                   {skillList.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/[0.06]">
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.06]">
                       {skillList.map(s => (
                         <span key={s.name} className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
                           {s.name} · {s.level}

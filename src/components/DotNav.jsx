@@ -4,7 +4,7 @@ import { uiText } from '../data/uiText'
 import { useActiveSection } from '../context/ActiveSectionContext'
 
 const SECTION_IDS = ['hero', 'experience', 'projects', 'skills', 'awards', 'guestbook']
-const DARK_SECTIONS = new Set(['experience', 'skills'])
+const DARK_SECTIONS = new Set(['experience'])
 
 const HomeIcon = () => (
   <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
