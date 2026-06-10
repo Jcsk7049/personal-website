@@ -92,12 +92,12 @@
     "data_analysis": {
       "title": "數據分析",
       "en": "Data Analysis",
-      "overview": "以生醫訊號與臨床數據為主要應用場景，從原始資料清洗、特徵工程到模型訓練與評估，建立端對端的機器學習管線。",
+      "overview": "主要做生醫訊號跟臨床數據，從清資料、做特徵到訓練模型、看結果，整個流程都自己跑過。",
       "skills": [
         {
           "name": "深度學習",
           "level": "進階",
-          "desc": "用過 LSTM、CNN 時序模型，從資料前處理到超參數調整都自己跑過，主要應用場景是生醫訊號的序列預測。",
+          "desc": "玩過 LSTM、CNN 這類時序模型，前處理到調超參數都自己來，主要拿來做生醫訊號的序列預測。",
           "projects": [
             "VAP 深度學習預測系統"
           ]
@@ -105,7 +105,7 @@
         {
           "name": "機器學習",
           "level": "進階",
-          "desc": "XGBoost、LightGBM Ensemble 二元分類，結合 SHAP 值輸出特徵貢獻，在 1:30 不平衡的人頭帳戶偵測資料集上測試過。",
+          "desc": "用 XGBoost、LightGBM 做 ensemble 二元分類，搭配 SHAP 看每個特徵的貢獻，在 1:30 不平衡的人頭帳戶偵測資料集上測過。",
           "projects": [
             "AWS x BitoPro 黑客松"
           ]
@@ -113,7 +113,7 @@
         {
           "name": "特徵工程",
           "level": "進階",
-          "desc": "萃取時域（均值、峰值）與頻域（FFT 功率譜）特徵；對電子病歷進行時序聚合與 One-Hot 編碼，處理高缺失率醫療數據。",
+          "desc": "抓時域（均值、峰值）跟頻域（FFT 功率譜）特徵；電子病歷的部分用時序聚合跟 One-Hot 編碼處理，這些醫療數據缺失率都不低。",
           "projects": [
             "VAP 深度學習預測系統",
             "AWS x BitoPro 黑客松"
@@ -122,7 +122,7 @@
         {
           "name": "訊號過濾",
           "level": "熟悉",
-          "desc": "帶通濾波、Z-score 標準化與缺失值插補，確保生理訊號輸入品質，降低模型對雜訊的敏感度。",
+          "desc": "帶通濾波、Z-score 標準化、缺失值補值，把生理訊號的輸入品質顧好，模型才不會對雜訊太敏感。",
           "projects": [
             "VAP 深度學習預測系統"
           ]
@@ -130,7 +130,7 @@
         {
           "name": "數據結構化",
           "level": "熟悉",
-          "desc": "電子病歷 ETL 清洗、AWS Glue 圖形化多跳分析管線，將非結構化原始資料轉為可訓練的特徵矩陣。",
+          "desc": "電子病歷的 ETL 清洗、用 AWS Glue 做圖形化多跳分析，把原始的非結構化資料整理成可以丟進模型訓練的特徵矩陣。",
           "projects": [
             "VAP 深度學習預測系統",
             "AWS x BitoPro 黑客松"
@@ -141,12 +141,12 @@
     "programming": {
       "title": "程式開發",
       "en": "Programming",
-      "overview": "從嵌入式韌體到 ML 管線都有用過，C/C++ 負責硬體這側，Python 負責資料與模型那側。",
+      "overview": "從嵌入式韌體寫到 ML 管線都碰過，硬體這邊用 C/C++，資料跟模型那邊用 Python。",
       "skills": [
         {
           "name": "C / C++",
           "level": "進階",
-          "desc": "嵌入式韌體主力語言。掌握 GPIO 控制、中斷處理與記憶體管理，熟悉 ChibiOS HAL 外設配置（chconf / halconf / mcuconf）與 QMK Firmware 架構，能在資源受限的 STM32 環境下撰寫穩定的底層驅動程式。",
+          "desc": "寫嵌入式韌體最常用的語言。GPIO 控制、中斷處理、記憶體管理都算熟，ChibiOS HAL 的設定（chconf / halconf / mcuconf）跟 QMK Firmware 架構也碰過，在資源有限的 STM32 上寫底層驅動沒問題。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統",
             "QMK x STM32 客製鍵盤"
@@ -155,7 +155,7 @@
         {
           "name": "Python",
           "level": "進階",
-          "desc": "取得 ITS Python 國際認證。應用於 ML 管線（PyTorch、scikit-learn、pandas）、數據視覺化（Matplotlib）與 AWS SDK 雲端整合。",
+          "desc": "考過 ITS Python 國際認證。平常拿來寫 ML 管線（PyTorch、scikit-learn、pandas）、畫圖（Matplotlib），也用 AWS SDK 接雲端服務。",
           "projects": [
             "VAP 深度學習預測系統",
             "AWS x BitoPro 黑客松"
@@ -164,7 +164,7 @@
         {
           "name": "LabVIEW",
           "level": "熟悉",
-          "desc": "圖形化程式設計，實作向量合成運動學演算法與 PID 閉迴路控制，應用於競賽機器人即時控制，獲 2022 FRC 控制創新獎肯定。",
+          "desc": "用圖形化介面寫過向量合成運動學演算法跟 PID 閉迴路控制，裝在競賽機器人上即時跑，那年拿到 2022 FRC 控制創新獎。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -172,7 +172,7 @@
         {
           "name": "Arduino",
           "level": "熟悉",
-          "desc": "快速原型開發平台，整合 ESP32 無線通訊、感測器讀值與繼電器驅動，適合在短時間內完成硬體功能驗證。",
+          "desc": "拿來做快速原型，接過 ESP32 無線通訊、讀感測器、控制繼電器，方便在短時間內把硬體功能跑起來驗證。",
           "projects": [
             "ESP32 無線打地鼠機"
           ]
@@ -180,7 +180,7 @@
         {
           "name": "MATLAB",
           "level": "基礎",
-          "desc": "用於訊號處理分析與演算法原型驗證，方便在實作前以視覺化方式確認濾波效果與模型邏輯。",
+          "desc": "拿來做訊號處理分析跟演算法驗證，寫程式前先用它把濾波效果、模型邏輯畫出來確認一遍。",
           "projects": []
         }
       ]
@@ -188,12 +188,12 @@
     "eda": {
       "title": "電路設計",
       "en": "Electronic Design Automation",
-      "overview": "從電路圖設計到 PCB Layout 都自己做過，走過 Altium、EasyEDA Pro、KiCAD，比較熟電源管理和 MCU 外圍電路。",
+      "overview": "電路圖到 PCB Layout 都自己做，用過 Altium、EasyEDA Pro、KiCAD，電源管理跟 MCU 外圍電路比較熟。",
       "skills": [
         {
           "name": "Altium Designer",
           "level": "進階",
-          "desc": "多層 PCB 設計主力工具，涵蓋電源規劃、阻抗匹配與 DFM（可製造性設計）原則，能獨立完成從原理圖到 Gerber 輸出的完整流程。",
+          "desc": "做多層 PCB 設計的主力工具。電源規劃、阻抗匹配、DFM（可製造性設計）原則都會考慮，原理圖到 Gerber 輸出整個流程自己一個人就能搞定。",
           "projects": [
             "QMK x STM32 客製鍵盤"
           ]
@@ -201,7 +201,7 @@
         {
           "name": "EasyEDA Pro（立創EDA）",
           "level": "熟悉",
-          "desc": "雲端原生 EDA 工具，整合立創商城元件庫，可直接調用廠商封裝並一鍵下單打樣。用於 QMK 數字鍵盤 PCB 設計，涵蓋原理圖繪製、PCB Layout 與 Gerber 匯出。",
+          "desc": "雲端版 EDA 工具，直接接立創商城的元件庫，封裝拿來就能用，打樣也能一鍵下單。QMK 數字鍵盤的 PCB 就是用它畫的，原理圖、Layout、Gerber 匯出都包了。",
           "projects": [
             "QMK x STM32 數字鍵盤"
           ]
@@ -209,13 +209,13 @@
         {
           "name": "KiCAD",
           "level": "熟悉",
-          "desc": "開源 EDA 工具，用於個人專案快速出板，熟悉元件庫管理與 3D 封裝預覽，適合概念驗證階段使用。",
+          "desc": "開源 EDA 工具，個人專案想快速出板就會用它，元件庫管理跟 3D 封裝預覽都用得上手，概念驗證階段很方便。",
           "projects": []
         },
         {
           "name": "OrCAD",
           "level": "基礎",
-          "desc": "電路圖繪製與 SPICE 模擬基礎應用，用於驗證被動元件選型與電源電路行為。",
+          "desc": "畫電路圖、跑基本的 SPICE 模擬，拿來確認被動元件選型跟電源電路的行為對不對。",
           "projects": []
         }
       ]
@@ -223,12 +223,12 @@
     "manufacturing": {
       "title": "機構加工",
       "en": "Manufacturing",
-      "overview": "從設計到實體都做過：CNC 銑床、3D 列印、金屬焊接、雷射切割，建模用 Inventor，程式路徑用 Mastercam。",
+      "overview": "設計到實體都做過：CNC 銑床、3D 列印、金屬焊接、雷射切割，建模用 Inventor，刀具路徑用 Mastercam。",
       "skills": [
         {
           "name": "CNC 銑床",
           "level": "進階",
-          "desc": "操作 CNC 銑床進行鋁合金精密加工，熟悉刀具路徑規劃與夾具設計，相較手工銑床大幅提升加工精度與重現性。",
+          "desc": "用 CNC 銑床做鋁合金精密加工，刀具路徑規劃跟夾具設計都會自己弄，比手工銑床穩定很多，精度跟重現性都好控制。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -236,7 +236,7 @@
         {
           "name": "Mastercam",
           "level": "熟悉",
-          "desc": "CNC 加工 CAM 軟體，匯入 3D 模型後規劃多種刀具路徑（鑽孔、深孔啄鑽、2D/3D 挖槽、輪廓銑削、動態銑削、倒角），模擬確認後輸出 NC 程式，應用於 Swerve Drive 全向輪鋁板與傳動心軸加工。",
+          "desc": "CNC 加工的 CAM 軟體，把 3D 模型丟進去規劃刀具路徑（鑽孔、深孔啄鑽、2D/3D 挖槽、輪廓銑削、動態銑削、倒角），模擬沒問題再輸出 NC 程式。Swerve Drive 的全向輪鋁板跟傳動心軸就是這樣加工出來的。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -244,7 +244,7 @@
         {
           "name": "3D 列印",
           "level": "進階",
-          "desc": "FDM 快速原型製作，用於機構干涉驗證與客製化非承力件，在不影響結構強度的前提下有效降低重量與加工成本。",
+          "desc": "FDM 快速成型，拿來驗證機構會不會干涉，或是做一些不承重的客製零件，重量跟加工成本都能壓下來，又不影響結構強度。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統",
             "ESP32 無線打地鼠機"
@@ -253,7 +253,7 @@
         {
           "name": "Autodesk Inventor",
           "level": "進階",
-          "desc": "三維機構建模主力工具，進行組件干涉分析與動態模擬，確保設計在實際組裝前已消除衝突與公差問題。",
+          "desc": "做 3D 機構建模的主力工具，組件干涉分析跟動態模擬都會跑，在實際組裝前先把零件碰撞跟公差問題抓出來。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -261,7 +261,7 @@
         {
           "name": "AutoCAD",
           "level": "熟悉",
-          "desc": "二維工程圖繪製與加工圖面輸出，提供給 CNC 操作員或外包廠商清晰的尺寸標註與公差規格。",
+          "desc": "畫 2D 工程圖、輸出加工圖面，把尺寸標註跟公差規格標清楚，讓 CNC 操作員或外包廠商照著做就對了。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -269,13 +269,13 @@
         {
           "name": "Fusion 360",
           "level": "熟悉",
-          "desc": "快速概念建模與 CAM 整合，適合初期設計探索，能直接從 3D 模型生成加工路徑進行小批量製作。",
+          "desc": "快速建概念模型，CAM 整合也在裡面，初期設計想法用它試很方便，直接從 3D 模型生成加工路徑，小批量自己做。",
           "projects": []
         },
         {
           "name": "金屬焊接",
           "level": "熟悉",
-          "desc": "MIG / TIG 基礎焊接技術，用於 FRC 機器人底盤鋼管結構的連接，注重焊道均勻性與結構強度。",
+          "desc": "MIG / TIG 基礎焊接，用在 FRC 機器人底盤的鋼管結構上，焊道均不均勻、結構夠不夠強都要顧。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
           ]
@@ -283,13 +283,13 @@
         {
           "name": "雷射切割",
           "level": "熟悉",
-          "desc": "板金件與壓克力結構件的精密裁切，配合 CAD 圖面快速製作自訂尺寸的薄板結構與標示面板。",
+          "desc": "板金跟壓克力結構件的精密裁切，照著 CAD 圖面就能快速做出自訂尺寸的薄板結構跟標示面板。",
           "projects": []
         },
         {
           "name": "基礎機械加工",
           "level": "熟悉",
-          "desc": "手工銑床、車床基礎操作，具備量具使用與工件夾持概念，為 CNC 進階加工建立紮實的手動加工底子。",
+          "desc": "手工銑床、車床的基本操作，量具怎麼用、工件怎麼夾都會，這些底子讓我後來學 CNC 進階加工上手得快一點。",
           "projects": []
         }
       ]

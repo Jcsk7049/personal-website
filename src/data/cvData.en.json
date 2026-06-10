@@ -74,36 +74,36 @@
     "data_analysis": {
       "title": "Data Analysis",
       "en": "Data Analysis",
-      "overview": "Primary domain: biomedical signals and clinical data. Full end-to-end ML pipeline from raw data cleaning and feature engineering to model training and evaluation.",
+      "overview": "Mostly working with biomedical signals and clinical data — I go through the whole loop myself, from cleaning raw data and building features to training models and checking the results.",
       "skills": [
         {
           "name": "Deep Learning",
           "level": "進階",
-          "desc": "Worked with LSTM and CNN time-series architectures, running the full pipeline from preprocessing through hyperparameter tuning — applied to biomedical signal prediction.",
+          "desc": "I've worked with LSTM and CNN time-series models — preprocessing, hyperparameter tuning, all of it — mainly for predicting biomedical signal sequences.",
           "projects": ["ICU VAP Early-Warning System"]
         },
         {
           "name": "Machine Learning",
           "level": "進階",
-          "desc": "XGBoost / LightGBM ensemble binary classification with SHAP for per-account feature attribution, tested on a 1:30 imbalanced money-mule detection dataset.",
+          "desc": "Built an XGBoost/LightGBM ensemble for binary classification, used SHAP to see which features mattered per account, and tested it on a 1:30 imbalanced money-mule dataset.",
           "projects": ["AWS × BitoPro Hackathon"]
         },
         {
           "name": "Feature Engineering",
           "level": "進階",
-          "desc": "Extracting time-domain (mean, peak) and frequency-domain (FFT power spectrum) features; time-series aggregation and one-hot encoding of EHR data with high missing-value rates.",
+          "desc": "Pulled out time-domain (mean, peak) and frequency-domain (FFT power spectrum) features, and handled EHR data — time-series aggregation, one-hot encoding, plenty of missing values to deal with.",
           "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
         },
         {
           "name": "Signal Filtering",
           "level": "熟悉",
-          "desc": "Band-pass filtering, Z-score normalization, and missing-value imputation to ensure physiological signal input quality and reduce model sensitivity to noise.",
+          "desc": "Band-pass filtering, Z-score normalization, missing-value imputation — basically cleaning up physiological signals so the model isn't thrown off by noise.",
           "projects": ["ICU VAP Early-Warning System"]
         },
         {
           "name": "Data Structuring",
           "level": "熟悉",
-          "desc": "EHR ETL cleaning and AWS Glue graph-based multi-hop analysis pipelines, converting unstructured raw data into trainable feature matrices.",
+          "desc": "EHR ETL cleaning and AWS Glue graph-based multi-hop analysis — turning messy unstructured data into feature matrices the model can actually train on.",
           "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
         }
       ]
@@ -111,36 +111,36 @@
     "programming": {
       "title": "Programming",
       "en": "Programming",
-      "overview": "Spans embedded firmware to ML pipelines — C/C++ on the hardware side, Python on the data and model side.",
+      "overview": "I've touched everything from embedded firmware to ML pipelines — C/C++ for the hardware side, Python for data and models.",
       "skills": [
         {
           "name": "C / C++",
           "level": "進階",
-          "desc": "Primary embedded firmware language. GPIO control, interrupt handling, memory management; ChibiOS HAL configuration (chconf/halconf/mcuconf) and QMK Firmware for resource-constrained STM32 environments.",
+          "desc": "My go-to language for embedded firmware. Comfortable with GPIO control, interrupt handling, and memory management; also worked with ChibiOS HAL config (chconf/halconf/mcuconf) and the QMK firmware codebase on resource-constrained STM32 boards.",
           "projects": ["FRC Swerve Drive Research", "QMK × STM32 Custom Numpad"]
         },
         {
           "name": "Python",
           "level": "進階",
-          "desc": "ITS Python international certification. Applied to ML pipelines (PyTorch, scikit-learn, pandas), data visualization (Matplotlib), and AWS SDK cloud integration.",
+          "desc": "Hold the ITS Python international certification. Use it daily for ML pipelines (PyTorch, scikit-learn, pandas), plotting (Matplotlib), and wiring up AWS services with the SDK.",
           "projects": ["ICU VAP Early-Warning System", "AWS × BitoPro Hackathon"]
         },
         {
           "name": "LabVIEW",
           "level": "熟悉",
-          "desc": "Graphical programming for vector-composition kinematics and PID closed-loop control in competition robot real-time control, recognized with the 2022 FRC Innovation in Control Award.",
+          "desc": "Used graphical programming to build vector-composition kinematics and PID closed-loop control, running live on a competition robot — that project won the 2022 FRC Innovation in Control Award.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "Arduino",
           "level": "熟悉",
-          "desc": "Rapid prototyping platform integrating ESP32 wireless communication, sensor readings, and relay driving for quick hardware validation.",
+          "desc": "My go-to for quick prototypes — wired up ESP32 wireless, sensor readings, and relay control to validate hardware ideas fast.",
           "projects": ["Wireless Whack-a-Mole"]
         },
         {
           "name": "MATLAB",
           "level": "基礎",
-          "desc": "Signal processing analysis and algorithm prototype verification — confirming filter effects and model logic visually before implementation.",
+          "desc": "Used for signal processing analysis and quick algorithm checks — plotting things out to sanity-check filter behavior and model logic before writing the real implementation.",
           "projects": []
         }
       ]
@@ -148,30 +148,30 @@
     "eda": {
       "title": "Electronic Design",
       "en": "Electronic Design Automation",
-      "overview": "Done the full flow from schematic to PCB layout — Altium, EasyEDA Pro, and KiCAD. More experienced with power management and MCU peripheral circuits.",
+      "overview": "I've done the full flow from schematic to PCB layout with Altium, EasyEDA Pro, and KiCAD — most comfortable with power management and MCU peripheral circuits.",
       "skills": [
         {
           "name": "Altium Designer",
           "level": "進階",
-          "desc": "Multi-layer PCB design covering power planning, impedance matching, and DFM principles — independently completing schematic-to-Gerber output.",
+          "desc": "My main tool for multi-layer PCB design — power planning, impedance matching, DFM principles, all the way from schematic to Gerber output, on my own.",
           "projects": ["QMK × STM32 Custom Numpad"]
         },
         {
           "name": "EasyEDA Pro (LCEDA)",
           "level": "熟悉",
-          "desc": "Cloud-native EDA integrated with LCSC library for one-click PCB ordering. Used for QMK numpad: schematic, PCB layout, and Gerber export.",
+          "desc": "A browser-based EDA tool hooked into the LCSC parts library — footprints are ready to use and you can order a prototype in one click. Used it for the QMK numpad PCB, from schematic to layout to Gerber export.",
           "projects": ["QMK × STM32 Custom Numpad"]
         },
         {
           "name": "KiCAD",
           "level": "熟悉",
-          "desc": "Open-source EDA for rapid personal project prototyping; familiar with library management and 3D footprint preview.",
+          "desc": "Open-source EDA I reach for on personal projects when I need a board fast — comfortable with library management and 3D footprint preview, good for early-stage concept checks.",
           "projects": []
         },
         {
           "name": "OrCAD",
           "level": "基礎",
-          "desc": "Schematic drawing and SPICE simulation basics for verifying passive component selection and power circuit behavior.",
+          "desc": "Basic schematic drawing and SPICE simulation — used it to check passive component choices and power circuit behavior.",
           "projects": []
         }
       ]
@@ -179,60 +179,60 @@
     "manufacturing": {
       "title": "Manufacturing",
       "en": "Manufacturing",
-      "overview": "From design to physical parts: CNC milling, 3D printing, metal welding, and laser cutting. Modeling in Inventor, toolpaths in Mastercam.",
+      "overview": "From design to physical parts — CNC milling, 3D printing, metal welding, laser cutting. Modeling in Inventor, toolpaths in Mastercam.",
       "skills": [
         {
           "name": "CNC Milling",
           "level": "進階",
-          "desc": "Aluminum alloy precision machining; proficient in toolpath planning and fixture design, achieving significantly higher accuracy and repeatability than manual milling.",
+          "desc": "Precision aluminum machining on CNC mills — I plan toolpaths and design fixtures myself, and it's noticeably more accurate and repeatable than manual milling.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "Mastercam",
           "level": "熟悉",
-          "desc": "CAM software for CNC: planning toolpaths (drilling, 2D/3D pocketing, contour milling, dynamic milling, chamfering) from 3D models and outputting verified NC programs.",
+          "desc": "CAM software for CNC — import a 3D model, plan toolpaths (drilling, 2D/3D pocketing, contour milling, dynamic milling, chamfering), simulate it, then output the NC program. Used it for the Swerve Drive's aluminum wheel plates and drive shafts.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "3D Printing",
           "level": "進階",
-          "desc": "FDM rapid prototyping for interference verification and custom non-structural parts, reducing weight and machining cost without compromising structural integrity.",
+          "desc": "FDM printing for checking mechanical interference and making custom non-structural parts — cuts weight and machining cost without touching structural integrity.",
           "projects": ["FRC Swerve Drive Research", "Wireless Whack-a-Mole"]
         },
         {
           "name": "Autodesk Inventor",
           "level": "進階",
-          "desc": "Primary 3D mechanism modeling tool for assembly interference analysis and dynamic simulation, eliminating conflicts before physical assembly.",
+          "desc": "My main tool for 3D mechanism modeling — assembly interference checks and dynamic simulation to catch part collisions and tolerance issues before anything gets built.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "AutoCAD",
           "level": "熟悉",
-          "desc": "2D engineering drawing and machining output with clear dimension annotations and tolerance specs for CNC operators or vendors.",
+          "desc": "2D engineering drawings for machining — dimensions and tolerances spelled out clearly enough for CNC operators or outside vendors to just follow.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "Fusion 360",
           "level": "熟悉",
-          "desc": "Quick concept modeling with integrated CAM for direct machining path generation in small-batch production.",
+          "desc": "Quick concept modeling with built-in CAM — good for early design exploration, and you can go straight from the 3D model to a machining path for small-batch parts.",
           "projects": []
         },
         {
           "name": "Metal Welding",
           "level": "熟悉",
-          "desc": "MIG/TIG basic welding for FRC robot steel tube chassis connections, focusing on weld bead uniformity and structural strength.",
+          "desc": "Basic MIG/TIG welding for the FRC robot's steel tube chassis — paying attention to bead uniformity and structural strength.",
           "projects": ["FRC Swerve Drive Research"]
         },
         {
           "name": "Laser Cutting",
           "level": "熟悉",
-          "desc": "Precision cutting of sheet metal and acrylic structural parts from CAD drawings for custom-size thin-plate structures and label panels.",
+          "desc": "Precision cutting of sheet metal and acrylic from CAD drawings — a quick way to make custom thin-plate parts and label panels.",
           "projects": []
         },
         {
           "name": "Basic Machining",
           "level": "熟悉",
-          "desc": "Manual mill and lathe fundamentals including measuring instruments and workpiece clamping — the foundation for advanced CNC machining.",
+          "desc": "Manual mill and lathe basics — measuring tools, workpiece clamping — the groundwork that made picking up advanced CNC machining easier.",
           "projects": []
         }
       ]

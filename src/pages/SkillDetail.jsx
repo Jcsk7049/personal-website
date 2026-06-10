@@ -135,7 +135,8 @@ export default function SkillDetail() {
                      className="bg-white rounded-2xl p-7
                                 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
                                 hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14),0_4px_20px_rgba(0,0,0,0.06)]
-                                transition-shadow duration-[125ms]
+                                hover:-translate-y-0.5
+                                transition-all duration-[125ms]
                                 flex flex-col gap-4">
 
                   <div className="flex items-start justify-between gap-3">
