@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import { SKILL_CAT_ACCENTS, LEVEL_CONFIG } from '../data/designTokens'
 
 const QUADRANT_META = [
   {
     key: 'data_analysis',
-    accent: 'from-indigo-400 to-blue-500',
+    accent: SKILL_CAT_ACCENTS.data_analysis,
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -17,7 +18,7 @@ const QUADRANT_META = [
   },
   {
     key: 'programming',
-    accent: 'from-emerald-400 to-teal-500',
+    accent: SKILL_CAT_ACCENTS.programming,
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -27,7 +28,7 @@ const QUADRANT_META = [
   },
   {
     key: 'eda',
-    accent: 'from-rose-400 to-pink-500',
+    accent: SKILL_CAT_ACCENTS.eda,
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -41,7 +42,7 @@ const QUADRANT_META = [
   },
   {
     key: 'manufacturing',
-    accent: 'from-orange-400 to-amber-500',
+    accent: SKILL_CAT_ACCENTS.manufacturing,
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -52,17 +53,12 @@ const QUADRANT_META = [
   },
 ]
 
-const LEVEL_STYLE = {
-  '進階': 'bg-[#F2EEFF] text-[#5E3DE8]',
-  '熟悉': 'bg-[#EEF5FF] text-[#0066CC]',
-  '基礎': 'bg-[#F5F5F7] text-[#86868B]',
-}
-
-const LEVEL_BAR = {
-  '進階': 'bg-[#7C3AED]',
-  '熟悉': 'bg-[#0071E3]',
-  '基礎': 'bg-black/15',
-}
+const LEVEL_STYLE = Object.fromEntries(
+  Object.entries(LEVEL_CONFIG).map(([k, v]) => [k, v.badge])
+)
+const LEVEL_BAR = Object.fromEntries(
+  Object.entries(LEVEL_CONFIG).map(([k, v]) => [k, v.bar])
+)
 
 export default function SkillGrid({ skills, detail }) {
   const { lang } = useLanguage()

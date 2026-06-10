@@ -4,29 +4,11 @@ import SectionHeader from './SectionHeader'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
-const PROJECT_ACCENTS = {
-  'vap':               'from-sky-400 to-blue-600',
-  'aws-hackathon':     'from-amber-400 to-orange-500',
-  'audio-amplifier':   'from-lime-400 to-green-600',
-  'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
-  'whack-a-mole':      'from-teal-400 to-cyan-500',
-  'auto-sanitizer':    'from-emerald-400 to-green-600',
-  'team-robot':        'from-orange-400 to-amber-600',
-  'swerve':            'from-rose-400 to-red-500',
-}
-
-const CATEGORY_STYLES = {
-  '高職選手作品': 'bg-amber-50 text-amber-700 border-amber-200',
-  '大學課程作品': 'bg-sky-50 text-sky-700 border-sky-200',
-  '大學專題作品': 'bg-violet-50 text-violet-700 border-violet-200',
-  '大學校外作品': 'bg-teal-50 text-teal-700 border-teal-200',
-}
+import { accent, CATEGORY_STYLES } from '../data/designTokens'
 
 const CATEGORIES = ['全部', '高職選手作品', '大學課程作品', '大學專題作品', '大學校外作品']
 
-export function accent(id) {
-  return PROJECT_ACCENTS[id] || 'from-gray-300 to-gray-400'
-}
+export { accent }
 
 export function CategoryBadge({ category, className = '' }) {
   const { lang } = useLanguage()

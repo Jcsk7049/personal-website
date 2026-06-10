@@ -4,19 +4,7 @@ import cvDataZh from '../data/cvData.json'
 import cvDataEn from '../data/cvData.en.json'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
-
-const SKILL_ACCENTS = {
-  data_analysis: 'from-sky-400 to-blue-600',
-  programming:   'from-violet-400 to-purple-600',
-  eda:           'from-amber-400 to-orange-500',
-  manufacturing: 'from-teal-400 to-cyan-500',
-}
-
-const LEVEL_CONFIG = {
-  '基礎': { dots: 1, badge: 'bg-[#F5F5F7] text-[#86868B]',    bar: 'bg-black/20'  },
-  '熟悉': { dots: 2, badge: 'bg-[#EEF5FF] text-[#0066CC]',    bar: 'bg-[#0071E3]' },
-  '進階': { dots: 3, badge: 'bg-[#F2EEFF] text-[#5E3DE8]',    bar: 'bg-[#7C3AED]' },
-}
+import { SKILL_CAT_ACCENTS, LEVEL_CONFIG } from '../data/designTokens'
 
 function LevelDots({ level }) {
   const cfg = LEVEL_CONFIG[level] || LEVEL_CONFIG['基礎']
@@ -39,7 +27,7 @@ export default function SkillDetail() {
   const t              = uiText[lang]
   const cvData         = lang === 'en' ? cvDataEn : cvDataZh
   const detail         = cvData.skills_detail?.[id]
-  const accent         = SKILL_ACCENTS[id] || 'from-gray-300 to-gray-400'
+  const accent         = SKILL_CAT_ACCENTS[id] || 'from-gray-300 to-gray-400'
 
   useEffect(() => {
     if (detail) document.title = `${detail.title} — 江嘉元`
