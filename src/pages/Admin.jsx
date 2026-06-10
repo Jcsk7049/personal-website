@@ -416,7 +416,7 @@ function ProjectsTab({ toast }) {
   )
 
   return (
-    <div className="space-y-4">
+    <div className="max-w-3xl mx-auto space-y-4">
       <div className="flex items-center justify-between">
         <p className="text-sm text-[#86868B]">共 {projects.length} 個專案</p>
         <Btn onClick={openNew}>+ 新增專案</Btn>
@@ -1483,7 +1483,7 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-[#F5F5F7]">
       <div className="bg-white border-b border-black/[0.08] sticky top-0 z-40">
-        <div className="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <span className="text-sm font-semibold text-[#1D1D1F]">Admin</span>
             <nav className="flex gap-0.5">
@@ -1501,7 +1501,7 @@ export default function Admin() {
           </div>
         </div>
       </div>
-      <div className={`mx-auto px-6 py-8 ${tab === 'projects' ? 'max-w-5xl' : 'max-w-full'}`}>
+      <div className="max-w-[1400px] mx-auto px-6 py-8">
         {renderTab()}
       </div>
       <Toast msg={toastMsg} ok={toastOk} />
