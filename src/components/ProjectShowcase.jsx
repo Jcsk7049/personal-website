@@ -103,12 +103,12 @@ export default function ProjectShowcase({ projects }) {
                 className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold
                             transition-colors duration-[125ms] border
                             ${activeCategory === cat
-                              ? 'bg-[#27272A] text-[#FAFAFA] border-[#27272A]'
-                              : 'bg-white text-[#3F3F46] border-[#E4E4E7] hover:border-[#27272A] hover:text-[#09090B]'
+                              ? 'bg-[#1D1D1F] text-white border-[#1D1D1F]'
+                              : 'bg-white text-[#3F3F46] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
                             }`}
               >
                 {t.categoryLabel(cat)}
-                <span className={`text-[11px] font-mono ${activeCategory === cat ? 'text-white/60' : 'text-[#AEAEB2]'}`}>
+                <span className={`text-[11px] font-mono ${activeCategory === cat ? 'text-white/60' : 'text-[#86868B]'}`}>
                   {count}
                 </span>
               </button>
@@ -123,8 +123,8 @@ export default function ProjectShowcase({ projects }) {
               <Link
                 to={`/projects/${proj.id}`}
                 className="rounded-2xl bg-white overflow-hidden
-                           shadow-[0_0_0_1px_#E4E4E7]
-                           hover:-translate-y-1 hover:shadow-[0_0_0_1px_#C8C8CA]
+                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
+                           hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14),0_4px_20px_rgba(0,0,0,0.06)]
                            transition-all duration-[125ms] group flex flex-col flex-1"
               >
                 {/* Cover image / gradient area */}
@@ -162,7 +162,7 @@ export default function ProjectShowcase({ projects }) {
 
                 {/* Info */}
                 <div className="p-5 flex flex-col gap-2 flex-1">
-                  <p className="text-[11px] text-[#AEAEB2] font-mono tracking-wide">{proj.period}</p>
+                  <p className="text-[11px] text-[#86868B] font-mono tracking-wide">{proj.period}</p>
                   <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
                                  group-hover:text-[#0071E3] transition-colors duration-[125ms]">
                     {proj.title}

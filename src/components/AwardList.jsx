@@ -26,8 +26,8 @@ export default function AwardList({ awards }) {
           {awards.map((award, i, arr) => (
             <div key={i}
                  className={`flex items-center gap-4 px-5 py-4 rounded-2xl
-                            shadow-[0_0_0_1px_#E4E4E7]
-                            hover:shadow-[0_0_0_1px_#D4D4D8] hover:bg-[#F0F0F2]
+                            shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
+                            hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#F0F0F2]
                             transition-all duration-[125ms] group bg-white
                             ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
