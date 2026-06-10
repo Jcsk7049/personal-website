@@ -527,23 +527,89 @@ const SKILL_CAT_LABELS = {
 
 function SkillChips({ items, onChange }) {
   const [draft, setDraft] = useState('')
+  const [editingIdx, setEditingIdx] = useState(null)
+  const [editVal, setEditVal] = useState('')
+
   const add = () => { const t = draft.trim(); if (t && !items.includes(t)) { onChange([...items, t]); setDraft('') } }
-  const remove = item => onChange(items.filter(x => x !== item))
+  const remove = i => onChange(items.filter((_, idx) => idx !== i))
+  const startEdit = i => { setEditingIdx(i); setEditVal(items[i]) }
+  const commitEdit = () => {
+    const v = editVal.trim()
+    if (v) onChange(items.map((x, idx) => idx === editingIdx ? v : x))
+    setEditingIdx(null)
+  }
+
   return (
     <div className="space-y-2">
       <div className="flex flex-wrap gap-1.5">
-        {items.map(s => (
-          <span key={s} className="inline-flex items-center gap-1 bg-[#F5F5F7] text-xs px-2.5 py-1 rounded-full">
+        {items.map((s, i) => editingIdx === i ? (
+          <input key={i} autoFocus
+            className="text-xs px-2.5 py-1 rounded-full border border-[#0071E3] focus:outline-none"
+            style={{ width: `${Math.max(4, editVal.length) + 2}ch` }}
+            value={editVal}
+            onChange={e => setEditVal(e.target.value)}
+            onBlur={commitEdit}
+            onKeyDown={e => { if (e.key === 'Enter') commitEdit(); if (e.key === 'Escape') setEditingIdx(null) }}
+          />
+        ) : (
+          <span key={i}
+            className="inline-flex items-center gap-1 bg-[#F5F5F7] text-xs px-2.5 py-1 rounded-full cursor-pointer hover:bg-[#EBEBED]"
+            onClick={() => startEdit(i)} title="點擊編輯">
             {s}
-            <button type="button" onClick={() => remove(s)} className="text-[#86868B] hover:text-red-500 text-base leading-none">&times;</button>
+            <button type="button" onClick={e => { e.stopPropagation(); remove(i) }} className="text-[#86868B] hover:text-red-500 text-base leading-none">&times;</button>
           </span>
         ))}
       </div>
       <div className="flex gap-2">
         <input className={`${inp} flex-1`} value={draft} onChange={e => setDraft(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), add())}
-          placeholder="新增技能，按 Enter" />
+          placeholder="新增技能，按 Enter；點擊已有標籤可編輯" />
         <Btn sm variant="ghost" onClick={add}>新增</Btn>
+      </div>
+    </div>
+  )
+}
+
+const SKILL_LEVELS = ['進階', '熟悉', '基礎']
+
+function SkillDetailEditor({ value, onChange, lang }) {
+  const skills = value?.skills || []
+  const set      = (f, v) => onChange({ ...value, [f]: v })
+  const setSkill = (i, f, v) => onChange({ ...value, skills: skills.map((s, j) => j === i ? { ...s, [f]: v } : s) })
+  const addSkill = () => onChange({ ...value, skills: [...skills, { name: '', level: '基礎', desc: '', projects: [] }] })
+  const delSkill = i => onChange({ ...value, skills: skills.filter((_, j) => j !== i) })
+
+  return (
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-3">
+        <F label={lang === 'zh' ? '分類標題' : 'Category title'}>
+          <input className={inp} value={value?.title ?? value?.en ?? ''} onChange={e => onChange({ ...value, [lang === 'zh' ? 'title' : 'en']: e.target.value })} />
+        </F>
+      </div>
+      <F label={lang === 'zh' ? '分類概述' : 'Overview'}>
+        <textarea className={ta} rows={3} value={value?.overview || ''} onChange={e => set('overview', e.target.value)} />
+      </F>
+      <div className="space-y-2">
+        {skills.map((s, i) => (
+          <div key={i} className="bg-black/[0.02] rounded-xl p-3 space-y-2 relative">
+            <button type="button" onClick={() => delSkill(i)} className="absolute top-2 right-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+            <div className="grid grid-cols-[1fr_120px] gap-2">
+              <F label="技能名稱"><input className={inp} value={s.name || ''} onChange={e => setSkill(i, 'name', e.target.value)} /></F>
+              <F label="精熟度">
+                <select className={inp} value={s.level || '基礎'} onChange={e => setSkill(i, 'level', e.target.value)}>
+                  {SKILL_LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
+                </select>
+              </F>
+            </div>
+            <F label="說明">
+              <textarea className={ta} rows={3} value={s.desc || ''} onChange={e => setSkill(i, 'desc', e.target.value)} />
+            </F>
+            <F label="相關專案" hint="逗號分隔">
+              <input className={inp} value={(s.projects || []).join(', ')} onChange={e => setSkill(i, 'projects', e.target.value.split(',').map(x => x.trim()).filter(Boolean))} />
+            </F>
+          </div>
+        ))}
+        <button type="button" onClick={addSkill} className="text-xs text-[#0071E3] hover:underline">+ 新增技能詳情</button>
       </div>
     </div>
   )
@@ -553,6 +619,8 @@ function SkillsTab({ toast }) {
   const { cvZh, cvEn, refresh } = useData()
   const [matrixZh, setMatrixZh] = useState(() => JSON.parse(JSON.stringify(cvZh.skills_matrix || {})))
   const [matrixEn, setMatrixEn] = useState(() => JSON.parse(JSON.stringify(cvEn.skills_matrix || {})))
+  const [detailZh, setDetailZh] = useState(() => JSON.parse(JSON.stringify(cvZh.skills_detail || {})))
+  const [detailEn, setDetailEn] = useState(() => JSON.parse(JSON.stringify(cvEn.skills_detail || {})))
   const [saving, setSaving] = useState(false)
 
   const cats = Object.keys(matrixZh)
@@ -560,7 +628,10 @@ function SkillsTab({ toast }) {
   const save = async () => {
     setSaving(true)
     try {
-      await api.setSection('skills_matrix', matrixZh, matrixEn)
+      await Promise.all([
+        api.setSection('skills_matrix', matrixZh, matrixEn),
+        api.setSection('skills_detail', detailZh, detailEn),
+      ])
       await refresh(); toast('已儲存', true)
     } catch (e) { toast(e.message, false) }
     finally { setSaving(false) }
@@ -581,6 +652,21 @@ function SkillsTab({ toast }) {
               <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
             </F>
           </div>
+          <details className="mt-3 group">
+            <summary className="cursor-pointer text-xs font-medium text-[#0071E3] hover:underline list-none">
+              技能詳情與精熟度（用於技能詳情頁）
+            </summary>
+            <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">中文</p>
+                <SkillDetailEditor value={detailZh[cat] || { skills: [] }} lang="zh" onChange={v => setDetailZh(m => ({ ...m, [cat]: v }))} />
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">EN</p>
+                <SkillDetailEditor value={detailEn[cat] || { skills: [] }} lang="en" onChange={v => setDetailEn(m => ({ ...m, [cat]: v }))} />
+              </div>
+            </div>
+          </details>
         </SectionCard>
       ))}
     </div>
