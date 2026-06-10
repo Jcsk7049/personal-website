@@ -174,7 +174,7 @@ export default function ProjectShowcase({ projects }) {
                     </span>
                   )}
                   <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2 flex-1">
-                    {proj.description}
+                    {proj.summary || proj.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {proj.tags.slice(0, 3).map(tag => (

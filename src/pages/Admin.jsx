@@ -335,7 +335,11 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
         </F>
       </div>
 
-      <F label="摘要">
+      <F label="卡片簡介" hint="首頁卡片顯示這段，一兩句就好；留空則顯示摘要前兩行">
+        <textarea className={ta} rows={2} value={d.summary || ''} onChange={e => set('summary', e.target.value)} />
+      </F>
+
+      <F label="摘要" hint="專案詳情頁的開頭段落">
         <textarea className={ta} rows={5} value={d.description || ''} onChange={e => set('description', e.target.value)} />
       </F>
 
