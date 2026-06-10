@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef, useLayoutEffect } from 'react'
 import { api } from '../api/client'
 import { useData } from '../context/DataContext'
 import { accent } from '../components/ProjectShowcase'
@@ -99,7 +99,7 @@ function LoginPage({ onLogin }) {
   return (
     <div className="min-h-screen bg-[#F5F5F7] flex items-center justify-center">
       <form onSubmit={submit} className="bg-white rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-8 w-80 space-y-4">
-        <h1 className="text-lg font-semibold">Admin</h1>
+        <h1 className="text-lg font-semibold">個人網站編輯頁</h1>
         <input type="password" placeholder="密碼" value={pw} onChange={e => setPw(e.target.value)} className={inp} autoFocus />
         {err && <p className="text-sm text-red-500">{err}</p>}
         <Btn type="submit" disabled={loading || !pw}>{loading ? '登入中…' : '登入'}</Btn>
@@ -370,6 +370,30 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
   )
 }
 
+// FLIP：順序改變時讓卡片從舊位置滑到新位置
+function useFlip(orderKey) {
+  const refs = useRef(new Map())
+  const prev = useRef(new Map())
+  useLayoutEffect(() => {
+    const next = new Map()
+    refs.current.forEach((el, key) => { if (el) next.set(key, el.getBoundingClientRect().top) })
+    next.forEach((top, key) => {
+      const old = prev.current.get(key)
+      const el  = refs.current.get(key)
+      if (el && old != null && old !== top) {
+        el.style.transition = 'none'
+        el.style.transform  = `translateY(${old - top}px)`
+        requestAnimationFrame(() => {
+          el.style.transition = 'transform 220ms cubic-bezier(0.4,0,0.2,1)'
+          el.style.transform  = ''
+        })
+      }
+    })
+    prev.current = next
+  }, [orderKey])
+  return key => el => { el ? refs.current.set(key, el) : refs.current.delete(key) }
+}
+
 function ProjectsTab({ toast }) {
   const { cvZh, cvEn, refresh } = useData()
   const [editing, setEditing] = useState(null)
@@ -383,15 +407,23 @@ function ProjectsTab({ toast }) {
     ? order.map(id => serverProjects.find(p => p.id === id)).filter(Boolean)
     : serverProjects
 
-  const onDrop = async targetId => {
-    if (!dragId || dragId === targetId) { setDragId(null); return }
+  const setRef = useFlip(projects.map(p => p.id).join(','))
+
+  // 拖到別張卡片上方時即時換位（FLIP 會做推開動畫）
+  const onDragEnterRow = targetId => {
+    if (!dragId || dragId === targetId) return
     const ids = projects.map(p => p.id)
     const from = ids.indexOf(dragId)
     const to   = ids.indexOf(targetId)
+    if (from < 0 || to < 0) return
     ids.splice(to, 0, ids.splice(from, 1)[0])
     setOrder(ids)
+  }
+
+  const commitOrder = async () => {
     setDragId(null)
-    try { await api.reorderProjects(ids); await refresh(); setOrder(null); toast('順序已更新', true) }
+    if (!order) return
+    try { await api.reorderProjects(order); await refresh(); setOrder(null); toast('順序已更新', true) }
     catch (e) { setOrder(null); toast(e.message, false) }
   }
 
@@ -441,11 +473,13 @@ function ProjectsTab({ toast }) {
       <div className="space-y-2">
         {projects.map(p => (
           <div key={p.id}
+               ref={setRef(p.id)}
                draggable
                onDragStart={e => { setDragId(p.id); e.dataTransfer.effectAllowed = 'move' }}
                onDragOver={e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' }}
-               onDrop={() => onDrop(p.id)}
-               onDragEnd={() => setDragId(null)}
+               onDragEnter={() => onDragEnterRow(p.id)}
+               onDrop={e => e.preventDefault()}
+               onDragEnd={commitOrder}
                className={`flex items-center gap-3 bg-white rounded-2xl px-4 py-3
                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
                           hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#FAFAFA]
@@ -1585,7 +1619,7 @@ export default function Admin() {
       <div className="bg-white border-b border-black/[0.08] sticky top-0 z-40">
         <div className="max-w-[1400px] mx-auto px-6 h-12 flex items-center justify-between">
           <div className="flex items-center gap-5">
-            <span className="text-sm font-semibold text-[#1D1D1F]">Admin</span>
+            <span className="text-sm font-semibold text-[#1D1D1F]">個人網站編輯頁</span>
             <nav className="flex gap-0.5">
               {TABS.map(t => (
                 <button key={t.id} onClick={() => setTab(t.id)}
