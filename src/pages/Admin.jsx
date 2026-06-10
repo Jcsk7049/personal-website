@@ -49,6 +49,25 @@ function SectionCard({ title, action, children }) {
   )
 }
 
+// Two-column layout: left = editing form, right = sticky live preview of how the section looks on the site
+function EditorWithPreview({ children, preview, previewBg = '#F5F5F7' }) {
+  return (
+    <div className="flex gap-5 items-start">
+      <div className="w-[480px] shrink-0 space-y-3">{children}</div>
+      <div className="flex-1 min-w-0 sticky top-20 self-start" style={{ height: 'calc(100vh - 120px)' }}>
+        <div className="h-full rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col">
+          <div className="px-4 py-2 border-b border-black/[0.06] shrink-0 bg-white">
+            <span className="text-xs font-medium text-[#86868B]">即時預覽（網站樣式）</span>
+          </div>
+          <div className="flex-1 overflow-auto p-6" style={{ background: previewBg }}>
+            {preview}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const inp = 'w-full px-3 py-2 rounded-lg border border-black/10 text-sm focus:outline-none focus:border-[#0071E3] bg-white'
 const ta  = `${inp} resize-y overflow-y-auto leading-relaxed`
 
@@ -339,44 +358,73 @@ function ProfileTab({ toast }) {
   }
 
   return (
-    <div className="max-w-xl space-y-4">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <LangTab lang={lang} setLang={setLang} />
         <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存'}</Btn>
       </div>
-      <SectionCard title="基本資訊">
-        <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-3">
-            <F label="姓名 / Name"><input className={inp} value={d.name || ''} onChange={e => set('name', e.target.value)} /></F>
-            <F label="職稱 / Title"><input className={inp} value={d.title || ''} onChange={e => set('title', e.target.value)} placeholder="選填" /></F>
+      <EditorWithPreview
+        previewBg="#ffffff"
+        preview={
+          <div className="max-w-2xl">
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
+              {d.contact?.location || '地點'}
+            </p>
+            <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">
+              {d.name || '姓名'}
+            </h1>
+            {d.bio && (
+              <p className="text-[15px] text-[#3F3F46] leading-[1.8] max-w-[500px] mb-8 whitespace-pre-wrap">
+                {d.bio}
+              </p>
+            )}
+            <div className="flex flex-wrap gap-3">
+              <button className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium">
+                {d.contact?.email || 'email@example.com'}
+              </button>
+              <span className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]">GitHub</span>
+              <span className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]">LinkedIn</span>
+              <span className="px-5 py-2.5 rounded-full text-sm font-medium border-2 border-[#0071E3] text-[#0071E3]">
+                {lang === 'zh' ? '履歷' : 'Resume'}
+              </span>
+            </div>
           </div>
-          <F label="個人簡介 / Bio">
-            <textarea className={ta} rows={8} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
-          </F>
-          <F label="頭像路徑（兩語共用）">
-            <input className={inp} value={zh.avatar || ''} onChange={e => { setZh(p => ({ ...p, avatar: e.target.value })); setEn(p => ({ ...p, avatar: e.target.value })) }} />
-          </F>
-        </div>
-      </SectionCard>
-      <SectionCard title="聯絡方式">
-        <div className="space-y-3">
-          <F label="Email（兩語共用）">
-            <input className={inp} value={zh.contact?.email || ''} onChange={e => { setZh(p => ({ ...p, contact: { ...p.contact, email: e.target.value } })); setEn(p => ({ ...p, contact: { ...p.contact, email: e.target.value } })) }} />
-          </F>
-          <F label="電話（兩語共用）">
-            <input className={inp} value={zh.contact?.phone || ''} onChange={e => { setZh(p => ({ ...p, contact: { ...p.contact, phone: e.target.value } })); setEn(p => ({ ...p, contact: { ...p.contact, phone: e.target.value } })) }} />
-          </F>
-          <F label="地點">
-            <input className={inp} value={d.contact?.location || ''} onChange={e => setCon('location', e.target.value)} />
-          </F>
-        </div>
-      </SectionCard>
-      <SectionCard title="連結（兩語共用）">
-        <div className="space-y-3">
-          <F label="GitHub username"><input className={inp} value={zh.links?.github || ''} onChange={e => { setZh(p => ({ ...p, links: { ...p.links, github: e.target.value } })); setEn(p => ({ ...p, links: { ...p.links, github: e.target.value } })) }} /></F>
-          <F label="LinkedIn（URL encoded path）"><input className={inp} value={zh.links?.linkedin || ''} onChange={e => { setZh(p => ({ ...p, links: { ...p.links, linkedin: e.target.value } })); setEn(p => ({ ...p, links: { ...p.links, linkedin: e.target.value } })) }} /></F>
-        </div>
-      </SectionCard>
+        }
+      >
+        <SectionCard title="基本資訊">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <F label="姓名 / Name"><input className={inp} value={d.name || ''} onChange={e => set('name', e.target.value)} /></F>
+              <F label="職稱 / Title"><input className={inp} value={d.title || ''} onChange={e => set('title', e.target.value)} placeholder="選填" /></F>
+            </div>
+            <F label="個人簡介 / Bio">
+              <textarea className={ta} rows={8} value={d.bio || ''} onChange={e => set('bio', e.target.value)} />
+            </F>
+            <F label="頭像路徑（兩語共用）">
+              <input className={inp} value={zh.avatar || ''} onChange={e => { setZh(p => ({ ...p, avatar: e.target.value })); setEn(p => ({ ...p, avatar: e.target.value })) }} />
+            </F>
+          </div>
+        </SectionCard>
+        <SectionCard title="聯絡方式">
+          <div className="space-y-3">
+            <F label="Email（兩語共用）">
+              <input className={inp} value={zh.contact?.email || ''} onChange={e => { setZh(p => ({ ...p, contact: { ...p.contact, email: e.target.value } })); setEn(p => ({ ...p, contact: { ...p.contact, email: e.target.value } })) }} />
+            </F>
+            <F label="電話（兩語共用）">
+              <input className={inp} value={zh.contact?.phone || ''} onChange={e => { setZh(p => ({ ...p, contact: { ...p.contact, phone: e.target.value } })); setEn(p => ({ ...p, contact: { ...p.contact, phone: e.target.value } })) }} />
+            </F>
+            <F label="地點">
+              <input className={inp} value={d.contact?.location || ''} onChange={e => setCon('location', e.target.value)} />
+            </F>
+          </div>
+        </SectionCard>
+        <SectionCard title="連結（兩語共用）">
+          <div className="space-y-3">
+            <F label="GitHub username"><input className={inp} value={zh.links?.github || ''} onChange={e => { setZh(p => ({ ...p, links: { ...p.links, github: e.target.value } })); setEn(p => ({ ...p, links: { ...p.links, github: e.target.value } })) }} /></F>
+            <F label="LinkedIn（URL encoded path）"><input className={inp} value={zh.links?.linkedin || ''} onChange={e => { setZh(p => ({ ...p, links: { ...p.links, linkedin: e.target.value } })); setEn(p => ({ ...p, links: { ...p.links, linkedin: e.target.value } })) }} /></F>
+          </div>
+        </SectionCard>
+      </EditorWithPreview>
     </div>
   )
 }
@@ -442,7 +490,7 @@ function ExperienceTab({ toast }) {
   }
 
   return (
-    <div className="max-w-2xl space-y-3">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-sm text-[#86868B]">共 {items.zh.length} 筆</p>
         <div className="flex gap-2">
@@ -450,10 +498,35 @@ function ExperienceTab({ toast }) {
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存全部'}</Btn>
         </div>
       </div>
-      {items.zh.map((zh, i) => (
-        <ExpItem key={i} zh={zh} en={items.en[i] || {}}
-          onZh={v => updateZh(i, v)} onEn={v => updateEn(i, v)} onDelete={() => remove(i)} />
-      ))}
+      <EditorWithPreview
+        previewBg="#1D1D1F"
+        preview={
+          <div className="max-w-xl flex flex-col gap-8">
+            {items.zh.map((item, i) => (
+              <div key={i} className="relative pl-9">
+                <div className="absolute left-0 top-[0.6rem] w-2 h-2 rounded-full bg-[#0071E3]
+                                ring-[3px] ring-[#1D1D1F] shadow-[0_0_0_3px_rgba(0,113,227,0.15)]" />
+                <div className="p-5 rounded-2xl bg-white/[0.03] -ml-2 pl-7">
+                  <div className="flex items-start justify-between gap-4 mb-1.5">
+                    <h3 className="text-base font-bold tracking-tight text-white leading-snug">{item.role || '（職稱）'}</h3>
+                    <span className="text-[10px] text-white/50 font-mono bg-white/10 px-2.5 py-1
+                                     rounded-full whitespace-nowrap shrink-0 leading-none mt-0.5">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-sm text-white/65 mb-2 font-medium">{item.organization}</p>
+                  <p className="text-sm text-white/50 leading-relaxed whitespace-pre-wrap">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        }
+      >
+        {items.zh.map((zh, i) => (
+          <ExpItem key={i} zh={zh} en={items.en[i] || {}}
+            onZh={v => updateZh(i, v)} onEn={v => updateEn(i, v)} onDelete={() => remove(i)} />
+        ))}
+      </EditorWithPreview>
     </div>
   )
 }
@@ -483,8 +556,20 @@ function AwardsTab({ toast }) {
     finally { setSaving(false) }
   }
 
+  const TrophyIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+      <path d="M4 22h16"/>
+      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+    </svg>
+  )
+
   return (
-    <div className="max-w-2xl space-y-3">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-sm text-[#86868B]">共 {items.zh.length} 筆</p>
         <div className="flex gap-2">
@@ -492,24 +577,43 @@ function AwardsTab({ toast }) {
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存全部'}</Btn>
         </div>
       </div>
-      <div className="space-y-2">
-        {items.zh.map((zh, i) => (
-          <div key={i} className="bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-4">
-            <div className="grid grid-cols-[1fr_80px_auto] gap-2 items-start mb-2">
-              <F label="獎項名稱（中文）">
-                <input className={inp} value={zh.title || ''} onChange={e => updateZh(i, 'title', e.target.value)} />
-              </F>
-              <F label="年份">
-                <input className={inp} value={zh.year || ''} onChange={e => { updateZh(i, 'year', e.target.value); updateEn(i, 'year', e.target.value) }} placeholder="2025" />
-              </F>
-              <button type="button" onClick={() => remove(i)} className="mt-5 text-[#86868B] hover:text-red-500 text-xl leading-none">×</button>
-            </div>
-            <F label="Award Title (EN)">
-              <input className={inp} value={items.en[i]?.title || ''} onChange={e => updateEn(i, 'title', e.target.value)} />
-            </F>
+      <EditorWithPreview
+        previewBg="#F5F5F7"
+        preview={
+          <div className="grid md:grid-cols-2 gap-2.5">
+            {items.zh.map((award, i) => (
+              <div key={i} className="flex items-center gap-4 px-5 py-4 rounded-2xl shadow-[0_0_0_1px_#E4E4E7] bg-white">
+                <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#EBEBED]">
+                  <span className="text-[#c7c7cc]"><TrophyIcon /></span>
+                </div>
+                <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title || '（獎項名稱）'}</p>
+                <span className="shrink-0 text-[11px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1 rounded-full leading-none">
+                  {award.year}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        }
+      >
+        <div className="space-y-2">
+          {items.zh.map((zh, i) => (
+            <div key={i} className="bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-4">
+              <div className="grid grid-cols-[1fr_80px_auto] gap-2 items-start mb-2">
+                <F label="獎項名稱（中文）">
+                  <input className={inp} value={zh.title || ''} onChange={e => updateZh(i, 'title', e.target.value)} />
+                </F>
+                <F label="年份">
+                  <input className={inp} value={zh.year || ''} onChange={e => { updateZh(i, 'year', e.target.value); updateEn(i, 'year', e.target.value) }} placeholder="2025" />
+                </F>
+                <button type="button" onClick={() => remove(i)} className="mt-5 text-[#86868B] hover:text-red-500 text-xl leading-none">×</button>
+              </div>
+              <F label="Award Title (EN)">
+                <input className={inp} value={items.en[i]?.title || ''} onChange={e => updateEn(i, 'title', e.target.value)} />
+              </F>
+            </div>
+          ))}
+        </div>
+      </EditorWithPreview>
     </div>
   )
 }
@@ -637,38 +741,93 @@ function SkillsTab({ toast }) {
     finally { setSaving(false) }
   }
 
+  const LEVEL_STYLE = {
+    '進階': 'bg-indigo-400/15 text-indigo-300',
+    '熟悉': 'bg-emerald-400/15 text-emerald-300',
+    '基礎': 'bg-white/10 text-white/40',
+  }
+
   return (
-    <div className="max-w-2xl space-y-3">
+    <div className="space-y-3">
       <div className="flex justify-end">
         <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存'}</Btn>
       </div>
-      {cats.map(cat => (
-        <SectionCard key={cat} title={SKILL_CAT_LABELS[cat] || cat}>
-          <div className="space-y-3">
-            <F label="中文標籤">
-              <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))} />
-            </F>
-            <F label="EN labels">
-              <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
-            </F>
+      <EditorWithPreview
+        previewBg="#1D1D1F"
+        preview={
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {cats.map(cat => {
+              const tags = matrixZh[cat] || []
+              const skillList = detailZh[cat]?.skills || []
+              const counts = { '進階': 0, '熟悉': 0, '基礎': 0 }
+              skillList.forEach(s => { if (s.level in counts) counts[s.level]++ })
+              return (
+                <div key={cat} className="rounded-2xl bg-[#141418] border border-white/[0.06] p-6 flex flex-col gap-4">
+                  <h3 className="text-base font-bold tracking-tight text-white/85">
+                    {detailZh[cat]?.title || SKILL_CAT_LABELS[cat] || cat}
+                  </h3>
+                  {detailZh[cat]?.overview && (
+                    <p className="text-sm text-white/45 leading-relaxed line-clamp-2">{detailZh[cat].overview}</p>
+                  )}
+                  {skillList.length > 0 && (
+                    <div className="space-y-2">
+                      <div className="flex h-[3px] rounded-full overflow-hidden gap-0.5">
+                        {counts['進階'] > 0 && <div className="bg-indigo-400/60 rounded-full" style={{ flex: counts['進階'] }} />}
+                        {counts['熟悉'] > 0 && <div className="bg-emerald-400/60 rounded-full" style={{ flex: counts['熟悉'] }} />}
+                        {counts['基礎'] > 0 && <div className="bg-white/15 rounded-full" style={{ flex: counts['基礎'] }} />}
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-1.5">
+                    {tags.map(skill => (
+                      <span key={skill} className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/[0.05] text-white/45 border border-white/[0.06]">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  {skillList.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/[0.06]">
+                      {skillList.map(s => (
+                        <span key={s.name} className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
+                          {s.name} · {s.level}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
-          <details className="mt-3 group">
-            <summary className="cursor-pointer text-xs font-medium text-[#0071E3] hover:underline list-none">
-              技能詳情與精熟度（用於技能詳情頁）
-            </summary>
-            <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">中文</p>
-                <SkillDetailEditor value={detailZh[cat] || { skills: [] }} lang="zh" onChange={v => setDetailZh(m => ({ ...m, [cat]: v }))} />
-              </div>
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">EN</p>
-                <SkillDetailEditor value={detailEn[cat] || { skills: [] }} lang="en" onChange={v => setDetailEn(m => ({ ...m, [cat]: v }))} />
-              </div>
+        }
+      >
+        {cats.map(cat => (
+          <SectionCard key={cat} title={SKILL_CAT_LABELS[cat] || cat}>
+            <div className="space-y-3">
+              <F label="中文標籤">
+                <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))} />
+              </F>
+              <F label="EN labels">
+                <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
+              </F>
             </div>
-          </details>
-        </SectionCard>
-      ))}
+            <details className="mt-3 group">
+              <summary className="cursor-pointer text-xs font-medium text-[#0071E3] hover:underline list-none">
+                技能詳情與精熟度（用於技能詳情頁）
+              </summary>
+              <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">中文</p>
+                  <SkillDetailEditor value={detailZh[cat] || { skills: [] }} lang="zh" onChange={v => setDetailZh(m => ({ ...m, [cat]: v }))} />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">EN</p>
+                  <SkillDetailEditor value={detailEn[cat] || { skills: [] }} lang="en" onChange={v => setDetailEn(m => ({ ...m, [cat]: v }))} />
+                </div>
+              </div>
+            </details>
+          </SectionCard>
+        ))}
+      </EditorWithPreview>
     </div>
   )
 }
@@ -1113,7 +1272,7 @@ export default function Admin() {
           </div>
         </div>
       </div>
-      <div className={`mx-auto px-6 py-8 ${tab === 'resume' ? 'max-w-full' : 'max-w-5xl'}`}>
+      <div className={`mx-auto px-6 py-8 ${tab === 'projects' ? 'max-w-5xl' : 'max-w-full'}`}>
         {renderTab()}
       </div>
       <Toast msg={toastMsg} ok={toastOk} />
