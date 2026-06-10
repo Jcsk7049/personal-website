@@ -784,6 +784,13 @@ const SKILL_CAT_LABELS = {
   web:           'Web / 後端',
 }
 
+const SKILL_CAT_ACCENTS = {
+  data_analysis: 'from-indigo-400 to-blue-500',
+  programming:   'from-emerald-400 to-teal-500',
+  eda:           'from-rose-400 to-pink-500',
+  manufacturing: 'from-orange-400 to-amber-500',
+}
+
 function SkillChips({ items, onChange }) {
   const [draft, setDraft] = useState('')
   const [editingIdx, setEditingIdx] = useState(null)
@@ -849,25 +856,32 @@ function SkillDetailEditor({ value, onChange, lang }) {
         <textarea className={ta} rows={3} value={value?.overview || ''} onChange={e => set('overview', e.target.value)} />
       </F>
       <div className="space-y-2">
-        {skills.map((s, i) => (
-          <div key={i} className="bg-black/[0.02] rounded-xl p-3 space-y-2 relative">
-            <button type="button" onClick={() => delSkill(i)} className="absolute top-2 right-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
-            <div className="grid grid-cols-[1fr_120px] gap-2">
-              <F label="技能名稱"><input className={inp} value={s.name || ''} onChange={e => setSkill(i, 'name', e.target.value)} /></F>
-              <F label="精熟度">
-                <select className={inp} value={s.level || '基礎'} onChange={e => setSkill(i, 'level', e.target.value)}>
+        {skills.map((s, i) => {
+          const cfg = SKILL_LEVEL_CONFIG[s.level] || SKILL_LEVEL_CONFIG['基礎']
+          return (
+            <div key={i} className="bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.06)] p-3 space-y-2">
+              <div className="flex items-center gap-2">
+                <input className={`${inp} flex-1 font-medium`} placeholder="技能名稱" value={s.name || ''} onChange={e => setSkill(i, 'name', e.target.value)} />
+                <select className={`shrink-0 w-24 px-2 py-2 rounded-lg border-0 text-xs font-semibold text-center focus:outline-none focus:ring-2 focus:ring-[#0071E3] ${cfg.badge}`}
+                        value={s.level || '基礎'} onChange={e => setSkill(i, 'level', e.target.value)}>
                   {SKILL_LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
+                <button type="button" onClick={() => delSkill(i)} className="shrink-0 text-[#86868B] hover:text-red-500 text-lg leading-none px-1">×</button>
+              </div>
+              <div className="flex items-center gap-1 px-0.5">
+                {[1, 2, 3].map(n => (
+                  <span key={n} className={`inline-block w-1.5 h-1.5 rounded-full ${n <= cfg.dots ? cfg.bar : 'bg-black/10'}`} />
+                ))}
+              </div>
+              <F label="說明">
+                <textarea className={ta} rows={3} value={s.desc || ''} onChange={e => setSkill(i, 'desc', e.target.value)} />
+              </F>
+              <F label="相關專案" hint="逗號分隔">
+                <input className={inp} value={(s.projects || []).join(', ')} onChange={e => setSkill(i, 'projects', e.target.value.split(',').map(x => x.trim()).filter(Boolean))} />
               </F>
             </div>
-            <F label="說明">
-              <textarea className={ta} rows={3} value={s.desc || ''} onChange={e => setSkill(i, 'desc', e.target.value)} />
-            </F>
-            <F label="相關專案" hint="逗號分隔">
-              <input className={inp} value={(s.projects || []).join(', ')} onChange={e => setSkill(i, 'projects', e.target.value.split(',').map(x => x.trim()).filter(Boolean))} />
-            </F>
-          </div>
-        ))}
+          )
+        })}
         <button type="button" onClick={addSkill} className="text-xs text-[#0071E3] hover:underline">+ 新增技能詳情</button>
       </div>
     </div>
@@ -897,7 +911,9 @@ function SkillDetailPage({ cat, detailZh, detailEn, onChangeZh, onChangeEn, onBa
       </div>
       <EditorWithPreview
         preview={
-          <div className="max-w-3xl">
+          <div className="max-w-3xl -m-6 mb-0">
+            <div className={`h-[3px] w-full bg-gradient-to-r ${SKILL_CAT_ACCENTS[cat] || 'from-gray-300 to-gray-400'}`} />
+            <div className="p-6">
             <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
               {value.en || ''}
             </p>
@@ -934,6 +950,7 @@ function SkillDetailPage({ cat, detailZh, detailEn, onChangeZh, onChangeEn, onBa
                   </div>
                 )
               })}
+            </div>
             </div>
           </div>
         }
@@ -1040,22 +1057,40 @@ function SkillsTab({ toast }) {
           </div>
         }
       >
-        {cats.map(cat => (
-          <SectionCard key={cat} title={SKILL_CAT_LABELS[cat] || cat}>
-            <div className="space-y-3">
-              <F label="中文標籤">
-                <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))} />
-              </F>
-              <F label="EN labels">
-                <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
-              </F>
-            </div>
-            <button type="button" onClick={() => setEditingDetail(cat)}
-              className="mt-3 text-xs font-medium text-[#0071E3] hover:underline">
-              技能詳情與精熟度（用於技能詳情頁）→
-            </button>
-          </SectionCard>
-        ))}
+        {cats.map(cat => {
+          const skillCount = detailZh[cat]?.skills?.length || 0
+          return (
+            <SectionCard key={cat}
+              title={
+                <span className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full bg-gradient-to-br ${SKILL_CAT_ACCENTS[cat] || 'from-gray-300 to-gray-400'}`} />
+                  {SKILL_CAT_LABELS[cat] || cat}
+                </span>
+              }
+            >
+              <div className="space-y-3">
+                <F label="中文標籤">
+                  <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))} />
+                </F>
+                <F label="EN labels">
+                  <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
+                </F>
+              </div>
+              <button type="button" onClick={() => setEditingDetail(cat)}
+                className="mt-4 w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl
+                           bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors duration-[125ms] group">
+                <span className="text-xs font-medium text-[#1D1D1F]">
+                  技能詳情與精熟度
+                  <span className="ml-1.5 text-[#86868B] font-mono">{skillCount} 項</span>
+                </span>
+                <span className="text-xs text-[#0071E3] font-medium opacity-0 group-hover:opacity-100
+                                 -translate-x-1 group-hover:translate-x-0 transition-all duration-[125ms]">
+                  編輯 →
+                </span>
+              </button>
+            </SectionCard>
+          )
+        })}
       </EditorWithPreview>
     </div>
   )
