@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { api } from '../api/client'
 import { useData } from '../context/DataContext'
+import { accent } from '../components/ProjectShowcase'
 
 // ── Primitives ────────────────────────────────────────────────────────────────
 
@@ -422,12 +423,36 @@ function ProjectsTab({ toast }) {
       </div>
       <div className="space-y-2">
         {projects.map(p => (
-          <div key={p.id} className="flex items-center justify-between bg-white rounded-xl px-4 py-3 shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
-            <div>
-              <p className="text-sm font-medium">{p.title}</p>
-              <p className="text-xs text-[#86868B]">{p.id} · {p.category} · {p.period}</p>
+          <div key={p.id}
+               className="flex items-center gap-4 bg-white rounded-2xl px-4 py-3
+                          shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
+                          hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#FAFAFA]
+                          transition-all duration-[125ms] group">
+            {/* Cover thumbnail */}
+            <div className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${accent(p.id)} overflow-hidden`}>
+              {p.cover && (
+                <img src={p.cover} alt="" className="w-full h-full object-cover"
+                     onError={e => { e.target.style.display = 'none' }} />
+              )}
             </div>
-            <div className="flex gap-2">
+
+            {/* Title + meta */}
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-[#1D1D1F] truncate">{p.title}</p>
+              <div className="flex items-center gap-2 mt-1">
+                {p.category && (
+                  <span className={`inline-block px-2 py-0.5 rounded-full border text-[10px] font-medium tracking-wide ${CATEGORY_STYLES[p.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
+                    {p.category}
+                  </span>
+                )}
+                <span className="text-[11px] text-[#86868B] font-mono">{p.id}</span>
+                <span className="text-[11px] text-[#C7C7CC]">·</span>
+                <span className="text-[11px] text-[#86868B] font-mono">{p.period}</span>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-2 shrink-0">
               <Btn sm variant="ghost" onClick={() => openEdit(p)}>編輯</Btn>
               <Btn sm variant="danger" disabled={deleting === p.id} onClick={() => del(p.id)}>{deleting === p.id ? '…' : '刪除'}</Btn>
             </div>
