@@ -849,6 +849,79 @@ function SkillDetailEditor({ value, onChange, lang }) {
   )
 }
 
+const SKILL_LEVEL_CONFIG = {
+  '基礎': { dots: 1, badge: 'bg-[#F5F5F7] text-[#86868B]', bar: 'bg-black/20' },
+  '熟悉': { dots: 2, badge: 'bg-[#EEF5FF] text-[#0066CC]', bar: 'bg-[#0071E3]' },
+  '進階': { dots: 3, badge: 'bg-[#F2EEFF] text-[#5E3DE8]', bar: 'bg-[#7C3AED]' },
+}
+
+function SkillDetailPage({ cat, detailZh, detailEn, onChangeZh, onChangeEn, onBack, onSave, saving }) {
+  const [lang, setLang] = useState('zh')
+  const value = lang === 'zh' ? (detailZh[cat] || { skills: [] }) : (detailEn[cat] || { skills: [] })
+  const onChange = lang === 'zh' ? onChangeZh : onChangeEn
+  const skills = value.skills || []
+  const total = skills.length
+  const gridCols = total <= 3 ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center gap-3">
+        <Btn variant="ghost" onClick={onBack}>← 返回</Btn>
+        <h2 className="font-semibold">技能詳情與精熟度：{SKILL_CAT_LABELS[cat] || cat}</h2>
+        <Btn onClick={onSave} disabled={saving} className="ml-auto">{saving ? '儲存中…' : '儲存'}</Btn>
+      </div>
+      <EditorWithPreview
+        preview={
+          <div className="max-w-3xl">
+            <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
+              {value.en || ''}
+            </p>
+            <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-5 leading-[1.07]">
+              {value.title || SKILL_CAT_LABELS[cat] || cat}
+            </h1>
+            <p className="text-[15px] text-[#3F3F46] leading-[1.6] max-w-2xl mb-10 whitespace-pre-line">
+              {value.overview}
+            </p>
+            <div className={`grid ${gridCols} gap-4`}>
+              {skills.map((skill, i) => {
+                const cfg = SKILL_LEVEL_CONFIG[skill.level] || SKILL_LEVEL_CONFIG['基礎']
+                return (
+                  <div key={i} className="bg-white rounded-2xl p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] flex flex-col gap-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <h2 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug">{skill.name || '（技能名稱）'}</h2>
+                      <span className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none ${cfg.badge}`}>{skill.level}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3].map(n => (
+                        <span key={n} className={`inline-block w-1.5 h-1.5 rounded-full ${n <= cfg.dots ? cfg.bar : 'bg-black/10'}`} />
+                      ))}
+                    </div>
+                    <p className="text-sm text-[#3F3F46] leading-relaxed flex-1">{skill.desc}</p>
+                    {skill.projects?.length > 0 && (
+                      <div className="pt-3 border-t border-black/[0.06]">
+                        <div className="flex flex-wrap gap-1.5">
+                          {skill.projects.map(proj => (
+                            <span key={proj} className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#EEF5FF] text-[#0066CC] border border-[#C7D8F0]">{proj}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        }
+      >
+        <div className="flex justify-end"><LangTab lang={lang} setLang={setLang} /></div>
+        <SectionCard>
+          <SkillDetailEditor value={value} lang={lang} onChange={onChange} />
+        </SectionCard>
+      </EditorWithPreview>
+    </div>
+  )
+}
+
 function SkillsTab({ toast }) {
   const { cvZh, cvEn, refresh } = useData()
   const [matrixZh, setMatrixZh] = useState(() => JSON.parse(JSON.stringify(cvZh.skills_matrix || {})))
@@ -856,6 +929,7 @@ function SkillsTab({ toast }) {
   const [detailZh, setDetailZh] = useState(() => JSON.parse(JSON.stringify(cvZh.skills_detail || {})))
   const [detailEn, setDetailEn] = useState(() => JSON.parse(JSON.stringify(cvEn.skills_detail || {})))
   const [saving, setSaving] = useState(false)
+  const [editingDetail, setEditingDetail] = useState(null)
 
   const cats = Object.keys(matrixZh)
 
@@ -876,6 +950,17 @@ function SkillsTab({ toast }) {
     '熟悉': 'bg-emerald-400/15 text-emerald-300',
     '基礎': 'bg-white/10 text-white/40',
   }
+
+  if (editingDetail) return (
+    <SkillDetailPage
+      cat={editingDetail}
+      detailZh={detailZh} detailEn={detailEn}
+      onChangeZh={v => setDetailZh(m => ({ ...m, [editingDetail]: v }))}
+      onChangeEn={v => setDetailEn(m => ({ ...m, [editingDetail]: v }))}
+      onBack={() => setEditingDetail(null)}
+      onSave={save} saving={saving}
+    />
+  )
 
   return (
     <div className="space-y-3">
@@ -940,21 +1025,10 @@ function SkillsTab({ toast }) {
                 <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
               </F>
             </div>
-            <details className="mt-3 group">
-              <summary className="cursor-pointer text-xs font-medium text-[#0071E3] hover:underline list-none">
-                技能詳情與精熟度（用於技能詳情頁）
-              </summary>
-              <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">中文</p>
-                  <SkillDetailEditor value={detailZh[cat] || { skills: [] }} lang="zh" onChange={v => setDetailZh(m => ({ ...m, [cat]: v }))} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">EN</p>
-                  <SkillDetailEditor value={detailEn[cat] || { skills: [] }} lang="en" onChange={v => setDetailEn(m => ({ ...m, [cat]: v }))} />
-                </div>
-              </div>
-            </details>
+            <button type="button" onClick={() => setEditingDetail(cat)}
+              className="mt-3 text-xs font-medium text-[#0071E3] hover:underline">
+              技能詳情與精熟度（用於技能詳情頁）→
+            </button>
           </SectionCard>
         ))}
       </EditorWithPreview>
