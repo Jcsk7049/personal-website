@@ -79,6 +79,13 @@ export default function SkillDetail() {
     ? 'grid-cols-1 md:grid-cols-3'
     : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
 
+  const LEVEL_ORDER = { '進階': 0, '熟悉': 1, '基礎': 2 }
+  const sortedSkills = [...(detail.skills || [])].sort(
+    (a, b) => (LEVEL_ORDER[a.level] ?? 3) - (LEVEL_ORDER[b.level] ?? 3)
+  )
+  const counts = { '進階': 0, '熟悉': 0, '基礎': 0 }
+  sortedSkills.forEach(s => { if (s.level in counts) counts[s.level]++ })
+
   return (
     <div className="bg-[#F5F5F7] min-h-screen font-sans antialiased page-enter">
 
@@ -114,8 +121,9 @@ export default function SkillDetail() {
         <main className="pt-16 pb-32 px-6 md:px-10 max-w-[980px] mx-auto">
 
           {/* ── Hero ── */}
-          <div className="mb-16 hero-fade-left">
-            <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
+          <div className="mb-12 hero-fade-left">
+            <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase mb-3
+                           bg-gradient-to-r ${accent} bg-clip-text text-transparent`}>
               {detail.en}
             </p>
             <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-6 leading-[1.07]">
@@ -124,11 +132,27 @@ export default function SkillDetail() {
             <p className="text-[17px] text-[#3F3F46] leading-[1.47] max-w-2xl">
               {detail.overview}
             </p>
+
+            {/* level summary */}
+            <div className="flex flex-wrap items-center gap-2 mt-8">
+              <span className="px-3 py-1.5 rounded-full bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
+                               text-xs font-medium text-[#1D1D1F]">
+                {t.skillCount ? t.skillCount(total) : `${total}`}
+              </span>
+              {['進階', '熟悉', '基礎'].map(lv => counts[lv] > 0 && (
+                <span key={lv}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white
+                                 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] text-xs font-medium text-[#3F3F46]">
+                  <span className={`w-1.5 h-1.5 rounded-full ${LEVEL_CONFIG[lv].bar}`} />
+                  {t.levels?.[lv] ?? lv} {counts[lv]}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* ── Skill cards ── */}
           <div className={`grid ${gridCols} gap-4`} data-reveal>
-            {(detail.skills || []).map((skill, i) => {
+            {sortedSkills.map((skill, i) => {
               const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
               return (
                 <div key={i}
