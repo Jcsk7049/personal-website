@@ -727,11 +727,21 @@ function AwardsTab({ toast }) {
     en: JSON.parse(JSON.stringify(cvEn.awards || [])),
   }))
   const [saving, setSaving] = useState(false)
+  const [dragIdx, setDragIdx] = useState(null)
 
   const addNew = () => setItems(s => ({
     zh: [...s.zh, { title: '', year: '' }],
     en: [...s.en, { title: '', year: '' }],
   }))
+
+  const moveTo = to => {
+    if (dragIdx === null || dragIdx === to) { setDragIdx(null); return }
+    setItems(s => {
+      const mv = arr => { const a = [...arr]; a.splice(to, 0, a.splice(dragIdx, 1)[0]); return a }
+      return { zh: mv(s.zh), en: mv(s.en) }
+    })
+    setDragIdx(null)
+  }
   const remove   = i => setItems(s => ({ zh: s.zh.filter((_, j) => j !== i), en: s.en.filter((_, j) => j !== i) }))
   const updateZh = (i, f, v) => setItems(s => ({ ...s, zh: s.zh.map((x, j) => j === i ? { ...x, [f]: v } : x) }))
   const updateEn = (i, f, v) => setItems(s => ({ ...s, en: s.en.map((x, j) => j === i ? { ...x, [f]: v } : x) }))
@@ -784,7 +794,23 @@ function AwardsTab({ toast }) {
       >
         <div className="space-y-2">
           {items.zh.map((zh, i) => (
-            <div key={i} className="bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-4">
+            <div key={i}
+                 onDragOver={e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' }}
+                 onDrop={() => moveTo(i)}
+                 className={`relative bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-4 pl-9
+                             transition-opacity duration-[125ms] ${dragIdx === i ? 'opacity-40' : ''}`}>
+              <span draggable
+                    onDragStart={e => { setDragIdx(i); e.dataTransfer.effectAllowed = 'move' }}
+                    onDragEnd={() => setDragIdx(null)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing
+                               text-[#C7C7CC] hover:text-[#86868B] transition-colors duration-[125ms]"
+                    title="拖拉調整順序">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                  <circle cx="4.5" cy="2.5" r="1.3" /><circle cx="9.5" cy="2.5" r="1.3" />
+                  <circle cx="4.5" cy="7"   r="1.3" /><circle cx="9.5" cy="7"   r="1.3" />
+                  <circle cx="4.5" cy="11.5" r="1.3" /><circle cx="9.5" cy="11.5" r="1.3" />
+                </svg>
+              </span>
               <div className="grid grid-cols-[1fr_80px_auto] gap-2 items-start mb-2">
                 <F label="獎項名稱（中文）">
                   <input className={inp} value={zh.title || ''} onChange={e => updateZh(i, 'title', e.target.value)} />
@@ -823,7 +849,7 @@ const SKILL_CAT_ACCENTS = {
   manufacturing: 'from-orange-400 to-amber-500',
 }
 
-function SkillChips({ items, onChange }) {
+function SkillChips({ items, onChange, levelOf }) {
   const [draft, setDraft] = useState('')
   const [editingIdx, setEditingIdx] = useState(null)
   const [editVal, setEditVal] = useState('')
@@ -849,14 +875,20 @@ function SkillChips({ items, onChange }) {
             onBlur={commitEdit}
             onKeyDown={e => { if (e.key === 'Enter') commitEdit(); if (e.key === 'Escape') setEditingIdx(null) }}
           />
-        ) : (
-          <span key={i}
-            className="inline-flex items-center gap-1 bg-[#F5F5F7] text-xs px-2.5 py-1 rounded-full cursor-pointer hover:bg-[#EBEBED]"
-            onClick={() => startEdit(i)} title="點擊編輯">
-            {s}
-            <button type="button" onClick={e => { e.stopPropagation(); remove(i) }} className="text-[#86868B] hover:text-red-500 text-base leading-none">&times;</button>
-          </span>
-        ))}
+        ) : (() => {
+          const level = levelOf?.(s)
+          const cfg = level ? SKILL_LEVEL_CONFIG[level] : null
+          return (
+            <span key={i}
+              className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full cursor-pointer
+                          ${cfg ? cfg.badge : 'bg-[#F5F5F7] text-[#3F3F46]'} hover:opacity-80`}
+              onClick={() => startEdit(i)} title={level ? `${level}，點擊編輯` : '點擊編輯'}>
+              {cfg && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${cfg.bar}`} />}
+              {s}
+              <button type="button" onClick={e => { e.stopPropagation(); remove(i) }} className="opacity-60 hover:opacity-100 hover:text-red-500 text-base leading-none">&times;</button>
+            </span>
+          )
+        })())}
       </div>
       <div className="flex gap-2">
         <input className={`${inp} flex-1`} value={draft} onChange={e => setDraft(e.target.value)}
@@ -1101,10 +1133,12 @@ function SkillsTab({ toast }) {
             >
               <div className="space-y-3">
                 <F label="中文標籤">
-                  <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))} />
+                  <SkillChips items={matrixZh[cat] || []} onChange={v => setMatrixZh(m => ({ ...m, [cat]: v }))}
+                    levelOf={name => detailZh[cat]?.skills?.find(s => s.name === name)?.level} />
                 </F>
                 <F label="EN labels">
-                  <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))} />
+                  <SkillChips items={matrixEn[cat] || []} onChange={v => setMatrixEn(m => ({ ...m, [cat]: v }))}
+                    levelOf={name => detailEn[cat]?.skills?.find(s => s.name === name)?.level} />
                 </F>
               </div>
               <button type="button" onClick={() => setEditingDetail(cat)}
@@ -1218,7 +1252,7 @@ function generateResumeHTML(d) {
 <title>${esc(d.name)} — 履歷</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-@page { size: A4 portrait; margin: 14mm 16mm 14mm 16mm; }
+@page { size: A4 portrait; margin: 0; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body { width: 210mm; margin: 0 auto; padding: 14mm 16mm; font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Hiragino Sans GB', sans-serif; font-size: 8.5pt; line-height: 1.5; color: #1a1a1a; background: #fff; }
 h1 { font-size: 20pt; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
@@ -1259,7 +1293,7 @@ a  { color: #0057b8; text-decoration: none; }
 .dl-btn { position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; align-items: center; gap: 6px; padding: 9px 18px; background: #0057b8; color: #fff; font-family: inherit; font-size: 9pt; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 12px rgba(0,87,184,0.35); transition: background 0.15s; letter-spacing: 0.01em; }
 .dl-btn:hover { background: #0047a0; }
 .dl-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
-@media print { body { padding: 0; width: 100%; } .no-print { display: none !important; } }
+@media print { body { padding: 14mm 16mm; width: 100%; } .no-print { display: none !important; } }
 @media screen { html { background: #e8e8e8; } body { margin: 20px auto; box-shadow: 0 4px 24px rgba(0,0,0,0.18); } }
 </style>
 </head>
@@ -1268,8 +1302,8 @@ a  { color: #0057b8; text-decoration: none; }
   <div class="hd-left">
     <h1>${esc(d.name)}</h1>
     <div style="margin-top:4px;font-size:7.5pt;color:#555;display:flex;gap:14px;flex-wrap:wrap;">
-      <span>📍 ${esc(d.contact.location)}</span>
-      <span>📞 ${esc(d.contact.phone)}</span>
+      <span>${esc(d.contact.location)}</span>
+      <span>${esc(d.contact.phone)}</span>
       <a href="mailto:${esc(d.contact.email)}">${esc(d.contact.email)}</a>
       <a href="https://github.com/${esc(d.contact.github)}">github.com/${esc(d.contact.github)}</a>
     </div>
@@ -1370,7 +1404,7 @@ function ResumeTab({ toast }) {
   return (
     <div className="flex gap-5" style={{minHeight:'calc(100vh - 80px)'}}>
       {/* ── Left: editor ── */}
-      <div className="w-[420px] shrink-0 space-y-3">
+      <div className="w-[560px] shrink-0 space-y-3">
         <div className="flex items-center justify-between">
           <p className="text-sm font-semibold text-[#1D1D1F]">履歷編輯</p>
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存並發布'}</Btn>
