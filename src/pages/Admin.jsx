@@ -376,7 +376,24 @@ function ProjectsTab({ toast }) {
   const [editId, setEditId] = useState(null)
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(null)
-  const projects = cvZh.projects || []
+  const [order, setOrder] = useState(null)       // null = 跟隨伺服器順序
+  const [dragId, setDragId] = useState(null)
+  const serverProjects = cvZh.projects || []
+  const projects = order
+    ? order.map(id => serverProjects.find(p => p.id === id)).filter(Boolean)
+    : serverProjects
+
+  const onDrop = async targetId => {
+    if (!dragId || dragId === targetId) { setDragId(null); return }
+    const ids = projects.map(p => p.id)
+    const from = ids.indexOf(dragId)
+    const to   = ids.indexOf(targetId)
+    ids.splice(to, 0, ids.splice(from, 1)[0])
+    setOrder(ids)
+    setDragId(null)
+    try { await api.reorderProjects(ids); await refresh(); setOrder(null); toast('順序已更新', true) }
+    catch (e) { setOrder(null); toast(e.message, false) }
+  }
 
   const openNew  = () => { setEditId(null); setEditing({ zh: EMPTY_PROJ(), en: EMPTY_PROJ() }) }
   const openEdit = p => { setEditId(p.id); setEditing({ zh: JSON.parse(JSON.stringify(p)), en: JSON.parse(JSON.stringify(cvEn.projects?.find(x => x.id === p.id) || {})) }) }
@@ -424,10 +441,25 @@ function ProjectsTab({ toast }) {
       <div className="space-y-2">
         {projects.map(p => (
           <div key={p.id}
-               className="flex items-center gap-4 bg-white rounded-2xl px-4 py-3
+               draggable
+               onDragStart={e => { setDragId(p.id); e.dataTransfer.effectAllowed = 'move' }}
+               onDragOver={e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' }}
+               onDrop={() => onDrop(p.id)}
+               onDragEnd={() => setDragId(null)}
+               className={`flex items-center gap-3 bg-white rounded-2xl px-4 py-3
                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
                           hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#FAFAFA]
-                          transition-all duration-[125ms] group">
+                          transition-all duration-[125ms] group
+                          ${dragId === p.id ? 'opacity-40' : ''}`}>
+            {/* Drag handle */}
+            <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#86868B] transition-colors duration-[125ms]"
+                  title="拖拉調整順序">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <circle cx="4.5" cy="2.5" r="1.3" /><circle cx="9.5" cy="2.5" r="1.3" />
+                <circle cx="4.5" cy="7"   r="1.3" /><circle cx="9.5" cy="7"   r="1.3" />
+                <circle cx="4.5" cy="11.5" r="1.3" /><circle cx="9.5" cy="11.5" r="1.3" />
+              </svg>
+            </span>
             {/* Cover thumbnail */}
             <div className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${accent(p.id)} overflow-hidden`}>
               {p.cover && (

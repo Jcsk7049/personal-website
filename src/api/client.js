@@ -35,6 +35,8 @@ export const api = {
   updateProject: (id, zh, en) =>
     request(`/projects/${id}`, { method: 'PUT', body: JSON.stringify({ zh, en }) }),
   deleteProject: (id) => request(`/projects/${id}`, { method: 'DELETE' }),
+  reorderProjects: (ids) =>
+    request('/projects/reorder', { method: 'POST', body: JSON.stringify({ ids }) }),
 
   // Resume
   getResume: (lang = 'zh') => request(`/resume?lang=${lang}`),
