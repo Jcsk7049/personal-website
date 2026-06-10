@@ -151,24 +151,23 @@ export default function SkillDetail() {
           </div>
 
           {/* ── Skill cards ── */}
-          <div className={`grid ${gridCols} gap-4`} data-reveal>
+          <div className={`grid ${gridCols} gap-5`} data-reveal>
             {sortedSkills.map((skill, i) => {
-              const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG['基礎']
               return (
                 <div key={i}
-                     className="bg-white rounded-[18px] p-7
+                     className="group relative bg-white rounded-[18px] p-7
                                 hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
                                 transition-shadow duration-[240ms]
                                 flex flex-col gap-4">
 
-                  <div className="flex items-start justify-between gap-3">
-                    <h2 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug">
-                      {skill.name}
-                    </h2>
-                    <span className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none ${cfg.badge}`}>
-                      {t.levels[skill.level] ?? skill.level}
-                    </span>
-                  </div>
+                  <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase
+                                 bg-gradient-to-r ${accent} bg-clip-text text-transparent`}>
+                    {t.levels[skill.level] ?? skill.level}
+                  </p>
+
+                  <h2 className="text-[20px] font-semibold tracking-[0.009em] leading-[1.29] text-[#1D1D1F]">
+                    {skill.name}
+                  </h2>
 
                   <LevelDots level={skill.level} />
 
@@ -192,6 +191,16 @@ export default function SkillDetail() {
                       </div>
                     </div>
                   )}
+
+                  <div className="flex items-center justify-end pt-1">
+                    <span className={`flex items-center justify-center w-9 h-9 rounded-full bg-[#1D1D1F] text-white
+                                     group-hover:bg-[#0071E3] transition-colors duration-[240ms]`}
+                          aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                        <line x1="7" y1="1.5" x2="7" y2="12.5" /><line x1="1.5" y1="7" x2="12.5" y2="7" />
+                      </svg>
+                    </span>
+                  </div>
 
                 </div>
               )
