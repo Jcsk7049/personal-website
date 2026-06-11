@@ -1,4 +1,5 @@
 import { json } from '../_shared/cors.js'
+import { isPlainObject } from '../_shared/validate.js'
 
 export async function onRequestGet(context) {
   const { env, request, params } = context
@@ -11,7 +12,10 @@ export async function onRequestGet(context) {
 
 export async function onRequestPut(context) {
   const { request, env, params } = context
-  const { zh, en } = await request.json()
+  const body = await request.json().catch(() => null)
+  if (!body || !isPlainObject(body.zh)) return json({ error: 'zh required' }, 400, request)
+  const { zh, en } = body
+  if (en !== undefined && en !== null && !isPlainObject(en)) return json({ error: 'invalid en' }, 400, request)
 
   const existing = await env.DB.prepare('SELECT id FROM projects WHERE id = ?')
     .bind(params.id).first()

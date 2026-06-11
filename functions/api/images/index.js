@@ -19,14 +19,21 @@ export async function onRequestGet(context) {
   return json(rows.results, 200, request)
 }
 
+const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+const ALLOWED_EXT  = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']
+const MAX_SIZE     = 5 * 1024 * 1024 // 5MB
+
 export async function onRequestPost(context) {
   const { request, env } = context
   const form = await request.formData()
   const file = form.get('file')
-  if (!file) return json({ error: 'no file' }, 400, request)
+  if (!file || typeof file === 'string') return json({ error: 'no file' }, 400, request)
+  if (file.size > MAX_SIZE) return json({ error: 'file too large (max 5MB)' }, 400, request)
 
   const mime = file.type || 'image/jpeg'
-  const ext  = file.name.split('.').pop().toLowerCase()
+  if (!ALLOWED_MIME.includes(mime)) return json({ error: 'unsupported file type' }, 400, request)
+  const ext = (file.name.split('.').pop() || '').toLowerCase()
+  if (!ALLOWED_EXT.includes(ext)) return json({ error: 'unsupported file extension' }, 400, request)
   const name = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
   const b64  = arrayBufferToBase64(await file.arrayBuffer())
 

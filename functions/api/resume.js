@@ -10,8 +10,11 @@ export async function onRequestGet(context) {
 
 export async function onRequestPut(context) {
   const { request, env } = context
-  const { lang, html } = await request.json()
-  if (!lang || !html) return json({ error: 'lang and html required' }, 400, request)
+  const body = await request.json().catch(() => null)
+  const { lang, html } = body || {}
+  if (!['zh', 'en'].includes(lang)) return json({ error: 'lang must be zh or en' }, 400, request)
+  if (typeof html !== 'string' || !html) return json({ error: 'html required' }, 400, request)
+  if (html.length > 500_000) return json({ error: 'html too large' }, 400, request)
 
   await env.DB.prepare(`
     INSERT INTO resume (lang, html) VALUES (?, ?)

@@ -1,4 +1,5 @@
 import { json } from '../_shared/cors.js'
+import { isPlainObject } from '../_shared/validate.js'
 
 const ALLOWED_KEYS = ['profile', 'experience', 'education', 'skills_matrix', 'skills_detail', 'awards']
 
@@ -16,7 +17,14 @@ export async function onRequestGet(context) {
 export async function onRequestPut(context) {
   const { request, env, params } = context
   if (!ALLOWED_KEYS.includes(params.key)) return json({ error: 'Unknown key' }, 400, request)
-  const { zh, en } = await request.json()
+  const body = await request.json().catch(() => null)
+  if (!body || (!isPlainObject(body.zh) && !Array.isArray(body.zh))) {
+    return json({ error: 'zh required' }, 400, request)
+  }
+  const { zh, en } = body
+  if (en !== undefined && en !== null && !isPlainObject(en) && !Array.isArray(en)) {
+    return json({ error: 'invalid en' }, 400, request)
+  }
 
   await env.DB.prepare(`
     INSERT INTO sections (key, zh, en) VALUES (?, ?, ?)

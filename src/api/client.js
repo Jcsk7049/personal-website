@@ -2,17 +2,23 @@ const BASE = import.meta.env.VITE_API_BASE || '/api'
 
 async function request(path, options = {}) {
   const token = localStorage.getItem('admin_token')
-  const res = await fetch(`${BASE}${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers || {}),
-    },
-  })
+  let res
+  try {
+    res = await fetch(`${BASE}${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(options.headers || {}),
+      },
+    })
+  } catch {
+    throw new Error('網路連線失敗，請檢查網路後再試')
+  }
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: res.statusText }))
-    throw new Error(err.error || res.statusText)
+    const err = await res.json().catch(() => null)
+    if (err?.error) throw new Error(err.error)
+    throw new Error(`${res.status} ${res.statusText}`)
   }
   return res.json()
 }

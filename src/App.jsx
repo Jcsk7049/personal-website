@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { ActiveSectionProvider } from './context/ActiveSectionContext'
@@ -17,8 +17,10 @@ import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
 import Card            from './pages/Card'
 import QRPage          from './pages/QRPage'
-import Admin           from './pages/Admin'
 import ScrollToTop     from './components/ScrollToTop'
+import ErrorBoundary   from './components/ErrorBoundary'
+
+const Admin = lazy(() => import('./pages/Admin'))
 
 function HomePage() {
   const { lang } = useLanguage()
@@ -134,7 +136,11 @@ function AppRoutes() {
         <Route path="/skills/:id"   element={<SkillDetail />}   />
         <Route path="/card"         element={<Card />}          />
         <Route path="/qr"           element={<QRPage />}        />
-        <Route path="/admin/*"      element={<Admin />}         />
+        <Route path="/admin/*"      element={
+          <Suspense fallback={<div className="min-h-screen bg-[#F5F5F7]" />}>
+            <Admin />
+          </Suspense>
+        } />
         <Route path="*"             element={<NotFound />}      />
       </Routes>
     </>
@@ -143,12 +149,14 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <DataProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </DataProvider>
-    </LanguageProvider>
+    <ErrorBoundary>
+      <LanguageProvider>
+        <DataProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </DataProvider>
+      </LanguageProvider>
+    </ErrorBoundary>
   )
 }

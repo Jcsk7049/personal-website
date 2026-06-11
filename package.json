@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest run",
     "dev:full": "wrangler pages dev dist --d1 DB=personal-website-db",
     "build": "vite build",
     "preview": "vite preview",
     "db:migrate": "wrangler d1 execute personal-website-db --file=migrations/0001_init.sql",
     "db:migrate:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0001_init.sql",
+    "db:migrate:login": "wrangler d1 execute personal-website-db --file=migrations/0003_login_attempts.sql",
+    "db:migrate:login:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0003_login_attempts.sql",
     "save": "sh -c 'git add src/ public/ index.html package.json vite.config.js && { git diff --cached --quiet && echo \"Nothing new to commit, pushing anyway...\" || git commit -m \"update: $(date \"+%Y-%m-%d %H:%M\")\"; } && git push'"
   },
   "dependencies": {
@@ -21,11 +24,15 @@
     "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "jsdom": "^29.1.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "vite": "^5.4.10",
+    "vitest": "^4.1.8",
     "wrangler": "4.98.0"
   }
 }
