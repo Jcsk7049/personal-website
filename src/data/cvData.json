@@ -343,7 +343,7 @@
             "items": [
               {
                 "name": "防洩漏驗證設計",
-                "desc": "自行設計 Stay-level CV（以病患為單位切分），解決原論文 Window-level CV 造成同一病患橫跨訓練/測試集的 Data Leakage，AUROC 從虛高 0.99 降至真實 0.58"
+                "desc": "自行設計 Stay-level CV（以病患為單位切分），解決原論文 Window-level CV 造成同一病患橫跨訓練/測試集的 Data Leakage；於 MIMIC-IV 復刻實驗中，AUROC 從虛高 0.99 降至真實 0.58，證實原論文結果為 Data Leakage 假象（本研究於亞東醫院資料上以相同方法從一開始即達 AUROC 0.98–0.99，詳見研究成果）"
               },
               {
                 "name": "Per-fold 正規化",

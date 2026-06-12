@@ -280,7 +280,7 @@
             "items": [
               {
                 "name": "Leakage-Free Validation",
-                "desc": "Self-designed Stay-level CV (patient-wise splits) to address window-level CV leakage in the original paper, reducing inflated AUROC from 0.99 to the true 0.58"
+                "desc": "Self-designed Stay-level CV (patient-wise splits) to address window-level CV leakage in the original paper; in a MIMIC-IV replication, AUROC dropped from an inflated 0.99 to a true 0.58, confirming the original result was a leakage artifact (this study's own model, using the same approach on FEMH data from the start, reached AUROC 0.98-0.99 — see Results)"
               },
               {
                 "name": "Per-fold Normalization",
