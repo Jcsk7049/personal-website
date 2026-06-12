@@ -15,19 +15,35 @@ const PROJECT_SECTIONS = [
 ]
 
 function TechEditor({ value = [], onChange }) {
-  const add    = () => onChange([...value, { name: '', items: [], note: '' }])
-  const remove = i => onChange(value.filter((_, j) => j !== i))
-  const set    = (i, f, v) => onChange(value.map((t, j) => j === i ? { ...t, [f]: v } : t))
+  const addGroup    = () => onChange([...value, { group: '', items: [] }])
+  const removeGroup = i => onChange(value.filter((_, j) => j !== i))
+  const setGroup    = (i, f, v) => onChange(value.map((g, j) => j === i ? { ...g, [f]: v } : g))
+
+  const addItem    = i => onChange(value.map((g, j) => j === i ? { ...g, items: [...(g.items || []), { name: '', desc: '' }] } : g))
+  const removeItem = (i, k) => onChange(value.map((g, j) => j === i ? { ...g, items: (g.items || []).filter((_, l) => l !== k) } : g))
+  const setItem    = (i, k, f, v) => onChange(value.map((g, j) => j === i ? { ...g, items: (g.items || []).map((it, l) => l === k ? { ...it, [f]: v } : it) } : g))
+
   return (
-    <div className="space-y-2">
-      {value.map((t, i) => (
-        <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-start">
-          <input className={inp} placeholder="群組名稱" value={t.name} onChange={e => set(i, 'name', e.target.value)} />
-          <input className={inp} placeholder="項目（逗號分隔）" value={t.items?.join(', ')} onChange={e => set(i, 'items', e.target.value.split(',').map(s => s.trim()).filter(Boolean))} />
-          <button type="button" onClick={() => remove(i)} className="mt-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+    <div className="space-y-3">
+      {value.map((g, i) => (
+        <div key={i} className="rounded-xl border border-black/10 p-3 space-y-2">
+          <div className="flex gap-2 items-start">
+            <input className={inp} placeholder="群組名稱" value={g.group || ''} onChange={e => setGroup(i, 'group', e.target.value)} />
+            <button type="button" onClick={() => removeGroup(i)} className="mt-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+          </div>
+          <div className="space-y-2">
+            {(g.items || []).map((it, k) => (
+              <div key={k} className="grid grid-cols-[1fr_2fr_auto] gap-2 items-start">
+                <input className={inp} placeholder="項目名稱" value={it.name || ''} onChange={e => setItem(i, k, 'name', e.target.value)} />
+                <textarea className={ta} rows={2} placeholder="說明" value={it.desc || ''} onChange={e => setItem(i, k, 'desc', e.target.value)} />
+                <button type="button" onClick={() => removeItem(i, k)} className="mt-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+              </div>
+            ))}
+            <button type="button" onClick={() => addItem(i)} className="text-xs text-[#0071E3] hover:underline">+ 新增項目</button>
+          </div>
         </div>
       ))}
-      <button type="button" onClick={add} className="text-xs text-[#0071E3] hover:underline">+ 新增群組</button>
+      <button type="button" onClick={addGroup} className="text-xs text-[#0071E3] hover:underline">+ 新增群組</button>
     </div>
   )
 }
