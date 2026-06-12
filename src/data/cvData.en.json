@@ -36,20 +36,20 @@
       "role": "Research Intern",
       "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
       "period": "2025.05 – Present",
-      "description": "Leading ICU VAP early-warning research: designed Stay-Level 5-Fold CV to eliminate patient-level data leakage found in public baselines (AUROC inflated 0.99 → true 0.58). Used Integrated Gradients to distill 14 features to 4 non-invasive metrics; LSTM achieves 72h AUROC 0.98–0.99. Paper submitted IEEE GCCE 2026."
+      "description": "Leading ICU VAP early-warning research: designed Stay-Level 5-Fold CV to eliminate patient-level data leakage in public baselines, and used Integrated Gradients to distill 14 features to 4 non-invasive metrics; LSTM achieves 72h AUROC 0.98–0.99. Paper submitted to IEEE GCCE 2026."
     },
     {
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools that cut roughly a week off the trial-and-error firmware debugging cycle, and now coach newer members to debug from root cause rather than guess-and-check. Engineering Advisor since 2023.",
+      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools that cut roughly a week off the trial-and-error firmware debugging cycle, and now coach newer members to debug from root cause rather than guess-and-check. Also rebuilt the team website to cut down on repetitive PR questions. Engineering Advisor since 2023.",
       "frc": true
     },
     {
       "role": "Competitive Athlete",
       "organization": "Nangang VHS NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "Responsible for robot wiring, programming, and small mechanical parts fabrication; competed in 3 FRC international regional events over 3 years (including the 2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and represented the school at the National Skills Competition."
+      "description": "Did a bit of everything for the team: LabVIEW/Arduino programming, FRC electrical wiring, AutoCAD modeling, laser cutting and 3D printing for mechanical parts, plus business plan writing and engineering notebook entries. Competed in 3 FRC international regional events over 3 years (including the 2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and represented the school at the National Skills Competition."
     }
   ],
   "skills_matrix": {
