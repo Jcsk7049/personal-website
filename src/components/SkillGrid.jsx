@@ -114,22 +114,6 @@ export default function SkillGrid({ skills, detail }) {
                     </p>
                   )}
 
-                  {/* featured: inline skill preview */}
-                  {isFeatured && skillList.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {skillList.slice(0, 4).map(s => (
-                        <div key={s.name}
-                             className="flex items-center justify-between
-                                        bg-[#F5F5F7] rounded-xl px-3.5 py-2.5">
-                          <span className="text-sm font-medium text-[#1D1D1F] truncate mr-2">{s.name}</span>
-                          <span className={`shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full ${LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']}`}>
-                            {t.levels[s.level] ?? s.level}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
                   {/* proficiency bar */}
                   {skillList.length > 0 && (
                     <div className="space-y-2">
@@ -146,13 +130,13 @@ export default function SkillGrid({ skills, detail }) {
                     </div>
                   )}
 
-                  {/* tool tags */}
+                  {/* tool tags（含精熟度） */}
                   <div className="flex flex-wrap gap-1.5 flex-1 items-start content-start">
-                    {tags.map(skill => (
-                      <span key={skill}
-                            className="px-2.5 py-1 rounded-full text-xs font-medium
-                                       bg-[#F5F5F7] text-[#3F3F46]">
-                        {skill}
+                    {(skillList.length > 0 ? skillList : tags.map(name => ({ name }))).map(s => (
+                      <span key={s.name}
+                            className={`px-2.5 py-1 rounded-full text-xs font-medium ${s.level ? (LEVEL_STYLE[s.level] || LEVEL_STYLE['基礎']) : 'bg-[#F5F5F7] text-[#3F3F46]'}`}>
+                        {s.name}
+                        {s.level && <span className="opacity-60"> · {t.levels[s.level] ?? s.level}</span>}
                       </span>
                     ))}
                   </div>
