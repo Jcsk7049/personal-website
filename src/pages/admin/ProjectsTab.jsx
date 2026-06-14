@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { api } from '../../api/client'
 import { useData } from '../../context/DataContext'
 import { accent, CATEGORY_STYLES } from '../../data/designTokens'
@@ -254,13 +254,24 @@ export default function ProjectsTab({ toast }) {
     ? order.map(id => serverProjects.find(p => p.id === id)).filter(Boolean)
     : serverProjects
 
-  const setRef = useFlip(projects.map(p => p.id).join(','))
+  const projectsRef = useRef(projects)
+  projectsRef.current = projects
+  const orderRef = useRef(order)
+  orderRef.current = order
+
+  const flipRef = useFlip(projects.map(p => p.id).join(','))
+  const cardRefs = useRef(new Map())
+  const setRef = id => el => {
+    flipRef(id)(el)
+    if (el) cardRefs.current.set(id, el)
+    else cardRefs.current.delete(id)
+  }
 
   // 拖到別張卡片上方時即時換位（FLIP 會做推開動畫）
-  const onDragEnterRow = targetId => {
-    if (!dragId || dragId === targetId) return
-    const ids = projects.map(p => p.id)
-    const from = ids.indexOf(dragId)
+  const reorderTo = (fromId, targetId) => {
+    if (!fromId || fromId === targetId) return
+    const ids = projectsRef.current.map(p => p.id)
+    const from = ids.indexOf(fromId)
     const to   = ids.indexOf(targetId)
     if (from < 0 || to < 0) return
     ids.splice(to, 0, ids.splice(from, 1)[0])
@@ -269,9 +280,42 @@ export default function ProjectsTab({ toast }) {
 
   const commitOrder = async () => {
     setDragId(null)
-    if (!order) return
-    try { await api.reorderProjects(order); await refresh(); setOrder(null); toast('順序已更新', true) }
+    const currentOrder = orderRef.current
+    if (!currentOrder) return
+    try { await api.reorderProjects(currentOrder); await refresh(); setOrder(null); toast('順序已更新', true) }
     catch (e) { setOrder(null); toast(e.message, false) }
+  }
+
+  // 用 Pointer Events 取代 HTML5 拖放，滑鼠與觸控都能用
+  const dragInfo = useRef(null)
+
+  const onPointerMove = e => {
+    const info = dragInfo.current
+    if (!info) return
+    e.preventDefault()
+    for (const [cid, el] of cardRefs.current) {
+      if (cid === info.id) continue
+      const rect = el.getBoundingClientRect()
+      if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        reorderTo(info.id, cid)
+        break
+      }
+    }
+  }
+
+  const onPointerUp = () => {
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+    dragInfo.current = null
+    commitOrder()
+  }
+
+  const onHandlePointerDown = (e, id) => {
+    e.preventDefault()
+    dragInfo.current = { id }
+    setDragId(id)
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', onPointerUp)
   }
 
   const openNew  = () => { setEditId(null); setEditing({ zh: EMPTY_PROJ(), en: EMPTY_PROJ() }) }
@@ -321,12 +365,6 @@ export default function ProjectsTab({ toast }) {
         {projects.map(p => (
           <div key={p.id}
                ref={setRef(p.id)}
-               draggable
-               onDragStart={e => { setDragId(p.id); e.dataTransfer.effectAllowed = 'move' }}
-               onDragOver={e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' }}
-               onDragEnter={() => onDragEnterRow(p.id)}
-               onDrop={e => e.preventDefault()}
-               onDragEnd={commitOrder}
                className={`flex items-center gap-3 bg-white rounded-2xl px-4 py-3
                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
                           hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#FAFAFA]
@@ -334,6 +372,8 @@ export default function ProjectsTab({ toast }) {
                           ${dragId === p.id ? 'opacity-40' : ''}`}>
             {/* Drag handle */}
             <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#86868B] transition-colors duration-[125ms]"
+                  style={{ touchAction: 'none' }}
+                  onPointerDown={e => onHandlePointerDown(e, p.id)}
                   title="拖拉調整順序">
               <DragHandleIcon />
             </span>
