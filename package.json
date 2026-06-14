@@ -13,6 +13,8 @@
     "db:migrate:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0001_init.sql",
     "db:migrate:login": "wrangler d1 execute personal-website-db --file=migrations/0003_login_attempts.sql",
     "db:migrate:login:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0003_login_attempts.sql",
+    "db:migrate:sync": "wrangler d1 execute personal-website-db --file=migrations/0004_sync_content.sql",
+    "db:migrate:sync:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0004_sync_content.sql",
     "save": "sh -c 'git add src/ public/ index.html package.json vite.config.js && { git diff --cached --quiet && echo \"Nothing new to commit, pushing anyway...\" || git commit -m \"update: $(date \"+%Y-%m-%d %H:%M\")\"; } && git push'"
   },
   "dependencies": {
