@@ -267,17 +267,6 @@ export default function ProjectsTab({ toast }) {
     else cardRefs.current.delete(id)
   }
 
-  // 拖到別張卡片上方時即時換位（FLIP 會做推開動畫）
-  const reorderTo = (fromId, targetId) => {
-    if (!fromId || fromId === targetId) return
-    const ids = projectsRef.current.map(p => p.id)
-    const from = ids.indexOf(fromId)
-    const to   = ids.indexOf(targetId)
-    if (from < 0 || to < 0) return
-    ids.splice(to, 0, ids.splice(from, 1)[0])
-    setOrder(ids)
-  }
-
   const commitOrder = async () => {
     setDragId(null)
     const currentOrder = orderRef.current
@@ -287,19 +276,21 @@ export default function ProjectsTab({ toast }) {
   }
 
   // 用 Pointer Events 取代 HTML5 拖放，滑鼠與觸控都能用
+  // 拖拉中不重新量測卡片位置（FLIP 動畫期間 rect 會因 transform 而漂移），
+  // 改用「移動距離 ÷ 卡片高度」算出目標 index
   const dragInfo = useRef(null)
 
   const onPointerMove = e => {
     const info = dragInfo.current
     if (!info) return
     e.preventDefault()
-    for (const [cid, el] of cardRefs.current) {
-      if (cid === info.id) continue
-      const rect = el.getBoundingClientRect()
-      if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
-        reorderTo(info.id, cid)
-        break
-      }
+    const ids = projectsRef.current.map(p => p.id)
+    const currentIndex = ids.indexOf(info.id)
+    const offset = Math.round((e.clientY - info.startY) / info.itemHeight)
+    const targetIndex = Math.max(0, Math.min(ids.length - 1, info.startIndex + offset))
+    if (targetIndex !== currentIndex) {
+      ids.splice(targetIndex, 0, ids.splice(currentIndex, 1)[0])
+      setOrder(ids)
     }
   }
 
@@ -312,7 +303,11 @@ export default function ProjectsTab({ toast }) {
 
   const onHandlePointerDown = (e, id) => {
     e.preventDefault()
-    dragInfo.current = { id }
+    const ids = projectsRef.current.map(p => p.id)
+    const startIndex = ids.indexOf(id)
+    const el = cardRefs.current.get(id)
+    const itemHeight = (el ? el.getBoundingClientRect().height : 60) + 8 // + space-y-2 間距
+    dragInfo.current = { id, startY: e.clientY, startIndex, itemHeight }
     setDragId(id)
     window.addEventListener('pointermove', onPointerMove)
     window.addEventListener('pointerup', onPointerUp)
