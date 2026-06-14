@@ -439,6 +439,71 @@
       }
     },
     {
+      "id": "job-radar",
+      "category": "大學校外作品",
+      "title": "Job Radar：個人化求職雷達",
+      "period": "2026 – 現在",
+      "description": "每天用 GitHub Actions 自動爬 49 家鎖定公司的職缺（104、Cake、LinkedIn 三來源，每日約 1,300 筆），依自訂權重評分排序，產出靜態儀表板部署在 Cloudflare Pages。沒有後端、沒有資料庫，資料處理和呈現完全分離。",
+      "tags": [
+        "Python",
+        "Playwright",
+        "Web Scraping",
+        "GitHub Actions",
+        "Cloudflare Pages"
+      ],
+      "detail": {
+        "purpose": "一般求職平台的排序是「大家都看什麼」，跟「我適不適合」沒有關係。我想要一個以自己的技能背景為中心的系統：自動追蹤我鎖定的數十家公司，用自己定的權重排序，並把「現在學生身分能投的」和「畢業後才能投的」分開看。\n\n所以做了一個每天自己跑、不用開電腦的工具：每天早上 8:30 自動更新一次。",
+        "concept": "資料和呈現分離：爬蟲產出結構化 JSON，建置階段把卡片靜態渲染進單一 HTML，前端 JS 只負責過濾、搜尋、把已投/收藏狀態存在 localStorage。沒有後端、沒有資料庫，純靜態檔案丟 CDN，快也便宜。\n\n三個來源各自的爬法不一樣：104 是逆向公司頁面的前端 API（抓「全部職缺」而不是關鍵字搜尋，避免漏抓）；Cake 的職缺頁是 JS 渲染，用 Playwright headless 抓；LinkedIn 用它公開的訪客職缺端點，純 HTTP 不用登入。三種資料格式不同，最後統一成同一張卡片的 schema，再混合排序。\n\n評分權重（公司適配度、職稱關鍵字、地點通勤圈、經歷門檻、新人友善度）全部外置在 config.json，不用改程式碼就能調整。職缺再依畢業時程分成「現在可投 / 校徵標的 / 畢業後正職池」，避免把「適合」和「現在能投」混在一起看。",
+        "outcome": "目前每天自動更新，三來源合計約 1,300 筆職缺。中途解決的幾個實際問題：\n\n・104 舊版 joblist API 失效後，改成逆向公司頁 SPA 找到現行端點\n・LinkedIn 會擋一般爬蟲，改用公開訪客端點繞過登入限制\n・原本排在本機 Windows 排程，電腦不開就不會跑，後來搬到 GitHub Actions 雲端 cron\n・CI 部署時 token 夾帶看不見的隱形字元導致 deploy 失敗，後來在部署前用 tr -cd 清掉非法字元並印出字串長度做診斷\n・「這是不是新職缺」需要跨次執行記住看過的職缺，把 seen_jobs.json 納入版控解決\n\n個人學業資料（畢業學分、求職策略）放在需登入的私密頁面，公開的職缺雷達和排行榜頁面不含個人資料。",
+        "tech": [
+          {
+            "group": "資料擷取",
+            "items": [
+              {
+                "name": "104 API 逆向",
+                "desc": "舊版 joblist API 停用後，從公司頁 SPA 的前端 bundle 找出現行 /api/companies/{code}/jobs 端點與公司代碼規則，改抓全部職缺而非關鍵字搜尋"
+              },
+              {
+                "name": "Playwright 動態渲染",
+                "desc": "Cake 職缺頁是 JS 渲染，用 headless browser 等內容載入後再抓取"
+              },
+              {
+                "name": "LinkedIn 訪客端點",
+                "desc": "用公開的訪客職缺 API（純 HTTP），避開登入牆和一般爬蟲限制"
+              }
+            ]
+          },
+          {
+            "group": "評分與呈現",
+            "items": [
+              {
+                "name": "外置權重評分引擎",
+                "desc": "公司適配度、職稱關鍵字、地點、經歷門檻等權重全部寫在 config.json，調整排序不用改程式碼"
+              },
+              {
+                "name": "靜態儀表板生成",
+                "desc": "build_dashboard.py 把三來源的 JSON 統一成同一張卡片 schema，渲染成單檔 RWD HTML，前端 JS 只做過濾/搜尋/收藏狀態（存 localStorage）"
+              }
+            ]
+          },
+          {
+            "group": "自動化部署",
+            "items": [
+              {
+                "name": "GitHub Actions 排程",
+                "desc": "每日 cron 跑完整流程（爬取→評分→建置→部署），從本機 Windows 排程遷移過來，電腦關機也照跑"
+              },
+              {
+                "name": "CI 部署除錯",
+                "desc": "Cloudflare 部署 token 夾帶隱形字元導致 header 失敗，部署前用 tr -cd 過濾非法字元並印出長度做診斷"
+              }
+            ]
+          }
+        ],
+        "demo": "https://job-radar-bck.pages.dev"
+      }
+    },
+    {
       "id": "audio-amplifier",
       "cover": "/images/audio-amplifier/circuit-assembled.jpg",
       "category": "大學課程作品",
