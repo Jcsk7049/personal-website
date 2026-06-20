@@ -609,6 +609,86 @@
           {
             "src": "/images/pcb-defect-detection/validation-board.png",
             "caption": "整板偵測：對 held-out 板做切塊推論後把框映射回原圖的完整結果"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_01.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 1 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_02.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 2 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_03.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 3 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_04.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 4 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_05.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 5 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_06.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 6 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_07.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 7 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_08.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 8 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_09.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 9 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_10.jpg",
+            "caption": "missing_hole 偵測：板型 06 第 10 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_01.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 1 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_02.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 2 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_03.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 3 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_04.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 4 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_05.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 5 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_06.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 6 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_07.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 7 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_08.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 8 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_09.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 9 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_10.jpg",
+            "caption": "missing_hole 偵測：板型 07 第 10 張（綠＝標註，紅＝模型預測）"
           }
         ],
         "purpose": "作業要求：10 個板型裡至少挑 3 型、至少 3 種缺陷，用物件偵測訓練到 Precision 80% 以上，再對沒看過的板子做檢測，最後匯出 model.pb 能在 Colab 載入。\n\n真正卡住的不是訓練流程，是資料尺度。缺陷框只有約 60 像素，整張板卻是 3034×1586。Custom Vision 會把輸入縮到約 512px，縮完缺陷只剩約 10px，模型根本看不到——第一次照標準流程訓練，mAP 只有 9.6%、Recall 3.1%，等於沒用。",

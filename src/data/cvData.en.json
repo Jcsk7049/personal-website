@@ -533,6 +533,86 @@
           {
             "src": "/images/pcb-defect-detection/validation-board.png",
             "caption": "Full-board detection: tiled inference on a held-out board with boxes mapped back to the original image"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_01.jpg",
+            "caption": "missing_hole detection — board 06, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_02.jpg",
+            "caption": "missing_hole detection — board 06, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_03.jpg",
+            "caption": "missing_hole detection — board 06, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_04.jpg",
+            "caption": "missing_hole detection — board 06, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_05.jpg",
+            "caption": "missing_hole detection — board 06, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_06.jpg",
+            "caption": "missing_hole detection — board 06, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_07.jpg",
+            "caption": "missing_hole detection — board 06, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_08.jpg",
+            "caption": "missing_hole detection — board 06, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_09.jpg",
+            "caption": "missing_hole detection — board 06, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_10.jpg",
+            "caption": "missing_hole detection — board 06, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_01.jpg",
+            "caption": "missing_hole detection — board 07, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_02.jpg",
+            "caption": "missing_hole detection — board 07, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_03.jpg",
+            "caption": "missing_hole detection — board 07, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_04.jpg",
+            "caption": "missing_hole detection — board 07, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_05.jpg",
+            "caption": "missing_hole detection — board 07, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_06.jpg",
+            "caption": "missing_hole detection — board 07, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_07.jpg",
+            "caption": "missing_hole detection — board 07, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_08.jpg",
+            "caption": "missing_hole detection — board 07, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_09.jpg",
+            "caption": "missing_hole detection — board 07, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_10.jpg",
+            "caption": "missing_hole detection — board 07, #10 (green = ground truth, red = prediction)"
           }
         ],
         "purpose": "The assignment: from 10 board types, pick at least 3 types and at least 3 defect classes, train an object detector to 80%+ precision, run detection on unseen boards, and export a model.pb that loads in Colab.\n\nThe hard part wasn't the training workflow, it was the scale of the data. Each defect box is about 60 pixels while the whole board is 3034×1586. Custom Vision shrinks input to about 512px, leaving defects at ~10px that the model simply can't see. The first run by the standard workflow got 9.6% mAP and 3.1% recall, basically useless.",
