@@ -141,10 +141,12 @@ export function DragHandleIcon() {
 export function ImageUploadBtn({ onUploaded }) {
   const [uploading, setUploading] = useState(false)
   const [drag, setDrag] = useState(false)
+  const [error, setError] = useState('')
 
   const upload = async (file) => {
     if (!file || !file.type.startsWith('image/')) return
     setUploading(true)
+    setError('')
     try {
       const form = new FormData()
       form.append('file', file)
@@ -153,23 +155,32 @@ export function ImageUploadBtn({ onUploaded }) {
         headers: { Authorization: `Bearer ${localStorage.getItem('admin_token')}` },
         body: form,
       })
-      const data = await res.json()
-      if (data.path) onUploaded(data.path)
+      const data = await res.json().catch(() => null)
+      if (!res.ok) {
+        setError(data?.error || `上傳失敗（${res.status}），請重新登入後再試`)
+        return
+      }
+      if (data?.path) onUploaded(data.path)
+    } catch {
+      setError('上傳失敗：網路連線問題')
     } finally {
       setUploading(false)
     }
   }
 
   return (
-    <label
-      onDragOver={e => { e.preventDefault(); setDrag(true) }}
-      onDragLeave={() => setDrag(false)}
-      onDrop={e => { e.preventDefault(); setDrag(false); upload(e.dataTransfer.files[0]) }}
-      className={`flex items-center justify-center gap-2 h-16 rounded-xl border-2 border-dashed cursor-pointer transition-colors text-sm
-        ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#86868B] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
-    >
-      {uploading ? '上傳中…' : '點擊或拖曳圖片上傳'}
-      <input type="file" accept="image/*" className="hidden" onChange={e => upload(e.target.files[0])} />
-    </label>
+    <div className="space-y-1">
+      <label
+        onDragOver={e => { e.preventDefault(); setDrag(true) }}
+        onDragLeave={() => setDrag(false)}
+        onDrop={e => { e.preventDefault(); setDrag(false); upload(e.dataTransfer.files[0]) }}
+        className={`flex items-center justify-center gap-2 h-16 rounded-xl border-2 border-dashed cursor-pointer transition-colors text-sm
+          ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#86868B] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
+      >
+        {uploading ? '上傳中…' : '點擊或拖曳圖片上傳'}
+        <input type="file" accept="image/*" className="hidden" onChange={e => upload(e.target.files[0])} />
+      </label>
+      {error && <p className="text-xs text-red-500">{error}</p>}
+    </div>
   )
 }
