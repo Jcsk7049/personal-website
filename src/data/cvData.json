@@ -313,9 +313,18 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/vap/fig-pipeline.png",           "caption": "系統流程：特徵篩選 → 滑動視窗 → LSTM → 多時程評估" },
-          { "src": "/images/vap/fig-lstm-vs-baseline.png",   "caption": "Fig. 1　LSTM vs 傳統 ML 基準（AUROC / AUPRC / Sensitivity / Specificity）" },
-          { "src": "/images/vap/fig-lstm-performance.png",   "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）" }
+          {
+            "src": "/images/vap/fig-pipeline.png",
+            "caption": "系統流程：特徵篩選 → 滑動視窗 → LSTM → 多時程評估"
+          },
+          {
+            "src": "/images/vap/fig-lstm-vs-baseline.png",
+            "caption": "Fig. 1　LSTM vs 傳統 ML 基準（AUROC / AUPRC / Sensitivity / Specificity）"
+          },
+          {
+            "src": "/images/vap/fig-lstm-performance.png",
+            "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）"
+          }
         ],
         "purpose": "VAP 發生率約 5–15%（機械通氣病患），死亡率 20–50%，臨床診斷通常滯後 48 小時以上；現行方法依賴定期評估，無法利用連續監測訊號的時序趨勢。\n\n本研究以亞東紀念醫院 ICU 2019–2023 年資料（n=109：VAP 54 例、非VAP 55 例），建立 LSTM 時序分類管線，以 4 項常規生命徵象（MAP、呼吸速率、潮氣容積、SpO₂）提前 6–72 小時預警 VAP。\n\n模型選擇：LSTM vs GRU / Transformer\nVAP 生理變化呈連續時序漂移（感染前 48–72 小時可見），靜態特徵不足以捕捉長程依賴。LSTM cell state 在 72 小時窗口下梯度穩定性優於 GRU；Transformer 在 n=109 小樣本下過擬合，對比測試均不及 LSTM。最終確立 LSTM 為主模型，在所有窗口 AUROC / AUPRC 均顯著高於 LR、RF、SVM。\n\n【研究侷限與誠實邊界】\n本研究是試驗性方法論驗證，非臨床可部署系統。三項核心限制：(1) 單中心資料（亞東紀念醫院），泛化至其他 ICU 族群的能力尚未建立。(2) 小樣本（n=109）——研究結果證明了 Stay-Level CV 方法論的有效性，不應被解讀為部署級臨床效能的依據。(3) 在考慮任何臨床應用前，需於多中心、更大樣本的資料集上完成外部驗證。本地資料的高 AUROC 反映的是嚴格防洩漏實驗設計在小型同質樣本上的結果。",
         "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，屬 Data Leakage。此發現為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，納入 110 人，排除機械通氣時間不足 72 小時者 1 例，有效 109 人：VAP 54 例、非VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：PyTorch + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
@@ -389,11 +398,26 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/AWS-bito-guard/dashboard-overview.png",    "caption": "數據總覽：AUC 83.2%、Precision 27.5%、Recall 33.2%，混淆矩陣 + 5-Fold CV 柱狀圖" },
-          { "src": "/images/AWS-bito-guard/dashboard-risk-query.png",  "caption": "帳號風險查詢：USER ID 971465 評分 82.1%，判定極高風險、標記黑名單" },
-          { "src": "/images/AWS-bito-guard/dashboard-risk-table.png",  "caption": "風險排名：Top 50 高風險帳號（CRITICAL）與 Top 50 低風險帳號對比" },
-          { "src": "/images/AWS-bito-guard/dashboard-model-eval.png",  "caption": "模型評估：特徵重要性（total_volume 最高）+ 決策門檻分析（最佳門檻 0.24）" },
-          { "src": "/images/AWS-bito-guard/dashboard-predictions.png", "caption": "預測結果：12,753 位用戶，501 筆標記風險（3.93%）、12,252 筆正常（96.07%）" }
+          {
+            "src": "/images/AWS-bito-guard/dashboard-overview.png",
+            "caption": "數據總覽：AUC 83.2%、Precision 27.5%、Recall 33.2%，混淆矩陣 + 5-Fold CV 柱狀圖"
+          },
+          {
+            "src": "/images/AWS-bito-guard/dashboard-risk-query.png",
+            "caption": "帳號風險查詢：USER ID 971465 評分 82.1%，判定極高風險、標記黑名單"
+          },
+          {
+            "src": "/images/AWS-bito-guard/dashboard-risk-table.png",
+            "caption": "風險排名：Top 50 高風險帳號（CRITICAL）與 Top 50 低風險帳號對比"
+          },
+          {
+            "src": "/images/AWS-bito-guard/dashboard-model-eval.png",
+            "caption": "模型評估：特徵重要性（total_volume 最高）+ 決策門檻分析（最佳門檻 0.24）"
+          },
+          {
+            "src": "/images/AWS-bito-guard/dashboard-predictions.png",
+            "caption": "預測結果：12,753 位用戶，501 筆標記風險（3.93%）、12,252 筆正常（96.07%）"
+          }
         ],
         "purpose": "BitoPro 加密貨幣交易所 AML 合規競賽資料集：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 用戶）\n・USDT 交易紀錄：217,634 筆（33,587 用戶）\n・標記人頭帳戶：1,640 筆（訓練集 3.21%）\n\n目標是對每個帳戶輸出風險分數，識別高風險可疑帳戶，同時滿足監管機構對 AML 合規說明的可解釋性要求（不接受黑盒輸出）。\n\n選用 XGBoost 而非深度學習的理由：AML 合規場景要求對每筆標記帳戶提供特徵層級的判斷依據，XGBoost + SHAP 可直接輸出個別帳戶的特徵貢獻值；在 <65K 結構化資料規模下，訓練速度與超參數穩定性亦優於神經網路。",
         "concept": "【為何選用 XGBoost，而非深度學習？】\nAML 合規系統的核心需求是可解釋性：監管機構要求對每筆標記帳戶提供「哪些特徵觸發高風險」的具體依據，而非黑盒分數。XGBoost 配合 SHAP 值分析可直接輸出每個特徵對單一帳戶預測的貢獻量，滿足合規說明義務。此外，相較於神經網路，XGBoost 在此規模的結構化交易資料（<65K 帳戶）訓練更快、超參數更穩定，且原生支援 scale_pos_weight 直接緩解 1:30 類別不平衡。\n\n【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
@@ -519,13 +543,34 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/audio-amplifier/circuit-assembled.jpg",         "caption": "完成品：BJT 兩級放大電路板 + 8Ω 喇叭，實際驅動音訊輸出" },
-          { "src": "/images/audio-amplifier/pcb-etched.png",                "caption": "感光板酸洗蝕刻後的 PCB 生板：走線清晰，準備鑽孔焊接" },
-          { "src": "/images/audio-amplifier/circuit-schematic.png",          "caption": "EDA 電路原理圖：CE 放大級 + 偏壓網路 + CC 射極隨耦器完整設計" },
-          { "src": "/images/audio-amplifier/pcb-layout-components.png",      "caption": "PCB 元件配置圖（正面）：109.2 × 45.7 mm，含電晶體、電容、可變電阻佈局" },
-          { "src": "/images/audio-amplifier/pcb-layout-bottom.png",          "caption": "PCB 元件配置圖（底面）：確認元件腳位鏡像方向，兩次重製的關鍵學習點" },
-          { "src": "/images/audio-amplifier/pcb-traces.png",                 "caption": "PCB 銅箔走線圖：CE 放大級 + CC 射極隨耦器完整佈線" },
-          { "src": "/images/audio-amplifier/pcb-drill-pattern.png",          "caption": "PCB 鑽孔孔位圖：所有元件腳位與固定孔的加工基準" }
+          {
+            "src": "/images/audio-amplifier/circuit-assembled.jpg",
+            "caption": "完成品：BJT 兩級放大電路板 + 8Ω 喇叭，實際驅動音訊輸出"
+          },
+          {
+            "src": "/images/audio-amplifier/pcb-etched.png",
+            "caption": "感光板酸洗蝕刻後的 PCB 生板：走線清晰，準備鑽孔焊接"
+          },
+          {
+            "src": "/images/audio-amplifier/circuit-schematic.png",
+            "caption": "EDA 電路原理圖：CE 放大級 + 偏壓網路 + CC 射極隨耦器完整設計"
+          },
+          {
+            "src": "/images/audio-amplifier/pcb-layout-components.png",
+            "caption": "PCB 元件配置圖（正面）：109.2 × 45.7 mm，含電晶體、電容、可變電阻佈局"
+          },
+          {
+            "src": "/images/audio-amplifier/pcb-layout-bottom.png",
+            "caption": "PCB 元件配置圖（底面）：確認元件腳位鏡像方向，兩次重製的關鍵學習點"
+          },
+          {
+            "src": "/images/audio-amplifier/pcb-traces.png",
+            "caption": "PCB 銅箔走線圖：CE 放大級 + CC 射極隨耦器完整佈線"
+          },
+          {
+            "src": "/images/audio-amplifier/pcb-drill-pattern.png",
+            "caption": "PCB 鑽孔孔位圖：所有元件腳位與固定孔的加工基準"
+          }
         ],
         "purpose": "大二電子學期末專案（第 12 組），目標是設計並實作一套可驅動 8Ω 喇叭的音訊放大電路。電路需包含可調增益功能，並完成從電路模擬、麵包板驗證到實際 PCB 製作的完整流程。\n\n本人主要負責 PCB 全流程：邏輯圖繪製、線路圖設計、感光板製作（曝光、顯影、酸洗）、鑽孔、焊接與除錯。",
         "concept": "【電路架構：兩級 BJT 放大】\n・輸入級：可變電阻 Rv1a / Rv1b 調整輸入增益；R3 / R4 提供直流偏壓使 Q1 穩定工作於主動區\n・第一級 CE（共射極）放大：Q1 提供主要電壓增益，集極電阻 RC 將電流變化轉換為輸出電壓\n・偏壓穩定：D1–D4 四個二極體串聯穩定 Q2、Q3 基極電壓差；C3 吸收反向電壓避免二極體擊穿\n・第二級 CC（共集極 / 射極隨耦器）：高輸入阻抗、低輸出阻抗，透過發射極電阻 RE 的負回授提升穩定性並降低失真，電壓增益約為 1\n・可變電阻 Rv2 調整整體直流工作點，在不失真的條件下找到最大增益\n\n【PCB 製作流程】\n感光 FR4 雙面板（15 cm × 12.5 cm），手工製作流程：\n① Layout 繪製 → 縮減白線交叉點，元件下方走線壓縮面積\n② 底片輸出 → 曝光 → 顯影 → 酸洗蝕刻 → 清洗\n③ 鑽孔 → 元件焊接 → 通電測試\n\n【兩次重製過程】\n第一次失敗：酸洗後有殘銅未清除乾淨，通電後短路。逐一確認二極體導通、電晶體工作狀態均正常後，確認問題出在板子本身。重新繪製 Layout 加急重製。\n\n第二次問題：焊接完成後仍無法運作。隊友發現 PCB 圖紙需「從下往上看」——功率 IC 和電晶體腳位全數鏡像，重新焊接後電路出現斷續訊號且電壓五秒後下跌。再次確認所有焊點導通後，電路順暢運作。",
@@ -579,68 +624,6 @@
       }
     },
     {
-      "id": "pcb-defect-detection",
-      "cover": "/images/pcb-defect-detection/cover.png",
-      "category": "大學課程作品",
-      "title": "PCB 元件瑕疵偵測：Azure Custom Vision 物件偵測",
-      "period": "2026",
-      "description": "用 Azure Custom Vision 訓練物件偵測模型，框出 PCB 元件上的兩類瑕疵（Bad_podu 破洞、Bad_qiaojiao 翹腳）。1064 + 609 張標註影像，General [A1] domain 訓練後 Precision 67.4%、Recall 97.5%、mAP 87.4%。另寫了一支腳本算預測框與標註框的 IoU，用 ≥0.5 當驗證門檻。",
-      "tags": [
-        "Azure Custom Vision",
-        "Object Detection",
-        "Pascal VOC",
-        "IoU 驗證",
-        "Python"
-      ],
-      "detail": {
-        "images": [
-          { "src": "/images/pcb-defect-detection/performance.png",  "caption": "Iteration 1 訓練結果：整體 Precision 67.4% / Recall 97.5% / mAP 87.4%，分標籤效能見下方數據" },
-          { "src": "/images/pcb-defect-detection/quick-test.png",   "caption": "Quick Test：對單張測試影像即時推論，框出 Bad_podu 區域並標示信心度" }
-        ],
-        "purpose": "PCB 上的破洞（podu）與翹腳（qiaojiao）肉眼檢查容易漏判，尤其產線速度快的時候。這個專案是練習把整套物件偵測流程搬到雲端：標註資料、訓練、發布、推論、再寫腳本驗證模型有沒有真的框對地方，而不是只看 confidence 高低。",
-        "concept": "【資料處理與上傳】\n用 `xml.etree.ElementTree` 解析 Pascal VOC 格式的標註 XML，把像素座標的 bounding box 換算成 Custom Vision API 要求的 0–1 正規化座標（left/top/width/height）。同時讀取 train_data 與 train_data_augmentation 兩個目錄，合併後分批上傳（Azure 限制單批最多 64 張）。\n\n【訓練】\n建立 Object Detection 專案，標籤分別是 Bad_podu（破洞）與 Bad_qiaojiao（翹腳），用 General [A1] domain 訓練。Bad_podu 1064 張、Bad_qiaojiao 609 張，合計約 1673 張標註影像參與訓練。\n\n【驗證：IoU 而不是只看 confidence】\n光看模型回傳的信心度沒辦法確認框的位置對不對，所以另外寫了 validate_test.py：從測試集隨機抽圖、解析對應的 ground truth XML、呼叫 Prediction API 取得預測框，再計算每個預測框與所有 GT 框的最大 IoU（交併比）。設定 confidence ≥ 50%、IoU ≥ 0.5 為通過門檻，並用 matplotlib 把 GT（綠框）、通過的預測（橘框）、未通過的預測（紅框）畫在同一張圖上輸出比對。",
-        "outcome": "【Iteration 1 整體效能（threshold=0.5）】\nPrecision 67.4%　Recall 97.5%　mAP 87.4%\n\n【分標籤效能】\nBad_podu　　　Precision 69.6%　Recall 99.2%　AP 91.4%（1064 張）\nBad_qiaojiao　Precision 59.7%　Recall 91.3%　AP 83.3%（609 張）\n\nRecall 普遍偏高、Precision 相對較低，代表模型傾向「寧可多框、不要漏框」——對瑕疵檢測這種漏判成本高的場景方向是對的，但代表會有不少假陽性，要嘛調高 confidence threshold、要嘛靠人工複檢過濾。Bad_qiaojiao 的 Precision（59.7%）比 Bad_podu（69.6%）低，可能是翹腳的形狀變化比破洞更不規則，標註樣本數也少了將近一半（609 vs 1064），這塊如果要往下做，應該先補資料再重訓。\n\n【關於那兩支腳本】\n上課作業繳交的版本裡，Azure 的 TRAINING_KEY、PREDICTION_KEY 直接寫死在程式碼中——這是練習階段圖方便的做法，正式專案不會這樣寫，金鑰應該放進環境變數或 .env 並排除在版控之外。",
-        "tech": [
-          {
-            "group": "雲端 AI 服務",
-            "items": [
-              {
-                "name": "Azure Custom Vision SDK",
-                "desc": "用 Python SDK 走完建專案、建標籤、批次上傳、觸發訓練、輪詢狀態、發布 Iteration 的完整流程，不用自己管 GPU 訓練環境"
-              }
-            ]
-          },
-          {
-            "group": "資料處理",
-            "items": [
-              {
-                "name": "Pascal VOC 解析與座標轉換",
-                "desc": "用 xml.etree.ElementTree 解析 bndbox 標籤，並把像素座標換算成 Custom Vision 要求的 0–1 正規化座標"
-              },
-              {
-                "name": "資料增強合併",
-                "desc": "合併 train_data 與 train_data_augmentation 兩批標註資料，分批（每批 ≤64 張）上傳符合 Azure API 限制"
-              }
-            ]
-          },
-          {
-            "group": "驗證與視覺化",
-            "items": [
-              {
-                "name": "IoU 計算",
-                "desc": "自己實作 IoU 公式（交集面積 / 聯集面積），對每個預測框找出與所有 GT 框的最大 IoU，以 ≥0.5 判定是否通過"
-              },
-              {
-                "name": "matplotlib 視覺化",
-                "desc": "把 ground truth、通過驗證的預測、未通過的預測用不同顏色框疊圖輸出，方便直接看出模型框錯在哪裡而不是只看數字"
-              }
-            ]
-          }
-        ],
-        "github": ""
-      }
-    },
-    {
       "id": "qmk-stm32-keyboard",
       "cover": "/images/qmk-stm32-keyboard/numpad-hero.jpg",
       "category": "大學校外作品",
@@ -656,8 +639,14 @@
       ],
       "detail": {
         "images": [
-          { "src": "/images/qmk-stm32-keyboard/numpad-top.jpg",  "caption": "完成品俯視" },
-          { "src": "/images/qmk-stm32-keyboard/numpad-hero.jpg", "caption": "與主鍵盤並用" }
+          {
+            "src": "/images/qmk-stm32-keyboard/numpad-top.jpg",
+            "caption": "完成品俯視"
+          },
+          {
+            "src": "/images/qmk-stm32-keyboard/numpad-hero.jpg",
+            "caption": "與主鍵盤並用"
+          }
         ],
         "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n專案範疇說明：本專案以現有開源鍵盤 PCB Layout 為基礎（於 EasyEDA Pro 改版以對接立創商城打板），整合 QMK 開源韌體框架，並非從零設計硬體。核心工程挑戰在於診斷並解決 QMK/ChibiOS 開源框架與 STM32F072 目標硬體之間的編譯失敗與時序衝突問題，並借助 LLM 輔助偵錯工具逆向工程正確的 ChibiOS HAL 配置。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源整合紀錄——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F072 DFU 燒錄流程（BOOT0 腳位控制，免燒錄器）\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
         "concept": "【核心技術選型決策】\n・STM32F072 vs. Arduino Pro Micro（ATmega32U4）\n  F072 內建 USB FS 周邊，透過 BOOT0 腳直接進入 DFU 模式——一根 USB 線完成燒錄與使用，免去 ISP 燒錄器。Pro Micro 雖入門友善，但 Flash 僅 32KB，限制 QMK 進階功能（RGB Matrix、VIAL）的編譯空間。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的非 Arduino 目標（STM32 系列）官方使用 ChibiOS 作為 RTOS 抽象層，確保 USB HID 掃描時序的跨 MCU 可移植性。裸機 HAL 雖更輕量，但需自行處理 USB 中斷優先級與 GPIO 掃描衝突。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，首次 PCB 專案迭代速度顯著更快。\n\n【硬體架構】\n・MCU：STM32F072（內建 USB FS，支援 DFU 免燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
@@ -705,7 +694,14 @@
       "title": "FRC 7645 — 官網與後台 CMS",
       "period": "2025",
       "description": "35% 程式碼貢獻者。學長（65%）主導 React/Firebase/Vite 核心架構、Auth 系統、Three.js 3D 展覽廳與 Firestore 安全規則。我接手後負責：首頁大改版、留言系統（Contact 表單 → Firestore → CMS 管理 Tab 端對端）、組別身分系統、Code Splitting（JS bundle 2.7MB → 820KB）、Cloudflare Pages 部署與 TBA API 30 天快取。",
-      "tags": ["React", "Firebase", "Vite", "Cloudflare Pages", "Code Splitting", "localStorage 快取"],
+      "tags": [
+        "React",
+        "Firebase",
+        "Vite",
+        "Cloudflare Pages",
+        "Code Splitting",
+        "localStorage 快取"
+      ],
       "detail": {
         "purpose": "FRC 7645（南港高工）需要一個對外公開的官網，以及供非技術成員管理比賽資訊、隊員名單、新聞與贊助商內容的後台 CMS。\n\n程式碼貢獻比例：\n・學長（65%）：React / Firebase / Vite 核心架構與 routing、Firebase Auth 與 i18n、TipTap 富文字編輯器與圖片壓縮上傳、Three.js 3D 展覽廳（.glb 爆炸拆解動畫）、Firestore 安全規則、設計系統（CSS 變數、bento grid、carousel）、多頁面（Blog、Robots、Sponsors、About、Profile）、SEO（sitemap、JSON-LD）。\n・本人（35%）：首頁大改版、留言系統、組別身分系統、效能優化、Cloudflare Pages 部署、TBA API 快取、CMS 重整、CLAUDE.md 工作記憶框架建立。\n\n本文件描述本人 35% 貢獻範疇。",
         "concept": "【一、效能優化——Code Splitting & Lazy Loading】\n接手時整包 JS bundle 約 2.7MB，首屏載入明顯拖慢。以 Vite 動態 import 拆分路由層級的 chunk，配合 React.lazy + Suspense 實作 lazy loading，只在進入對應路由時才載入該頁的 JS。結果：bundle 從 2.7MB 降到 820KB（減少約 70%），FCP 明顯改善。\n\n【二、TBA API 快取——30 天 localStorage 層】\nTBA API 在比賽日高峰流量下容易觸發限流，訪客會看到空白賽況頁面。實作以端點 + 查詢字串為 key 的 30 天 localStorage 快取，每次請求驗證快取新鮮度，過期才重新 fetch 並更新快取。消除比賽日重複請求，移除限流風險。\n\n【三、留言系統——端對端實作】\nContact 頁表單送出後寫入 Firestore `messages` collection。CMS 新增「留言管理 Tab」，管理員可直接在後台查看、刪除留言，不需開 Firebase Console。從前端表單到後台管理介面都是這次新做的。\n\n同時為 `messages` collection 新增 Firestore 安全規則：`allow create: if true`（訪客可送出留言）、`allow read, delete` 限定 admin / teacher（CMS 後台存取）、`allow update: if false`（防止留言被竄改）。沒有這條規則，未驗證的訪客寫入會被 Firebase 預設拒絕。\n\n【四、組別身分系統】\nAdmin 新增多選 pill UI，讓管理員在後台勾選隊員所屬的功能組別（機構、電控、程式等）。Profile schema 新增 `showInDivision` 欄位，TeamGroup 組件根據此欄位自動過濾並顯示對應成員，取代原本需要手動維護多份靜態名單的方式。\n\n【五、首頁大改版】\n浮動贊助商泡泡以 CSS keyframe animation 實作，取代原本的 marquee 捲動元素，消除捲動卡頓。新增團隊簡介區塊與統計數字（歷屆賽季、獎項數量）。重構全域導覽列，新增 TeamTimeline.jsx（從資料陣列渲染戰隊里程碑）、Competition.jsx（消費 TBA 快取的賽事卡片，獨立處理 loading / error / empty 狀態）、MessagesPanel（CMS 留言管理）。\n\n【六、CI/CD 部署——Cloudflare Pages】\n連接 GitHub repo，設定 PR 預覽部署與 main 合併觸發正式部署。完成 nkhs.team7645.com 自訂域名路由與 Cloudflare 邊緣快取配置，快取路由 TTFB 在 100ms 以下。\n\n【七、CMS 重整】\n原始 CMS tab 分散，合併 Carousel + Cards → Homepage Management、Contact + Socials → 聯絡與社群，重新整合遺失的 Advisor Tab，新增作者 / 組別拆分欄位與留言管理 Tab。\n\n【八、CLAUDE.md 工作記憶框架】\n在多輪迭代開發過程中，以 CLAUDE.md 紀錄專案架構、命名規範與禁止修改範圍，搭配固定目錄結構，確保跨 session 的 LLM 上下文一致，避免多次重構中產生規範漂移。",

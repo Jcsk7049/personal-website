@@ -182,6 +182,21 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
         </F>
       </div>
 
+      <F label="封面圖片" hint="首頁卡片跟詳情頁頂部顯示這張">
+        <div className="space-y-2">
+          {zh.cover && (
+            <img src={zh.cover} alt="" className="w-full max-h-40 rounded-lg object-cover bg-black/5" onError={e => e.target.style.display = 'none'} />
+          )}
+          <input
+            className={inp}
+            placeholder="圖片路徑 /api/images/xxx 或 /images/xxx/cover.png"
+            value={zh.cover || ''}
+            onChange={e => { onZh({ ...zh, cover: e.target.value }); onEn({ ...en, cover: e.target.value }) }}
+          />
+          <ImageUploadBtn onUploaded={path => { onZh({ ...zh, cover: path }); onEn({ ...en, cover: path }) }} />
+        </div>
+      </F>
+
       <div className="flex items-center justify-between">
         <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">語言相關欄位</p>
         <LangTab lang={lang} setLang={setLang} />
