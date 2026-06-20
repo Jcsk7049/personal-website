@@ -298,6 +298,68 @@
   },
   "projects": [
     {
+      "id": "analog-ic-studio",
+      "category": "大學校外作品",
+      "title": "Analog IC Studio — Automated Analog IC Tuning Platform",
+      "period": "2026",
+      "description": "A Python + Ngspice + SciPy platform that automates analog IC design: enter spec targets and the optimizer closes the loop in simulation to back-solve each transistor's W/L.",
+      "tags": [
+        "Python",
+        "Ngspice",
+        "sky130 PDK",
+        "SciPy",
+        "Flask"
+      ],
+      "detail": {
+        "purpose": "Analog IC design traditionally relies on manual, trial-and-error tuning. This platform automates it: the user enters spec targets (e.g. 60dB gain, 3GHz oscillation, minimal temperature drift), and the system uses real Ngspice circuit simulation plus SciPy multi-variable optimization to back-solve every MOSFET's width W and length L, emitting device parameters that map one-to-one back into KiCad.\n\nIt covers six circuit topologies (two-stage OPA, bandgap reference, ring oscillator, current-starved VCO, LC-VCO) and offers a fast Level-1 model alongside the real SkyWater sky130 PDK, balancing iteration speed against process fidelity.",
+        "concept": "[Simulation engine] Ngspice at the core: AC/DC/transient analyses auto-extract Gain/PM/UGF, temperature coefficient, oscillation frequency, backed by the SkyWater sky130 open PDK (BSIM4 real process models with tt/ff/ss corners). A self-healing guard detects non-convergence and retries, distinguishing flaky crashes from deterministic dead zones.\n\n[Optimization] Each transistor gets its own W/L (up to 14 dimensions); SciPy Differential Evolution for global search plus Nelder-Mead for local refinement, evaluated in parallel across threads. A physics guard enforces Wp = 2-3x Wn (electron/hole mobility ratio) to reject non-physical solutions.\n\n[RFIC & yield] Phase noise (Leeson estimate), FTR tuning curve and Kvco extraction, Monte-Carlo yield with a Pelgrom mismatch model (sigma proportional to 1/sqrt(WL), so larger devices match better), 27-corner PVT scan, Pareto multi-objective packages, and layout finger splitting (single finger <= 10um).",
+        "outcome": "All six topologies were fully parameterized to per-instance W/L, eliminating black boxes. Auto-optimization reaches Gain 65dB / PM 63° for the OPA; the bandgap trims to 2 ppm/°C; the LC-VCO achieves phase-noise FoM -186 dBc/Hz (~18dB better than the ring, concretely demonstrating the LC-vs-ring phase-noise/tuning-range trade-off).\n\nThe frontend is an Apple-style single-page dashboard (Chinese UI, English chart labels) with a live optimization progress bar; deployed via Docker to Hugging Face Spaces (apt ngspice + Flask) for a permanent, publicly runnable demo.\n\nEngineering-wise, 13 physics/engineering defects were systematically audited and fixed (fake yield model, phase wrapping, device self-loading, fast-vs-accurate fidelity inversion, etc.), with simplification boundaries honestly labeled (phase noise is an analytical estimate; the LC inductor is idealized) rather than overstating the simulation's capability.",
+        "tech": [
+          {
+            "group": "Simulation Engine",
+            "items": [
+              {
+                "name": "Ngspice closed-loop",
+                "desc": "AC/DC/transient auto-extract Gain/PM/UGF, drift, frequency; self-healing guard retries on non-convergence"
+              },
+              {
+                "name": "Real sky130 PDK",
+                "desc": "SkyWater sky130 open process (BSIM4) with tt/ff/ss corners, paired with a fast Level-1 model"
+              }
+            ]
+          },
+          {
+            "group": "Optimization",
+            "items": [
+              {
+                "name": "Multi-variable hybrid",
+                "desc": "Per-instance W/L (up to 14-D), SciPy DE global + Nelder-Mead local, parallel multi-threaded eval"
+              },
+              {
+                "name": "Physics guard",
+                "desc": "Enforces Wp=2-3x Wn (mobility ratio); Pelgrom mismatch yield model, sigma ~ 1/sqrt(WL)"
+              }
+            ]
+          },
+          {
+            "group": "RFIC & Deployment",
+            "items": [
+              {
+                "name": "RFIC dashboard",
+                "desc": "Phase noise (Leeson), FTR tuning curve, Kvco, 27-corner PVT, Pareto packages, finger splitting"
+              },
+              {
+                "name": "Cloud deploy",
+                "desc": "Docker (apt ngspice + Flask) on Hugging Face Spaces; permanent, runs real simulation in the cloud"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/analog-ic-studio",
+        "demo": "https://huggingface.co/spaces/LANCELOT7049/analog-ic-studio"
+      }
+    },
+    {
       "id": "vap",
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",
@@ -617,6 +679,166 @@
               {
                 "name": "Simulation vs. Real-World Comparison",
                 "desc": "SPICE simulation of time-domain waveform and Bode plot frequency response, then oscilloscope measurement of actual output; analyzing deviations caused by non-ideal component characteristics"
+              }
+            ]
+          }
+        ],
+        "github": ""
+      }
+    },
+    {
+      "id": "pcb-defect-detection",
+      "cover": "/images/pcb-defect-detection/cover.png",
+      "category": "University Coursework",
+      "title": "PCB Trace Defect Detection: Tiled Object Detection with Azure Custom Vision",
+      "period": "2026",
+      "description": "Object detection on the Peking University PCB defect dataset, using 3 board types (01/04/05) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 81.9% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab.",
+      "tags": [
+        "Azure Custom Vision",
+        "Object Detection",
+        "Image Tiling",
+        "model.pb · TensorFlow",
+        "Pascal VOC"
+      ],
+      "detail": {
+        "images": [
+          {
+            "src": "/images/pcb-defect-detection/performance.png",
+            "caption": "Advanced Training result: overall Precision 100% / Recall 69.7% / mAP 81.9% (threshold 0.5); per-class numbers below"
+          },
+          {
+            "src": "/images/pcb-defect-detection/dataset.png",
+            "caption": "Training data: each board is sliced into 600px tiles centered on defects, raising defect-to-tile ratio from ~2% to ~12% (green = ground truth)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/validation-zoom.png",
+            "caption": "Held-out boards 06/07 (zoomed): green = ground truth, red = model prediction, across all three defect classes"
+          },
+          {
+            "src": "/images/pcb-defect-detection/validation-board.png",
+            "caption": "Full-board detection: tiled inference on a held-out board with boxes mapped back to the original image"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_01.jpg",
+            "caption": "missing_hole detection — board 06, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_02.jpg",
+            "caption": "missing_hole detection — board 06, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_03.jpg",
+            "caption": "missing_hole detection — board 06, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_04.jpg",
+            "caption": "missing_hole detection — board 06, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_05.jpg",
+            "caption": "missing_hole detection — board 06, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_06.jpg",
+            "caption": "missing_hole detection — board 06, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_07.jpg",
+            "caption": "missing_hole detection — board 06, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_08.jpg",
+            "caption": "missing_hole detection — board 06, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_09.jpg",
+            "caption": "missing_hole detection — board 06, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/06_10.jpg",
+            "caption": "missing_hole detection — board 06, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_01.jpg",
+            "caption": "missing_hole detection — board 07, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_02.jpg",
+            "caption": "missing_hole detection — board 07, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_03.jpg",
+            "caption": "missing_hole detection — board 07, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_04.jpg",
+            "caption": "missing_hole detection — board 07, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_05.jpg",
+            "caption": "missing_hole detection — board 07, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_06.jpg",
+            "caption": "missing_hole detection — board 07, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_07.jpg",
+            "caption": "missing_hole detection — board 07, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_08.jpg",
+            "caption": "missing_hole detection — board 07, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_09.jpg",
+            "caption": "missing_hole detection — board 07, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/07_10.jpg",
+            "caption": "missing_hole detection — board 07, #10 (green = ground truth, red = prediction)"
+          }
+        ],
+        "purpose": "The assignment: from 10 board types, pick at least 3 types and at least 3 defect classes, train an object detector to 80%+ precision, run detection on unseen boards, and export a model.pb that loads in Colab.\n\nThe hard part wasn't the training workflow, it was the scale of the data. Each defect box is about 60 pixels while the whole board is 3034×1586. Custom Vision shrinks input to about 512px, leaving defects at ~10px that the model simply can't see. The first run by the standard workflow got 9.6% mAP and 3.1% recall, basically useless.",
+        "concept": "[First attempt: upload full images]\n150 full images across 3 board types × 3 defects, with their Pascal VOC annotations, trained on the General (compact) domain with Advanced Training. Result: 9.6% mAP, 3.1% recall, the defects were lost to downscaling.\n\n[Fix: image tiling]\nSlice each board into 600×600 tiles centered on each defect box, keeping a box only if at least 40% of its area falls inside the tile, and re-normalizing coordinates to 0–1 within the tile. This raised the defect-to-tile ratio from ~2% to ~12%, so a defect is still ~60px after the 512px resize. The 3 defects produced 438 tiles for retraining.\n\n[Inference also needs tiling]\nA full board gets shrunk at inference too, so PCB_USED and the validation boards are sliced the same way and detected tile by tile, with predictions mapped back to original coordinates and duplicates from overlapping tiles removed by NMS at IoU 0.3.\n\n[Export and Colab]\nExporting TensorFlow requires a compact domain. The exported model outputs a YOLO-style raw tensor (node model_outputs:0); the anchor + NMS decoding reuses Custom Vision's official object_detection.py rather than rewriting it. In Colab, loading that decoder together with model.pb and labels.txt is enough to run inference.",
+        "outcome": "[Advanced Training result (threshold 0.5)]\nPrecision 100%　Recall 69.7%　mAP 81.9%\nmissing_hole　P 100%　R 100%　 AP 100%\nopen_circuit　P 100%　R 41.9%　AP 73.0%\nmouse_bite　　P 100%　R 64.7%　AP 72.8%\n\nTiling took mAP from 9.6% to 81.9%, the single step that made this project work. Advanced Training was used on purpose instead of Quick Train.\n\n[Validation on board types the model never saw (06, 07)]\nTraining used only 01/04/05. Validation used 60 defect images from board types 06 and 07: 303 ground-truth defects in total against 306 predicted boxes, almost one to one. Detecting defects on unseen board types means the model isn't just memorizing the training data.\n\n[Honest limit: 100% precision is optimistic]\nThat precision comes from Custom Vision's cross-validation over the uploaded images. Tiles from the same board share an almost identical background, so adjacent tiles can land one in training and one in validation, which inflates the number. Run on PCB_USED, the raw un-standardized photographed boards, the model produces a few false positives. That's domain shift between clean, evenly-lit training data and angled, noisy test photos, not classic overfitting. Of the three classes mouse_bite is the weakest (64.7% recall); a mouse bite is subtler and more irregular than a missing hole, so the next step would be adding data for that class and retraining.",
+        "tech": [
+          {
+            "group": "Image Processing",
+            "items": [
+              {
+                "name": "Image Tiling",
+                "desc": "Slice 600px tiles centered on each defect box, keep a box only if ≥40% of its area is inside the tile, re-normalize to 0–1; defect ratio rises from ~2% to ~12%, the make-or-break step of the project"
+              },
+              {
+                "name": "Pascal VOC Parsing",
+                "desc": "Parse bndbox with xml.etree.ElementTree and convert pixel coordinates to the 0–1 normalized form Custom Vision requires"
+              }
+            ]
+          },
+          {
+            "group": "Cloud AI Services",
+            "items": [
+              {
+                "name": "Azure Custom Vision SDK",
+                "desc": "Full flow via the Python SDK: create project (compact domain), batch-upload images with regions, Advanced Training, publish, export TensorFlow; Advanced was chosen over Quick Train on purpose"
+              },
+              {
+                "name": "model.pb Export and Colab Loading",
+                "desc": "Export the frozen graph model.pb (input Placeholder:0, output model_outputs:0), load it in Colab with tf.compat.v1; the YOLO-style anchor/NMS decoding reuses the official object_detection.py"
+              }
+            ]
+          },
+          {
+            "group": "Inference and Validation",
+            "items": [
+              {
+                "name": "Tiled Inference + NMS",
+                "desc": "Detect a full board tile by tile, map predictions back to the original image, then drop duplicate boxes from overlapping tiles with NMS at IoU 0.3"
+              },
+              {
+                "name": "Held-out Validation",
+                "desc": "Generalization test on board types 06/07 that never appeared in training, drawing green (ground truth) and red (prediction) boxes to see how well the model locates defects on new boards rather than trusting the cross-validation numbers alone"
               }
             ]
           }
