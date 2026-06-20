@@ -240,6 +240,68 @@
   },
   "projects": [
     {
+      "id": "analog-ic-studio",
+      "category": "大學校外作品",
+      "title": "Analog IC Studio — Automated Analog IC Tuning Platform",
+      "period": "2026",
+      "description": "A Python + Ngspice + SciPy platform that automates analog IC design: enter spec targets and the optimizer closes the loop in simulation to back-solve each transistor's W/L.",
+      "tags": [
+        "Python",
+        "Ngspice",
+        "sky130 PDK",
+        "SciPy",
+        "Flask"
+      ],
+      "detail": {
+        "purpose": "Analog IC design traditionally relies on manual, trial-and-error tuning. This platform automates it: the user enters spec targets (e.g. 60dB gain, 3GHz oscillation, minimal temperature drift), and the system uses real Ngspice circuit simulation plus SciPy multi-variable optimization to back-solve every MOSFET's width W and length L, emitting device parameters that map one-to-one back into KiCad.\n\nIt covers six circuit topologies (two-stage OPA, bandgap reference, ring oscillator, current-starved VCO, LC-VCO) and offers a fast Level-1 model alongside the real SkyWater sky130 PDK, balancing iteration speed against process fidelity.",
+        "concept": "[Simulation engine] Ngspice at the core: AC/DC/transient analyses auto-extract Gain/PM/UGF, temperature coefficient, oscillation frequency, backed by the SkyWater sky130 open PDK (BSIM4 real process models with tt/ff/ss corners). A self-healing guard detects non-convergence and retries, distinguishing flaky crashes from deterministic dead zones.\n\n[Optimization] Each transistor gets its own W/L (up to 14 dimensions); SciPy Differential Evolution for global search plus Nelder-Mead for local refinement, evaluated in parallel across threads. A physics guard enforces Wp = 2-3x Wn (electron/hole mobility ratio) to reject non-physical solutions.\n\n[RFIC & yield] Phase noise (Leeson estimate), FTR tuning curve and Kvco extraction, Monte-Carlo yield with a Pelgrom mismatch model (sigma proportional to 1/sqrt(WL), so larger devices match better), 27-corner PVT scan, Pareto multi-objective packages, and layout finger splitting (single finger <= 10um).",
+        "outcome": "All six topologies were fully parameterized to per-instance W/L, eliminating black boxes. Auto-optimization reaches Gain 65dB / PM 63° for the OPA; the bandgap trims to 2 ppm/°C; the LC-VCO achieves phase-noise FoM -186 dBc/Hz (~18dB better than the ring, concretely demonstrating the LC-vs-ring phase-noise/tuning-range trade-off).\n\nThe frontend is an Apple-style single-page dashboard (Chinese UI, English chart labels) with a live optimization progress bar; deployed via Docker to Hugging Face Spaces (apt ngspice + Flask) for a permanent, publicly runnable demo.\n\nEngineering-wise, 13 physics/engineering defects were systematically audited and fixed (fake yield model, phase wrapping, device self-loading, fast-vs-accurate fidelity inversion, etc.), with simplification boundaries honestly labeled (phase noise is an analytical estimate; the LC inductor is idealized) rather than overstating the simulation's capability.",
+        "tech": [
+          {
+            "group": "Simulation Engine",
+            "items": [
+              {
+                "name": "Ngspice closed-loop",
+                "desc": "AC/DC/transient auto-extract Gain/PM/UGF, drift, frequency; self-healing guard retries on non-convergence"
+              },
+              {
+                "name": "Real sky130 PDK",
+                "desc": "SkyWater sky130 open process (BSIM4) with tt/ff/ss corners, paired with a fast Level-1 model"
+              }
+            ]
+          },
+          {
+            "group": "Optimization",
+            "items": [
+              {
+                "name": "Multi-variable hybrid",
+                "desc": "Per-instance W/L (up to 14-D), SciPy DE global + Nelder-Mead local, parallel multi-threaded eval"
+              },
+              {
+                "name": "Physics guard",
+                "desc": "Enforces Wp=2-3x Wn (mobility ratio); Pelgrom mismatch yield model, sigma ~ 1/sqrt(WL)"
+              }
+            ]
+          },
+          {
+            "group": "RFIC & Deployment",
+            "items": [
+              {
+                "name": "RFIC dashboard",
+                "desc": "Phase noise (Leeson), FTR tuning curve, Kvco, 27-corner PVT, Pareto packages, finger splitting"
+              },
+              {
+                "name": "Cloud deploy",
+                "desc": "Docker (apt ngspice + Flask) on Hugging Face Spaces; permanent, runs real simulation in the cloud"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/analog-ic-studio",
+        "demo": "https://huggingface.co/spaces/LANCELOT7049/analog-ic-studio"
+      }
+    },
+    {
       "id": "vap",
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",

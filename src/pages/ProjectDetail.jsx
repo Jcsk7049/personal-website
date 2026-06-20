@@ -10,6 +10,7 @@ import ProjectGallery from '../components/ProjectGallery'
 import { CategoryBadge } from '../components/ProjectShowcase'
 
 const PROJECT_ACCENTS = {
+  'analog-ic-studio':  'from-cyan-400 to-blue-600',
   'vap':               'from-sky-400 to-blue-600',
   'aws-hackathon':     'from-amber-400 to-orange-500',
   'audio-amplifier':   'from-lime-400 to-green-600',

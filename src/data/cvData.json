@@ -297,6 +297,68 @@
   },
   "projects": [
     {
+      "id": "analog-ic-studio",
+      "category": "大學校外作品",
+      "title": "Analog IC Studio — 類比 IC 自動調參平台",
+      "period": "2026",
+      "description": "Python + Ngspice + SciPy 打造的類比 IC 自動化設計平台：輸入規格目標，演算法閉環模擬並自動回推每顆電晶體的 W/L，輸出可填回 KiCad 的元件參數。",
+      "tags": [
+        "Python",
+        "Ngspice",
+        "sky130 PDK",
+        "SciPy",
+        "Flask"
+      ],
+      "detail": {
+        "purpose": "類比 IC 設計傳統上仰賴工程師手動調參、反覆試錯。本平台將此流程自動化：使用者只要輸入規格目標（如增益 60dB、振盪頻率 3GHz、溫漂最小化），系統透過 Ngspice 真實電路模擬 + SciPy 多變量最佳化，自動回推每顆 MOS 電晶體的寬度 W 與長度 L，並輸出可一對一填回 KiCad 的元件參數。\n\n涵蓋六大電路拓樸（兩級 OPA、Bandgap 基準源、環形振盪器、電流飢餓 VCO、LC 壓控振盪器），並提供快速 Level-1 模型與 SkyWater sky130 真實 PDK 雙模式對照，兼顧迭代速度與製程真實度。",
+        "concept": "【模擬引擎】以 Ngspice 為核心，AC/DC/瞬態分析自動萃取 Gain/PM/UGF、溫漂 TC、振盪頻率等指標，並接上 SkyWater sky130 開源 PDK（BSIM4 真實製程模型，含 tt/ff/ss 角落）。自我修復護欄偵測不收斂自動重試，區分 flaky 崩潰與確定性死區。\n\n【最佳化演算法】每顆電晶體獨立 W/L（OPA 10 維、VCO 14 維），以 SciPy Differential Evolution 全域搜尋 + Nelder-Mead 局部精調、多線程平行評估。物理護欄強制 Wp = 2~3×Wn（電子/電洞遷移率比），杜絕非物理解。\n\n【RFIC 與良率分析】相位雜訊（Leeson 解析估算）、FTR 調諧曲線與 Kvco 提取、蒙地卡羅良率採 Pelgrom 失配模型（σ ∝ 1/√WL，大元件更匹配）、PVT 27 角落掃描、帕雷托多目標套餐推薦、佈局 finger 拆分（單指 ≤ 10µm）。",
+        "outcome": "六大拓樸全部實體化為 per-instance W/L，消除黑箱。OPA 自動優化達 Gain 65dB / PM 63°；Bandgap 溫漂 trim 至 2 ppm/°C；LC-VCO 相位雜訊 FoM −186 dBc/Hz（優於環形約 18dB，具體演示 LC vs Ring 的相位雜訊／調諧範圍取捨）。\n\n前端為 Apple 風格單頁看板（中文 UI、英文圖表標籤），含即時優化進度條；以 Docker 部署至 Hugging Face Spaces（apt ngspice + Flask），永久公開、雲端即可跑真實模擬。\n\n工程上系統性盤點並修復 13 項物理／工程缺陷（假良率模型、相位 wrap、元件自負載效應、快慢模型精細度倒置等），並誠實標註簡化邊界（相位雜訊為解析估算、LC 電感理想化），不誇大模擬能力。",
+        "tech": [
+          {
+            "group": "模擬引擎",
+            "items": [
+              {
+                "name": "Ngspice 閉環模擬",
+                "desc": "AC/DC/瞬態自動萃取 Gain/PM/UGF、溫漂、振盪頻率；自我修復護欄偵測不收斂自動重試"
+              },
+              {
+                "name": "sky130 真實 PDK",
+                "desc": "接 SkyWater sky130 開源製程（BSIM4），含 tt/ff/ss 角落，與 Level-1 快速模型雙模對照"
+              }
+            ]
+          },
+          {
+            "group": "最佳化演算法",
+            "items": [
+              {
+                "name": "多變量混合優化",
+                "desc": "每顆 MOS 獨立 W/L（最多 14 維），SciPy DE 全域 + Nelder-Mead 局部，多線程平行評估"
+              },
+              {
+                "name": "物理護欄",
+                "desc": "強制 Wp=2~3×Wn（遷移率比）杜絕非物理解；Pelgrom 失配良率模型 σ∝1/√WL"
+              }
+            ]
+          },
+          {
+            "group": "RFIC 分析與部署",
+            "items": [
+              {
+                "name": "RFIC 看盤",
+                "desc": "相位雜訊（Leeson）、FTR 調諧曲線、Kvco、PVT 27 角落、帕雷托套餐、佈局 finger 拆分"
+              },
+              {
+                "name": "雲端部署",
+                "desc": "Docker（apt ngspice + Flask）部署至 Hugging Face Spaces，永久公開、雲端跑真實模擬"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/analog-ic-studio",
+        "demo": "https://huggingface.co/spaces/LANCELOT7049/analog-ic-studio"
+      }
+    },
+    {
       "id": "vap",
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",
