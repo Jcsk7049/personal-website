@@ -691,7 +691,7 @@
       "category": "大學課程作品",
       "title": "PCB 線路瑕疵偵測：Azure Custom Vision 切塊物件偵測",
       "period": "2026",
-      "description": "北大 PCB 瑕疵資料集，挑 3 個板型（01／04／05）× 3 種缺陷（missing_hole 缺孔、mouse_bite 鼠咬、open_circuit 斷路）訓練物件偵測。原圖是 3034×1586 的整板、缺陷框只有約 60px，直接丟 Custom Vision 會被縮到約 512px 而看不見，第一次訓練 mAP 只有 9.6%、Recall 3.1%。改成把大圖切成 600px 小塊再訓練後，mAP 拉到 81.9%、Precision 100%。匯出 TensorFlow model.pb，可在 Colab 載入推論。",
+      "description": "北大 PCB 瑕疵資料集，挑 6 個板型（01／04／05／06／07／08）× 3 種缺陷（missing_hole 缺孔、mouse_bite 鼠咬、open_circuit 斷路）訓練物件偵測。原圖是 3034×1586 的整板、缺陷框只有約 60px，直接丟 Custom Vision 會被縮到約 512px 而看不見，第一次訓練 mAP 只有 9.6%、Recall 3.1%。改成把大圖切成 600px 小塊再訓練後，mAP 88.2%、Precision 100%。匯出 TensorFlow model.pb，可在 Colab 載入推論。",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
@@ -703,7 +703,7 @@
         "images": [
           {
             "src": "/images/pcb-defect-detection/performance.png",
-            "caption": "Advanced Training 成果：整體 Precision 100% / Recall 69.7% / mAP 81.9%（threshold 0.5），分缺陷數據見下方"
+            "caption": "Advanced Training 成果（6 板型）：整體 Precision 100% / Recall 72.3% / mAP 88.2%（threshold 0.5），分缺陷數據見下方"
           },
           {
             "src": "/images/pcb-defect-detection/dataset.png",
@@ -711,96 +711,156 @@
           },
           {
             "src": "/images/pcb-defect-detection/validation-zoom.png",
-            "caption": "未參與訓練的板型 06／07 驗證（放大）：綠＝標註、紅＝模型預測，三類缺陷定位清楚"
+            "caption": "未參與訓練的板型 09–12 驗證（放大）：綠＝標註、紅＝模型預測，三類缺陷定位清楚"
           },
           {
             "src": "/images/pcb-defect-detection/validation-board.png",
-            "caption": "整板偵測：對 held-out 板做切塊推論後把框映射回原圖的完整結果"
+            "caption": "整板偵測：對 held-out 板（型號 09）做切塊推論後把框映射回原圖的完整結果"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_01.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 1 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_01.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_02.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 2 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_02.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 2 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_03.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 3 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_03.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 3 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_04.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 4 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_04.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 4 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_05.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 5 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_05.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 5 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_06.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 6 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_06.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 6 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_07.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 7 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_07.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 7 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_08.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 8 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_08.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 8 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_09.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 9 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_09.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 9 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/06_10.jpg",
-            "caption": "missing_hole 偵測：板型 06 第 10 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/09_10.jpg",
+            "caption": "missing_hole 偵測：板型 09 第 10 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_01.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 1 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/10_01.jpg",
+            "caption": "missing_hole 偵測：板型 10 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_02.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 2 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/10_02.jpg",
+            "caption": "missing_hole 偵測：板型 10 第 2 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_03.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 3 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/10_03.jpg",
+            "caption": "missing_hole 偵測：板型 10 第 3 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_04.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 4 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/10_04.jpg",
+            "caption": "missing_hole 偵測：板型 10 第 4 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_05.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 5 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/10_05.jpg",
+            "caption": "missing_hole 偵測：板型 10 第 5 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_06.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 6 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/11_01.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_07.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 7 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/11_02.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 2 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_08.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 8 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/11_03.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 3 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_09.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 9 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/11_04.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 4 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/07_10.jpg",
-            "caption": "missing_hole 偵測：板型 07 第 10 張（綠＝標註，紅＝模型預測）"
+            "src": "/images/pcb-defect-detection/missing-hole/11_05.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 5 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/11_06.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 6 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/11_07.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 7 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/11_08.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 8 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/11_09.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 9 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/11_10.jpg",
+            "caption": "missing_hole 偵測：板型 11 第 10 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_01.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 1 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_02.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 2 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_03.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 3 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_04.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 4 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_05.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 5 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_06.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 6 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_07.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 7 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_08.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 8 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_09.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 9 張（綠＝標註，紅＝模型預測）"
+          },
+          {
+            "src": "/images/pcb-defect-detection/missing-hole/12_10.jpg",
+            "caption": "missing_hole 偵測：板型 12 第 10 張（綠＝標註，紅＝模型預測）"
           }
         ],
         "purpose": "作業要求：10 個板型裡至少挑 3 型、至少 3 種缺陷，用物件偵測訓練到 Precision 80% 以上，再對沒看過的板子做檢測，最後匯出 model.pb 能在 Colab 載入。\n\n真正卡住的不是訓練流程，是資料尺度。缺陷框只有約 60 像素，整張板卻是 3034×1586。Custom Vision 會把輸入縮到約 512px，縮完缺陷只剩約 10px，模型根本看不到——第一次照標準流程訓練，mAP 只有 9.6%、Recall 3.1%，等於沒用。",
-        "concept": "【第一次失敗：直接上傳整圖】\n3 板型 × 3 缺陷共 150 張整圖連同 Pascal VOC 標註上傳，用 General (compact) domain 做 Advanced Training。結果 mAP 9.6%、Recall 3.1%——缺陷被縮圖吃掉了。\n\n【解法：影像切塊（tiling）】\n把每張大圖以缺陷框為中心切成 600×600 的小塊，框落在塊內超過 40% 面積才保留，座標重新換算成塊內的 0–1 正規化值。缺陷在塊裡的佔比從約 2% 拉到約 12%，縮到 512px 後仍有約 60px。3 缺陷共切出 438 塊重新訓練。\n\n【偵測也要切塊】\n推論時整板一樣會被縮小，所以對 PCB_USED 與驗證板也用同樣方式切塊逐塊偵測，把預測框映射回原圖座標，再用 IoU 0.3 的 NMS 去掉重疊塊造成的重複框。\n\n【匯出與 Colab】\n要能匯出 TensorFlow 一定得用 compact domain。匯出的模型輸出是 YOLO 風格原始張量（節點 model_outputs:0），解碼（anchors + NMS）沿用 Custom Vision 官方的 object_detection.py，沒有自己重寫。Colab 端把官方解碼器、model.pb、labels.txt 一起載入就能推論。",
-        "outcome": "【Advanced Training 成果（threshold 0.5）】\nPrecision 100%　Recall 69.7%　mAP 81.9%\nmissing_hole　P 100%　R 100%　 AP 100%\nopen_circuit　P 100%　R 41.9%　AP 73.0%\nmouse_bite　　P 100%　R 64.7%　AP 72.8%\n\n切塊把 mAP 從 9.6% 拉到 81.9%，是這個專案最關鍵的一步。刻意用 Advanced Training 而不是 Quick Train。\n\n【拿沒訓練過的板型驗證（06、07）】\n訓練只用 01／04／05，驗證改用模型沒看過的 06、07 共 60 張缺陷圖：標準答案總共 303 個缺陷，模型輸出 306 個框，數量幾乎一比一。在沒看過的板型上仍抓得到缺陷，代表不是死背訓練資料。\n\n【誠實邊界：100% Precision 偏樂觀】\n這個 Precision 是 Custom Vision 用上傳影像做交叉驗證算的，而同一張板切出的塊背景幾乎一樣，相鄰塊可能一塊進訓練、一塊進驗證，數字會被高估。把模型實際用在 PCB_USED 那種原始、未標準化的實拍整板時，會冒出少量假陽性——這是訓練資料（乾淨、光照一致）和測試資料（斜拍、背景雜）不同調的 domain shift，不是傳統意義的過擬合。三類裡 mouse_bite 最弱（Recall 64.7%），鼠咬比缺孔細微、形狀也不規則，要往下做應該先補這類資料再重訓。",
+        "concept": "【第一次失敗：直接上傳整圖】\n把整圖連同 Pascal VOC 標註上傳，用 General (compact) domain 做 Advanced Training。結果 mAP 9.6%、Recall 3.1%——缺陷被縮圖吃掉了。\n\n【解法：影像切塊（tiling）】\n把每張大圖以缺陷框為中心切成 600×600 的小塊，框落在塊內超過 40% 面積才保留，座標重新換算成塊內的 0–1 正規化值。缺陷在塊裡的佔比從約 2% 拉到約 12%，縮到 512px 後仍有約 60px。最終以 6 個板型、3 缺陷共切出 837 塊訓練。\n\n【偵測也要切塊】\n推論時整板一樣會被縮小，所以對 PCB_USED 與驗證板也用同樣方式切塊逐塊偵測，把預測框映射回原圖座標，再用 IoU 0.3 的 NMS 去掉重疊塊造成的重複框。\n\n【匯出與 Colab】\n要能匯出 TensorFlow 一定得用 compact domain。匯出的模型輸出是 YOLO 風格原始張量（節點 model_outputs:0），解碼（anchors + NMS）沿用 Custom Vision 官方的 object_detection.py，沒有自己重寫。Colab 端把官方解碼器、model.pb、labels.txt 一起載入就能推論。",
+        "outcome": "【Advanced Training 成果（6 板型，threshold 0.5）】\nPrecision 100%　Recall 72.3%　mAP 88.2%\nmissing_hole　P 100%　R 96.9%　AP 99.6%\nmouse_bite　　P 100%　R 65.1%　AP 82.0%\nopen_circuit　P 100%　R 54.1%　AP 83.0%\n\n【為什麼從 3 板型加到 6 板型】\n一開始只用 3 個板型（01／04／05）訓練，mAP 81.9%，但拿沒看過的板子驗證時，每張大概會多框 1 個——模型把正常、有鑽孔的 via 誤判成缺孔，因為它只看過 3 種板的 via 長相。把訓練板型加到 6 個（多了 06／07／08）後，mAP 升到 88.2%，這類誤報基本消失。\n\n【拿沒訓練過的板型驗證（09–12）】\n訓練用 6 個板型，驗證改用模型完全沒看過的 09、10、11、12 共 106 張缺陷圖：標準答案總共 538 個缺陷，模型輸出 509 個框，現在反而是略為保守（少抓約 5%），不再亂多框。在沒看過的板型上仍穩定抓到缺陷，代表泛化是真的。\n\n【誠實邊界】\nPrecision 100% 一樣是 Custom Vision 交叉驗證的數字，偏樂觀（同一張板切出的塊背景相似會高估）。三類裡 open_circuit 與 mouse_bite 的 recall 偏低（54%、65%），斷路和鼠咬比缺孔細微、形狀也不規則，會漏抓一些；要往下做應該先補這兩類資料。missing_hole 已相當穩（recall 96.9%）。",
         "tech": [
           {
             "group": "影像處理",
@@ -837,7 +897,7 @@
               },
               {
                 "name": "Held-out 驗證",
-                "desc": "用沒參與訓練的板型 06／07 做泛化測試，疊綠（標註）紅（預測）框輸出，直接看模型在新板上抓得準不準，而不是只信交叉驗證的數字"
+                "desc": "用模型沒看過的板型 09–12 共 106 張做泛化測試，疊綠（標註）紅（預測）框輸出；標準答案 538 個缺陷對模型輸出 509 個，直接驗證在新板上的表現而不是只信交叉驗證的數字"
               }
             ]
           }
