@@ -1,8 +1,7 @@
 import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import cvDataZh from '../data/cvData.json'
-import cvDataEn from '../data/cvData.en.json'
 import { useLanguage } from '../context/LanguageContext'
+import { useData } from '../context/DataContext'
 import { uiText } from '../data/uiText'
 import VapCharts from '../components/VapCharts'
 import BitoCharts from '../components/BitoCharts'
@@ -27,7 +26,8 @@ export default function ProjectDetail() {
   const navigationType  = useNavigationType()
   const { lang }        = useLanguage()
   const t               = uiText[lang]
-  const cvData          = lang === 'en' ? cvDataEn : cvDataZh
+  const { cvZh, cvEn }  = useData()
+  const cvData          = lang === 'en' ? cvEn : cvZh
   const project         = cvData.projects.find(p => p.id === id)
   const [archOpen, setArchOpen] = useState(false)
 
