@@ -72,8 +72,9 @@ export default function ProjectGallery({ images }) {
             {/* Close */}
             <button
               onClick={() => setActive(null)}
-              className="absolute -top-10 right-0 text-white/60 hover:text-white
-                         text-sm transition-colors"
+              className="absolute -top-14 right-0 flex items-center gap-1.5 px-4 py-2 rounded-full
+                         bg-white/10 text-white text-sm font-medium
+                         hover:bg-white/20 transition-colors"
             >
               關閉 ✕
             </button>
