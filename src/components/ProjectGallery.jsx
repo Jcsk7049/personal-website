@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function ProjectGallery({ images }) {
   const [active, setActive] = useState(null)
@@ -34,8 +35,8 @@ export default function ProjectGallery({ images }) {
         ))}
       </div>
 
-      {/* Lightbox */}
-      {active !== null && (
+      {/* Lightbox：用 portal 掛到 body，避免被上層 .page-enter 的 transform 影響 position: fixed */}
+      {active !== null && createPortal(
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="relative max-w-4xl w-full">
             <img
@@ -79,7 +80,8 @@ export default function ProjectGallery({ images }) {
               關閉 ✕
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )
