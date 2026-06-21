@@ -857,6 +857,290 @@
           {
             "src": "/images/pcb-defect-detection/missing-hole/12_10.jpg",
             "caption": "missing_hole detection — board 12, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_01.jpg",
+            "caption": "mouse_bite detection — board 09, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_02.jpg",
+            "caption": "mouse_bite detection — board 09, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_03.jpg",
+            "caption": "mouse_bite detection — board 09, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_04.jpg",
+            "caption": "mouse_bite detection — board 09, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_05.jpg",
+            "caption": "mouse_bite detection — board 09, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_06.jpg",
+            "caption": "mouse_bite detection — board 09, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_07.jpg",
+            "caption": "mouse_bite detection — board 09, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_08.jpg",
+            "caption": "mouse_bite detection — board 09, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_09.jpg",
+            "caption": "mouse_bite detection — board 09, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/09_10.jpg",
+            "caption": "mouse_bite detection — board 09, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/10_01.jpg",
+            "caption": "mouse_bite detection — board 10, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/10_02.jpg",
+            "caption": "mouse_bite detection — board 10, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/10_03.jpg",
+            "caption": "mouse_bite detection — board 10, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/10_04.jpg",
+            "caption": "mouse_bite detection — board 10, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/10_05.jpg",
+            "caption": "mouse_bite detection — board 10, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_01.jpg",
+            "caption": "mouse_bite detection — board 11, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_02.jpg",
+            "caption": "mouse_bite detection — board 11, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_03.jpg",
+            "caption": "mouse_bite detection — board 11, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_04.jpg",
+            "caption": "mouse_bite detection — board 11, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_05.jpg",
+            "caption": "mouse_bite detection — board 11, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_06.jpg",
+            "caption": "mouse_bite detection — board 11, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_07.jpg",
+            "caption": "mouse_bite detection — board 11, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_08.jpg",
+            "caption": "mouse_bite detection — board 11, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_09.jpg",
+            "caption": "mouse_bite detection — board 11, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/11_10.jpg",
+            "caption": "mouse_bite detection — board 11, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_01.jpg",
+            "caption": "mouse_bite detection — board 12, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_02.jpg",
+            "caption": "mouse_bite detection — board 12, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_03.jpg",
+            "caption": "mouse_bite detection — board 12, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_04.jpg",
+            "caption": "mouse_bite detection — board 12, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_05.jpg",
+            "caption": "mouse_bite detection — board 12, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_06.jpg",
+            "caption": "mouse_bite detection — board 12, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_07.jpg",
+            "caption": "mouse_bite detection — board 12, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_08.jpg",
+            "caption": "mouse_bite detection — board 12, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_09.jpg",
+            "caption": "mouse_bite detection — board 12, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/mouse-bite/12_10.jpg",
+            "caption": "mouse_bite detection — board 12, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_01.jpg",
+            "caption": "open_circuit detection — board 09, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_02.jpg",
+            "caption": "open_circuit detection — board 09, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_03.jpg",
+            "caption": "open_circuit detection — board 09, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_04.jpg",
+            "caption": "open_circuit detection — board 09, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_05.jpg",
+            "caption": "open_circuit detection — board 09, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_06.jpg",
+            "caption": "open_circuit detection — board 09, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_07.jpg",
+            "caption": "open_circuit detection — board 09, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_08.jpg",
+            "caption": "open_circuit detection — board 09, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_09.jpg",
+            "caption": "open_circuit detection — board 09, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/09_10.jpg",
+            "caption": "open_circuit detection — board 09, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_01.jpg",
+            "caption": "open_circuit detection — board 10, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_02.jpg",
+            "caption": "open_circuit detection — board 10, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_03.jpg",
+            "caption": "open_circuit detection — board 10, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_04.jpg",
+            "caption": "open_circuit detection — board 10, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_05.jpg",
+            "caption": "open_circuit detection — board 10, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/10_06.jpg",
+            "caption": "open_circuit detection — board 10, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_01.jpg",
+            "caption": "open_circuit detection — board 11, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_02.jpg",
+            "caption": "open_circuit detection — board 11, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_03.jpg",
+            "caption": "open_circuit detection — board 11, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_04.jpg",
+            "caption": "open_circuit detection — board 11, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_05.jpg",
+            "caption": "open_circuit detection — board 11, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_06.jpg",
+            "caption": "open_circuit detection — board 11, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_07.jpg",
+            "caption": "open_circuit detection — board 11, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_08.jpg",
+            "caption": "open_circuit detection — board 11, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_09.jpg",
+            "caption": "open_circuit detection — board 11, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/11_10.jpg",
+            "caption": "open_circuit detection — board 11, #10 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_01.jpg",
+            "caption": "open_circuit detection — board 12, #1 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_02.jpg",
+            "caption": "open_circuit detection — board 12, #2 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_03.jpg",
+            "caption": "open_circuit detection — board 12, #3 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_04.jpg",
+            "caption": "open_circuit detection — board 12, #4 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_05.jpg",
+            "caption": "open_circuit detection — board 12, #5 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_06.jpg",
+            "caption": "open_circuit detection — board 12, #6 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_07.jpg",
+            "caption": "open_circuit detection — board 12, #7 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_08.jpg",
+            "caption": "open_circuit detection — board 12, #8 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_09.jpg",
+            "caption": "open_circuit detection — board 12, #9 (green = ground truth, red = prediction)"
+          },
+          {
+            "src": "/images/pcb-defect-detection/open-circuit/12_10.jpg",
+            "caption": "open_circuit detection — board 12, #10 (green = ground truth, red = prediction)"
           }
         ],
         "purpose": "The assignment: from 10 board types, pick at least 3 types and at least 3 defect classes, train an object detector to 80%+ precision, run detection on unseen boards, and export a model.pb that loads in Colab.\n\nThe hard part wasn't the training workflow, it was the scale of the data. Each defect box is about 60 pixels while the whole board is 3034×1586. Custom Vision shrinks input to about 512px, leaving defects at ~10px that the model simply can't see. The first run by the standard workflow got 9.6% mAP and 3.1% recall, basically useless.",
