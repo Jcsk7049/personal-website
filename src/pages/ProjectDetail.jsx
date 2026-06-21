@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useData } from '../context/DataContext'
 import { uiText } from '../data/uiText'
@@ -29,7 +29,6 @@ export default function ProjectDetail() {
   const { cvZh, cvEn }  = useData()
   const cvData          = lang === 'en' ? cvEn : cvZh
   const project         = cvData.projects.find(p => p.id === id)
-  const [archOpen, setArchOpen] = useState(false)
 
   useEffect(() => {
     if (project) document.title = `${project.title} — 江嘉元`
@@ -49,12 +48,6 @@ export default function ProjectDetail() {
     els.forEach(el => observer.observe(el))
     return () => observer.disconnect()
   }, [project])
-
-  useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape' && archOpen) setArchOpen(false) }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [archOpen])
 
   const handleBack = () => {
     if (navigationType !== 'POP') navigate(-1)
@@ -141,10 +134,11 @@ export default function ProjectDetail() {
                 {detail.demo && (
                   <a href={detail.demo}
                      target="_blank" rel="noopener noreferrer"
-                     className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full
-                                border border-[#1D1D1F] text-[#1D1D1F] text-xs font-medium
-                                hover:bg-[#1D1D1F] hover:text-white transition-colors duration-[125ms]">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                     className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full
+                                bg-[#0071E3] text-white text-sm font-semibold shadow-[0_4px_14px_rgba(0,113,227,0.35)]
+                                hover:bg-[#0077ED] hover:shadow-[0_6px_18px_rgba(0,113,227,0.45)]
+                                transition-all duration-[125ms]">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                       <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
@@ -262,80 +256,8 @@ export default function ProjectDetail() {
             ))}
           </div>
 
-          {/* ── Architecture button (only for projects without GitHub) ── */}
-          {!detail.github && (
-            <div className="pt-14 border-t border-black/[0.06]" data-reveal>
-              <button
-                onClick={() => setArchOpen(true)}
-                className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full
-                           shadow-[0_0_0_1px_rgba(0,0,0,0.12)] text-[#3F3F46] text-sm font-medium
-                           hover:shadow-[0_0_0_1px_rgba(0,0,0,0.25)] hover:text-[#1D1D1F]
-                           transition-colors duration-[125ms]">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-                  <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-                </svg>
-                {t.archBtn}
-              </button>
-            </div>
-          )}
         </main>
       </div>
-
-      {/* ── Architecture modal ── */}
-      {archOpen && (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-6"
-          onClick={() => setArchOpen(false)}
-        >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          <div
-            className="arch-modal-enter relative z-10 bg-white/90 backdrop-blur-xl rounded-2xl p-8
-                       w-full max-w-2xl shadow-[0_32px_80px_rgba(0,0,0,0.18)] border border-white/60"
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-1">
-                  Architecture
-                </p>
-                <h3 className="text-lg font-bold tracking-tight text-[#1D1D1F]">{project.title}</h3>
-              </div>
-              <button
-                onClick={() => setArchOpen(false)}
-                className="w-8 h-8 rounded-full bg-[#F5F5F7] flex items-center justify-center
-                           text-[#86868B] hover:bg-[#E8E8ED] hover:text-[#1D1D1F]
-                           transition-colors duration-[125ms]"
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <path d="M18 6 6 18M6 6l12 12"/>
-                </svg>
-              </button>
-            </div>
-            <div className="rounded-2xl bg-[#F5F5F7] shadow-[0_0_0_1px_rgba(0,0,0,0.06)]
-                            min-h-[260px] flex flex-col items-center justify-center gap-4 text-center p-10">
-              <div className="w-12 h-12 rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
-                              flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#86868B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-                  <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-[#1D1D1F] mb-1.5">{t.archComingSoon}</p>
-                <p className="text-xs text-[#86868B] leading-relaxed max-w-xs">
-                  {t.archUpload}{' '}
-                  <code className="bg-white px-1.5 py-0.5 rounded text-[11px] text-[#0066CC]
-                                   shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
-                    public/images/{project.id}/
-                  </code>
-                </p>
-              </div>
-            </div>
-            <p className="mt-4 text-[11px] text-[#C7C7CC] text-center">{t.archDismiss}</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

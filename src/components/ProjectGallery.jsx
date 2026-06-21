@@ -40,21 +40,19 @@ export default function ProjectGallery({ images }) {
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setActive(null)}
         >
-          <div
-            className="relative max-w-4xl w-full"
-            onClick={e => e.stopPropagation()}
-          >
+          <div className="relative max-w-4xl w-full">
             <img
               src={images[active].src}
               alt={images[active].caption}
-              className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+              onClick={e => e.stopPropagation()}
+              className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl mx-auto"
             />
             <p className="text-center text-white/70 text-sm mt-4">{images[active].caption}</p>
 
             {/* Prev / Next — 手機版置於圖片內側，桌面版移出容器外 */}
             {active > 0 && (
               <button
-                onClick={() => setActive(a => a - 1)}
+                onClick={e => { e.stopPropagation(); setActive(a => a - 1) }}
                 className="absolute left-2 md:left-0 md:-translate-x-12 top-1/2 -translate-y-1/2
                            w-10 h-10 rounded-full bg-black/40 md:bg-white/10
                            hover:bg-black/60 md:hover:bg-white/20
@@ -65,7 +63,7 @@ export default function ProjectGallery({ images }) {
             )}
             {active < images.length - 1 && (
               <button
-                onClick={() => setActive(a => a + 1)}
+                onClick={e => { e.stopPropagation(); setActive(a => a + 1) }}
                 className="absolute right-2 md:right-0 md:translate-x-12 top-1/2 -translate-y-1/2
                            w-10 h-10 rounded-full bg-black/40 md:bg-white/10
                            hover:bg-black/60 md:hover:bg-white/20
