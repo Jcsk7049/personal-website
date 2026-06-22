@@ -1,6 +1,9 @@
 # 建置產物
 node_modules/
 dist/
+resume/*.aux
+resume/*.log
+resume/*.out
 
 # 系統檔案
 .DS_Store
