@@ -21,7 +21,7 @@ export default function Hero({ profile }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const resumeHref = lang === 'en' ? '/resume-zh.html' : '/resume-zh.html'
+  const resumeHref = lang === 'en' ? '/resume-en.pdf' : '/resume-zh.pdf'
 
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">

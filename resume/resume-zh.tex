@@ -1,0 +1,174 @@
+%-------------------------
+% Resume in LaTeX (Chinese version)
+% Same content/template as resume.tex, compiled with xelatex + CJK font.
+% Compile with: xelatex resume-zh.tex
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{WenQuanYi Zen Hei}
+\setmainfont{Latin Modern Roman}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape 江嘉元} \\ \vspace{1pt}
+    \small +886 928 530 700 $|$ \href{mailto:johnjia9491@gmail.com}{johnjia9491@gmail.com} $|$
+    \href{https://github.com/Jcsk7049}{github.com/Jcsk7049} $|$
+    \href{https://linkedin.com/in/\%E5\%98\%89\%E5\%85\%83-\%E6\%B1\%9F-662764344}{LinkedIn} $|$
+    台北市，台灣
+\end{center}
+
+%-----------EDUCATION-----------
+\section{學歷}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {國立中央大學}{桃園市}
+      {電機工程學系 學士}{2024.09 -- 2027.09（預計）}
+    \resumeSubheading
+      {明志科技大學}{新北市}
+      {電機工程學系 學士（轉學）}{2023.09 -- 2024.06}
+    \resumeSubheading
+      {南港高級工業職業學校}{台北市}
+      {電子科}{2020.09 -- 2023.06}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{經歷}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {專題研究生}{2025.05 -- 至今}
+      {國立中央大學 林書彥教授實驗室}{桃園市}
+      \resumeItemListStart
+        \resumeItem{主導 ICU 呼吸器相關肺炎（VAP）早期預警模型；設計 stay-level 5-fold 交叉驗證，排除公開資料集中存在的病人層級資料洩漏問題。}
+        \resumeItem{以 Integrated Gradients 特徵歸因將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 72 小時預測窗口達 0.98--0.99 AUROC。}
+        \resumeItem{論文已投稿 IEEE GCCE 2026。}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {工程顧問與系統整合}{2023 -- 至今}
+      {FRC Team 7645}{台北市}
+      \resumeItemListStart
+        \resumeItem{負責機器人系統架構：多感測器融合、PID 閉迴路馬達控制調校、軟硬體介面定義。}
+        \resumeItem{導入 LLM 輔助除錯流程，將反覆韌體除錯時間縮短約一週；訓練新成員以根因分析取代試錯法除錯。}
+        \resumeItem{重建團隊網站，減少重複的招商/外部詢問。}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {競賽選手}{2020.06 -- 2023.09}
+      {南港高工 NK-MTC 7645}{台北市}
+      \resumeItemListStart
+        \resumeItem{橫跨 LabVIEW/Arduino 韌體、FRC 電路接線、AutoCAD 建模、3D 列印機構件；參加 3 場 FRC 區域賽，並代表學校出賽全國技能競賽。}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{專案}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{PCB 缺陷檢測} $|$ \emph{Azure Custom Vision, Python}}{2025}
+          \resumeItemListStart
+            \resumeItem{訓練物件偵測模型定位 PCB 缺陷；以 600px 缺陷置中裁切，將缺陷框面積佔比從 $\sim$2\% 提升至 $\sim$12\%。}
+            \resumeItem{於訓練未見過的板型（06/07）上驗證，達 100\% precision、69.7\% recall、81.9\% mAP@0.5。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions, Cloudflare Pages}}{2026 -- 至今}
+          \resumeItemListStart
+            \resumeItem{打造個人職缺聚合器，透過每日 GitHub Actions 排程爬取 104、Cake、LinkedIn（約 1,300 筆/天）；在 104 舊版 API 棄用後逆向工程其內部 SPA API。}
+            \resumeItem{設計可配置的評分引擎（職務相符度、通勤地點、經驗門檻）與無後端、無資料庫的靜態網站建置流程。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{AWS x BitoPro Hackathon -- AI 風險偵測}}{2026}
+          \resumeItemListStart
+            \resumeItem{針對 12,753 筆使用者帳戶建立風險評分儀表板（AUC 83.2\%），以 5-fold 交叉驗證與門檻調整（最佳值 0.24）。}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{技術能力}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     \textbf{程式語言與韌體}{: C/C++ (STM32/Cortex-M), Python, QMK/ChibiOS HAL, LabVIEW, Arduino/ESP32, UART/SPI/I2C} \\
+     \textbf{機器學習}{: PyTorch, TensorFlow/Keras, LSTM/時間序列, 特徵工程, 訊號處理, SHAP/XAI, TinyML} \\
+     \textbf{EDA / 硬體設計}{: Altium Designer, KiCAD, OrCAD, EasyEDA Pro} \\
+     \textbf{製造}{: CNC 銑床, Mastercam, 3D 列印, 雷射切割, 電焊, AutoCAD, Fusion 360, Autodesk Inventor} \\
+    }}
+ \end{itemize}
+
+%-----------AWARDS & CERTIFICATIONS-----------
+\section{獎項與證照}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     2022 FRC 台灣鴻海區域賽 -- 決賽聯盟與控制創新獎 $\cdot$
+     西門子 SMSCP Level 1 機電整合證照（2022） $\cdot$
+     第 52 屆全國技能競賽 -- 團隊專案類代表（2022） $\cdot$
+     2020 FRC CIT 5G 區域賽 -- 工程設計卓越獎（工業設計）
+    }}
+ \end{itemize}
+
+\end{document}
