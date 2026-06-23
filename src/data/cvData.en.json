@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Chiang Jia Yuan",
-    "title": "",
-    "bio": "I'm a third-year EE student. My background is vocational mechatronics, so I've worked with mechanical, circuit, and firmware stuff hands-on. I've added AI on top of that recently. The nice thing about spanning those areas is that when I'm working with people from different backgrounds, it's a lot easier to get on the same page — I know what they're talking about.",
+    "title": "Hardware/Software Integration · From PCB to Firmware to Data",
+    "bio": "Trained in mechatronics from the ground up: mechanical design, CNC milling/turning/drilling, 3D printing, then circuits, PCB design, and embedded firmware, and now data analysis — I've worked hands-on across the full hardware-to-software stack. I'm a third-year EE student. My background is vocational mechatronics, so I've worked with mechanical, circuit, and firmware stuff hands-on. I've added AI on top of that recently. The nice thing about spanning those areas is that when I'm working with people from different backgrounds, it's a lot easier to get on the same page — I know what they're talking about.",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -302,7 +302,7 @@
       "category": "大學校外作品",
       "title": "Analog IC Studio — Automated Analog IC Tuning Platform",
       "period": "2026",
-      "description": "A Python + Ngspice + SciPy platform that automates analog IC design: enter spec targets and the optimizer closes the loop in simulation to back-solve each transistor's W/L.",
+      "description": "A Python + Ngspice + SciPy platform that automates analog IC design: enter spec targets and the optimizer closes the loop in simulation to back-solve each transistor's W/L. (AI-assisted development)",
       "tags": [
         "Python",
         "Ngspice",
@@ -530,7 +530,7 @@
       "category": "大學校外作品",
       "title": "Job Radar: Personalized Job Search Dashboard",
       "period": "2026 – Present",
-      "description": "A GitHub Actions cron job scrapes ~49 target companies daily from three sources (104, Cake, LinkedIn — about 1,300 listings/day), scores and ranks them against my own criteria, and builds a static dashboard deployed on Cloudflare Pages. No backend, no database — data processing and rendering are fully separated.",
+      "description": "A GitHub Actions cron job scrapes ~49 target companies daily from three sources (104, Cake, LinkedIn — about 1,300 listings/day), scores and ranks them against my own criteria, and builds a static dashboard deployed on Cloudflare Pages. No backend, no database — data processing and rendering are fully separated. (AI-assisted development)",
       "tags": [
         "Python",
         "Playwright",
@@ -692,7 +692,7 @@
       "category": "University Coursework",
       "title": "PCB Trace Defect Detection: Tiled Object Detection with Azure Custom Vision",
       "period": "2026",
-      "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab. The model was also wrapped into a local inspection tool with batch upload, defect statistics and CSV export, plus a human feedback → review → retrain active-learning loop.",
+      "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab. The model was also wrapped into a local inspection tool with batch upload, defect statistics and CSV export, plus a human feedback → review → retrain active-learning loop. (AI-assisted development)",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
