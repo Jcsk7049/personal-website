@@ -157,29 +157,31 @@ export default function ProjectShowcase({ projects }) {
                       {proj.badge}
                     </span>
                   )}
-                  <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2 flex-1">
+                  <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2">
                     {proj.summary || proj.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {proj.tags.slice(0, 3).map(tag => (
-                      <span key={tag}
-                            className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
-                                       border border-black/[0.05] text-xs font-medium">
-                        {tag.trim()}
-                      </span>
-                    ))}
-                    {proj.tags.length > 3 && (
-                      <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
-                                       border border-black/[0.05] text-xs font-medium">
-                        +{proj.tags.length - 3}
-                      </span>
-                    )}
+                  <div className="mt-auto flex flex-col gap-2">
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {proj.tags.slice(0, 3).map(tag => (
+                        <span key={tag}
+                              className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
+                                         border border-black/[0.05] text-xs font-medium">
+                          {tag.trim()}
+                        </span>
+                      ))}
+                      {proj.tags.length > 3 && (
+                        <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
+                                         border border-black/[0.05] text-xs font-medium">
+                          +{proj.tags.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-xs text-[#0071E3] font-medium
+                                     opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
+                                     transition-all duration-[125ms]">
+                      {t.viewDetail}
+                    </span>
                   </div>
-                  <span className="text-xs text-[#0071E3] font-medium mt-0.5
-                                   opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                   transition-all duration-[125ms]">
-                    {t.viewDetail}
-                  </span>
                 </div>
               </Link>
             </SpotlightCard>
