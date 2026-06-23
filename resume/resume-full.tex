@@ -1,8 +1,7 @@
 %-------------------------
-% Resume in LaTeX
-% Based on "Jake's Resume" template — the de-facto standard ATS-friendly
-% format used widely for US/EU tech-industry applications.
-% Compile with: pdflatex resume.tex (or xelatex)
+% Resume in LaTeX — Full / Complete Version (multi-page)
+% Based on "Jake's Resume" template.
+% Compile with: pdflatex resume-full.tex
 %-------------------------
 
 \documentclass[letterpaper,11pt]{article}
@@ -28,8 +27,8 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.9in}
-\addtolength{\textheight}{1.8in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
 
 \urlstyle{same}
 \raggedbottom
@@ -65,7 +64,7 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=1pt, topsep=4pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
@@ -120,7 +119,8 @@
       {Competitor}{Jun. 2020 -- Sep. 2023}
       {Nangang Senior High School -- NK-MTC 7645}{Taipei, Taiwan}
       \resumeItemListStart
-        \resumeItem{Generalist across LabVIEW/Arduino firmware, FRC electrical wiring, AutoCAD modeling, and 3D-printed mechanical parts; competed in 3 FRC regional events and represented the team at the National Skills Competition.}
+        \resumeItem{Generalist across LabVIEW/Arduino firmware, FRC electrical wiring, AutoCAD modeling, and 3D-printed mechanical parts.}
+        \resumeItem{Competed in 3 FRC regional events (2020 CIT 5G Regional, 2022 Hon Hai Taiwan Regional) and represented the school at the National Skills Competition.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -133,17 +133,38 @@
           \resumeItemListStart
             \resumeItem{Single-center pilot (Far Eastern Memorial Hospital ICU, n=109); designed stay-level 5-fold stratified CV that exposed patient-level data leakage in the PREDICT 2025 benchmark (AUROC dropped from an inflated 0.99 to a real 0.58).}
             \resumeItem{Used Integrated Gradients to drop a collinear redundant feature (mv\_total $\equiv$ Vt $\times$ RR) and reduced the model to 4 non-invasive features; final LSTM reached 0.99 AUROC at a 24-hour horizon, 0.98--0.99 across 6--72h.}
+            \resumeItem{Outperformed LR/RF/SVM baselines at every prediction window under the same setup; manuscript submitted to IEEE GCCE 2026.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{PCB Defect Detection} $|$ \emph{Azure Custom Vision, Python}}{2025}
+          \resumeItemListStart
+            \resumeItem{Trained an object-detection model to localize PCB defects across 3 board types and 3 defect classes; first attempt on full-resolution images scored only 9.6\% mAP because each defect box (\textasciitilde60px) vanished after Custom Vision's resize.}
+            \resumeItem{Fixed it with 600px defect-centered tiling, raising defect bounding-box area share from \textasciitilde2\% to \textasciitilde12\% of each tile; mAP went from 9.6\% to 81.9\%.}
+            \resumeItem{Validated on held-out board types (06/07) unseen during training; reached 100\% precision, 69.7\% recall. Exported TensorFlow model.pb and ran inference in Colab with the official anchor/NMS decoder.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Open-Source QMK x STM32 Numpad} $|$ \emph{C, ChibiOS HAL, EasyEDA}}{2026}
           \resumeItemListStart
-            \resumeItem{Designed a 17-key PCB in EasyEDA Pro, hand-soldered the board, and flashed STM32F072 via DFU; reverse-engineered ChibiOS HAL config (chconf/halconf/mcuconf) to resolve build conflicts and timing issues between the open-source PCB and QMK firmware.}
-            \resumeItem{Reached stable USB HID enumeration with <5ms key latency, working RGB Matrix, and live VIA/VIAL remapping without recompiling.}
+            \resumeItem{Designed a 17-key PCB in EasyEDA Pro, hand-soldered the board, and flashed STM32F072 via DFU.}
+            \resumeItem{Reverse-engineered ChibiOS HAL config (chconf/halconf/mcuconf) to resolve build conflicts and timing issues between the open-source PCB and QMK firmware; reached stable USB HID enumeration with <5ms key latency.}
+            \resumeItem{Got RGB Matrix working with a brightness cap to prevent LED over-current, plus live VIA/VIAL remapping without recompiling; fixed a top/bottom-layer footprint mirroring bug in the PCB design.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Swerve Drive Chassis (FRC)} $|$ \emph{LabVIEW, CNC, PID Control}}{2020 -- 2023}
           \resumeItemListStart
-            \resumeItem{Designed and machined 3 generations of a swerve-drive chassis from scratch (kinematics, gear train, CNC/wire-EDM fabrication, LabVIEW PID control); won Innovation in Control Award at 2022 FRC Taiwan Hon Hai Regional.}
+            \resumeItem{Designed and machined 3 generations of a swerve-drive chassis from scratch: kinematics, gear train, CNC/wire-EDM fabrication, and LabVIEW PID control.}
+            \resumeItem{Gen-3 cut weight via 3D-printed gears, modularized drive/steer motor mounts (NEO or Falcon 500 interchangeable), and redesigned wheels for better grip; won Innovation in Control Award at 2022 FRC Taiwan Hon Hai Regional.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions, Cloudflare Pages}}{2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built a personal job-listing aggregator scraping 104, Cake, and LinkedIn (\textasciitilde1,300 listings/day) via a daily GitHub Actions cron; reverse-engineered 104's internal SPA API after the legacy API was deprecated.}
+            \resumeItem{Designed a config-driven scoring engine (role fit, location commute, experience threshold) and a static-site dashboard build pipeline with no backend or database.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{AWS x BitoPro Hackathon -- AI Fraud Detection}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built an account risk-scoring dashboard (AUC 83.2\%) with 5-fold CV and decision-threshold tuning (optimal 0.24) over 12,753 user accounts.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 

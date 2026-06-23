@@ -13,7 +13,8 @@ export default function Hero({ profile }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const resumeHref = lang === 'en' ? '/resume-en.pdf' : '/resume-zh.pdf'
+  const resumeHref     = lang === 'en' ? '/resume-en.pdf'      : '/resume-zh.pdf'
+  const resumeFullHref = lang === 'en' ? '/resume-en-full.pdf' : '/resume-zh-full.pdf'
 
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
@@ -58,7 +59,14 @@ export default function Hero({ profile }) {
                  className="px-5 py-2.5 rounded-full text-sm font-medium
                             border-2 border-[#0071E3] text-[#0071E3]
                             hover:bg-[#0071E3] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
-                {t.resumeBtn}
+                {t.resumeBtnOnePage}
+              </a>
+              <a href={resumeFullHref}
+                 target="_blank" rel="noopener noreferrer"
+                 className="px-5 py-2.5 rounded-full text-sm font-medium
+                            border border-black/[0.12] text-[#1D1D1F]
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                {t.resumeBtnFull}
               </a>
             </div>
           </div>

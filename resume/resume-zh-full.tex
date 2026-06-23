@@ -1,7 +1,6 @@
 %-------------------------
-% Resume in LaTeX (Chinese version)
-% Same content/template as resume.tex, compiled with xelatex + CJK font.
-% Compile with: xelatex resume-zh.tex
+% Resume in LaTeX (Chinese, Full / Complete Version, multi-page)
+% Compile with: xelatex resume-zh-full.tex
 %-------------------------
 
 \documentclass[letterpaper,11pt]{article}
@@ -30,8 +29,8 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.9in}
-\addtolength{\textheight}{1.8in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
 
 \urlstyle{same}
 \raggedbottom
@@ -67,7 +66,7 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=1pt, topsep=4pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
@@ -122,7 +121,8 @@
       {競賽選手}{2020.06 -- 2023.09}
       {南港高工 NK-MTC 7645}{台北市}
       \resumeItemListStart
-        \resumeItem{橫跨 LabVIEW/Arduino 韌體、FRC 電路接線、AutoCAD 建模、3D 列印機構件；參加 3 場 FRC 區域賽，並代表學校出賽全國技能競賽。}
+        \resumeItem{橫跨 LabVIEW/Arduino 韌體、FRC 電路接線、AutoCAD 建模、雷切與 3D 列印機構零件，並跨足 business plan 撰寫與 engineering notebook 紀錄。}
+        \resumeItem{3 年內參加 3 場 FRC 國際區域賽（含 2020 中科 5G 區域賽、2022 台灣鴻海區域賽），並代表參加全國技能競賽。}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -135,17 +135,38 @@
           \resumeItemListStart
             \resumeItem{單中心試驗性研究（亞東紀念醫院 ICU，n=109）；設計 stay-level 5-fold 分層交叉驗證，揪出 PREDICT 2025 基準中的病人層級資料洩漏（AUROC 從虛高的 0.99 修正為真實的 0.58）。}
             \resumeItem{以 Integrated Gradients 移除數學共線冗餘特徵（mv\_total $\equiv$ Vt $\times$ RR），將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 24 小時窗口達 0.99 AUROC，6--72 小時皆維持 0.98--0.99。}
+            \resumeItem{同設定下於所有預測窗口顯著優於 LR、RF、SVM 等傳統模型；論文已投稿 IEEE GCCE 2026。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{PCB 缺陷檢測} $|$ \emph{Azure Custom Vision, Python}}{2025}
+          \resumeItemListStart
+            \resumeItem{訓練物件偵測模型，於 3 個板型、3 種缺陷上定位 PCB 瑕疵；直接用整張原圖訓練時 mAP 只有 9.6\%，因為缺陷框（約 60px）在 Custom Vision 縮圖後幾乎消失。}
+            \resumeItem{改成以缺陷為中心切 600px 小塊訓練，將缺陷框佔比從約 2\% 拉到約 12\%，mAP 從 9.6\% 提升到 81.9\%。}
+            \resumeItem{於訓練未見過的板型（06/07）上驗證，達 100\% precision、69.7\% recall；匯出 TensorFlow model.pb，搭配官方 anchor/NMS 解碼器在 Colab 推論。}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{開源 QMK x STM32 數字鍵盤} $|$ \emph{C, ChibiOS HAL, EasyEDA}}{2026}
           \resumeItemListStart
-            \resumeItem{以 EasyEDA Pro 設計 17 鍵 PCB，手焊組裝並透過 DFU 燒錄 STM32F072；逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），解決開源 PCB 與 QMK 韌體間的編譯衝突與時序問題。}
-            \resumeItem{達成穩定 USB HID 識別（按鍵延遲 <5ms）、RGB Matrix 正常運作，並支援 VIA/VIAL 即時改鍵、無需重新編譯。}
+            \resumeItem{以 EasyEDA Pro 設計 17 鍵 PCB，手焊組裝並透過 DFU 燒錄 STM32F072。}
+            \resumeItem{逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），解決開源 PCB 與 QMK 韌體間的編譯衝突與時序問題；達成穩定 USB HID 識別，按鍵延遲 <5ms。}
+            \resumeItem{完成 RGB Matrix 並設限制電流上限防止 LED 過流，支援 VIA/VIAL 即時改鍵無需重新編譯；排查並修復 PCB 上下層腳位鏡像問題。}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Swerve Drive 全向輪底盤（FRC）} $|$ \emph{LabVIEW, CNC, PID Control}}{2020 -- 2023}
           \resumeItemListStart
-            \resumeItem{從零開發三代全向輪底盤（運動學演算法、齒輪傳動、CNC/線切割加工、LabVIEW PID 控制），獲 2022 FRC 台灣鴻海區域賽控制創新獎。}
+            \resumeItem{從零開發三代全向輪底盤：運動學演算法、齒輪傳動設計、CNC/線切割加工、LabVIEW PID 控制。}
+            \resumeItem{第三代以 3D 列印齒輪減重、驅動/轉向馬達孔位模組化（可選配 NEO 或 Falcon 500）、自製車輪提升抓地力，獲 2022 FRC 台灣鴻海區域賽控制創新獎。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions, Cloudflare Pages}}{2026 -- 至今}
+          \resumeItemListStart
+            \resumeItem{打造個人職缺聚合器，透過每日 GitHub Actions 排程爬取 104、Cake、LinkedIn（約 1,300 筆/天）；在 104 舊版 API 棄用後逆向工程其內部 SPA API。}
+            \resumeItem{設計可配置的評分引擎（職務相符度、通勤地點、經驗門檻）與無後端、無資料庫的靜態網站建置流程。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{AWS x BitoPro Hackathon -- AI 風險偵測}}{2026}
+          \resumeItemListStart
+            \resumeItem{針對 12,753 筆使用者帳戶建立風險評分儀表板（AUC 83.2\%），以 5-fold 交叉驗證與門檻調整（最佳值 0.24）。}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
