@@ -1,0 +1,172 @@
+%-------------------------
+% Resume in LaTeX
+% Based on "Jake's Resume" template — the de-facto standard ATS-friendly
+% format used widely for US/EU tech-industry applications.
+% Compile with: pdflatex resume.tex (or xelatex)
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Chia-Yuan Chiang} \\ \vspace{1pt}
+    \small +886 928 530 700 $|$ \href{mailto:johnjia9491@gmail.com}{johnjia9491@gmail.com} $|$
+    \href{https://github.com/Jcsk7049}{github.com/Jcsk7049} $|$
+    \href{https://linkedin.com/in/\%E5\%98\%89\%E5\%85\%83-\%E6\%B1\%9F-662764344}{LinkedIn} $|$
+    Taipei, Taiwan
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National Central University}{Taoyuan, Taiwan}
+      {B.S. in Electrical Engineering}{Sep. 2024 -- Sep. 2027 (Expected)}
+    \resumeSubheading
+      {Ming Chi University of Technology}{New Taipei, Taiwan}
+      {B.S. in Electrical Engineering (Transferred)}{Sep. 2023 -- Jun. 2024}
+    \resumeSubheading
+      {Nangang Senior High School}{Taipei, Taiwan}
+      {Electronics Technology}{Sep. 2020 -- Jun. 2023}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Undergraduate Researcher}{May 2025 -- Present}
+      {Prof. Shu-Yen Lin's Lab, National Central University}{Taoyuan, Taiwan}
+      \resumeItemListStart
+        \resumeItem{Led an early-warning model for ICU Ventilator-Associated Pneumonia (VAP); designed a stay-level 5-fold cross-validation scheme to eliminate patient-level data leakage present in the public benchmark.}
+        \resumeItem{Applied Integrated Gradients feature attribution to reduce the model to 4 non-invasive features; the resulting LSTM reached 0.98--0.99 AUROC at a 72-hour prediction horizon.}
+        \resumeItem{Manuscript submitted to IEEE GCCE 2026.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Engineering Advisor \& Systems Integrator}{2023 -- Present}
+      {FRC Team 7645}{Taipei, Taiwan}
+      \resumeItemListStart
+        \resumeItem{Own robot system architecture: multi-sensor fusion, PID closed-loop motor control tuning, and software/hardware interface definitions.}
+        \resumeItem{Introduced LLM-assisted tooling that cut iterative firmware debugging time by roughly one week; trained junior members to debug from root-cause analysis instead of trial-and-error.}
+        \resumeItem{Rebuilt the team website, reducing repetitive PR/outreach inquiries.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Competitor}{Jun. 2020 -- Sep. 2023}
+      {Nangang Senior High School -- NK-MTC 7645}{Taipei, Taiwan}
+      \resumeItemListStart
+        \resumeItem{Generalist across LabVIEW/Arduino firmware, FRC electrical wiring, AutoCAD modeling, and 3D-printed mechanical parts; competed in 3 FRC regional events and represented the team at the National Skills Competition.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{PCB Defect Detection} $|$ \emph{Azure Custom Vision, Python}}{2025}
+          \resumeItemListStart
+            \resumeItem{Trained an object-detection model to localize PCB defects; used 600px defect-centered tiling to raise defect bounding-box area share from $\sim$2\% to $\sim$12\% of each tile.}
+            \resumeItem{Validated on held-out board types (06/07) unseen during training; reached 100\% precision, 69.7\% recall, 81.9\% mAP at 0.5 threshold.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions, Cloudflare Pages}}{2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built a personal job-listing aggregator scraping 104, Cake, and LinkedIn ($\sim$1,300 listings/day) via a daily GitHub Actions cron; reverse-engineered 104's internal SPA API after the legacy API was deprecated.}
+            \resumeItem{Designed a config-driven scoring engine (role fit, location commute, experience threshold) and a static-site dashboard build pipeline with no backend or database.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{AWS x BitoPro Hackathon -- AI Fraud Detection}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built an account risk-scoring dashboard (AUC 83.2\%) with 5-fold CV and decision-threshold tuning (optimal 0.24) over 12,753 user accounts.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     \textbf{Languages \& Firmware}{: C/C++ (STM32/Cortex-M), Python, QMK/ChibiOS HAL, LabVIEW, Arduino/ESP32, UART/SPI/I2C} \\
+     \textbf{Machine Learning}{: PyTorch, TensorFlow/Keras, LSTM/Time-Series, Feature Engineering, Signal Processing, SHAP/XAI, TinyML} \\
+     \textbf{EDA / Hardware}{: Altium Designer, KiCAD, OrCAD, EasyEDA Pro} \\
+     \textbf{Manufacturing}{: CNC Milling, Mastercam, 3D Printing, Laser Cutting, Welding, AutoCAD, Fusion 360, Autodesk Inventor} \\
+    }}
+ \end{itemize}
+
+%-----------AWARDS & CERTIFICATIONS-----------
+\section{Awards \& Certifications}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     2022 FRC Taiwan Hon Hai Regional -- Finalist Alliance \& Innovation in Control Award $\cdot$
+     Siemens SMSCP Level 1 Mechatronics Certification (2022) $\cdot$
+     52nd National Skills Competition -- Team Project Category Representative (2022) $\cdot$
+     2020 FRC CIT 5G Regional -- Excellence in Engineering (Industrial Design) Award
+    }}
+ \end{itemize}
+
+\end{document}
