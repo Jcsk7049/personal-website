@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "江嘉元",
-    "title": "",
-    "bio": "我是電機系三年級，高職讀機電整合，所以機構、電路、韌體我都碰過。現在多加了 AI 這塊，跨這幾個領域的好處是，跟不同背景的人合作時比較容易對焦——知道每個人在說什麼，比較不會雞同鴨講。",
+    "title": "軟硬整合 · 從 PCB 到韌體到資料",
+    "bio": "機電整合科班出身：從機構設計、CNC 車銑鑽加工、3D 列印，到電路、PCB、嵌入式韌體，再到資料分析——軟硬全鏈路親手做過。我是電機系三年級，高職讀機電整合，所以機構、電路、韌體我都碰過。現在多加了 AI 這塊，跨這幾個領域的好處是，跟不同背景的人合作時比較容易對焦——知道每個人在說什麼，比較不會雞同鴨講。",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -301,7 +301,7 @@
       "category": "大學校外作品",
       "title": "Job Radar — 個人化求職雷達",
       "period": "2026",
-      "description": "每日自動從 104／Cake／LinkedIn／企業官網聚合 50+ 家目標公司職缺，依個人技能評分排序，產出手機/電腦皆可用的儀表板。從爬蟲、評分引擎、靜態網站生成到雲端 CI/CD 全線自建，電腦關機也每天自動更新。",
+      "description": "每日自動從 104／Cake／LinkedIn／企業官網聚合 50+ 家目標公司職缺，依個人技能評分排序，產出手機/電腦皆可用的儀表板。從爬蟲、評分引擎、靜態網站生成到雲端 CI/CD 全線自建，電腦關機也每天自動更新。（AI 輔助開發）",
       "tags": [
         "Python",
         "Playwright",
@@ -362,7 +362,7 @@
       "category": "大學校外作品",
       "title": "Analog IC Studio — 類比 IC 自動調參平台",
       "period": "2026",
-      "description": "Python + Ngspice + SciPy 打造的類比 IC 自動化設計平台：輸入規格目標，演算法閉環模擬並自動回推每顆電晶體的 W/L，輸出可填回 KiCad 的元件參數。",
+      "description": "Python + Ngspice + SciPy 打造的類比 IC 自動化設計平台：輸入規格目標，演算法閉環模擬並自動回推每顆電晶體的 W/L，輸出可填回 KiCad 的元件參數。（AI 輔助開發）",
       "tags": [
         "Python",
         "Ngspice",
@@ -687,7 +687,7 @@
       "category": "大學課程作品",
       "title": "PCB 線路瑕疵偵測：Azure Custom Vision 切塊物件偵測",
       "period": "2026",
-      "description": "北大 PCB 瑕疵資料集，挑 6 個板型（01／04／05／06／07／08）× 3 種缺陷（missing_hole 缺孔、mouse_bite 鼠咬、open_circuit 斷路）訓練物件偵測。原圖是 3034×1586 的整板、缺陷框只有約 60px，直接丟 Custom Vision 會被縮到約 512px 而看不見，第一次訓練 mAP 只有 9.6%、Recall 3.1%。改成把大圖切成 600px 小塊再訓練後，mAP 88.2%、Precision 100%。匯出 TensorFlow model.pb，可在 Colab 載入推論。 另把模型包成本機檢測工具，支援批量上傳、缺陷統計與 CSV，並設計「人工回饋→審核→重訓」的 active-learning 迴圈。",
+      "description": "北大 PCB 瑕疵資料集，挑 6 個板型（01／04／05／06／07／08）× 3 種缺陷（missing_hole 缺孔、mouse_bite 鼠咬、open_circuit 斷路）訓練物件偵測。原圖是 3034×1586 的整板、缺陷框只有約 60px，直接丟 Custom Vision 會被縮到約 512px 而看不見，第一次訓練 mAP 只有 9.6%、Recall 3.1%。改成把大圖切成 600px 小塊再訓練後，mAP 88.2%、Precision 100%。匯出 TensorFlow model.pb，可在 Colab 載入推論。 另把模型包成本機檢測工具，支援批量上傳、缺陷統計與 CSV，並設計「人工回饋→審核→重訓」的 active-learning 迴圈。（AI 輔助開發）",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
