@@ -692,7 +692,7 @@
       "category": "University Coursework",
       "title": "PCB Trace Defect Detection: Tiled Object Detection with Azure Custom Vision",
       "period": "2026",
-      "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab.",
+      "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab. The model was also wrapped into a local inspection tool with batch upload, defect statistics and CSV export, plus a human feedback → review → retrain active-learning loop.",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
@@ -705,6 +705,10 @@
           {
             "src": "/images/pcb-defect-detection/performance.png",
             "caption": "Advanced Training result (6 board types): overall Precision 100% / Recall 72.3% / mAP 88.2% (threshold 0.5); per-class numbers below"
+          },
+          {
+            "src": "/images/pcb-defect-detection/pipeline.png",
+            "caption": "Inspection tool & human-feedback retrain loop: upload → tiled detect → batch stats → manual correction → review/approve → retrain on approved data only"
           },
           {
             "src": "/images/pcb-defect-detection/dataset.png",
@@ -1145,7 +1149,7 @@
         ],
         "purpose": "The assignment: from 10 board types, pick at least 3 types and at least 3 defect classes, train an object detector to 80%+ precision, run detection on unseen boards, and export a model.pb that loads in Colab.\n\nThe hard part wasn't the training workflow, it was the scale of the data. Each defect box is about 60 pixels while the whole board is 3034×1586. Custom Vision shrinks input to about 512px, leaving defects at ~10px that the model simply can't see. The first run by the standard workflow got 9.6% mAP and 3.1% recall, basically useless.",
         "concept": "[First attempt: upload full images]\nFull images with their Pascal VOC annotations, trained on the General (compact) domain with Advanced Training. Result: 9.6% mAP, 3.1% recall, the defects were lost to downscaling.\n\n[Fix: image tiling]\nSlice each board into 600×600 tiles centered on each defect box, keeping a box only if at least 40% of its area falls inside the tile, and re-normalizing coordinates to 0–1 within the tile. This raised the defect-to-tile ratio from ~2% to ~12%, so a defect is still ~60px after the 512px resize. The final model trained on 6 board types, 837 tiles across the 3 defects.\n\n[Inference also needs tiling]\nA full board gets shrunk at inference too, so PCB_USED and the validation boards are sliced the same way and detected tile by tile, with predictions mapped back to original coordinates and duplicates from overlapping tiles removed by NMS at IoU 0.3.\n\n[Export and Colab]\nExporting TensorFlow requires a compact domain. The exported model outputs a YOLO-style raw tensor (node model_outputs:0); the anchor + NMS decoding reuses Custom Vision's official object_detection.py rather than rewriting it. In Colab, loading that decoder together with model.pb and labels.txt is enough to run inference.",
-        "outcome": "[Advanced Training result (6 board types, threshold 0.5)]\nPrecision 100%　Recall 72.3%　mAP 88.2%\nmissing_hole　P 100%　R 96.9%　AP 99.6%\nmouse_bite　　P 100%　R 65.1%　AP 82.0%\nopen_circuit　P 100%　R 54.1%　AP 83.0%\n\n[Why training grew from 3 to 6 board types]\nThe first version trained on only 3 board types (01/04/05) and reached 81.9% mAP, but on unseen boards it added about one extra box per board: it read a normal, drilled via as a missing hole, because it had only seen vias from 3 board types. Adding three more board types (06/07/08) pushed mAP to 88.2% and removed those false positives.\n\n[Validation on board types the model never saw (09–12)]\nTraining used 6 board types. Validation used 106 defect images from board types 09, 10, 11 and 12: 538 ground-truth defects in total against 509 predicted boxes, now slightly conservative (about 5% under) instead of over-predicting. Detecting defects steadily on unseen board types means the generalization is real.\n\n[Honest limit]\nThe 100% precision is still Custom Vision's cross-validation number and is optimistic, since tiles from the same board share an almost identical background and inflate it. Among the three classes, open_circuit and mouse_bite have lower recall (54% and 65%): a broken trace and a mouse bite are subtler and more irregular than a missing hole, so some are missed, and the next step would be adding data for those two. missing_hole is already solid (96.9% recall).",
+        "outcome": "[Advanced Training result (6 board types, threshold 0.5)]\nPrecision 100%　Recall 72.3%　mAP 88.2%\nmissing_hole　P 100%　R 96.9%　AP 99.6%\nmouse_bite　　P 100%　R 65.1%　AP 82.0%\nopen_circuit　P 100%　R 54.1%　AP 83.0%\n\n[Why training grew from 3 to 6 board types]\nThe first version trained on only 3 board types (01/04/05) and reached 81.9% mAP, but on unseen boards it added about one extra box per board: it read a normal, drilled via as a missing hole, because it had only seen vias from 3 board types. Adding three more board types (06/07/08) pushed mAP to 88.2% and removed those false positives.\n\n[Validation on board types the model never saw (09–12)]\nTraining used 6 board types. Validation used 106 defect images from board types 09, 10, 11 and 12: 538 ground-truth defects in total against 509 predicted boxes, now slightly conservative (about 5% under) instead of over-predicting. Detecting defects steadily on unseen board types means the generalization is real.\n\n[Honest limit]\nThe 100% precision is still Custom Vision's cross-validation number and is optimistic, since tiles from the same board share an almost identical background and inflate it. Among the three classes, open_circuit and mouse_bite have lower recall (54% and 65%): a broken trace and a mouse bite are subtler and more irregular than a missing hole, so some are missed, and the next step would be adding data for those two. missing_hole is already solid (96.9% recall).\n\n[Follow-up: inspection tool + human-feedback retraining]\nThe model was wrapped into a local web tool: drag many boards in for batch detection, draw the three defect classes in distinct colors, summarize NG/OK and per-class counts, and export CSV. A human-feedback loop was added — detections can be marked as false positive (over-detected) or missed (a new box), and after a person reviews and approves each item, only the approved corrections are used to retrain, forming an active-learning loop. The tool is a local Flask app and keys stay on the machine.",
         "tech": [
           {
             "group": "Image Processing",
@@ -1183,6 +1187,19 @@
               {
                 "name": "Held-out Validation",
                 "desc": "Generalization test on 106 images from board types 09–12 that never appeared in training, drawing green (ground truth) and red (prediction) boxes; 538 ground-truth defects against 509 predicted boxes, validating performance on new boards rather than trusting the cross-validation numbers alone"
+              }
+            ]
+          },
+          {
+            "group": "Application Tooling",
+            "items": [
+              {
+                "name": "Batch inspection UI",
+                "desc": "Local Flask web app: drag many boards for batch detection, draw the three defect classes in distinct colors, summarize NG/OK and per-class counts, export CSV"
+              },
+              {
+                "name": "Human-feedback loop",
+                "desc": "Detections can be marked as false positive or missed and saved as corrections; after human review/approval, only approved data is used to retrain — an active-learning loop"
               }
             ]
           }
