@@ -32,7 +32,6 @@ const DEFAULT_RESUME = {
   awards: [
     { title: 'AWS × BitoPro 黑客松完賽', year: '2026' },
     { title: 'FRC 台灣鴻海區域賽：亞軍聯盟 & 控制創新獎', year: '2022' },
-    { title: 'Siemens SMSCP Level 1（西門子機電整合認證 第一級）', year: '2022' },
     { title: '工科賽：數位電子職類代表', year: '2022' },
     { title: '全國技能競賽：集體創作職類代表', year: '2022' },
     { title: 'FRC 中科 5G 區域賽：最佳工業設計獎', year: '2020' },
