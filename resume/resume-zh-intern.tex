@@ -1,0 +1,166 @@
+%-------------------------
+% Resume in LaTeX (Chinese, Internship Version)
+% Compile with: xelatex resume-zh-intern.tex
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{WenQuanYi Zen Hei}
+\setmainfont{Latin Modern Roman}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape 江嘉元} \\ \vspace{1pt}
+    \small +886 928 530 700 $|$ \href{mailto:johnjia9491@gmail.com}{johnjia9491@gmail.com} $|$
+    \href{https://github.com/Jcsk7049}{github.com/Jcsk7049} $|$
+    \href{https://linkedin.com/in/\%E5\%98\%89\%E5\%85\%83-\%E6\%B1\%9F-662764344}{LinkedIn} $|$
+    台北市，台灣
+\end{center}
+
+%----------OBJECTIVE----------
+\vspace{-4pt}
+\small{\textbf{求職目標：} 電機系大三在學，尋找嵌入式韌體／FAE／軟硬整合實習。從機構、CNC 加工、PCB、嵌入式韌體到資料分析皆親手做過。暑假可全職實習，學期間可兼職。}
+\vspace{2pt}
+
+%-----------EDUCATION-----------
+\section{學歷}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {元智大學}{桃園市}
+      {電機工程學系 學士}{2024.09 -- 2027.09（預計）}
+    \resumeSubheading
+      {南港高級工業職業學校}{台北市}
+      {電子科（機電整合）}{2020.09 -- 2023.06}
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{專案}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{開源 QMK x STM32 數字鍵盤} $|$ \emph{C, ChibiOS HAL, EasyEDA}}{2026}
+          \resumeItemListStart
+            \resumeItem{以 EasyEDA Pro 設計 17 鍵 PCB，手焊組裝並透過 DFU 燒錄 STM32F072；逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），解決開源 PCB 與 QMK 韌體間的編譯衝突與時序問題。}
+            \resumeItem{達成穩定 USB HID 識別（按鍵延遲 <5ms）、RGB Matrix 正常運作，並支援 VIA/VIAL 即時改鍵、無需重新編譯。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{ICU VAP 早期預警模型} $|$ \emph{PyTorch, LSTM, SHAP}}{2025 -- 至今}
+          \resumeItemListStart
+            \resumeItem{單中心試驗性研究（n=109）；設計 stay-level 5-fold 分層交叉驗證，揪出公開基準中的病人層級資料洩漏（AUROC 從虛高的 0.99 修正為真實的 0.58）。}
+            \resumeItem{以 Integrated Gradients 將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 6--72 小時窗口維持 0.98--0.99 AUROC。論文已投稿 IEEE GCCE 2026。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions}}{2026 -- 至今}
+          \resumeItemListStart
+            \resumeItem{自行打造職缺聚合器，每日透過 GitHub Actions 排程爬取 104／Cake／LinkedIn（約 1,300 筆/天），依個人條件評分排序並產出靜態儀表板；無後端、電腦關機也照常更新。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Swerve Drive 全向輪底盤（FRC）} $|$ \emph{LabVIEW, CNC, PID Control}}{2020 -- 2023}
+          \resumeItemListStart
+            \resumeItem{從零開發三代全向輪底盤（運動學演算法、齒輪傳動、CNC/線切割加工、LabVIEW PID 控制），獲 2022 FRC 台灣鴻海區域賽控制創新獎。}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{經歷}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {專題研究生}{2025.05 -- 至今}
+      {元智大學 林書彥教授實驗室}{桃園市}
+      \resumeItemListStart
+        \resumeItem{主導上述 ICU VAP 早期預警專題；負責從資料清理、交叉驗證設計到模型訓練與特徵歸因的完整流程。}
+      \resumeItemListEnd
+    \resumeSubheading
+      {工程顧問與系統整合}{2023 -- 至今}
+      {FRC Team 7645}{台北市}
+      \resumeItemListStart
+        \resumeItem{負責機器人系統架構：多感測器融合、PID 閉迴路馬達控制調校、軟硬體介面定義；訓練新成員以根因分析取代試錯法除錯。}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{技術能力}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     \textbf{程式語言與韌體}{: C/C++ (STM32/Cortex-M), Python, QMK/ChibiOS HAL, LabVIEW, Arduino/ESP32, UART/SPI/I2C} \\
+     \textbf{EDA / 硬體設計}{: Altium Designer, KiCAD, OrCAD, EasyEDA Pro} \\
+     \textbf{機器學習}{: PyTorch, TensorFlow/Keras, LSTM/時間序列, SHAP/XAI, TinyML} \\
+     \textbf{製造}{: CNC 銑床, Mastercam, 3D 列印, 雷射切割, 電焊, AutoCAD, Fusion 360} \\
+    }}
+ \end{itemize}
+
+%-----------AWARDS & CERTIFICATIONS-----------
+\section{獎項與證照}
+ \begin{itemize}[leftmargin=0.0in, label={}]
+    \small{\item{
+     2022 FRC 台灣鴻海區域賽 -- 決賽聯盟與控制創新獎 $\cdot$
+     西門子 SMSCP Level 1 機電整合證照（2022） $\cdot$
+     第 52 屆全國技能競賽 -- 團隊專案類代表（2022） $\cdot$
+     2020 FRC CIT 5G 區域賽 -- 工程設計卓越獎
+    }}
+ \end{itemize}
+
+\end{document}
