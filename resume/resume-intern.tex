@@ -109,7 +109,7 @@
       \resumeProjectHeading
           {\textbf{ICU VAP Early-Warning Model} $|$ \emph{PyTorch, LSTM, SHAP}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Single-center pilot (n=109); designed stay-level 5-fold stratified CV that exposed patient-level data leakage in a public benchmark (AUROC dropped from an inflated 0.99 to a real 0.58).}
+            \resumeItem{Single-center study (n=109); identified window-level cross-validation data leakage in the PREDICT benchmark (a patient's time windows split across train/test) and redesigned a stay-level 5-fold stratified CV that reflects true generalization to unseen patients.}
             \resumeItem{Used Integrated Gradients to reduce the model to 4 non-invasive features; final LSTM reached 0.98--0.99 AUROC across a 6--72h horizon. Manuscript submitted to IEEE GCCE 2026.}
           \resumeItemListEnd
       \resumeProjectHeading

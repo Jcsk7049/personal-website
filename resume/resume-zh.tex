@@ -133,7 +133,7 @@
       \resumeProjectHeading
           {\textbf{ICU VAP 早期預警模型} $|$ \emph{PyTorch, LSTM, SHAP}}{2025 -- 至今}
           \resumeItemListStart
-            \resumeItem{單中心試驗性研究（亞東紀念醫院 ICU，n=109）；設計 stay-level 5-fold 分層交叉驗證，揪出 PREDICT 2025 基準中的病人層級資料洩漏（AUROC 從虛高的 0.99 修正為真實的 0.58）。}
+            \resumeItem{單中心研究（亞東紀念醫院 ICU，n=109）；找出 PREDICT 基準採用 window-level 交叉驗證造成的資料洩漏（同一病人的時間窗橫跨訓練/測試集），改設計 stay-level 5-fold 分層交叉驗證，反映對未見病人的真實泛化能力。}
             \resumeItem{以 Integrated Gradients 移除數學共線冗餘特徵（mv\_total $\equiv$ Vt $\times$ RR），將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 24 小時窗口達 0.99 AUROC，6--72 小時皆維持 0.98--0.99。}
           \resumeItemListEnd
       \resumeProjectHeading
