@@ -131,7 +131,7 @@
 \section{專案}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{ICU VAP 早期預警模型} $|$ \emph{PyTorch, LSTM, SHAP}}{2025 -- 至今}
+          {\textbf{ICU VAP 早期預警模型} $|$ \emph{TensorFlow/Keras, LSTM, Integrated Gradients}}{2025 -- 至今}
           \resumeItemListStart
             \resumeItem{單中心研究（亞東紀念醫院 ICU，n=109）；找出 PREDICT 基準採用 window-level 交叉驗證造成的資料洩漏（同一病人的時間窗橫跨訓練/測試集），改設計 stay-level 5-fold 分層交叉驗證，反映對未見病人的真實泛化能力。}
             \resumeItem{以 Integrated Gradients 移除數學共線冗餘特徵（mv\_total $\equiv$ Vt $\times$ RR），將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 24 小時窗口達 0.99 AUROC，6--72 小時皆維持 0.98--0.99。}
@@ -175,7 +175,7 @@
  \begin{itemize}[leftmargin=0.0in, label={}]
     \small{\item{
      \textbf{程式語言與韌體}{: C/C++ (STM32/Cortex-M), Python, QMK/ChibiOS HAL, LabVIEW, Arduino/ESP32, UART/SPI/I2C} \\
-     \textbf{機器學習}{: PyTorch, TensorFlow/Keras, LSTM/時間序列, 特徵工程, 訊號處理, SHAP/XAI, TinyML} \\
+     \textbf{機器學習}{: PyTorch, TensorFlow/Keras, LSTM/時間序列, 特徵工程, 訊號處理, Integrated Gradients/XAI, TinyML} \\
      \textbf{EDA / 硬體設計}{: Altium Designer, KiCAD, OrCAD, EasyEDA Pro} \\
      \textbf{製造}{: CNC 銑床, Mastercam, 3D 列印, 雷射切割, 電焊, AutoCAD, Fusion 360, Autodesk Inventor} \\
     }}
