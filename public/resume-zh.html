@@ -24,7 +24,7 @@ body {
   padding: 14mm 16mm;
   font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Hiragino Sans GB', sans-serif;
   font-size: 8.5pt;
-  line-height: 1.5;
+  line-height: 1.42;
   color: #1a1a1a;
   background: #fff;
 }
@@ -44,7 +44,7 @@ a  { color: #0057b8; text-decoration: none; }
 .col-side  { min-width: 0; }
 
 /* ── Section ── */
-.sec { margin-bottom: 13px; }
+.sec { margin-bottom: 10px; }
 .sec-title {
   font-size: 6.5pt;
   font-weight: 700;
@@ -57,7 +57,7 @@ a  { color: #0057b8; text-decoration: none; }
 }
 
 /* ── Entry row ── */
-.entry { margin-bottom: 8px; }
+.entry { margin-bottom: 6px; }
 .entry:last-child { margin-bottom: 0; }
 .row { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
 .entry-title { font-size: 9pt; font-weight: 700; }
@@ -66,7 +66,7 @@ a  { color: #0057b8; text-decoration: none; }
 .entry-desc { font-size: 7.5pt; color: #444; margin-top: 2px; line-height: 1.45; }
 
 /* ── Project entry ── */
-.proj { margin-bottom: 7px; }
+.proj { margin-bottom: 4px; }
 .proj:last-child { margin-bottom: 0; }
 .proj-title { font-size: 8.5pt; font-weight: 700; }
 .proj-cat {
@@ -289,6 +289,30 @@ a  { color: #0057b8; text-decoration: none; }
       <div class="proj-tags">
         <span class="ptag">QMK Firmware</span><span class="ptag">STM32</span><span class="ptag">ChibiOS</span><span class="ptag">EasyEDA Pro</span>
         <a class="proj-link" href="https://github.com/Jcsk7049/qmk-stm32-keyboard">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="row">
+        <div><span class="proj-cat">校外作品</span><span class="proj-title">Job Radar — 個人化求職雷達</span></div>
+        <span class="entry-period">2026</span>
+      </div>
+      <div class="proj-desc">每日從 104／Cake／LinkedIn／企業官網四來源聚合職缺（約 1,300 筆/天），依個人技能加權評分，產出「每日 Top 6 精選＋推薦理由」。爬蟲、評分引擎、靜態網站到雲端 CI/CD 全線自建，電腦關機也照跑。（AI 輔助開發）</div>
+      <div class="proj-tags">
+        <span class="ptag">Python</span><span class="ptag">Playwright</span><span class="ptag">GitHub Actions</span><span class="ptag">Cloudflare Pages</span>
+        <a class="proj-link" href="https://job-radar-bck.pages.dev">Demo ↗</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="row">
+        <div><span class="proj-cat">校外作品</span><span class="proj-title">Analog IC Studio — 類比 IC 自動調參平台</span></div>
+        <span class="entry-period">2026</span>
+      </div>
+      <div class="proj-desc">Python + Ngspice + SciPy 的類比 IC 自動化設計平台：輸入規格目標，演算法閉環模擬並自動回推每顆電晶體的 W/L，輸出可填回 KiCad 的元件參數。（AI 輔助開發）</div>
+      <div class="proj-tags">
+        <span class="ptag">Python</span><span class="ptag">Ngspice</span><span class="ptag">sky130 PDK</span><span class="ptag">SciPy</span>
+        <a class="proj-link" href="https://github.com/Jcsk7049/analog-ic-studio">GitHub ↗</a>
       </div>
     </div>
 
