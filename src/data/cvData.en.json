@@ -298,6 +298,71 @@
   },
   "projects": [
     {
+      "id": "job-radar",
+      "category": "大學校外作品",
+      "title": "Job Radar: Personalized Job Search Dashboard",
+      "period": "2026 – Present",
+      "description": "A GitHub Actions cron job aggregates target-company listings daily from four sources (104, Cake, LinkedIn, company sites — about 1,300/day), scores them against my own skill weights, and produces a daily 'Top 6 curated shortlist with reasoning' — a deliberate shift from coverage to precise judgment. Scraper, scoring engine, static-site build, and cloud CI/CD are all self-built; it updates daily even with my laptop off. (AI-assisted development, Claude Code)",
+      "tags": [
+        "Python",
+        "Playwright",
+        "Web Scraping",
+        "GitHub Actions",
+        "Cloudflare Pages"
+      ],
+      "detail": {
+        "purpose": "Most job boards rank listings by general popularity, which has nothing to do with whether a role actually fits me. I wanted a system centered on my own skills and constraints: track the companies I'm targeting, rank them by weights I set myself, and separate \"what I can apply to as a student now\" from \"what's only open after graduation.\"\n\nSo I built a tool that runs itself every morning at 8:30 without needing my computer on.",
+        "concept": "Data and presentation are separated: the scraper produces structured JSON, the build step statically renders cards into a single HTML file, and the frontend JS only handles filtering, search, and saved/applied status (stored in localStorage). No backend, no database — just static files on a CDN, fast and cheap.\n\nEach source needs a different scraping approach: 104 uses a reverse-engineered company-page API (pulling \"all listings\" instead of keyword search, to avoid missing postings); Cake's job pages are JS-rendered, so I use Playwright headless; LinkedIn uses its public guest job endpoint over plain HTTP, no login needed. The sources have different formats, so I normalize them into one card schema before merging and ranking.\n\nScoring weights (company fit, title keyword matches, commute zone, experience requirements, junior-friendliness) all live in config.json so I can tune them without touching code. Listings are also bucketed by my graduation timeline into \"apply now / campus recruiting targets / post-graduation pool\" so \"a good fit\" and \"something I can apply to right now\" don't get conflated.",
+        "outcome": "It updates automatically every day, pulling roughly 1,300 listings across four sources (104, Cake, LinkedIn, company sites). A few real problems I had to fix along the way:\n\n- 104's old joblist API was discontinued, so I reverse-engineered the company-page SPA to find the current endpoint\n- LinkedIn blocks generic scrapers, so I switched to its public guest endpoint to get around the login wall\n- It originally ran on a local Windows scheduled task, which meant nothing happened if my computer was off — moved it to GitHub Actions cron\n- CI deploys started failing because the Cloudflare token had invisible characters in it; fixed by stripping non-printable characters with tr -cd and printing the string length to diagnose\n- Telling \"is this a new listing\" apart required remembering what I'd seen across runs, solved by committing seen_jobs.json to version control\n\nPersonal academic data (graduation credits, application strategy) lives behind a login-protected page; the public job radar and rankings pages don't contain personal data.",
+        "tech": [
+          {
+            "group": "Data Collection",
+            "items": [
+              {
+                "name": "104 API reverse engineering",
+                "desc": "After the old joblist API was discontinued, found the current /api/companies/{code}/jobs endpoint and company-code scheme from the company-page SPA's frontend bundle, pulling all listings instead of keyword search"
+              },
+              {
+                "name": "Playwright dynamic rendering",
+                "desc": "Cake's job pages are JS-rendered, so I use a headless browser and wait for content to load before scraping"
+              },
+              {
+                "name": "LinkedIn guest endpoint",
+                "desc": "Uses LinkedIn's public guest job API (plain HTTP) to avoid the login wall and typical scraper blocks"
+              }
+            ]
+          },
+          {
+            "group": "Scoring & Presentation",
+            "items": [
+              {
+                "name": "Externalized scoring engine",
+                "desc": "Company fit, title keywords, location, experience thresholds, etc. all live in config.json, so ranking changes don't require code edits"
+              },
+              {
+                "name": "Static dashboard generation",
+                "desc": "build_dashboard.py normalizes the three sources' JSON into one card schema and renders a single responsive HTML file; frontend JS only handles filtering/search/saved status (localStorage)"
+              }
+            ]
+          },
+          {
+            "group": "Automation & Deployment",
+            "items": [
+              {
+                "name": "GitHub Actions cron",
+                "desc": "A daily cron runs the full pipeline (scrape -> score -> build -> deploy); migrated from a local Windows scheduled task so it still runs with the computer off"
+              },
+              {
+                "name": "CI deploy debugging",
+                "desc": "A Cloudflare deploy token with invisible characters was breaking request headers; fixed by stripping non-printable characters with tr -cd before deploy and printing the string length to diagnose"
+              }
+            ]
+          }
+        ],
+        "demo": "https://job-radar-bck.pages.dev"
+      }
+    },
+    {
       "id": "analog-ic-studio",
       "category": "大學校外作品",
       "title": "Analog IC Studio — Automated Analog IC Tuning Platform",
@@ -526,71 +591,6 @@
       }
     },
     {
-      "id": "job-radar",
-      "category": "大學校外作品",
-      "title": "Job Radar: Personalized Job Search Dashboard",
-      "period": "2026 – Present",
-      "description": "A GitHub Actions cron job aggregates target-company listings daily from four sources (104, Cake, LinkedIn, company sites — about 1,300/day), scores them against my own skill weights, and produces a daily 'Top 6 curated shortlist with reasoning' — a deliberate shift from coverage to precise judgment. Scraper, scoring engine, static-site build, and cloud CI/CD are all self-built; it updates daily even with my laptop off. (AI-assisted development, Claude Code)",
-      "tags": [
-        "Python",
-        "Playwright",
-        "Web Scraping",
-        "GitHub Actions",
-        "Cloudflare Pages"
-      ],
-      "detail": {
-        "purpose": "Most job boards rank listings by general popularity, which has nothing to do with whether a role actually fits me. I wanted a system centered on my own skills and constraints: track the companies I'm targeting, rank them by weights I set myself, and separate \"what I can apply to as a student now\" from \"what's only open after graduation.\"\n\nSo I built a tool that runs itself every morning at 8:30 without needing my computer on.",
-        "concept": "Data and presentation are separated: the scraper produces structured JSON, the build step statically renders cards into a single HTML file, and the frontend JS only handles filtering, search, and saved/applied status (stored in localStorage). No backend, no database — just static files on a CDN, fast and cheap.\n\nEach source needs a different scraping approach: 104 uses a reverse-engineered company-page API (pulling \"all listings\" instead of keyword search, to avoid missing postings); Cake's job pages are JS-rendered, so I use Playwright headless; LinkedIn uses its public guest job endpoint over plain HTTP, no login needed. The sources have different formats, so I normalize them into one card schema before merging and ranking.\n\nScoring weights (company fit, title keyword matches, commute zone, experience requirements, junior-friendliness) all live in config.json so I can tune them without touching code. Listings are also bucketed by my graduation timeline into \"apply now / campus recruiting targets / post-graduation pool\" so \"a good fit\" and \"something I can apply to right now\" don't get conflated.",
-        "outcome": "It updates automatically every day, pulling roughly 1,300 listings across four sources (104, Cake, LinkedIn, company sites). A few real problems I had to fix along the way:\n\n- 104's old joblist API was discontinued, so I reverse-engineered the company-page SPA to find the current endpoint\n- LinkedIn blocks generic scrapers, so I switched to its public guest endpoint to get around the login wall\n- It originally ran on a local Windows scheduled task, which meant nothing happened if my computer was off — moved it to GitHub Actions cron\n- CI deploys started failing because the Cloudflare token had invisible characters in it; fixed by stripping non-printable characters with tr -cd and printing the string length to diagnose\n- Telling \"is this a new listing\" apart required remembering what I'd seen across runs, solved by committing seen_jobs.json to version control\n\nPersonal academic data (graduation credits, application strategy) lives behind a login-protected page; the public job radar and rankings pages don't contain personal data.",
-        "tech": [
-          {
-            "group": "Data Collection",
-            "items": [
-              {
-                "name": "104 API reverse engineering",
-                "desc": "After the old joblist API was discontinued, found the current /api/companies/{code}/jobs endpoint and company-code scheme from the company-page SPA's frontend bundle, pulling all listings instead of keyword search"
-              },
-              {
-                "name": "Playwright dynamic rendering",
-                "desc": "Cake's job pages are JS-rendered, so I use a headless browser and wait for content to load before scraping"
-              },
-              {
-                "name": "LinkedIn guest endpoint",
-                "desc": "Uses LinkedIn's public guest job API (plain HTTP) to avoid the login wall and typical scraper blocks"
-              }
-            ]
-          },
-          {
-            "group": "Scoring & Presentation",
-            "items": [
-              {
-                "name": "Externalized scoring engine",
-                "desc": "Company fit, title keywords, location, experience thresholds, etc. all live in config.json, so ranking changes don't require code edits"
-              },
-              {
-                "name": "Static dashboard generation",
-                "desc": "build_dashboard.py normalizes the three sources' JSON into one card schema and renders a single responsive HTML file; frontend JS only handles filtering/search/saved status (localStorage)"
-              }
-            ]
-          },
-          {
-            "group": "Automation & Deployment",
-            "items": [
-              {
-                "name": "GitHub Actions cron",
-                "desc": "A daily cron runs the full pipeline (scrape -> score -> build -> deploy); migrated from a local Windows scheduled task so it still runs with the computer off"
-              },
-              {
-                "name": "CI deploy debugging",
-                "desc": "A Cloudflare deploy token with invisible characters was breaking request headers; fixed by stripping non-printable characters with tr -cd before deploy and printing the string length to diagnose"
-              }
-            ]
-          }
-        ],
-        "demo": "https://job-radar-bck.pages.dev"
-      }
-    },
-    {
       "id": "audio-amplifier",
       "cover": "/images/audio-amplifier/circuit-assembled.jpg",
       "category": "大學課程作品",
@@ -689,7 +689,7 @@
     {
       "id": "pcb-defect-detection",
       "cover": "/images/pcb-defect-detection/cover.png",
-      "category": "University Coursework",
+      "category": "大學課程作品",
       "title": "PCB Trace Defect Detection: Tiled Object Detection with Azure Custom Vision",
       "period": "2026",
       "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab. The model was also wrapped into a local inspection tool with batch upload, defect statistics and CSV export, plus a human feedback → review → retrain active-learning loop. (AI-assisted development)",
