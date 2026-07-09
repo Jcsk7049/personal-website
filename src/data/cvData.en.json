@@ -359,7 +359,8 @@
             ]
           }
         ],
-        "demo": "https://job-radar-bck.pages.dev"
+        "demo": "https://job-radar-bck.pages.dev",
+        "github": "https://github.com/Jcsk7049/job-radar"
       }
     },
     {
@@ -635,7 +636,7 @@
             "caption": "PCB drill pattern: all component pads and mounting hole machining reference"
           }
         ],
-        "purpose": "Sophomore Electronics final project (Group 12): design and implement an audio amplifier circuit capable of driving an 8Ω speaker. The circuit needed adjustable gain and required completing the full flow from circuit simulation and breadboard verification to actual PCB fabrication.\n\nPersonal responsibilities: full PCB flow — schematic drawing, layout design, photoresist board fabrication (exposure, development, acid etching), drilling, soldering, and debugging.",
+        "purpose": "Sophomore Electronics final project (Group 12): design and implement an audio amplifier circuit capable of driving an 8Ω speaker. The circuit needed adjustable gain and required completing the full flow from circuit simulation and breadboard verification to actual PCB fabrication.\n\nDivision of work: a teammate handled breadboard verification and PSpice simulation; I did everything after that — schematic drawing, photoresist board fabrication (exposure, development, etching), drilling, soldering, and both rounds of debugging.",
         "concept": "[Circuit Topology: Two-Stage BJT Amplification]\n- Input stage: trimpots Rv1a/Rv1b adjust input gain; R3/R4 DC bias stabilizes Q1 in active region\n- First stage — CE (Common Emitter): Q1 provides main voltage gain; collector resistor RC converts current changes to output voltage\n- Bias stabilization: D1–D4 (4 series diodes) stabilize base voltage for Q2/Q3; C3 absorbs reverse voltage spikes to prevent diode breakdown\n- Second stage — CC (Common Collector / Emitter Follower): high input impedance, low output impedance; emitter resistor RE provides negative feedback for stability and low distortion, voltage gain ≈1\n- Trimpot Rv2 adjusts overall DC operating point to find maximum gain without distortion\n\n[PCB Fabrication Flow]\nPhotosensitive FR4 double-sided board (15cm × 12.5cm), hand-fabricated:\n① Layout → minimize white-line crossings, compress routing under components\n② Film output → exposure → development → acid etching → rinse\n③ Drilling → component soldering → power-on testing\n\n[Two Rebuilds]\nFirst failure: residual copper after acid etching caused shorts. After verifying all diodes conducting and transistors operating normally, confirmed the board itself was the issue. Redesigned layout and urgently rebuilt.\n\nSecond problem: circuit still non-functional after soldering. Teammate discovered that PCB artwork must be viewed \"from below\" — all power IC and transistor pins were mirrored. After re-soldering, circuit showed intermittent signal with voltage dropping after 5 seconds. After confirming all solder joint continuity, the circuit operated smoothly.",
         "outcome": "- Circuit successfully drives an 8Ω laboratory speaker with clear audio output\n- Completed the full flow: circuit simulation → breadboard verification → PCB fabrication\n- Power: 12V DC power supply / 9V battery (portable use)\n- Input: 3.5mm stereo cable from computer\n\n[Personal Reflection]\nThis project gave me a clear understanding of audio amplification principles and deepened my hands-on PCB fabrication skills. The two rebuilds taught me the most — not about design itself, but about systematic debugging: from component-by-component verification to finally identifying the pin mirror issue. Each step required a clear expectation of circuit behavior to eliminate unexpected conditions.",
         "tech": [
@@ -1459,67 +1460,12 @@
       }
     },
     {
-      "id": "auto-sanitizer",
-      "cover": "/images/auto-sanitizer/device-full.jpg",
-      "category": "高職選手作品",
-      "title": "Auto Sanitizer (MoE Science Outreach)",
-      "period": "2021",
-      "description": "Invited to the 2021 Ministry of Education Science Outreach Train: Arduino + HC-SR04 ultrasonic sensor–triggered automatic alcohol dispenser, iterated through a desktop demo version and an FRC robot–integrated version.",
-      "tags": [
-        "Arduino",
-        "HC-SR04",
-        "Relay",
-        "Laser Cutting",
-        "18650 Battery"
-      ],
-      "detail": {
-        "purpose": "During the pandemic, invited as an FRC team member from Nangang VHS to participate in the 2021 Ministry of Education Science Outreach Train — touring high schools across Taiwan to showcase technology projects.\n\nChose to build an automatic touch-free alcohol dispenser: both practically useful for pandemic prevention and a demonstration of ultrasonic sensing, relay circuits, and embedded control for on-site students.\n\nTwo iterated versions:\n- Desktop version: standalone exhibition unit with acrylic laser-cut enclosure, portable for school tours\n- Robot-integrated version: miniaturized circuit integrated into FRC robot side panel for use at competition venue entrances without occupying extra space",
-        "concept": "[Sensing & Trigger Logic]\nHC-SR04 continuously measures forward distance; when a hand enters the trigger zone (~10–15 cm), Arduino UNO outputs HIGH to relay module. Relay closes, driving the water pump to extract alcohol from the reservoir through the nozzle. Motor stops immediately when hand withdraws.\n\n[Power Design]\n2× 18650 lithium batteries in series provide 7.6V; 7805 step-down module to 5V for Arduino; motor draws directly from battery; relay isolates control from high-current drive.\n\n[Mechanical Design]\n- v2.0: Acrylic laser-cut panels with interlocking tabs for clean appearance and easy alcohol refilling\n- v3.0: Miniaturized circuit board integrated into FRC robot side panel; adjustable nozzle height for different user heights",
-        "outcome": "- Successfully completed 2021 MoE Science Outreach Train, presenting to students at multiple high schools\n- Iterated from desktop version to robot-integrated version, learning \"design optimization per use case\" product thinking\n- Technical takeaways: ultrasonic ranging principles, relay drive circuits, 7805 power regulation and decoupling capacitor selection",
-        "images": [
-          {
-            "src": "/images/auto-sanitizer/device-full.jpg",
-            "caption": "Full view: FRC robot-integrated version with ultrasonic sensor and nozzle"
-          },
-          {
-            "src": "/images/auto-sanitizer/device-closeup.jpg",
-            "caption": "Dispensing mechanism close-up: relay-driven pump, HC-SR04 sensor trigger control"
-          }
-        ],
-        "tech": [
-          {
-            "group": "Sensing & Control",
-            "items": [
-              {
-                "name": "Ultrasonic Distance Trigger",
-                "desc": "HC-SR04 continuous forward distance measurement with 10–15cm trigger threshold outputting HIGH to drive relay; understanding speed-of-sound correction and sensing dead zones' effect on trigger sensitivity"
-              },
-              {
-                "name": "Relay Motor Drive",
-                "desc": "Control and pump high-current sides fully isolated; motor stops immediately when hand withdraws; mastering relay as a unidirectional valve in embedded control"
-              }
-            ]
-          },
-          {
-            "group": "Mechanical Design",
-            "items": [
-              {
-                "name": "Scenario-Driven Iterative Design",
-                "desc": "Desktop version's acrylic snap-fit enclosure for portable exhibition; robot-integrated version's miniaturized circuit on FRC side panel — practicing design priority adjustment based on use scenario"
-              }
-            ]
-          }
-        ],
-        "github": ""
-      }
-    },
-    {
       "id": "team-robot",
       "cover": "/images/team-robot/competition.jpg",
       "category": "高職選手作品",
       "title": "Team-Built Competition Robot",
       "period": "2022",
-      "description": "Represented Nangang VHS in the 52nd National Skills Competition (Team Project category): three-member team jointly designed a pick-and-place robot driven by a 24V lead-acid battery with relay H-bridge motor control, capable of handling both cylindrical and rectangular objects.",
+      "description": "Represented Nangang VHS at the 52nd National Skills Competition (Team Project category). A 3-person team built a gripper robot; I owned the full electrical system — 24V lead-acid power distribution and relay H-bridge motor direction control, from circuit design and wire routing to hands-on fabrication.",
       "tags": [
         "Competition Robot",
         "Relay Control",
@@ -1527,8 +1473,8 @@
         "3-Person Team"
       ],
       "detail": {
-        "purpose": "Represented Nangang VHS in the 52nd National Skills Competition (2022), Team Project category. Rules required a three-person team to jointly design and build a functional robot within a time limit — goal: move across the field and pick and place cylindrical and rectangular objects.\n\nThe competition emphasizes cross-disciplinary collaboration: mechanical design, circuit wiring, and programming control must be tightly integrated to complete an effective robot within the competition time constraint.",
-        "concept": "[Chassis & Drive]\nRubber wheel chassis driven by a 24V lead-acid battery pack. Relay bank implements H-bridge circuit — two relays per drive axis switch motor current direction to control forward/reverse. Direct, reliable circuit structure.\n\n[Gripper Mechanism]\nGripper designed to handle both cylinders and rectangular objects simultaneously: curved inner surface conforms to cylinders, flat surface stably grips rectangular objects — ensuring no slippage during transport.\n\n[Three-Person Division of Work]\n- Mechanical design and fabrication (Chiang Jia-Yuan): chassis structure, gripper design, and all mechanical part machining\n- Circuit design and wiring (team members): H-bridge relay drive circuit, 24V system wiring\n- Programming and control logic (team members): motor direction control program",
+        "purpose": "Represented Nangang VHS in the 52nd National Skills Competition (2022), Team Project category. Rules required a three-person team to jointly design and build a functional robot within a time limit — goal: move across the field and pick and place cylindrical and rectangular objects.\n\nThe competition emphasizes cross-disciplinary collaboration: mechanical, electrical, and software work must be tightly integrated. I owned the entire electrical system — circuit design, wiring plan, and the hands-on harness fabrication.",
+        "concept": "[Chassis & Drive]\nRubber wheel chassis driven by a 24V lead-acid battery pack. Relay bank implements H-bridge circuit — two relays per drive axis switch motor current direction to control forward/reverse. Direct, reliable circuit structure.\n\n[Gripper Mechanism]\nGripper designed to handle both cylinders and rectangular objects simultaneously: curved inner surface conforms to cylinders, flat surface stably grips rectangular objects — ensuring no slippage during transport.\n\n[Three-Person Division of Work]\n- Circuit design and wiring (Chiang Jia-Yuan): relay H-bridge drive circuit design, 24V power distribution, full-vehicle wiring and fabrication\n- Mechanical design and machining (junior teammate): chassis structure, gripper design, lathe/mill machining\n- Programming and control logic (teammate): motor direction control program",
         "outcome": "- Represented Nangang VHS and completed the 52nd National Skills Competition, Team Project category\n- Technical takeaways: high-power relay H-bridge circuit design, 24V system wiring standards, multi-person synchronized development\n- Understanding the difference between competition robot development and FRC's longer development cycle — functional integration under extreme time constraints",
         "tech": [
           {
@@ -1594,7 +1540,7 @@
       "detail": {
         "purpose": "Top international FRC teams widely use Swerve Drive — its four-wheel independent steering architecture provides omnidirectional movement advantages while solving mecanum wheels' traction deficiency and vulnerability to impacts. However, virtually no domestic research material existed in Taiwan, and no standardized Chinese terminology had been established.\n\nThe team decided to develop from scratch, iterating through three generations (2020, 2022, 2023+), with research goals covering:\n\n① Achieving all motion modes of an omnidirectional mobile platform through mechanical structure\n② Improving robot operational efficiency and maneuverability in competition\n③ Third generation: lightweight design as core direction\n④ Modular aluminum plate design: drive and steering motor positions interchangeable; drive reduction ratio adjustable by swapping gears — reducing assembly and maintenance complexity\n⑤ Achieve fully self-designed, self-machined goals\n⑥ Exchange mechanism technology with international teams at competition venues",
         "concept": "[Three-Generation Evolution]\n- Gen 1 (2020): Designed by senior members, used at CSIA 5G Regional — validated basic Swerve Drive feasibility\n- Gen 2 (2022): Redesigned and competed, earned Taiwan Foxconn Regional Innovation in Control Award\n- Gen 3 (2022+): Continued refinement with lightweight and modular design as core, preparing for next season\n\n[Kinematics Algorithm — LabVIEW Implementation]\nRepresenting wheel direction and force as vector X∠θ, decomposing motion into three additive modes:\n- Translation: all 4 wheels input same angle and force, no body rotation\n- Rotation: center at all-wheel intersection, wheels at θ, -θ, 180+θ, 180-θ — rotate in place\n- Arc: translation vector + rotation vector = arbitrary-center arc trajectory\nNormalize by the maximum-force wheel as denominator to ensure output doesn't exceed motor saturation.\n\n[Electrical & Control System]\n- Drive motors: Falcon 500 (integrated Talon FX controller with closed-loop speed control)\n- Steering motors: NEO 550 (with planetary gearbox)\n- Rotary encoders: per-wheel independent angle feedback for closed-loop steering control\n- Main controller: roboRIO + LabVIEW graphical programming\n\n[Reduction Ratio Design]\n- Drive: Falcon 500 (6380 rpm) → 1:7 → 911 rpm, approximately 110 m/min linear speed\n- Steering: NEO 550 (11000 rpm) → planetary 1:28.1 → gear 1:2 → total 1:56.2 → 196 rpm\n\n[Gen 3 Mechanical Design]\n- Modular aluminum plates: drive and steering motor mounting holes correspond and are interchangeable; drive gear zone has swappable gear positions for reduction ratio adjustment without modifying aluminum plates\n- Lightweight: most internal gears switched to 3D printing (FDM), retaining only motor shaft gears as metal; aluminum plate CNC material removal for weight reduction\n- Collision protection: motors fully enclosed in mechanism interior, reducing competition collision damage\n- Custom wheels: replaced OEM wheels, improved traction\n\n[Gear Specs & Machining]\n- M1.25/T15 spur gears (drive motor shaft): wire EDM for profile and bore\n- M1.5/T24 spur gears (steering transmission): wire EDM\n- M1.5/T15 bevel gears (wheel drive direction change): wire EDM for bore\n- Transmission shafts (hex & square cross-sections): CNC mill + 4-jaw precision chuck, two-pass bilateral milling for symmetry\n- Wire EDM workflow: clamp plate → edge-finding XY correction → thread wire → path simulation → cut → inspect cross-section for accuracy",
-        "outcome": "[Competition Results]\n- 2022 FRC Taiwan Foxconn Regional: Finalist Alliance + Innovation in Control Award\n- 2020 FRC CSIA 5G Digital Regional: Best Industrial Design Award\n\n[Gen 3 vs Gen 2 Improvements]\nStructural:\n① Lightweight: most gears switched to 3D printing, significant overall weight reduction\n② Disassembly: reduced complexity, faster repair and replacement\n③ Modular: drive/steering motor holes shared, compatible with NEO or Falcon 500\n④ Collision protection: motors fully enclosed, reduced field collision damage risk\n⑤ Wheels: custom design, improved traction over old wheels\n\nPower:\n① Drive gear tooth count swappable — reduction ratio adjustable without modifying aluminum plates\n② NEO upgraded to Falcon 500, approximately 1000 rpm speed increase\n\n[Personal Takeaways]\n- Design→Build→Test→Iterate complete cycle from a product development perspective\n- Machining skills advanced from manual mill/lathe basics to CNC and wire EDM\n- Cross-domain integration: mechanical design (Inventor) + electrical control + LabVIEW programming + competition field engineering decisions",
+        "outcome": "[Competition Results]\n- 2022 FRC Taiwan Foxconn Regional: Finalist Alliance + Innovation in Control Award\n- 2020 FRC CSIA 5G Digital Regional: Excellence in Engineering Award\n\n[Gen 3 vs Gen 2 Improvements]\nStructural:\n① Lightweight: most gears switched to 3D printing, significant overall weight reduction\n② Disassembly: reduced complexity, faster repair and replacement\n③ Modular: drive/steering motor holes shared, compatible with NEO or Falcon 500\n④ Collision protection: motors fully enclosed, reduced field collision damage risk\n⑤ Wheels: custom design, improved traction over old wheels\n\nPower:\n① Drive gear tooth count swappable — reduction ratio adjustable without modifying aluminum plates\n② NEO upgraded to Falcon 500, approximately 1000 rpm speed increase\n\n[Personal Takeaways]\n- Design→Build→Test→Iterate complete cycle from a product development perspective\n- Machining skills advanced from manual mill/lathe basics to CNC and wire EDM\n- Cross-domain integration: mechanical design (Inventor) + electrical control + LabVIEW programming + competition field engineering decisions",
         "tech": [
           {
             "group": "Control System",
