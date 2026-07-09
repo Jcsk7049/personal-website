@@ -26,7 +26,7 @@ export default function ProjectGallery({ images }) {
             key={i}
             onClick={() => setActive(i)}
             className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-[#f5f5f7]
-                       [@media(hover:hover)]:hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] transition-all duration-[125ms]
+                       [@media(hover:hover)]:hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] transition-all duration-[240ms]
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
           >
             <img
@@ -36,10 +36,10 @@ export default function ProjectGallery({ images }) {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-[#1D1D1F]/0 [@media(hover:hover)]:group-hover:bg-[#1D1D1F]/30
-                            transition-all duration-[125ms] flex items-end pointer-events-none">
+                            transition-all duration-[240ms] flex items-end pointer-events-none">
               <p className="w-full px-3 py-2 text-[11px] text-white font-medium
                              translate-y-2 opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100
-                             transition-all duration-[125ms] bg-gradient-to-t from-black/60 to-transparent">
+                             transition-all duration-[240ms] bg-gradient-to-t from-black/60 to-transparent">
                 {img.caption}
               </p>
             </div>

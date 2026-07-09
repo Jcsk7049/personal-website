@@ -23,7 +23,7 @@ export default class ErrorBoundary extends Component {
             <p className="text-sm text-[#86868B] mb-6">頁面載入時發生錯誤，請重新整理再試一次。</p>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 rounded-full bg-[#0071E3] text-white text-sm hover:bg-[#0077ED] transition-colors duration-[125ms]"
+              className="px-4 py-2 rounded-full bg-[#0071E3] text-white text-sm hover:bg-[#0077ED] transition-colors duration-[240ms]"
             >
               重新整理
             </button>

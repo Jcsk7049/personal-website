@@ -378,10 +378,10 @@ export default function ProjectsTab({ toast }) {
                className={`flex items-center gap-3 bg-white rounded-2xl px-4 py-3
                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
                           hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14)] hover:bg-[#FAFAFA]
-                          transition-all duration-[125ms] group
+                          transition-all duration-[240ms] group
                           ${dragId === p.id ? 'opacity-40' : ''}`}>
             {/* Drag handle */}
-            <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#86868B] transition-colors duration-[125ms]"
+            <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#86868B] transition-colors duration-[240ms]"
                   style={{ touchAction: 'none' }}
                   onPointerDown={e => onHandlePointerDown(e, p.id)}
                   title="拖拉調整順序">

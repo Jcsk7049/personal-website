@@ -72,14 +72,16 @@ public/
 
 ---
 
-## 設計規範
+## 設計規範（Apple 官網實測數據，2026-07 對齊）
 
 - 字型：`-apple-system / SF Pro`（Apple system font stack）
-- 主色：`#1D1D1F`（深）、`#3F3F46`（內文）、`#86868B`（次要）、`#0071E3`（accent）
+- 主色：`#1D1D1F`（深）、`#3F3F46`（內文）、`#6E6E73`（次要說明）、`#86868B`（弱化）、`#0071E3`（accent）
 - 背景：`#F5F5F7`（淺）、`#1D1D1F`（深色區塊）
-- 動畫：`transition-colors duration-[125ms]`，easing `cubic-bezier(0,0,0.2,1)`
-- 圓角：`rounded-2xl`（卡片）、`rounded-full`（pill/badge）
-- 卡片邊框：`shadow-[0_0_0_1px_rgba(0,0,0,0.08)]`（ring 風格，不用 border）
+- 動畫：UI 互動 `duration-[240ms]`、內容 reveal `0.32s`，easing 一律 `cubic-bezier(0.4,0,0.6,1)`
+- 標題字重：`font-semibold`（600，不用 bold），letter-spacing `-0.02em`
+- 區塊標題：Apple 商店式「粗體開頭。灰色補述。」（SectionHeader 的 label + sub）
+- 圓角：`rounded-[18px]`（卡片）、`rounded-[980px]`（CTA pill）、`rounded-full`（badge）
+- 卡片：白底無邊框，hover 才出現陰影 `shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]`
 - Nav 高度：`h-12`（48px），frosted glass：`rgba(245,245,247,0.85) + blur(20px)`
 - 內容寬度：`max-w-[980px]`（詳情頁）、`max-w-7xl`（首頁）
 

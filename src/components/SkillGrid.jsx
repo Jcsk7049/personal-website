@@ -67,7 +67,7 @@ export default function SkillGrid({ skills, detail }) {
   return (
     <section id="skills" className="min-h-screen py-16 md:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader label={t.sections.skills} />
+        <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 card-stagger">
           {QUADRANT_META.map(q => {

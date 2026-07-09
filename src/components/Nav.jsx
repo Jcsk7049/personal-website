@@ -37,7 +37,7 @@ export default function Nav({ name }) {
           <a
             href="#hero"
             className="text-sm font-semibold tracking-tight text-[#1D1D1F] hover:text-[#0071E3]
-                       transition-colors duration-[125ms]"
+                       transition-colors duration-[240ms]"
           >
             {name}
           </a>
@@ -48,7 +48,7 @@ export default function Nav({ name }) {
               <a
                 key={id}
                 href={`#${id}`}
-                className={`text-xs transition-colors duration-[125ms]
+                className={`text-xs transition-colors duration-[240ms]
                             ${active === id
                               ? 'text-[#1D1D1F] font-semibold'
                               : 'text-[#86868B] font-normal hover:text-[#1D1D1F]'}`}
@@ -63,9 +63,9 @@ export default function Nav({ name }) {
               className="flex items-center gap-0.5 text-xs"
               aria-label="Switch language"
             >
-              <span className={`transition-colors duration-[125ms] ${lang === 'zh' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}`}>中</span>
+              <span className={`transition-colors duration-[240ms] ${lang === 'zh' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}`}>中</span>
               <span className="text-[#C7C7CC] mx-0.5">/</span>
-              <span className={`transition-colors duration-[125ms] ${lang === 'en' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}`}>EN</span>
+              <span className={`transition-colors duration-[240ms] ${lang === 'en' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}`}>EN</span>
             </button>
           </div>
 
@@ -91,21 +91,21 @@ export default function Nav({ name }) {
                 className="block h-[1.5px] w-5 bg-[#1D1D1F] rounded-full origin-center"
                 style={{
                   transform: mobileOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
-                  transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+                  transition: 'transform 0.24s cubic-bezier(0.4,0,0.6,1)',
                 }}
               />
               <span
                 className="block h-[1.5px] w-5 bg-[#1D1D1F] rounded-full"
                 style={{
                   opacity: mobileOpen ? 0 : 1,
-                  transition: 'opacity 0.125s cubic-bezier(0,0,0.2,1)',
+                  transition: 'opacity 0.24s cubic-bezier(0.4,0,0.6,1)',
                 }}
               />
               <span
                 className="block h-[1.5px] w-5 bg-[#1D1D1F] rounded-full origin-center"
                 style={{
                   transform: mobileOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
-                  transition: 'transform 0.125s cubic-bezier(0,0,0.2,1)',
+                  transition: 'transform 0.24s cubic-bezier(0.4,0,0.6,1)',
                 }}
               />
             </button>
@@ -119,7 +119,7 @@ export default function Nav({ name }) {
         style={{
           ...FROSTED,
           maxHeight: mobileOpen ? `${navLinks.length * 56}px` : '0px',
-          transition: 'max-height 0.24s cubic-bezier(0,0,0.2,1)',
+          transition: 'max-height 0.24s cubic-bezier(0.4,0,0.6,1)',
         }}
       >
         {navLinks.map(({ id, label }) => (
@@ -127,7 +127,7 @@ export default function Nav({ name }) {
             key={id}
             href={`#${id}`}
             onClick={() => setMobileOpen(false)}
-            className={`flex items-center px-6 h-14 text-sm transition-colors duration-[125ms]
+            className={`flex items-center px-6 h-14 text-sm transition-colors duration-[240ms]
                         ${active === id ? 'text-[#1D1D1F] font-semibold' : 'text-[#86868B]'}`}
             style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
           >

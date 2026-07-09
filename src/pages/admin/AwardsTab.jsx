@@ -81,12 +81,12 @@ export default function AwardsTab({ toast }) {
                  onDragOver={e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move' }}
                  onDrop={() => moveTo(i)}
                  className={`relative bg-white rounded-xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] p-4 pl-9
-                             transition-opacity duration-[125ms] ${dragIdx === i ? 'opacity-40' : ''}`}>
+                             transition-opacity duration-[240ms] ${dragIdx === i ? 'opacity-40' : ''}`}>
               <span draggable
                     onDragStart={e => { setDragIdx(i); e.dataTransfer.effectAllowed = 'move' }}
                     onDragEnd={() => setDragIdx(null)}
                     className="absolute left-3 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing
-                               text-[#C7C7CC] hover:text-[#86868B] transition-colors duration-[125ms]"
+                               text-[#C7C7CC] hover:text-[#86868B] transition-colors duration-[240ms]"
                     title="拖拉調整順序">
                 <DragHandleIcon />
               </span>

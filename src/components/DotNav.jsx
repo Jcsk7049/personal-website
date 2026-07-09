@@ -37,7 +37,7 @@ export default function DotNav() {
           {/* Tooltip */}
           <span
             className={`absolute right-6 text-[11px] px-2 py-0.5 rounded-md whitespace-nowrap pointer-events-none
-                        transition-all duration-[125ms]
+                        transition-all duration-[240ms]
                         ${isDark ? 'bg-white/90 text-[#1D1D1F]' : 'bg-[#1D1D1F]/90 text-white'}
                         ${hovered === id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-1'}`}
           >
@@ -49,7 +49,7 @@ export default function DotNav() {
             onMouseEnter={() => setHovered(id)}
             onMouseLeave={() => setHovered(null)}
             aria-label={getLabel(id)}
-            className={`flex items-center justify-center transition-all duration-[125ms]
+            className={`flex items-center justify-center transition-all duration-[240ms]
                         ${id === 'hero'
                           ? `w-3 h-3 rounded-full
                              ${active === id

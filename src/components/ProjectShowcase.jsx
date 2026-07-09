@@ -46,7 +46,7 @@ function SpotlightCard({ children, className = '' }) {
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 rounded-2xl z-10"
+        className="pointer-events-none absolute inset-0 rounded-[18px] z-10"
         style={{
           opacity: mouse.on ? 1 : 0,
           background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px, rgba(15,58,32,0.05) 0%, transparent 70%)`,
@@ -72,7 +72,7 @@ export default function ProjectShowcase({ projects }) {
   return (
     <section id="projects" className="min-h-screen py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader label={t.sections.projects} />
+        <SectionHeader label={t.sections.projects} sub={t.sectionSubs.projects} />
 
         {/* Filter tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
@@ -82,11 +82,11 @@ export default function ProjectShowcase({ projects }) {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold
-                            transition-colors duration-[125ms] border
+                className={`flex items-center gap-1.5 px-[15px] py-2 rounded-[980px] text-sm font-normal
+                            transition-colors duration-[240ms] border
                             ${activeCategory === cat
-                              ? 'bg-[#1D1D1F] text-white border-[#1D1D1F]'
-                              : 'bg-white text-[#3F3F46] border-black/[0.08] hover:border-[#1D1D1F] hover:text-[#1D1D1F]'
+                              ? 'bg-[#1D1D1F] text-[#F5F5F7] border-[#1D1D1F]'
+                              : 'bg-transparent text-[#1D1D1F] border-current hover:bg-[#1D1D1F] hover:text-[#F5F5F7]'
                             }`}
               >
                 {t.categoryLabel(cat)}
@@ -104,10 +104,9 @@ export default function ProjectShowcase({ projects }) {
             <SpotlightCard key={proj.id} className="flex flex-col">
               <Link
                 to={`/projects/${proj.id}`}
-                className="rounded-2xl bg-white overflow-hidden
-                           shadow-[0_0_0_1px_rgba(0,0,0,0.08)]
-                           hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,0,0,0.14),0_4px_20px_rgba(0,0,0,0.06)]
-                           transition-all duration-[125ms] group flex flex-col flex-1"
+                className="rounded-[18px] bg-white overflow-hidden
+                           hover:-translate-y-1 hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
+                           transition-all duration-[240ms] group flex flex-col flex-1"
               >
                 {/* Cover image / gradient area */}
                 <div className={`relative h-48 bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0`}>
@@ -148,7 +147,7 @@ export default function ProjectShowcase({ projects }) {
                 <div className="p-5 flex flex-col gap-2 flex-1">
                   <p className="text-[11px] text-[#86868B] font-mono tracking-wide">{proj.period}</p>
                   <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
-                                 group-hover:text-[#0071E3] transition-colors duration-[125ms]">
+                                 group-hover:text-[#0071E3] transition-colors duration-[240ms]">
                     {proj.title}
                   </h3>
                   {proj.badge && (
@@ -178,7 +177,7 @@ export default function ProjectShowcase({ projects }) {
                     </div>
                     <span className="text-xs text-[#0071E3] font-medium
                                      opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                     transition-all duration-[125ms]">
+                                     transition-all duration-[240ms]">
                       {t.viewDetail}
                     </span>
                   </div>

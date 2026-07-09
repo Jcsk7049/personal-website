@@ -27,7 +27,7 @@ export default function Hero({ profile }) {
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3rem,7vw,5rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">
+            <h1 className="text-[clamp(3rem,7vw,5rem)] font-semibold tracking-[-0.02em] leading-[1.09] text-[#1D1D1F] mb-4">
               {profile.name}
             </h1>
             {profile.bio && (
@@ -39,33 +39,33 @@ export default function Hero({ profile }) {
               <button
                 onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
                 className="px-5 py-2.5 rounded-full bg-[#0071E3] text-white text-sm font-medium
-                           hover:bg-[#0077ED] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                           hover:bg-[#0077ED] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {profile.contact.email}
               </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full border border-black/[0.12] text-sm text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 LinkedIn
               </a>
               <a href={resumeHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full text-sm font-medium
                             border-2 border-[#0071E3] text-[#0071E3]
-                            hover:bg-[#0071E3] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                            hover:bg-[#0071E3] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnOnePage}
               </a>
               <a href={resumeFullHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-2.5 rounded-full text-sm font-medium
                             border border-black/[0.12] text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[125ms]">
+                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnFull}
               </a>
             </div>

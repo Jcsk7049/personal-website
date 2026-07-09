@@ -87,7 +87,7 @@ function HomePage() {
                 {t.nav.map(({ id, label }) => (
                   <a key={id} href={`#${id}`}
                      className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#1D1D1F]"
-                     style={{ transition: 'color 0.32s cubic-bezier(0,0,0.2,1)' }}>
+                     style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                     {label}
                   </a>
                 ))}
@@ -98,19 +98,19 @@ function HomePage() {
                 <button
                   onClick={() => { window.location.href = `mailto:${cv.profile.contact.email}` }}
                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC] text-left"
-                  style={{ transition: 'color 0.32s cubic-bezier(0,0,0.2,1)' }}>
+                  style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   Email
                 </button>
                 <a href={`https://github.com/${cv.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
                    className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
-                   style={{ transition: 'color 0.32s cubic-bezier(0,0,0.2,1)' }}>
+                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   GitHub ↗
                 </a>
                 <a href={`https://linkedin.com/in/${cv.profile.links.linkedin}`}
                    target="_blank" rel="noopener noreferrer"
                    className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
-                   style={{ transition: 'color 0.32s cubic-bezier(0,0,0.2,1)' }}>
+                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   LinkedIn ↗
                 </a>
               </div>

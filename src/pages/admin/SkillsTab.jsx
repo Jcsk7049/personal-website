@@ -297,13 +297,13 @@ export default function SkillsTab({ toast }) {
               </div>
               <button type="button" onClick={() => setEditingDetail(cat)}
                 className="mt-4 w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl
-                           bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors duration-[125ms] group">
+                           bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors duration-[240ms] group">
                 <span className="text-xs font-medium text-[#1D1D1F]">
                   技能詳情與精熟度
                   <span className="ml-1.5 text-[#86868B] font-mono">{skillCount} 項</span>
                 </span>
                 <span className="text-xs text-[#0071E3] font-medium opacity-0 group-hover:opacity-100
-                                 -translate-x-1 group-hover:translate-x-0 transition-all duration-[125ms]">
+                                 -translate-x-1 group-hover:translate-x-0 transition-all duration-[240ms]">
                   編輯 →
                 </span>
               </button>

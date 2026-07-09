@@ -12,7 +12,7 @@ function LevelDots({ level }) {
     <div className="flex items-center gap-1">
       {[1, 2, 3].map(i => (
         <span key={i}
-              className={`inline-block w-1.5 h-1.5 rounded-full transition-colors duration-[125ms]
+              className={`inline-block w-1.5 h-1.5 rounded-full transition-colors duration-[240ms]
                           ${i <= cfg.dots ? cfg.bar : 'bg-black/10'}`} />
       ))}
     </div>
@@ -90,7 +90,7 @@ export default function SkillDetail() {
         <div className="max-w-[980px] mx-auto px-6 md:px-10 h-full flex items-center justify-between gap-4">
           <button
             onClick={handleBack}
-            className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[125ms] shrink-0"
+            className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[240ms] shrink-0"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6"/>

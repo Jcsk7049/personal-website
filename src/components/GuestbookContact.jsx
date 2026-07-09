@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { uiText } from '../data/uiText'
 import SectionHeader from './SectionHeader'
 
 function UtterancesComments() {
@@ -70,6 +71,7 @@ const CONTACT_LINKS = [
 export default function GuestbookContact({ profile }) {
   const { lang } = useLanguage()
   const zh = lang === 'zh'
+  const t = uiText[lang]
 
   const getHref = key => {
     if (key === 'email')    return `mailto:${profile.contact.email}`
@@ -91,7 +93,7 @@ export default function GuestbookContact({ profile }) {
 
           {/* ── Left: Guestbook ── */}
           <div>
-            <SectionHeader label={zh ? '留言板' : 'Guestbook'} />
+            <SectionHeader label={zh ? '留言板' : 'Guestbook'} sub={t.sectionSubs.guestbook} />
             <p className="text-sm text-[#3F3F46] mt-3 mb-2">
               {zh
                 ? '有什麼想說的都可以留在這裡，需要 GitHub 帳號。'
@@ -105,7 +107,7 @@ export default function GuestbookContact({ profile }) {
                 href={`mailto:${profile.contact.email}`}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
                            bg-[#f0f7ff] text-[#0071E3] border border-[#0071E3]/20
-                           hover:bg-[#0071E3] hover:text-white transition-colors duration-[125ms]"
+                           hover:bg-[#0071E3] hover:text-white transition-colors duration-[240ms]"
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
@@ -118,7 +120,7 @@ export default function GuestbookContact({ profile }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
                            bg-[#e8f4fb] text-[#0077B5] border border-[#0077B5]/20
-                           hover:bg-[#0077B5] hover:text-white transition-colors duration-[125ms]"
+                           hover:bg-[#0077B5] hover:text-white transition-colors duration-[240ms]"
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.94v5.66H9.38V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.36-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.23 0z"/>
@@ -131,7 +133,7 @@ export default function GuestbookContact({ profile }) {
 
           {/* ── Right: Contact (vertical stack) ── */}
           <div>
-            <SectionHeader label={zh ? '聯絡我' : 'Contact'} />
+            <SectionHeader label={zh ? '聯絡我' : 'Contact'} sub={t.sectionSubs.contact} />
             <div className="flex flex-col gap-3 mt-10">
               {CONTACT_LINKS.map(({ key, icon, bg, color, hoverBorder, hoverText, label }) => (
                 <a
@@ -142,7 +144,7 @@ export default function GuestbookContact({ profile }) {
                   className={`flex items-center gap-4 px-5 py-4 rounded-2xl bg-white
                               border border-black/[0.08] ${hoverBorder}
                               hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]
-                              transition-colors duration-[125ms] group`}
+                              transition-colors duration-[240ms] group`}
                 >
                   <div className={`w-10 h-10 rounded-full ${bg} ${color} flex items-center justify-center shrink-0`}>
                     {icon}
