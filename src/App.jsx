@@ -12,21 +12,27 @@ import ProjectShowcase from './components/ProjectShowcase'
 import AwardList           from './components/AwardList'
 import DotNav              from './components/DotNav'
 import GuestbookContact    from './components/GuestbookContact'
-import ProjectDetail   from './pages/ProjectDetail'
-import SkillDetail     from './pages/SkillDetail'
 import NotFound        from './pages/NotFound'
-import Card            from './pages/Card'
-import QRPage          from './pages/QRPage'
 import ScrollToTop     from './components/ScrollToTop'
 import ErrorBoundary   from './components/ErrorBoundary'
 
-const Admin = lazy(() => import('./pages/Admin'))
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
+const SkillDetail   = lazy(() => import('./pages/SkillDetail'))
+const Card          = lazy(() => import('./pages/Card'))
+const QRPage        = lazy(() => import('./pages/QRPage'))
+const Admin         = lazy(() => import('./pages/Admin'))
 
 function HomePage() {
   const { lang } = useLanguage()
   const { cvZh, cvEn } = useData()
   const t = uiText[lang]
   const cv = lang === 'en' ? cvEn : cvZh
+
+  useEffect(() => {
+    document.title = lang === 'en'
+      ? 'Chiang Jia Yuan — Hardware/Software Integration'
+      : '江嘉元 — 軟硬整合 · 從 PCB 到韌體到資料'
+  }, [lang])
 
   useEffect(() => {
     const sections = document.querySelectorAll('section:not(#hero)')
@@ -130,19 +136,17 @@ function AppRoutes() {
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        <Route path="/"             element={<HomePage />}      />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
-        <Route path="/skills/:id"   element={<SkillDetail />}   />
-        <Route path="/card"         element={<Card />}          />
-        <Route path="/qr"           element={<QRPage />}        />
-        <Route path="/admin/*"      element={
-          <Suspense fallback={<div className="min-h-screen bg-[#F5F5F7]" />}>
-            <Admin />
-          </Suspense>
-        } />
-        <Route path="*"             element={<NotFound />}      />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-[#F5F5F7]" />}>
+        <Routes>
+          <Route path="/"             element={<HomePage />}      />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/skills/:id"   element={<SkillDetail />}   />
+          <Route path="/card"         element={<Card />}          />
+          <Route path="/qr"           element={<QRPage />}        />
+          <Route path="/admin/*"      element={<Admin />}         />
+          <Route path="*"             element={<NotFound />}      />
+        </Routes>
+      </Suspense>
     </>
   )
 }

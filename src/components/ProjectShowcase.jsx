@@ -162,14 +162,14 @@ export default function ProjectShowcase({ projects }) {
                   </p>
                   <div className="mt-auto flex flex-col gap-2">
                     <div className="flex flex-wrap gap-1.5 pt-1">
-                      {proj.tags.slice(0, 3).map(tag => (
+                      {(proj.tags ?? []).slice(0, 3).map(tag => (
                         <span key={tag}
                               className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                          border border-black/[0.05] text-xs font-medium">
                           {tag.trim()}
                         </span>
                       ))}
-                      {proj.tags.length > 3 && (
+                      {(proj.tags?.length ?? 0) > 3 && (
                         <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                          border border-black/[0.05] text-xs font-medium">
                           +{proj.tags.length - 3}

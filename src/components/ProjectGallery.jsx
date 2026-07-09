@@ -1,8 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 export default function ProjectGallery({ images }) {
   const [active, setActive] = useState(null)
+
+  // Esc 關閉、左右鍵切換
+  useEffect(() => {
+    if (active === null) return
+    const onKey = e => {
+      if (e.key === 'Escape') setActive(null)
+      if (e.key === 'ArrowLeft')  setActive(a => Math.max(0, a - 1))
+      if (e.key === 'ArrowRight') setActive(a => Math.min(images.length - 1, a + 1))
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [active, images.length])
 
   if (!images?.length) return null
 
@@ -37,7 +49,13 @@ export default function ProjectGallery({ images }) {
 
       {/* Lightbox：用 portal 掛到 body，避免被上層 .page-enter 的 transform 影響 position: fixed */}
       {active !== null && createPortal(
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={images[active].caption}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={e => { if (e.target === e.currentTarget) setActive(null) }}
+        >
           <div className="relative max-w-4xl w-full">
             <img
               src={images[active].src}
@@ -50,6 +68,7 @@ export default function ProjectGallery({ images }) {
             {active > 0 && (
               <button
                 onClick={() => setActive(a => a - 1)}
+                aria-label="上一張"
                 className="absolute left-2 md:left-0 md:-translate-x-12 top-1/2 -translate-y-1/2
                            w-10 h-10 rounded-full bg-black/40 md:bg-white/10
                            hover:bg-black/60 md:hover:bg-white/20
@@ -61,6 +80,7 @@ export default function ProjectGallery({ images }) {
             {active < images.length - 1 && (
               <button
                 onClick={() => setActive(a => a + 1)}
+                aria-label="下一張"
                 className="absolute right-2 md:right-0 md:translate-x-12 top-1/2 -translate-y-1/2
                            w-10 h-10 rounded-full bg-black/40 md:bg-white/10
                            hover:bg-black/60 md:hover:bg-white/20
@@ -73,6 +93,7 @@ export default function ProjectGallery({ images }) {
             {/* Close */}
             <button
               onClick={() => setActive(null)}
+              aria-label="關閉圖片檢視"
               className="absolute -top-14 right-0 flex items-center gap-1.5 px-4 py-2 rounded-full
                          bg-white/10 text-white text-sm font-medium
                          hover:bg-white/20 transition-colors"

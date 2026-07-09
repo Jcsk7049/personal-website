@@ -65,6 +65,9 @@ export default function Experience({ experience, education }) {
     <section id="experience" className="min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
+        {/* anchor for #education (single, independent of responsive variants) */}
+        <div id="education" aria-hidden="true" />
+
         {/* ── MOBILE: stacked (experience → education) ── */}
         <div className="lg:hidden card-stagger">
           <h2 className="text-[2.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white mb-10">
@@ -75,7 +78,7 @@ export default function Experience({ experience, education }) {
               <ExpCell key={i} item={item} isLast={i === experience.length - 1} />
             ))}
           </div>
-          <h2 id="education" className="text-[2.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white mb-10">
+          <h2 className="text-[2.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white mb-10">
             {t.sections.education}
           </h2>
           <div className="flex flex-col gap-11">
@@ -91,7 +94,7 @@ export default function Experience({ experience, education }) {
             <h2 className="text-[3.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white">
               {t.sections.experience}
             </h2>
-            <h2 id="education" className="text-[3.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white">
+            <h2 className="text-[3.5rem] font-bold tracking-[-0.003em] leading-[1.05] text-white">
               {t.sections.education}
             </h2>
           </div>

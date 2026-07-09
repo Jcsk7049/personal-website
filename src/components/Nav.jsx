@@ -85,6 +85,7 @@ export default function Nav({ name }) {
               className="flex flex-col justify-center gap-[5px] w-8 h-8"
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
             >
               <span
                 className="block h-[1.5px] w-5 bg-[#1D1D1F] rounded-full origin-center"
