@@ -1,12 +1,13 @@
 import { useParams, Link, useNavigate, useNavigationType } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useData } from '../context/DataContext'
 import { uiText } from '../data/uiText'
-import VapCharts from '../components/VapCharts'
-import BitoCharts from '../components/BitoCharts'
 import ProjectGallery from '../components/ProjectGallery'
 import { CategoryBadge } from '../components/ProjectShowcase'
+
+const VapCharts = lazy(() => import('../components/VapCharts'))
+const BitoCharts = lazy(() => import('../components/BitoCharts'))
 
 const PROJECT_ACCENTS = {
   'analog-ic-studio':  'from-cyan-400 to-blue-600',
@@ -193,10 +194,14 @@ export default function ProjectDetail() {
 
                 {/* Charts / media */}
                 {key === 'outcome' && project.id === 'vap' && (
-                  <div className="mb-8"><VapCharts /></div>
+                  <div className="mb-8">
+                    <Suspense fallback={null}><VapCharts /></Suspense>
+                  </div>
                 )}
                 {key === 'outcome' && project.id === 'aws-hackathon' && (
-                  <div className="mb-8"><BitoCharts /></div>
+                  <div className="mb-8">
+                    <Suspense fallback={null}><BitoCharts /></Suspense>
+                  </div>
                 )}
                 {key === 'outcome' && detail.images?.length > 0 && (
                   <div className="mb-8"><ProjectGallery images={detail.images} /></div>
