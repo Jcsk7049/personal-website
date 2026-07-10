@@ -1,5 +1,16 @@
 # CLAUDE.md — 江嘉元個人網站
 
+## ⚠️ 第一件事：讀 PROGRESS.md（強制）
+
+**每個 session 開始工作前，必須先完整閱讀 `PROGRESS.md`**——它是跨 session 的工作記憶，
+記錄目前進度、待辦、關鍵決策與事實紅線（例如：D1 才是線上資料源、哪些證照/學歷已移除）。
+不讀就動手 = 可能重複做過的事或違反已確立的決策。
+
+**每天工作結束前，必須更新 `PROGRESS.md`**：
+1. 在「工作日誌」最上方新增當天紀錄（做了什麼、決策、未完事項）
+2. 同步更新「當前狀態快照」與「待辦清單」
+3. commit + push（訊息一行，如 `Update PROGRESS.md: <當天摘要>`）
+
 ## 專案架構
 
 React + Vite + Tailwind CSS 單頁應用，部署於 Cloudflare Pages。
