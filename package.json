@@ -25,7 +25,9 @@
     "db:migrate:update-pcb-images:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0009_update_pcb_images.sql",
     "save": "sh -c 'git add src/ public/ index.html package.json vite.config.js && { git diff --cached --quiet && echo \"Nothing new to commit, pushing anyway...\" || git commit -m \"update: $(date \"+%Y-%m-%d %H:%M\")\"; } && git push'",
     "db:migrate:sync-projects": "wrangler d1 execute personal-website-db --file=migrations/0010_sync_projects.sql",
-    "db:migrate:sync-projects:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0010_sync_projects.sql"
+    "db:migrate:sync-projects:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0010_sync_projects.sql",
+    "db:migrate:honest-tech": "wrangler d1 execute personal-website-db --file=migrations/0011_curate_images_honest_tech.sql",
+    "db:migrate:honest-tech:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0011_curate_images_honest_tech.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-17）
+## 📌 當前狀態快照（最後更新：2026-07-18）
 
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
@@ -82,6 +82,16 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-18
+- PCB 瑕疵檢測圖片精選：111 → 11 張（5 張核心圖 + 每類缺陷 09/11 板各 1 張）。
+- 技術誠實化盤點（AskUserQuestion 確認）：
+  - QMK tags 移除「SPI · UART · I2C」「FreeRTOS (進行中)」（repo 查證：無 UART/I2C，WS2812 單腳位）
+  - 履歷 QMK 首句「設計 17 鍵 PCB」→「開源 PCB 改版後送廠打樣」（本人自述：送洗/焊接/除錯/灌韌體）
+  - skills_matrix 與 6 份履歷移除 PyTorch、TinyML；UART/SPI/I2C → UART（誠實標註）
+  - 本人確認保留：Signal Processing、LightGBM、Altium/KiCAD/OrCAD、Mastercam/Inventor/Fusion360/MATLAB
+- 產 migration 0011（projects 全量 + skills_matrix section），**待本人執行
+  `npm run db:migrate:honest-tech:remote`**。
 
 ### 2026-07-17
 - 建立本檔案（PROGRESS.md），並在 CLAUDE.md 加入「session 開始先讀本檔、每日收工必寫日誌」規則。

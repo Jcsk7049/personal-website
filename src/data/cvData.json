@@ -66,8 +66,7 @@
     "programming": [
       "C / C++ (STM32 / Cortex-M)",
       "QMK / ChibiOS HAL",
-      "UART/SPI/I2C（UART 實戰偵錯，I2C/SPI 擴充中）",
-      "FreeRTOS（小型專案學習基礎，持續研究中）",
+      "UART（實戰偵錯；I2C/SPI 學習中）",
       "Python",
       "Arduino / ESP32",
       "LabVIEW"
@@ -80,11 +79,9 @@
     ],
     "data_analysis": [
       "TensorFlow / Keras",
-      "PyTorch",
       "LSTM · Time-Series",
       "Feature Engineering",
       "Signal Processing",
-      "TinyML",
       "SHAP / XAI"
     ]
   },
@@ -723,424 +720,24 @@
             "caption": "missing_hole 偵測：板型 09 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/missing-hole/09_02.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_03.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_04.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_05.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_06.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_07.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_08.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_09.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/09_10.jpg",
-            "caption": "missing_hole 偵測：板型 09 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/10_01.jpg",
-            "caption": "missing_hole 偵測：板型 10 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/10_02.jpg",
-            "caption": "missing_hole 偵測：板型 10 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/10_03.jpg",
-            "caption": "missing_hole 偵測：板型 10 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/10_04.jpg",
-            "caption": "missing_hole 偵測：板型 10 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/10_05.jpg",
-            "caption": "missing_hole 偵測：板型 10 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
             "src": "/images/pcb-defect-detection/missing-hole/11_01.jpg",
             "caption": "missing_hole 偵測：板型 11 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_02.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_03.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_04.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_05.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_06.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_07.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_08.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_09.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/11_10.jpg",
-            "caption": "missing_hole 偵測：板型 11 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_01.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_02.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_03.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_04.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_05.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_06.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_07.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_08.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_09.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/missing-hole/12_10.jpg",
-            "caption": "missing_hole 偵測：板型 12 第 10 張（綠＝標註，紅＝模型預測）"
           },
           {
             "src": "/images/pcb-defect-detection/mouse-bite/09_01.jpg",
             "caption": "mouse_bite 偵測：板型 09 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_02.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_03.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_04.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_05.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_06.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_07.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_08.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_09.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/09_10.jpg",
-            "caption": "mouse_bite 偵測：板型 09 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/10_01.jpg",
-            "caption": "mouse_bite 偵測：板型 10 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/10_02.jpg",
-            "caption": "mouse_bite 偵測：板型 10 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/10_03.jpg",
-            "caption": "mouse_bite 偵測：板型 10 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/10_04.jpg",
-            "caption": "mouse_bite 偵測：板型 10 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/10_05.jpg",
-            "caption": "mouse_bite 偵測：板型 10 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
             "src": "/images/pcb-defect-detection/mouse-bite/11_01.jpg",
             "caption": "mouse_bite 偵測：板型 11 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_02.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_03.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_04.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_05.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_06.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_07.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_08.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_09.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/11_10.jpg",
-            "caption": "mouse_bite 偵測：板型 11 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_01.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_02.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_03.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_04.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_05.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_06.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_07.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_08.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_09.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/mouse-bite/12_10.jpg",
-            "caption": "mouse_bite 偵測：板型 12 第 10 張（綠＝標註，紅＝模型預測）"
           },
           {
             "src": "/images/pcb-defect-detection/open-circuit/09_01.jpg",
             "caption": "open_circuit 偵測：板型 09 第 1 張（綠＝標註，紅＝模型預測）"
           },
           {
-            "src": "/images/pcb-defect-detection/open-circuit/09_02.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_03.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_04.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_05.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_06.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_07.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_08.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_09.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/09_10.jpg",
-            "caption": "open_circuit 偵測：板型 09 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_01.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_02.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_03.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_04.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_05.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/10_06.jpg",
-            "caption": "open_circuit 偵測：板型 10 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
             "src": "/images/pcb-defect-detection/open-circuit/11_01.jpg",
             "caption": "open_circuit 偵測：板型 11 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_02.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_03.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_04.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_05.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_06.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_07.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_08.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_09.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/11_10.jpg",
-            "caption": "open_circuit 偵測：板型 11 第 10 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_01.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 1 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_02.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 2 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_03.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 3 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_04.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 4 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_05.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 5 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_06.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 6 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_07.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 7 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_08.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 8 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_09.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 9 張（綠＝標註，紅＝模型預測）"
-          },
-          {
-            "src": "/images/pcb-defect-detection/open-circuit/12_10.jpg",
-            "caption": "open_circuit 偵測：板型 12 第 10 張（綠＝標註，紅＝模型預測）"
           }
         ],
         "purpose": "作業要求：10 個板型裡至少挑 3 型、至少 3 種缺陷，用物件偵測訓練到 Precision 80% 以上，再對沒看過的板子做檢測，最後匯出 model.pb 能在 Colab 載入。\n\n真正卡住的不是訓練流程，是資料尺度。缺陷框只有約 60 像素，整張板卻是 3034×1586。Custom Vision 會把輸入縮到約 512px，縮完缺陷只剩約 10px，模型根本看不到——第一次照標準流程訓練，mAP 只有 9.6%、Recall 3.1%，等於沒用。",
@@ -1213,9 +810,9 @@
       "tags": [
         "STM32 / Cortex-M",
         "QMK / ChibiOS HAL",
-        "SPI · UART · I2C",
-        "EasyEDA Pro PCB",
-        "FreeRTOS (進行中)"
+        "USB HID · DFU",
+        "WS2812B RGB Matrix",
+        "EasyEDA Pro"
       ],
       "detail": {
         "images": [
