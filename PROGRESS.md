@@ -34,7 +34,7 @@
 |------|------|------|
 | vap | 內容已對齊投稿論文 | TensorFlow/Keras + IG（**不是** PyTorch/SHAP）；0.58 只屬 MIMIC-IV 探索實驗、**不在論文裡**，不得寫進履歷主張 |
 | qmk-stm32-keyboard | 待補實測證據 | 「<5ms」與 5ms debounce 自相矛盾，等本人邏輯分析儀實測後改寫 |
-| pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；111 張圖待精選 |
+| pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；圖片已精選至 11 張 |
 | job-radar | OK | 已補 github 連結；定位=「精準判斷/每日 Top 6」；AI 輔助已標註 |
 | analog-ic-studio | 待本人升級 | 已交付「電路識別 API + 自動量測」prompt 給本人執行 |
 | aws-hackathon | ⚠️ 指標矛盾未修 | 頁面同時存在 P=9.83%/R=0.43% 與截圖 27.5%/33.2% 兩套數字，需寫成「競賽版→賽後版」敘事；缺 AI 標註 |
