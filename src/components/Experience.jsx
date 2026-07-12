@@ -9,7 +9,9 @@ export default function Experience({ experience, education }) {
   const rows = Math.max(experience.length, education.length)
 
   /* ── Shared cell renderers ── */
-  const ExpCell = ({ item, isLast }) => (
+  const ExpCell = ({ item, isLast }) => {
+    if (!item) return <div aria-hidden="true" />
+    return (
     <div className="relative pl-9 group">
       {!isLast && (
         <div className="absolute left-[4px] top-5 bottom-[-2.75rem] w-px
@@ -36,9 +38,12 @@ export default function Experience({ experience, education }) {
         <p className="text-sm text-white/50 leading-relaxed whitespace-pre-line">{item?.description}</p>
       </div>
     </div>
-  )
+    )
+  }
 
-  const EduCell = ({ item, isLast }) => (
+  const EduCell = ({ item, isLast }) => {
+    if (!item) return <div aria-hidden="true" />
+    return (
     <div className="relative pl-9 group">
       {!isLast && (
         <div className="absolute left-[4px] top-5 bottom-[-2.75rem] w-px
@@ -59,7 +64,8 @@ export default function Experience({ experience, education }) {
         <p className="text-sm text-white/50 leading-relaxed whitespace-pre-line">{item?.degree}</p>
       </div>
     </div>
-  )
+    )
+  }
 
   return (
     <section id="experience" className="min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
