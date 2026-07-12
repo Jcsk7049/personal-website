@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-20）
+## 📌 當前狀態快照（最後更新：2026-07-21）
 
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
@@ -90,6 +90,18 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21
+- 修 admin 換行不顯示的 bug：experience/education 描述加 `whitespace-pre-line`
+  （Experience.jsx ExpCell + EduCell），本人 admin 打的「過往:/現在:」換行才會正確呈現。
+  純元件改動、推 main、Cloudflare 自動部署，**不需 migration**。
+- 釐清誤會：本人擔心又推到 preview；確認換行修正在 main（正式站），非 preview 分支
+  （右面板日文 session 是舊的、改別的 bug、commit 在 claude/determined-sagan-B9vU4）。
+- 工作目錄一度停在舊分支 claude/determined-sagan-B9vU4，已切回 main。
+- ⚠️ 待本人執行的 migration（累積）：0012 whack-a-mole、0013 edu-exp。
+  （0013 本人已跑；0012 whack-a-mole 需確認是否跑過——若打地鼠專案還是舊列點就補跑
+  `npm run db:migrate:whackamole:remote`）
+- Session 於此清空。
 
 ### 2026-07-20
 - 本人用 admin 改了 experience（Advisor 加「過往/現在」framing、競賽選手改寫），
