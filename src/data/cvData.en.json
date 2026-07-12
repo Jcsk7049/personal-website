@@ -21,11 +21,6 @@
       "period": "2024.09 – 2027.09"
     },
     {
-      "school": "Ming Chi University of Technology",
-      "degree": "B.S. Electrical Engineering",
-      "period": "2023.09 – 2024.06"
-    },
-    {
       "school": "Nangang Vocational H.S.",
       "degree": "Electronics Program",
       "period": "2020.09 – 2023.06"
@@ -42,14 +37,14 @@
       "role": "Engineering Advisor & Systems Integrator",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Directing robot systems architecture: multi-sensor fusion, PID closed-loop motor control tuning, and hardware-software interface definition. Introduced LLM-assisted debugging tools that cut roughly a week off the trial-and-error firmware debugging cycle, and now coach newer members to debug from root cause rather than guess-and-check. Also rebuilt the team website to cut down on repetitive PR questions. Engineering Advisor since 2023.",
+      "description": "Engineering Advisor since 2023.\nPreviously:\nOwned robot systems architecture — multi-sensor fusion, PID closed-loop motor control tuning, and hardware/software interface definition; shifted to an operational advisory role as that system was retired.\nNow:\nIntroduced LLM-assisted tools that cut the trial-and-error firmware debugging cycle by about a week, and coach newer members to debug from root cause instead of line-by-line guessing. Also rebuilt the team website to cut repetitive PR inquiries.",
       "frc": true
     },
     {
       "role": "Competitive Athlete",
       "organization": "Nangang VHS NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "Did a bit of everything for the team: LabVIEW/Arduino programming, FRC electrical wiring, AutoCAD modeling, laser cutting and 3D printing for mechanical parts, plus business plan writing and engineering notebook entries. Competed in 3 FRC international regional events over 3 years (including the 2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and represented the school at the National Skills Competition."
+      "description": "The team's utility player — the bridge between mechanical, software, electrical, and PR. Competed in 2 FRC international regional events over 3 years (2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and took part in the National Skills Competition (Team Project category) and the National Vocational High School Craft Competition (Digital Electronics)."
     }
   ],
   "skills_matrix": {

@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-19）
+## 📌 當前狀態快照（最後更新：2026-07-20）
 
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
@@ -32,6 +32,7 @@
 ### 專案現況（11 個，auto-sanitizer 已移除）
 | 專案 | 狀態 | 備註 |
 |------|------|------|
+| （學歷）| 明志已從網站移除 | 網站+履歷皆無明志；南港高工保留 |
 | vap | 內容已對齊投稿論文 | TensorFlow/Keras + IG（**不是** PyTorch/SHAP）；0.58 只屬 MIMIC-IV 探索實驗、**不在論文裡**，不得寫進履歷主張 |
 | qmk-stm32-keyboard | 待補實測證據 | 「<5ms」與 5ms debounce 自相矛盾，等本人邏輯分析儀實測後改寫 |
 | pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；圖片已精選至 11 張 |
@@ -56,6 +57,13 @@
 - VAP 框架 = TensorFlow/Keras，歸因 = Integrated Gradients；AUROC 0.99→0.58 是
   MIMIC-IV 復刻實驗、非論文內容
 - AI 輔助開發要誠實標註，政策要全站一致
+
+### ⚠️ 本人會用 admin 直接改 D1（重要協作規則）
+- 本人**會透過網站 admin 後台直接編輯 sections（profile/education/experience/skills）→ 寫入 D1**。
+  代表 **D1 才是這些欄位的最新真相，repo 的 cvData.json 可能落後**。
+- Claude 要改這些 section 前：先問本人「你有沒有用 admin 改過這段」，避免用 repo 舊版
+  產 migration 蓋掉本人的 admin 編輯。
+- projects 目前仍以 repo→migration 為主；未來若本人也用 admin 改 projects，同樣規則適用。
 
 ---
 
@@ -82,6 +90,16 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-20
+- 本人用 admin 改了 experience（Advisor 加「過往/現在」framing、競賽選手改寫），
+  D1 已更新但 repo 落後 → 本人貼回最終文字，同步進 cvData.json/en。
+- 移除明志科大（website education，zh+en）——先前只移了履歷，這次移網站。
+- 事實更正：FRC 出賽「3 場」→「2 場」（本人確認 2020 中科 5G + 2022 台灣鴻海），
+  同步改 4 份 LaTeX 履歷 + cvData。
+- 產 migration 0013（education + experience sections），**待本人跑
+  `npm run db:migrate:edu-exp:remote`**。
+- 新增協作規則到「架構事實」：本人會用 admin 直接改 D1 的 sections，Claude 動這些欄位前要先問。
 
 ### 2026-07-19
 - whack-a-mole outcome 改寫：把「ESP32 無故燒毀→反電動勢→加 1N4001 飛輪二極體」和
