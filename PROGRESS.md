@@ -90,8 +90,11 @@
   - 履歷 QMK 首句「設計 17 鍵 PCB」→「開源 PCB 改版後送廠打樣」（本人自述：送洗/焊接/除錯/灌韌體）
   - skills_matrix 與 6 份履歷移除 PyTorch、TinyML；UART/SPI/I2C → UART（誠實標註）
   - 本人確認保留：Signal Processing、LightGBM、Altium/KiCAD/OrCAD、Mastercam/Inventor/Fusion360/MATLAB
-- 產 migration 0011（projects 全量 + skills_matrix section），**待本人執行
-  `npm run db:migrate:honest-tech:remote`**。
+- 產 migration 0011（projects 全量 + skills_matrix section），本人已於本機執行
+  `npm run db:migrate:honest-tech:remote`（12 queries、24 rows written，成功）。
+  → 網站、6 份履歷 PDF、D1 三邊技術宣稱一致。
+- 待辦提醒：LightGBM 保留在 aws-hackathon tags，但內文未提及對比結果——之後補一句。
+- Session 於此清空（context clear）；下個 session 從本檔案接續。
 
 ### 2026-07-17
 - 建立本檔案（PROGRESS.md），並在 CLAUDE.md 加入「session 開始先讀本檔、每日收工必寫日誌」規則。
