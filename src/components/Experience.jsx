@@ -33,7 +33,7 @@ export default function Experience({ experience, education }) {
           </span>
         </div>
         <p className="text-sm text-white/65 mb-2 font-medium">{item?.organization}</p>
-        <p className="text-sm text-white/50 leading-relaxed">{item?.description}</p>
+        <p className="text-sm text-white/50 leading-relaxed whitespace-pre-line">{item?.description}</p>
       </div>
     </div>
   )
@@ -56,7 +56,7 @@ export default function Experience({ experience, education }) {
             {item?.period}
           </span>
         </div>
-        <p className="text-sm text-white/50 leading-relaxed">{item?.degree}</p>
+        <p className="text-sm text-white/50 leading-relaxed whitespace-pre-line">{item?.degree}</p>
       </div>
     </div>
   )
