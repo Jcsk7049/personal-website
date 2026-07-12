@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-18）
+## 📌 當前狀態快照（最後更新：2026-07-19）
 
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
@@ -41,7 +41,7 @@
 | team7645-cms | OK | demo=nkhs.team7645.com；35%/65% 貢獻切分清楚 |
 | audio-amplifier | OK | 分工已更正：隊友只做麵包板+PSpice，其餘全是本人 |
 | swerve | OK | 獎名已統一英文（Innovation in Control Award / Excellence in Engineering Award） |
-| whack-a-mole | 可再強化 | ESP32 燒毀→飛輪二極體除錯故事值得從列點升級成敘事 |
+| whack-a-mole | OK | 除錯敘事已升級（反電動勢/7805 功耗）；migration 0012 待本人執行 |
 | team-robot | OK | 角色已更正：**本人=電路（設計→拉線→製作），學弟=機構車銑加工** |
 
 ### 履歷檔案（resume/ 與 public/）
@@ -72,9 +72,9 @@
 - [ ] 確認 swerve 2022/2020 獎項的官方英文名稱無誤
 
 ### Claude 可代做（等指示）
-- [ ] QMK 的 GitHub Actions CI workflow（編譯 QMK 韌體 + badge）
+- [x] QMK CI workflow 已交付 build.yml（2026-07-19，待本人放入 qmk repo）
 - [ ] aws-hackathon 指標敘事重寫（需本人先確認兩套數字各屬哪個版本）
-- [ ] whack-a-mole 除錯故事改寫成敘事
+- [x] whack-a-mole 除錯故事改寫成敘事（2026-07-19，待本人跑 migration 0012）
 - [ ] job-radar / analog-ic-studio 補 cover 與截圖（需本人提供截圖）
 - [ ] per-route og meta（需 prerender 架構，工程量大，暫緩）
 - [ ] VAP/QMK 面試模擬追問練習
@@ -82,6 +82,14 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-19
+- whack-a-mole outcome 改寫：把「ESP32 無故燒毀→反電動勢→加 1N4001 飛輪二極體」和
+  「7805 線性穩壓功耗過熱」兩段從列點升級成完整除錯敘事（zh+en）；產 migration 0012，
+  **待本人跑 `npm run db:migrate:whackamole:remote`**。
+- 交付 QMK CI workflow（build.yml）：keyboard-only repo，qmk_cli 容器 + checkout qmk_firmware
+  + `make morempty/w17:default`，產 .bin artifact。本人需放到 qmk repo 的
+  `.github/workflows/build.yml`。備忘：qmk repo README 有 typo（moremory→morempty）。
 
 ### 2026-07-18
 - PCB 瑕疵檢測圖片精選：111 → 11 張（5 張核心圖 + 每類缺陷 09/11 板各 1 張）。
