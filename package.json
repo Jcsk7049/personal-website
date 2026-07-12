@@ -27,7 +27,9 @@
     "db:migrate:sync-projects": "wrangler d1 execute personal-website-db --file=migrations/0010_sync_projects.sql",
     "db:migrate:sync-projects:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0010_sync_projects.sql",
     "db:migrate:honest-tech": "wrangler d1 execute personal-website-db --file=migrations/0011_curate_images_honest_tech.sql",
-    "db:migrate:honest-tech:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0011_curate_images_honest_tech.sql"
+    "db:migrate:honest-tech:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0011_curate_images_honest_tech.sql",
+    "db:migrate:whackamole": "wrangler d1 execute personal-website-db --file=migrations/0012_whackamole_debug_story.sql",
+    "db:migrate:whackamole:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0012_whackamole_debug_story.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
