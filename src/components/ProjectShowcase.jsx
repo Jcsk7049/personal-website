@@ -99,7 +99,7 @@ export default function ProjectShowcase({ projects }) {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 card-stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start card-stagger">
           {filtered.map(proj => {
             const isFeatured = activeCategory === '全部' && proj.featured
             return (
