@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import SectionHeader from './SectionHeader'
-import MarbleBackground from './MarbleBackground'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
@@ -63,9 +62,8 @@ export default function Experience({ experience, education }) {
   )
 
   return (
-    <section id="experience" className="relative overflow-hidden min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
-      <MarbleBackground variant="dark" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
+    <section id="experience" className="min-h-screen py-16 md:py-32 bg-[#1D1D1F]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* anchor for #education (single, independent of responsive variants) */}
         <div id="education" aria-hidden="true" />

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
-import MarbleBackground from './MarbleBackground'
 
 export default function Hero({ profile }) {
   const [showScroll, setShowScroll] = useState(true)
@@ -19,9 +18,8 @@ export default function Hero({ profile }) {
 
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
-      <MarbleBackground variant="light" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
 
           {/* Left: Text */}
