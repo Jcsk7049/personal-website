@@ -91,6 +91,35 @@
 
 ## 📓 工作日誌（新→舊）
 
+### 2026-07-14
+借鏡 impeccable.dev 做了一輪較大幅的**編輯風改造**（全程只推 feature 分支給本人在
+Cloudflare preview 親眼確認、核准後才合 main；因為本 session 瀏覽器截圖工具全壞，
+改用 DOM/computed-style 量測驗證，不盲做）。已全部合上 main：
+
+- **impeccable 三手法（內容重呈現，不新增技術宣稱）**：
+  - `TerminalCard.jsx`（新）：macOS 風終端機卡，中性灰圓點（不用紅黃綠，維持不換色）。
+    用在 BitOGuard 頁，把 `detail.concept` 裡現成的 ①-⑧ AWS 管線拆成結構化 `pipeline` 陣列。
+  - `BrowserFrame.jsx`（新）：瀏覽器外框包 BitOGuard 的 Streamlit demo 截圖（真網址列）。
+  - VAP 頁編號步驟橫排（複用現有 fig-pipeline 圖說，不新增宣稱）。
+  - 跳過 job-radar/analog-ic（無真截圖）、qmk（延遲數字未驗證）。
+- **首頁大膽化 + featured 層級**（先前）：AwardList 挑 2022 FRC 鴻海賽做 featured 大卡、
+  ProjectShowcase 把 VAP 做 2 欄 featured 卡（`grid-auto-flow:dense` 補洞成長方形）、
+  GuestbookContact 右欄改單一 email 主 CTA。**awards.featured / vap.featured 是 D1 欄位**，
+  已附 migration 0014/0015，本人需跑 `npm run db:migrate:awards-featured:remote` +
+  `:vap-featured:remote` 才會在正式站生效。
+- **編輯風型級**：Hero 首度顯示 `profile.title`（"軟硬整合 · 從 PCB 到韌體到資料"，原本只在
+  `<title>`）當第二層主標；SectionHeader 從 2rem 放大到 clamp ~3.25rem 編輯級並改成
+  **大標 + 下方灰色副標堆疊**（原內聯「粗體。灰補述。」在大字級會斷半句）；專案詳情頁區塊標題
+  同步放大；修好 no-op 的 `text-wrap-pretty` → 真 `text-pretty/balance`。
+- **技能詳情頁改緊湊規格清單**：卡片格 → 兩欄 divide-y 清單；拿掉「假的 + 鈕」（aria-hidden
+  裝飾、無點擊）、等級不再標兩次、應用專案 pill 改**真連結**（LCS 資料驅動比對標籤→專案 id，
+  中英文全解析，對不上退化純文字）。
+- **大理石紋理：試過又撤除**。feTurbulence 程序化紋理做出來是煙霧/污漬感（像素量測抓到第一版
+  整片糊白的 bug），本人看了覺得怪 → `git revert` 撤掉。結論：那種質感要真實大理石貼圖，
+  非 CSS 能算，先不做。
+- 設計原則沿用：不換色系、不加深色主題、不引入 impeccable skill 列的 slop（編號 eyebrow、
+  hero-metric 模板等）。全部 `npx vite build` + `npx vitest run`（9 全過）驗證。
+
 ### 2026-07-13
 - 用 impeccable 美化 skill 跑一輪站內設計 detector，抓到一個真的 bug：技能區塊
   （`#skills`）四個分類卡片的 SVG 圖示因為套了 `bg-clip-text + text-transparent`
