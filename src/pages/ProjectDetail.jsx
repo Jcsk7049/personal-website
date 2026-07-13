@@ -179,7 +179,7 @@ export default function ProjectDetail() {
                 <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">
                   {en}
                 </p>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-8 leading-tight">
+                <h2 className="text-[clamp(1.75rem,3.2vw,2.5rem)] font-semibold tracking-[-0.02em] text-[#1D1D1F] mb-8 leading-[1.1] text-balance">
                   {label}
                 </h2>
 
