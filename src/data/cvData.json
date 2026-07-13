@@ -575,7 +575,17 @@
           }
         ],
         "github": "https://github.com/Jcsk7049/bitoguard-aml",
-        "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/"
+        "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/",
+        "pipeline": [
+          { "marker": "①", "file": "ingest_to_s3.py", "label": "BitoPro API 擷取 → S3 原始資料層" },
+          { "marker": "②", "file": "glue_graph_hops.py", "label": "Glue ETL + 圖形化多跳關聯分析" },
+          { "marker": "③", "file": "athena_graph_hops.sql", "label": "Athena 查詢聚合特徵結果" },
+          { "marker": "④", "file": "SageMaker", "label": "XGBoost 訓練與超參數調整" },
+          { "marker": "⑤", "file": "lambda_diagnosis.py", "label": "即時推論與事件觸發" },
+          { "marker": "⑥", "file": "Bedrock + SHAP", "label": "自動產生可解釋性報告" },
+          { "marker": "⑦", "file": "app.py", "label": "Streamlit 互動風險審查介面" },
+          { "marker": "⑧", "file": "template.yaml", "label": "CloudFormation IaC" }
+        ]
       }
     },
     {

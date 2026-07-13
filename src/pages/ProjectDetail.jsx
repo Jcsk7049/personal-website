@@ -6,6 +6,8 @@ import { uiText } from '../data/uiText'
 import ProjectGallery from '../components/ProjectGallery'
 import { CategoryBadge } from '../components/ProjectShowcase'
 import { PROJECT_ACCENTS, PROJECT_ACCENT_SOLID } from '../data/designTokens'
+import TerminalCard from '../components/TerminalCard'
+import BrowserFrame from '../components/BrowserFrame'
 
 const VapCharts = lazy(() => import('../components/VapCharts'))
 const BitoCharts = lazy(() => import('../components/BitoCharts'))
@@ -182,6 +184,11 @@ export default function ProjectDetail() {
                 </h2>
 
                 {/* Charts / media */}
+                {key === 'outcome' && project.id === 'aws-hackathon' && detail.demo && project.cover && (
+                  <div className="mb-8">
+                    <BrowserFrame url={detail.demo} imageSrc={project.cover} alt={project.title} />
+                  </div>
+                )}
                 {key === 'outcome' && project.id === 'vap' && (
                   <div className="mb-8">
                     <Suspense fallback={null}><VapCharts /></Suspense>
@@ -208,6 +215,28 @@ export default function ProjectDetail() {
                         />
                       </div>
                     </div>
+                  </div>
+                )}
+
+                {/* Pipeline / process highlights */}
+                {key === 'concept' && project.id === 'aws-hackathon' && detail.pipeline && (
+                  <div className="mb-8">
+                    <TerminalCard lines={detail.pipeline} />
+                  </div>
+                )}
+                {key === 'concept' && project.id === 'vap' && detail.images?.[0]?.caption && (
+                  <div className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-4">
+                    {detail.images[0].caption.replace(/^[^:：]*[:：]\s*/, '').split('→').map((step, i, arr) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-sm font-semibold text-[#0071E3] font-mono">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span className="text-sm font-medium text-[#1D1D1F]">{step.trim()}</span>
+                        </div>
+                        {i < arr.length - 1 && <span className="text-[#C7C7CC]">·</span>}
+                      </div>
+                    ))}
                   </div>
                 )}
 

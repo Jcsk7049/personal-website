@@ -580,7 +580,17 @@
           }
         ],
         "github": "https://github.com/Jcsk7049/bitoguard-aml",
-        "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/"
+        "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/",
+        "pipeline": [
+          { "marker": "①", "file": "ingest_to_s3.py", "label": "BitoPro API ingestion -> S3 raw layer" },
+          { "marker": "②", "file": "glue_graph_hops.py", "label": "Glue ETL + graph multi-hop analysis" },
+          { "marker": "③", "file": "athena_graph_hops.sql", "label": "Athena feature aggregation query" },
+          { "marker": "④", "file": "SageMaker", "label": "XGBoost training & hyperparameter tuning" },
+          { "marker": "⑤", "file": "lambda_diagnosis.py", "label": "Real-time inference & event trigger" },
+          { "marker": "⑥", "file": "Bedrock + SHAP", "label": "Auto-generated explainability report" },
+          { "marker": "⑦", "file": "app.py", "label": "Streamlit interactive risk review UI" },
+          { "marker": "⑧", "file": "template.yaml", "label": "CloudFormation IaC" }
+        ]
       }
     },
     {
