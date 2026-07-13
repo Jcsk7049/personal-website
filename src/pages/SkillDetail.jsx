@@ -19,6 +19,34 @@ function LevelDots({ level }) {
   )
 }
 
+// 把「應用專案」標籤對回專案 id，用資料驅動的最長共同子字串比對（撐得住 admin 改標題）。
+// ponytail: 門檻 3 字，對不上就退化成純文字，不硬連。
+const normKey = s => (s || '').toLowerCase().replace(/[\s()（）·・.\-—]/g, '')
+function lcsLen(a, b) {
+  let best = 0
+  const dp = Array(b.length + 1).fill(0)
+  for (let i = 1; i <= a.length; i++) {
+    let prev = 0
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = dp[j]
+      dp[j] = a[i - 1] === b[j - 1] ? prev + 1 : 0
+      if (dp[j] > best) best = dp[j]
+      prev = tmp
+    }
+  }
+  return best
+}
+function resolveProjectId(label, projects) {
+  if (!Array.isArray(projects)) return null
+  const nl = normKey(label)
+  let best = null, bestScore = 0
+  for (const p of projects) {
+    const score = lcsLen(nl, normKey(p.title))
+    if (score > bestScore) { bestScore = score; best = p }
+  }
+  return bestScore >= 3 ? best?.id : null
+}
+
 export default function SkillDetail() {
   const { id }         = useParams()
   const navigate       = useNavigate()
@@ -64,9 +92,6 @@ export default function SkillDetail() {
   }
 
   const total    = detail.skills?.length || 0
-  const gridCols = total <= 3
-    ? 'grid-cols-1 md:grid-cols-3'
-    : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
 
   const LEVEL_ORDER = { '進階': 0, '熟悉': 1, '基礎': 2 }
   const sortedSkills = [...(detail.skills || [])].sort(
@@ -138,60 +163,57 @@ export default function SkillDetail() {
             </div>
           </div>
 
-          {/* ── Skill cards ── */}
-          <div className={`grid ${gridCols} gap-5`} data-reveal>
-            {sortedSkills.map((skill, i) => {
-              return (
-                <div key={i}
-                     className="group relative bg-white rounded-[18px] p-7
-                                hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
-                                transition-shadow duration-[240ms]
-                                flex flex-col gap-4">
+          {/* ── Skill spec-list ── */}
+          <div className="border-t border-black/[0.08]" data-reveal>
+            {sortedSkills.map((skill, i) => (
+              <div key={i}
+                   className="grid md:grid-cols-[minmax(150px,15rem)_1fr] gap-x-10 gap-y-3
+                              py-6 md:py-7 border-b border-black/[0.08]">
 
-                  <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase ${accentSolid}`}>
-                    {t.levels[skill.level] ?? skill.level}
-                  </p>
-
-                  <h2 className="text-[20px] font-semibold tracking-[0.009em] leading-[1.29] text-[#1D1D1F]">
+                {/* Left: name + level */}
+                <div>
+                  <h2 className="text-[17px] md:text-[18px] font-semibold tracking-tight leading-snug text-[#1D1D1F]">
                     {skill.name}
                   </h2>
-
-                  <LevelDots level={skill.level} />
-
-                  <p className="text-sm text-[#3F3F46] leading-relaxed flex-1">
-                    {skill.desc}
-                  </p>
-
-                  {skill.projects?.length > 0 && (
-                    <div className="pt-3 border-t border-black/[0.06]">
-                      <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#86868B] mb-2">
-                        {t.appliedProjects}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {skill.projects.map(proj => (
-                          <span key={proj}
-                                className="px-2.5 py-1 rounded-full text-xs font-medium
-                                           bg-[#EEF5FF] text-[#0066CC] border border-[#C7D8F0]">
-                            {proj}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-end pt-1">
-                    <span className={`flex items-center justify-center w-9 h-9 rounded-full bg-[#1D1D1F] text-white
-                                     group-hover:bg-[#0071E3] transition-colors duration-[240ms]`}
-                          aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                        <line x1="7" y1="1.5" x2="7" y2="12.5" /><line x1="1.5" y1="7" x2="12.5" y2="7" />
-                      </svg>
+                  <div className="flex items-center gap-2 mt-2">
+                    <LevelDots level={skill.level} />
+                    <span className={`text-[11px] font-semibold tracking-[0.15em] uppercase ${accentSolid}`}>
+                      {t.levels[skill.level] ?? skill.level}
                     </span>
                   </div>
-
                 </div>
-              )
-            })}
+
+                {/* Right: description + applied projects */}
+                <div>
+                  <p className="text-[15px] text-[#3F3F46] leading-relaxed">
+                    {skill.desc}
+                  </p>
+                  {skill.projects?.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-4">
+                      <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-[#86868B]">
+                        {t.appliedProjects}
+                      </span>
+                      {skill.projects.map(proj => {
+                        const pid = resolveProjectId(proj, cvData.projects)
+                        return pid ? (
+                          <Link key={proj} to={`/projects/${pid}`}
+                                className="inline-flex items-center gap-1 text-[13px] text-[#0071E3]
+                                           hover:underline underline-offset-2 decoration-[#0071E3]/40">
+                            {proj}
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M7 17 17 7M8 7h9v9" />
+                            </svg>
+                          </Link>
+                        ) : (
+                          <span key={proj} className="text-[13px] text-[#3F3F46]">{proj}</span>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            ))}
           </div>
 
         </main>
