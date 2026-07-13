@@ -413,6 +413,7 @@
     },
     {
       "id": "vap",
+      "featured": true,
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",
       "title": "ICU VAP 早期預測：試驗性方法論驗證研究",
@@ -1230,7 +1231,8 @@
     {
       "title": "2022 FRC 台灣鴻海區域賽：亞軍聯盟 (Finalist) & 控制創新獎",
       "year": "2022",
-      "frc": true
+      "frc": true,
+      "featured": true
     },
     {
       "title": "111 學年度工業類學生技藝競賽 (工科賽)：數位電子職類代表",

@@ -31,7 +31,11 @@
     "db:migrate:whackamole": "wrangler d1 execute personal-website-db --file=migrations/0012_whackamole_debug_story.sql",
     "db:migrate:whackamole:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0012_whackamole_debug_story.sql",
     "db:migrate:edu-exp": "wrangler d1 execute personal-website-db --file=migrations/0013_edu_exp_sync.sql",
-    "db:migrate:edu-exp:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0013_edu_exp_sync.sql"
+    "db:migrate:edu-exp:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0013_edu_exp_sync.sql",
+    "db:migrate:awards-featured": "wrangler d1 execute personal-website-db --file=migrations/0014_awards_featured.sql",
+    "db:migrate:awards-featured:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0014_awards_featured.sql",
+    "db:migrate:vap-featured": "wrangler d1 execute personal-website-db --file=migrations/0015_vap_featured.sql",
+    "db:migrate:vap-featured:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0015_vap_featured.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

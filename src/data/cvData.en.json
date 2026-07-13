@@ -418,6 +418,7 @@
     },
     {
       "id": "vap",
+      "featured": true,
       "cover": "/images/vap/cover-ai.jpg",
       "category": "大學專題作品",
       "title": "ICU VAP Prediction: Pilot Methodology Validation",
@@ -1235,7 +1236,8 @@
     {
       "title": "2022 FRC Taiwan Foxconn Regional: Finalist Alliance & Innovation in Control Award",
       "year": "2022",
-      "frc": true
+      "frc": true,
+      "featured": true
     },
     {
       "title": "2022 Industrial Student Skills Competition: Digital Electronics Representative",

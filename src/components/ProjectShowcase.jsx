@@ -100,91 +100,97 @@ export default function ProjectShowcase({ projects }) {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 card-stagger">
-          {filtered.map(proj => (
-            <SpotlightCard key={proj.id} className="flex flex-col">
-              <Link
-                to={`/projects/${proj.id}`}
-                className="rounded-[18px] bg-white overflow-hidden
-                           hover:-translate-y-1 hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
-                           transition-all duration-[240ms] group flex flex-col flex-1"
-              >
-                {/* Cover image / gradient area */}
-                <div className={`relative h-48 bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0`}>
-                  {proj.cover ? (
-                    <img
-                      src={proj.cover}
-                      alt={proj.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
-                    />
-                  ) : (
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: 'radial-gradient(rgba(255,255,255,0.13) 1.5px, transparent 1.5px)',
-                        backgroundSize: '22px 22px',
-                      }}
-                    />
-                  )}
-                  {/* Gradient fade at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/30 to-transparent" />
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3">
-                    <CategoryBadge category={proj.category} />
+          {filtered.map(proj => {
+            const isFeatured = activeCategory === '全部' && proj.featured
+            return (
+              <SpotlightCard key={proj.id} className={`flex flex-col ${isFeatured ? 'sm:col-span-2 lg:col-span-2' : ''}`}>
+                <Link
+                  to={`/projects/${proj.id}`}
+                  className={`rounded-[18px] bg-white overflow-hidden
+                             hover:-translate-y-1 hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
+                             transition-all duration-[240ms] group flex flex-col flex-1
+                             ${isFeatured ? 'sm:flex-row' : ''}`}
+                >
+                  {/* Cover image / gradient area */}
+                  <div className={`relative bg-gradient-to-br ${accent(proj.id)} overflow-hidden shrink-0
+                                   ${isFeatured ? 'h-56 sm:h-auto sm:w-2/5' : 'h-48'}`}>
+                    {proj.cover ? (
+                      <img
+                        src={proj.cover}
+                        alt={proj.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundImage: 'radial-gradient(rgba(255,255,255,0.13) 1.5px, transparent 1.5px)',
+                          backgroundSize: '22px 22px',
+                        }}
+                      />
+                    )}
+                    {/* Gradient fade at bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/30 to-transparent" />
+                    {/* Category badge */}
+                    <div className="absolute top-3 left-3">
+                      <CategoryBadge category={proj.category} />
+                    </div>
+                    {/* FRC badge */}
+                    {proj.frc && (
+                      <div className="absolute bottom-3 right-3">
+                        <span className="px-2 py-0.5 rounded-full bg-black/30 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-white/20">
+                          FRC
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  {/* FRC badge */}
-                  {proj.frc && (
-                    <div className="absolute bottom-3 right-3">
-                      <span className="px-2 py-0.5 rounded-full bg-black/30 text-white text-[10px] font-bold tracking-wide backdrop-blur-sm border border-white/20">
-                        FRC
+
+                  {/* Info */}
+                  <div className={`flex flex-col gap-2 flex-1 ${isFeatured ? 'p-6 sm:p-8 justify-center' : 'p-5'}`}>
+                    <p className="text-[11px] text-[#86868B] font-mono tracking-wide">{proj.period}</p>
+                    <h3 className={`font-bold tracking-tight text-[#1D1D1F] leading-snug
+                                   group-hover:text-[#0071E3] transition-colors duration-[240ms]
+                                   ${isFeatured ? 'text-xl md:text-2xl' : 'text-base'}`}>
+                      {proj.title}
+                    </h3>
+                    {proj.badge && (
+                      <span className="self-start px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide
+                                       bg-amber-50 text-amber-700 border border-amber-300">
+                        {proj.badge}
+                      </span>
+                    )}
+                    <p className={`text-[#3F3F46] leading-relaxed ${isFeatured ? 'text-[15px]' : 'text-sm line-clamp-2'}`}>
+                      {isFeatured ? (proj.description || proj.summary) : (proj.summary || proj.description)}
+                    </p>
+                    <div className="mt-auto flex flex-col gap-2">
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {(proj.tags ?? []).slice(0, isFeatured ? proj.tags.length : 3).map(tag => (
+                          <span key={tag}
+                                className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
+                                           border border-black/[0.05] text-xs font-medium">
+                            {tag.trim()}
+                          </span>
+                        ))}
+                        {!isFeatured && (proj.tags?.length ?? 0) > 3 && (
+                          <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
+                                           border border-black/[0.05] text-xs font-medium">
+                            +{proj.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-xs text-[#0071E3] font-medium
+                                       opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
+                                       transition-all duration-[240ms]">
+                        {t.viewDetail}
                       </span>
                     </div>
-                  )}
-                </div>
-
-                {/* Info */}
-                <div className="p-5 flex flex-col gap-2 flex-1">
-                  <p className="text-[11px] text-[#86868B] font-mono tracking-wide">{proj.period}</p>
-                  <h3 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug
-                                 group-hover:text-[#0071E3] transition-colors duration-[240ms]">
-                    {proj.title}
-                  </h3>
-                  {proj.badge && (
-                    <span className="self-start px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide
-                                     bg-amber-50 text-amber-700 border border-amber-300">
-                      {proj.badge}
-                    </span>
-                  )}
-                  <p className="text-sm text-[#3F3F46] leading-relaxed line-clamp-2">
-                    {proj.summary || proj.description}
-                  </p>
-                  <div className="mt-auto flex flex-col gap-2">
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {(proj.tags ?? []).slice(0, 3).map(tag => (
-                        <span key={tag}
-                              className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
-                                         border border-black/[0.05] text-xs font-medium">
-                          {tag.trim()}
-                        </span>
-                      ))}
-                      {(proj.tags?.length ?? 0) > 3 && (
-                        <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
-                                         border border-black/[0.05] text-xs font-medium">
-                          +{proj.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                    <span className="text-xs text-[#0071E3] font-medium
-                                     opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0
-                                     transition-all duration-[240ms]">
-                      {t.viewDetail}
-                    </span>
                   </div>
-                </div>
-              </Link>
-            </SpotlightCard>
-          ))}
+                </Link>
+              </SpotlightCard>
+            )
+          })}
         </div>
 
       </div>
