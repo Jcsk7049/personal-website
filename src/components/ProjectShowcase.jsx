@@ -99,7 +99,7 @@ export default function ProjectShowcase({ projects }) {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start card-stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start card-stagger">
           {filtered.map(proj => {
             const isFeatured = activeCategory === '全部' && proj.featured
             return (
@@ -148,7 +148,7 @@ export default function ProjectShowcase({ projects }) {
                   </div>
 
                   {/* Info */}
-                  <div className={`flex flex-col gap-2 flex-1 ${isFeatured ? 'p-6 sm:p-8 justify-center' : 'p-5'}`}>
+                  <div className={`flex flex-col gap-2 flex-1 ${isFeatured ? 'p-6 sm:p-8 justify-center' : 'p-6'}`}>
                     <p className="text-[11px] text-[#86868B] font-mono tracking-wide">{proj.period}</p>
                     <h3 className={`font-bold tracking-tight text-[#1D1D1F] leading-snug
                                    group-hover:text-[#0071E3] transition-colors duration-[240ms]
@@ -166,17 +166,17 @@ export default function ProjectShowcase({ projects }) {
                     </p>
                     <div className="mt-auto flex flex-col gap-2">
                       <div className="flex flex-wrap gap-1.5 pt-1">
-                        {(proj.tags ?? []).slice(0, isFeatured ? proj.tags.length : 3).map(tag => (
+                        {(proj.tags ?? []).slice(0, isFeatured ? proj.tags.length : 2).map(tag => (
                           <span key={tag}
                                 className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                            border border-black/[0.05] text-xs font-medium">
                             {tag.trim()}
                           </span>
                         ))}
-                        {!isFeatured && (proj.tags?.length ?? 0) > 3 && (
+                        {!isFeatured && (proj.tags?.length ?? 0) > 2 && (
                           <span className="px-2 py-0.5 rounded-full bg-[#f5f5f7] text-[#3F3F46]
                                            border border-black/[0.05] text-xs font-medium">
-                            +{proj.tags.length - 3}
+                            +{proj.tags.length - 2}
                           </span>
                         )}
                       </div>
