@@ -20,3 +20,6 @@ Thumbs.db
 .env.local
 
 .wrangler/
+
+# Claude Code 本機工具設定（skill/記憶等，不屬於網站原始碼）
+.claude/
