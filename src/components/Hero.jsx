@@ -24,14 +24,20 @@ export default function Hero({ profile }) {
 
           {/* Left: Text */}
           <div className="flex-1 hero-fade-left">
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-6">
               {profile.contact.location}
             </p>
-            <h1 className="text-[clamp(3rem,7vw,5rem)] font-semibold tracking-[-0.02em] leading-[1.09] text-[#1D1D1F] mb-4">
+            <h1 className="text-[clamp(2.75rem,6vw,4.25rem)] font-semibold tracking-[-0.03em] leading-[1.05] text-[#1D1D1F] mb-5">
               {profile.name}
             </h1>
+            {profile.title && (
+              <p className="text-[clamp(1.35rem,2.8vw,2rem)] font-semibold tracking-[-0.02em] leading-[1.2]
+                            text-[#3F3F46] max-w-[34rem] mb-7 text-balance">
+                {profile.title}
+              </p>
+            )}
             {profile.bio && (
-              <p className="hero-bio text-[15px] text-[#3F3F46] leading-[1.8] max-w-[500px] mb-8 text-wrap-pretty">
+              <p className="hero-bio text-[16px] md:text-[17px] text-[#6E6E73] leading-[1.7] max-w-[60ch] mb-9 text-pretty">
                 {profile.bio}
               </p>
             )}
