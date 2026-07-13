@@ -115,28 +115,30 @@ export default function Nav({ name }) {
 
       {/* Mobile dropdown — frosted glass */}
       <div
-        className="md:hidden fixed top-12 left-0 right-0 z-40 overflow-hidden"
+        className="md:hidden fixed top-12 left-0 right-0 z-40 grid"
         style={{
           ...FROSTED,
-          maxHeight: mobileOpen ? `${navLinks.length * 56}px` : '0px',
-          transition: 'max-height 0.24s cubic-bezier(0.4,0,0.6,1)',
+          gridTemplateRows: mobileOpen ? '1fr' : '0fr',
+          transition: 'grid-template-rows 0.24s cubic-bezier(0.4,0,0.6,1)',
         }}
       >
-        {navLinks.map(({ id, label }) => (
-          <a
-            key={id}
-            href={`#${id}`}
-            onClick={() => setMobileOpen(false)}
-            className={`flex items-center px-6 h-14 text-sm transition-colors duration-[240ms]
-                        ${active === id ? 'text-[#1D1D1F] font-semibold' : 'text-[#86868B]'}`}
-            style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
-          >
-            {active === id && (
-              <span className="w-[3px] h-4 rounded-full bg-[#0071E3] mr-3 shrink-0" />
-            )}
-            {label}
-          </a>
-        ))}
+        <div className="overflow-hidden">
+          {navLinks.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={() => setMobileOpen(false)}
+              className={`flex items-center px-6 h-14 text-sm transition-colors duration-[240ms]
+                          ${active === id ? 'text-[#1D1D1F] font-semibold' : 'text-[#86868B]'}`}
+              style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
+            >
+              {active === id && (
+                <span className="w-[3px] h-4 rounded-full bg-[#0071E3] mr-3 shrink-0" />
+              )}
+              {label}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   )

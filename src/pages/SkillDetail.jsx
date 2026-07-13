@@ -4,7 +4,7 @@ import cvDataZh from '../data/cvData.json'
 import cvDataEn from '../data/cvData.en.json'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
-import { SKILL_CAT_ACCENTS, LEVEL_CONFIG } from '../data/designTokens'
+import { SKILL_CAT_ACCENTS, SKILL_CAT_ACCENT_SOLID, LEVEL_CONFIG } from '../data/designTokens'
 
 function LevelDots({ level }) {
   const cfg = LEVEL_CONFIG[level] || LEVEL_CONFIG['基礎']
@@ -28,6 +28,7 @@ export default function SkillDetail() {
   const cvData         = lang === 'en' ? cvDataEn : cvDataZh
   const detail         = cvData.skills_detail?.[id]
   const accent         = SKILL_CAT_ACCENTS[id] || 'from-gray-300 to-gray-400'
+  const accentSolid    = SKILL_CAT_ACCENT_SOLID[id] || 'text-gray-400'
 
   useEffect(() => {
     if (detail) document.title = `${detail.title} — 江嘉元`
@@ -110,8 +111,7 @@ export default function SkillDetail() {
 
           {/* ── Hero ── */}
           <div className="mb-12 hero-fade-left">
-            <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase mb-3
-                           bg-gradient-to-r ${accent} bg-clip-text text-transparent`}>
+            <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase mb-3 ${accentSolid}`}>
               {detail.en}
             </p>
             <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-6 leading-[1.07]">
@@ -148,8 +148,7 @@ export default function SkillDetail() {
                                 transition-shadow duration-[240ms]
                                 flex flex-col gap-4">
 
-                  <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase
-                                 bg-gradient-to-r ${accent} bg-clip-text text-transparent`}>
+                  <p className={`text-[12px] font-semibold tracking-[0.2em] uppercase ${accentSolid}`}>
                     {t.levels[skill.level] ?? skill.level}
                   </p>
 

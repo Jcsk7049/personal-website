@@ -5,21 +5,10 @@ import { useData } from '../context/DataContext'
 import { uiText } from '../data/uiText'
 import ProjectGallery from '../components/ProjectGallery'
 import { CategoryBadge } from '../components/ProjectShowcase'
+import { PROJECT_ACCENTS, PROJECT_ACCENT_SOLID } from '../data/designTokens'
 
 const VapCharts = lazy(() => import('../components/VapCharts'))
 const BitoCharts = lazy(() => import('../components/BitoCharts'))
-
-const PROJECT_ACCENTS = {
-  'analog-ic-studio':  'from-cyan-400 to-blue-600',
-  'vap':               'from-sky-400 to-blue-600',
-  'aws-hackathon':     'from-amber-400 to-orange-500',
-  'audio-amplifier':   'from-lime-400 to-green-600',
-  'qmk-stm32-keyboard':'from-violet-400 to-purple-600',
-  'whack-a-mole':      'from-teal-400 to-cyan-500',
-  'auto-sanitizer':    'from-emerald-400 to-green-600',
-  'team-robot':        'from-orange-400 to-amber-600',
-  'swerve':            'from-rose-400 to-red-500',
-}
 
 export default function ProjectDetail() {
   const { id }          = useParams()
@@ -66,6 +55,7 @@ export default function ProjectDetail() {
 
   const detail      = project.detail || {}
   const accentClass = PROJECT_ACCENTS[project.id] || 'from-gray-300 to-gray-400'
+  const accentSolid = PROJECT_ACCENT_SOLID[project.id] || 'text-gray-400'
   const sections    = t.projectSections
 
   return (
@@ -151,8 +141,7 @@ export default function ProjectDetail() {
 
             {project.metric && (
               <div className="flex items-baseline gap-3 mb-6">
-                <span className={`text-[3.5rem] font-bold tracking-[-0.04em] leading-none
-                                 bg-gradient-to-br ${accentClass} bg-clip-text text-transparent`}>
+                <span className={`text-[3.5rem] font-bold tracking-[-0.04em] leading-none ${accentSolid}`}>
                   {project.metric.replace(/[a-zA-Z\s]/g, '')}
                 </span>
                 <span className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B]">

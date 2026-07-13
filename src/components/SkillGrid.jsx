@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 import SectionHeader from './SectionHeader'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
-import { SKILL_CAT_ACCENTS, LEVEL_CONFIG } from '../data/designTokens'
+import { SKILL_CAT_ACCENT_SOLID, LEVEL_CONFIG } from '../data/designTokens'
 
 const QUADRANT_META = [
   {
     key: 'data_analysis',
-    accent: SKILL_CAT_ACCENTS.data_analysis,
+    accent: SKILL_CAT_ACCENT_SOLID.data_analysis,
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -18,7 +18,7 @@ const QUADRANT_META = [
   },
   {
     key: 'programming',
-    accent: SKILL_CAT_ACCENTS.programming,
+    accent: SKILL_CAT_ACCENT_SOLID.programming,
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -28,7 +28,7 @@ const QUADRANT_META = [
   },
   {
     key: 'eda',
-    accent: SKILL_CAT_ACCENTS.eda,
+    accent: SKILL_CAT_ACCENT_SOLID.eda,
     span: 1,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -42,7 +42,7 @@ const QUADRANT_META = [
   },
   {
     key: 'manufacturing',
-    accent: SKILL_CAT_ACCENTS.manufacturing,
+    accent: SKILL_CAT_ACCENT_SOLID.manufacturing,
     span: 2,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -101,7 +101,7 @@ export default function SkillGrid({ skills, detail }) {
                         {qLabels.label}
                       </h3>
                     </div>
-                    <span className={`mt-0.5 bg-gradient-to-br ${q.accent} bg-clip-text text-transparent
+                    <span className={`mt-0.5 ${q.accent}
                                      opacity-60 group-hover:opacity-100 transition-opacity duration-[240ms]`}>
                       {q.icon}
                     </span>
