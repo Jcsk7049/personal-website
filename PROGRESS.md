@@ -91,6 +91,21 @@
 
 ## 📓 工作日誌（新→舊）
 
+### 2026-07-13
+- 用 impeccable 美化 skill 跑一輪站內設計 detector，抓到一個真的 bug：技能區塊
+  （`#skills`）四個分類卡片的 SVG 圖示因為套了 `bg-clip-text + text-transparent`
+  漸層文字技巧，`currentColor` 被繼承成 transparent，圖示線條完全不會畫出來
+  （已用瀏覽器量測 computed style 驗證：修前 `color: rgba(0,0,0,0)` → 修後對應分類實色）。
+- 順手清掉其餘漸層文字（AI 感標記，也不在專案 Apple 純色 token 系統內）：
+  SkillDetail.jsx 的分類 eyebrow / 技能卡片等級標籤、ProjectDetail.jsx 的 metric 數字，
+  改用 designTokens.js 新增的 `PROJECT_ACCENT_SOLID` / `SKILL_CAT_ACCENT_SOLID` 純色版。
+- 順便修掉 ProjectDetail.jsx 裡重複定義、沒接 designTokens.js 的本地 `PROJECT_ACCENTS`
+  （原本是兩份會各自走鐘的顏色來源，統一改回 import）。
+- Nav.jsx 手機版下拉選單改用 `grid-template-rows` 展開/收合，取代會造成版面重排的
+  `max-height` transition。
+- 純元件/樣式改動、不動 cvData 內容，`npx vite build` + `npx vitest run`（9 全過）驗證後
+  推 main，Cloudflare 自動部署，**不需 migration**。
+
 ### 2026-07-21
 - 修 admin 換行不顯示的 bug：experience/education 描述加 `whitespace-pre-line`
   （Experience.jsx ExpCell + EduCell），本人 admin 打的「過往:/現在:」換行才會正確呈現。
