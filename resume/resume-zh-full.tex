@@ -17,7 +17,9 @@
 \usepackage{tabularx}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-\setCJKmainfont{NotoSansCJKtc-Regular.otf}[Path=/usr/local/share/fonts/noto-tc/,BoldFont=NotoSansCJKtc-Bold.otf]
+% 靠系統字型庫以家族名解析（Overleaf / 任何裝了 Noto CJK 的環境都能編）；
+% 若 Overleaf 報 font not found，改成 Noto Serif CJK TC 或 Noto Sans TC 再試。
+\setCJKmainfont{Noto Sans CJK TC}
 \setmainfont{Latin Modern Roman}
 
 \pagestyle{fancy}
