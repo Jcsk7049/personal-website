@@ -99,6 +99,22 @@
 
 ## 📓 工作日誌（新→舊）
 
+### 2026-07-18（設計改造，⏳ 待本人 preview 驗收）
+- **分支 `claude/personal-website-optimization-fbca13`（commit 7452f35）待本人在 Cloudflare
+  preview 確認後才合 main**（07-14 規矩）。內容：
+  - 環境色暈：五區各自的 accent 色相 radial 暈錨定左右 gutter（4–7% alpha），治「兩側死白」；
+    手機 media query 降為單層小暈
+  - Hero 捲動視差：文字/照片不同速率位移＋淡出（rAF、transform/opacity、雙層 wrapper
+    避開 hero-fade-* forwards keyframes 蓋 transform）
+  - SectionHeader 大標→副標 60/140ms 級聯（打破全區單一淡入）
+  - Hero+Projects 容器 xl 加寬至 1400px；卡片/CTA 加 active 按壓態（觸控回饋）
+  - **修 bug**：專案卡 spotlight 原是綠色 rgba(34,160,74)（Apple 藍系統異物）→ 品牌藍
+  - 全部新動畫有 prefers-reduced-motion 對應
+- 驗證：build＋vitest 9 全過；本輪瀏覽器截圖/rAF/事件派發全凍結（同 07-14 症狀），
+  改 DOM/computed-style 量測：色暈五區生效、wrapper transform 不被 keyframes 蓋（手動注入驗證）、
+  手機 375 無溢出、1600 寬容器 1400。**真實捲動動畫需本人在 preview 親眼驗**。
+- 尚未清完的舊債：六份 PDF 仍含 `<5ms`（本人 Overleaf 重編）、MCU 型號未確認。
+
 ### 2026-07-17（QMK 延遲 session）
 
 **起點**：本人問「不是有網站可以測試鍵盤嗎」，想用線上鍵盤測試站取代邏輯分析儀量延遲。
