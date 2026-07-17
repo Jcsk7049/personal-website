@@ -223,7 +223,7 @@ S3 → Glue ETL → Athena SQL → SageMaker（XGBoost 訓練 depth=8, lr=0.05, 
 - Layer 0：標準數字鍵盤輸入
 - Layer 1：RGB Matrix 控制（LT() 長按切層、短按輸入）
 
-**驗證結果**：按鍵響應延遲 < 5ms，RGB Matrix 各動畫模式正常，VIA/VIAL 無需重新編譯即可改鍵
+**驗證結果**：RGB Matrix 各動畫模式正常，VIA/VIAL 無需重新編譯即可改鍵
 
 ---
 

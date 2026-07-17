@@ -35,7 +35,9 @@
     "db:migrate:awards-featured": "wrangler d1 execute personal-website-db --file=migrations/0014_awards_featured.sql",
     "db:migrate:awards-featured:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0014_awards_featured.sql",
     "db:migrate:vap-featured": "wrangler d1 execute personal-website-db --file=migrations/0015_vap_featured.sql",
-    "db:migrate:vap-featured:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0015_vap_featured.sql"
+    "db:migrate:vap-featured:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0015_vap_featured.sql",
+    "db:migrate:qmk-latency": "wrangler d1 execute personal-website-db --file=migrations/0016_qmk_remove_latency_claim.sql",
+    "db:migrate:qmk-latency:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0016_qmk_remove_latency_claim.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
