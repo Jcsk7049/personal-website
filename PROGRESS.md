@@ -34,7 +34,7 @@
 |------|------|------|
 | （學歷）| 明志已從網站移除 | 網站+履歷皆無明志；南港高工保留 |
 | vap | 內容已對齊投稿論文 | TensorFlow/Keras + IG（**不是** PyTorch/SHAP）；0.58 只屬 MIMIC-IV 探索實驗、**不在論文裡**，不得寫進履歷主張 |
-| qmk-stm32-keyboard | 待補實測證據 | 「<5ms」與 5ms debounce 自相矛盾，等本人邏輯分析儀實測後改寫 |
+| qmk-stm32-keyboard | ⚠️ MCU 型號待確認 | 「<5ms」已從 **11 處**移除（migration 0016 待跑、**6 份 PDF 待重編**）；**repo rules.mk 寫 `MCU = STM32F103`，但網站/履歷全寫 STM32F072**；量測 SOP 見 `QMK_LATENCY_SOP.md` |
 | pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；圖片已精選至 11 張 |
 | job-radar | OK | 已補 github 連結；定位=「精準判斷/每日 Top 6」；AI 輔助已標註 |
 | analog-ic-studio | 待本人升級 | 已交付「電路識別 API + 自動量測」prompt 給本人執行 |
@@ -71,7 +71,15 @@
 
 ### 需要本人動手（Claude 無法代做）
 - [ ] **開始投實習**（目標先投 20 家，嵌入式/FAE）— 最高優先
-- [ ] QMK：邏輯分析儀實測「按鍵→HID report」延遲，波形截圖給 Claude 更新網站與履歷
+- [ ] **QMK 履歷 PDF 重編**（六份 .tex 已移除 `<5ms`，但 public/ 的 PDF 還是舊的＝仍含假宣稱；
+      這台機器沒有 LaTeX 工具鏈，需本人用 MiKTeX/Overleaf 重編後覆蓋 public/）
+- [ ] **QMK 跑 migration**：`npm run db:migrate:qmk-latency:remote`（不跑的話線上 D1 還是舊文案）
+- [ ] **QMK 確認實體 MCU 型號**：BOOT 進燒錄模式跑 `dfu-util -l`
+      → `1eaf:0003`(Maple)＝stm32duino+F103；`0483:df11`(ST原廠DFU)＝F072 內建 bootloader。
+      **若是 F103，網站/履歷的「F072 內建 USB FS、BOOT0 進 DFU、免燒錄器」整段選型故事是錯的，要重寫。**
+- [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
+      原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
+      且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
 - [ ] PCB 瑕疵檢測：開 GitHub repo（tiling/NMS/Flask 工具 code）
 - [ ] VAP：做「MIMIC-IV 0.99→0.58 洩漏 demo」公開 notebook
 - [ ] analog-ic-studio：用已交付的 prompt 實作電路識別 API（做完通知 Claude 同步網站）
@@ -90,6 +98,53 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-17（QMK 延遲 session）
+
+**起點**：本人問「不是有網站可以測試鍵盤嗎」，想用線上鍵盤測試站取代邏輯分析儀量延遲。
+
+**Claude 的初判被抗辯推翻了兩次，記下來免得重蹈**：
+1. 初判「網站測不到，因為瀏覽器拿不到 t=0」→ **歸因錯**。拿不到 t=0 的是**手指**；
+   邏輯分析儀看到的也只是電氣接點邊緣。LagBox（CHI'18）終點用純軟體 Linux evdev
+   照樣做到 median 3.9ms ±0.7。**且本人的鍵盤有 VIA/VIAL＝已有 raw HID 通道**，
+   網站可以當**讀數器**（碼錶在韌體裡）——`usevia.app` 就是這種網站。
+   正解：公開的 keydown 測試站不行（只有終點沒起點）；網站當輸出目的地可以。
+2. 初判「唯一誠實量法是邏輯分析儀」→ **錯**。QMK 圈權威延遲數字（Stapelberg）
+   **全部是韌體用 ARM cycle counter 自測的，一把 LA 都沒用**。且 24MHz Saleae clone
+   對 USB FS（12Mbps）只有 2 samples/bit，需 ~48MHz，本人若照原計畫買會解不出封包。
+   → **PROGRESS 舊待辦「邏輯分析儀實測」已作廢**，改為零硬體韌體自測。
+
+**已完成（commit 8814108 + 本次）**：
+- `<5ms` 從 **11 處**移除：cvData.json/en、portfolio-content.md、6 份 resume/*.tex、
+  public/resume-zh.html、**src/pages/admin/ResumeTab.jsx:22**（← 第一輪 grep 漏掉，
+  因為 `--include` 沒帶 `.jsx`；抗辯抓到。那是 admin 履歷產生器的 seed，
+  不修的話本人用 admin 重產履歷會把 `<5ms` 寫回 D1，migration 0016 白做）
+- migration 0016（已驗證可反解）、npm script `db:migrate:qmk-latency:remote`
+- `QMK_LATENCY_SOP.md`（零硬體量測 SOP，經三鏡頭抗辯修正六個 fatal）
+- vite build + vitest 9 全過
+
+**技術事實（一手原始碼查證，寫文案時別忘）**：
+- `builddefs/common_features.mk`: `DEBOUNCE_TYPE ?= sym_defer_g` → 本人 config.h 沒設，
+  所以就是預設 defer（等 5ms 無變化才回報）
+- ⚠️ **但「5ms 是下限」是錯的**：`timer_read_fast()` 回傳毫秒，`TIME_I2MS` 無條件進位
+  （`+ CH_CFG_ST_FREQUENCY - 1`），兩個 ceil 值相減，`elapsed >= 5` 時真實時間可低至 ~4.0ms
+  → **量到 <5ms 是預期內**。原本那句話的問題不在數字，在「實測」二字宣稱了不存在的實驗。
+- t0 只能是「矩陣**首次偵測到**邊緣」，不是「首次接觸」——`changed` 由 matrix_scan() 產生，
+  只在掃描取樣點發生。文案不得寫 "from first contact"。
+
+**⚠️ 新發現的事實矛盾（待本人確認 / 處理）**：
+1. **MCU 型號**：`rules.mk` 寫 `MCU = STM32F103` + `BOOTLOADER = stm32duino`，
+   但網站/履歷全寫 STM32F072，且有一整段「F072 內建 USB FS、BOOT0 進 DFU、免燒錄器」選型故事。
+   **F103 沒有內建 USB DFU**（原廠 bootloader 只吃 UART），stm32duino 是燒在 flash 的第三方 bootloader。
+   強證據：現行韌體用 F103 建置（ARMv7-M）且運作正常——M0 跑 M3 code 會直接 HardFault。
+   **判別法：`dfu-util -l` → `1eaf:0003`=F103 / `0483:df11`=F072。編譯結果不能拿來判（循環論證）。**
+2. **GitHub repo README:129 寫「PCB: designed in KiCAD / Altium Designer」**，但網站寫 EasyEDA Pro
+   （且 repo 裡就躺著 `.epro2` = EasyEDA Pro 工程檔）→ **錯的是 README**，要修 qmk repo 那邊。
+3. **`src/pages/admin/ResumeTab.jsx` 是紅線重災區**（本次只依範圍改了 `<5ms`，其餘未動）：
+   - :17 「出賽 **3 場** FRC」← 2026-07-20 日誌已更正為 2 場，此處未同步
+   - :20 VAP tags 有 **PyTorch** ← 紅線：框架是 TensorFlow/Keras
+   - :20 「AUROC 0.99→0.58」← 紅線：0.58 屬 MIMIC-IV 探索、不在論文，不得當履歷主張
+   - :22 STM32F072 ← 待 MCU 定案
 
 ### 2026-07-14
 借鏡 impeccable.dev 做了一輪較大幅的**編輯風改造**（全程只推 feature 分支給本人在
