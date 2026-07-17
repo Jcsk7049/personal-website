@@ -21,7 +21,7 @@ export default function AwardList({ awards }) {
   const regular  = awards.filter(a => !a.featured)
 
   return (
-    <section id="awards" className="min-h-screen flex flex-col justify-center py-16 md:py-32 bg-[#F5F5F7]">
+    <section id="awards" className="wash-awards min-h-screen flex flex-col justify-center py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader label={t.sections.awards} sub={t.sectionSubs.awards} />
 

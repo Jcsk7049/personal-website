@@ -41,7 +41,7 @@ function SpotlightCard({ children, className = '' }) {
         style={{
           borderRadius: '17px',
           opacity: mouse.on ? 1 : 0,
-          background: `radial-gradient(260px circle at ${mouse.x}px ${mouse.y}px, rgba(34,160,74,0.22) 0%, transparent 65%)`,
+          background: `radial-gradient(260px circle at ${mouse.x}px ${mouse.y}px, rgba(0,113,227,0.18) 0%, transparent 65%)`,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -49,7 +49,7 @@ function SpotlightCard({ children, className = '' }) {
         className="pointer-events-none absolute inset-0 rounded-[18px] z-10"
         style={{
           opacity: mouse.on ? 1 : 0,
-          background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px, rgba(15,58,32,0.05) 0%, transparent 70%)`,
+          background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px, rgba(0,45,90,0.04) 0%, transparent 70%)`,
           transition: 'opacity 0.3s ease',
         }}
       />
@@ -70,8 +70,8 @@ export default function ProjectShowcase({ projects }) {
     : projects.filter(p => p.category === activeCategory)
 
   return (
-    <section id="projects" className="min-h-screen py-16 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section id="projects" className="wash-projects min-h-screen py-16 md:py-32">
+      <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-6 md:px-10">
         <SectionHeader label={t.sections.projects} sub={t.sectionSubs.projects} />
 
         {/* Filter tabs */}
@@ -108,6 +108,7 @@ export default function ProjectShowcase({ projects }) {
                   to={`/projects/${proj.id}`}
                   className={`rounded-[18px] bg-white overflow-hidden
                              hover:-translate-y-1 hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
+                             active:scale-[0.985] active:shadow-none
                              transition-all duration-[240ms] group flex flex-col flex-1
                              ${isFeatured ? 'sm:flex-row' : ''}`}
                 >

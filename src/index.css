@@ -22,6 +22,61 @@
   }
 }
 
+/* ── Ambient section washes ──
+   把死白的 #F5F5F7 換成錨定在左右 gutter 的低透明度色暈：
+   寬螢幕兩側不再是空白，手機端純背景零成本。每區用自己的 accent 色相。 */
+.wash-hero {
+  background:
+    radial-gradient(1100px 750px at -8% 18%,  rgba(0,113,227,0.07),  transparent 62%),
+    radial-gradient(950px 700px  at 108% 85%, rgba(124,58,237,0.055), transparent 62%),
+    #F5F5F7;
+}
+.wash-projects {
+  background:
+    radial-gradient(1000px 700px at -6% 12%,  rgba(0,113,227,0.05),  transparent 60%),
+    radial-gradient(900px 650px  at 106% 90%, rgba(124,58,237,0.045), transparent 60%),
+    #F5F5F7;
+}
+.wash-skills {
+  background:
+    radial-gradient(1000px 700px at 106% 10%, rgba(79,70,229,0.05),  transparent 60%),
+    radial-gradient(900px 650px  at -6% 88%,  rgba(16,185,129,0.04), transparent 60%),
+    #F5F5F7;
+}
+.wash-awards {
+  background:
+    radial-gradient(1000px 700px at -6% 15%,  rgba(0,113,227,0.05),  transparent 60%),
+    radial-gradient(900px 650px  at 106% 85%, rgba(245,158,11,0.045), transparent 60%),
+    #F5F5F7;
+}
+.wash-guestbook {
+  background:
+    radial-gradient(900px 600px at 108% 8%, rgba(0,113,227,0.04), transparent 58%),
+    #FFFFFF;
+}
+@media (max-width: 640px) {
+  /* 手機沒有 gutter 問題，色暈縮小避免糊到內容區 */
+  .wash-hero, .wash-projects, .wash-skills, .wash-awards, .wash-guestbook {
+    background-size: 100% 100%;
+  }
+  .wash-hero {
+    background:
+      radial-gradient(600px 420px at -20% 10%, rgba(0,113,227,0.06), transparent 60%),
+      #F5F5F7;
+  }
+  .wash-projects, .wash-awards {
+    background:
+      radial-gradient(560px 400px at -20% 10%, rgba(0,113,227,0.04), transparent 58%),
+      #F5F5F7;
+  }
+  .wash-skills {
+    background:
+      radial-gradient(560px 400px at 120% 8%, rgba(79,70,229,0.04), transparent 58%),
+      #F5F5F7;
+  }
+  .wash-guestbook { background: #FFFFFF; }
+}
+
 /* ── Scroll reveal — Apple: 0.32s / 0.08s delay ── */
 .reveal {
   opacity: 0;
@@ -30,6 +85,16 @@
               transform 0.32s 0.08s cubic-bezier(0.4, 0, 0.6, 1);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── SectionHeader 內部級聯：大標先進、副標跟上（打破全區塊單一淡入的節奏）── */
+.reveal .sh-t, .reveal .sh-s {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.38s cubic-bezier(0.4, 0, 0.6, 1),
+              transform 0.38s cubic-bezier(0.4, 0, 0.6, 1);
+}
+.reveal.is-visible .sh-t { opacity: 1; transform: none; transition-delay: 60ms; }
+.reveal.is-visible .sh-s { opacity: 1; transform: none; transition-delay: 140ms; }
 
 /* ── Staggered cards — 0.3s, tighter delays ── */
 .card-stagger > * {
@@ -121,10 +186,11 @@
 
 /* ── Accessibility ── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .card-stagger > * {
+  .reveal, .card-stagger > *, .reveal .sh-t, .reveal .sh-s {
     opacity: 1 !important;
     transform: none !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
   .hero-fade-left, .hero-fade-right {
     opacity: 1 !important;

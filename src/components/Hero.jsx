@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
@@ -6,6 +6,8 @@ export default function Hero({ profile }) {
   const [showScroll, setShowScroll] = useState(true)
   const { lang }                    = useLanguage()
   const t                           = uiText[lang]
+  const textWrapRef                 = useRef(null)
+  const photoWrapRef                = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY < 80)
@@ -13,17 +15,46 @@ export default function Hero({ profile }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // 捲動視差：文字與照片以不同速率位移＋淡出（transform/opacity only, rAF 節流）。
+  // 掛在外層 wrapper 上——hero-fade-* 的 forwards keyframes 會蓋掉自身 inline transform。
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const apply = () => {
+      raf = 0
+      const y = window.scrollY
+      const h = window.innerHeight || 1
+      if (y > h * 1.2) return                    // hero 已完全離場，不再動
+      const p = Math.min(y / h, 1)
+      if (textWrapRef.current) {
+        textWrapRef.current.style.transform = `translateY(${y * 0.18}px)`
+        textWrapRef.current.style.opacity   = String(Math.max(1 - p * 1.15, 0))
+      }
+      if (photoWrapRef.current) {
+        photoWrapRef.current.style.transform = `translateY(${y * 0.09}px) scale(${1 - p * 0.05})`
+        photoWrapRef.current.style.opacity   = String(Math.max(1 - p * 0.9, 0))
+      }
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(apply) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [])
+
   const resumeHref     = lang === 'en' ? '/resume-en.pdf'      : '/resume-zh.pdf'
   const resumeFullHref = lang === 'en' ? '/resume-en-full.pdf' : '/resume-zh-full.pdf'
 
   return (
-    <section id="hero" className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
+    <section id="hero" className="wash-hero relative min-h-[calc(100vh-4rem)] flex flex-col justify-center pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full relative">
+      <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-6 md:px-10 w-full relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-20">
 
-          {/* Left: Text */}
-          <div className="flex-1 hero-fade-left">
+          {/* Left: Text（外層 wrapper 吃視差，內層吃進場動畫） */}
+          <div ref={textWrapRef} className="flex-1" style={{ willChange: 'transform, opacity' }}>
+          <div className="hero-fade-left">
             <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-6">
               {profile.contact.location}
             </p>
@@ -76,9 +107,11 @@ export default function Hero({ profile }) {
               </a>
             </div>
           </div>
+          </div>
 
-          {/* Right: Photo */}
-          <div className="shrink-0 flex justify-center lg:justify-end hero-fade-right">
+          {/* Right: Photo（同樣雙層：外視差、內進場） */}
+          <div ref={photoWrapRef} className="shrink-0" style={{ willChange: 'transform, opacity' }}>
+          <div className="flex justify-center lg:justify-end hero-fade-right">
             <div className="relative">
               <div className="w-52 h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] overflow-hidden
                               bg-[#f5f5f7]
@@ -98,6 +131,7 @@ export default function Hero({ profile }) {
                 )}
               </div>
             </div>
+          </div>
           </div>
 
         </div>

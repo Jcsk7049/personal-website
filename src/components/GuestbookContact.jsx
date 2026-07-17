@@ -37,7 +37,7 @@ export default function GuestbookContact({ profile }) {
   const t = uiText[lang]
 
   return (
-    <section id="guestbook" className="py-16 md:py-32 bg-white">
+    <section id="guestbook" className="wash-guestbook py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -100,6 +100,7 @@ export default function GuestbookContact({ profile }) {
               href={`mailto:${profile.contact.email}`}
               className="mt-10 flex flex-col items-start gap-5 p-8 rounded-[18px] bg-[#0071E3]
                          hover:bg-[#0077ED] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,113,227,0.28)]
+                         active:scale-[0.985] active:shadow-none
                          transition-all duration-[240ms] group"
             >
               <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center">

@@ -65,7 +65,7 @@ export default function SkillGrid({ skills, detail }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="min-h-screen py-16 md:py-32 bg-[#F5F5F7]">
+    <section id="skills" className="wash-skills min-h-screen py-16 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
 
