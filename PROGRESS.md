@@ -99,7 +99,28 @@
 
 ## 📓 工作日誌（新→舊）
 
-### 2026-07-18（設計改造，⏳ 待本人 preview 驗收）
+### 2026-07-18（六份履歷 PDF 重編，✅ 已上 main）
+- **`<5ms` 下架完成最後一哩**：先前只改了 `.tex`，`public/`＋`resume/` 的 PDF 還是舊的
+  （＝本人投出去的履歷仍含假宣稱）。這次全部重編、已 push main（commit 240c6d5）。
+- **本機裝了 TinyTeX**（`%APPDATA%\TinyTeX`，winget 那台）——以後改履歷可本機直接
+  `xelatex`，不必再上 Overleaf。用法：PATH 加 `$env:APPDATA\TinyTeX\bin\windows`，
+  `xelatex -interaction=nonstopmode <file>.tex`，跑兩遍出書籤。宏包已裝齊
+  （preprint/titlesec/marvosym/enumitem/fancyhdr/xcolor/tabularx/babel-english/
+  fontspec/xecjk）。
+- **中文字型改動（3 份 resume-zh*.tex）**：`Noto Sans CJK TC` → `Noto Sans TC`
+  （本機 Windows 實裝的是後者）＋ `[AutoFakeBold=2.5]`。**關鍵坑**：Windows 版
+  Noto Sans TC 沒有獨立 Bold 面，不加 AutoFakeBold 的話中文 `\textbf`/姓名/標題會
+  **默默退回一般字重**（log: `Could not resolve Noto Sans TC/B` → `/b/n undefined
+  → using /m/n`）。加了之後 fontspec 記錄 `embolden=2.5`，粗體恢復。
+  ⚠️ 換 Overleaf 編要把字型名改回 `Noto Sans CJK TC`（各檔註解已寫）。
+- 驗證：六份缺字 0、頁數 1/2/1（base/full/intern，與舊版一致）、`.tex` 源 grep 無
+  `<5ms`（PDF 由源決定＝乾淨）。**視覺無法驗**——這 session 瀏覽器截圖工具全逾時
+  （同 07-14），dev server 又把 PDF 當下載檔。本人請自己開一份中文 PDF 眼睛掃一下
+  漢字與粗體。
+- **剩下的 QMK 舊債**：MCU 型號仍未確認（`dfu-util -l` / `Get-PnpDevice`）、
+  QMK 延遲量測（`QMK_LATENCY_SOP.md`，想做再做）。
+
+### 2026-07-18（設計改造，✅ 本人 preview 核准後已合 main）
 - **分支 `claude/personal-website-optimization-fbca13`（commit 7452f35）待本人在 Cloudflare
   preview 確認後才合 main**（07-14 規矩）。內容：
   - 環境色暈：五區各自的 accent 色相 radial 暈錨定左右 gutter（4–7% alpha），治「兩側死白」；
