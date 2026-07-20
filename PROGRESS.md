@@ -11,6 +11,8 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-21）
 
+- 首頁效能：留言板的 Utterances 改為接近 Guestbook 區塊時才載入；專案卡片的聚光 hover 不再隨滑鼠移動觸發 React re-render。
+
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
 部署 Cloudflare Pages（`main` 分支 = Production，網址 personal-website-1kf.pages.dev）。
@@ -88,6 +90,7 @@
 - [ ] 確認 swerve 2022/2020 獎項的官方英文名稱無誤
 
 ### Claude 可代做（等指示）
+- [x] 首頁效能優化：留言板延後載入、專案卡片 hover 移除 mousemove re-render（2026-07-21）
 - [x] QMK CI workflow 已交付 build.yml（2026-07-19，待本人放入 qmk repo）
 - [ ] aws-hackathon 指標敘事重寫（需本人先確認兩套數字各屬哪個版本）
 - [x] whack-a-mole 除錯故事改寫成敘事（2026-07-19，待本人跑 migration 0012）
@@ -98,6 +101,13 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（Codex 網站效能優化）
+
+- 將首頁留言板的第三方 Utterances script 延後到 Guestbook 距離視窗 400px 內才載入，避免首頁初始載入就建立外部 iframe。
+- 專案卡片 hover 改用 CSS 變數更新聚光位置，保留原有視覺效果，移除每次 `mousemove` 的 React state 更新。
+- 驗證：`vite build` 成功；Vitest 6 個測試檔、18 項測試全數通過。
+- 未完事項：依既有待辦持續補齊專案素材與 per-route OG/prerender；本次未更動 D1、履歷內容或中英文資料。
 
 ### 2026-07-18（六份履歷 PDF 重編，✅ 已上 main）
 - **`<5ms` 下架完成最後一哩**：先前只改了 `.tex`，`public/`＋`resume/` 的 PDF 還是舊的
@@ -134,7 +144,7 @@
 - 驗證：build＋vitest 9 全過；本輪瀏覽器截圖/rAF/事件派發全凍結（同 07-14 症狀），
   改 DOM/computed-style 量測：色暈五區生效、wrapper transform 不被 keyframes 蓋（手動注入驗證）、
   手機 375 無溢出、1600 寬容器 1400。**真實捲動動畫需本人在 preview 親眼驗**。
-- 尚未清完的舊債：六份 PDF 仍含 `<5ms`（本人 Overleaf 重編）、MCU 型號未確認。
+- 尚未清完的舊債：六份 PDF 已於 2026-07-18 重編；MCU 型號仍未確認。
 
 ### 2026-07-17（QMK 延遲 session）
 

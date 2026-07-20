@@ -1,13 +1,31 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 import SectionHeader from './SectionHeader'
 
 function UtterancesComments() {
   const ref = useRef(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
 
   useEffect(() => {
-    if (!ref.current || ref.current.querySelector('script')) return
+    const node = ref.current
+    if (!node) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        setShouldLoad(true)
+        observer.disconnect()
+      },
+      { rootMargin: '400px 0px' }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!shouldLoad || !ref.current || ref.current.querySelector('script')) return undefined
     const script = document.createElement('script')
     script.src = 'https://utteranc.es/client.js'
     script.setAttribute('repo', 'jcsk7049/personal-website')
@@ -20,9 +38,9 @@ function UtterancesComments() {
     return () => {
       if (ref.current) ref.current.innerHTML = ''
     }
-  }, [])
+  }, [shouldLoad])
 
-  return <div ref={ref} className="mt-2" />
+  return <div ref={ref} className="mt-2 min-h-8" />
 }
 
 const GithubIcon = () => (

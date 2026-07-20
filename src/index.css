@@ -166,6 +166,21 @@
   animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.35s both;
 }
 
+/* Project card hover follows the pointer without causing React renders. */
+.spotlight-card {
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+}
+.spotlight-glow,
+.spotlight-shade {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.spotlight-card:hover .spotlight-glow,
+.spotlight-card:hover .spotlight-shade {
+  opacity: 1;
+}
+
 /* ── Architecture modal ── */
 .arch-modal-enter {
   animation: archModalIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;

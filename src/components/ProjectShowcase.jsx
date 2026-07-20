@@ -24,33 +24,28 @@ export function CategoryBadge({ category, className = '' }) {
 
 function SpotlightCard({ children, className = '' }) {
   const ref = useRef(null)
-  const [mouse, setMouse] = useState({ x: 0, y: 0, on: false })
 
   return (
     <div
       ref={ref}
-      className={`relative ${className}`}
+      className={`spotlight-card relative ${className}`}
       onMouseMove={e => {
         const r = ref.current.getBoundingClientRect()
-        setMouse({ x: e.clientX - r.left, y: e.clientY - r.top, on: true })
+        ref.current.style.setProperty('--spotlight-x', `${e.clientX - r.left}px`)
+        ref.current.style.setProperty('--spotlight-y', `${e.clientY - r.top}px`)
       }}
-      onMouseLeave={() => setMouse(m => ({ ...m, on: false }))}
     >
       <div
-        className="pointer-events-none absolute -inset-px z-0"
+        className="spotlight-glow pointer-events-none absolute -inset-px z-0"
         style={{
           borderRadius: '17px',
-          opacity: mouse.on ? 1 : 0,
-          background: `radial-gradient(260px circle at ${mouse.x}px ${mouse.y}px, rgba(0,113,227,0.18) 0%, transparent 65%)`,
-          transition: 'opacity 0.3s ease',
+          background: 'radial-gradient(260px circle at var(--spotlight-x) var(--spotlight-y), rgba(0,113,227,0.18) 0%, transparent 65%)',
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 rounded-[18px] z-10"
+        className="spotlight-shade pointer-events-none absolute inset-0 rounded-[18px] z-10"
         style={{
-          opacity: mouse.on ? 1 : 0,
-          background: `radial-gradient(300px circle at ${mouse.x}px ${mouse.y}px, rgba(0,45,90,0.04) 0%, transparent 70%)`,
-          transition: 'opacity 0.3s ease',
+          background: 'radial-gradient(300px circle at var(--spotlight-x) var(--spotlight-y), rgba(0,45,90,0.04) 0%, transparent 70%)',
         }}
       />
       <div className="relative z-[1] h-full flex flex-col">
