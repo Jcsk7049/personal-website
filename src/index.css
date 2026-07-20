@@ -115,19 +115,42 @@
 .is-visible .card-stagger > *:nth-child(10) { opacity: 1; transform: none; transition-delay: 380ms; }
 .is-visible .card-stagger > *:nth-child(n+11) { opacity: 1; transform: none; transition-delay: 400ms; }
 
-/* ── Hero entrance — 0.45s Apple easing ── */
+/* ── Hero entrance（名字最大版）──
+   名字以 clip-path 由上往下揭開；eyebrow/副標/按鈕級聯淡入。
+   照片是 LCP 元素 → 只做 transform 位移、opacity 保持 1，不拖 LCP。
+   全部只動 transform/opacity/clip-path。 */
+.hero-eyebrow { animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+
+.hero-name-unveil {
+  display: inline-block;
+  animation: heroUnveil 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+@keyframes heroUnveil {
+  from { clip-path: inset(0 0 100% 0);    transform: translateY(0.14em); opacity: 0; }
+  to   { clip-path: inset(0 0 -0.15em 0); transform: translateY(0);      opacity: 1; }
+}
+
+.hero-line     { animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
+.hero-cta      { animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both; }
+
+/* 照片＝LCP，不可 opacity:0→1（會讓最大元素一開始隱形）：只位移，opacity 保持 1 */
+.hero-photo-in { animation: heroPhotoRise 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+@keyframes heroPhotoRise {
+  from { transform: translateY(16px); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 詳情頁（ProjectDetail / SkillDetail）標頭進場沿用此類——非首頁 Hero，保留 */
 .hero-fade-left {
   animation: heroFadeLeft 0.45s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
-.hero-fade-right {
-  animation: heroFadeRight 0.45s cubic-bezier(0.4, 0, 0.6, 1) 0.1s both;
-}
 @keyframes heroFadeLeft {
   from { opacity: 0; transform: translateX(-12px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes heroFadeRight {
-  from { opacity: 0; transform: translateX(12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
@@ -151,20 +174,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 .page-enter { animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
-/* ── Hero subtitle ── */
-.hero-subtitle {
-  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.25s both;
-}
-@keyframes subtitleFade {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Hero bio ── */
-.hero-bio {
-  animation: subtitleFade 0.32s cubic-bezier(0.4, 0, 0.6, 1) 0.35s both;
-}
 
 /* Project card hover follows the pointer without causing React renders. */
 .spotlight-card {
@@ -207,13 +216,17 @@
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
   }
-  .hero-fade-left, .hero-fade-right {
+  .hero-eyebrow, .hero-name-unveil, .hero-line, .hero-cta, .hero-photo-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .hero-fade-left {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
   }
-  .hero-subtitle  { animation: none !important; opacity: 1 !important; }
-  .hero-bio       { animation: none !important; opacity: 1 !important; }
   .arch-modal-enter { animation: none !important; }
   .animate-blink  { animation: none !important; }
   .scroll-bounce  { animation: none !important; }
