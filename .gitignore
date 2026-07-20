@@ -23,3 +23,6 @@ Thumbs.db
 
 # Claude Code 本機工具設定（skill/記憶等，不屬於網站原始碼）
 .claude/
+
+# superpowers brainstorming mockups
+.superpowers/
