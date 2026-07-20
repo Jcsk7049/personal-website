@@ -15,6 +15,8 @@
 
 - 首頁效能：留言板的 Utterances 改為接近 Guestbook 區塊時才載入；專案卡片的聚光 hover 不再隨滑鼠移動觸發 React re-render。
 
+- 六份履歷 PDF 已於本機重新編譯並同步至 `resume/` 與 `public/`；中文版本的西文字型改為 Windows 內建 Arial，中文仍使用 Noto Sans TC。
+
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
 部署 Cloudflare Pages（`main` 分支 = Production，網址 personal-website-1kf.pages.dev）。
@@ -28,21 +30,20 @@
 - 內容修改必須**中英文同步**（cvData.json + cvData.en.json）。
 - 設計規範 = Apple 官網實測數據，見 CLAUDE.md「設計規範」段（18px 卡片、240ms/0.32s、
   cubic-bezier(0.4,0,0.6,1)、font-semibold 標題、SectionHeader「粗體。灰補述。」）。
-- 中文履歷字體 = Noto Sans TC；LaTeX 編譯需 texlive-xetex + 抽出的 TC OTF
-  （sandbox 重啟後要重裝：`apt-get install texlive-latex-recommended texlive-latex-extra
-  texlive-xetex texlive-lang-chinese fonts-noto-cjk`，並用 fonttools 從 TTC 抽 TC 面，
-  路徑 /usr/local/share/fonts/noto-tc/）。
+- 中文履歷字體 = Noto Sans TC；目前 Windows TinyTeX 可用 XeLaTeX 編譯。由於該 runtime
+  無法以系統字型名稱解析 Latin Modern Roman，三份中文 `.tex` 的西文字型固定為 Windows
+  內建 Arial。
 
 ### 專案現況（11 個，auto-sanitizer 已移除）
 | 專案 | 狀態 | 備註 |
 |------|------|------|
 | （學歷）| 明志已從網站移除 | 網站+履歷皆無明志；南港高工保留 |
 | vap | 內容已對齊投稿論文 | TensorFlow/Keras + IG（**不是** PyTorch/SHAP）；0.58 只屬 MIMIC-IV 探索實驗、**不在論文裡**，不得寫進履歷主張 |
-| qmk-stm32-keyboard | ⚠️ MCU 型號待確認 | 「<5ms」已從 **11 處**移除（migration 0016 待跑、**6 份 PDF 待重編**）；**repo rules.mk 寫 `MCU = STM32F103`，但網站/履歷全寫 STM32F072**；量測 SOP 見 `QMK_LATENCY_SOP.md` |
+| qmk-stm32-keyboard | ⚠️ 待同步 D1 | 本人確認 MCU = `STM32F103`，網站、履歷與 admin seed 已改為 stm32duino bootloader；六份 PDF 已重編，migration 0016/0017 待跑；量測 SOP 見 `QMK_LATENCY_SOP.md` |
 | pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；圖片已精選至 11 張 |
 | job-radar | OK | 已補 github 連結；定位=「精準判斷/每日 Top 6」；AI 輔助已標註 |
 | analog-ic-studio | 待本人升級 | 已交付「電路識別 API + 自動量測」prompt 給本人執行 |
-| aws-hackathon | ⚠️ 指標矛盾未修 | 頁面同時存在 P=9.83%/R=0.43% 與截圖 27.5%/33.2% 兩套數字，需寫成「競賽版→賽後版」敘事；缺 AI 標註 |
+| aws-hackathon | ⚠️ 待同步 D1 | 已採 BitOGuard 儀表板數據：AUC 83.2%、Precision 27.5%、Recall 33.2%、F1 30.1%、Accuracy 95.0%；migration 0017 待跑 |
 | team7645-cms | OK | demo=nkhs.team7645.com；35%/65% 貢獻切分清楚 |
 | audio-amplifier | OK | 分工已更正：隊友只做麵包板+PSpice，其餘全是本人 |
 | swerve | OK | 獎名已統一英文（Innovation in Control Award / Excellence in Engineering Award） |
@@ -75,12 +76,8 @@
 
 ### 需要本人動手（Claude 無法代做）
 - [ ] **開始投實習**（目標先投 20 家，嵌入式/FAE）— 最高優先
-- [ ] **QMK 履歷 PDF 重編**（六份 .tex 已移除 `<5ms`，但 public/ 的 PDF 還是舊的＝仍含假宣稱；
-      這台機器沒有 LaTeX 工具鏈，需本人用 MiKTeX/Overleaf 重編後覆蓋 public/）
-- [ ] **QMK 跑 migration**：`npm run db:migrate:qmk-latency:remote`（不跑的話線上 D1 還是舊文案）
-- [ ] **QMK 確認實體 MCU 型號**：BOOT 進燒錄模式跑 `dfu-util -l`
-      → `1eaf:0003`(Maple)＝stm32duino+F103；`0483:df11`(ST原廠DFU)＝F072 內建 bootloader。
-      **若是 F103，網站/履歷的「F072 內建 USB FS、BOOT0 進 DFU、免燒錄器」整段選型故事是錯的，要重寫。**
+- [ ] **QMK / BitOGuard 跑 migration**：依序執行 `npm run db:migrate:qmk-latency:remote` 與
+      `npm run db:migrate:qmk-aws:remote`，否則線上 D1 仍是舊文案與舊數據。
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
       原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
       且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
@@ -94,7 +91,7 @@
 ### Claude 可代做（等指示）
 - [x] 首頁效能優化：留言板延後載入、專案卡片 hover 移除 mousemove re-render（2026-07-21）
 - [x] QMK CI workflow 已交付 build.yml（2026-07-19，待本人放入 qmk repo）
-- [ ] aws-hackathon 指標敘事重寫（需本人先確認兩套數字各屬哪個版本）
+- [x] aws-hackathon 指標以 BitOGuard 儀表板版本重寫（2026-07-21，待本人跑 migration 0017）
 - [x] whack-a-mole 除錯故事改寫成敘事（2026-07-19，待本人跑 migration 0012）
 - [ ] job-radar / analog-ic-studio 補 cover 與截圖（需本人提供截圖）
 - [ ] per-route og meta（需 prerender 架構，工程量大，暫緩）
@@ -103,6 +100,12 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（六份履歷 PDF 重編）
+
+- 使用本機 TinyTeX 的 XeLaTeX，六份 `.tex` 各跑兩輪，輸出已同步至 `resume/` 與 `public/`。
+- bundled TinyTeX 無法解析 `Latin Modern Roman` 為 Windows 系統字型；三份中文履歷的西文字型改為 Arial，中文維持 Noto Sans TC + `AutoFakeBold=2.5`。
+- 驗證：頁數維持英文/中文 base=1、full=2、intern=1；以 Poppler 渲染檢視英文一頁、中文一頁與中文完整版第 2 頁，沒有截斷。PDF 文字確認為 `STM32F103`／`stm32duino`，且不含 `STM32F072` 或 `<5ms`。
 
 ### 2026-07-21（內容與首頁效能修正）
 

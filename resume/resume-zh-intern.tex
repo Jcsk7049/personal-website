@@ -22,7 +22,9 @@
 % 讓 \textbf/標題/姓名的中文真的變粗（否則會默默退回一般字重）。不依賴系統字重、可攜。
 % 換到 Overleaf 若報 font not found，改成 Noto Sans CJK TC 再試。
 \setCJKmainfont{Noto Sans TC}[AutoFakeBold=2.5]
-\setmainfont{Latin Modern Roman}
+% Latin Modern is not installed as a Windows system font in the bundled TinyTeX
+% runtime. Arial is present on Windows and keeps XeLaTeX builds reproducible.
+\setmainfont{Arial}
 
 \pagestyle{fancy}
 \fancyhf{}
