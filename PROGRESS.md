@@ -11,11 +11,15 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-21）
 
-- 待本人執行：`npm run db:migrate:qmk-aws:remote`，同步 QMK 的 STM32F103/stm32duino 事實與 BitOGuard 儀表板數據至 D1。
+- 待本人確認：QMK 的 STM32F103 是讀晶片/DFU 實測還是從 `rules.mk` 推斷；未確認前不得寫成實測或 verified。
+
+- 待本人確認：BitOGuard 的 XGBoost / LightGBM 關係；儀表板顯示 LightGBM，但網站內文仍有 XGBoost 與其超參數，不能自行猜測改寫。
+
+- 待本人確認：是否曾用 admin 編輯 profile。確認後才能以 repo 的 profile 產 D1 migration；目前 DataContext 已讓 D1 缺少的物件欄位（包含 `title`）回退至本機資料，避免 Hero 副標閃現後消失。
 
 - 首頁效能：留言板的 Utterances 改為接近 Guestbook 區塊時才載入；專案卡片的聚光 hover 不再隨滑鼠移動觸發 React re-render。
 
-- 六份履歷 PDF 已於本機重新編譯並同步至 `resume/` 與 `public/`；中文版本的西文字型改為 Windows 內建 Arial，中文仍使用 Noto Sans TC。
+- 英文履歷的正式網址是 `resume-en*.pdf`，須由本人以 Overleaf 重新輸出後覆蓋；誤建的 `public/resume*.pdf` 已刪除。三份中文 `.tex` 已恢復 Overleaf 字型設定：Latin Modern Roman + Noto Sans CJK TC。
 
 ### 這個 repo 是什麼
 江嘉元（元智電機大三，2027 年中畢業）的個人作品集網站。React + Vite + Tailwind，
@@ -30,20 +34,19 @@
 - 內容修改必須**中英文同步**（cvData.json + cvData.en.json）。
 - 設計規範 = Apple 官網實測數據，見 CLAUDE.md「設計規範」段（18px 卡片、240ms/0.32s、
   cubic-bezier(0.4,0,0.6,1)、font-semibold 標題、SectionHeader「粗體。灰補述。」）。
-- 中文履歷字體 = Noto Sans TC；目前 Windows TinyTeX 可用 XeLaTeX 編譯。由於該 runtime
-  無法以系統字型名稱解析 Latin Modern Roman，三份中文 `.tex` 的西文字型固定為 Windows
-  內建 Arial。
+- 中文履歷在 Overleaf 使用 `Noto Sans CJK TC`（真 Bold）與 `Latin Modern Roman`；不使用為
+  本機 TinyTeX 相容而加的 Arial / `AutoFakeBold` 設定。
 
 ### 專案現況（11 個，auto-sanitizer 已移除）
 | 專案 | 狀態 | 備註 |
 |------|------|------|
 | （學歷）| 明志已從網站移除 | 網站+履歷皆無明志；南港高工保留 |
 | vap | 內容已對齊投稿論文 | TensorFlow/Keras + IG（**不是** PyTorch/SHAP）；0.58 只屬 MIMIC-IV 探索實驗、**不在論文裡**，不得寫進履歷主張 |
-| qmk-stm32-keyboard | ⚠️ 待同步 D1 | 本人確認 MCU = `STM32F103`，網站、履歷與 admin seed 已改為 stm32duino bootloader；六份 PDF 已重編，migration 0016/0017 待跑；量測 SOP 見 `QMK_LATENCY_SOP.md` |
+| qmk-stm32-keyboard | ⚠️ 待確認證據／同步 D1 | `rules.mk` 指向 STM32F103 + stm32duino，但需本人確認是否為晶片/DFU 實測；正式英文履歷 PDF 待 Overleaf 輸出，migration 0016/0017 待跑 |
 | pcb-defect-detection | 待開 repo | 內容詳實但零 code 連結；圖片已精選至 11 張 |
 | job-radar | OK | 已補 github 連結；定位=「精準判斷/每日 Top 6」；AI 輔助已標註 |
 | analog-ic-studio | 待本人升級 | 已交付「電路識別 API + 自動量測」prompt 給本人執行 |
-| aws-hackathon | ⚠️ 待同步 D1 | 已採 BitOGuard 儀表板數據：AUC 83.2%、Precision 27.5%、Recall 33.2%、F1 30.1%、Accuracy 95.0%；migration 0017 待跑 |
+| aws-hackathon | ⚠️ 待確認演算法／同步 D1 | 儀表板數據已採 AUC 83.2%、Precision 27.5%、Recall 33.2%、F1 30.1%、Accuracy 95.0%；但 LightGBM 儀表板與 XGBoost 內文矛盾，待本人定案後才改 migration |
 | team7645-cms | OK | demo=nkhs.team7645.com；35%/65% 貢獻切分清楚 |
 | audio-amplifier | OK | 分工已更正：隊友只做麵包板+PSpice，其餘全是本人 |
 | swerve | OK | 獎名已統一英文（Innovation in Control Award / Excellence in Engineering Award） |
@@ -78,6 +81,8 @@
 - [ ] **開始投實習**（目標先投 20 家，嵌入式/FAE）— 最高優先
 - [ ] **QMK / BitOGuard 跑 migration**：依序執行 `npm run db:migrate:qmk-latency:remote` 與
       `npm run db:migrate:qmk-aws:remote`，否則線上 D1 仍是舊文案與舊數據。
+- [ ] 從 Overleaf 匯出三份英文 PDF，覆蓋 `public/resume-en.pdf`、`resume-en-full.pdf`、
+      `resume-en-intern.pdf`；確認 F103 文案與頁數後再上線。
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
       原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
       且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
@@ -100,6 +105,14 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（履歷命名與 D1 fallback 修正）
+
+- 找到 626fbaa 的履歷命名錯誤：Hero 實際連結 `resume-en*.pdf`，而誤建的 `public/resume*.pdf` 沒有任何連結；已刪除三個孤兒檔。正式英文 PDF 仍待本人用 Overleaf 產出後覆蓋正確檔名。
+- 三份中文履歷 `.tex` 改回 Overleaf 的 `Latin Modern Roman` + `Noto Sans CJK TC`，移除本機 Windows 相容用的 Arial / `AutoFakeBold`。
+- `DataContext` 對 profile、skills_matrix、skills_detail 等物件型 D1 section 採 fallback + D1 合併；陣列 section 維持整包替換，修復舊 D1 profile 缺 `title` 時的 Hero 副標閃現。
+- 清除本次 PDF QA 暫存目錄；將 `AGENTS.md` 納入版本控制。`npm run build` 成功。完整 Vitest 會掃進 Claude 的隔離 worktree，造成 3 個 Hero 測試因雙 React instance 失敗；本 repo 自身 7 個測試檔通過。
+- 待本人回答：profile 是否曾用 admin 改過、F103 是實測還是規則檔推斷、BitOGuard XGBoost/LightGBM 的實際關係。
 
 ### 2026-07-21（六份履歷 PDF 重編）
 

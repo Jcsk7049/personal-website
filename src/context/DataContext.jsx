@@ -7,12 +7,21 @@ import { useLanguage } from './LanguageContext'
 const DataContext = createContext(null)
 
 const SECTION_KEYS = ['profile', 'education', 'experience', 'skills_matrix', 'skills_detail', 'awards']
+const OBJECT_SECTION_KEYS = new Set(['profile', 'skills_matrix', 'skills_detail'])
+
+function resolveSection(key, value, fallback) {
+  if (value == null) return fallback
+  if (OBJECT_SECTION_KEYS.has(key) && !Array.isArray(value) && !Array.isArray(fallback)) {
+    return { ...fallback, ...value }
+  }
+  return value
+}
 
 async function fetchCV(lang, fallback) {
   const [sections, projects] = await Promise.all([
     Promise.all(SECTION_KEYS.map(k =>
       api.getSection(k, lang)
-        .then(v => [k, v ?? fallback[k]])
+        .then(v => [k, resolveSection(k, v, fallback[k])])
         .catch(() => [k, fallback[k]])
     )),
     api.getProjects(lang)
