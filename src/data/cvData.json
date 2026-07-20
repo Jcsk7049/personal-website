@@ -94,12 +94,18 @@
           ]
         },
         {
-          "name": "機器學習",
+          "name": "LightGBM",
           "level": "進階",
-          "desc": "用 XGBoost、LightGBM 做 ensemble 二元分類，搭配 SHAP 看每個特徵的貢獻，在 1:30 不平衡的人頭帳戶偵測資料集上測過。",
+          "desc": "用於 BitOGuard 的不平衡二元分類，搭配 SHAP 檢視每個特徵對帳戶風險分數的貢獻，並比較不同決策閾值下的 Precision 與 Recall。",
           "projects": [
             "AWS x BitoPro 黑客松"
           ]
+        },
+        {
+          "name": "XGBoost",
+          "level": "熟悉",
+          "desc": "用在 DSP／訊號分類課程與實驗，練習以梯度提升樹處理二元分類問題與解讀特徵重要性。",
+          "projects": []
         },
         {
           "name": "特徵工程",

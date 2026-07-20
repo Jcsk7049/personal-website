@@ -95,12 +95,18 @@
           ]
         },
         {
-          "name": "Machine Learning",
+          "name": "LightGBM",
           "level": "進階",
-          "desc": "Built an XGBoost/LightGBM ensemble for binary classification, used SHAP to see which features mattered per account, and tested it on a 1:30 imbalanced money-mule dataset.",
+          "desc": "Used in BitOGuard for imbalanced binary classification, with SHAP to inspect each feature's contribution to account-risk scores and threshold comparisons for precision and recall.",
           "projects": [
             "AWS × BitoPro Hackathon"
           ]
+        },
+        {
+          "name": "XGBoost",
+          "level": "熟悉",
+          "desc": "Used in DSP and signal-classification coursework and labs to practice gradient-boosted binary classification and interpret feature importance.",
+          "projects": []
         },
         {
           "name": "Feature Engineering",
