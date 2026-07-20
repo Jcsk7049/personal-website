@@ -47,7 +47,7 @@ export default function BitoCharts() {
   const featureData = {
     labels: TOP_FEATURES.map(f => f.label),
     datasets: [{
-      label: '特徵重要性（XGBoost gain）',
+      label: '特徵重要性（LightGBM gain）',
       data: TOP_FEATURES.map(f => f.score),
       backgroundColor: TOP_FEATURES.map((_, i) =>
         i < 3 ? 'rgba(255,149,0,0.80)' : 'rgba(0,113,227,0.65)'
@@ -73,7 +73,7 @@ export default function BitoCharts() {
       <div className="grid md:grid-cols-2 gap-4">
         <ChartCard
           title="特徵重要性 Top 10"
-          note="XGBoost gain 分數（橙色為前三名）"
+          note="LightGBM gain 分數（橙色為前三名）"
         >
           <Bar
             data={featureData}

@@ -11,9 +11,9 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-21）
 
-- 待本人確認：QMK 的 STM32F103 是讀晶片/DFU 實測還是從 `rules.mk` 推斷；未確認前不得寫成實測或 verified。
+- QMK 的 STM32F103 為韌體目標推斷（F103 建置的韌體能運作），不是 `dfu-util`／讀晶片實測；可寫 STM32F103，但不得稱實測確認或 verified。
 
-- 待本人確認：BitOGuard 的 XGBoost / LightGBM 關係；儀表板顯示 LightGBM，但網站內文仍有 XGBoost 與其超參數，不能自行猜測改寫。
+- BitOGuard 一直使用 LightGBM；AWS 專案敘事、圖表、履歷 seed 和 migration 已移除 XGBoost。技能清單的 XGBoost／LightGBM Ensemble 是否也要下架，待本人確認。
 
 - 待本人確認：是否曾用 admin 編輯 profile。確認後才能以 repo 的 profile 產 D1 migration；目前 DataContext 已讓 D1 缺少的物件欄位（包含 `title`）回退至本機資料，避免 Hero 副標閃現後消失。
 
@@ -81,6 +81,7 @@
 - [ ] **開始投實習**（目標先投 20 家，嵌入式/FAE）— 最高優先
 - [ ] **QMK / BitOGuard 跑 migration**：依序執行 `npm run db:migrate:qmk-latency:remote` 與
       `npm run db:migrate:qmk-aws:remote`，否則線上 D1 仍是舊文案與舊數據。
+- [ ] **Profile / LightGBM 跑 migration**：`npm run db:migrate:profile-lightgbm:remote`，覆蓋六月的 profile seed，並讓 D1 的 BitOGuard 內容改為 LightGBM。
 - [ ] 從 Overleaf 匯出三份英文 PDF，覆蓋 `public/resume-en.pdf`、`resume-en-full.pdf`、
       `resume-en-intern.pdf`；確認 F103 文案與頁數後再上線。
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
@@ -105,6 +106,13 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（LightGBM 定案與 profile D1 同步）
+
+- 本人確認 BitOGuard 一直使用 LightGBM，所有 AWS 專案內文的 XGBoost 皆為錯誤。同步更新中英文專案資料、BitOGuard 圖表、中文 HTML 履歷、admin resume seed 與 `portfolio-content.md`；移除不存在的 XGBoost 超參數數值，改為 LightGBM 的設定面向與類別權重／閾值取捨。
+- 新增 migration 0018 與 `npm run db:migrate:profile-lightgbm:remote`：以現行 `cvData` profile 覆蓋 D1 六月過期 seed（含 title），並同步 BitOGuard 的 LightGBM 內容與儀表板指標。已在記憶體 SQLite 執行 migration 驗證。
+- 本人確認從未用 admin 改 profile；DataContext 的 fallback 合併仍保留，作為 D1 缺欄位時的防線。本人確認 F103 是韌體目標推斷，非硬體實測，文案不得聲稱 verified。
+- 待本人確認技能清單裡的「XGBoost、LightGBM Ensemble」是否一併刪為僅 LightGBM。
 
 ### 2026-07-21（履歷命名與 D1 fallback 修正）
 
