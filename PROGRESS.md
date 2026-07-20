@@ -113,6 +113,26 @@
 - `DataContext` 對 profile、skills_matrix、skills_detail 等物件型 D1 section 採 fallback + D1 合併；陣列 section 維持整包替換，修復舊 D1 profile 缺 `title` 時的 Hero 副標閃現。
 - 清除本次 PDF QA 暫存目錄；將 `AGENTS.md` 納入版本控制。`npm run build` 成功。完整 Vitest 會掃進 Claude 的隔離 worktree，造成 3 個 Hero 測試因雙 React instance 失敗；本 repo 自身 7 個測試檔通過。
 - 待本人回答：profile 是否曾用 admin 改過、F103 是實測還是規則檔推斷、BitOGuard XGBoost/LightGBM 的實際關係。
+  （本人已答：LightGBM 一直是、admin 未改過 profile、F103 為推斷——見下方 Hero 那則後續。）
+
+### 2026-07-21（Hero 重設計，✅ 本人核准，合 main）
+- 分支 `claude/personal-website-optimization-fbca13`，經 brainstorming→writing-plans 流程產出
+  spec + plan（`docs/superpowers/`），本人核准設計後實作。**待本人 Cloudflare preview 親眼看
+  進場動畫再合 main**（截圖工具本 session 全逾時，只能量 DOM/build）。
+- 版面「D · 名字最大」：巨大「江嘉元」當主角、墨黑主張「硬體到軟體，中間那段我來。」當副標、
+  右照片維持＋視差；`profile.title`/`bio` 退出 hero（bio 仍在 footer）。
+- 新文案進 `uiText.js` 的 `heroLine`（zh/en，**不碰 D1、不需 migration**）。
+- 招牌動態：名字 clip-path 由上往下揭開（heroUnveil 0.62s ease-out-expo）→ eyebrow/副標/按鈕級聯；
+  reduced-motion 全對應。
+- **實作前已量測修正兩個既有缺陷**：① LCP 元素是**照片**非名字（實測 avatar 320²>名字）→
+  照片進場改 transform-only 不淡 opacity（heroPhotoRise），避免拖 LCP；② eyebrow #86868B 12px
+  對比只 3.04:1 未過 AA → 改 #636366（5.03:1）。
+- **修 bug**：Hero 的 `matchMedia` 呼叫沒防護，headless/測試環境會炸 → 加 optional chaining。
+- **修計畫誤判**：原以為 `.hero-fade-left` 是 Hero 獨用，實際 ProjectDetail/SkillDetail 也用 →
+  保留該 class，只刪 Hero 獨用的 hero-fade-right/subtitle/bio。
+- 驗證：`vite build` 過、vitest 14 全綠（新增 heroLine×2 + Hero 渲染×3）、新 CSS 確認編進 dist。
+- 分工：本次同時把**內容/履歷/D1** 交接給 Codex（見 `docs/superpowers/reviews/2026-07-21-codex-handoff-*`），
+  Claude 只碰 Hero.jsx/uiText.js/index.css(hero)。
 
 ### 2026-07-21（六份履歷 PDF 重編）
 
