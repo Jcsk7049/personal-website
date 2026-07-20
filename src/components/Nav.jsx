@@ -60,7 +60,7 @@ export default function Nav({ name }) {
             {/* Language toggle */}
             <button
               onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')}
-              className="flex items-center gap-0.5 text-xs"
+              className="flex items-center gap-0.5 min-h-11 min-w-11 justify-center text-xs"
               aria-label="Switch language"
             >
               <span className={`transition-colors duration-[240ms] ${lang === 'zh' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}`}>中</span>
@@ -73,7 +73,7 @@ export default function Nav({ name }) {
           <div className="md:hidden flex items-center gap-4">
             <button
               onClick={() => setLang(l => l === 'zh' ? 'en' : 'zh')}
-              className="flex items-center gap-0.5 text-xs"
+              className="flex items-center gap-0.5 min-h-11 min-w-11 justify-center text-xs"
               aria-label="Switch language"
             >
               <span className={lang === 'zh' ? 'text-[#0071E3] font-semibold' : 'text-[#86868B]'}>中</span>
@@ -82,7 +82,7 @@ export default function Nav({ name }) {
             </button>
 
             <button
-              className="flex flex-col justify-center gap-[5px] w-8 h-8"
+              className="flex flex-col justify-center gap-[5px] w-11 h-11 items-center"
               onClick={() => setMobileOpen(o => !o)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}

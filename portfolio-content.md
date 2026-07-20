@@ -215,9 +215,9 @@ S3 → Glue ETL → Athena SQL → SageMaker（XGBoost 訓練 depth=8, lr=0.05, 
 **Video**: UQ_tA-CO8Yw（YouTube）
 
 **一句話描述**：
-整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F072）。識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔——USB HID 穩定識別、RGB Matrix 正常、VIA/VIAL 即時改鍵驗證完成。
+整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F103）。識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔——USB HID 穩定識別、RGB Matrix 正常、VIA/VIAL 即時改鍵驗證完成。
 
-**硬體規格**：STM32F072（內建 USB FS，DFU 免燒錄器）、WS2812B RGB Matrix、5×4 ROW2COL 鍵盤矩陣、EasyEDA Pro 設計→立創商城打板
+**硬體規格**：STM32F103（QMK 設定使用 stm32duino bootloader）、WS2812B RGB Matrix、5×4 ROW2COL 鍵盤矩陣、EasyEDA Pro 設計→立創商城打板
 
 **Layer 設計**：
 - Layer 0：標準數字鍵盤輸入

@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import cvDataZhFallback from '../data/cvData.json'
 import cvDataEnFallback from '../data/cvData.en.json'
 import { api } from '../api/client'
+import { useLanguage } from './LanguageContext'
 
 const DataContext = createContext(null)
 
@@ -26,30 +27,25 @@ async function fetchCV(lang, fallback) {
 }
 
 export function DataProvider({ children }) {
+  const { lang } = useLanguage()
   const [cvZh, setCvZh] = useState(cvDataZhFallback)
   const [cvEn, setCvEn] = useState(cvDataEnFallback)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    Promise.all([
-      fetchCV('zh', cvDataZhFallback),
-      fetchCV('en', cvDataEnFallback),
-    ])
-      .then(([zh, en]) => {
-        setCvZh(zh)
-        setCvEn(en)
-        setReady(true)
+    const fallback = lang === 'en' ? cvDataEnFallback : cvDataZhFallback
+    fetchCV(lang, fallback)
+      .then(data => {
+        if (lang === 'en') setCvEn(data)
+        else setCvZh(data)
       })
-      .catch(() => setReady(true))
-  }, [])
+      .finally(() => setReady(true))
+  }, [lang])
 
   const refresh = () =>
-    Promise.all([
-      fetchCV('zh', cvDataZhFallback),
-      fetchCV('en', cvDataEnFallback),
-    ]).then(([zh, en]) => {
-      setCvZh(zh)
-      setCvEn(en)
+    fetchCV(lang, lang === 'en' ? cvDataEnFallback : cvDataZhFallback).then(data => {
+      if (lang === 'en') setCvEn(data)
+      else setCvZh(data)
     })
 
   return (

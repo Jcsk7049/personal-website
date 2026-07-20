@@ -11,6 +11,8 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-21）
 
+- 待本人執行：`npm run db:migrate:qmk-aws:remote`，同步 QMK 的 STM32F103/stm32duino 事實與 BitOGuard 儀表板數據至 D1。
+
 - 首頁效能：留言板的 Utterances 改為接近 Guestbook 區塊時才載入；專案卡片的聚光 hover 不再隨滑鼠移動觸發 React re-render。
 
 ### 這個 repo 是什麼
@@ -101,6 +103,13 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（內容與首頁效能修正）
+
+- 本人確認 QMK MCU 為 STM32F103；網站資料、履歷來源與 admin seed 改為 `STM32F103 + stm32duino bootloader`，移除 F072 內建 DFU／BOOT0 敘述。
+- BitOGuard 採儀表板版本：AUC 83.2%、Precision 27.5%、Recall 33.2%、F1 30.1%、Accuracy 95.0%。新增 migration 0017 同步兩項 D1 內容。
+- sitemap 移除 auto-sanitizer，加入 job-radar 與 analog-ic-studio；首頁只取得目前語言資料，初始 D1 request 從 14 降至 7。
+- 手機導覽觸控目標擴至 44px；專案分類新增 aria-pressed。
 
 ### 2026-07-21（Codex 網站效能優化）
 

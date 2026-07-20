@@ -537,7 +537,7 @@
         ],
         "purpose": "BitoPro 加密貨幣交易所 AML 合規競賽資料集：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 用戶）\n・USDT 交易紀錄：217,634 筆（33,587 用戶）\n・標記人頭帳戶：1,640 筆（訓練集 3.21%）\n\n目標是對每個帳戶輸出風險分數，識別高風險可疑帳戶，同時滿足監管機構對 AML 合規說明的可解釋性要求（不接受黑盒輸出）。\n\n選用 XGBoost 而非深度學習的理由：AML 合規場景要求對每筆標記帳戶提供特徵層級的判斷依據，XGBoost + SHAP 可直接輸出個別帳戶的特徵貢獻值；在 <65K 結構化資料規模下，訓練速度與超參數穩定性亦優於神經網路。",
         "concept": "【為何選用 XGBoost，而非深度學習？】\nAML 合規系統的核心需求是可解釋性：監管機構要求對每筆標記帳戶提供「哪些特徵觸發高風險」的具體依據，而非黑盒分數。XGBoost 配合 SHAP 值分析可直接輸出每個特徵對單一帳戶預測的貢獻量，滿足合規說明義務。此外，相較於神經網路，XGBoost 在此規模的結構化交易資料（<65K 帳戶）訓練更快、超參數更穩定，且原生支援 scale_pos_weight 直接緩解 1:30 類別不平衡。\n\n【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 XGBoost 模型訓練、超參數調整與模型部署\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（31 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 31 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・XGBoost（max_depth=8, lr=0.05, 1000 rounds, early stopping=30）\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・scale_pos_weight 與決策閾值（0.3–0.9 掃描）調整，緩解 1:30 類別不平衡\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
-        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（5-fold Stratified CV）】\n・Precision：9.83%（± 8.12%）\n・Recall：0.43%（± 0.36%）\n・F1 Score：0.82%\n競賽提交版採保守閾值（0.65），共標記 2 個高風險帳戶——此設計決策刻意偏向 Precision，避免對正常用戶的誤判造成合規風險。\n\n【誠實的技術反思：為什麼這些指標是合理的起點？】\n低 Recall 直接反映 AML 場景的三重難題：① 標記樣本僅佔 3.21%（1:30 不平衡）；② 競賽資料集欠缺設備指紋、IP 關聯等高判別力特徵；③ 人頭帳戶的行為模式與正常高頻交易者高度重疊。真實金融機構的 AML 系統同樣面臨 Precision vs. Recall 的根本取捨——提高 Recall 必然增加誤報成本與人工審查負擔。後續改良方向：圖神經網路（GNN）建模黑名單鄰居關係、SMOTE/ADASYN 處理不平衡、擴充帳戶年齡與 IP 共用特徵。",
+        "outcome": "【競賽成果】\n・完賽 AWS x BitoPro 黑客松，端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 31 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（儀表板版本）】\n・AUC：83.2%\n・Precision：27.5%\n・Recall：33.2%\n・F1 Score：30.1%\n・Accuracy：95.0%\n・標記為風險帳戶：501 / 12,753\n\n這組數字來自已部署的 BitoGuard 儀表板；Accuracy 受資料不平衡影響，不單獨作為模型好壞的判斷。Precision 與 Recall 一起呈現，讓誤報成本和找出風險帳戶的能力都能被看見。",
         "tech": [
           {
             "group": "機器學習",
@@ -811,11 +811,11 @@
       "category": "大學校外作品",
       "title": "開源硬體整合：QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F072）。實際貢獻：識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔實現完整硬體功能——USB HID 穩定識別、RGB Matrix 運作正常、VIA/VIAL 即時改鍵驗證完成。",
+      "description": "整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F103）。實際貢獻：識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔實現完整硬體功能——USB HID 穩定識別、RGB Matrix 運作正常、VIA/VIAL 即時改鍵驗證完成。",
       "tags": [
         "STM32 / Cortex-M",
         "QMK / ChibiOS HAL",
-        "USB HID · DFU",
+        "USB HID · STM32duino",
         "WS2812B RGB Matrix",
         "EasyEDA Pro"
       ],
@@ -830,16 +830,16 @@
             "caption": "與主鍵盤並用"
           }
         ],
-        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n專案範疇說明：本專案以現有開源鍵盤 PCB Layout 為基礎（於 EasyEDA Pro 改版以對接立創商城打板），整合 QMK 開源韌體框架，並非從零設計硬體。核心工程挑戰在於診斷並解決 QMK/ChibiOS 開源框架與 STM32F072 目標硬體之間的編譯失敗與時序衝突問題，並借助 LLM 輔助偵錯工具逆向工程正確的 ChibiOS HAL 配置。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源整合紀錄——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F072 DFU 燒錄流程（BOOT0 腳位控制，免燒錄器）\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
-        "concept": "【核心技術選型決策】\n・STM32F072 vs. Arduino Pro Micro（ATmega32U4）\n  F072 內建 USB FS 周邊，透過 BOOT0 腳直接進入 DFU 模式——一根 USB 線完成燒錄與使用，免去 ISP 燒錄器。Pro Micro 雖入門友善，但 Flash 僅 32KB，限制 QMK 進階功能（RGB Matrix、VIAL）的編譯空間。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的非 Arduino 目標（STM32 系列）官方使用 ChibiOS 作為 RTOS 抽象層，確保 USB HID 掃描時序的跨 MCU 可移植性。裸機 HAL 雖更輕量，但需自行處理 USB 中斷優先級與 GPIO 掃描衝突。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，首次 PCB 專案迭代速度顯著更快。\n\n【硬體架構】\n・MCU：STM32F072（內建 USB FS，支援 DFU 免燒錄器）\n・PCB 使用 EasyEDA Pro（立創EDA）設計，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）設計降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・預留 100nF 去耦電容確保電源穩定性\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
-        "outcome": "・完成 17 鍵 USB HID 鍵盤全流程：EasyEDA Pro PCB 設計 → 立創商城打板 → 手焊組裝 → STM32 DFU 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）正確配置，USB HID 穩定識別\n・RGB Matrix 各動畫模式運作正常；RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 限制有效防止 LED 串過流\n・VIA / VIAL 圖形化改鍵驗證通過，Layer 切換與 RGB 控制均可即時調整，無需重新編譯\n・排查並修復 PCB 腳位鏡像問題（EasyEDA 封裝預設 Top/Bottom 層方向差異），為後續 PCB 設計留下可複用的 Checklist\n・完整原始碼已開源於 GitHub，含 EasyEDA 工程檔、QMK 韌體、ChibiOS 配置說明",
+        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n專案範疇說明：本專案以現有開源鍵盤 PCB Layout 為基礎（於 EasyEDA Pro 改版以對接立創商城打板），整合 QMK 開源韌體框架，並非從零設計硬體。核心工程挑戰在於診斷並解決 QMK/ChibiOS 開源框架與 STM32F103 目標硬體之間的編譯失敗與時序衝突問題，並借助 LLM 輔助偵錯工具逆向工程正確的 ChibiOS HAL 配置。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源整合紀錄——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F103 搭配 stm32duino bootloader 的韌體燒錄流程\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
+        "concept": "【核心技術選型決策】\n・STM32F103 vs. Arduino Pro Micro（ATmega32U4）\n  現有硬體使用 STM32F103，QMK 設定採 stm32duino bootloader。這次的重點不是從零選 MCU，而是讓既有硬體、bootloader 與 QMK/ChibiOS 設定能穩定配合。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的 STM32 目標使用 ChibiOS 作為硬體抽象層。這次排查的重點是 USB、GPIO 與時鐘設定之間的依賴，而非另寫一套裸機驅動。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，讓既有開源 PCB 的改版與送廠流程更直接。\n\n【硬體架構】\n・MCU：STM32F103；QMK 設定使用 stm32duino bootloader\n・PCB 使用 EasyEDA Pro（立創EDA）改版，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・100nF 去耦電容配置於 MCU 電源附近\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
+        "outcome": "・完成 17 鍵 USB HID 鍵盤整合流程：EasyEDA Pro PCB 改版 → 立創商城打板 → 手焊組裝 → STM32F103 bootloader 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）正確配置，USB HID 穩定識別\n・RGB Matrix 各動畫模式運作正常；RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 限制有效防止 LED 串過流\n・VIA / VIAL 圖形化改鍵驗證通過，Layer 切換與 RGB 控制均可即時調整，無需重新編譯\n・排查並修復 PCB 腳位鏡像問題（EasyEDA 封裝預設 Top/Bottom 層方向差異），為後續 PCB 設計留下可複用的 Checklist\n・完整原始碼已開源於 GitHub，含 EasyEDA 工程檔、QMK 韌體、ChibiOS 配置說明",
         "tech": [
           {
             "group": "嵌入式韌體",
             "items": [
               {
                 "name": "HAL 外設配置",
-                "desc": "以 LLM 輔助偵錯工具逆向工程並重構 ChibiOS chconf / halconf / mcuconf 三件組，解決開源 QMK 框架與 STM32F072 硬體間的編譯失敗與時序衝突；正確設定 USB、GPIO 時鐘來源與 PLL，掌握 RTOS tick 與外設初始化順序的依賴關係"
+            "desc": "以 LLM 輔助偵錯工具逆向工程並重構 ChibiOS chconf / halconf / mcuconf 三件組，解決開源 QMK 框架與 STM32F103 硬體間的編譯失敗與時序衝突；正確設定 USB、GPIO 時鐘來源與 PLL，掌握 RTOS tick 與外設初始化順序的依賴關係"
               },
               {
                 "name": "鍵盤矩陣掃描",
@@ -860,7 +860,7 @@
             "items": [
               {
                 "name": "MCU 外圍電路設計",
-                "desc": "完成 STM32 USB FS 電路、100 nF 去耦電容佈局與 DFU Bootloader 引腳配置，確保免燒錄器的 USB 燒錄路徑可靠；EasyEDA Pro 實作"
+            "desc": "在既有開源 PCB 基礎上確認 STM32F103 的 USB 連接、100 nF 去耦電容與燒錄設定；以 EasyEDA Pro 完成改版與送廠資料"
               }
             ]
           }

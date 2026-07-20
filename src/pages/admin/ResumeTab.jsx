@@ -19,7 +19,7 @@ const DEFAULT_RESUME = {
   projects: [
     { cat: '大學專題', title: '加護病房 VAP 早期預測系統', period: '2025–', desc: 'Stay-level CV 修正 Data Leakage（AUROC 0.99→0.58）；IG 歸因篩選 MAP/RR/Vt/SpO₂，LSTM 於亞東 ICU（n=109）達 6–72h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。', tags: ['PyTorch','LSTM','Integrated Gradients','SMOTE','Medical AI'], github: '' },
     { cat: '校外競賽', title: 'AWS × BitoPro 黑客松：BitOGuard', period: '2026', desc: 'XGBoost / LightGBM × S3→Glue→Athena→SageMaker→Lambda→Bedrock 六服務端對端 AML 管線；31 項行為特徵 + SHAP 合規報告，Streamlit 儀表板已部署。', tags: ['XGBoost','AWS SageMaker','SHAP','Streamlit'], github: 'https://github.com/Jcsk7049/bitoguard-aml' },
-    { cat: '校外作品', title: 'QMK × STM32 數字鍵盤', period: '2026', desc: 'STM32F072 USB FS DFU × EasyEDA Pro PCB × QMK + ChibiOS HAL；5×4 矩陣掃描、WS2812B RGB Matrix、VIA/VIAL 即時改鍵，Gerber + 韌體開源。', tags: ['QMK Firmware','STM32','ChibiOS','EasyEDA Pro'], github: 'https://github.com/Jcsk7049/qmk-stm32-keyboard' },
+    { cat: '校外作品', title: 'QMK × STM32 數字鍵盤', period: '2026', desc: 'STM32F103 + stm32duino bootloader × EasyEDA Pro PCB × QMK + ChibiOS HAL；5×4 矩陣掃描、WS2812B RGB Matrix、VIA/VIAL 即時改鍵，Gerber + 韌體開源。', tags: ['QMK Firmware','STM32','ChibiOS','EasyEDA Pro'], github: 'https://github.com/Jcsk7049/qmk-stm32-keyboard' },
     { cat: '大學課程', title: 'PCB 元件瑕疵偵測（Azure Custom Vision）', period: '2026', desc: '用 Azure Custom Vision 訓練物件偵測模型框出 PCB 破洞 / 翹腳瑕疵，1064+609 張標註影像，Precision 67.4% / Recall 97.5% / mAP 87.4%。', tags: ['Azure Custom Vision','Object Detection','Pascal VOC','Python'], github: '' },
     { cat: '高職作品', title: 'Swerve Drive 全向輪底盤（三代）', period: '2020–2023', desc: 'FRC 競賽全向輪底盤，向量合成運動學 + LabVIEW PID 閉迴路控制，CNC 精密加工，獲 2022 FRC 台灣區控制創新獎。', tags: ['LabVIEW','PID Control','CNC 加工','Robotics'], github: '' },
   ],

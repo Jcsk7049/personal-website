@@ -70,13 +70,14 @@ export default function ProjectShowcase({ projects }) {
         <SectionHeader label={t.sections.projects} sub={t.sectionSubs.projects} />
 
         {/* Filter tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label={t.sections.projects}>
           {CATEGORIES.map(cat => {
             const count = cat === '全部' ? projects.length : projects.filter(p => p.category === cat).length
             return (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
                 className={`flex items-center gap-1.5 px-[15px] py-2 rounded-[980px] text-sm font-normal
                             transition-colors duration-[240ms] border
                             ${activeCategory === cat
