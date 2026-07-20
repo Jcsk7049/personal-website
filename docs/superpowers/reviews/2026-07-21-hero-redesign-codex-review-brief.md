@@ -40,6 +40,8 @@
 - 「視覺衝擊」是不是這個受眾/這一頁的正確最佳化目標——還是資訊密度/可掃描性更重要？
 - **機會成本**：本人第一優先是投實習。現在打磨 hero 是對的力氣分配，還是在履歷 PDF 還跟 .tex 脫鉤、實習還沒投出去時的 bikeshedding？
 
+> **C / D 已由 Claude 預量測**（結果見 plan 的「實作前已量測」段）：LCP 元素是**照片**非名字（已把照片進場改成 transform-only 不淡 opacity）；eyebrow #86868B 12px 只有 3.04:1 未過 AA（已改 #636366）。**你的任務：驗證這些數字對不對、並往我沒量到的地方推**（例如：clip-path 名字動畫本身的 paint 成本、照片 `fetchpriority` 與 lazy 其他資源的競爭、CLS、實機 Lighthouse 分數變化）——不要只複述已量的。
+
 **C. 效能 / LCP（你剛做過 loading 優化 c28fdfe，這是你的鏡頭）**
 - 那個巨大名字幾乎肯定是 **LCP 元素**。進場動畫讓它 `opacity:0→1` + clip-path，等於**最大的文字一開始是隱形的**——會不會拖垮 LCP、回吐你剛做的 Lighthouse 優化？
 - clip-path/transform 進場會不會造成 CLS？

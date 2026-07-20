@@ -19,6 +19,11 @@
 - 每個動畫只動 transform / opacity / clip-path（不動 layout 屬性）。
 - 驗證雙軌：可單元測的用 vitest（fail-then-pass）；動畫視覺由 `npx vite build` 綠 + 瀏覽器 computed-style 量測 + 本人 Cloudflare **preview 分支**親眼確認（沿用 2026-07-14 規矩，preview 核准才合 main）。
 
+### 實作前已量測（C/D，見 codex-review-brief 的 C/D）
+
+- **LCP 元素 = 照片**（實測：avatar 存在，320²=102400px² ≫ 名字文字 ~27600px²），**不是名字**。故名字的 opacity 進場不影響 LCP；但**照片不可 opacity:0→1**（否則最大元素一開始隱形拖 LCP）——已改為 transform-only 進場（`heroPhotoRise`）。
+- **對比實測**（over wash-hero 有效底色 rgb228,236,246）：名字/副標 #1D1D1F = 14.13:1（遠過）；**eyebrow #86868B = 3.04:1 未過 AA**（12px 非大字需 4.5）→ 已改 #636366 = 5.03:1。次要 scroll indicator 的 10px #86868B 屬裝飾微字，暫留（本人若在意可一併改深）。
+
 ---
 
 ## File Structure
@@ -221,7 +226,8 @@ export default function Hero({ profile }) {
 
           {/* Left: Text（外層吃視差，內層元素吃進場） */}
           <div ref={textWrapRef} className="flex-1 min-w-0" style={{ willChange: 'transform, opacity' }}>
-            <p className="hero-eyebrow text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-5">
+            {/* eyebrow 色 #636366：12px 非大字需過 WCAG AA 4.5；#86868B 只有 3.04:1（實測）→ 改 #636366 = 5.03:1 */}
+            <p className="hero-eyebrow text-xs font-medium tracking-[0.2em] uppercase text-[#636366] mb-5">
               {profile.contact.location}
             </p>
 
@@ -369,7 +375,15 @@ git commit -m "Rewrite Hero to name-largest editorial layout, wire heroLine"
 
 .hero-line     { animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
 .hero-cta      { animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.56s both; }
-.hero-photo-in { animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+
+/* 照片是 LCP 元素（實測：320²=102400px² > 名字 96px 文字）。
+   ⚠️ 不可 opacity:0→1（會讓最大元素一開始隱形、拖 LCP）——只做 transform 位移，
+   opacity 保持 1，瀏覽器立即 paint、LCP 不受影響。 */
+.hero-photo-in { animation: heroPhotoRise 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+@keyframes heroPhotoRise {
+  from { transform: translateY(16px); }
+  to   { transform: translateY(0); }
+}
 
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(14px); }
@@ -433,12 +447,16 @@ Expected: build 綠；vitest 全綠（含 Task 1、2 新增測試）
   out.nameFontPx  = name ? getComputedStyle(name.closest('h1')).fontSize : 'MISSING'
   out.lineText    = line ? line.textContent.trim() : 'MISSING'
   out.lineColor   = line ? getComputedStyle(line).color : 'MISSING'  // 應為 rgb(29,29,31) 墨黑
+  const eb = document.querySelector('#hero .hero-eyebrow')
+  out.eyebrowColor = eb ? getComputedStyle(eb).color : 'MISSING'     // 應為 rgb(99,99,102) = #636366
+  const photo = document.querySelector('#hero .hero-photo-in')
+  out.photoAnim = photo ? getComputedStyle(photo).animationName : 'MISSING' // 應為 heroPhotoRise（非含 opacity 的 heroFadeUp）
   out.hOverflow   = document.documentElement.scrollWidth <= window.innerWidth ? '✅ 無溢出' : '❌ 溢出'
   return JSON.stringify(out, null, 1)
 })()
 ```
 
-Expected：`nameHasAnim` = `heroUnveil`；`nameFontPx` 落在 56–96px（桌機寬）；`lineText` = 主張文案；`lineColor` = `rgb(29, 29, 31)`（墨黑，非藍）；`hOverflow` = 無溢出。
+Expected：`nameHasAnim` = `heroUnveil`；`nameFontPx` 落在 56–96px（桌機寬）；`lineText` = 主張文案；`lineColor` = `rgb(29, 29, 31)`（墨黑，非藍）；`eyebrowColor` = `rgb(99, 99, 102)`（#636366，過 AA）；`photoAnim` = `heroPhotoRise`（LCP 元素不做 opacity 淡入）；`hOverflow` = 無溢出。
 
 - [ ] **Step 3: 手機視窗量測（375px 無溢出、名字仍清楚）**
 
