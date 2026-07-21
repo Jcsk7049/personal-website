@@ -141,7 +141,7 @@ export default function Hero({ profile }) {
       <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
                        pointer-events-none transition-opacity duration-500
                        ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
-        <span className="text-[10px] tracking-[0.2em] uppercase text-[#86868B] scroll-bounce">Scroll</span>
+        <span className="text-[11px] tracking-[0.15em] uppercase text-[#86868B] scroll-bounce">{t.scrollHint}</span>
         <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent scroll-bounce"
              style={{ animationDelay: '0.15s' }} />
       </div>
