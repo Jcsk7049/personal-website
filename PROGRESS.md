@@ -11,11 +11,15 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-21）
 
+- **✅ 本 session 完成（07-21，Claude + Codex 雙線）**：① Hero 重設計（名字最大版：巨大「江嘉元」+ 墨黑主張「硬體到軟體，中間那段我來。」+ 名字揭開動畫）已上線 main；heroLine 在 uiText 非 D1。② 英文履歷三份 Claude 本機 TinyTeX 重編為 F103（純 LaTeX 無 CJK，`resume-en*.pdf` 不再 F072，commit a11cfb2）。③ BitOGuard 全站 XGBoost→LightGBM；技能拆成 LightGBM(BitOGuard)/XGBoost(DSP訊號課)、無 Ensemble。④ migration **0018/0019 已跑進遠端 D1**。⑤ profile.title 閃現雙重根治（Hero 移除副標 + 0018 補 D1 title）。
+- **剩下（皆非急、備給 2026 秋冬校徵）**：中文履歷字型可選 Overleaf 升級（內容已 F103、僅 Arial→Latin Modern+Noto Sans CJK TC 外觀差異）；QMK 延遲量測（`QMK_LATENCY_SOP.md`，零硬體，純興趣）。
+- **⚠️ 投實習的「時機」不歸本 session**：是 job-radar（求職時機權威）的事。job-radar 判定 7 月是暑修/鋪路期，2027 春實習主場、申請在 2026 秋冬校徵——現在投沒缺可接。personal-website session 只負責把網站+履歷備好，**不要再給投遞時機建議**（本 session 曾越權指揮、已被 job-radar 糾正）。
+
 - QMK 的 STM32F103 為韌體目標推斷（F103 建置的韌體能運作），不是 `dfu-util`／讀晶片實測；可寫 STM32F103，但不得稱實測確認或 verified。
 
 - BitOGuard 一直使用 LightGBM；AWS 專案敘事、圖表、履歷 seed 和 migration 已移除 XGBoost。XGBoost 保留為 DSP／訊號分類課程技能，與 BitOGuard 分開描述，沒有 Ensemble。
 
-- 待本人確認：是否曾用 admin 編輯 profile。確認後才能以 repo 的 profile 產 D1 migration；目前 DataContext 已讓 D1 缺少的物件欄位（包含 `title`）回退至本機資料，避免 Hero 副標閃現後消失。
+- profile：本人已確認**未用 admin 改過** → migration 0018 已用 repo profile 覆蓋 D1（title 已寫入）；DataContext 也對物件型 section 做 fallback 合併。
 
 - 首頁效能：留言板的 Utterances 改為接近 Guestbook 區塊時才載入；專案卡片的聚光 hover 不再隨滑鼠移動觸發 React re-render。
 
@@ -78,13 +82,15 @@
 ## ✅ 待辦清單
 
 ### 需要本人動手（Claude 無法代做）
-- [ ] **開始投實習**（目標先投 20 家，嵌入式/FAE）— 最高優先
-- [ ] **QMK / BitOGuard 跑 migration**：依序執行 `npm run db:migrate:qmk-latency:remote` 與
-      `npm run db:migrate:qmk-aws:remote`，否則線上 D1 仍是舊文案與舊數據。
-- [ ] **Profile / LightGBM 跑 migration**：`npm run db:migrate:profile-lightgbm:remote`，覆蓋六月的 profile seed，並讓 D1 的 BitOGuard 內容改為 LightGBM。
-- [ ] **梯度提升技能跑 migration**：`npm run db:migrate:gradient-skills:remote`，將舊的 Ensemble 技能拆為 LightGBM（BitOGuard）與 XGBoost（DSP／訊號分類課程）。
-- [ ] 從 Overleaf 匯出三份英文 PDF，覆蓋 `public/resume-en.pdf`、`resume-en-full.pdf`、
-      `resume-en-intern.pdf`；確認 F103 文案與頁數後再上線。
+- [x] **profile/LightGBM migration 0018 + 梯度提升技能 migration 0019** 已跑進遠端 D1（07-21）。
+      ⚠️ **migration 0017（`qmk-aws`）不要跑**——它是 XGBoost 舊版，已被 0018（LightGBM）取代；
+      若要確認 QMK F103 內容是否已在 D1，跟 Codex 對一下 0016/0017 的狀態。
+- [x] 英文履歷三份已 F103（`resume-en*.pdf`，Claude 本機重編，commit a11cfb2）。
+- [ ] 中文履歷字型升級（可選、非 correctness）：內容已 F103，僅 Arial→Latin Modern+Noto Sans CJK TC，
+      需本人 Overleaf 重編三份 `resume-zh*.pdf`。
+- [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
+      原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
+      且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
       原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
       且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
@@ -107,6 +113,11 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-21（session 收尾：英文 PDF + 雙線協作總結）
+- **英文履歷三份補齊 F103**（commit a11cfb2）：Codex 之前把 F103 英文版誤建成孤兒檔名、線上 `resume-en*.pdf` 還停在 F072。發現後由 Claude 本機 TinyTeX 直接重編（英文純 LaTeX、無 CJK 依賴，不必 Overleaf）→ 正確覆蓋 `resume-en*.pdf`。驗證：byte-grep 對 Computer Modern PDF 無效，改用「三份 .tex 源 F103×3/F072=0/5ms=0 → 決定性渲染即乾淨」保證；本人可部署後開一份目視確認。
+- **雙線協作模式**：Claude 只碰 `Hero.jsx`/`uiText.js`/`index.css(hero)`；Codex 管 `cvData`/`resume`/`DataContext`/`migrations`/`admin`。互相 rebase、檔案集不重疊、零衝突（PROGRESS.md 例外，手動解過一次）。**重要教訓**：投實習「時機」被 Claude 誤當 personal-website 待辦、越權指揮，被 job-radar session 糾正——時機/策略歸 job-radar，本 session 只做網站+履歷。
+- 至此網站+履歷「正確性」全數收工，剩中文字型（可選）與求職鋪路（歸 job-radar）。
 
 ### 2026-07-21（XGBoost 技能歸位）
 
