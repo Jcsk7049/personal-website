@@ -12,9 +12,11 @@
 ## 📌 當前狀態快照（最後更新：2026-07-24）
 
 - **🆕 07-24 新增第 12 個專案 TeamMatch**（OpenAI Build Week 社群黑客松，2026-07-19，三人一天）。
-  中英文 cvData、designTokens accent、sitemap、migration 0020 都已備好，**尚未 push**。
-  ⚠️ 卡兩件本人要做的事：① repo `CHU-BO-YU/teamder` 目前是 **PRIVATE**，本人說會設 public
-  ——沒設之前推上線，網站的「在 GitHub 查看」對訪客就是 404；② migration 0020 要本人跑。
+  中英文 cvData、designTokens accent、sitemap、migration 0020 全數完成，**已推 main（3865a d2）**。
+  ⚠️ 還卡兩件本人要做的事：① repo `CHU-BO-YU/teamder` 目前仍是 **PRIVATE**，
+  網站的「在 GitHub 查看」現在對訪客是 404，要設 public（repo 不是本人開的，要先問過隊友）；
+  ② `npm run db:migrate:teammatch:remote` 沒跑之前，線上 D1 還沒有這筆，網站看不到 TeamMatch。
+- **07-24 決定不收錄**：AI 課程期中專案（水果分類 KNN/SVM）評估後不進作品集，理由見當日日誌。
 - **✅ 07-24 完成**：Hero 底部捲動標示接上語言鍵（中文「往下更多」／英文 Scroll for more，
   `uiText.scrollHint`，**不碰 D1、不需 migration**），已推 main（792e5f2，乾淨 ff）；
   PROGRESS 待辦重複的 QMK 條目已去重；產出**面試模擬追問題庫**（VAP+QMK）。
@@ -128,7 +130,27 @@
 
 ## 📓 工作日誌（新→舊）
 
-### 2026-07-24（新增專案 TeamMatch，未 push）
+### 2026-07-24（AI 課程期中專案評估 → 決定不進網站）
+- **標的**：`C:\AI_classes_midtermproject--main\AI_classes_midtermproject--main`
+  ＝ 水果影像分類（KNN / SVM），AI 課程期中專題，2026-05。
+- **本人原以為還沒推 GitHub，實際上早就推了且是 PUBLIC**：
+  `https://github.com/Jcsk7049/AI_classes_midtermproject-`（結尾有個 `-`），2026-05-09/10 推的。
+  ⚠️ **本地反而落後 origin 一個 commit**（`Rewrite README with accurate technical explanations`
+  只在遠端），且本地 `fruit_classification_colab.ipynb` 有未提交修改（+49/−38）。
+  要同步是 `git pull` 不是 push——本人自行決定要不要處理，本 session 沒動那個 repo。
+- **實際成果（從 notebook output 抽，README 沒寫）**：KNN 測試 Accuracy 99.29%（最佳 K=1）、
+  SVM **100.00%**（linear, C=0.01，CV 也 1.0000），測試集 140 張。
+  特徵 = HOG + RGB/HSV 直方圖約 1910 維；另有 OOD 偵測（信心門檻 52%）。
+- **決定：不放進網站專案列表**（本人拍板，採納 Claude 建議）。理由：
+  ① 100% + K=1 最佳 + CV 1.0 是**資料集太乾淨**的徵兆（Fruits-360 白背景、旋轉台、單顆水果、
+  四類顏色分得開），不是模型強——寫「100% 準確率」進作品集反而扣分；
+  ② 課程級 scikit-learn 分類，與 VAP／AWS／analog-ic-studio 同列會稀釋密度；
+  ③ 核心程式碼的 commit 作者是 `Claude <noreply@anthropic.com>`，誠實標註後說服力更弱。
+  **本人自述當時就知道這題太簡單**（非事後補的認知），所以這條敘事本身站得住，
+  日後若要用，走「我不信好到不真實的數字」那條線（與 VAP 的 0.99 洩漏呼應），而不是誇準確率。
+- **未來 session 注意**：看到這個資料夾不用再評估一次，結論在此。
+
+### 2026-07-24（新增專案 TeamMatch，已推 main）
 - **來源**：本人 07-19（週日）跟 FRC 學長＋其同學三人打 OpenAI Build Week 社群黑客松的作品，
   repo `CHU-BO-YU/teamder`（**PRIVATE**，WebFetch 抓不到，全程用 `gh api` 讀）。
 - **查證到的事實**（都有一手依據，不是聽轉述）：
