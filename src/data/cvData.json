@@ -594,6 +594,44 @@
       }
     },
     {
+      "id": "teammatch",
+      "category": "大學校外作品",
+      "title": "TeamMatch — 黑客松找隊友平台",
+      "period": "2026",
+      "description": "OpenAI Build Week 社群黑客松，三人當天從零做完：報名活動後在同場報名者裡滑卡找隊友，雙方都按讚才成立配對、交換聯絡方式。我負責登入／個人檔案／導覽列，以及最後把三個人的分支合併收尾。開工前先凍結一份介面規格（collection 名稱、欄位、Document ID、API 簽名、路由），三人平行寫、合併時不必改到對方的檔案。（AI 輔助開發，Codex）",
+      "tags": ["Next.js", "TypeScript", "Firebase Firestore", "Tailwind CSS", "介面契約"],
+      "detail": {
+        "purpose": "黑客松找隊友大多靠緣分：主辦的 Discord 洗版、認識誰就跟誰一組。TeamMatch 把這件事變成流程——先報名活動、標記自己缺隊友，然後只在同一場活動的報名者裡滑卡，雙方都按讚才交換聯絡方式。\n\n題目是三個人開場後現想的：Luma 的活動頁、獎金獵人的賞金、Tinder 的滑卡，把三個現成的東西接起來。",
+        "concept": "【開工前先凍結接口】一天的比賽最怕的不是寫不完，是合併時打架。所以先寫一份 SPEC：五個 Firestore collection 的名稱、欄位一律 camelCase、每個 Document ID 的組法、每支 API 的參數與回傳型別、每條路由的路徑。頁面怎麼寫、component 怎麼拆各自決定，但這六項凍結不動。三人各拿一塊（登入／個人檔案、活動列表與報名、滑卡與配對）平行寫。\n\n【重複操作用 Document ID 擋掉】報名的文件 ID 是 {eventId}__{userId}，同一人重複報名只會蓋回同一筆；滑卡是 {eventId}__{swiperId}__{targetId}；配對是 {eventId}__{userA}__{userB}，兩個 userId 先排序才組 ID——不排序的話「A 滑 B」和「B 滑 A」會生出兩筆配對。用命名規則換掉一整套去重查詢。\n\n【我這塊：登入刻意做成假的】不接 Firebase Auth，登入頁直接列出 profiles 裡的所有人，點一張卡就以那個身分進站，localStorage 存 userId。黑客松要的是評審和隊友兩分鐘內能互相配對給人看，不是密碼安全。這不是登入系統，是身分切換器，真要上線得整個換掉。\n\n個人檔案編輯直接讀寫 Firestore 文件：技能欄用逗號分隔字串轉陣列、下方即時顯示 pill；頭像不做上傳，用 DiceBear 依 avatarSeed 生成，省掉 Storage 和圖片處理。",
+        "outcome": "當天做出可跑的完整流程：建個人檔案 → 瀏覽／發布活動 → 報名（可標記「已有隊友」與隊伍名稱）→ 在該活動的候選人裡滑卡 → 互相按讚跳出配對成功 → 配對列表看到對方的 Email 和 Discord。活動人數上限以隊伍人數加總計算，不是報名筆數；已經有隊友的人不會進滑卡候選池。\n\n現場最花時間的是 Firestore 連不上：SDK 預設的 WebChannel 串流建不起來，改成 initializeFirestore(app, { experimentalForceLongPolling: true }) 強制走長輪詢才通。這行是我在把配對頁合併進主線時修的。\n\n沒有名次，也還沒部署上線。Firestore 安全規則和真正的登入都停在 demo 等級，要公開得先補這兩塊。",
+        "tech": [
+          {
+            "group": "介面契約",
+            "items": [
+              { "name": "開工前凍結規格", "desc": "collection 名稱、camelCase 欄位、Document ID 組法、API 簽名、路由路徑先定死寫成 SPEC.md；頁面實作各自自由，合併時不必改對方的檔案" },
+              { "name": "複合 Document ID 去重", "desc": "報名 {eventId}__{userId}、滑卡 {eventId}__{swiperId}__{targetId}、配對 {eventId}__{userA}__{userB}（兩個 ID 先排序）；重複操作變成覆蓋同一筆，不需額外的去重查詢或交易" }
+            ]
+          },
+          {
+            "group": "登入與個人檔案（我負責）",
+            "items": [
+              { "name": "Demo 身分切換", "desc": "不接 Firebase Auth，列出 profiles 讓人選一張卡進站、localStorage 存 currentUserId；換到 demo 當下能立刻多人互相配對，代價是沒有真正的驗證" },
+              { "name": "Firestore 直讀寫表單", "desc": "getDoc / updateDoc 編輯個人檔案，技能逗號字串轉陣列並即時預覽；頭像用 DiceBear 依 avatarSeed 生成，免上傳與 Storage" },
+              { "name": "導覽列狀態同步", "desc": "依 pathname 高亮並重讀當前 profile；非同步載入用 cancelled 旗標，避免元件卸載後才 setState" }
+            ]
+          },
+          {
+            "group": "整合與除錯",
+            "items": [
+              { "name": "Firestore 強制長輪詢", "desc": "預設 WebChannel 串流建不起來，改 initializeFirestore 帶 experimentalForceLongPolling 才能穩定讀寫" },
+              { "name": "三分支合併收尾", "desc": "把三人分支併回主線，補上聯絡欄位、活動人數上限（隊伍人數加總而非報名筆數）、已有隊友者不進滑卡池，並同步更新 SPEC" }
+            ]
+          }
+        ],
+        "github": "https://github.com/CHU-BO-YU/teamder"
+      }
+    },
+    {
       "id": "audio-amplifier",
       "cover": "/images/audio-amplifier/circuit-assembled.jpg",
       "category": "大學課程作品",

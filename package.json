@@ -40,7 +40,8 @@
     "db:migrate:qmk-latency:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0016_qmk_remove_latency_claim.sql",
     "db:migrate:qmk-aws:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0017_sync_qmk_f103_aws_metrics.sql",
     "db:migrate:profile-lightgbm:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0018_sync_profile_lightgbm.sql",
-    "db:migrate:gradient-skills:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0019_sync_gradient_boosting_skills.sql"
+    "db:migrate:gradient-skills:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0019_sync_gradient_boosting_skills.sql",
+    "db:migrate:teammatch:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0020_add_teammatch.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

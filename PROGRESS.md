@@ -11,6 +11,10 @@
 
 ## 📌 當前狀態快照（最後更新：2026-07-24）
 
+- **🆕 07-24 新增第 12 個專案 TeamMatch**（OpenAI Build Week 社群黑客松，2026-07-19，三人一天）。
+  中英文 cvData、designTokens accent、sitemap、migration 0020 都已備好，**尚未 push**。
+  ⚠️ 卡兩件本人要做的事：① repo `CHU-BO-YU/teamder` 目前是 **PRIVATE**，本人說會設 public
+  ——沒設之前推上線，網站的「在 GitHub 查看」對訪客就是 404；② migration 0020 要本人跑。
 - **✅ 07-24 完成**：Hero 底部捲動標示接上語言鍵（中文「往下更多」／英文 Scroll for more，
   `uiText.scrollHint`，**不碰 D1、不需 migration**），已推 main（792e5f2，乾淨 ff）；
   PROGRESS 待辦重複的 QMK 條目已去重；產出**面試模擬追問題庫**（VAP+QMK）。
@@ -93,6 +97,9 @@
       ⚠️ **migration 0017（`qmk-aws`）不要跑**——它是 XGBoost 舊版，已被 0018（LightGBM）取代；
       若要確認 QMK F103 內容是否已在 D1，跟 Codex 對一下 0016/0017 的狀態。
 - [x] 英文履歷三份已 F103（`resume-en*.pdf`，Claude 本機重編，commit a11cfb2）。
+- [ ] **TeamMatch 上線前的兩件事**：① 把 `CHU-BO-YU/teamder` 設為 public（要先問過學長與另一位隊友，
+      repo 不是你開的）；② 跑 `npm run db:migrate:teammatch:remote`（migration 0020，已用記憶體
+      SQLite 驗過順序＋冪等）。順序建議：先設 public，再推 main，再跑 migration。
 - [ ] 中文履歷字型升級（可選、非 correctness）：內容已 F103，僅 Arial→Latin Modern+Noto Sans CJK TC，
       需本人 Overleaf 重編三份 `resume-zh*.pdf`。
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
@@ -120,6 +127,40 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-24（新增專案 TeamMatch，未 push）
+- **來源**：本人 07-19（週日）跟 FRC 學長＋其同學三人打 OpenAI Build Week 社群黑客松的作品，
+  repo `CHU-BO-YU/teamder`（**PRIVATE**，WebFetch 抓不到，全程用 `gh api` 讀）。
+- **查證到的事實**（都有一手依據，不是聽轉述）：
+  - 25 個 commit 全落在 2026-07-19 UTC 04:02–06:37（台北 12:02–14:37）；三位作者
+    CHU-BO-YU / Alexchen93 / **Jcsk7049（本人 15 個，最多）**。
+  - 本人＝Person A（`app/login/`、`app/profile/`、`components/Navbar.tsx`、`lib/firebase.ts`）
+    ＋**整合者**（`codex/integrator` 分支、三個 `chore: integrate ...` 收尾 commit）。**本人已確認**。
+  - Next.js 16 App Router + TypeScript + Tailwind + Firebase Firestore；README 說要部署 Vercel
+    但 repo 沒填 homepage、**沒有 demo 網址**。
+  - `SPEC.md`＝開工前凍結的介面契約（5 個 collection、camelCase、複合 Document ID、API 簽名、
+    路由）——這是這個專案最值得寫的地方，不是「用了 Firebase」。
+  - 除錯點：`lib/firebase.ts` 有 `experimentalForceLongPolling: true`，配上 commit
+    `fix: use Firestore long polling` 與前一則 `...before Firestore network fix`
+    → 「Firestore 連不上、改長輪詢才通」為實。**「預設 WebChannel 串流建不起來」是我的推斷**
+    （改了就好＝原路不通），本人若記得現場實況可再修文案。
+- **本人拍板**（AskUserQuestion）：repo 會設 public → 寫 github 連結；角色＝Person A ＋整合者；
+  **沒名次**（不給 badge、不寫成績）；AI 輔助工具＝**Codex**（依紅線標註，格式同 job-radar）。
+- **改了什麼**：`cvData.json` / `cvData.en.json` 新增 `teammatch`（插在 aws-hackathon 之後、
+  category 大學校外作品、無 cover／無 demo／無 badge）、`designTokens.js` 補 accent
+  （pink→fuchsia，原本沒登記會 fallback 成灰）、`sitemap.xml` 補一條、
+  **`migrations/0020_add_teammatch.sql`** ＋ `db:migrate:teammatch:remote`。
+- **驗證**：① migration 用 `node:sqlite` 記憶體庫種入現行 11 筆跑過——before 無 teammatch →
+  after 正確插在 aws-hackathon 之後且其餘相對順序不變 → **重跑一次順序不變（冪等）**，
+  zh/en 反解回 JSON 與 cvData 逐欄相等（單引號 escape 正確）。migration 用
+  `sort_order > (SELECT ... 'aws-hackathon')` 而非寫死數字，不依賴 D1 現值。
+  ② `vite build` 過、`vitest` 5 檔 14 測全綠。③ dev server 實跑：首頁 12 張卡順序正確、
+  中英文詳情頁都完整渲染、「在 GitHub 查看／View on GitHub」指向正確網址、console 零 error。
+  ⚠️ **瀏覽器 screenshot 又逾時**（07-14/07-18/07-21/07-24 第五次），改文字擷取驗證。
+- **刻意沒做**：`portfolio-content.md` 沒同步——它的專案清單早就落後（只有 9 個、缺 job-radar／
+  analog-ic-studio／pcb，還留著已移除的 auto-sanitizer）。補一節只會讓它看起來是同步的。
+  要嘛整份重建，要嘛別碰。
+- **未 push**：等本人把 repo 設 public 再推，否則線上會出現 404 的 GitHub 連結。
 
 ### 2026-07-24（Hero 捲動標示 + 面試題庫，session 於此清空）
 - **Hero 底部捲動標示語言化**（commit 792e5f2，已上 main）：原本寫死英文 `Scroll`，中文版也顯示
