@@ -9,7 +9,14 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-21）
+## 📌 當前狀態快照（最後更新：2026-07-24）
+
+- **✅ 07-24 完成**：Hero 底部捲動標示接上語言鍵（中文「往下更多」／英文 Scroll for more，
+  `uiText.scrollHint`，**不碰 D1、不需 migration**），已推 main（792e5f2，乾淨 ff）；
+  PROGRESS 待辦重複的 QMK 條目已去重；產出**面試模擬追問題庫**（VAP+QMK）。
+- **⚠️ 面試題庫存在 `C:\WORK SPACE\面試模擬追問-VAP-QMK.md`，刻意不進 repo**——
+  本 repo 是 **PUBLIC**（已用 `gh repo view` 確認），該文件含「哪裡容易講過頭」的地雷筆記，
+  進 repo 等於公開自己的弱點。日後同類坦白筆記一律走 WORK SPACE，不要放 repo。
 
 - **✅ 本 session 完成（07-21，Claude + Codex 雙線）**：① Hero 重設計（名字最大版：巨大「江嘉元」+ 墨黑主張「硬體到軟體，中間那段我來。」+ 名字揭開動畫）已上線 main；heroLine 在 uiText 非 D1。② 英文履歷三份 Claude 本機 TinyTeX 重編為 F103（純 LaTeX 無 CJK，`resume-en*.pdf` 不再 F072，commit a11cfb2）。③ BitOGuard 全站 XGBoost→LightGBM；技能拆成 LightGBM(BitOGuard)/XGBoost(DSP訊號課)、無 Ensemble。④ migration **0018/0019 已跑進遠端 D1**。⑤ profile.title 閃現雙重根治（Hero 移除副標 + 0018 補 D1 title）。
 - **剩下（皆非急、備給 2026 秋冬校徵）**：中文履歷字型可選 Overleaf 升級（內容已 F103、僅 Arial→Latin Modern+Noto Sans CJK TC 外觀差異）；QMK 延遲量測（`QMK_LATENCY_SOP.md`，零硬體，純興趣）。
@@ -91,9 +98,6 @@
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
       原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
       且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
-- [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
-      原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
-      且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
 - [ ] PCB 瑕疵檢測：開 GitHub repo（tiling/NMS/Flask 工具 code）
 - [ ] VAP：做「MIMIC-IV 0.99→0.58 洩漏 demo」公開 notebook
 - [ ] analog-ic-studio：用已交付的 prompt 實作電路識別 API（做完通知 Claude 同步網站）
@@ -106,6 +110,9 @@
 - [x] QMK CI workflow 已交付 build.yml（2026-07-19，待本人放入 qmk repo）
 - [x] aws-hackathon 指標以 BitOGuard 儀表板版本重寫（2026-07-21，待本人跑 migration 0017）
 - [x] whack-a-mole 除錯故事改寫成敘事（2026-07-19，待本人跑 migration 0012）
+- [x] VAP/QMK 面試模擬追問題庫（2026-07-24）→ `C:\WORK SPACE\面試模擬追問-VAP-QMK.md`
+      （每案 6 題追問樹 + 答題框架 + 地雷卡；**未做「實戰對練」**——本人想練再開一輪，
+      由 Claude 扮面試官連續追問、抓踩線）
 - [ ] job-radar / analog-ic-studio 補 cover 與截圖（需本人提供截圖）
 - [ ] per-route og meta（需 prerender 架構，工程量大，暫緩）
 - [ ] VAP/QMK 面試模擬追問練習
@@ -113,6 +120,29 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-07-24（Hero 捲動標示 + 面試題庫，session 於此清空）
+- **Hero 底部捲動標示語言化**（commit 792e5f2，已上 main）：原本寫死英文 `Scroll`，中文版也顯示
+  英文。改為 `uiText.scrollHint`（zh「往下更多」／en「Scroll for more」），字級 10→11px、
+  字距 0.2→0.15em 讓中文好讀。位置/細線/捲動 80px 後淡出全部沿用。
+  **不碰 D1、不需 migration**（同 heroLine 前例）。
+- **驗證**：dev server 實跑，`get_page_text` 從真實頁面抓到「往下更多」已渲染、console 零 error。
+  ⚠️ 瀏覽器 **screenshot 工具再次全逾時**（07-14/07-18/07-21 同症狀，已是慣性問題）→
+  改用頁面文字擷取驗證。純文案/樣式改動無邏輯分支，未加自動化測試（已向本人說明並放行）。
+- **推送方式**：本 worktree 在 `claude/personal-website-optimization-fbca13`，但發現
+  **local `main` ref 是舊的（2d02b5f），origin/main 早已在 308e0a8** ＝ 本分支 HEAD。
+  故 `git push origin HEAD:main` 是**單 commit 乾淨 fast-forward**，沒夾帶其他東西。
+  （教訓：worktree 裡判斷「會推上什麼」要看 **origin/main**，不能看 local main。）
+- **PROGRESS 去重**：待辦清單裡 QMK 延遲量測重複貼了兩份，併回一份。
+- **面試模擬追問題庫**（VAP+QMK）：每案 6 題追問樹＋答題框架＋地雷卡，全部以 repo/論文
+  查證事實為底。**刻意不進 repo**——`gh repo view` 確認本 repo 是 PUBLIC，該文件含
+  「哪裡容易講過頭」的自我弱點筆記，公開等於自曝。存 `C:\WORK SPACE\`。
+  收錄的關鍵地雷：VAP=TensorFlow/Keras 非 PyTorch、IG 非 SHAP、0.58 屬 MIMIC-IV 復刻不在論文、
+  n=109 單中心；QMK=PCB 是開源改版送廠非從零設計、F103 是 build-target 推斷不稱 verified、
+  不得再講「實測 <5ms」、PCB 工具是 EasyEDA Pro（README 誤寫 KiCAD/Altium）。
+- **未做**：面試實戰對練（本人想練再開）；其餘待辦全卡在本人（截圖／Overleaf／硬體／帳號）
+  或 Codex（migration／履歷內容／cvData），非本線能推進。
+- 投遞「時機」仍不歸本 session（job-radar 權威），本輪未越權。
 
 ### 2026-07-21（session 收尾：英文 PDF + 雙線協作總結）
 - **英文履歷三份補齊 F103**（commit a11cfb2）：Codex 之前把 F103 英文版誤建成孤兒檔名、線上 `resume-en*.pdf` 還停在 F072。發現後由 Claude 本機 TinyTeX 直接重編（英文純 LaTeX、無 CJK 依賴，不必 Overleaf）→ 正確覆蓋 `resume-en*.pdf`。驗證：byte-grep 對 Computer Modern PDF 無效，改用「三份 .tex 源 F103×3/F072=0/5ms=0 → 決定性渲染即乾淨」保證；本人可部署後開一份目視確認。
