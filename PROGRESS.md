@@ -11,6 +11,20 @@
 
 ## 📌 當前狀態快照（最後更新：2026-08-11）
 
+- **🔴 08-11 兩個 D1 migration 已寫好、已推 main、但「還沒上線」**——要在 repo 目錄跑：
+  `cd "C:\Users\User\personal-website"` 然後
+  `npm run db:migrate:bitoguard-ensemble:remote` ＋ `npm run db:migrate:aws-finalist:remote`
+- **🔴 08-11 推翻 07-21 的「BitOGuard 沒有 Ensemble」定案**：公開 repo 的 `cv_report_lgb.json` 寫
+  `"model": "LGB(0.60) + XGB(0.40)"`、`xgb_oof_auc 0.8265`——**最終提交就是 ensemble**（本人確認）。
+  cvData 已改（migration 0021），特徵數同時 31→32。**教訓：履歷/網站的宣稱要跟公開 repo 對得上，面試官會點連結。**
+- **🔴 08-11 FRC 官網分工比例懸而未決**：本人主張自己佔 79–96%（三個算法），但**全機掃不到那 196 筆 commit 的 repo**
+  （唯一本機 repo 只有 34 commits、起於 08-07，且 commit 訊息自陳「08-07 前本 repo 不是 git 倉庫」；
+  GitHub `Jcsk7049/team7645-website` 回 404）。`CMS.jsx = 283 行` 已驗 ✓。
+  **cvData 維持 35% 未改，等本人給出那個 repo 的實際路徑。**
+- **08-11 履歷【專案經歷】已重寫成「每一行追得到來源」版**，六條定稿全文在下方工作日誌 2026-08-11 §5。
+  拿掉七項無來源宣稱（16 名學生／兩個完整賽季／兩屆已畢業／多語系架構／SEO／N-Key Rollover／會員認證系統）。
+- **08-11 bitoguard-aml 的 README 已寫好但未 push**（本機無該 repo clone），檔案已交付本人。
+
 - **🔴 08-11 VAP 論文獲 IEEE GCCE 2026 錄取（poster），但網站刻意「不」更新**。
   原因：`C:\WORK SPACEap-research.md` 記載本人已於 2026-07-13 自行推翻論文核心結果
   （索引 bug + stay-level 切分後 AUROC 0.98–0.99 → **0.61–0.67**、AUPRC 0.81–0.93 → **0.033–0.143**）。
@@ -106,6 +120,17 @@
 
 ## ✅ 待辦清單
 
+### 🔴 08-11 新增（本人動手）
+- [ ] **跑兩個 migration 讓改動上線**：`cd "C:\Users\User\personal-website"` 然後
+      `npm run db:migrate:bitoguard-ensemble:remote` ＋ `npm run db:migrate:aws-finalist:remote`
+- [ ] **給出 FRC 官網那 196 筆 commit 的 repo 路徑**（本人稱在本機非 Desktop），否則 cvData 的 35% 改不了
+- [ ] **把 README 加進 `bitoguard-aml` repo 根目錄**（檔案已交付本人）
+- [ ] **開 `bitoguard-aml` 的 `.kiro/steering/` 自己看一眼**——Kiro 的 steering 放專案指示，最可能有坦白筆記
+- [ ] `bitoguard-aml` 的 `.claude/settings.local.json` 加進 .gitignore 並移除（含 `/c/AWS/*.py` 本機路徑）
+- [ ] **08-12 與林書彥教授談 GCCE**——談完才決定 VAP 在履歷/網站怎麼寫；談完再去問 job-radar「這篇對路徑的價值」
+- [ ] AWS 的 Streamlit 儀表板若還活著，把網址填進 repo 的 homepage 欄位（「已部署上線」已因無佐證而拿掉）
+- [ ] 確認七項無來源宣稱哪些是真的（16 名學生／兩個完整賽季／兩屆已畢業／多語系架構／SEO／N-Key Rollover／會員認證系統），真的就補進 cvData
+
 ### 需要本人動手（Claude 無法代做）
 - [x] **profile/LightGBM migration 0018 + 梯度提升技能 migration 0019** 已跑進遠端 D1（07-21）。
       ⚠️ **migration 0017（`qmk-aws`）不要跑**——它是 XGBoost 舊版，已被 0018（LightGBM）取代；
@@ -142,21 +167,143 @@
 
 ## 📓 工作日誌（新→舊）
 
-### 2026-08-11（VAP 獲 GCCE 錄取；網站更新後 revert）
+### 2026-08-11（VAP 獲 GCCE 錄取但網站不更新；BitOGuard 推翻無-Ensemble 定案；履歷全面對源）
 
-**做了什麼**
-- 本人收到 IEEE GCCE 2026 錄取通知（paper #1571300279，poster，神戶）。
-- 依 W1 流程更新中英文 cvData 共 8 處（bio／經歷 description／badge／outcome）＋寫 migration 0021，
-  本地 D1 灌入 git HEAD 舊資料做 fail-then-pass 實測（8 欄位全對、零殘留「投稿」、其他欄位未誤傷），推上 main。
-- **隨後讀 `vap-research.md` 才發現論文核心結果已被本人推翻**，立即 revert（be0a239）並推上線，D1 migration 從未執行。
+#### 1. VAP 獲 IEEE GCCE 2026 錄取（poster）——**網站刻意不更新**
 
-**教訓（流程）**
-- 改任何跟某專案有關的網站內容前，**先讀該專案在 `C:\WORK SPACE\` 的卡片**。全域指引本來就這樣寫，這次跳過了。
-- 這次的技術驗證做得很紮實（本地 D1 fail-then-pass），但**驗證的是「改對了嗎」不是「該不該改」**。前者綠燈不代表後者成立。
+- paper #1571300279，題目 `LSTM-Based Early Prediction of VAP Using Stay-Level Cross-Validation and an Extended Prediction Window`，神戶，poster（通知明言部分 oral 因場地改 poster，與品質無關）。
+- 依 W1 更新中英文 cvData 共 8 處 + migration 0021，本地 D1 fail-then-pass 全過，推上 main（7c8700e）。
+- **隨後讀 `C:\WORK SPACE\vap-research.md` 才發現論文核心結果已被本人於 2026-07-13 推翻**
+  （索引修正 + stay-level 切分後 AUROC 0.98–0.99 → **0.61–0.67**、AUPRC 0.81–0.93 → **0.033–0.143**）。
+  立即 **revert（be0a239）** 並推上線，**D1 migration 從未執行**，線上維持「Under Review」。
+- **審稿人 Reviewer 2 獨立問到「AUROC/AUPRC 是 per-window 還是 per-patient 算」——正是 7/13 找到的那個洞。**
+- 在本人與林書彥教授談完（2026-08-12）之前，**不要再更新 VAP 的發表狀態**。
+- vault 卡片把教授寫成「林淑檀」是錯的；cvData 的 **林書彥** 才對（錄取信署名 Prof. Shu-Yen Lin）。
+- 網站 outcome 段的效能表仍是已被推翻的數字（此狀態自 7/13 起就存在），需單獨一輪處理。
 
-**未完事項**
-- VAP 發表狀態維持「Under Review」，等本人與教授談完。
-- 網站 outcome 段的效能表仍是已被推翻的數字，需要單獨一輪處理（可辯護敘事是方法論誠實，不是模型效能）。
+**教訓**：改任何跟某專案有關的網站內容前，先讀該專案在 `C:\WORK SPACE\` 的卡片。
+這次技術驗證很紮實（本地 D1 fail-then-pass），但**驗的是「改對了嗎」不是「該不該改」**。
+
+#### 2. BitOGuard 推翻 2026-07-21 的「沒有 Ensemble」定案（migration 0021）
+
+查公開 repo `github.com/Jcsk7049/bitoguard-aml` 的 `cv_report_lgb.json`：
+
+- `"model": "LGB(0.60) + XGB(0.40)"`、`blend_weight_lgb: 0.6`、`xgb_oof_auc: 0.8265`
+- **最終提交就是 ensemble**（本人 2026-08-11 確認）。0019 依錯誤定案把 XGBoost 的 `projects` 清空，已由 0021 更正。
+- 特徵數同時 **31 → 32**（`features` 陣列實際長度）。
+- 5-fold AUC **0.819–0.849**、F1 0.27–0.32、正例率 3.21%（訓練集 51,017 人／人頭戶 1,640）。
+- 履歷的 63,770 帳戶 ✓、413,235 筆交易 ✓（195,601 台幣 + 217,634 USDT/TWD，加起來剛好）。
+
+**教訓：網站/履歷的宣稱要跟公開 repo 對得上——履歷連結面試官會點。**
+
+#### 3. AWS 黑客松事實補正（migration 0022）
+
+本人確認：**AWS 是今年（2026）**、**進入決賽並完賽、無名次**、**三人團隊本人技術貢獻約 95%**。
+獎項標題與專案描述已改；本地 D1 fail-then-pass 已驗（獎項總數 5 不變）。
+
+#### 4. 兩個 migration 都還沒上線
+
+```
+cd "C:\Users\User\personal-website"
+npm run db:migrate:bitoguard-ensemble:remote
+npm run db:migrate:aws-finalist:remote
+```
+
+#### 5. 履歷【專案經歷】重寫為「每一行都追得到來源」版
+
+以 cvData 為準核出 10 處對不上。**拿掉且尚無來源**：`16 名學生`、`兩個完整賽季`、`兩屆已畢業`、
+`多語系架構`、`SEO`、`N-Key Rollover`、`會員認證系統`（後者依 cvData 的 35%/65% 分工判為學長所做，
+但該分工比例本身已受質疑，見 §6）。**修正**：FRC 技術指導 2025→**2023**（本人少寫兩年）、
+AWS 2025/03→**2026**、Swerve 2021-2022→**2020-2023**、QMK 的 GitHub 連結 cvData 早就有。
+
+定稿六條：
+
+```
+FRC Team 7645 官網與後台 CMS｜前端開發                    2025
+https://nkhs.team7645.com
+· 35% 程式碼貢獻（學長主導核心架構與 Auth 系統）  <- 此比例待重驗，見 §6
+· 首頁改版、留言系統端對端（Contact → Firestore → CMS 管理）、組別身分系統
+· Code Splitting 把 JS bundle 從 2.7MB 降到 820KB；Cloudflare Pages 部署、TBA API 30 天快取
+
+FRC Team 7645｜Engineering Advisor & Systems Integrator   2023–迄今
+· 過往負責機器人系統架構：多感測器融合、PID 馬達閉迴路控制調校、軟硬體介面定義
+· 現轉營運指導：引入 LLM 輔助除錯，把反覆試錯的韌體除錯流程縮短約一週
+· 把根因分析的除錯思路教給後進
+
+ICU VAP 早期預測：試驗性方法論驗證研究                     2025.05–迄今
+元智大學 林書彥教授實驗室｜實驗室專題生
+· 識別 PREDICT 2025 基準採 Window-level CV 造成的 Patient-Level Data Leakage
+· 改以 Stay-Level 5-Fold Stratified CV 建立無洩漏評估
+· Integrated Gradients 消除數學共線冗餘特徵（mv≡Vt×RR），14 項篩至 4 項非侵入指標
+· 單中心試驗性驗證（亞東紀念醫院 ICU），定位為方法論驗證，非臨床部署產品
+  <- 刻意不寫 GCCE、不寫 AUROC，等 08-12 談完再決定
+
+QMK × STM32 數字鍵盤｜開源硬體整合                        2026
+https://github.com/Jcsk7049/qmk-stm32-keyboard
+· 逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），重構設定檔解決編譯衝突與時序問題
+· 實現 USB HID 穩定識別、WS2812B RGB Matrix、VIA/VIAL 即時改鍵
+· PCB 設計（EasyEDA Pro）→ 韌體 → 實體成品
+
+AWS × BitoPro 黑客松：BitOGuard｜反洗錢偵測              2026
+https://github.com/Jcsk7049/bitoguard-aml
+· 三人團隊，負責約 95% 技術開發；進入決賽並完賽（無名次）
+· S3 → Glue → Athena → SageMaker → Lambda → Bedrock 六服務端對端管線
+· 63,770 帳戶 / 413,235 筆交易，32 項行為特徵（含圖論黑名單鄰居）
+· LightGBM + XGBoost 0.6/0.4 加權混合，5-fold AUC 0.82–0.85
+· SHAP 合規報告識別人頭帳戶，Streamlit 儀表板
+
+Swerve Drive 全向輪控制研究                              2020–2023
+· 從零自行開發三代 FRC 競賽全向輪底盤
+· 運動學演算法、齒輪傳動設計、CNC 精密加工、LabVIEW PID 控制
+· 2022 FRC 台灣鴻海區域賽：Innovation in Control Award、亞軍聯盟 (Finalist)
+```
+
+「95%」會被追問「另外兩人做什麼」，先想好答案。「已部署上線」已從 AWS 那條拿掉——repo 的
+`homepage` 欄位是空的、無公開網址佐證；還活著就把網址填進 repo homepage，再加回來。
+
+#### 6. FRC 官網分工比例：本人主張 79–96%，但**證據找不到**，cvData 維持 35% 未改
+
+本人提出三個算法：commit 數 21%/79%、存活程式碼 ~11%/~89%、時間跨度 ~4%/~96%
+（基準：全 196 筆 commit、學長 81 筆為共做那週對半分、起手週留下 36 檔／今天 169 檔、
+共做 7 天 vs 獨作 73 天 05-31～08-11、`CMS.jsx 4161→283`）。
+
+**獨立查證結果**：
+- 已驗：`CMS.jsx` 現為 **283 行**，與主張的後半吻合
+- 未找到：全機 maxdepth 6 掃過所有 git repo，**沒有任何一個是 FRC 網站的 196 筆歷史**
+  （>40 commits 的只有 flutter 87676／qmk_firmware 29261／token-optimizer 612／
+  personal-website 354／_pw_tmp 262／find job agent 183）
+- 無 D/E/F 磁碟；`C:\FRC7645website` 不存在（只剩 stale session 目錄）
+- GitHub `Jcsk7049/team7645-website` 回 **404**
+- 唯一本機 repo `Desktop\team7645-website-master\team7645-website-master` 只有 **34 commits、起於 2026-08-07**，
+  且第二個 commit 訊息是「WORKLOG：更新『**本 repo 不是 git 倉庫**』的過時註記」
+  → **08-07 之前這專案沒進版控**，196 筆不可能是這份 repo 的歷史
+
+**最合理解釋**：那 196 筆是**學長原本那個 repo** 的歷史（含他的 81 筆），本人取用程式碼後本機無版控做了兩個多月，8/07 才 git init。
+
+**下一步**：本人堅稱在本機非 Desktop 路徑，**需本人直接給路徑**，才能驗完三個算法並改 cvData。
+這與 VAP 是同一個失效模式：**數字很可能是真的，但證據不在手上，被追問會答不出來。**
+
+**附帶判斷**：學長每月出 300 元網域費當贊助、支持本人日後賣掉網站（優先賣港工，賣其他隊要先移除港工專屬內容做成通用模板）
+→ 學長是贊助者兼支持者，不是共同所有人，**寫高貢獻度沒有人際衝突風險，問題純粹是舉證**。
+「日後賣掉／通用模板」現在不寫進履歷（是計畫不是成果）；真的成交才是強項。
+
+#### 7. bitoguard-aml 的 README 已寫好但**未 push**
+
+本機沒有該 repo 的 clone，不擅自 clone。檔案已傳給本人，內容全部取自 repo 內的
+`cv_report_lgb.json` 與 `COMPLETE_DATA_FLOW_REPORT.md`，無編造數字。
+
+#### 8. GCCE 對未來路徑的價值 → 不在本 session 回答
+
+求職規劃判斷權威在 `C:\find job agent`（job-radar）。已給本人「問 job-radar 時該帶的事實表」：
+poster 非 oral、Reviewer 1 (4/3/4/3)、Reviewer 2 (4/3/3/**2**)、兩位都給 Novelty **Incremental (3)**、
+成本含註冊費。**關鍵：價值取決於 08-12 談出什麼**——「有一篇 IEEE 論文」與
+「有一篇 IEEE 論文且自己找出核心結果不成立並主動處理」是兩種資產。
+
+#### 9. 三個 GitHub 待辦
+
+- `CHU-BO-YU/teamder` 實測仍 **404**，TeamMatch 的「在 GitHub 查看」對訪客是死連結
+- `bitoguard-aml` 的 `.kiro/steering/` 未查——Kiro 的 steering 放專案指示，最可能有坦白筆記，本人自己開來看
+- `bitoguard-aml` 的 `.claude/settings.local.json` 被 commit，含 `/c/AWS/*.py` 本機路徑，建議 gitignore + 移除
 
 ### 2026-07-24（AI 課程期中專案評估 → 決定不進網站）
 - **標的**：`C:\AI_classes_midtermproject--main\AI_classes_midtermproject--main`
