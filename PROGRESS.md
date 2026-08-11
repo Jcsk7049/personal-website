@@ -38,7 +38,11 @@
 
 - QMK 的 STM32F103 為韌體目標推斷（F103 建置的韌體能運作），不是 `dfu-util`／讀晶片實測；可寫 STM32F103，但不得稱實測確認或 verified。
 
-- BitOGuard 一直使用 LightGBM；AWS 專案敘事、圖表、履歷 seed 和 migration 已移除 XGBoost。XGBoost 保留為 DSP／訊號分類課程技能，與 BitOGuard 分開描述，沒有 Ensemble。
+- **⚠️ 上面這條已於 2026-08-11 推翻，勿再依據**：原記載「BitOGuard 一直使用 LightGBM…沒有 Ensemble」。
+  實際查公開 repo `github.com/Jcsk7049/bitoguard-aml` 的 `cv_report_lgb.json`：`"model": "LGB(0.60) + XGB(0.40)"`、
+  `blend_weight_lgb: 0.6`、`xgb_oof_auc: 0.8265`——**最終提交就是 ensemble**（本人 2026-08-11 確認）。
+  0019 依錯誤定案把 XGBoost 的 `projects` 清空，已由 **migration 0021** 更正；特徵數同時由 31 修正為 32（features 陣列實際長度）。
+  **教訓：網站/履歷的宣稱要跟公開 repo 對得上——履歷連結面試官會點。**
 
 - profile：本人已確認**未用 admin 改過** → migration 0018 已用 repo profile 覆蓋 D1（title 已寫入）；DataContext 也對物件型 section 做 fallback 合併。
 

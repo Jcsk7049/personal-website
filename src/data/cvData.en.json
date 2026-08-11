@@ -97,7 +97,7 @@
         {
           "name": "LightGBM",
           "level": "進階",
-          "desc": "Used in BitOGuard for imbalanced binary classification, with SHAP to inspect each feature's contribution to account-risk scores and threshold comparisons for precision and recall.",
+          "desc": "Used in BitOGuard for imbalanced binary classification, blended 0.6/0.4 with XGBoost, with SHAP to inspect each feature's contribution to account-risk scores and threshold comparisons for precision and recall.",
           "projects": [
             "AWS × BitoPro Hackathon"
           ]
@@ -105,8 +105,10 @@
         {
           "name": "XGBoost",
           "level": "熟悉",
-          "desc": "Used in DSP and signal-classification coursework and labs to practice gradient-boosted binary classification and interpret feature importance.",
-          "projects": []
+          "desc": "Blended with LightGBM at 0.4 weight in BitOGuard (alone: OOF AUC 0.827); also used in DSP and signal-classification coursework.",
+          "projects": [
+            "AWS × BitoPro Hackathon"
+          ]
         },
         {
           "name": "Feature Engineering",
@@ -514,9 +516,10 @@
       "category": "大學校外作品",
       "title": "AWS × BitoPro Hackathon: BitOGuard",
       "period": "2026",
-      "description": "LightGBM × S3→Glue→Athena→SageMaker→Lambda→Bedrock end-to-end AML pipeline; 63,770 accounts / 413,235 transactions; 31 behavioral features (incl. graph-theory blacklist neighbors) + SHAP compliance reports to identify money mule accounts. Streamlit dashboard live.",
+      "description": "LightGBM + XGBoost blend (0.6/0.4) × S3→Glue→Athena→SageMaker→Lambda→Bedrock end-to-end AML pipeline; 63,770 accounts / 413,235 transactions; 32 behavioral features (incl. graph-theory blacklist neighbors) + SHAP compliance reports to identify money mule accounts. Streamlit dashboard live.",
       "tags": [
         "LightGBM",
+        "XGBoost",
         "AWS SageMaker",
         "AWS Glue",
         "SHAP",
@@ -546,7 +549,7 @@
           }
         ],
         "purpose": "BitoPro cryptocurrency exchange AML compliance competition dataset:\n- User records: 63,770 accounts\n- TWD transfer records: 195,601 (56,111 users)\n- USDT transaction records: 217,634 (33,587 users)\n- Labeled money mule accounts: 1,640 (3.21% of training set)\n\nGoal: output a risk score per account to identify high-risk suspicious accounts while satisfying regulators' demand for explainability in AML compliance (black-box outputs not accepted).\n\nWhy LightGBM over deep learning:\nAML compliance requires feature-level justification for every flagged account. LightGBM with SHAP directly outputs each feature's contribution per account. For structured data at this scale, a tree model also supports class weighting for the imbalanced labels.",
-        "concept": "[Why LightGBM, Not Deep Learning?]\nAML compliance systems require explainability: regulators demand \"which features triggered high risk\" for every flagged account. LightGBM with SHAP values directly outputs per-feature contributions for individual accounts, meeting compliance reporting requirements. For structured transactional data, a tree model can also use class weighting for the 1:30 imbalance.\n\n[Data Pipeline — AWS End-to-End Architecture]\n① BitoPro API ingestion → ingest_to_s3.py → AWS S3 (raw data layer)\n② AWS Glue ETL + glue_graph_hops.py for graph-based multi-hop association analysis\n③ Amazon Athena SQL queries to aggregate feature results (athena_graph_hops.sql)\n④ Amazon SageMaker for LightGBM training, tuning, and deployment\n⑤ AWS Lambda + lambda_diagnosis.py for real-time inference and event-driven logic\n⑥ Amazon Bedrock integrates SHAP + XAI to auto-generate explainability reports per high-risk account\n⑦ Streamlit dashboard (app.py) for interactive risk review\n⑧ CloudFormation template.yaml defines full IaC\n\n[Feature Engineering — 31 Behavioral Indicators]\nCompetition version started with 3 core features (TWD deposit/withdrawal count, late-night transaction ratio), expanded post-competition to 31 indicators:\n- Transaction behavior: total_volume, tx_per_day, avg_twd_amount, swap_twd_volume\n- Temporal features: min_retention_minutes, night_tx_ratio\n- Graph features: blacklist_neighbor_count, is_direct_neighbor\n- Risk flags: high_speed_risk, ip_anomaly, deposit_only_flag\nTop 3 by importance: total_volume, account age, swap_twd_volume\n\n[Model Design]\n- LightGBM gradient-boosting classifier\n- max_depth, learning_rate, num_iterations, and class weighting control model complexity and imbalance\n- 5-fold Stratified CV with consistent positive/negative ratios per fold\n- Decision-threshold sweeps compare the precision/recall trade-off\n- SHAP analysis shows per-feature contribution for individual accounts",
+        "concept": "[Why LightGBM, Not Deep Learning?]\nAML compliance systems require explainability: regulators demand \"which features triggered high risk\" for every flagged account. LightGBM with SHAP values directly outputs per-feature contributions for individual accounts, meeting compliance reporting requirements. For structured transactional data, a tree model can also use class weighting for the 1:30 imbalance.\n\n[Data Pipeline — AWS End-to-End Architecture]\n① BitoPro API ingestion → ingest_to_s3.py → AWS S3 (raw data layer)\n② AWS Glue ETL + glue_graph_hops.py for graph-based multi-hop association analysis\n③ Amazon Athena SQL queries to aggregate feature results (athena_graph_hops.sql)\n④ Amazon SageMaker for LightGBM and XGBoost training, tuning, and deployment (final submission is a 0.6/0.4 weighted blend)\n⑤ AWS Lambda + lambda_diagnosis.py for real-time inference and event-driven logic\n⑥ Amazon Bedrock integrates SHAP + XAI to auto-generate explainability reports per high-risk account\n⑦ Streamlit dashboard (app.py) for interactive risk review\n⑧ CloudFormation template.yaml defines full IaC\n\n[Feature Engineering — 31 Behavioral Indicators]\nCompetition version started with 3 core features (TWD deposit/withdrawal count, late-night transaction ratio), expanded post-competition to 31 indicators:\n- Transaction behavior: total_volume, tx_per_day, avg_twd_amount, swap_twd_volume\n- Temporal features: min_retention_minutes, night_tx_ratio\n- Graph features: blacklist_neighbor_count, is_direct_neighbor\n- Risk flags: high_speed_risk, ip_anomaly, deposit_only_flag\nTop 3 by importance: total_volume, account age, swap_twd_volume\n\n[Model Design]\n- LightGBM and XGBoost gradient-boosting classifiers, blended 0.6/0.4 (5-fold AUC 0.819-0.849; XGBoost alone OOF AUC 0.827)\n- max_depth, learning_rate, num_iterations, and class weighting control model complexity and imbalance\n- 5-fold Stratified CV with consistent positive/negative ratios per fold\n- Decision-threshold sweeps compare the precision/recall trade-off\n- SHAP analysis shows per-feature contribution for individual accounts",
         "outcome": "[Competition Result]\n- Completed AWS × BitoPro Hackathon; end-to-end cloud architecture received positive feedback from judges\n- 81 commits, fully implementing the pipeline from API data ingestion to model prediction\n\n[Technical Achievements]\n- Successfully chained 6 AWS services: SageMaker, Glue, Athena, Lambda, S3, Bedrock\n- Feature engineering expanded from 3 competition features to 31 behavioral indicators\n- SHAP interpretability module provides AML-compliant explanations\n- Streamlit dashboard supports interactive account risk review — deployed live\n\n[Model Performance — Dashboard Version]\n- AUC: 83.2%\n- Precision: 27.5%\n- Recall: 33.2%\n- F1 Score: 30.1%\n- Accuracy: 95.0%\n- Accounts flagged as risky: 501 / 12,753\n\nThese figures come from the deployed BitoGuard dashboard. Accuracy is affected by class imbalance, so it is not used alone to judge the model; precision and recall are presented together to show both false-positive cost and risk-account coverage.",
         "tech": [
           {
@@ -587,14 +590,46 @@
         "github": "https://github.com/Jcsk7049/bitoguard-aml",
         "demo": "https://bitoguard-aml-kykw6kfawalbeq8vjy6yv8.streamlit.app/",
         "pipeline": [
-          { "marker": "①", "file": "ingest_to_s3.py", "label": "BitoPro API ingestion -> S3 raw layer" },
-          { "marker": "②", "file": "glue_graph_hops.py", "label": "Glue ETL + graph multi-hop analysis" },
-          { "marker": "③", "file": "athena_graph_hops.sql", "label": "Athena feature aggregation query" },
-          { "marker": "④", "file": "SageMaker", "label": "LightGBM training & tuning" },
-          { "marker": "⑤", "file": "lambda_diagnosis.py", "label": "Real-time inference & event trigger" },
-          { "marker": "⑥", "file": "Bedrock + SHAP", "label": "Auto-generated explainability report" },
-          { "marker": "⑦", "file": "app.py", "label": "Streamlit interactive risk review UI" },
-          { "marker": "⑧", "file": "template.yaml", "label": "CloudFormation IaC" }
+          {
+            "marker": "①",
+            "file": "ingest_to_s3.py",
+            "label": "BitoPro API ingestion -> S3 raw layer"
+          },
+          {
+            "marker": "②",
+            "file": "glue_graph_hops.py",
+            "label": "Glue ETL + graph multi-hop analysis"
+          },
+          {
+            "marker": "③",
+            "file": "athena_graph_hops.sql",
+            "label": "Athena feature aggregation query"
+          },
+          {
+            "marker": "④",
+            "file": "SageMaker",
+            "label": "LightGBM training & tuning"
+          },
+          {
+            "marker": "⑤",
+            "file": "lambda_diagnosis.py",
+            "label": "Real-time inference & event trigger"
+          },
+          {
+            "marker": "⑥",
+            "file": "Bedrock + SHAP",
+            "label": "Auto-generated explainability report"
+          },
+          {
+            "marker": "⑦",
+            "file": "app.py",
+            "label": "Streamlit interactive risk review UI"
+          },
+          {
+            "marker": "⑧",
+            "file": "template.yaml",
+            "label": "CloudFormation IaC"
+          }
         ]
       }
     },
@@ -604,7 +639,13 @@
       "title": "TeamMatch — Hackathon Teammate Finder",
       "period": "2026",
       "description": "Built in a day by three people at an OpenAI Build Week community hackathon: register for an event, then swipe through the other registrants to find teammates — a match forms only when both sides like each other, and contact details are exchanged. I owned login, profile, and the navbar, and did the final merge of all three branches. We froze an interface spec before writing any code (collection names, field names, document IDs, API signatures, routes), so three people could work in parallel and merge without touching each other's files. (AI-assisted development, Codex)",
-      "tags": ["Next.js", "TypeScript", "Firebase Firestore", "Tailwind CSS", "Interface Contract"],
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "Firebase Firestore",
+        "Tailwind CSS",
+        "Interface Contract"
+      ],
       "detail": {
         "purpose": "Finding hackathon teammates usually comes down to luck: a flooded Discord channel, or teaming up with whoever you already know. TeamMatch turns it into a flow — register for the event, flag that you still need teammates, then swipe only through people registered for that same event, and exchange contact details only after both sides like each other.\n\nThe three of us came up with the idea after the kickoff: Luma's event pages, a bounty board's prize listing, and Tinder's swipe deck, wired together.",
         "concept": "[Freeze the interfaces before writing code] In a one-day build, the risk isn't running out of time — it's the merge going wrong. So we wrote a SPEC first: five Firestore collection names, camelCase everywhere, how each document ID is composed, the arguments and return types of every API function, and every route path. Page structure and component breakdown were left to each person, but those six things were frozen. Each of us took one slice (login/profile, event list and registration, swipe and match) and worked in parallel.\n\n[Duplicate actions blocked by document ID] A registration's document ID is {eventId}__{userId}, so registering twice just overwrites the same document; a swipe is {eventId}__{swiperId}__{targetId}; a match is {eventId}__{userA}__{userB}, with the two user IDs sorted before composing the ID — without sorting, \"A swipes B\" and \"B swipes A\" would produce two separate matches. A naming rule instead of a whole layer of dedup queries.\n\n[My slice: the login is deliberately fake] No Firebase Auth. The login page lists every profile in the database; click a card and you're in as that person, with the user ID kept in localStorage. What a hackathon demo needs is judges and teammates matching with each other within two minutes, not password security. It isn't a login system, it's an identity switcher, and it would have to be replaced entirely to ship.\n\nProfile editing reads and writes the Firestore document directly: the skills field is a comma-separated string parsed into an array with pills previewed live below it, and avatars are generated by DiceBear from avatarSeed instead of uploaded, which cuts out Storage and image handling.",
@@ -613,23 +654,44 @@
           {
             "group": "Interface Contract",
             "items": [
-              { "name": "Spec frozen before coding", "desc": "Collection names, camelCase fields, document ID composition, API signatures, and route paths were fixed in SPEC.md; page implementation stayed free, so merging never required editing someone else's files" },
-              { "name": "Composite document IDs for idempotency", "desc": "Registration {eventId}__{userId}, swipe {eventId}__{swiperId}__{targetId}, match {eventId}__{userA}__{userB} with the IDs sorted first; a repeated action overwrites the same document, so no dedup queries or transactions are needed" }
+              {
+                "name": "Spec frozen before coding",
+                "desc": "Collection names, camelCase fields, document ID composition, API signatures, and route paths were fixed in SPEC.md; page implementation stayed free, so merging never required editing someone else's files"
+              },
+              {
+                "name": "Composite document IDs for idempotency",
+                "desc": "Registration {eventId}__{userId}, swipe {eventId}__{swiperId}__{targetId}, match {eventId}__{userA}__{userB} with the IDs sorted first; a repeated action overwrites the same document, so no dedup queries or transactions are needed"
+              }
             ]
           },
           {
             "group": "Login & Profile (my slice)",
             "items": [
-              { "name": "Demo identity switcher", "desc": "No Firebase Auth: the login page lists profiles, picking a card signs you in as that user, and currentUserId lives in localStorage — traded real authentication for several people being able to match each other on the spot" },
-              { "name": "Forms writing straight to Firestore", "desc": "getDoc / updateDoc for profile editing, comma-separated skills parsed into an array with a live pill preview, and DiceBear avatars derived from avatarSeed instead of uploads" },
-              { "name": "Navbar state sync", "desc": "Highlights by pathname and reloads the current profile on navigation; the async load uses a cancelled flag so it never calls setState after unmount" }
+              {
+                "name": "Demo identity switcher",
+                "desc": "No Firebase Auth: the login page lists profiles, picking a card signs you in as that user, and currentUserId lives in localStorage — traded real authentication for several people being able to match each other on the spot"
+              },
+              {
+                "name": "Forms writing straight to Firestore",
+                "desc": "getDoc / updateDoc for profile editing, comma-separated skills parsed into an array with a live pill preview, and DiceBear avatars derived from avatarSeed instead of uploads"
+              },
+              {
+                "name": "Navbar state sync",
+                "desc": "Highlights by pathname and reloads the current profile on navigation; the async load uses a cancelled flag so it never calls setState after unmount"
+              }
             ]
           },
           {
             "group": "Integration & Debugging",
             "items": [
-              { "name": "Forced Firestore long polling", "desc": "The default WebChannel stream wouldn't establish; passing experimentalForceLongPolling to initializeFirestore was what made reads and writes stable" },
-              { "name": "Merging three branches", "desc": "Merged all three branches back into main and added the contact fields, event capacity (summed team sizes rather than registration count), and exclusion of already-teamed users from the swipe pool, updating the SPEC to match" }
+              {
+                "name": "Forced Firestore long polling",
+                "desc": "The default WebChannel stream wouldn't establish; passing experimentalForceLongPolling to initializeFirestore was what made reads and writes stable"
+              },
+              {
+                "name": "Merging three branches",
+                "desc": "Merged all three branches back into main and added the contact fields, event capacity (summed team sizes rather than registration count), and exclusion of already-teamed users from the swipe pool, updating the SPEC to match"
+              }
             ]
           }
         ],
