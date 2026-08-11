@@ -9,7 +9,15 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-07-24）
+## 📌 當前狀態快照（最後更新：2026-08-11）
+
+- **🔴 08-11 VAP 論文獲 IEEE GCCE 2026 錄取（poster），但網站刻意「不」更新**。
+  原因：`C:\WORK SPACEap-research.md` 記載本人已於 2026-07-13 自行推翻論文核心結果
+  （索引 bug + stay-level 切分後 AUROC 0.98–0.99 → **0.61–0.67**、AUPRC 0.81–0.93 → **0.033–0.143**）。
+  網站 outcome 段目前顯示的仍是**已被推翻的那組數字**（這狀態自 7/13 起就存在，非本次造成）。
+  本 session 一度把狀態改成「已接受」並推 main（7c8700e），發現後已 **revert（be0a239）**、D1 migration 未執行、線上維持原狀。
+  ⚠️ **在本人與林淑檀教授談完之前，不要再更新 VAP 的發表狀態**——「已接受」配上已知不成立的數字，比原本更糟。
+  ⚠️ 審稿人 Reviewer 2 獨立問到「AUROC/AUPRC 是 per-window 還是 per-patient 算」——正是 7/13 找到的那個洞。
 
 - **🆕 07-24 新增第 12 個專案 TeamMatch**（OpenAI Build Week 社群黑客松，2026-07-19，三人一天）。
   中英文 cvData、designTokens accent、sitemap、migration 0020 全數完成，**已推 main（3865a d2）**。
@@ -129,6 +137,22 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-08-11（VAP 獲 GCCE 錄取；網站更新後 revert）
+
+**做了什麼**
+- 本人收到 IEEE GCCE 2026 錄取通知（paper #1571300279，poster，神戶）。
+- 依 W1 流程更新中英文 cvData 共 8 處（bio／經歷 description／badge／outcome）＋寫 migration 0021，
+  本地 D1 灌入 git HEAD 舊資料做 fail-then-pass 實測（8 欄位全對、零殘留「投稿」、其他欄位未誤傷），推上 main。
+- **隨後讀 `vap-research.md` 才發現論文核心結果已被本人推翻**，立即 revert（be0a239）並推上線，D1 migration 從未執行。
+
+**教訓（流程）**
+- 改任何跟某專案有關的網站內容前，**先讀該專案在 `C:\WORK SPACE\` 的卡片**。全域指引本來就這樣寫，這次跳過了。
+- 這次的技術驗證做得很紮實（本地 D1 fail-then-pass），但**驗證的是「改對了嗎」不是「該不該改」**。前者綠燈不代表後者成立。
+
+**未完事項**
+- VAP 發表狀態維持「Under Review」，等本人與教授談完。
+- 網站 outcome 段的效能表仍是已被推翻的數字，需要單獨一輪處理（可辯護敘事是方法論誠實，不是模型效能）。
 
 ### 2026-07-24（AI 課程期中專案評估 → 決定不進網站）
 - **標的**：`C:\AI_classes_midtermproject--main\AI_classes_midtermproject--main`
