@@ -43,7 +43,9 @@
     "db:migrate:gradient-skills:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0019_sync_gradient_boosting_skills.sql",
     "db:migrate:teammatch:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0020_add_teammatch.sql",
     "db:migrate:bitoguard-ensemble:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0021_bitoguard_ensemble.sql",
-    "db:migrate:aws-finalist:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0022_aws_finalist_and_team.sql"
+    "db:migrate:aws-finalist:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0022_aws_finalist_and_team.sql",
+    "db:migrate:qmk-f103:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0023_qmk_f103.sql",
+    "db:migrate:skills-vap:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0024_sync_skills_detail_and_vap.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

@@ -60,7 +60,8 @@ AML 合規系統的核心需求是可解釋性：監管機構要求對每筆標�
 ・Accuracy：95.0%
 ・標記為風險帳戶：501 / 12,753
 
-這組數字來自已部署的 BitoGuard 儀表板；Accuracy 受資料不平衡影響，不單獨作為模型好壞的判斷。Precision 與 Recall 一起呈現，讓誤報成本和找出風險帳戶的能力都能被看見。'),
+這組數字來自已部署的 BitoGuard 儀表板；Accuracy 受資料不平衡影響，不單獨作為模型好壞的判斷。Precision 與 Recall 一起呈現，讓誤報成本和找出風險帳戶的能力都能被看見。',
+      '$.detail.pipeline', json('[{"marker":"①","file":"ingest_to_s3.py","label":"BitoPro API 擷取 → S3 原始資料層"},{"marker":"②","file":"glue_graph_hops.py","label":"Glue ETL + 圖形化多跳關聯分析"},{"marker":"③","file":"athena_graph_hops.sql","label":"Athena 查詢聚合特徵結果"},{"marker":"④","file":"SageMaker","label":"LightGBM 訓練與調參"},{"marker":"⑤","file":"lambda_diagnosis.py","label":"即時推論與事件觸發"},{"marker":"⑥","file":"Bedrock + SHAP","label":"自動產生可解釋性報告"},{"marker":"⑦","file":"app.py","label":"Streamlit 互動風險審查介面"},{"marker":"⑧","file":"template.yaml","label":"CloudFormation IaC"}]')),
     en = json_set(en, '$.tags', json('["LightGBM", "XGBoost", "AWS SageMaker", "AWS Glue", "SHAP", "Streamlit"]'), '$.description', 'LightGBM + XGBoost blend (0.6/0.4) × S3→Glue→Athena→SageMaker→Lambda→Bedrock end-to-end AML pipeline; 63,770 accounts / 413,235 transactions; 32 behavioral features (incl. graph-theory blacklist neighbors) + SHAP compliance reports to identify money mule accounts. Streamlit dashboard live.',
       '$.detail.purpose', 'BitoPro cryptocurrency exchange AML compliance competition dataset:
 - User records: 63,770 accounts
@@ -116,16 +117,12 @@ Top 3 by importance: total_volume, account age, swap_twd_volume
 - Accuracy: 95.0%
 - Accounts flagged as risky: 501 / 12,753
 
-These figures come from the deployed BitoGuard dashboard. Accuracy is affected by class imbalance, so it is not used alone to judge the model; precision and recall are presented together to show both false-positive cost and risk-account coverage.'),
+These figures come from the deployed BitoGuard dashboard. Accuracy is affected by class imbalance, so it is not used alone to judge the model; precision and recall are presented together to show both false-positive cost and risk-account coverage.',
+      '$.detail.pipeline', json('[{"marker":"①","file":"ingest_to_s3.py","label":"BitoPro API ingestion -> S3 raw layer"},{"marker":"②","file":"glue_graph_hops.py","label":"Glue ETL + graph multi-hop analysis"},{"marker":"③","file":"athena_graph_hops.sql","label":"Athena feature aggregation query"},{"marker":"④","file":"SageMaker","label":"LightGBM training & tuning"},{"marker":"⑤","file":"lambda_diagnosis.py","label":"Real-time inference & event trigger"},{"marker":"⑥","file":"Bedrock + SHAP","label":"Auto-generated explainability report"},{"marker":"⑦","file":"app.py","label":"Streamlit interactive risk review UI"},{"marker":"⑧","file":"template.yaml","label":"CloudFormation IaC"}]')),
     updated_at = datetime('now')
 WHERE id = 'aws-hackathon';
 
-UPDATE sections
-SET zh = json_set(zh, '$.data_analysis.skills[1].desc', '用於 BitOGuard 的不平衡二元分類，與 XGBoost 以 0.6/0.4 加權混合，搭配 SHAP 檢視每個特徵對帳戶風險分數的貢獻，並比較不同決策閾值下的 Precision 與 Recall。',
-      '$.data_analysis.skills[2].desc', '在 BitOGuard 與 LightGBM 以 0.4 權重加權混合（單獨 OOF AUC 0.827）；另用在 DSP／訊號分類課程與實驗。',
-      '$.data_analysis.skills[2].projects', json('["AWS x BitoPro 黑客松"]')),
-    en = json_set(en, '$.data_analysis.skills[1].desc', 'Used in BitOGuard for imbalanced binary classification, blended 0.6/0.4 with XGBoost, with SHAP to inspect each feature''s contribution to account-risk scores and threshold comparisons for precision and recall.',
-      '$.data_analysis.skills[2].desc', 'Blended with LightGBM at 0.4 weight in BitOGuard (alone: OOF AUC 0.827); also used in DSP and signal-classification coursework.',
-      '$.data_analysis.skills[2].projects', json('["AWS × BitoPro Hackathon"]')),
-    updated_at = datetime('now')
-WHERE key = 'skills_detail';
+-- ⚠️ 2026-09-02 移除原本的 skills_detail UPDATE：它假設 $.data_analysis.skills[2] 是 XGBoost，
+--    但線上 D1 的實際排序是 0 深度學習 / 1 LightGBM / 2 特徵工程 / 3 訊號過濾 / 4 數據結構化 / 5 XGBoost
+--    （0019 把 XGBoost 附加在尾端），直接跑會把「特徵工程」的描述覆寫掉。
+--    skills_detail 改由 0024 整包同步（同時補上 2026-06-10 b7421ee 之後從未同步的口語版文案）。

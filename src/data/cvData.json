@@ -226,7 +226,7 @@
       "skills": [
         {
           "name": "CNC 銑床",
-          "level": "進階",
+          "level": "基礎",
           "desc": "用 CNC 銑床做鋁合金精密加工，刀具路徑規劃跟夾具設計都會自己弄，比手工銑床穩定很多，精度跟重現性都好控制。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
@@ -234,7 +234,7 @@
         },
         {
           "name": "Mastercam",
-          "level": "熟悉",
+          "level": "基礎",
           "desc": "CNC 加工的 CAM 軟體，把 3D 模型丟進去規劃刀具路徑（鑽孔、深孔啄鑽、2D/3D 挖槽、輪廓銑削、動態銑削、倒角），模擬沒問題再輸出 NC 程式。Swerve Drive 的全向輪鋁板跟傳動心軸就是這樣加工出來的。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
@@ -259,7 +259,7 @@
         },
         {
           "name": "AutoCAD",
-          "level": "熟悉",
+          "level": "進階",
           "desc": "畫 2D 工程圖、輸出加工圖面，把尺寸標註跟公差規格標清楚，讓 CNC 操作員或外包廠商照著做就對了。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
@@ -273,7 +273,7 @@
         },
         {
           "name": "金屬焊接",
-          "level": "熟悉",
+          "level": "基礎",
           "desc": "MIG / TIG 基礎焊接，用在 FRC 機器人底盤的鋼管結構上，焊道均不均勻、結構夠不夠強都要顧。",
           "projects": [
             "FRC Swerve Drive 全向輪控制系統"
@@ -281,7 +281,7 @@
         },
         {
           "name": "雷射切割",
-          "level": "熟悉",
+          "level": "進階",
           "desc": "板金跟壓克力結構件的精密裁切，照著 CAD 圖面就能快速做出自訂尺寸的薄板結構跟標示面板。",
           "projects": []
         },

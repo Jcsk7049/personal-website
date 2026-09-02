@@ -227,7 +227,7 @@
       "skills": [
         {
           "name": "CNC Milling",
-          "level": "進階",
+          "level": "基礎",
           "desc": "Precision aluminum machining on CNC mills — I plan toolpaths and design fixtures myself, and it's noticeably more accurate and repeatable than manual milling.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -235,7 +235,7 @@
         },
         {
           "name": "Mastercam",
-          "level": "熟悉",
+          "level": "基礎",
           "desc": "CAM software for CNC — import a 3D model, plan toolpaths (drilling, 2D/3D pocketing, contour milling, dynamic milling, chamfering), simulate it, then output the NC program. Used it for the Swerve Drive's aluminum wheel plates and drive shafts.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -260,7 +260,7 @@
         },
         {
           "name": "AutoCAD",
-          "level": "熟悉",
+          "level": "進階",
           "desc": "2D engineering drawings for machining — dimensions and tolerances spelled out clearly enough for CNC operators or outside vendors to just follow.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -274,7 +274,7 @@
         },
         {
           "name": "Metal Welding",
-          "level": "熟悉",
+          "level": "基礎",
           "desc": "Basic MIG/TIG welding for the FRC robot's steel tube chassis — paying attention to bead uniformity and structural strength.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -282,7 +282,7 @@
         },
         {
           "name": "Laser Cutting",
-          "level": "熟悉",
+          "level": "進階",
           "desc": "Precision cutting of sheet metal and acrylic from CAD drawings — a quick way to make custom thin-plate parts and label panels.",
           "projects": []
         },
