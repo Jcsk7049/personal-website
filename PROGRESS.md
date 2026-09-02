@@ -11,20 +11,21 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-02）
 
-- **🔴 09-02 對源檢查：0021 現在跑下去會寫壞 D1**——0021 假設 `skills[2]` 是 XGBoost，
-  但線上 D1 的排序是 `0 深度學習 / 1 LightGBM / 2 特徵工程 / … / 5 XGBoost`（0019 把 XGBoost 加在尾端）。
-  **先把 0021 的 `$.data_analysis.skills[2]` 改成 `[5]` 再跑**，否則「特徵工程」的描述會被覆蓋掉。
-  詳見工作日誌 2026-09-02。
-- **🔴 09-02 線上 aws-hackathon 內文排版是壞的**：purpose/concept/outcome 中英文共 105 處 `\n`
-  字面印在頁面上（訪客看得到）。跑 0021 會一併修好（它覆寫的正是這三個欄位）。
-- **🔴 09-02 QMK F103 更正無路可上線**：線上仍是 STM32F072 + DFU，唯一能修的 0017 被標記「不要跑」。
-  需另開一個只做 F103 的 migration。
-- **🔴 09-02 skills_detail 文風自 2026-06-10（b7421ee）起從未同步到 D1**：線上顯示的仍是舊的正式書面版，
-  repo 的口語版沒進 D1（四個分類 overview + 24 項描述）。vap 線上也還留著「**首個**以台灣 ICU…」。
+- **🟢 09-02 全部改完、已推 main（3ff5821），只差本人跑 4 個 migration**——依序：
+  ```
+  npm run db:migrate:bitoguard-ensemble:remote   # 0021（已修索引 bug，並補上線上缺的 pipeline）
+  npm run db:migrate:aws-finalist:remote         # 0022
+  npm run db:migrate:qmk-f103:remote             # 0023（新，F072 → F103）
+  npm run db:migrate:skills-vap:remote           # 0024（新，skills_detail 整包 + vap 去「首個」）
+  ```
+  跑完線上 D1 就會與 repo 的 cvData 完全一致（已用線上實況快照 + node:sqlite 驗過，見日誌 09-02 §2）。
+- **⚠️ 09-02 新增的協作事實：本人用 admin 改過 `skills_detail` 的 manufacturing 熟練度**——
+  CNC 銑床 進階→基礎、Mastercam 熟悉→基礎、AutoCAD 熟悉→進階、金屬焊接 熟悉→基礎、雷射切割 熟悉→進階。
+  **只改了中文、英文版沒跟著改**（線上中英不一致）。0024 已採「線上 zh 值為準」並補齊英文，
+  repo 的 cvData 也已對齊。→ 再次驗證「sections 的真相在 D1，不是 repo」這條規則。
 
-- **🔴 08-11 兩個 D1 migration 已寫好、已推 main、但「還沒上線」**——要在 repo 目錄跑：
-  `cd "C:\Users\User\personal-website"` 然後
-  `npm run db:migrate:bitoguard-ensemble:remote` ＋ `npm run db:migrate:aws-finalist:remote`
+- **08-11 兩個 D1 migration 已寫好、已推 main、但「還沒上線」**——**指令已被上面 09-02 那條取代**
+  （0021 當時的版本有索引 bug，別再照這條的兩行跑，要跑 09-02 列的四行）。
 - **🔴 08-11 推翻 07-21 的「BitOGuard 沒有 Ensemble」定案**：公開 repo 的 `cv_report_lgb.json` 寫
   `"model": "LGB(0.60) + XGB(0.40)"`、`xgb_oof_auc 0.8265`——**最終提交就是 ensemble**（本人確認）。
   cvData 已改（migration 0021），特徵數同時 31→32。**教訓：履歷/網站的宣稱要跟公開 repo 對得上，面試官會點連結。**
@@ -132,15 +133,13 @@
 ## ✅ 待辦清單
 
 ### 🔴 08-11 新增（本人動手）
-- [ ] **⛔ 跑 0021 之前先改索引**（09-02 對源查出）：把 `migrations/0021_bitoguard_ensemble.sql` 裡
-      三處 `$.data_analysis.skills[2]` 改成 `[5]`——線上 D1 的 index 2 是「特徵工程」不是 XGBoost，
-      直接跑會覆蓋掉「特徵工程」的描述。改完再跑下面兩行。
-- [ ] **新開一個「只做 QMK F103」的 migration**（0023）：線上仍是 STM32F072 + DFU，
-      repo 已是 F103 + stm32duino，而唯一含此更正的 0017 被標記「不要跑」（夾帶 XGBoost 舊內容）。
-- [ ] **新開 skills_detail 文風同步 migration**：b7421ee（06-10）的口語版只進了 repo，D1 至今是舊書面版；
-      順便把 vap 的「首個以台灣 ICU…」的「首個」拿掉（repo 已拿掉，線上還在）。
-- [ ] **跑兩個 migration 讓改動上線**：`cd "C:\Users\User\personal-website"` 然後
-      `npm run db:migrate:bitoguard-ensemble:remote` ＋ `npm run db:migrate:aws-finalist:remote`
+- [x] **0021 的索引 bug 已修**（09-02，commit 3ff5821）：那段 skills_detail UPDATE 直接移除，改由 0024 整包同步。
+- [x] **0023_qmk_f103.sql 已開**（09-02）：F072 → F103，整包覆寫該列。
+- [x] **0024_sync_skills_detail_and_vap.sql 已開**（09-02）：skills_detail 整包 + vap 去「首個」。
+- [ ] **🔴 跑四個 migration 讓改動上線**（唯一還沒做的）：`cd "C:\Users\User\personal-website"` 然後照順序：
+      `npm run db:migrate:bitoguard-ensemble:remote` → `npm run db:migrate:aws-finalist:remote`
+      → `npm run db:migrate:qmk-f103:remote` → `npm run db:migrate:skills-vap:remote`
+      跑完可用 `curl "https://personal-website-1kf.pages.dev/api/projects?lang=zh"` 抽驗（不該再看到 `\n` 字面、F072、31 項）。
 - [ ] **給出 FRC 官網那 196 筆 commit 的 repo 路徑**（本人稱在本機非 Desktop），否則 cvData 的 35% 改不了
 - [ ] **把 README 加進 `bitoguard-aml` repo 根目錄**（檔案已交付本人）
 - [ ] **開 `bitoguard-aml` 的 `.kiro/steering/` 自己看一眼**——Kiro 的 steering 放專案指示，最可能有坦白筆記
@@ -226,8 +225,35 @@ scratchpad（`diff.cjs` / `secdiff.cjs` / `scan.cjs`），非 repo 檔案。
 - `CHU-BO-YU/teamder` 仍 **404（private）** → TeamMatch 卡片的「在 GitHub 查看」對訪客還是壞連結（待辦①未動）。
 - `Jcsk7049/bitoguard-aml` 200（public）✓。
 
-**未完事項**：0021 的索引修正尚未動手（等本人決定）；F103 專用 migration 未開；
-skills_detail 文風同步 migration 未開。
+#### §2 同日下半場：本人說「全改」→ 四項全部修完並推 main（3ff5821）
+
+**改了什麼**
+| 檔案 | 內容 |
+|------|------|
+| `migrations/0021_bitoguard_ensemble.sql` | 移除會寫壞「特徵工程」的 `skills_detail` UPDATE（改由 0024 整包做）；補上線上缺的 `$.detail.pipeline`（zh+en，八格 AWS 管線圖資料） |
+| `migrations/0023_qmk_f103.sql`（新） | QMK 專案 F072 → F103，`INSERT OR REPLACE` 整列。**先驗過線上該列 === 0016 寫入的內容**（bit-for-bit），確認沒有 admin 手改才敢整包覆寫 |
+| `migrations/0024_sync_skills_detail_and_vap.sql`（新） | `skills_detail` 整包同步（b7421ee 口語版終於上線、XGBoost 移回 index 2、0.6/0.4 混合敘述一併帶上）＋ vap 拿掉「首個」 |
+| `src/data/cvData.json` / `.en.json` | manufacturing 五項熟練度對齊線上 admin 值 |
+| `package.json` | 新增 `db:migrate:qmk-f103:remote`、`db:migrate:skills-vap:remote` |
+
+**過程中查出的第三件事（原本沒發現）**：`skills_detail.manufacturing` 有五項熟練度**線上與 repo 不同**，
+且**只有中文被改、英文沒改**。用 `git show b7421ee^:src/data/cvData.json` 三方比對確認：repo 從頭到尾都是舊值，
+線上的新值是**本人用 admin 後台改的**（CNC 銑床 進階→基礎、Mastercam 熟悉→基礎、AutoCAD 熟悉→進階、
+金屬焊接 熟悉→基礎、雷射切割 熟悉→進階，方向上是誠實下修）。依「D1 是 sections 的真相」規則，
+0024 採線上 zh 值、補齊英文，repo 也回寫對齊。
+
+**驗證方式（可重現）**：`node:sqlite`（Node 24 內建，不用裝 better-sqlite3）建記憶體庫，
+把當天抓下來的線上 API 回應原樣灌成 `projects` / `sections` 兩張表，當作「線上實況快照」，再套 migration。
+- **紅**：用**修改前**的 0021 跑 → 「特徵工程」的 desc 被 XGBoost 內容覆蓋、projects 被砍成只剩黑客松，
+  而真正的 XGBoost（index 5）還是舊描述。**bug 從推論升級為實測**。
+- **綠**：0021→0022→0023→0024 依序套完 → 12 個專案 zh/en 全等於 repo cvData（物件鍵序不計，
+  vap 的 `featured` 位置是 0015 留下的舊鍵序，不影響前端）、skills_detail/awards 全等、
+  profile/education/experience/skills_matrix 未被動到、字面 `\n` 由 **105 → 0**、連跑兩輪結果相同（冪等）。
+- 驗證腳本留在 scratchpad（`harness.cjs` / `red.cjs` / `green.cjs`），**沒進 repo**——它依賴當天的線上快照，
+  放進 repo 會變成會過期的假測試。要重驗就重抓一次 API 再跑。
+
+**還沒做的**：四個 migration 要本人在自己電腦跑（sandbox 無 `CLOUDFLARE_API_TOKEN`）；
+`CHU-BO-YU/teamder` 仍 private（這件事 Claude 無法代做）。
 
 ---
 
