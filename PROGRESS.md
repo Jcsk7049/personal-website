@@ -9,7 +9,18 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-08-11）
+## 📌 當前狀態快照（最後更新：2026-09-02）
+
+- **🔴 09-02 對源檢查：0021 現在跑下去會寫壞 D1**——0021 假設 `skills[2]` 是 XGBoost，
+  但線上 D1 的排序是 `0 深度學習 / 1 LightGBM / 2 特徵工程 / … / 5 XGBoost`（0019 把 XGBoost 加在尾端）。
+  **先把 0021 的 `$.data_analysis.skills[2]` 改成 `[5]` 再跑**，否則「特徵工程」的描述會被覆蓋掉。
+  詳見工作日誌 2026-09-02。
+- **🔴 09-02 線上 aws-hackathon 內文排版是壞的**：purpose/concept/outcome 中英文共 105 處 `\n`
+  字面印在頁面上（訪客看得到）。跑 0021 會一併修好（它覆寫的正是這三個欄位）。
+- **🔴 09-02 QMK F103 更正無路可上線**：線上仍是 STM32F072 + DFU，唯一能修的 0017 被標記「不要跑」。
+  需另開一個只做 F103 的 migration。
+- **🔴 09-02 skills_detail 文風自 2026-06-10（b7421ee）起從未同步到 D1**：線上顯示的仍是舊的正式書面版，
+  repo 的口語版沒進 D1（四個分類 overview + 24 項描述）。vap 線上也還留著「**首個**以台灣 ICU…」。
 
 - **🔴 08-11 兩個 D1 migration 已寫好、已推 main、但「還沒上線」**——要在 repo 目錄跑：
   `cd "C:\Users\User\personal-website"` 然後
@@ -121,6 +132,13 @@
 ## ✅ 待辦清單
 
 ### 🔴 08-11 新增（本人動手）
+- [ ] **⛔ 跑 0021 之前先改索引**（09-02 對源查出）：把 `migrations/0021_bitoguard_ensemble.sql` 裡
+      三處 `$.data_analysis.skills[2]` 改成 `[5]`——線上 D1 的 index 2 是「特徵工程」不是 XGBoost，
+      直接跑會覆蓋掉「特徵工程」的描述。改完再跑下面兩行。
+- [ ] **新開一個「只做 QMK F103」的 migration**（0023）：線上仍是 STM32F072 + DFU，
+      repo 已是 F103 + stm32duino，而唯一含此更正的 0017 被標記「不要跑」（夾帶 XGBoost 舊內容）。
+- [ ] **新開 skills_detail 文風同步 migration**：b7421ee（06-10）的口語版只進了 repo，D1 至今是舊書面版；
+      順便把 vap 的「首個以台灣 ICU…」的「首個」拿掉（repo 已拿掉，線上還在）。
 - [ ] **跑兩個 migration 讓改動上線**：`cd "C:\Users\User\personal-website"` 然後
       `npm run db:migrate:bitoguard-ensemble:remote` ＋ `npm run db:migrate:aws-finalist:remote`
 - [ ] **給出 FRC 官網那 196 筆 commit 的 repo 路徑**（本人稱在本機非 Desktop），否則 cvData 的 35% 改不了
@@ -166,6 +184,52 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-09-02（線上 vs repo 全面對源檢查：D1 落後三類差異＋發現 0021 會寫壞資料）
+
+**做了什麼**：把線上（`personal-website-1kf.pages.dev` 的 `/api/projects`、`/api/sections/*`）
+整包抓下來，跟 repo 的 `cvData.json` / `cvData.en.json` 做逐欄位 deep diff。工具腳本在
+scratchpad（`diff.cjs` / `secdiff.cjs` / `scan.cjs`），非 repo 檔案。
+
+#### 一致 ✓
+- **前端 bundle 是最新 main**：線上 `index-kfYG3HYG.js` 含「往下更多」/「Scroll for more」（792e5f2）、
+  TeamMatch（3865ad2）、Hero 主張「硬體到軟體…」（07-21）。Pages 部署沒落後。
+- **12 個專案 id 完全相同**（TeamMatch 已在線上 → migration 0020 確定已跑）。
+- **profile / education / experience / skills_matrix 完全一致**。
+- 0016（QMK 移除延遲宣稱）確定已跑：線上 qmk 全文 0 處「延遲」。
+
+#### 不一致（三類）
+1. **0021 + 0022 未跑**（與待辦一致）：線上 aws-hackathon 仍是「LightGBM 單模 / 31 特徵 / 完賽」，
+   缺「進入決賽並完賽（無名次）」與「三人團隊 95%」；awards[0] 標題也還是舊的；
+   skills_detail 的 LightGBM/XGBoost 混合敘述也還沒上線。
+2. **QMK F103 卡死**：線上整包仍是 **STM32F072 + DFU**（7 處 F072），repo 已是 F103 + stm32duino。
+   唯一能修的是 **0017**，但 0017 被標記「不要跑」（含 XGBoost 舊版 aws 內容）。
+   → **必須新開一個只做 F103 的 migration**，否則這個更正永遠上不了線。
+3. **skills_detail 文風從未同步**：b7421ee（2026-06-10）把四個分類的 overview 與 24 項技能描述
+   改成口語版，但只改 repo、沒產 migration → **線上至今顯示的是舊的正式書面版**（正好是 CLAUDE.md
+   寫作規則要避免的那種語氣）。另 vap 線上仍寫「**首個**以台灣 ICU 真實資料驗證」，repo 已拿掉「首個」。
+
+#### 🔴 兩個新發現（都需要動手，不是純落後）
+- **A. 線上 aws-hackathon 的內文排版是壞的**：`detail.purpose/concept/outcome` 中英文合計 **105 處
+  `\n` 是字面印在頁面上**（瀏覽器實地確認：「…資料集：\n・用戶資料：63,770 筆帳戶\n・…」整段擠成一團）。
+  全站只有這個專案有此問題。**跑 0021 會順便修好**——0021 覆寫的正是這三個欄位（zh+en）且用真換行。
+- **B. 🔴 0021 的 skills_detail 索引錯位，照現況跑會寫壞資料**：
+  0021 假設 `$.data_analysis.skills[2]` 是 XGBoost，但**線上 D1 的排序是**
+  `0 深度學習 / 1 LightGBM / 2 特徵工程 / 3 訊號過濾 / 4 數據結構化 / 5 XGBoost`
+  （0019 把 XGBoost 附加在尾端；repo 的 cvData 才是 XGBoost 在 index 2）。
+  直接跑 `db:migrate:bitoguard-ensemble:remote` 會把「**特徵工程**」的 desc 覆寫成
+  「在 BitOGuard 與 LightGBM 以 0.4 權重加權混合…」、projects 砍成只剩黑客松，
+  而真正的 XGBoost（index 5）仍是舊描述。**跑之前要先把 0021 的 `skills[2]` 改成 `skills[5]`**
+  （或改成用 json 路徑以 name 定位）。projects 表與 awards 的路徑則對得上，沒問題。
+
+#### 其他順帶確認
+- `CHU-BO-YU/teamder` 仍 **404（private）** → TeamMatch 卡片的「在 GitHub 查看」對訪客還是壞連結（待辦①未動）。
+- `Jcsk7049/bitoguard-aml` 200（public）✓。
+
+**未完事項**：0021 的索引修正尚未動手（等本人決定）；F103 專用 migration 未開；
+skills_detail 文風同步 migration 未開。
+
+---
 
 ### 2026-08-11（VAP 獲 GCCE 錄取但網站不更新；BitOGuard 推翻無-Ensemble 定案；履歷全面對源）
 
