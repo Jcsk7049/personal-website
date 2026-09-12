@@ -109,8 +109,8 @@
       \resumeProjectHeading
           {\textbf{ICU VAP Early-Warning Model} $|$ \emph{TensorFlow/Keras, LSTM, Integrated Gradients}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Single-center study (n=109); identified window-level cross-validation data leakage in the PREDICT benchmark (a patient's time windows split across train/test) and redesigned a stay-level 5-fold stratified CV that reflects true generalization to unseen patients.}
-            \resumeItem{Used Integrated Gradients to reduce the model to 4 non-invasive features; final LSTM reached 0.98--0.99 AUROC across a 6--72h horizon. Manuscript submitted to IEEE GCCE 2026.}
+            \resumeItem{Single-center study (n=107); used Integrated Gradients to reduce the model to 4 non-invasive features. Accepted to IEEE GCCE 2026 (poster).}
+            \resumeItem{Re-audited the evaluation setup after acceptance: window-level splitting placed time windows from the same patient on both sides of the split --- an overly idealized condition. Re-running with stay-level 5-fold gave 0.61--0.67 AUROC (originally 0.98--0.99).}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Job Radar} $|$ \emph{Python, Playwright, GitHub Actions}}{2026 -- Present}

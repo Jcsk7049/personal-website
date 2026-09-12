@@ -218,7 +218,7 @@ a  { color: #0057b8; text-decoration: none; }
       </div>
       <div class="entry-org">元智大學 林書彥教授實驗室</div>
       <div class="entry-desc">
-        進行 ICU VAP 生理訊號 AI 研究，以 LSTM 時序模型達成 6–72h 超前預警（AUROC 0.98–0.99）；設計 Stay-level CV 修正 Data Leakage，論文預計投稿 IEEE GCCE 2026。
+        進行 ICU VAP 生理訊號 AI 研究，以 LSTM 建立 6–72h 超前預警管線；論文獲 IEEE GCCE 2026 接受（poster）。接受後自行複查評估設定，改以病人層切分重跑後 AUROC 為 0.61–0.67（原 0.98–0.99）。
       </div>
     </div>
 
@@ -254,7 +254,7 @@ a  { color: #0057b8; text-decoration: none; }
         <div><span class="proj-cat">大學專題</span><span class="proj-title">加護病房 VAP 早期預測系統</span></div>
         <span class="entry-period">2025–</span>
       </div>
-      <div class="proj-desc">找出 PREDICT 基準的 window-level CV 資料洩漏，改以 Stay-level CV 建立無洩漏評估；IG 歸因篩選 MAP/RR/Vt/SpO₂，LSTM 於亞東 ICU（n=109）達 6–72h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。</div>
+      <div class="proj-desc">找出 PREDICT 基準的 window-level CV 資料洩漏；IG 歸因篩選 MAP/RR/Vt/SpO₂，於亞東 ICU（n=107）建立 6–72h 預警管線。論文接受後複查發現主實驗仍為視窗層切分，改以病人層切分後 AUROC 0.61–0.67 / AUPRC 0.03–0.14（原 0.98–0.99 / 0.81–0.93）。</div>
       <div class="proj-tags">
         <span class="ptag">TensorFlow/Keras</span><span class="ptag">LSTM</span><span class="ptag">Integrated Gradients</span><span class="ptag">SMOTE</span><span class="ptag">Medical AI</span>
       </div>

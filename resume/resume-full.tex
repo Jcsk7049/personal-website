@@ -98,9 +98,9 @@
       {Undergraduate Researcher}{May 2025 -- Present}
       {Prof. Shu-Yen Lin's Lab, Yuan Ze University}{Taoyuan, Taiwan}
       \resumeItemListStart
-        \resumeItem{Led an early-warning model for ICU Ventilator-Associated Pneumonia (VAP); designed a stay-level 5-fold cross-validation scheme to eliminate patient-level data leakage present in the public benchmark.}
-        \resumeItem{Applied Integrated Gradients feature attribution to reduce the model to 4 non-invasive features; the resulting LSTM reached 0.98--0.99 AUROC at a 72-hour prediction horizon.}
-        \resumeItem{Manuscript submitted to IEEE GCCE 2026.}
+        \resumeItem{Led an early-warning model for ICU Ventilator-Associated Pneumonia (VAP) at Far Eastern Memorial Hospital (n=107); used Integrated Gradients to reduce 14 physiological features to 4 non-invasive signals.}
+        \resumeItem{Paper accepted to IEEE GCCE 2026 (poster).}
+        \resumeItem{Re-audited the evaluation setup after acceptance: window-level splitting placed time windows from the same patient on both sides of the split, an overly idealized condition. Re-running with patient-level splits gave 0.61--0.67 AUROC (originally 0.98--0.99).}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -128,9 +128,9 @@
       \resumeProjectHeading
           {\textbf{ICU VAP Early-Warning Model} $|$ \emph{TensorFlow/Keras, LSTM, Integrated Gradients}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Single-center study (Far Eastern Memorial Hospital ICU, n=109); identified window-level cross-validation data leakage in the PREDICT benchmark (a patient's time windows split across train/test) and redesigned a stay-level 5-fold stratified CV that reflects true generalization to unseen patients.}
-            \resumeItem{Used Integrated Gradients to drop a collinear redundant feature (mv\_total $\equiv$ Vt $\times$ RR) and reduced the model to 4 non-invasive features; final LSTM reached 0.99 AUROC at a 24-hour horizon, 0.98--0.99 across 6--72h.}
-            \resumeItem{Outperformed LR/RF/SVM baselines at every prediction window under the same setup; manuscript submitted to IEEE GCCE 2026.}
+            \resumeItem{Single-center study (Far Eastern Memorial Hospital ICU, n=107); used Integrated Gradients to drop a collinear redundant feature (mv\_total $\equiv$ Vt $\times$ RR) and reduce the model to 4 non-invasive features. Accepted to IEEE GCCE 2026 (poster).}
+            \resumeItem{Re-audited the evaluation setup after acceptance: window-level splitting placed time windows from the same patient on both sides of the split --- an overly idealized condition. Re-running with stay-level 5-fold gave 0.61--0.67 AUROC and 0.033--0.143 AUPRC (originally 0.98--0.99 and 0.814--0.933).}
+            \resumeItem{A conference reviewer independently raised the same concern about the evaluation setup, matching the finding from the self-audit.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{PCB Defect Detection} $|$ \emph{Azure Custom Vision, Python}}{2025}

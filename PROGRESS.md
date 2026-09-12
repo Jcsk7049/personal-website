@@ -9,7 +9,25 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-09-02）
+## 📌 當前狀態快照（最後更新：2026-09-12）
+
+- **🟢 09-12 VAP 紅線解除**：本人已與教授談過 GCCE，**教授定調「當作環境狀況過度理想化」**。
+  履歷（6 份 .tex ＋ HTML）、網站 cvData、數位名片全部改成「獲 IEEE GCCE 2026 接受（poster）」，
+  並附上視窗層 vs 病人層的兩組數字對照（AUROC 0.98–0.99 → 0.61–0.67）。已推 main。
+  **文案一律用「評估條件過度理想化」這個框架**，跟教授的說法一致——不要寫成「論文錯了」。
+- **⚠️ 09-12 更正 n=109 → 107（VAP 52／非 VAP 55）**：109 是論文與舊文件的錯誤，
+  6 份履歷與網站全部寫錯，已一併改掉。（`C:\WORK SPACE\vap-research.md` 有記載。）
+- **⚠️ 09-12 拿掉三項站不住的宣稱**：「杜絕 Data Leakage」、「顯著優於 LR/RF/SVM」、
+  「突破 24 小時限制達成 72 小時超前預警」——都是在有洩漏的評估設定下才成立的。
+  成果表的 Sensitivity/Specificity 兩欄也拿掉（複查後沒有對應新值）。
+- **🔴 09-12 FRC 官網作品集還沒動**——本人說「我主張的比例更高，我給你依據」，依據還沒給。
+  本機 `C:\Users\user\team7645-website-master\team7645-website-master` 只有 40 個 commit、
+  全是本人、全在 08-07~08-18，**證明不了 196 筆或 79–96%**。`Jcsk7049/team7645-website` 對外 404。
+- **🔴 09-12 六份履歷 PDF 尚未重編**：`.tex` 已改完，PDF 還是舊的（本機無 xelatex，要本人上 Overleaf）。
+- **🔴 四個 migration 仍未上線**（09-02 就卡著）：`Authentication error [code: 10000]`。
+  ⚠️ PowerShell 擋 `npm.ps1` → 用 **`npm.cmd run ...`**；wrangler 是全域裝的，不用 `npm install`。
+  重試 → `wrangler.cmd login` → Dashboard 的 D1 Console 貼 SQL，三個層級依序試。
+
 
 - **🟢 09-02 全部改完、已推 main（3ff5821），只差本人跑 4 個 migration**——依序：
   ```
@@ -37,12 +55,12 @@
   拿掉七項無來源宣稱（16 名學生／兩個完整賽季／兩屆已畢業／多語系架構／SEO／N-Key Rollover／會員認證系統）。
 - **08-11 bitoguard-aml 的 README 已寫好但未 push**（本機無該 repo clone），檔案已交付本人。
 
-- **🔴 08-11 VAP 論文獲 IEEE GCCE 2026 錄取（poster），但網站刻意「不」更新**。
+- **~~🔴 08-11 VAP 論文獲 IEEE GCCE 2026 錄取（poster），但網站刻意「不」更新~~ → 已於 2026-09-12 解除**（教授已談，定調「環境狀況過度理想化」；履歷與網站都已更新）。以下保留當時的判斷脈絡：
   原因：`C:\WORK SPACEap-research.md` 記載本人已於 2026-07-13 自行推翻論文核心結果
   （索引 bug + stay-level 切分後 AUROC 0.98–0.99 → **0.61–0.67**、AUPRC 0.81–0.93 → **0.033–0.143**）。
   網站 outcome 段目前顯示的仍是**已被推翻的那組數字**（這狀態自 7/13 起就存在，非本次造成）。
   本 session 一度把狀態改成「已接受」並推 main（7c8700e），發現後已 **revert（be0a239）**、D1 migration 未執行、線上維持原狀。
-  ⚠️ **在本人與林淑檀教授談完之前，不要再更新 VAP 的發表狀態**——「已接受」配上已知不成立的數字，比原本更糟。
+  ⚠️ ~~在本人與林淑檀教授談完之前，不要再更新 VAP 的發表狀態~~（**已解除，見 09-12**）——「已接受」配上已知不成立的數字，比原本更糟。
   ⚠️ 審稿人 Reviewer 2 獨立問到「AUROC/AUPRC 是 per-window 還是 per-patient 算」——正是 7/13 找到的那個洞。
 
 - **🆕 07-24 新增第 12 個專案 TeamMatch**（OpenAI Build Week 社群黑客松，2026-07-19，三人一天）。
@@ -183,6 +201,63 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-09-12（GCCE poster 寫進履歷與網站；VAP 紅線解除；n=109 更正為 107）
+
+**本人指示**：① 履歷加上 GCCE 投稿上 poster；② 新增作品集「團隊網站 team7645-website」。
+問了三題後定案：VAP 選「兩件事一起改」（加 poster ＋ 同時處理被推翻的數字）。
+
+#### 🔴 VAP 紅線解除
+**本人已與教授談過，教授的定調是「當作環境狀況過度理想化」。** 08-11 立的那條
+「談完之前不要更新 VAP 發表狀態」到此為止。文案一律依這個框架寫——講的是**評估條件過度理想**
+（視窗層切分），不是造假、也不是「論文錯了」。這個用詞要跟教授一致，面試被追問時兩邊才對得上。
+
+#### 改了什麼
+| 檔案 | 內容 |
+|------|------|
+| `resume/*.tex`（6 份） | 經歷段與專案段的 VAP 全部改寫：加 poster、n=109→107、兩組數字對照 |
+| `public/resume-zh.html` | 經歷列與專案卡兩處 |
+| `src/data/cvData.json` / `.en.json` | vap 的 badge / description / purpose / concept / outcome / tech |
+| `src/pages/Card.jsx` | 數位名片「GCCE 2026 投稿中 / Under Review」→ 接受（poster） |
+| `src/pages/admin/ResumeTab.jsx` | 後台 seed 的 VAP 兩處；**順便刪掉漏網的「明志科技大學」** |
+| `migrations/0024_*.sql` | 重新產生：vap 那段由「只拿掉首個」擴大為整列覆寫 |
+
+#### 拿掉的三項宣稱（都是在有洩漏的評估下才成立的）
+1. **「嚴謹驗證設計：Stay-level CV…杜絕 Data Leakage」**——`vap-research.md` 判定這個核心賣點並未兌現。
+2. **「LSTM 在所有窗口皆顯著優於 LR、RF、SVM」**——同一套切分下算的，沒重跑就不能當效能主張。
+3. **「突破文獻常見的 24 小時限制，達成 72 小時超前預警」**——建立在 0.98-0.99 上。
+
+成果表改成「視窗層 vs 病人層」兩欄對照（6h 0.980/0.814 → 0.646/0.033；72h 0.987/0.921 → 0.614/0.143），
+並註明只有 72h 跑滿 5 fold。**Sensitivity/Specificity 兩欄整個拿掉**——複查後沒有對應的新值，舊值同樣不可信。
+
+#### 順帶抓到的兩個錯誤
+- **n=109 是錯的，正確 107（VAP 52／非 VAP 55）**。6 份履歷 + 網站全部寫 109，已一併更正。
+  （`vap-research.md` 的待辦「只改 README 與 CLAUDE.md、論文正本不動」是指 MIMIC try 專案，履歷網站不受該限制。）
+- **`ResumeTab.jsx` 的 seed 還留著「明志科技大學」**——事實紅線說明志已從履歷移除，這個檔案是漏網的。
+  它是 `api.get('resume')` 取不到資料時的 fallback（線上 `/api/resume` 目前回 `{"html":""}`，所以確實會用到 seed），
+  不影響對外頁面（對外是 `public/resume-zh.html` 靜態檔），但 repo 是 public，原始碼看得到。已刪。
+
+#### 驗證
+- **LaTeX 結構**：本機沒有 xelatex（TinyTeX 已不在），改用「整檔括號/數學模式平衡 + 與 git HEAD 對照」。
+  檢查器先自我測試（故意多塞一個 `{`，確認抓得到）再驗：6 份的括號淨值 0→0、`$` 數量、`resumeItem` 次數全部與改動前一致。
+  ⚠️ **沒有實際編譯**，PDF 仍要本人到 Overleaf 重編。
+- **D1**：重抓線上快照（12:24）灌進 `node:sqlite`，先確認測試不是空跑（線上仍是 Under Review / n=109 / F072 / 52 處字面 `\n`），
+  再依序套 0021→0022→0023→0024：12 個專案 zh/en 全等於 repo、sections 全等、
+  profile/education/experience/skills_matrix 未被動到、字面 `\n` 歸零、冪等通過。
+
+#### 未完
+- **FRC 官網作品集還沒寫**——本人選了「我主張的比例更高，我給你依據」但依據還沒給。
+  本機那份 `C:\Users\user\team7645-website-master\team7645-website-master` 只有 **40 個 commit、全是本人、
+  全在 2026-08-07~08-18**，第一筆自陳「初始提交：固定上線前現況」，**證明不了 196 筆 commit 或 79–96%**。
+  另外本人給的 `https://github.com/Jcsk7049/team7645-website` **對外是 404**，作品集連結先放
+  `https://nkhs.team7645.com/`（本人指定）。
+- **四個 migration 仍未上線**：09-02 那次跑 `npm run db:migrate:bitoguard-ensemble:remote` 撞到
+  `Authentication error [code: 10000]`（D1 的 `/import` 端點；`wrangler whoami` 顯示 d1 write 權限正常）。
+  已知是間歇性問題，建議重試 → 不行就 `wrangler.cmd login` 重新授權 → 再不行走 Dashboard 的 D1 Console 貼 SQL。
+  ⚠️ PowerShell 擋 `npm.ps1`，要用 **`npm.cmd run ...`**；wrangler 是全域安裝的，不必 `npm install`。
+- 六份 PDF 要本人在 Overleaf 重編（.tex 已改，PDF 還是舊的）。
+
+---
 
 ### 2026-09-02（線上 vs repo 全面對源檢查：D1 落後三類差異＋發現 0021 會寫壞資料）
 

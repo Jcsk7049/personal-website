@@ -8,16 +8,15 @@ const DEFAULT_RESUME = {
   bio: '就讀元智大學電機工程學系，目前在林書彥教授實驗室進行 ICU 生理訊號 AI 研究。從 FRC 競賽機器人選手出發，橫跨嵌入式韌體、電路設計到深度學習，喜歡把想法從零打造成真實的東西。',
   education: [
     { school: '元智大學', degree: '電機工程學系學士', period: '2024.09 – 2027.09' },
-    { school: '明志科技大學', degree: '電機工程學系學士（轉學）', period: '2023.09 – 2024.06' },
     { school: '南港高工', degree: '電子科', period: '2020.09 – 2023.06' },
   ],
   experience: [
-    { title: '實驗室專題生', org: '元智大學 林書彥教授實驗室', period: '2025.05 – 現在', desc: '進行 ICU VAP 生理訊號 AI 研究，以 LSTM 時序模型達成 6–72h 超前預警（AUROC 0.98–0.99）；設計 Stay-level CV 修正 Data Leakage，論文預計投稿 IEEE GCCE 2026。' },
+    { title: '實驗室專題生', org: '元智大學 林書彥教授實驗室', period: '2025.05 – 現在', desc: '進行 ICU VAP 生理訊號 AI 研究，以 LSTM 建立 6–72h 超前預警管線；論文獲 IEEE GCCE 2026 接受（poster）。接受後自行複查評估設定，改以病人層切分重跑後 AUROC 為 0.61–0.67（原 0.98–0.99）。' },
     { title: 'Student Mentor & Technical Support', org: 'FRC TEAM 7645', period: '2023 – 現在', desc: '指導機器人開發、除錯；引入 LLM 輔助工具把原本反覆試錯的韌體除錯流程縮短約一週，並把根因除錯思路教給後進。競賽期間擔任教練，協助現場策略決策。' },
     { title: '競賽選手', org: '南港高工 NK-MTC 7645', period: '2020.06 – 2023.09', desc: '負責機器人配線、程式設計與小型機械零件加工，3 年內出賽 3 場 FRC 國際區域賽，並代表參加全國技能競賽。' },
   ],
   projects: [
-    { cat: '大學專題', title: '加護病房 VAP 早期預測系統', period: '2025–', desc: 'Stay-level CV 修正 Data Leakage（AUROC 0.99→0.58）；IG 歸因篩選 MAP/RR/Vt/SpO₂，LSTM 於亞東 ICU（n=109）達 6–72h 預警，AUROC 0.98–0.99 / AUPRC 0.81–0.93。', tags: ['PyTorch','LSTM','Integrated Gradients','SMOTE','Medical AI'], github: '' },
+    { cat: '大學專題', title: '加護病房 VAP 早期預測系統', period: '2025–', desc: '找出 PREDICT 基準的 window-level CV 資料洩漏（MIMIC-IV 復刻 AUROC 0.99→0.58）；IG 歸因篩選 MAP/RR/Vt/SpO₂，於亞東 ICU（n=107）建立 6–72h 預警管線。論文接受後複查，改以病人層切分後 AUROC 0.61–0.67。', tags: ['PyTorch','LSTM','Integrated Gradients','SMOTE','Medical AI'], github: '' },
     { cat: '校外競賽', title: 'AWS × BitoPro 黑客松：BitOGuard', period: '2026', desc: 'LightGBM × S3→Glue→Athena→SageMaker→Lambda→Bedrock 六服務端對端 AML 管線；31 項行為特徵 + SHAP 合規報告，Streamlit 儀表板已部署。', tags: ['LightGBM','AWS SageMaker','SHAP','Streamlit'], github: 'https://github.com/Jcsk7049/bitoguard-aml' },
     { cat: '校外作品', title: 'QMK × STM32 數字鍵盤', period: '2026', desc: 'STM32F103 + stm32duino bootloader × EasyEDA Pro PCB × QMK + ChibiOS HAL；5×4 矩陣掃描、WS2812B RGB Matrix、VIA/VIAL 即時改鍵，Gerber + 韌體開源。', tags: ['QMK Firmware','STM32','ChibiOS','EasyEDA Pro'], github: 'https://github.com/Jcsk7049/qmk-stm32-keyboard' },
     { cat: '大學課程', title: 'PCB 元件瑕疵偵測（Azure Custom Vision）', period: '2026', desc: '用 Azure Custom Vision 訓練物件偵測模型框出 PCB 破洞 / 翹腳瑕疵，1064+609 張標註影像，Precision 67.4% / Recall 97.5% / mAP 87.4%。', tags: ['Azure Custom Vision','Object Detection','Pascal VOC','Python'], github: '' },

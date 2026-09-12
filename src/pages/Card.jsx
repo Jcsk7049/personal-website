@@ -49,8 +49,8 @@ const LINKS = {
 
 const HIGHLIGHTS = [
   {
-    zh: { label: 'ICU VAP 預測', desc: 'LSTM × Stay-Level CV，IEEE GCCE 2026 投稿中' },
-    en: { label: 'ICU VAP Early Prediction', desc: 'LSTM × Stay-Level CV — IEEE GCCE 2026 Under Review' },
+    zh: { label: 'ICU VAP 預測', desc: 'LSTM × Stay-Level CV，IEEE GCCE 2026 接受（poster）' },
+    en: { label: 'ICU VAP Early Prediction', desc: 'LSTM × Stay-Level CV — accepted to IEEE GCCE 2026 (poster)' },
   },
   {
     // FRC: English only regardless of lang

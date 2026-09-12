@@ -101,9 +101,9 @@
       {專題研究生}{2025.05 -- 至今}
       {元智大學 林書彥教授實驗室}{桃園市}
       \resumeItemListStart
-        \resumeItem{主導 ICU 呼吸器相關肺炎（VAP）早期預警模型；設計 stay-level 5-fold 交叉驗證，排除公開資料集中存在的病人層級資料洩漏問題。}
-        \resumeItem{以 Integrated Gradients 特徵歸因將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 72 小時預測窗口達 0.98--0.99 AUROC。}
-        \resumeItem{論文已投稿 IEEE GCCE 2026。}
+        \resumeItem{主導 ICU 呼吸器相關肺炎（VAP）早期預警模型（亞東紀念醫院 ICU，n=107）；以 Integrated Gradients 特徵歸因將 14 項生理特徵精簡至 4 項非侵入性訊號。}
+        \resumeItem{論文獲 IEEE GCCE 2026 接受（poster）。}
+        \resumeItem{接受後自行複查評估設定：原本的視窗層切分讓同一病人的時間窗橫跨訓練/測試集，屬過度理想化的條件；改以病人層切分重跑後 AUROC 為 0.61--0.67（原 0.98--0.99）。}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -131,9 +131,9 @@
       \resumeProjectHeading
           {\textbf{ICU VAP 早期預警模型} $|$ \emph{TensorFlow/Keras, LSTM, Integrated Gradients}}{2025 -- 至今}
           \resumeItemListStart
-            \resumeItem{單中心研究（亞東紀念醫院 ICU，n=109）；找出 PREDICT 基準採用 window-level 交叉驗證造成的資料洩漏（同一病人的時間窗橫跨訓練/測試集），改設計 stay-level 5-fold 分層交叉驗證，反映對未見病人的真實泛化能力。}
-            \resumeItem{以 Integrated Gradients 移除數學共線冗餘特徵（mv\_total $\equiv$ Vt $\times$ RR），將模型精簡至 4 個非侵入性特徵；最終 LSTM 在 24 小時窗口達 0.99 AUROC，6--72 小時皆維持 0.98--0.99。}
-            \resumeItem{同設定下於所有預測窗口顯著優於 LR、RF、SVM 等傳統模型；論文已投稿 IEEE GCCE 2026。}
+            \resumeItem{單中心研究（亞東紀念醫院 ICU，n=107）；以 Integrated Gradients 移除數學共線冗餘特徵（mv\_total $\equiv$ Vt $\times$ RR），將模型精簡至 4 個非侵入性特徵。論文獲 IEEE GCCE 2026 接受（poster）。}
+            \resumeItem{接受後自行複查評估設定，發現視窗層切分使同一病人的時間窗橫跨訓練/測試集——屬過度理想化的評估條件；改以 stay-level 5-fold 重跑後 AUROC 0.61--0.67、AUPRC 0.033--0.143（原為 0.98--0.99 與 0.814--0.933）。}
+            \resumeItem{會議審稿人亦獨立就同一評估設定提出疑問，與自行複查的結論一致。}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{PCB 缺陷檢測} $|$ \emph{Azure Custom Vision, Python}}{2025}
