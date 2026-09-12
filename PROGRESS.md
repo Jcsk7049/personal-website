@@ -20,7 +20,13 @@
 - **⚠️ 09-12 拿掉三項站不住的宣稱**：「杜絕 Data Leakage」、「顯著優於 LR/RF/SVM」、
   「突破 24 小時限制達成 72 小時超前預警」——都是在有洩漏的評估設定下才成立的。
   成果表的 Sensitivity/Specificity 兩欄也拿掉（複查後沒有對應新值）。
-- **🔴 09-12 FRC 官網作品集還沒動**——本人說「我主張的比例更高，我給你依據」，依據還沒給。
+- **🟡 09-12 FRC 官網已加進「中文一頁履歷」**（`resume-zh.tex`），**其餘 5 份 .tex 與 HTML 履歷還沒動**。
+  **刻意不寫貢獻百分比**——本人主張 79–96% 但依據始終沒給，本機那份 repo 也證明不了。
+  改為只寫追得到 commit 的具體成果：CMS.jsx 4,161 → 283 行拆成 12 個面板、
+  hero preload 修正（慢速 4G LCP 改善 42%）、package-lock 不同步的 CI 修復、維修模式＋畢業生標記＋firestore.rules。
+  同時把經歷段那條空泛的「重建團隊網站，減少重複的招商/外部詢問」整條移除（內容已升級進專案段，也省一行版面）。
+  ⚠️ **版面風險未驗證**：本機無 xelatex，無法確認一頁是否放得下（淨增 5 行）。本人 Overleaf 重編時要確認；
+  真的爆頁，最該拿掉的是 Swerve（2020–2023，最舊，且經歷段的「南港高工競賽選手」已涵蓋）。
   本機 `C:\Users\user\team7645-website-master\team7645-website-master` 只有 40 個 commit、
   全是本人、全在 08-07~08-18，**證明不了 196 筆或 79–96%**。`Jcsk7049/team7645-website` 對外 404。
 - **🔴 09-12 六份履歷 PDF 尚未重編**：`.tex` 已改完，PDF 還是舊的（本機無 xelatex，要本人上 Overleaf）。
@@ -246,7 +252,15 @@
   profile/education/experience/skills_matrix 未被動到、字面 `\n` 歸零、冪等通過。
 
 #### 未完
-- **FRC 官網作品集還沒寫**——本人選了「我主張的比例更高，我給你依據」但依據還沒給。
+- **FRC 官網作品集：中文一頁版已完成**（`resume-zh.tex`，專案段新增一條、經歷段移除一條，淨 +5 行）。
+  素材來源是本機 `team7645-website-master` 的 40 個 commit，**每一句都對得回某個 commit**：
+  ・CMS.jsx 4,161 → 283 行、拆成 CmsContext 共用層 + 12 個 panel（commit 12–31）
+  ・hero preload 指到不顯示的圖 → 慢 4G LCP -42%（commit 5）
+  ・package-lock 與 package.json 不同步害 `npm ci` 死在第一步 → Relock workflow（commit 7–10）
+  ・維修模式全站閘門、畢業生標記、firestore.rules 權限防護（commit 38–40）
+  **沒有寫任何百分比**——本人主張的 79–96% 依據未到，而 40 個 commit 只涵蓋 08-07~08-18，撐不起那個數字。
+  尚未同步：`resume.tex`（英文一頁）、`resume-zh-full` / `resume-zh-intern` / `resume-full` / `resume-intern`、
+  `public/resume-zh.html`（本人主用的 HTML 一頁版）。
   本機那份 `C:\Users\user\team7645-website-master\team7645-website-master` 只有 **40 個 commit、全是本人、
   全在 2026-08-07~08-18**，第一筆自陳「初始提交：固定上線前現況」，**證明不了 196 筆 commit 或 79–96%**。
   另外本人給的 `https://github.com/Jcsk7049/team7645-website` **對外是 404**，作品集連結先放

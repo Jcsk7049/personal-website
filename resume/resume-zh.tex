@@ -113,7 +113,6 @@
       \resumeItemListStart
         \resumeItem{負責機器人系統架構：多感測器融合、PID 閉迴路馬達控制調校、軟硬體介面定義。}
         \resumeItem{導入 LLM 輔助除錯流程，將反覆韌體除錯時間縮短約一週；訓練新成員以根因分析取代試錯法除錯。}
-        \resumeItem{重建團隊網站，減少重複的招商/外部詢問。}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -139,6 +138,12 @@
           \resumeItemListStart
             \resumeItem{以開源 17 鍵 PCB 為基礎在 EasyEDA Pro 改版後送廠打樣，手焊組裝並透過 stm32duino bootloader 燒錄 STM32F103；逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），解決開源 PCB 與 QMK 韌體間的編譯衝突與時序問題。}
             \resumeItem{達成穩定 USB HID 識別、RGB Matrix 正常運作，並支援 VIA/VIAL 即時改鍵、無需重新編譯。}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{FRC 7645 團隊官網與後台 CMS} $|$ \emph{React, Firebase, Vite}}{2025 -- 2026}
+          \resumeItemListStart
+            \resumeItem{接手既有站台後重構後台：單體 CMS.jsx 4,161 行拆為 CmsContext 共用層與 12 個面板元件，主檔降至 283 行，並清掉死碼與零使用的 context 成員。}
+            \resumeItem{修掉 hero 圖 preload 指向未顯示元素的問題（慢速 4G 的 LCP 改善 42\%）與 package-lock 不同步造成的 CI 中斷；另新增維修模式全站閘門與畢業生標記，並在 firestore.rules 補上對應權限防護。}
           \resumeItemListEnd
       \resumeProjectHeading
           {\textbf{Swerve Drive 全向輪底盤（FRC）} $|$ \emph{LabVIEW, CNC, PID Control}}{2020 -- 2023}
