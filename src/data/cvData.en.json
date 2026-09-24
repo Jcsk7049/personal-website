@@ -359,8 +359,15 @@
           }
         ],
         "demo": "https://job-radar-bck.pages.dev",
-        "github": "https://github.com/Jcsk7049/job-radar"
-      }
+        "github": "https://github.com/Jcsk7049/job-radar",
+        "images": [
+          {
+            "src": "/images/job-radar/cover.svg",
+            "caption": "Concept of the listings layout; no live job data is shown."
+          }
+        ]
+      },
+      "cover": "/images/job-radar/cover.svg"
     },
     {
       "id": "analog-ic-studio",
@@ -421,8 +428,15 @@
           }
         ],
         "github": "https://github.com/Jcsk7049/analog-ic-studio",
-        "demo": null
-      }
+        "demo": null,
+        "images": [
+          {
+            "src": "/images/analog-ic-studio/cover.svg",
+            "caption": "Illustration of circuit topology and analysis flow, not simulation output or silicon measurements."
+          }
+        ]
+      },
+      "cover": "/images/analog-ic-studio/cover.svg"
     },
     {
       "id": "vap",
@@ -695,7 +709,68 @@
             ]
           }
         ],
-        "github": "https://github.com/CHU-BO-YU/teamder"
+        "github": "https://github.com/CHU-BO-YU/teamder",
+        "images": [
+          {
+            "src": "/images/teammatch/cover.svg",
+            "caption": "Illustration of the teammate matching flow, not actual user profiles."
+          }
+        ]
+      },
+      "cover": "/images/teammatch/cover.svg"
+    },
+    {
+      "id": "virtual-office",
+      "cover": "/images/virtual-office/cover.svg",
+      "category": "大學校外作品",
+      "title": "Virtual Office — Desktop Pixel Workspace",
+      "period": "2026",
+      "description": "A Windows desktop pixel office built with Pygame. It turns project status into room and character activity, with project switching, character status views, and a system tray mode.",
+      "tags": [
+        "Python",
+        "Pygame",
+        "Windows",
+        "System Tray",
+        "State Sensors"
+      ],
+      "detail": {
+        "purpose": "I wanted a quick desktop view of several projects, so I organized their status into a switchable pixel office.",
+        "concept": "Built with Pygame, the app contains seven workrooms and sixteen roles. Project-level status sensors feed the scenes; users can switch rooms, inspect character activity, or minimize the app to the system tray.",
+        "outcome": "Completed a Windows desktop prototype with room switching, character status views, and system tray controls. The cover is a concept illustration, not an application screenshot.",
+        "tech": [
+          {
+            "group": "Desktop Interface",
+            "items": [
+              {
+                "name": "Pygame scenes",
+                "desc": "Shows project and character status in pixel-art workrooms, with room switching and character interaction."
+              },
+              {
+                "name": "System tray controls",
+                "desc": "Minimizes the desktop app to the Windows system tray for a persistent status view."
+              }
+            ]
+          },
+          {
+            "group": "Status Display",
+            "items": [
+              {
+                "name": "Project status sensors",
+                "desc": "Collects project-level status for display in the workroom scenes."
+              },
+              {
+                "name": "Cross-room messages",
+                "desc": "Presents messages across workrooms so project activity can be viewed in one desktop space."
+              }
+            ]
+          }
+        ],
+        "images": [
+          {
+            "src": "/images/virtual-office/cover.svg",
+            "caption": "Pixel-workroom concept illustration, not an application screenshot."
+          }
+        ]
       }
     },
     {

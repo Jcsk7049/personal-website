@@ -354,8 +354,15 @@
           }
         ],
         "demo": "https://job-radar-bck.pages.dev",
-        "github": "https://github.com/Jcsk7049/job-radar"
-      }
+        "github": "https://github.com/Jcsk7049/job-radar",
+        "images": [
+          {
+            "src": "/images/job-radar/cover.svg",
+            "caption": "職缺清單版面示意，未使用即時職缺資料"
+          }
+        ]
+      },
+      "cover": "/images/job-radar/cover.svg"
     },
     {
       "id": "analog-ic-studio",
@@ -416,8 +423,15 @@
           }
         ],
         "github": "https://github.com/Jcsk7049/analog-ic-studio",
-        "demo": null
-      }
+        "demo": null,
+        "images": [
+          {
+            "src": "/images/analog-ic-studio/cover.svg",
+            "caption": "電路拓樸與分析流程示意，非模擬輸出或晶片實測"
+          }
+        ]
+      },
+      "cover": "/images/analog-ic-studio/cover.svg"
     },
     {
       "id": "vap",
@@ -690,7 +704,68 @@
             ]
           }
         ],
-        "github": "https://github.com/CHU-BO-YU/teamder"
+        "github": "https://github.com/CHU-BO-YU/teamder",
+        "images": [
+          {
+            "src": "/images/teammatch/cover.svg",
+            "caption": "參與者配對流程示意，非實際個人檔案畫面"
+          }
+        ]
+      },
+      "cover": "/images/teammatch/cover.svg"
+    },
+    {
+      "id": "virtual-office",
+      "cover": "/images/virtual-office/cover.svg",
+      "category": "大學校外作品",
+      "title": "Virtual Office — 桌面像素辦公室",
+      "period": "2026",
+      "description": "以 Pygame 製作的 Windows 桌面像素辦公室，依專案狀態呈現工作室與角色動態。可切換專案、點選角色查看狀態，並縮到系統匣常駐。",
+      "tags": [
+        "Python",
+        "Pygame",
+        "Windows",
+        "System Tray",
+        "State Sensors"
+      ],
+      "detail": {
+        "purpose": "我想在桌面快速掌握不同專案目前的狀態，因此把專案資訊整理成一個可切換的像素辦公室。",
+        "concept": "程式以 Pygame 建立七個工作室與十六個角色。專案層級的狀態感測器提供畫面資訊，使用者可切換工作室、點選角色查看動態，或將程式縮至系統匣。",
+        "outcome": "完成 Windows 桌面版的像素辦公室原型，包含工作室切換、角色狀態檢視與系統匣操作。封面為概念示意圖，並非程式截圖。",
+        "tech": [
+          {
+            "group": "桌面介面",
+            "items": [
+              {
+                "name": "Pygame 場景",
+                "desc": "以像素工作室呈現專案和角色狀態，支援房間切換與角色互動。"
+              },
+              {
+                "name": "系統匣操作",
+                "desc": "將桌面程式縮到 Windows 系統匣，方便在工作時保留狀態視圖。"
+              }
+            ]
+          },
+          {
+            "group": "狀態呈現",
+            "items": [
+              {
+                "name": "專案狀態感測器",
+                "desc": "由專案層級的感測器整理目前工作狀態，供工作室畫面顯示。"
+              },
+              {
+                "name": "跨房間訊息",
+                "desc": "在不同工作室間呈現角色訊息，讓專案動態能在同一個桌面空間查看。"
+              }
+            ]
+          }
+        ],
+        "images": [
+          {
+            "src": "/images/virtual-office/cover.svg",
+            "caption": "像素工作室概念圖，非實際程式畫面"
+          }
+        ]
       }
     },
     {

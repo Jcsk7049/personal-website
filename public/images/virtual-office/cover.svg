@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Virtual Office project cover</title>
+  <desc id="desc">A pixel-style desktop office map representing project workrooms and activity.</desc>
+  <rect width="1600" height="900" fill="#20242a"/>
+  <path d="M0 154H1600" stroke="#3b414a" stroke-width="2"/>
+  <text x="88" y="88" fill="#f4f2eb" font-family="Arial,sans-serif" font-size="30" font-weight="600" letter-spacing="2">VIRTUAL OFFICE</text>
+  <text x="1512" y="88" text-anchor="end" fill="#a5adb4" font-family="Arial,sans-serif" font-size="17" letter-spacing="3">DESKTOP PROJECT WORKROOMS</text>
+  <g transform="translate(112 222)">
+    <rect width="900" height="530" fill="#272d34" stroke="#59616a" stroke-width="3"/>
+    <path d="M450 0V530M0 265H900" stroke="#59616a" stroke-width="3"/>
+    <g fill="#303a42">
+      <rect x="26" y="26" width="394" height="213"/><rect x="480" y="26" width="394" height="213"/>
+      <rect x="26" y="291" width="394" height="213"/><rect x="480" y="291" width="394" height="213"/>
+    </g>
+    <g fill="#8c9ba0">
+      <rect x="72" y="70" width="112" height="12"/><rect x="526" y="70" width="112" height="12"/>
+      <rect x="72" y="335" width="112" height="12"/><rect x="526" y="335" width="112" height="12"/>
+    </g>
+    <g fill="#4e6870">
+      <rect x="104" y="118" width="94" height="9"/><rect x="558" y="118" width="94" height="9"/>
+      <rect x="104" y="383" width="94" height="9"/><rect x="558" y="383" width="94" height="9"/>
+    </g>
+    <g shape-rendering="crispEdges">
+      <g transform="translate(250 106)"><rect x="8" y="0" width="24" height="24" fill="#e6bb75"/><rect y="24" width="40" height="36" fill="#5e92a1"/><rect x="-8" y="60" width="56" height="8" fill="#343d44"/><rect x="0" y="68" width="12" height="13" fill="#c0a174"/><rect x="28" y="68" width="12" height="13" fill="#c0a174"/></g>
+      <g transform="translate(690 106)"><rect x="8" y="0" width="24" height="24" fill="#c9907d"/><rect y="24" width="40" height="36" fill="#8a77a8"/><rect x="-8" y="60" width="56" height="8" fill="#343d44"/><rect x="0" y="68" width="12" height="13" fill="#c0a174"/><rect x="28" y="68" width="12" height="13" fill="#c0a174"/></g>
+      <g transform="translate(250 371)"><rect x="8" y="0" width="24" height="24" fill="#d6b08a"/><rect y="24" width="40" height="36" fill="#6b9b81"/><rect x="-8" y="60" width="56" height="8" fill="#343d44"/><rect x="0" y="68" width="12" height="13" fill="#c0a174"/><rect x="28" y="68" width="12" height="13" fill="#c0a174"/></g>
+      <g transform="translate(690 371)"><rect x="8" y="0" width="24" height="24" fill="#d9c17a"/><rect y="24" width="40" height="36" fill="#587d9d"/><rect x="-8" y="60" width="56" height="8" fill="#343d44"/><rect x="0" y="68" width="12" height="13" fill="#c0a174"/><rect x="28" y="68" width="12" height="13" fill="#c0a174"/></g>
+    </g>
+    <g fill="#88c6a4"><rect x="364" y="68" width="12" height="12"/><rect x="818" y="333" width="12" height="12"/></g>
+    <g fill="#e4b36b"><rect x="364" y="333" width="12" height="12"/><rect x="818" y="68" width="12" height="12"/></g>
+  </g>
+  <g transform="translate(1090 306)">
+    <text x="0" y="0" fill="#dfe4e5" font-family="Arial,sans-serif" font-size="25" font-weight="600">A quiet overview of work.</text>
+    <path d="M0 34H396" stroke="#59616a" stroke-width="2"/>
+    <text x="0" y="92" fill="#a5adb4" font-family="Arial,sans-serif" font-size="19">Project state</text>
+    <text x="0" y="140" fill="#a5adb4" font-family="Arial,sans-serif" font-size="19">Team activity</text>
+    <text x="0" y="188" fill="#a5adb4" font-family="Arial,sans-serif" font-size="19">Desktop controls</text>
+    <circle cx="366" cy="86" r="7" fill="#88c6a4"/><circle cx="366" cy="134" r="7" fill="#e4b36b"/><circle cx="366" cy="182" r="7" fill="#88c6a4"/>
+    <text x="0" y="270" fill="#78828b" font-family="Arial,sans-serif" font-size="15" letter-spacing="2">PYGAME  ·  WINDOWS</text>
+  </g>
+</svg>

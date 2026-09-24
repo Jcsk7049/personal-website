@@ -11,6 +11,8 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-25）
 
+- **🟡 09-25 專案補齊與封面**：作品集由 12 個擴充為 13 個，加入 Virtual Office；Job Radar、Analog IC Studio、TeamMatch 原本沒有封面，已補 3 張概念示意圖，Analog 使用本人指定的電路示意封面。中英文 cvData、design token、sitemap、migration 0025 已更新，四張 SVG 均標明是示意圖而非真實截圖／輸出。依序執行遠端 migration 0021–0025 成功，D1 現有 13 個專案；正式 API 已回傳新專案和封面路徑。`npm.cmd run build` 成功；待 commit/push，讓新的靜態封面檔案上線。
+
 - **🟡 09-25 個人網站全站 UI 與專案文案**：依本人回饋改成滿版、經歷／學歷下方放四列技術清單、其後以等寬網格滿版呈現 12 個專案；移除 Bento 跨欄與明顯圓角。中英文 12 個專案摘要及詳情重寫，調整 VAP、AWS、Job Radar、Analog 等舊敘述，migration 0025 已重產。再調整導覽區段：技能矩陣獨立滿版；經歷、技能、專案、獎項、留言各自至少佔滿導覽列以下一個視窗，錨點頂端與導覽列底端對齊。專案卡片 gap 28px、圓角 8px。最新視覺回饋：經歷／學歷與專案區恢復黑底，專案卡保留 8px 圓角；四個技術詳情頁改為有技能分類導覽、程度分布、索引與專案連結的深色技術目錄。`npm run build` 成功；此前瀏覽器已核對滿版錨點和卡片間距，本次只完成 build，未部署、未同步遠端 D1。
 
 - **🟡 09-24 個人網站專案文案重寫**：本機中英文 12 個專案摘要已按可檢視來源整理；更新 VAP 研究定位、Job Radar 三來源描述、PCB 指標（mAP 82%），並隱藏目前無法啟動的 Analog IC Studio Demo。補查後以 `C:\find job agent` 確認 Job Radar 來源，以 TeamMatch 原始碼確認登入是 demo 身分切換；讀取 `C:\team7645-website-master\team7645-website-master` 的未提交版本後移除無法證實的 FRC 貢獻比例與效能數字。migration 0025 已產生，**尚未執行遠端 D1 或 push**。
@@ -231,6 +233,13 @@
 - 依本人最新說明，經歷／學歷恢復黑底，專案整區同步深色背景，卡片保留 8px 圓角和卡片間距，並提高文字與篩選器在深色底上的對比。
 - 依截圖為首頁技術矩陣補上與其他區塊一致的左右內距（手機 24px、桌機 40px），標題、分類名稱和技能文字一起對齊。
 - `npm run build` 通過。未跑測試套件；本次未部署、未執行遠端 D1。
+
+### 2026-09-25（新增 Virtual Office 與專案封面）
+
+- 確認此前列出的 12 個專案都已在網站，本次新增 Virtual Office（Pygame Windows 桌面程式，7 個工作室、16 個角色）；內容取自專案規格，不讀取或公開 `C:\WORK SPACE` 私人規劃紀錄。
+- 為無封面的 Job Radar、Analog IC Studio、TeamMatch 補概念 SVG；Analog 封面依本人選擇製作電路示意，四張圖及詳情圖說都註明非實際畫面或模擬輸出。更新中英文 cvData、Virtual Office 顏色 token、sitemap 與 migration 0025。
+- 遠端先確認 D1 原有 12 筆，再依序執行 0021 BitOGuard、0022 AWS、0023 QMK、0024 技能/VAP、0025 專案同步；五個 migration 成功。正式 `/api/projects?lang=zh` 回傳 Virtual Office 及新封面路徑，D1 現有 13 個專案。
+- `npm.cmd run build` 成功；未跑測試套件。尚未 push，靜態封面仍待部署。
 
 ### 2026-09-25（滿版 UI 與專案文案改寫）
 

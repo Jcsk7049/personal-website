@@ -2,6 +2,8 @@
 // 改顏色只改這裡，SkillGrid / SkillDetail / ProjectShowcase / Admin 都會跟著變。
 
 export const PROJECT_ACCENTS = {
+  'virtual-office':    'from-teal-400 to-sky-500',
+  'job-radar':         'from-amber-400 to-orange-500',
   'analog-ic-studio':  'from-cyan-400 to-blue-600',
   'vap':               'from-sky-400 to-blue-600',
   'aws-hackathon':     'from-amber-400 to-orange-500',
@@ -16,6 +18,8 @@ export const PROJECT_ACCENTS = {
 
 // 純色版本（給文字用，漸層文字不可讀且是 AI 感的地雷，只留給背景用）
 export const PROJECT_ACCENT_SOLID = {
+  'virtual-office':    'text-teal-600',
+  'job-radar':         'text-orange-500',
   'analog-ic-studio':  'text-blue-600',
   'vap':               'text-blue-600',
   'aws-hackathon':     'text-orange-500',
