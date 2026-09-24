@@ -61,7 +61,7 @@ export default function ProjectDetail() {
   const sections    = t.projectSections
 
   return (
-    <div className="bg-[#F5F5F7] min-h-screen font-sans antialiased page-enter">
+    <div className="site-shell bg-[#F5F5F7] min-h-screen font-sans antialiased page-enter">
 
       {/* ── Nav: Apple frosted glass, 48px ── */}
       <nav
@@ -73,7 +73,7 @@ export default function ProjectDetail() {
           borderBottom: '1px solid rgba(0,0,0,0.1)',
         }}
       >
-        <div className="max-w-[980px] mx-auto px-6 md:px-10 h-full flex items-center justify-between gap-4">
+        <div className="w-full px-6 md:px-10 h-full flex items-center justify-between gap-4">
           <button
             onClick={handleBack}
             className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[240ms] shrink-0"
@@ -92,10 +92,10 @@ export default function ProjectDetail() {
         {/* Accent line */}
         <div className={`h-[3px] w-full bg-gradient-to-r ${accentClass}`} />
 
-        <main className="pt-16 pb-32 px-6 md:px-10 max-w-[980px] mx-auto">
+        <main className="project-detail-main pt-14 md:pt-20 pb-24 md:pb-32 w-full px-6 md:px-10">
 
           {/* ── Hero ── */}
-          <div className="mb-20 hero-fade-left">
+          <div className="project-detail-hero mb-16 md:mb-24 hero-fade-left">
             {/* Eyebrow: category + period */}
             <div className="flex items-center gap-3 mb-5">
               {project.category && <CategoryBadge category={project.category} />}
@@ -106,7 +106,7 @@ export default function ProjectDetail() {
               )}
             </div>
 
-            <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-5 leading-[1.07]">
+            <h1 className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold tracking-[-0.035em] text-[#1D1D1F] mb-6 leading-[1.02] text-balance">
               {project.title}
             </h1>
 
@@ -173,7 +173,7 @@ export default function ProjectDetail() {
           {/* ── Editorial sections: no cards, divide-y ── */}
           <div className="divide-y divide-black/[0.06]">
             {sections.map(({ key, label, en }) => (
-              <div key={key} className="py-14 first:pt-0" data-reveal>
+              <div key={key} className="project-detail-section py-12 md:py-16 first:pt-0" data-reveal>
 
                 {/* 2-layer: eyebrow + title */}
                 <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">
@@ -242,21 +242,20 @@ export default function ProjectDetail() {
 
                 {/* Tech stack */}
                 {key === 'tech' && Array.isArray(detail.tech) ? (
-                  <div className="space-y-8">
+                  <div className="space-y-10">
                     {detail.tech.map(group => (
                       <div key={group.group}>
                         <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
                           {group.group}
                         </p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 gap-0 border-t border-black/[0.08]">
                           {group.items.map(item => (
                             <div key={item.name}
-                                 className="flex gap-3 bg-white rounded-2xl px-5 py-4
-                                            shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
-                              <span className="shrink-0 font-semibold text-sm text-[#1D1D1F] min-w-[7rem]">
+                                 className="project-tech-row flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 py-5 border-b border-black/[0.08]">
+                              <span className="shrink-0 font-semibold text-[14px] text-[#1D1D1F] sm:w-[12rem]">
                                 {item.name}
                               </span>
-                              <span className="text-sm text-[#3F3F46] leading-snug">{item.desc}</span>
+                              <span className="text-[14px] text-[#5b5b60] leading-[1.65] flex-1">{item.desc}</span>
                             </div>
                           ))}
                         </div>

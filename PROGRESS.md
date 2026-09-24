@@ -9,7 +9,11 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-09-12）
+## 📌 當前狀態快照（最後更新：2026-09-25）
+
+- **🟡 09-25 個人網站全站 UI 與專案文案**：依本人回饋改成滿版、經歷／學歷下方放四列技術清單、其後以等寬網格滿版呈現 12 個專案；移除 Bento 跨欄與明顯圓角。中英文 12 個專案摘要及詳情重寫，調整 VAP、AWS、Job Radar、Analog 等舊敘述，migration 0025 已重產。再調整導覽區段：技能矩陣獨立滿版；經歷、技能、專案、獎項、留言各自至少佔滿導覽列以下一個視窗，錨點頂端與導覽列底端對齊。專案卡片 gap 28px、圓角 8px。最新視覺回饋：經歷／學歷與專案區恢復黑底，專案卡保留 8px 圓角；四個技術詳情頁改為有技能分類導覽、程度分布、索引與專案連結的深色技術目錄。`npm run build` 成功；此前瀏覽器已核對滿版錨點和卡片間距，本次只完成 build，未部署、未同步遠端 D1。
+
+- **🟡 09-24 個人網站專案文案重寫**：本機中英文 12 個專案摘要已按可檢視來源整理；更新 VAP 研究定位、Job Radar 三來源描述、PCB 指標（mAP 82%），並隱藏目前無法啟動的 Analog IC Studio Demo。補查後以 `C:\find job agent` 確認 Job Radar 來源，以 TeamMatch 原始碼確認登入是 demo 身分切換；讀取 `C:\team7645-website-master\team7645-website-master` 的未提交版本後移除無法證實的 FRC 貢獻比例與效能數字。migration 0025 已產生，**尚未執行遠端 D1 或 push**。
 
 - **🟢 09-12 VAP 紅線解除**：本人已與教授談過 GCCE，**教授定調「當作環境狀況過度理想化」**。
   履歷（6 份 .tex ＋ HTML）、網站 cvData、數位名片全部改成「獲 IEEE GCCE 2026 接受（poster）」，
@@ -172,10 +176,11 @@
 - [x] **0021 的索引 bug 已修**（09-02，commit 3ff5821）：那段 skills_detail UPDATE 直接移除，改由 0024 整包同步。
 - [x] **0023_qmk_f103.sql 已開**（09-02）：F072 → F103，整包覆寫該列。
 - [x] **0024_sync_skills_detail_and_vap.sql 已開**（09-02）：skills_detail 整包 + vap 去「首個」。
-- [ ] **🔴 跑四個 migration 讓改動上線**（唯一還沒做的）：`cd "C:\Users\User\personal-website"` 然後照順序：
+- [ ] **🔴 跑四個既有 migration 讓舊改動上線**（0021–0024）：`cd "C:\Users\User\personal-website"` 然後照順序：
       `npm run db:migrate:bitoguard-ensemble:remote` → `npm run db:migrate:aws-finalist:remote`
       → `npm run db:migrate:qmk-f103:remote` → `npm run db:migrate:skills-vap:remote`
       跑完可用 `curl "https://personal-website-1kf.pages.dev/api/projects?lang=zh"` 抽驗（不該再看到 `\n` 字面、F072、31 項）。
+- [ ] **執行專案文案同步 migration 0025**：四個既有 migration 0021–0024 跑完後，再執行 `npm run db:migrate:project-copy:remote`。
 - [ ] **給出 FRC 官網那 196 筆 commit 的 repo 路徑**（本人稱在本機非 Desktop），否則 cvData 的 35% 改不了
 - [ ] **把 README 加進 `bitoguard-aml` repo 根目錄**（檔案已交付本人）
 - [ ] **開 `bitoguard-aml` 的 `.kiro/steering/` 自己看一眼**——Kiro 的 steering 放專案指示，最可能有坦白筆記
@@ -197,8 +202,8 @@
 - [ ] QMK 延遲量測：照 `QMK_LATENCY_SOP.md` 做（**零硬體，不需邏輯分析儀**——
       原本「買邏輯分析儀」的計畫已作廢：QMK 圈權威數字(Stapelberg)全是韌體自我計時量的，
       且 24MHz 的 Saleae clone 對 USB FS 只有 2 samples/bit 根本解不出封包）
-- [ ] PCB 瑕疵檢測：開 GitHub repo（tiling/NMS/Flask 工具 code）
-- [ ] VAP：做「MIMIC-IV 0.99→0.58 洩漏 demo」公開 notebook
+- [x] PCB 瑕疵檢測：公開 GitHub repo 已建立；2026-09-24 重新核對公開 README 指標（Precision 100%、mAP 82%）
+- [ ] VAP：依 2026-09-19 稽核結論整理方法學展示，納入索引/時區/欄位問題與 metadata-only 負對照；不要再主張現有亞東資料可證明預測效能
 - [ ] analog-ic-studio：用已交付的 prompt 實作電路識別 API（做完通知 Claude 同步網站）
 - [ ] 定期喚醒 Streamlit（BitOGuard）與 HF Space（analog-ic）demo；確認 QMK YouTube 影片公開
 - [ ] 多益（目標 850+）
@@ -219,6 +224,45 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-09-25（技能詳情與深色區塊）
+
+- 四個技術詳情頁改成深色技術目錄：分類導覽、技能程度分布、索引卡片與回連專案；保留原有中英文資料、返回行為與專案連結配對。
+- 依本人最新說明，經歷／學歷恢復黑底，專案整區同步深色背景，卡片保留 8px 圓角和卡片間距，並提高文字與篩選器在深色底上的對比。
+- `npm run build` 通過。未跑測試套件；本次未部署、未執行遠端 D1。
+
+### 2026-09-25（滿版 UI 與專案文案改寫）
+
+- 按本人指定將技術矩陣移入經歷／學歷區下方，以無卡片列式清單呈現；專案區接續其後，取消 Bento 跨欄，改成隨螢幕寬度填滿的等寬網格。首頁、專案詳情和技能詳情改用全寬內容區，移除明顯圓角。
+- 重寫中英文 12 個專案摘要、目的、做法與成果；修正 BitOGuard 約 95% 貢獻比例、Job Radar 來源說明、VAP 方法描述等舊 copy，保留圖片、連結及專案資料結構。sections/profile/education/experience 未改，避免覆寫由 admin 維護的 D1 內容。
+- 依本人補充釐清「顏色沒對齊」是點右上方導覽後，上方露出白色空帶。定位到 `scroll-padding-top: 4.25rem` 與區塊 `scroll-margin-top: 3rem` 疊加；改為只預留 48px 導覽高度。瀏覽器點「經歷」後量得 section top = nav bottom = 48px，區塊背景直接接續導覽列。
+- 本輪再按本人意見調整各導覽目的區：技能矩陣移出經歷區獨立呈現；經歷、技能、專案、獎項、留言設定至少一個可視高度，點選後不露出相鄰區域。專案網格改 20/28px gap，卡片圓角 8px。瀏覽器桌機 1280×720 核對各區頂端對齊導覽列底端 48px，專案 radius 8px、gap 28px。
+- 重產 migration 0025；中英文 project IDs 順序一致，共 12 筆。`npm.cmd run build` 成功。未跑測試、未部署、未執行遠端 D1，未 commit/push。
+
+### 2026-09-25（個人網站 UI 全站重設計）
+
+- 09-25 視覺回饋修正：依本人截圖將 Experience 從深色漸層區改為淺灰底＋深色文字，時間軸改中性灰，右側學歷使用獨立清單並以細分隔線建立層次。全站背景 washes 改純色，移除 DotNav、滑鼠追蹤光暈、相片旋轉框與 Hero parallax，卡片取消位移／縮放；保留單一藍色作為互動重點。production build 再次通過；檢查經歷背景 computed color 為 rgb(245, 245, 247)、390px 寬無水平溢出。
+
+- 調整 Nav、Hero、ProjectShowcase，建立清楚的編輯型作品集層級；重整經歷、技能、獎項、留言區留白與互動視覺。
+- 更新 ProjectDetail 標題比例、段落寬度和技術清單；新增全域色彩／排版 token、卡片狀態、手機斷點與 reduced-motion 規則。未改內容資料與 D1。
+- 依 package-lock 執行 npm.cmd ci --ignore-scripts --no-audit --no-fund（260 packages；lockfile 未變），production build 通過。瀏覽器確認桌機首頁、390px 手機無水平溢出、英文類別過濾、TeamMatch 詳情四區正常，console 無錯誤。
+- 未跑測試套件，未 commit/push，未部署；本機預覽可先供本人檢視。
+
+### 2026-09-24（補查新增來源並修作文案）
+
+- 閱讀 Job Radar 本機 README、Git 狀態及工作日誌；README 描述四來源，但與目前線上頁面及履歷草稿不一致，網站維持已確認的 104、Cake、LinkedIn 三來源，不寫每日筆數、公司數或 Top 6。
+- 閱讀 TeamMatch SPEC 與原始碼：確認三人介面契約、活動報名與互按配對流程；本人部分為 demo profile 選取、個人檔案、導覽與整合配對頁時的 Firestore 長輪詢修正。明確註明沒有 Firebase Auth、尚未部署，公開前需正式驗證及安全規則。
+- 檢視 FRC 新路徑之 Git 狀態與 CMS 修改；工作目錄有多項未提交變更，故未動來源檔，也不再沿用舊快照的 35% 和缺乏現況依據的效能數字。補上使用者指定 repo 連結，成果以目前可核對的功能描述。
+- 重產 migration 0025；靜態檢查確認中英文 12 筆 ID 順序一致、JSON 可解析，SQL 含更新列。未跑測試套件、未執行遠端 D1、未 commit/push。
+
+### 2026-09-24（專案文案依來源重寫；準備 D1 同步 migration）
+
+- 檢視本機 Analog IC Studio、VAP、PCB 資料夾，公開 GitHub 上 BitOGuard、QMK、PCB 與可讀的 FRC7645website repo，以及 Job Radar/FRC 線上頁面。
+- 中英文 12 個專案摘要重新撰寫；改寫 Job Radar 詳情以符合線上三個來源，重寫 VAP 研究目的、方法、結果、技術描述、經歷與 profile bio，並註明舊圖屬視窗層評估；PCB 詳情與圖說對齊公開 README 的 mAP 82%。
+- Analog IC Studio Hugging Face Space 回報 RUNTIME_ERROR，網站資料的 demo URL 暫設為 null。
+- 新增 migration 0025 及 npm script，預備整批同步所有 projects。未執行遠端 D1，未 push。
+- 補查來源：Job Radar 工作目錄 `C:\find job agent`（README 與 Git 日誌數字版本不一，因此網站只保留可由 demo 確認的 104/Cake/LinkedIn 三來源）；TeamMatch `C:\Users\user\Downloads\teamder-main\teamder-main`（登入為 profiles 選取器，非 Firebase Auth，未部署且尚無正式安全規則）；FRC `C:\team7645-website-master\team7645-website-master`（有未提交修改，保留來源不動，移除無法從目前 repo 驗證的比例與效能宣稱，補上指定 GitHub URL）。`C:\WORK SPACE` 文件作為旁證，沒有改動。打地鼠／競賽機器人／Swerve 仍只有網站現有圖片，缺少原始工程或報告。
+
 
 ### 2026-09-12（GCCE poster 寫進履歷與網站；VAP 紅線解除；n=109 更正為 107）
 

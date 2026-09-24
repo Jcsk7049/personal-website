@@ -2,7 +2,7 @@
   "profile": {
     "name": "Chiang Jia Yuan",
     "title": "Hardware/Software Integration · From PCB to Firmware to Data",
-    "bio": "Trained in mechatronics from the ground up — mechanical design, CNC machining, PCB, embedded firmware, through to data analysis and AI models. Third-year EE student with a vocational mechatronics background, so I've worked hands-on at every layer and know how they connect — which makes it easier to stay aligned when collaborating across disciplines. My latest research, on time-series prediction of ICU VAP, has been submitted to IEEE GCCE 2026.",
+    "bio": "With a mechatronics background, I have worked on circuits, PCB design, embedded firmware, and data analysis. I am studying electrical engineering. After my ICU VAP paper was accepted, I audited its data and evaluation pipeline, found that the original results were affected by the evaluation setup and cohort differences, and reframed the work as a methodology audit. Accepted as a poster at IEEE GCCE 2026.",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -30,7 +30,7 @@
       "role": "Research Intern",
       "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
       "period": "2025.05 – Present",
-      "description": "Leading ICU VAP early-warning research: designed Stay-Level 5-Fold CV to eliminate patient-level data leakage in public baselines, and used Integrated Gradients to distill 14 features to 4 non-invasive metrics; LSTM achieves 72h AUROC 0.98–0.99. Paper submitted to IEEE GCCE 2026."
+      "description": "I worked on an ICU VAP prediction study, handling data preparation, model comparisons, and evaluation. After the paper was accepted, I audited the data indexing, time alignment, and patient-level split, and found that the original high scores were affected by the evaluation setup and cohort-source differences. I reframed the work as a methodology audit. Accepted as a poster at IEEE GCCE 2026."
     },
     {
       "role": "Engineering Advisor & Systems Integrator",
@@ -301,7 +301,7 @@
       "category": "大學校外作品",
       "title": "Job Radar: Personalized Job Search Dashboard",
       "period": "2026 – Present",
-      "description": "A GitHub Actions cron job aggregates target-company listings daily from four sources (104, Cake, LinkedIn, company sites — about 1,300/day), scores them against my own skill weights, and produces a daily 'Top 6 curated shortlist with reasoning' — a deliberate shift from coverage to precise judgment. Scraper, scoring engine, static-site build, and cloud CI/CD are all self-built; it updates daily even with my laptop off. (AI-assisted development, Claude Code)",
+      "description": "A daily list of roles from 104, Cake, and LinkedIn, ranked against my skills and criteria with a reason for each recommendation. Filter by source, role, or search term.",
       "tags": [
         "Python",
         "Playwright",
@@ -310,9 +310,9 @@
         "Cloudflare Pages"
       ],
       "detail": {
-        "purpose": "Most job boards rank listings by general popularity, which has nothing to do with whether a role actually fits me. I wanted a system centered on my own skills and constraints: track the companies I'm targeting, rank them by weights I set myself, and separate \"what I can apply to as a student now\" from \"what's only open after graduation.\"\n\nSo I built a tool that runs itself every morning at 8:30 without needing my computer on.",
-        "concept": "Data and presentation are separated: the scraper produces structured JSON, the build step statically renders cards into a single HTML file, and the frontend JS only handles filtering, search, and saved/applied status (stored in localStorage). No backend, no database — just static files on a CDN, fast and cheap.\n\nEach source needs a different scraping approach: 104 uses a reverse-engineered company-page API (pulling \"all listings\" instead of keyword search, to avoid missing postings); Cake's job pages are JS-rendered, so I use Playwright headless; LinkedIn uses its public guest job endpoint over plain HTTP, no login needed. The sources have different formats, so I normalize them into one card schema before merging and ranking.\n\nScoring weights (company fit, title keyword matches, commute zone, experience requirements, junior-friendliness) all live in config.json so I can tune them without touching code. Listings are also bucketed by my graduation timeline into \"apply now / campus recruiting targets / post-graduation pool\" so \"a good fit\" and \"something I can apply to right now\" don't get conflated.",
-        "outcome": "It updates automatically every day, pulling roughly 1,300 listings across four sources (104, Cake, LinkedIn, company sites). A few real problems I had to fix along the way:\n\n- 104's old joblist API was discontinued, so I reverse-engineered the company-page SPA to find the current endpoint\n- LinkedIn blocks generic scrapers, so I switched to its public guest endpoint to get around the login wall\n- It originally ran on a local Windows scheduled task, which meant nothing happened if my computer was off — moved it to GitHub Actions cron\n- CI deploys started failing because the Cloudflare token had invisible characters in it; fixed by stripping non-printable characters with tr -cd and printing the string length to diagnose\n- Telling \"is this a new listing\" apart required remembering what I'd seen across runs, solved by committing seen_jobs.json to version control\n\nPersonal academic data (graduation credits, application strategy) lives behind a login-protected page; the public job radar and rankings pages don't contain personal data.",
+        "purpose": "I wanted one place to compare listings across job sites without switching between pages.",
+        "concept": "The tool collects roles from three sources, keeps the original links, and ranks them against my criteria. The public page shows listings and filters; personal analysis stays private.",
+        "outcome": "Job Radar refreshes the list daily. I review the suggested roles and verify each position and application status myself.",
         "tech": [
           {
             "group": "Data Collection",
@@ -367,7 +367,7 @@
       "category": "大學校外作品",
       "title": "Analog IC Studio — Automated Analog IC Tuning Platform",
       "period": "2026",
-      "description": "A Python + Ngspice + SciPy platform that automates analog IC design: enter spec targets and the optimizer closes the loop in simulation to back-solve each transistor's W/L. (AI-assisted development)",
+      "description": "A Python, Ngspice, and SciPy toolkit for simulating analog circuits and searching component sizes, including op amps, bandgap references, oscillators, and VCOs. It is a simulation tool; the hosted demo is currently unavailable.",
       "tags": [
         "Python",
         "Ngspice",
@@ -376,9 +376,9 @@
         "Flask"
       ],
       "detail": {
-        "purpose": "Analog IC design traditionally relies on manual, trial-and-error tuning. This platform automates it: the user enters spec targets (e.g. 60dB gain, 3GHz oscillation, minimal temperature drift), and the system uses real Ngspice circuit simulation plus SciPy multi-variable optimization to back-solve every MOSFET's width W and length L, emitting device parameters that map one-to-one back into KiCad.\n\nIt covers six circuit topologies (two-stage OPA, bandgap reference, ring oscillator, current-starved VCO, LC-VCO) and offers a fast Level-1 model alongside the real SkyWater sky130 PDK, balancing iteration speed against process fidelity.",
-        "concept": "[Simulation engine] Ngspice at the core: AC/DC/transient analyses auto-extract Gain/PM/UGF, temperature coefficient, oscillation frequency, backed by the SkyWater sky130 open PDK (BSIM4 real process models with tt/ff/ss corners). A self-healing guard detects non-convergence and retries, distinguishing flaky crashes from deterministic dead zones.\n\n[Optimization] Each transistor gets its own W/L (up to 14 dimensions); SciPy Differential Evolution for global search plus Nelder-Mead for local refinement, evaluated in parallel across threads. A physics guard enforces Wp = 2-3x Wn (electron/hole mobility ratio) to reject non-physical solutions.\n\n[RFIC & yield] Phase noise (Leeson estimate), FTR tuning curve and Kvco extraction, Monte-Carlo yield with a Pelgrom mismatch model (sigma proportional to 1/sqrt(WL), so larger devices match better), 27-corner PVT scan, Pareto multi-objective packages, and layout finger splitting (single finger <= 10um).",
-        "outcome": "All six topologies were fully parameterized to per-instance W/L, eliminating black boxes. Auto-optimization reaches Gain 65dB / PM 63° for the OPA; the bandgap trims to 2 ppm/°C; the LC-VCO achieves phase-noise FoM -186 dBc/Hz (~18dB better than the ring, concretely demonstrating the LC-vs-ring phase-noise/tuning-range trade-off).\n\nThe frontend is an Apple-style single-page dashboard (Chinese UI, English chart labels) with a live optimization progress bar; deployed via Docker to Hugging Face Spaces (apt ngspice + Flask) for a permanent, publicly runnable demo.\n\nEngineering-wise, 13 physics/engineering defects were systematically audited and fixed (fake yield model, phase wrapping, device self-loading, fast-vs-accurate fidelity inversion, etc.), with simplification boundaries honestly labeled (phase noise is an analytical estimate; the LC inductor is idealized) rather than overstating the simulation's capability.",
+        "purpose": "I organized analog simulation and tuning into a tool where users can set a target and compare simulated results for different component sizes.",
+        "concept": "Ngspice runs circuit simulations and SciPy searches component parameters. The project covers AC, DC, and transient analysis; sky130 mode uses the open PDK. Results are simulations, not silicon measurements.",
+        "outcome": "The project includes simulation and parameter-search code for several circuit topologies. The hosted Space is currently unavailable, so there is no live demo.",
         "tech": [
           {
             "group": "Simulation Engine",
@@ -415,13 +415,13 @@
               },
               {
                 "name": "Cloud deploy",
-                "desc": "Docker (apt ngspice + Flask) on Hugging Face Spaces; permanent, runs real simulation in the cloud"
+                "desc": "Docker (apt ngspice + Flask) on Hugging Face Spaces; currently unavailable"
               }
             ]
           }
         ],
         "github": "https://github.com/Jcsk7049/analog-ic-studio",
-        "demo": "https://huggingface.co/spaces/LANCELOT7049/analog-ic-studio"
+        "demo": null
       }
     },
     {
@@ -431,7 +431,7 @@
       "category": "大學專題作品",
       "title": "ICU VAP Prediction: Pilot Methodology Validation",
       "period": "2025 – Present",
-      "description": "Pilot methodology validation on a single-center ICU dataset (Far Eastern Memorial Hospital, n=107). Integrated Gradients eliminated co-linear redundancy (mv_total where mv≡Vt×RR), distilling 14 features to 4 non-invasive metrics. Accepted to IEEE GCCE 2026 (poster); a self-audit after acceptance found that window-level splitting placed time windows from the same patient on both sides of the split, and re-running with patient-level splits gave AUROC 0.61–0.67. Scope: single-center pilot — methodology validation, not a clinical deployment product.",
+      "description": "A single-center ICU study at Far Eastern Memorial Hospital with 107 patients. After acceptance, I reviewed indexing, time alignment, and evaluation splits and found that window-level splitting and differences in patient sources could inflate results. The current data do not support a clinical performance claim. Accepted as an IEEE GCCE 2026 poster.",
       "badge": "IEEE GCCE 2026 · Poster",
       "tags": [
         "LSTM · Time-Series",
@@ -448,31 +448,31 @@
           },
           {
             "src": "/images/vap/fig-lstm-vs-baseline.png",
-            "caption": "Fig. 1  LSTM vs. traditional ML baselines (AUROC / AUPRC / Sensitivity / Specificity)"
+            "caption": "Original window-level baseline comparison; patients crossed the train/test split, so these are not performance claims"
           },
           {
             "src": "/images/vap/fig-lstm-performance.png",
-            "caption": "Fig. 2  LSTM 4-feat performance across warning horizons (6–72 h)"
+            "caption": "Original window-level result plot; the audited setup does not establish patient-level generalization"
           }
         ],
-        "purpose": "VAP incidence is ~5–15% in mechanically ventilated patients with 20–50% mortality, and clinical diagnosis typically lags 48+ hours behind onset. Current methods rely on periodic assessment and cannot leverage the temporal trends available from continuous monitoring.\n\nUsing Far Eastern Memorial Hospital ICU data (2019–2023, n=107: VAP 54, non-VAP 55), we built an LSTM time-series classification pipeline using 4 routine vital signs (MAP, respiratory rate, tidal volume, SpO₂) to provide 6–72 hour early warning of VAP.\n\nModel selection — LSTM vs. GRU/Transformer:\nVAP physiological changes exhibit continuous temporal drift (visible 48–72 hours before infection onset), so static features are insufficient to capture long-range dependencies. LSTM cell state shows better gradient stability than GRU on 72-hour windows; Transformer overfits on the n=107 small dataset. LSTM achieved consistently higher AUROC/AUPRC than LR, RF, and SVM across all windows.\n\n[Study Limitations & Honest Scope]\nThis project is a pilot methodology validation, not a production clinical system. Key constraints: (1) Single-center dataset from Far Eastern Memorial Hospital only — generalizability to other ICU populations is not yet established. (2) Small sample size (n=107) — results demonstrate the effectiveness of Stay-Level CV as a validation methodology; they should not be interpreted as evidence of deployment-ready clinical performance. (3) External validation on a multi-center, larger dataset is required before any clinical deployment consideration. The high AUROC on local data reflects a well-controlled, leakage-free experimental design applied to a small homogeneous cohort.",
-        "concept": "[1. Paper Replication & Data Leakage Discovery]\nBased on the PREDICT paper (JCM 2025), we fully replicated its 3-layer LSTM architecture using the MIMIC-IV public dataset. During replication, we discovered that the original paper used Window-level Cross Validation — the same patient's time windows appeared in both training and test sets, inflating AUROC to 0.99. This data leakage finding is one of the core contributions of this research.\n\n[2. Correct Validation Methodology]\nSwitching to Stay-level Cross Validation (patient-wise splitting) eliminated the leakage and revealed true performance (AUROC ≈ 0.58) on MIMIC-IV, confirming the limitations of the original paper's results.\n\nFor the local Far Eastern ICU dataset (2019–2023, 110 enrolled, 1 excluded for <72h ventilation, effective n=107: VAP 54, non-VAP 55; VAP group had significantly higher APACHE II on admission: 25.9 vs 20.1, p<0.001), SMOTE (1:10) was applied within each training fold only, ensuring oversampling did not cross train/test boundaries.\n\n[3. Feature Engineering & Interpretability]\n14 physiological and ventilation features were analyzed with Integrated Gradients (IG), yielding the top 4 most predictive features: MAP (mean arterial pressure), Vent Rate (ventilator set rate), Tidal Volume, SpO₂. Ablation studies further validated the indispensability of each.\n\n[4. Technical Architecture]\n- Model: 3-layer LSTM (50 units each) + Dropout, binary classification output\n  (Depth rationale: 2 layers show gradient vanishing on 72h windows; 4 layers overfit on small samples; 3 layers is optimal)\n- Input: 24-hour sliding window × 4 features, sliding by 1 hour\n- Framework: TensorFlow/Keras + GPU (NVIDIA RTX 4080 Laptop)\n- Interpretability: Integrated Gradients\n- Baselines: Logistic Regression, Random Forest, SVM (same settings, fair comparison)",
-        "outcome": "[Model Performance — Two Splitting Schemes Compared]\n\nThe original evaluation used window-level splitting, which places time windows from the same patient on both sides of the split — an overly idealized condition. After the paper was accepted, a self-audit re-ran everything with patient-level (stay-level) splits:\n\nHorizon      Window-level AUROC / AUPRC    Stay-level AUROC / AUPRC\n6 hours      0.980 / 0.814                 0.646 / 0.033\n12 hours     —                             0.674 / 0.054\n24 hours     0.992 / 0.933                 0.675 / 0.071\n48 hours     —                             0.625 / 0.106\n72 hours     0.987 / 0.921                 0.614 / 0.143\n\nThe right-hand column is the 2026-07-13 re-audit; only the 72-hour window completed all 5 folds. A conference reviewer independently raised the same question about the evaluation setup (how many windows each patient contributes, and whether AUROC is computed per patient or per window), matching the finding from the self-audit.\n\n[Core Features — Top 4, IG Analysis]\n- MAP (Mean Arterial Pressure)\n- Vent Rate (Ventilator Set Rate)\n- Tidal Volume\n- SpO₂ (Oxygen Saturation)\n\n[Research Contributions]\n- Found an evaluation leak in my own paper: rebuilt the data-split indices and confirmed the original figures came from window-level splitting\n- Taiwan-localized data: a VAP prediction pipeline built on real Taiwan ICU data\n- Lightweight feature set: only 4 routine monitoring indicators, no invasive procedures\n- Clinical interpretability: IG analysis surfaces model reasoning\n\n[Ablation Study: mv_total exclusion]\nmv_total (minute ventilation) ranked #1 in IG attribution (0.00989) but is mathematically redundant (mv≡Vt×RR). Removing it improved 24h AUROC by +0.004 and AUPRC by +0.014, confirming that feature importance should be validated by model behavior, not attribution scores alone. (This ablation was also run under window-level splitting and has not been re-run.)\n\n📄 Paper: \"LSTM-Based Early Prediction of Ventilator-Associated Pneumonia Using Stay-Level Cross-Validation and Extended Prediction Windows\"\nCompleted 2026.05; accepted to IEEE GCCE 2026 (poster), Kobe.",
+        "purpose": "The study began by asking whether ICU time series could predict VAP. A post-submission audit found issues in data processing and evaluation, so I examined how those conditions affected the results.",
+        "concept": "I checked patient, time-window, and label alignment, and whether the same patient appeared in both training and test data. Ventilator brand and enrollment year were also associated with labels, so source effects cannot be ruled out.",
+        "outcome": "The study currently supports conclusions about evaluation limits: window-level splitting can inflate scores, and source differences may provide shortcuts. Assessing clinical signals will require consistent sources and clear time definitions. Accepted as an IEEE GCCE 2026 poster.",
         "tech": [
           {
             "group": "Deep Learning",
             "items": [
               {
                 "name": "LSTM Time-Series Modeling",
-                "desc": "Independently designed 3-layer LSTM (50 units each) + Dropout; implemented complete TensorFlow/Keras training loop with sliding window design, dropout regularization, and hyperparameter tuning"
+                "desc": "Built a three-layer TensorFlow/Keras LSTM classifier and compared window lengths and smaller models. Results on this small single-center cohort require patient-level splitting and source-stratified interpretation."
               },
               {
                 "name": "Class Imbalance Handling",
-                "desc": "SMOTE (1:10) applied within each training fold; understanding that oversampling must be performed after splitting to prevent data leakage across boundaries"
+                "desc": "Applied SMOTE within each training fold to keep synthetic samples out of test folds. Later experiments did not establish that GAN or other augmentation methods outperform no augmentation or SMOTE."
               },
               {
                 "name": "Explainable AI (XAI)",
-                "desc": "Integrated Gradients to attribute each feature's contribution per prediction, combined with ablation studies to validate the indispensability of the Top 4 features"
+                "desc": "Integrated Gradients was used to inspect feature contributions. Feature selection and attribution rankings were affected by full-dataset selection and data-processing issues, so the Top 4 ranking is not treated as stable."
               }
             ]
           },
@@ -481,15 +481,15 @@
             "items": [
               {
                 "name": "Leakage-Free Validation",
-                "desc": "Self-designed Stay-level CV (patient-wise splits) to address window-level CV leakage in the original paper; in a MIMIC-IV replication, AUROC dropped from an inflated 0.99 to a true 0.58. The main FEMH experiment, however, still used window-level splitting at first; a self-audit after the paper was accepted caught this, and AUROC fell from 0.98-0.99 to 0.61-0.67 (see Results)"
+                "desc": "Used patient-level splits to check whether one patient crossed the training and test sets. The MIMIC-IV replication and FEMH analysis are separate experiments; neither is used here to claim clinical prediction performance."
               },
               {
                 "name": "Per-fold Normalization",
-                "desc": "Independent mean/std computed per fold before normalization, preventing test set statistics from contaminating training — mastering the strict ordering of normalization and splitting"
+                "desc": "Computed normalization statistics independently inside each cross-validation fold to keep test-fold statistics out of training."
               },
               {
                 "name": "Ablation Study",
-                "desc": "Removing IG-top-ranked mv_total (mathematically redundant: mv≡Vt×RR) improved 24h AUROC +0.004 and AUPRC +0.014, validating that model behavior — not attribution scores alone — should determine feature selection"
+                "desc": "Removing mv_total (mv≡Vt×RR) improved AUROC and AUPRC under the window-level setup. This analysis was not rerun with the corrected patient-level evaluation and is not a current conclusion."
               }
             ]
           },
@@ -498,11 +498,11 @@
             "items": [
               {
                 "name": "Sliding Window Construction",
-                "desc": "Fixed 24-hour windows sliding hourly, handling variable-length ICU time-series with window alignment and boundary truncation"
+                "desc": "Converted ICU time series into fixed-length windows for each prediction horizon. Splits must group by patient so windows from one patient cannot cross folds."
               },
               {
                 "name": "Physiological Signal Preprocessing",
-                "desc": "Band-pass filtering, Z-score normalization, missing-value imputation for continuous monitoring data quality; ETL pipeline implemented with pandas/NumPy"
+                "desc": "Used pandas and NumPy to prepare multi-source vital-sign and ventilator data. The audit corrected time-alignment and field-overwrite issues, showing why each source needs explicit checks."
               }
             ]
           }
@@ -516,7 +516,7 @@
       "category": "大學校外作品",
       "title": "AWS × BitoPro Hackathon: BitOGuard",
       "period": "2026",
-      "description": "Three-person team; I built ~95% of the technical work. LightGBM + XGBoost blend (0.6/0.4) × S3→Glue→Athena→SageMaker→Lambda→Bedrock end-to-end AML pipeline; 63,770 accounts / 413,235 transactions; 32 behavioral features (incl. graph-theory blacklist neighbors) + SHAP compliance reports to identify money mule accounts. Streamlit dashboard live.",
+      "description": "Our three-person team reached the AWS × BitoPro Hackathon final and completed the event without placing. The system combines LightGBM and XGBoost, analyzes transaction accounts, uses 32 behavioral features, and applies SHAP to inspect model predictions.",
       "tags": [
         "LightGBM",
         "XGBoost",
@@ -548,9 +548,9 @@
             "caption": "Predictions: 12,753 users — 501 flagged as risk (3.93%), 12,252 normal (96.07%)"
           }
         ],
-        "purpose": "BitoPro cryptocurrency exchange AML compliance competition dataset:\n- User records: 63,770 accounts\n- TWD transfer records: 195,601 (56,111 users)\n- USDT transaction records: 217,634 (33,587 users)\n- Labeled money mule accounts: 1,640 (3.21% of training set)\n\nGoal: output a risk score per account to identify high-risk suspicious accounts while satisfying regulators' demand for explainability in AML compliance (black-box outputs not accepted).\n\nWhy LightGBM over deep learning:\nAML compliance requires feature-level justification for every flagged account. LightGBM with SHAP directly outputs each feature's contribution per account. For structured data at this scale, a tree model also supports class weighting for the imbalanced labels.",
-        "concept": "[Why LightGBM, Not Deep Learning?]\nAML compliance systems require explainability: regulators demand \"which features triggered high risk\" for every flagged account. LightGBM with SHAP values directly outputs per-feature contributions for individual accounts, meeting compliance reporting requirements. For structured transactional data, a tree model can also use class weighting for the 1:30 imbalance.\n\n[Data Pipeline — AWS End-to-End Architecture]\n① BitoPro API ingestion → ingest_to_s3.py → AWS S3 (raw data layer)\n② AWS Glue ETL + glue_graph_hops.py for graph-based multi-hop association analysis\n③ Amazon Athena SQL queries to aggregate feature results (athena_graph_hops.sql)\n④ Amazon SageMaker for LightGBM and XGBoost training, tuning, and deployment (final submission is a 0.6/0.4 weighted blend)\n⑤ AWS Lambda + lambda_diagnosis.py for real-time inference and event-driven logic\n⑥ Amazon Bedrock integrates SHAP + XAI to auto-generate explainability reports per high-risk account\n⑦ Streamlit dashboard (app.py) for interactive risk review\n⑧ CloudFormation template.yaml defines full IaC\n\n[Feature Engineering — 31 Behavioral Indicators]\nCompetition version started with 3 core features (TWD deposit/withdrawal count, late-night transaction ratio), expanded post-competition to 31 indicators:\n- Transaction behavior: total_volume, tx_per_day, avg_twd_amount, swap_twd_volume\n- Temporal features: min_retention_minutes, night_tx_ratio\n- Graph features: blacklist_neighbor_count, is_direct_neighbor\n- Risk flags: high_speed_risk, ip_anomaly, deposit_only_flag\nTop 3 by importance: total_volume, account age, swap_twd_volume\n\n[Model Design]\n- LightGBM and XGBoost gradient-boosting classifiers, blended 0.6/0.4 (5-fold AUC 0.819-0.849; XGBoost alone OOF AUC 0.827)\n- max_depth, learning_rate, num_iterations, and class weighting control model complexity and imbalance\n- 5-fold Stratified CV with consistent positive/negative ratios per fold\n- Decision-threshold sweeps compare the precision/recall trade-off\n- SHAP analysis shows per-feature contribution for individual accounts",
-        "outcome": "[Competition Result]\n- Reached the final and completed it (no placing); end-to-end cloud architecture received positive feedback from judges\n- 81 commits, fully implementing the pipeline from API data ingestion to model prediction\n\n[Technical Achievements]\n- Successfully chained 6 AWS services: SageMaker, Glue, Athena, Lambda, S3, Bedrock\n- Feature engineering expanded from 3 competition features to 31 behavioral indicators\n- SHAP interpretability module provides AML-compliant explanations\n- Streamlit dashboard supports interactive account risk review — deployed live\n\n[Model Performance — Dashboard Version]\n- AUC: 83.2%\n- Precision: 27.5%\n- Recall: 33.2%\n- F1 Score: 30.1%\n- Accuracy: 95.0%\n- Accounts flagged as risky: 501 / 12,753\n\nThese figures come from the deployed BitoGuard dashboard. Accuracy is affected by class imbalance, so it is not used alone to judge the model; precision and recall are presented together to show both false-positive cost and risk-account coverage.",
+        "purpose": "The challenge was to identify potentially fraudulent accounts from transaction data. I worked on the model, data processing, and parts of the cloud workflow; the team presented risk scores in a review dashboard.",
+        "concept": "The model blends LightGBM and XGBoost at 0.6/0.4 and uses 32 behavioral features. The project also includes S3, Glue, Athena, SageMaker, Lambda, and Streamlit components. SHAP shows feature contributions to predictions.",
+        "outcome": "The team reached the final and completed the event, without a placement. Five-fold OOF AUROC was 0.832, with 27.5% precision and 33.2% recall. These are competition dataset results, not evidence of deployment in a financial institution.",
         "tech": [
           {
             "group": "Machine Learning",
@@ -561,7 +561,7 @@
               },
               {
                 "name": "Behavioral Feature Engineering",
-                "desc": "Extracting 31 behavioral indicators from TWD and USDT transaction records (frequency, late-night ratio, blacklist neighbor count, etc.), verifying actual model gains from expanding the initial 3-feature set"
+                "desc": "Extracting 32 behavioral indicators from TWD and USDT transaction records (frequency, late-night ratio, blacklist neighbor count, etc.), verifying actual model gains from expanding the initial 3-feature set"
               },
               {
                 "name": "SHAP Interpretability",
@@ -638,7 +638,7 @@
       "category": "大學校外作品",
       "title": "TeamMatch — Hackathon Teammate Finder",
       "period": "2026",
-      "description": "Built in a day by three people at an OpenAI Build Week community hackathon: register for an event, then swipe through the other registrants to find teammates — a match forms only when both sides like each other, and contact details are exchanged. I owned login, profile, and the navbar, and did the final merge of all three branches. We froze an interface spec before writing any code (collection names, field names, document IDs, API signatures, routes), so three people could work in parallel and merge without touching each other's files. (AI-assisted development, Codex)",
+      "description": "Built in one day by a three-person team at an OpenAI Build Week community hackathon. I handled profiles, navigation, and the demo login flow, and helped resolve a Firestore connection issue during swipe-page integration. Login switches between demo profiles; it is not real authentication.",
       "tags": [
         "Next.js",
         "TypeScript",
@@ -647,9 +647,9 @@
         "Interface Contract"
       ],
       "detail": {
-        "purpose": "Finding hackathon teammates usually comes down to luck: a flooded Discord channel, or teaming up with whoever you already know. TeamMatch turns it into a flow — register for the event, flag that you still need teammates, then swipe only through people registered for that same event, and exchange contact details only after both sides like each other.\n\nThe three of us came up with the idea after the kickoff: Luma's event pages, a bounty board's prize listing, and Tinder's swipe deck, wired together.",
-        "concept": "[Freeze the interfaces before writing code] In a one-day build, the risk isn't running out of time — it's the merge going wrong. So we wrote a SPEC first: five Firestore collection names, camelCase everywhere, how each document ID is composed, the arguments and return types of every API function, and every route path. Page structure and component breakdown were left to each person, but those six things were frozen. Each of us took one slice (login/profile, event list and registration, swipe and match) and worked in parallel.\n\n[Duplicate actions blocked by document ID] A registration's document ID is {eventId}__{userId}, so registering twice just overwrites the same document; a swipe is {eventId}__{swiperId}__{targetId}; a match is {eventId}__{userA}__{userB}, with the two user IDs sorted before composing the ID — without sorting, \"A swipes B\" and \"B swipes A\" would produce two separate matches. A naming rule instead of a whole layer of dedup queries.\n\n[My slice: the login is deliberately fake] No Firebase Auth. The login page lists every profile in the database; click a card and you're in as that person, with the user ID kept in localStorage. What a hackathon demo needs is judges and teammates matching with each other within two minutes, not password security. It isn't a login system, it's an identity switcher, and it would have to be replaced entirely to ship.\n\nProfile editing reads and writes the Firestore document directly: the skills field is a comma-separated string parsed into an array with pills previewed live below it, and avatars are generated by DiceBear from avatarSeed instead of uploaded, which cuts out Storage and image handling.",
-        "outcome": "The whole flow worked by the end of the day: create a profile → browse or publish events → register (optionally flagging \"already have a team\" plus a team name) → swipe through that event's candidates → mutual likes pop a match → the matches page shows the other person's email and Discord. Event capacity is computed by summing team sizes rather than counting registration documents, and people who already have a team never enter the swipe pool.\n\nThe biggest time sink on the day was Firestore refusing to connect: the SDK's default WebChannel stream wouldn't establish, and it only worked after switching to initializeFirestore(app, { experimentalForceLongPolling: true }). I made that fix while merging the matching pages into main.\n\nNo placing, and it isn't deployed. The Firestore security rules and the login are both still at demo level — both would need real work before this could go public.",
+        "purpose": "We wanted a page where hackathon participants could quickly find teammates, and completed a working demo in one day.",
+        "concept": "Built with Next.js and Firebase, the site includes profiles, browsing, and a demo login flow. Login selects a preset profile and does not use Firebase Authentication. This is a prototype without production deployment or complete security rules.",
+        "outcome": "We completed the main demo flow in one day. I worked on profiles, navigation, and identity switching, and helped troubleshoot Firestore WebChannel during integration.",
         "tech": [
           {
             "group": "Interface Contract",
@@ -704,7 +704,7 @@
       "category": "大學課程作品",
       "title": "Analog Circuit Implementation: Audio Amplifier PCB Design",
       "period": "2024",
-      "description": "Sophomore course project building foundational hardware literacy: schematic reading and interpretation, through-hole soldering, and basic PCB routing topology for a two-stage BJT audio amplifier (CE + CC). Completed the full photoresist-etching fabrication flow and hands-on systematic debugging — rebuilt twice, diagnosing a residual-copper short and a component pin mirror error, before successfully driving an 8Ω speaker.",
+      "description": "A two-stage BJT audio amplifier for a sophomore electronics lab. My teammate handled the breadboard and PSpice; I prepared the schematic, routed the PCB, etched and soldered the board, and debugged it. Two rebuilds fixed a copper short and mirrored component footprints; an 8Ω speaker played audio.",
       "tags": [
         "BJT Amplifier",
         "PCB Layout",
@@ -743,9 +743,9 @@
             "caption": "PCB drill pattern: all component pads and mounting hole machining reference"
           }
         ],
-        "purpose": "Sophomore Electronics final project (Group 12): design and implement an audio amplifier circuit capable of driving an 8Ω speaker. The circuit needed adjustable gain and required completing the full flow from circuit simulation and breadboard verification to actual PCB fabrication.\n\nDivision of work: a teammate handled breadboard verification and PSpice simulation; I did everything after that — schematic drawing, photoresist board fabrication (exposure, development, etching), drilling, soldering, and both rounds of debugging.",
-        "concept": "[Circuit Topology: Two-Stage BJT Amplification]\n- Input stage: trimpots Rv1a/Rv1b adjust input gain; R3/R4 DC bias stabilizes Q1 in active region\n- First stage — CE (Common Emitter): Q1 provides main voltage gain; collector resistor RC converts current changes to output voltage\n- Bias stabilization: D1–D4 (4 series diodes) stabilize base voltage for Q2/Q3; C3 absorbs reverse voltage spikes to prevent diode breakdown\n- Second stage — CC (Common Collector / Emitter Follower): high input impedance, low output impedance; emitter resistor RE provides negative feedback for stability and low distortion, voltage gain ≈1\n- Trimpot Rv2 adjusts overall DC operating point to find maximum gain without distortion\n\n[PCB Fabrication Flow]\nPhotosensitive FR4 double-sided board (15cm × 12.5cm), hand-fabricated:\n① Layout → minimize white-line crossings, compress routing under components\n② Film output → exposure → development → acid etching → rinse\n③ Drilling → component soldering → power-on testing\n\n[Two Rebuilds]\nFirst failure: residual copper after acid etching caused shorts. After verifying all diodes conducting and transistors operating normally, confirmed the board itself was the issue. Redesigned layout and urgently rebuilt.\n\nSecond problem: circuit still non-functional after soldering. Teammate discovered that PCB artwork must be viewed \"from below\" — all power IC and transistor pins were mirrored. After re-soldering, circuit showed intermittent signal with voltage dropping after 5 seconds. After confirming all solder joint continuity, the circuit operated smoothly.",
-        "outcome": "- Circuit successfully drives an 8Ω laboratory speaker with clear audio output\n- Completed the full flow: circuit simulation → breadboard verification → PCB fabrication\n- Power: 12V DC power supply / 9V battery (portable use)\n- Input: 3.5mm stereo cable from computer\n\n[Personal Reflection]\nThis project gave me a clear understanding of audio amplification principles and deepened my hands-on PCB fabrication skills. The two rebuilds taught me the most — not about design itself, but about systematic debugging: from component-by-component verification to finally identifying the pin mirror issue. Each step required a clear expectation of circuit behavior to eliminate unexpected conditions.",
+        "purpose": "The lab required a two-stage BJT audio amplifier. I translated the circuit into a PCB and made and debugged the physical board.",
+        "concept": "My work covered schematic cleanup, PCB routing, photoresist etching, soldering, and power-on checks. The first rebuild fixed a short from residual copper; the second corrected component footprint orientation.",
+        "outcome": "The finished circuit played through an 8Ω speaker. I worked through the full path from schematic and PCB layout to hardware debugging.",
         "tech": [
           {
             "group": "Analog Circuit Design",
@@ -800,7 +800,7 @@
       "category": "大學課程作品",
       "title": "PCB Trace Defect Detection: Tiled Object Detection with Azure Custom Vision",
       "period": "2026",
-      "description": "Object detection on the Peking University PCB defect dataset, using 6 board types (01/04/05/06/07/08) and 3 defect classes (missing_hole, mouse_bite, open_circuit). The source images are full 3034×1586 boards where each defect box is only ~60px. Custom Vision shrinks input to ~512px, so defects vanished and the first training run reached only 9.6% mAP / 3.1% recall. After slicing each board into 600px tiles, mAP went up to 88.2% and precision to 100%. The TensorFlow model.pb is exported and loads in Colab. The model was also wrapped into a local inspection tool with batch upload, defect statistics and CSV export, plus a human feedback → review → retrain active-learning loop. (AI-assisted development)",
+      "description": "Uses Azure Custom Vision to detect missing holes, mouse bites, and open circuits in PCB images. Training images are split into 600px tiles; inference scans overlapping windows and merges boxes with NMS. A Flask tool supports batch inspection and feedback. The README reports 82% mAP and 100% precision.",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
@@ -812,7 +812,7 @@
         "images": [
           {
             "src": "/images/pcb-defect-detection/performance.png",
-            "caption": "Advanced Training result (6 board types): overall Precision 100% / Recall 72.3% / mAP 88.2% (threshold 0.5); per-class numbers below"
+            "caption": "Custom Vision training summary: the public README reports 100% precision and 82% mAP"
           },
           {
             "src": "/images/pcb-defect-detection/pipeline.png",
@@ -855,9 +855,9 @@
             "caption": "open_circuit detection — board 11, #1 (green = ground truth, red = prediction)"
           }
         ],
-        "purpose": "The assignment: from 10 board types, pick at least 3 types and at least 3 defect classes, train an object detector to 80%+ precision, run detection on unseen boards, and export a model.pb that loads in Colab.\n\nThe hard part wasn't the training workflow, it was the scale of the data. Each defect box is about 60 pixels while the whole board is 3034×1586. Custom Vision shrinks input to about 512px, leaving defects at ~10px that the model simply can't see. The first run by the standard workflow got 9.6% mAP and 3.1% recall, basically useless.",
-        "concept": "[First attempt: upload full images]\nFull images with their Pascal VOC annotations, trained on the General (compact) domain with Advanced Training. Result: 9.6% mAP, 3.1% recall, the defects were lost to downscaling.\n\n[Fix: image tiling]\nSlice each board into 600×600 tiles centered on each defect box, keeping a box only if at least 40% of its area falls inside the tile, and re-normalizing coordinates to 0–1 within the tile. This raised the defect-to-tile ratio from ~2% to ~12%, so a defect is still ~60px after the 512px resize. The final model trained on 6 board types, 837 tiles across the 3 defects.\n\n[Inference also needs tiling]\nA full board gets shrunk at inference too, so PCB_USED and the validation boards are sliced the same way and detected tile by tile, with predictions mapped back to original coordinates and duplicates from overlapping tiles removed by NMS at IoU 0.3.\n\n[Export and Colab]\nExporting TensorFlow requires a compact domain. The exported model outputs a YOLO-style raw tensor (node model_outputs:0); the anchor + NMS decoding reuses Custom Vision's official object_detection.py rather than rewriting it. In Colab, loading that decoder together with model.pb and labels.txt is enough to run inference.",
-        "outcome": "[Advanced Training result (6 board types, threshold 0.5)]\nPrecision 100%　Recall 72.3%　mAP 88.2%\nmissing_hole　P 100%　R 96.9%　AP 99.6%\nmouse_bite　　P 100%　R 65.1%　AP 82.0%\nopen_circuit　P 100%　R 54.1%　AP 83.0%\n\n[Why training grew from 3 to 6 board types]\nThe first version trained on only 3 board types (01/04/05) and reached 81.9% mAP, but on unseen boards it added about one extra box per board: it read a normal, drilled via as a missing hole, because it had only seen vias from 3 board types. Adding three more board types (06/07/08) pushed mAP to 88.2% and removed those false positives.\n\n[Validation on board types the model never saw (09–12)]\nTraining used 6 board types. Validation used 106 defect images from board types 09, 10, 11 and 12: 538 ground-truth defects in total against 509 predicted boxes, now slightly conservative (about 5% under) instead of over-predicting. Detecting defects steadily on unseen board types means the generalization is real.\n\n[Honest limit]\nThe 100% precision is still Custom Vision's cross-validation number and is optimistic, since tiles from the same board share an almost identical background and inflate it. Among the three classes, open_circuit and mouse_bite have lower recall (54% and 65%): a broken trace and a mouse bite are subtler and more irregular than a missing hole, so some are missed, and the next step would be adding data for those two. missing_hole is already solid (96.9% recall).\n\n[Follow-up: inspection tool + human-feedback retraining]\nThe model was wrapped into a local web tool: drag many boards in for batch detection, draw the three defect classes in distinct colors, summarize NG/OK and per-class counts, and export CSV. A human-feedback loop was added — detections can be marked as false positive (over-detected) or missed (a new box), and after a person reviews and approves each item, only the approved corrections are used to retrain, forming an active-learning loop. The tool is a local Flask app and keys stay on the machine.",
+        "purpose": "Full-board images were too large to pass directly to the object detector. I tiled the training images and built an inference flow that scans the board and merges duplicate detections.",
+        "concept": "The training process creates 600px tiles. Inference uses overlapping windows, then NMS to consolidate detections. A Flask tool supports batch checks and human feedback. README metrics are project evaluation results, not a guarantee across all board types.",
+        "outcome": "The project README reports 82% mAP and 100% precision and shows validation on held-out board types. The workflow covers tiling, whole-board scanning, result consolidation, and feedback.",
         "tech": [
           {
             "group": "Image Processing",
@@ -921,7 +921,7 @@
       "category": "大學校外作品",
       "title": "Open-Source Hardware Integration: QMK × STM32 Numpad",
       "period": "2026",
-      "description": "Integrated an open-source PCB layout with the QMK/ChibiOS firmware framework on STM32F103. Real engineering contribution: identified compilation and timing conflicts between the open-source framework and the hardware, reverse-engineered ChibiOS HAL triple-config (chconf/halconf/mcuconf) with LLM-assisted debugging, and restructured configuration files to achieve 100% hardware functionality — USB HID stable, RGB Matrix operational, VIA/VIAL live keymap verified.",
+      "description": "A QMK numpad firmware project targeting STM32F103, with USB HID, RGB Matrix, and VIA/VIAL remapping. The PCB revises an existing open-source design. I adjusted QMK/ChibiOS HAL settings and resolved build issues.",
       "tags": [
         "STM32 / Cortex-M",
         "QMK / ChibiOS HAL",
@@ -940,9 +940,9 @@
             "caption": "In use alongside main keyboard"
           }
         ],
-        "purpose": "Most commercial USB numpads run closed firmware with no way to customize key logic, lighting effects, or layer switching. For those entering the QMK ecosystem, most tutorials target Pro Micro (ATmega32U4), with very little documentation on ChibiOS HAL configuration for STM32 targets.\n\nProject scope: This project integrates an existing open-source keyboard PCB layout (adapted in EasyEDA Pro for LCSC ordering) with the QMK open-source firmware framework — it does not design hardware from scratch. The primary engineering challenge was diagnosing and resolving compilation failures and hardware timing conflicts that prevented the open-source QMK/ChibiOS stack from running on the STM32F103 target. LLM-assisted debugging tools were used to reverse-engineer the correct ChibiOS HAL configuration.\n\nThis project aimed to complete the full flow from blank PCB to a working USB HID keyboard, producing a reproducible open-source integration record — including EasyEDA Pro project files, QMK firmware source, and ChibiOS triple-config documentation.\n\nSpecific verification goals:\n- PCB adaptation and LCSC board ordering flow\n- STM32F103 flashing flow using the stm32duino bootloader\n- QMK + ChibiOS HAL triple config (chconf / halconf / mcuconf)\n- WS2812B RGB Matrix animation integration and overcurrent protection\n- VIA / VIAL GUI key remapping support",
-        "concept": "[Core Technology Decisions]\n- STM32F103 vs. Arduino Pro Micro (ATmega32U4):\n  The existing hardware uses STM32F103 and the QMK configuration uses the stm32duino bootloader. The work here was not choosing a new MCU from scratch; it was making the existing hardware, bootloader, and QMK/ChibiOS configuration work together reliably.\n\n- ChibiOS vs. Bare-metal HAL:\n  QMK's STM32 targets use ChibiOS as the hardware abstraction layer. The debugging focused on the dependency between USB, GPIO, and clock settings rather than introducing a separate bare-metal driver.\n\n- EasyEDA Pro vs. KiCad:\n  LCEDA Pro is integrated with LCSC, keeping component selection, DRC, and board ordering in one flow for adapting the existing open-source PCB.\n\n[Hardware Architecture]\n- MCU: STM32F103; QMK uses the stm32duino bootloader\n- PCB adapted in EasyEDA Pro (LCEDA), with full project files uploaded\n- Standard keyboard matrix design to minimize IO usage\n- WS2812B addressable RGB for per-key independent lighting\n- 100nF decoupling capacitors near the MCU supply\n\n[Firmware Architecture — QMK + ChibiOS]\n- chconf.h: ChibiOS kernel thread and tick configuration\n- halconf.h: enable required peripherals (USB, GPIO, SPI)\n- mcuconf.h: STM32 clock, PLL, peripheral clock source settings\n- Custom LAYOUT_numpad_17 mapping to PCB physical layout\n- Module separation: w17.h (layout) / w17.c (RGB Matrix init) / config.h (hardware params) / keymap.c (key logic)\n\n[Layer Design]\n- Layer 0: Standard numpad input\n- Layer 1: RGB Matrix control (RM_NEXT/PREV, Hue/Sat/Val/Speed)\n- LT() for \"hold to switch layer, tap to input\"\n\n[RGB Design]\n- RGB_MATRIX (not legacy RGBLIGHT) for animation mode switching\n- RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 to prevent overcurrent and overheating\n\n[VIA / VIAL Support]\n- Users can remap keys and adjust layers in real time without recompiling",
-        "outcome": "- Completed the 17-key USB HID keyboard integration flow: EasyEDA Pro PCB adaptation → LCSC ordering → hand-soldering → STM32F103 bootloader flashing → QMK firmware integration\n- ChibiOS HAL triple config (chconf/halconf/mcuconf) correctly configured; USB HID recognized stably\n- RGB Matrix animation modes all working; RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 effectively prevents LED string overcurrent\n- VIA/VIAL GUI remapping verified; layer switching and RGB control adjustable in real time without recompiling\n- Identified and fixed PCB pin mirror issue (EasyEDA footprint default Top/Bottom layer orientation difference) — reusable checklist for future PCB designs\n- Full source code open-sourced on GitHub: EasyEDA project, QMK firmware, ChibiOS configuration notes",
+        "purpose": "I wanted to run QMK firmware on an STM32 numpad and had to align the keyboard configuration with the ChibiOS HAL settings.",
+        "concept": "The firmware targets STM32F103 and configures chconf, halconf, and mcuconf alongside USB HID, RGB Matrix, and VIA/VIAL. The PCB is a revision of an existing open-source design, not a from-scratch layout.",
+        "outcome": "The firmware build and keyboard features are integrated. This describes the project configuration and features; it does not claim chip readback or latency measurements.",
         "tech": [
           {
             "group": "Embedded Firmware",
@@ -985,7 +985,7 @@
       "category": "大學校外作品",
       "title": "FRC 7645 — Team Website & CMS",
       "period": "2025",
-      "description": "35% codebase contributor. Senior engineer (65%) built the core React/Firebase/Vite architecture, Auth system, Three.js 3D exhibition hall, and Firestore security rules. My scope: homepage redesign, end-to-end messaging system (Contact form → Firestore → CMS tab), team division identity system, Code Splitting (JS bundle 2.7MB → 820KB), Cloudflare Pages deployment, and TBA API 30-day cache.",
+      "description": "Contributed to the FRC 7645 website and CMS: homepage updates, visitor-message management, division identity UI, code splitting, and The Blue Alliance data caching. Firebase manages team content, and the site is live.",
       "tags": [
         "React",
         "Firebase",
@@ -995,9 +995,9 @@
         "localStorage Cache"
       ],
       "detail": {
-        "purpose": "FRC 7645 (Nangang VHS) needed a public team website and a CMS for non-technical members to manage match schedules, rosters, news, and sponsor content.\n\nCodebase ownership breakdown:\n- Senior engineer (65%): Core React / Firebase / Vite architecture and routing, Firebase Auth and i18n, TipTap rich text editor with image compression upload, Three.js 3D exhibition hall (.glb explode animation), Firestore security rules, design system (CSS variables, bento grid, carousel), multi-page setup (Blog, Robots, Sponsors, About, Profile), SEO (sitemap, JSON-LD).\n- My contribution (35%): Homepage redesign, messaging system, division identity system, performance optimization, Cloudflare Pages deployment, TBA API cache, CMS restructure, CLAUDE.md workspace memory framework.\n\nThis document describes my 35% contribution scope.",
-        "concept": "[1. Performance — Code Splitting & Lazy Loading]\nInherited a 2.7MB monolithic JS bundle causing slow initial loads. Implemented route-level chunk splitting via Vite dynamic imports, paired with React.lazy + Suspense for on-demand loading per route. Result: bundle reduced from 2.7MB to 820KB (~70% reduction), with measurable FCP improvement.\n\n[2. TBA API Cache — 30-day localStorage Layer]\nTBA API rate-limits under competition-day traffic spikes, causing blank match data pages for visitors. Built a 30-day localStorage cache keyed by endpoint + query string. Each request validates cache freshness; stale or missing entries trigger a fresh fetch and re-cache. Eliminated redundant requests and rate-limit risk on competition days.\n\n[3. Messaging System — End-to-End]\nContact page form writes submissions to a Firestore `messages` collection. Added a CMS MessagesPanel Tab so admins can view and delete messages directly in the dashboard without opening Firebase Console. Both the frontend form and the admin interface are new additions this cycle.\n\nAlso wrote the Firestore security rule for the `messages` collection: `allow create: if true` (unauthenticated visitors can submit); `allow read, delete` scoped to admin / teacher only (CMS access); `allow update: if false` (prevents tampering). Without this rule, Firebase's default deny-all would reject any unauthenticated write.\n\n[4. Division Identity System]\nAdmin multi-select pill UI lets admins assign team members to functional divisions (mechanical, electrical, programming, etc.). Profile schema gained a `showInDivision` field; TeamGroup component auto-filters and renders the correct members from this field, replacing manually maintained static roster lists.\n\n[5. Homepage Redesign]\nReplaced marquee-based sponsor scroll with CSS keyframe-animated floating bubble cards, eliminating scroll jank. Added team introduction section and stats block (seasons, awards). Introduced TeamTimeline.jsx (renders milestone timeline from a data array, fully decoupled from layout), Competition.jsx (TBA cache–powered match card handling loading / error / empty states independently), and MessagesPanel.\n\n[6. CI/CD Deployment — Cloudflare Pages]\nConnected GitHub repo with PR preview deployments and production deploys on main merge. Configured nkhs.team7645.com custom domain routing and Cloudflare edge caching; cached routes achieve sub-100ms TTFB.\n\n[7. CMS Restructure]\nConsolidated fragmented CMS tabs: Carousel + Cards → Homepage Management; Contact + Socials → single module. Restored the Advisor Tab dropped in a prior refactor. Added author/division split fields and the MessagesPanel management tab.",
-        "outcome": "- Code Splitting reduced JS bundle from 2.7MB to 820KB; FCP improved measurably\n- Messaging system consolidated contact submissions into CMS, eliminating manual forwarding\n- TBA API cache eliminated rate-limit incidents on competition days\n- nkhs.team7645.com has had zero downtime since deployment; cached routes at sub-100ms TTFB\n- Division identity system replaced static roster maintenance with Admin UI operations",
+        "purpose": "The team needed a site where staff could update events, members, and announcements. I worked on the website and CMS so some content could be maintained through an admin interface.",
+        "concept": "Built with React and Firebase. My work included the homepage, visitor messages in the CMS, division display settings, route code splitting, and caching The Blue Alliance data.",
+        "outcome": "The website and CMS are deployed. Visitors can browse team information and send a message; administrators can review and manage messages in the CMS.",
         "tech": [
           {
             "group": "Performance",
@@ -1034,7 +1034,7 @@
             "items": [
               {
                 "name": "Cloudflare Pages CI/CD",
-                "desc": "PR preview + production deploys on main merge; nkhs.team7645.com custom domain; edge caching for sub-100ms TTFB on cached routes"
+                "desc": "PR preview + production deploys on main merge; nkhs.team7645.com custom domain"
               }
             ]
           },
@@ -1071,7 +1071,7 @@
           }
         ],
         "demo": "https://nkhs.team7645.com/",
-        "github": ""
+        "github": "https://github.com/Jcsk7049/team7645-website"
       }
     },
     {
@@ -1080,7 +1080,7 @@
       "category": "高職選手作品",
       "title": "Wireless Whack-a-Mole (Special Ed Aid)",
       "period": "2021 – 2022",
-      "description": "Commissioned by Nangang VHS special education dept: ESP32 + ESP-NOW links one master to four slave units with transistor-relay drive circuits and 3D-printed enclosures — a wireless interactive aid for special-needs students. Received official letter of appreciation.",
+      "description": "Built a wireless whack-a-mole teaching aid for the Nangang VHS special education department. ESP32/ESP-NOW connects one master to four game units. I fixed component damage caused by relay-coil back-EMF, then addressed 7805 overheating. The department issued a letter of appreciation.",
       "tags": [
         "ESP32",
         "ESP-NOW",
@@ -1089,9 +1089,9 @@
         "Arduino"
       ],
       "detail": {
-        "purpose": "Commissioned project for Nangang VHS special education department to design interactive teaching aids usable both indoors and outdoors for special-needs students. Key requirements:\n\n- Small quantity, simple structure, easy maintenance and storage\n- Intuitive operation suitable for special-needs students\n- No dependence on power outlets for outdoor use\n\nAfter referencing basketball machines and air hockey tables, the whack-a-mole format was chosen with wireless communication for outdoor use.",
-        "concept": "[System Architecture: ESP-NOW Peer-to-Peer Communication]\nESP32 + ESP-NOW protocol chosen:\n- No WiFi/router needed — direct peer-to-peer connection\n- Auto-reconnects after power loss or restart, no operation required\n- One master + four slaves: master randomly selects a number and broadcasts; selected slave lights up; player presses button, slave sends response signal back\n\n[Circuit Design]\nPower: 11.1V (3× 18650 in series) → 7805 step-down to 5V for ESP32 → ESP32 GPIO output → 9013 transistor amplification → relay switches 11.1V to LED\n\nKey component considerations:\n- Flyback diode (1N4001) across relay coil absorbs back-EMF to prevent arcing damage\n- Transistor amplification solves ESP32 GPIO current insufficient to directly drive relay\n- 104 ceramic capacitors at 7805 input/output for decoupling and voltage stability\n\n[Program Logic]\nMaster: randomly generates 1–4 and broadcasts → enters 200-loop waiting cycle (~10 sec) → on response broadcast 0 to reset and enter next round; timeout advances to next round automatically.\nSlave: receives number, compares to self ID to decide whether to light → detects button while lit → sends 1 on press → 0.1s delay then sends 0 to reset (prevents master data stuck at 1)\n\n[Mechanical Design]\n- Top cover: 3D printed (v1) → wood + screws (improved v2) for easy replacement\n- Enclosure: aluminum square tube + top cover; 3.5° outward-tilted screw holes for stronger attachment\n- Bottom cover: strong magnet attachment — tool-free battery access\n- Core design philosophy: simplify, avoid over-engineering, prioritize quick repair",
-        "outcome": "[Functional Results]\n- All 5 units (1 master + 4 slaves) fully operational, usable indoors and outdoors\n- Wireless communication stable, auto-reconnects after power loss\n- Intuitive operation meeting special education requirements\n- Received official letter of appreciation from special education department\n\n[Debug 1: Why the ESP32 kept dying]\nInitially the relay coils had no flyback diode. Each time a relay opened, the coil's back-EMF spike fed back into the circuit and killed the transistor and ESP32 — I burned through several ESP32s before realizing it wasn't a code bug but a hardware back-EMF problem. Adding a 1N4001 flyback diode across each coil stopped the failures. My first real lesson that hardware bugs don't show up in the code.\n\n[Debug 2: 7805 overheating]\nThe 7805 drops 11.1V to 5V linearly, so (Vin−Vout)×I is dissipated as heat on the regulator; under sustained load it hit thermal shutdown and browned out the supply. Once I understood linear-regulator dissipation, a heatsink plus trimming unnecessary load fixed it.\n\n[Reflection]\nBuilding aids for special-needs students means thinking a few layers deeper — injury safety, easy part swaps, simplicity. I learned more in the repair phase (back-EMF, decoupling, linear-regulator dissipation) than in the design phase.\n\n[Division of Work — 2-person project]\n- Mechanical design and fabrication: Chiang Jia-Yuan\n- Circuit design, fabrication, programming: Chiang Jia-Yuan + Du Chuan-You",
+        "purpose": "The special education department needed an interactive teaching aid that was easy to operate and maintain. We chose a whack-a-mole format with one master controlling four wireless units.",
+        "concept": "ESP32 boards send game states over ESP-NOW; buttons and relays control each unit. I added a 1N4001 flyback diode across relay coils to handle back-EMF, then checked the load and heat dissipation around the 7805 linear regulator.",
+        "outcome": "Five units were assembled and delivered to the department, which issued a letter of appreciation. I worked through wireless communication, relay protection, and linear-regulator heating.",
         "images": [
           {
             "src": "/images/whack-a-mole/machines-group.jpg",
@@ -1172,7 +1172,7 @@
       "category": "高職選手作品",
       "title": "Team-Built Competition Robot",
       "period": "2022",
-      "description": "Represented Nangang VHS at the 52nd National Skills Competition (Team Project category). A 3-person team built a gripper robot; I owned the full electrical system — 24V lead-acid power distribution and relay H-bridge motor direction control, from circuit design and wire routing to hands-on fabrication.",
+      "description": "Represented Nangang VHS at the 2022 52nd National Skills Competition in the Team Project category. Three students built a gripper robot. I handled 24V power distribution, the relay H-bridge, and vehicle wiring; teammates handled mechanical fabrication and control software.",
       "tags": [
         "Competition Robot",
         "Relay Control",
@@ -1180,9 +1180,9 @@
         "3-Person Team"
       ],
       "detail": {
-        "purpose": "Represented Nangang VHS in the 52nd National Skills Competition (2022), Team Project category. Rules required a three-person team to jointly design and build a functional robot within a time limit — goal: move across the field and pick and place cylindrical and rectangular objects.\n\nThe competition emphasizes cross-disciplinary collaboration: mechanical, electrical, and software work must be tightly integrated. I owned the entire electrical system — circuit design, wiring plan, and the hands-on harness fabrication.",
-        "concept": "[Chassis & Drive]\nRubber wheel chassis driven by a 24V lead-acid battery pack. Relay bank implements H-bridge circuit — two relays per drive axis switch motor current direction to control forward/reverse. Direct, reliable circuit structure.\n\n[Gripper Mechanism]\nGripper designed to handle both cylinders and rectangular objects simultaneously: curved inner surface conforms to cylinders, flat surface stably grips rectangular objects — ensuring no slippage during transport.\n\n[Three-Person Division of Work]\n- Circuit design and wiring (Chiang Jia-Yuan): relay H-bridge drive circuit design, 24V power distribution, full-vehicle wiring and fabrication\n- Mechanical design and machining (junior teammate): chassis structure, gripper design, lathe/mill machining\n- Programming and control logic (teammate): motor direction control program",
-        "outcome": "- Represented Nangang VHS and completed the 52nd National Skills Competition, Team Project category\n- Technical takeaways: high-power relay H-bridge circuit design, 24V system wiring standards, multi-person synchronized development\n- Understanding the difference between competition robot development and FRC's longer development cycle — functional integration under extreme time constraints",
+        "purpose": "The competition asked a three-person team to build a robot that could move and grip objects within a limited time. I handled the electrical system and integrated it with the mechanical and software work.",
+        "concept": "I designed the relay H-bridge, planned 24V power distribution, and wired the robot. Teammates fabricated the chassis and gripper and wrote the control software.",
+        "outcome": "We completed the school project for the 52nd National Skills Competition. The work required integrating electrical, mechanical, and control systems under a short deadline.",
         "tech": [
           {
             "group": "Circuit Design",
@@ -1235,7 +1235,7 @@
       "title": "Swerve Drive Omnidirectional Research",
       "period": "2020 – 2023",
       "frc": true,
-      "description": "Self-developed three generations of FRC swerve drive chassis from scratch, covering kinematics algorithms, gear transmission design, CNC precision machining, and LabVIEW PID control. Earned 2022 FRC Taiwan Innovation in Control Award.",
+      "description": "Worked across three iterations of an FRC swerve-drive chassis, including LabVIEW kinematics, gear transmission, CAD, CNC milling, and wire EDM. The 2022 robot received the Innovation in Control Award at the FRC Taiwan Fuhong Regional.",
       "tags": [
         "LabVIEW",
         "PID Control",
@@ -1245,9 +1245,9 @@
         "3D Printing"
       ],
       "detail": {
-        "purpose": "Top international FRC teams widely use Swerve Drive — its four-wheel independent steering architecture provides omnidirectional movement advantages while solving mecanum wheels' traction deficiency and vulnerability to impacts. However, virtually no domestic research material existed in Taiwan, and no standardized Chinese terminology had been established.\n\nThe team decided to develop from scratch, iterating through three generations (2020, 2022, 2023+), with research goals covering:\n\n① Achieving all motion modes of an omnidirectional mobile platform through mechanical structure\n② Improving robot operational efficiency and maneuverability in competition\n③ Third generation: lightweight design as core direction\n④ Modular aluminum plate design: drive and steering motor positions interchangeable; drive reduction ratio adjustable by swapping gears — reducing assembly and maintenance complexity\n⑤ Achieve fully self-designed, self-machined goals\n⑥ Exchange mechanism technology with international teams at competition venues",
-        "concept": "[Three-Generation Evolution]\n- Gen 1 (2020): Designed by senior members, used at CSIA 5G Regional — validated basic Swerve Drive feasibility\n- Gen 2 (2022): Redesigned and competed, earned Taiwan Foxconn Regional Innovation in Control Award\n- Gen 3 (2022+): Continued refinement with lightweight and modular design as core, preparing for next season\n\n[Kinematics Algorithm — LabVIEW Implementation]\nRepresenting wheel direction and force as vector X∠θ, decomposing motion into three additive modes:\n- Translation: all 4 wheels input same angle and force, no body rotation\n- Rotation: center at all-wheel intersection, wheels at θ, -θ, 180+θ, 180-θ — rotate in place\n- Arc: translation vector + rotation vector = arbitrary-center arc trajectory\nNormalize by the maximum-force wheel as denominator to ensure output doesn't exceed motor saturation.\n\n[Electrical & Control System]\n- Drive motors: Falcon 500 (integrated Talon FX controller with closed-loop speed control)\n- Steering motors: NEO 550 (with planetary gearbox)\n- Rotary encoders: per-wheel independent angle feedback for closed-loop steering control\n- Main controller: roboRIO + LabVIEW graphical programming\n\n[Reduction Ratio Design]\n- Drive: Falcon 500 (6380 rpm) → 1:7 → 911 rpm, approximately 110 m/min linear speed\n- Steering: NEO 550 (11000 rpm) → planetary 1:28.1 → gear 1:2 → total 1:56.2 → 196 rpm\n\n[Gen 3 Mechanical Design]\n- Modular aluminum plates: drive and steering motor mounting holes correspond and are interchangeable; drive gear zone has swappable gear positions for reduction ratio adjustment without modifying aluminum plates\n- Lightweight: most internal gears switched to 3D printing (FDM), retaining only motor shaft gears as metal; aluminum plate CNC material removal for weight reduction\n- Collision protection: motors fully enclosed in mechanism interior, reducing competition collision damage\n- Custom wheels: replaced OEM wheels, improved traction\n\n[Gear Specs & Machining]\n- M1.25/T15 spur gears (drive motor shaft): wire EDM for profile and bore\n- M1.5/T24 spur gears (steering transmission): wire EDM\n- M1.5/T15 bevel gears (wheel drive direction change): wire EDM for bore\n- Transmission shafts (hex & square cross-sections): CNC mill + 4-jaw precision chuck, two-pass bilateral milling for symmetry\n- Wire EDM workflow: clamp plate → edge-finding XY correction → thread wire → path simulation → cut → inspect cross-section for accuracy",
-        "outcome": "[Competition Results]\n- 2022 FRC Taiwan Foxconn Regional: Finalist Alliance + Innovation in Control Award\n- 2020 FRC CSIA 5G Digital Regional: Excellence in Engineering Award\n\n[Gen 3 vs Gen 2 Improvements]\nStructural:\n① Lightweight: most gears switched to 3D printing, significant overall weight reduction\n② Disassembly: reduced complexity, faster repair and replacement\n③ Modular: drive/steering motor holes shared, compatible with NEO or Falcon 500\n④ Collision protection: motors fully enclosed, reduced field collision damage risk\n⑤ Wheels: custom design, improved traction over old wheels\n\nPower:\n① Drive gear tooth count swappable — reduction ratio adjustable without modifying aluminum plates\n② NEO upgraded to Falcon 500, approximately 1000 rpm speed increase\n\n[Personal Takeaways]\n- Design→Build→Test→Iterate complete cycle from a product development perspective\n- Machining skills advanced from manual mill/lathe basics to CNC and wire EDM\n- Cross-domain integration: mechanical design (Inventor) + electrical control + LabVIEW programming + competition field engineering decisions",
+        "purpose": "The team iterated on its swerve-drive chassis, changing motion control, transmission, and fabrication between versions. I contributed to the control code, gear design, and part production.",
+        "concept": "I implemented omnidirectional kinematics in LabVIEW and worked on gear transmission, CAD, CNC milling, and wire EDM. The chassis versions represent design and fabrication work across multiple team members.",
+        "outcome": "The 2022 chassis competed at the FRC Taiwan Fuhong Regional and received the Innovation in Control Award. An earlier robot competed at the 2020 FRC Central Taiwan 5G Regional and received the Excellence in Engineering Award.",
         "tech": [
           {
             "group": "Control System",

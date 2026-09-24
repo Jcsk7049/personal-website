@@ -2,7 +2,7 @@
   "profile": {
     "name": "江嘉元",
     "title": "軟硬整合 · 從 PCB 到韌體到資料",
-    "bio": "機電整合科班出身，軟硬韌全鏈路都親手走過：機構設計、CNC 加工、PCB、嵌入式韌體，到資料分析與 AI 模型。電機系三年級，高職讀機電整合，所以每一層都實際碰過、也知道彼此怎麼銜接——跨背景合作時比較容易對焦。最近的 ICU VAP 時序預測研究已投稿 IEEE GCCE 2026。",
+    "bio": "機電整合科背景，做過電路、PCB、嵌入式韌體與資料分析，目前就讀電機系。最近的 ICU VAP 研究在論文接受後重新檢查資料與驗證流程，發現原始結果受到評估條件與收案差異影響，因此把重點轉為方法學稽核。研究獲 IEEE GCCE 2026 poster 接受。",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -30,7 +30,7 @@
       "role": "實驗室專題生",
       "organization": "元智大學 林書彥教授實驗室",
       "period": "2025.05 – 現在",
-      "description": "主導 ICU VAP 早期預警研究：設計 Stay-Level 5-Fold 交叉驗證消除公開基準中的 Patient-Level Data Leakage，以 Integrated Gradients 特徵歸因縮減至 4 項非侵入指標，LSTM 達 72h AUROC 0.98–0.99。論文投稿 IEEE GCCE 2026。"
+      "description": "參與 ICU VAP 預測研究，負責資料處理、模型比較與驗證流程。論文接受後，我重新稽核資料索引、時間對齊與病人切分，發現原先的高分受到評估條件與收案來源差異影響，因此將研究重點轉為方法學稽核。研究獲 IEEE GCCE 2026 poster 接受。"
     },
     {
       "role": "Engineering Advisor & Systems Integrator",
@@ -300,7 +300,7 @@
       "category": "大學校外作品",
       "title": "Job Radar — 個人化求職雷達",
       "period": "2026",
-      "description": "每日自動從 104／Cake／LinkedIn／企業官網四來源聚合目標公司職缺（約 1,300 筆/天），依個人技能加權評分，產出「每日 Top 6 精選＋推薦理由」的短清單——設計上刻意從「追求覆蓋」轉向「精準判斷」。從爬蟲、評分引擎、靜態網站生成到雲端 CI/CD 全線自建，電腦關機也每天自動更新。（AI 輔助開發，Claude Code）",
+      "description": "每天整理 104、Cake 與 LinkedIn 的職缺，依我的技能和條件排序，附上推薦理由。清單每日更新，可按來源、職類與搜尋字詞篩選。",
       "tags": [
         "Python",
         "Playwright",
@@ -309,9 +309,9 @@
         "靜態生成"
       ],
       "detail": {
-        "purpose": "通用求職平台用「熱門度」排序，跟「我適不適合」無關。本系統以個人技能證據為中心：自動追蹤鎖定的數十家公司、用自訂權重評分排序，把「現在能投」與「畢業後才能投」分桶，並把求職計畫與畢業時程綁在一起。設計成每天自己跑、不用開電腦的工具。",
-        "concept": "【多來源聚合】104 走逆向出的公司頁前端 API 抓全部職缺（非關鍵字搜尋避免漏抓）；Cake 用 Playwright headless 抓 JS 渲染頁；LinkedIn 走公開訪客端點；西門子官網解析 Avature ATS，四來源混排並以顏色區分。\n\n【評分引擎】每筆職缺依公司適配度×關鍵字命中×地點×經歷門檻×新人友善度加權算分，權重全外置於 config；自動排除資深職、從 JD 抽出勤時間、標記產業學歷風氣。\n\n【資料與呈現分離】爬蟲產出結構化 JSON，建置時把卡片靜態渲染進單一 HTML，前端 JS 只做過濾／搜尋／投遞狀態（localStorage）——無後端、無資料庫，純靜態檔放 CDN。",
-        "outcome": "每日聚合 1,300+ 筆職缺，四來源、50+ 家公司。功能含階段分桶（現在可投／校徵／正職池）、公司×崗位×前瞻成長性三維排行榜、投遞追蹤、PTT 評價對應、一鍵應徵。\n\n自動化從本機 Windows 排程遷移到 GitHub Actions 雲端 cron（每日 08:30，電腦關機也跑）；敏感的個人分析頁以 Cloudflare Pages Function 做伺服器端密碼保護，公開頁零個資、可作品集展示。工程上解過 104 API 逆向、CI 部署 token 夾帶隱形字元、跨次執行的狀態持久化等問題。",
+        "purpose": "我想把不同求職網站的職缺放在同一張清單裡，比較條件時不用一直切換頁面。",
+        "concept": "工具從三個來源整理職缺，保留原始連結，再依技能和求職條件排序。公開頁面只顯示職缺與篩選功能；個人化分析留在私有資料中。",
+        "outcome": "Job Radar 每日更新職缺清單，讓我先查看較符合條件的職缺，再自行確認職務內容與申請狀態。",
         "tech": [
           {
             "group": "爬蟲與聚合",
@@ -322,7 +322,7 @@
               },
               {
                 "name": "多來源整合",
-                "desc": "requests（104/LinkedIn HTTP）＋Playwright（Cake JS 渲染）＋Avature 解析（西門子官網），統一成單一卡片 schema"
+                "desc": "整理 104、Cake 與 LinkedIn 職缺，轉成一致的欄位格式。"
               }
             ]
           },
@@ -362,7 +362,7 @@
       "category": "大學校外作品",
       "title": "Analog IC Studio — 類比 IC 自動調參平台",
       "period": "2026",
-      "description": "Python + Ngspice + SciPy 打造的類比 IC 自動化設計平台：輸入規格目標，演算法閉環模擬並自動回推每顆電晶體的 W/L，輸出可填回 KiCad 的元件參數。（AI 輔助開發）",
+      "description": "用 Python、Ngspice 與 SciPy 做類比電路模擬和元件尺寸搜尋，包含運算放大器、Bandgap、振盪器與 VCO。這是模擬工具；目前線上展示站無法啟動。",
       "tags": [
         "Python",
         "Ngspice",
@@ -371,9 +371,9 @@
         "Flask"
       ],
       "detail": {
-        "purpose": "類比 IC 設計傳統上仰賴工程師手動調參、反覆試錯。本平台將此流程自動化：使用者只要輸入規格目標（如增益 60dB、振盪頻率 3GHz、溫漂最小化），系統透過 Ngspice 真實電路模擬 + SciPy 多變量最佳化，自動回推每顆 MOS 電晶體的寬度 W 與長度 L，並輸出可一對一填回 KiCad 的元件參數。\n\n涵蓋六大電路拓樸（兩級 OPA、Bandgap 基準源、環形振盪器、電流飢餓 VCO、LC 壓控振盪器），並提供快速 Level-1 模型與 SkyWater sky130 真實 PDK 雙模式對照，兼顧迭代速度與製程真實度。",
-        "concept": "【模擬引擎】以 Ngspice 為核心，AC/DC/瞬態分析自動萃取 Gain/PM/UGF、溫漂 TC、振盪頻率等指標，並接上 SkyWater sky130 開源 PDK（BSIM4 真實製程模型，含 tt/ff/ss 角落）。自我修復護欄偵測不收斂自動重試，區分 flaky 崩潰與確定性死區。\n\n【最佳化演算法】每顆電晶體獨立 W/L（OPA 10 維、VCO 14 維），以 SciPy Differential Evolution 全域搜尋 + Nelder-Mead 局部精調、多線程平行評估。物理護欄強制 Wp = 2~3×Wn（電子/電洞遷移率比），杜絕非物理解。\n\n【RFIC 與良率分析】相位雜訊（Leeson 解析估算）、FTR 調諧曲線與 Kvco 提取、蒙地卡羅良率採 Pelgrom 失配模型（σ ∝ 1/√WL，大元件更匹配）、PVT 27 角落掃描、帕雷托多目標套餐推薦、佈局 finger 拆分（單指 ≤ 10µm）。",
-        "outcome": "六大拓樸全部實體化為 per-instance W/L，消除黑箱。OPA 自動優化達 Gain 65dB / PM 63°；Bandgap 溫漂 trim 至 2 ppm/°C；LC-VCO 相位雜訊 FoM −186 dBc/Hz（優於環形約 18dB，具體演示 LC vs Ring 的相位雜訊／調諧範圍取捨）。\n\n前端為 Apple 風格單頁看板（中文 UI、英文圖表標籤），含即時優化進度條；以 Docker 部署至 Hugging Face Spaces（apt ngspice + Flask），永久公開、雲端即可跑真實模擬。\n\n工程上系統性盤點並修復 13 項物理／工程缺陷（假良率模型、相位 wrap、元件自負載效應、快慢模型精細度倒置等），並誠實標註簡化邊界（相位雜訊為解析估算、LC 電感理想化），不誇大模擬能力。",
+        "purpose": "我把類比電路的模擬與調參流程整理成工具，讓使用者輸入目標後，可以比較不同元件尺寸下的模擬結果。",
+        "concept": "工具以 Ngspice 執行電路模擬，再由 SciPy 搜尋元件參數。涵蓋 AC、DC 與瞬態分析；sky130 模式使用公開 PDK。輸出是模擬結果，並非晶片實測數據。",
+        "outcome": "目前完成多種電路拓樸的模擬與參數搜尋程式。線上 Space 暫時無法使用，因此這裡不提供可操作的即時展示。",
         "tech": [
           {
             "group": "模擬引擎",
@@ -410,13 +410,13 @@
               },
               {
                 "name": "雲端部署",
-                "desc": "Docker（apt ngspice + Flask）部署至 Hugging Face Spaces，永久公開、雲端跑真實模擬"
+                "desc": "Docker（apt ngspice + Flask）部署至 Hugging Face Spaces，目前線上 Space 無法啟動"
               }
             ]
           }
         ],
         "github": "https://github.com/Jcsk7049/analog-ic-studio",
-        "demo": "https://huggingface.co/spaces/LANCELOT7049/analog-ic-studio"
+        "demo": null
       }
     },
     {
@@ -426,7 +426,7 @@
       "category": "大學專題作品",
       "title": "ICU VAP 早期預測：試驗性方法論驗證研究",
       "period": "2025 – 現在",
-      "description": "單中心試驗性方法論驗證（亞東紀念醫院 ICU，n=107）。以 Integrated Gradients 消除數學共線冗餘特徵（mv_total，mv≡Vt×RR），從 14 項篩選至 4 項非侵入指標。論文獲 IEEE GCCE 2026 接受（poster）；接受後自行複查評估設定，發現原本的視窗層切分讓同一病人的時間窗橫跨訓練/測試集，改以病人層切分重跑後 AUROC 為 0.61–0.67。研究定位：試驗性方法論驗證，非臨床部署產品。",
+      "description": "亞東紀念醫院單中心 ICU 研究，資料共 107 人。論文接受後，我重新檢查資料索引、時間對齊與驗證切分，發現視窗層切分和病人來源差異會讓結果偏高；因此不把現有結果當成臨床預測效能。研究獲 IEEE GCCE 2026 poster 接受。",
       "badge": "IEEE GCCE 2026 · Poster",
       "tags": [
         "LSTM · Time-Series",
@@ -443,27 +443,27 @@
           },
           {
             "src": "/images/vap/fig-lstm-vs-baseline.png",
-            "caption": "Fig. 1　LSTM vs 傳統 ML 基準（AUROC / AUPRC / Sensitivity / Specificity）"
+            "caption": "原論文視窗層基準比較；同一病人跨訓練/測試集，複查後不作效能主張"
           },
           {
             "src": "/images/vap/fig-lstm-performance.png",
-            "caption": "Fig. 2　LSTM 4-feat 各預警時程效能（6–72 h）"
+            "caption": "原論文視窗層結果圖；評估設定複查後，數字不代表病人層泛化效能"
           }
         ],
-        "purpose": "VAP 發生率約 5–15%（機械通氣病患），死亡率 20–50%，臨床診斷通常滯後 48 小時以上；現行方法依賴定期評估，無法利用連續監測訊號的時序趨勢。\n\n本研究以亞東紀念醫院 ICU 2019–2023 年資料（n=107：VAP 52 例、非 VAP 55 例），建立 LSTM 時序分類管線，以 4 項常規生命徵象（MAP、呼吸速率、潮氣容積、SpO₂）提前 6–72 小時預警 VAP。\n\n模型選擇：LSTM vs GRU / Transformer\nVAP 生理變化呈連續時序漂移（感染前 48–72 小時可見），靜態特徵不足以捕捉長程依賴。LSTM cell state 在 72 小時窗口下梯度穩定性優於 GRU；Transformer 在 n=107 小樣本下過擬合，對比測試均不及 LSTM。最終確立 LSTM 為主模型。（與 LR、RF、SVM 的比較是在視窗層切分下做的，複查後未重跑，不作為效能主張。）\n\n【研究侷限與誠實邊界】\n本研究是試驗性方法論驗證，非臨床可部署系統。三項核心限制：(1) 單中心資料（亞東紀念醫院），泛化至其他 ICU 族群的能力尚未建立。(2) 小樣本（n=107）——改以病人層切分後 AUROC 僅 0.61–0.67，這組資料不足以支撐部署級臨床效能的主張。(3) 在考慮任何臨床應用前，需於多中心、更大樣本的資料集上完成外部驗證。原先在本地資料上看到的高 AUROC，來自視窗層切分造成的樂觀偏誤，不是模型的真實泛化能力。",
-        "concept": "【一、論文復刻與資料洩漏發現】\n以 PREDICT 論文（JCM 2025）為基礎，使用 MIMIC-IV 公開資料集完整復刻其 LSTM 三層架構。復刻過程中發現原論文採用 Window-level Cross Validation——同一病患的時間窗口同時出現在訓練與測試集，造成 AUROC 虛高至 0.99，屬 Data Leakage。此發現為本研究的核心貢獻之一。\n\n【二、正確驗證方法建立】\n將切割方式改為 Stay-level Cross Validation（以病患為單位切分），消除洩漏後於 MIMIC-IV 上得到真實效能（AUROC ≈ 0.58），驗證了論文結果的侷限性。隨後以亞東紀念醫院 ICU 資料（2019–2023 年，有效樣本 107 人：VAP 52 例、非 VAP 55 例；VAP 組入院 APACHE II 顯著較高：25.9 vs 20.1，p＜0.001）進行本地訓練；各折僅在訓練集內套用 SMOTE（1:10），確保過採樣不跨越訓練 / 測試邊界。\n\n【三、特徵工程與可解釋性】\n對 14 個生理與通氣特徵進行 Integrated Gradients（IG）歸因分析，篩選出最具預測力的 Top 4 特徵：MAP（平均動脈壓）、Vent Rate（呼吸器設定頻率）、Tidal Volume（潮氣容積）、SpO₂（血氧飽和度）。進一步透過 Ablation Study 驗證各特徵不可取代性。\n\n【四、技術架構】\n・模型：LSTM × 3 層（各 50 units）+ Dropout，二元分類輸出\n  ─ 深度選擇依據：2 層在長窗口（72 h）下梯度消失明顯；4 層在小樣本下過擬合，3 層為最佳平衡點\n・輸入：24 小時滑動視窗 × 4 特徵，逐小時滑動\n・框架：TensorFlow / Keras + GPU（NVIDIA RTX 4080 Laptop）\n・可解釋性：Integrated Gradients（積分梯度法）\n・對比基準：Logistic Regression、Random Forest、SVM（同設定公平比較）",
-        "outcome": "【模型效能：兩種切分方式的對照】\n\n原始評估採視窗層（window-level）切分，同一病人的時間窗會同時落在訓練與測試集，屬過度理想化的條件。論文接受後自行複查，改以病人層（stay-level）切分重跑：\n\n預警時間　　　視窗層 AUROC / AUPRC　病人層 AUROC / AUPRC\n提前  6 小時　0.980 / 0.814　　　　0.646 / 0.033\n提前 12 小時　—　　　　　　　　　　0.674 / 0.054\n提前 24 小時　0.992 / 0.933　　　　0.675 / 0.071\n提前 48 小時　—　　　　　　　　　　0.625 / 0.106\n提前 72 小時　0.987 / 0.921　　　　0.614 / 0.143\n\n右欄為 2026-07-13 的複查結果；其中只有 72 小時窗口跑滿 5 fold，其餘窗口的第 5 折未完成。會議審稿人亦獨立就評估設定提出同一疑問（每個病人產生多少時間窗、AUROC 是以病人還是以視窗為單位計算），與自行複查的結論一致。\n\n【核心特徵（Top 4，IG 分析）】\n・MAP（平均動脈壓）\n・Vent Rate（呼吸器設定頻率）\n・Tidal Volume（潮氣容積）\n・SpO₂（血氧飽和度）\n\n【研究貢獻】\n・在自己的論文裡找出評估洩漏：重建資料切分索引，確認原始數字來自視窗層切分的樂觀偏誤\n・台灣本土化資料：以台灣 ICU 真實資料建立的 VAP 預測管線\n・輕量化特徵組合：僅 4 個常規監測指標，無需額外侵入性檢查\n・臨床可解釋性：IG 分析呈現模型判斷依據\n\n【消融實驗：mv_total 排除驗證】\nmv_total（分鐘通氣量）IG 歸因排名第一（0.00989），但因 mv≡Vt×RR 為數學冗餘特徵，移除後 24 小時 AUROC 反升 +0.004、AUPRC 升 +0.014，確認冗餘特徵應以模型行為驗證，而非單憑歸因分數決定取捨。（此消融同樣在視窗層切分下取得，複查後未重跑。）\n\n📄 論文題目：基於 Stay-Level 交叉驗證與延長預測窗口之 LSTM 呼吸器相關肺炎早期預測研究\n論文完稿 2026.05，獲 IEEE GCCE 2026 接受（poster），會場神戶。",
+        "purpose": "研究原本想評估 ICU 時序資料能否預測 VAP。投稿後的複查發現資料處理和評估條件有問題，於是把重點轉為檢查這些條件如何影響模型結果。",
+        "concept": "我重新核對病人、時間窗與標籤的對應，也檢查同一病人是否同時出現在訓練與測試資料。分析還發現呼吸器廠牌和收案年份與標籤有關，現有資料無法排除來源差異的影響。",
+        "outcome": "這項研究目前能支持的是評估流程的限制：視窗層切分可能高估表現，資料來源也可能成為捷徑。若要判斷臨床訊號，仍需要來源一致、時間定義清楚的資料。論文獲 IEEE GCCE 2026 poster 接受。",
         "tech": [
           {
             "group": "深度學習",
             "items": [
               {
                 "name": "LSTM 時序建模",
-                "desc": "獨立設計 3 層 LSTM（各 50 units）+ Dropout 架構，掌握時序窗口切割、Dropout 正則化與超參數調整；以 TensorFlow / Keras 實作完整訓練迴圈"
+                "desc": "以 TensorFlow / Keras 建立三層 LSTM 時序分類模型，並比較不同窗口與簡化模型；在小型單中心資料上的結果需要配合同病人切分與來源分層解讀。"
               },
               {
                 "name": "類別不平衡處理",
-                "desc": "各折訓練集內套用 SMOTE（1:10），理解過採樣必須在切分後執行的 Data Leakage 邊界；資料集整體近乎平衡（52 VAP：55 非 VAP），但各折訓練子集比例仍有波動，SMOTE 確保每折訓練穩定"
+                "desc": "在訓練折內使用 SMOTE，避免合成樣本跨越訓練與測試邊界。後續比較未能證明 GAN 或其他擴增方式優於不擴增或 SMOTE。"
               },
               {
                 "name": "可解釋 AI（XAI）",
@@ -476,15 +476,15 @@
             "items": [
               {
                 "name": "防洩漏驗證設計",
-                "desc": "自行設計 Stay-level CV（以病患為單位切分），解決原論文 Window-level CV 造成同一病患橫跨訓練/測試集的 Data Leakage；於 MIMIC-IV 復刻實驗中，AUROC 從虛高 0.99 降至真實 0.58。亞東資料的主實驗起初仍沿用視窗層切分，論文接受後自行複查才發現並改正，AUROC 由 0.98–0.99 降至 0.61–0.67（詳見研究成果）"
+                "desc": "以病人為單位切分資料，檢查同一病人是否跨越訓練與測試集。MIMIC-IV 復刻與亞東資料的分析屬不同實驗；目前不以其結果主張臨床預測效能。"
               },
               {
                 "name": "Per-fold 正規化",
-                "desc": "每折獨立計算 mean/std 後再正規化，避免測試集統計量滲漏進訓練過程，掌握正規化與切分順序的嚴謹性邊界"
+                "desc": "在交叉驗證各折內計算正規化統計量，避免測試折統計量進入訓練流程。"
               },
               {
                 "name": "Ablation Study",
-                "desc": "移除 IG 排名第一的 mv_total（mv≡Vt×RR 數學冗餘），24h AUROC 反升 +0.004、AUPRC 升 +0.014，驗證特徵重要度應以模型行為而非歸因分數單一判斷；Cdyn（第11名）與 ΔP（第13名）歸因偏低一併排除"
+                "desc": "曾在視窗層設定下移除 mv_total（mv≡Vt×RR），觀察到 AUROC 與 AUPRC 上升；此分析未在修正後的病人層設定重跑，不作為目前結論。"
               }
             ]
           },
@@ -493,11 +493,11 @@
             "items": [
               {
                 "name": "滑動視窗建構",
-                "desc": "以 24 小時固定長度逐小時滑動，處理不等長 ICU 時序記錄的窗口對齊與邊界截斷問題"
+                "desc": "將 ICU 時序資料轉成固定長度窗口，並依預測時間點建立輸入資料；窗口切分須以病人為群組，避免同一病人跨折。"
               },
               {
                 "name": "生理訊號前處理",
-                "desc": "帶通濾波、Z-score 標準化、缺失值插補，確保連續監測資料輸入品質；以 pandas / NumPy 實作 ETL 管線"
+                "desc": "使用 pandas / NumPy 整理多來源生命徵象與呼吸器資料；稽核中修正時間對齊與欄位覆寫問題，顯示前處理需逐來源核對。"
               }
             ]
           }
@@ -511,7 +511,7 @@
       "category": "大學校外作品",
       "title": "AWS x BitoPro 黑客松：BitOGuard",
       "period": "2026",
-      "description": "三人團隊，我負責約 95% 的技術開發。LightGBM + XGBoost 加權混合（0.6/0.4）× S3 → Glue → Athena → SageMaker → Lambda → Bedrock 六服務端對端 AML 管線；63,770 帳戶 / 413,235 筆交易，32 項行為特徵（含圖論黑名單鄰居）+ SHAP 合規報告識別人頭帳戶，Streamlit 儀表板已部署上線。",
+      "description": "三人團隊參加 AWS × BitoPro 黑客松並進入決賽，最後完賽，沒有名次。系統以 LightGBM 與 XGBoost 混合模型分析交易帳戶，加入 32 項行為特徵，並以 SHAP 檢視預測依據。",
       "tags": [
         "LightGBM",
         "XGBoost",
@@ -543,24 +543,24 @@
             "caption": "預測結果：12,753 位用戶，501 筆標記風險（3.93%）、12,252 筆正常（96.07%）"
           }
         ],
-        "purpose": "BitoPro 加密貨幣交易所 AML 合規競賽資料集：\n・用戶資料：63,770 筆帳戶\n・台幣轉帳紀錄：195,601 筆（56,111 用戶）\n・USDT 交易紀錄：217,634 筆（33,587 用戶）\n・標記人頭帳戶：1,640 筆（訓練集 3.21%）\n\n目標是對每個帳戶輸出風險分數，識別高風險可疑帳戶，同時滿足監管機構對 AML 合規說明的可解釋性要求（不接受黑盒輸出）。\n\n選用 LightGBM 而非深度學習的理由：AML 合規場景要求對每筆標記帳戶提供特徵層級的判斷依據，LightGBM 搭配 SHAP 可直接輸出個別帳戶的特徵貢獻值；在 <65K 結構化資料規模下，樹模型適合處理這類表格資料，也能配合類別權重處理不平衡。",
-        "concept": "【為何選用 LightGBM，而非深度學習？】\nAML 合規系統的核心需求是可解釋性：監管機構要求對每筆標記帳戶提供「哪些特徵觸發高風險」的具體依據，而非黑盒分數。LightGBM 配合 SHAP 值分析可直接輸出每個特徵對單一帳戶預測的貢獻量，滿足合規說明義務。對這類結構化交易資料，樹模型也能以類別權重處理 1:30 的不平衡。\n\n【資料管線（AWS 端對端架構）】\n① BitoPro API 抓取交易紀錄 → ingest_to_s3.py 存入 AWS S3（原始資料層）\n② AWS Glue 執行 ETL 清洗 + glue_graph_hops.py 進行圖形化多跳關聯分析\n③ Amazon Athena 以 SQL 查詢聚合特徵結果（athena_graph_hops.sql）\n④ Amazon SageMaker 執行 LightGBM 與 XGBoost 訓練、調參與部署（最終提交為 0.6/0.4 加權混合）\n⑤ AWS Lambda + lambda_diagnosis.py 處理即時推論與事件觸發邏輯\n⑥ Amazon Bedrock 整合 SHAP + XAI，為每筆高風險帳戶自動產生可解釋性報告\n⑦ Streamlit 儀表板（app.py）提供互動式風險審查介面\n⑧ CloudFormation template.yaml 定義全套 IaC（基礎設施即程式碼）\n\n【特徵工程（32 項行為指標）】\n競賽提交版以三項核心特徵起步（台幣存提次數、深夜交易比例），競賽後持續擴充至 32 項，涵蓋：\n・交易行為：total_volume、tx_per_day、avg_twd_amount、swap_twd_volume\n・時序特徵：min_retention_minutes（最短持幣時間）、night_tx_ratio\n・圖論特徵：blacklist_neighbor_count（黑名單鄰居數）、is_direct_neighbor\n・風險旗標：high_speed_risk、ip_anomaly、deposit_only_flag\n特徵重要性最高的前三名依序為：total_volume（交易總量）、age（帳戶年齡）、swap_twd_volume（換匯金額）\n\n【模型設計】\n・LightGBM 與 XGBoost 梯度提升分類器，以 0.6/0.4 加權混合（5-fold AUC 0.819–0.849，XGBoost 單獨 OOF AUC 0.827）\n・以 max_depth、learning_rate、num_iterations 與類別權重控制模型複雜度與不平衡\n・5-fold Stratified CV，確保每折正負樣本比例一致\n・決策閾值掃描，依 Precision 與 Recall 的取捨選擇工作點\n・SHAP 值分析呈現每個特徵對個別帳戶預測的貢獻度",
-        "outcome": "【競賽成果】\n・進入決賽並完賽（無名次），端對端雲端架構設計獲評審正面評價\n・81 commits，完整實作從 API 資料擷取到模型預測的全管線\n\n【技術成果】\n・成功串接六項 AWS 服務：SageMaker、Glue、Athena、Lambda、S3、Bedrock\n・特徵工程從競賽初版 3 項擴充至 32 項行為指標\n・SHAP 可解釋性模組讓模型判斷具備合規說明能力\n・Streamlit 儀表板支援帳戶風險互動審查，已部署上線\n\n【模型效能（儀表板版本）】\n・AUC：83.2%\n・Precision：27.5%\n・Recall：33.2%\n・F1 Score：30.1%\n・Accuracy：95.0%\n・標記為風險帳戶：501 / 12,753\n\n這組數字來自已部署的 BitoGuard 儀表板；Accuracy 受資料不平衡影響，不單獨作為模型好壞的判斷。Precision 與 Recall 一起呈現，讓誤報成本和找出風險帳戶的能力都能被看見。",
+        "purpose": "題目是從交易資料找出可能的人頭帳戶。我負責模型、資料處理和部分雲端流程，團隊把結果整理成可供審查的風險分數與儀表板。",
+        "concept": "模型使用 LightGBM 與 XGBoost 以 0.6/0.4 加權，搭配 32 項交易行為特徵。專案也包含 S3、Glue、Athena、SageMaker、Lambda 與 Streamlit 等流程；SHAP 用來查看特徵對預測的貢獻。",
+        "outcome": "團隊進入決賽並完成競賽，未獲名次。5-fold OOF AUROC 為 0.832，Precision 為 27.5%、Recall 為 33.2%；這些是競賽資料上的模型結果，不代表實際金融機構部署成效。",
         "tech": [
           {
             "group": "機器學習",
             "items": [
               {
                 "name": "梯度提升二元分類",
-                "desc": "以 LightGBM 處理不平衡二元分類；透過 max_depth、learning_rate、num_iterations 與類別權重調整模型，並以決策閾值比較 Precision 與 Recall 的取捨"
+                "desc": "以 LightGBM 與 XGBoost 0.6/0.4 加權混合，並調整類別權重與分類門檻，觀察 Precision 和 Recall 的取捨。"
               },
               {
                 "name": "行為特徵工程",
-                "desc": "從台幣與 USDT 交易記錄中萃取 31 項行為指標（交易頻率、深夜比例、黑名單鄰居數等），驗證特徵從初版 3 項擴充後對模型的實際增益"
+                "desc": "從台幣與 USDT 交易記錄中萃取 32 項行為指標（交易頻率、深夜比例、黑名單鄰居數等），驗證特徵從初版 3 項擴充後對模型的實際增益"
               },
               {
                 "name": "SHAP 可解釋性",
-                "desc": "計算每筆帳戶各特徵的邊際貢獻，區分特徵重要性（全局）與個別帳戶判斷依據（局部），使模型結果具備 AML 合規說明能力"
+                "desc": "以 SHAP 檢視整體特徵重要性，以及個別帳戶預測中的特徵貢獻。"
               }
             ]
           },
@@ -569,7 +569,7 @@
             "items": [
               {
                 "name": "端對端資料管線",
-                "desc": "設計 S3 → Glue ETL → Athena → SageMaker → Lambda 六服務串接，掌握各節點的資料格式轉換、錯誤傳遞與權限設計；CloudFormation IaC 確保環境可重現"
+                "desc": "串接 S3、Glue、Athena、SageMaker 與 Lambda 處理資料及模型推論，並以 CloudFormation 描述雲端資源。"
               },
               {
                 "name": "圖形化多跳關聯分析",
@@ -633,7 +633,7 @@
       "category": "大學校外作品",
       "title": "TeamMatch — 黑客松找隊友平台",
       "period": "2026",
-      "description": "OpenAI Build Week 社群黑客松，三人當天從零做完：報名活動後在同場報名者裡滑卡找隊友，雙方都按讚才成立配對、交換聯絡方式。我負責登入／個人檔案／導覽列，以及最後把三個人的分支合併收尾。開工前先凍結一份介面規格（collection 名稱、欄位、Document ID、API 簽名、路由），三人平行寫、合併時不必改到對方的檔案。（AI 輔助開發，Codex）",
+      "description": "三人團隊在 OpenAI Build Week 社群黑客松的一天內完成 TeamMatch。我負責個人檔案、導覽和登入展示流程，也協助排除整合配對頁時遇到的 Firestore 連線問題。登入是切換既有示範身分，並非正式帳號驗證。",
       "tags": [
         "Next.js",
         "TypeScript",
@@ -642,9 +642,9 @@
         "介面契約"
       ],
       "detail": {
-        "purpose": "黑客松找隊友大多靠緣分：主辦的 Discord 洗版、認識誰就跟誰一組。TeamMatch 把這件事變成流程——先報名活動、標記自己缺隊友，然後只在同一場活動的報名者裡滑卡，雙方都按讚才交換聯絡方式。\n\n題目是三個人開場後現想的：Luma 的活動頁、獎金獵人的賞金、Tinder 的滑卡，把三個現成的東西接起來。",
-        "concept": "【開工前先凍結接口】一天的比賽最怕的不是寫不完，是合併時打架。所以先寫一份 SPEC：五個 Firestore collection 的名稱、欄位一律 camelCase、每個 Document ID 的組法、每支 API 的參數與回傳型別、每條路由的路徑。頁面怎麼寫、component 怎麼拆各自決定，但這六項凍結不動。三人各拿一塊（登入／個人檔案、活動列表與報名、滑卡與配對）平行寫。\n\n【重複操作用 Document ID 擋掉】報名的文件 ID 是 {eventId}__{userId}，同一人重複報名只會蓋回同一筆；滑卡是 {eventId}__{swiperId}__{targetId}；配對是 {eventId}__{userA}__{userB}，兩個 userId 先排序才組 ID——不排序的話「A 滑 B」和「B 滑 A」會生出兩筆配對。用命名規則換掉一整套去重查詢。\n\n【我這塊：登入刻意做成假的】不接 Firebase Auth，登入頁直接列出 profiles 裡的所有人，點一張卡就以那個身分進站，localStorage 存 userId。黑客松要的是評審和隊友兩分鐘內能互相配對給人看，不是密碼安全。這不是登入系統，是身分切換器，真要上線得整個換掉。\n\n個人檔案編輯直接讀寫 Firestore 文件：技能欄用逗號分隔字串轉陣列、下方即時顯示 pill；頭像不做上傳，用 DiceBear 依 avatarSeed 生成，省掉 Storage 和圖片處理。",
-        "outcome": "當天做出可跑的完整流程：建個人檔案 → 瀏覽／發布活動 → 報名（可標記「已有隊友」與隊伍名稱）→ 在該活動的候選人裡滑卡 → 互相按讚跳出配對成功 → 配對列表看到對方的 Email 和 Discord。活動人數上限以隊伍人數加總計算，不是報名筆數；已經有隊友的人不會進滑卡候選池。\n\n現場最花時間的是 Firestore 連不上：SDK 預設的 WebChannel 串流建不起來，改成 initializeFirestore(app, { experimentalForceLongPolling: true }) 強制走長輪詢才通。這行是我在把配對頁合併進主線時修的。\n\n沒有名次，也還沒部署上線。Firestore 安全規則和真正的登入都停在 demo 等級，要公開得先補這兩塊。",
+        "purpose": "我們想做一個讓黑客松參與者快速找到隊友的配對頁，並在一天內完成可操作的展示版本。",
+        "concept": "網站以 Next.js 和 Firebase 建置，包含個人檔案、配對瀏覽和示範登入。登入流程選取預先建立的個人檔案，不使用 Firebase Authentication；這是原型，沒有正式部署或完整權限規則。",
+        "outcome": "一天內完成可展示的主要流程。我負責個人檔案、導覽與身分切換介面，並在整合時協助處理 Firestore WebChannel 連線問題。",
         "tech": [
           {
             "group": "介面契約",
@@ -699,7 +699,7 @@
       "category": "大學課程作品",
       "title": "類比電路實作：音訊放大器 PCB 設計",
       "period": "2024",
-      "description": "大二課程專案，建立基礎硬體素養：電路圖判讀、通孔元件焊接與基礎 PCB 佈線拓撲，實作兩級 BJT 音訊放大電路（CE + CC 架構）。完成感光板蝕刻製程，歷經兩次系統性除錯（分別診斷殘銅短路與元件腳位鏡像問題），最終順利驅動 8Ω 喇叭。",
+      "description": "大二電子電路實驗的兩級 BJT 音訊放大器。隊友做麵包板與 PSpice；我整理原理圖、佈 PCB、蝕刻、焊接並除錯。重做兩次後排除殘銅短路與元件腳位鏡像問題，最後以 8Ω 喇叭確認能播放聲音。",
       "tags": [
         "BJT 放大電路",
         "PCB Layout",
@@ -738,9 +738,9 @@
             "caption": "PCB 鑽孔孔位圖：所有元件腳位與固定孔的加工基準"
           }
         ],
-        "purpose": "大二電子學期末專案（第 12 組），目標是設計並實作一套可驅動 8Ω 喇叭的音訊放大電路。電路需包含可調增益功能，並完成從電路模擬、麵包板驗證到實際 PCB 製作的完整流程。\n\n分工：隊友負責麵包板驗證與 PSpice 模擬；我負責後段全部實作——邏輯圖與線路圖繪製、感光板製作（曝光、顯影、酸洗）、鑽孔、焊接與兩輪除錯。",
-        "concept": "【電路架構：兩級 BJT 放大】\n・輸入級：可變電阻 Rv1a / Rv1b 調整輸入增益；R3 / R4 提供直流偏壓使 Q1 穩定工作於主動區\n・第一級 CE（共射極）放大：Q1 提供主要電壓增益，集極電阻 RC 將電流變化轉換為輸出電壓\n・偏壓穩定：D1–D4 四個二極體串聯穩定 Q2、Q3 基極電壓差；C3 吸收反向電壓避免二極體擊穿\n・第二級 CC（共集極 / 射極隨耦器）：高輸入阻抗、低輸出阻抗，透過發射極電阻 RE 的負回授提升穩定性並降低失真，電壓增益約為 1\n・可變電阻 Rv2 調整整體直流工作點，在不失真的條件下找到最大增益\n\n【PCB 製作流程】\n感光 FR4 雙面板（15 cm × 12.5 cm），手工製作流程：\n① Layout 繪製 → 縮減白線交叉點，元件下方走線壓縮面積\n② 底片輸出 → 曝光 → 顯影 → 酸洗蝕刻 → 清洗\n③ 鑽孔 → 元件焊接 → 通電測試\n\n【兩次重製過程】\n第一次失敗：酸洗後有殘銅未清除乾淨，通電後短路。逐一確認二極體導通、電晶體工作狀態均正常後，確認問題出在板子本身。重新繪製 Layout 加急重製。\n\n第二次問題：焊接完成後仍無法運作。隊友發現 PCB 圖紙需「從下往上看」——功率 IC 和電晶體腳位全數鏡像，重新焊接後電路出現斷續訊號且電壓五秒後下跌。再次確認所有焊點導通後，電路順暢運作。",
-        "outcome": "・電路成功驅動 8Ω 實驗用小喇叭，輸出清晰音訊\n・完成從電路模擬、麵包板驗證到 PCB 實作的完整流程\n・電源：12V DC 電源供應器 / 9V 電池（外出場合）\n・輸入：3.5mm 雙公頭音源線連接電腦\n\n【個人心得】\n這次專題讓我清楚了解一個簡單的音訊放大原理，更加深了 PCB 製程的實戰能力。兩次重製過程中學到最多的不是設計本身，而是系統性除錯的方法——從元件逐一驗證到最終確認是腳位鏡像問題，每一步都需要對電路行為有清楚的預期，才能排除非預期狀況。",
+        "purpose": "課程要求製作兩級 BJT 音訊放大器。我負責把電路圖轉成 PCB，完成實板製作與故障排查。",
+        "concept": "工作包含原理圖整理、PCB 佈線、感光板曝光蝕刻、元件焊接與上電檢查。第一次重做處理板上殘銅造成的短路，第二次修正元件封裝方向。",
+        "outcome": "完成的電路接上 8Ω 喇叭後能播放聲音。這次實作讓我走過從電路圖、PCB 到實板除錯的完整流程。",
         "tech": [
           {
             "group": "類比電路設計",
@@ -795,7 +795,7 @@
       "category": "大學課程作品",
       "title": "PCB 線路瑕疵偵測：Azure Custom Vision 切塊物件偵測",
       "period": "2026",
-      "description": "北大 PCB 瑕疵資料集，挑 6 個板型（01／04／05／06／07／08）× 3 種缺陷（missing_hole 缺孔、mouse_bite 鼠咬、open_circuit 斷路）訓練物件偵測。原圖是 3034×1586 的整板、缺陷框只有約 60px，直接丟 Custom Vision 會被縮到約 512px 而看不見，第一次訓練 mAP 只有 9.6%、Recall 3.1%。改成把大圖切成 600px 小塊再訓練後，mAP 88.2%、Precision 100%。匯出 TensorFlow model.pb，可在 Colab 載入推論。 另把模型包成本機檢測工具，支援批量上傳、缺陷統計與 CSV，並設計「人工回饋→審核→重訓」的 active-learning 迴圈。（AI 輔助開發）",
+      "description": "用 Azure Custom Vision 偵測 PCB 缺孔、鼠咬與斷路。訓練時將影像切成 600px 區塊，推論時以重疊視窗掃描並用 NMS 合併框，另做 Flask 批次檢查與人工回饋重訓流程。README 報告 mAP 82%、Precision 100%。",
       "tags": [
         "Azure Custom Vision",
         "Object Detection",
@@ -807,7 +807,7 @@
         "images": [
           {
             "src": "/images/pcb-defect-detection/performance.png",
-            "caption": "Advanced Training 成果（6 板型）：整體 Precision 100% / Recall 72.3% / mAP 88.2%（threshold 0.5），分缺陷數據見下方"
+            "caption": "Custom Vision 訓練評估摘要：公開 README 報告 Precision 100%、mAP 82%"
           },
           {
             "src": "/images/pcb-defect-detection/pipeline.png",
@@ -850,9 +850,9 @@
             "caption": "open_circuit 偵測：板型 11 第 1 張（綠＝標註，紅＝模型預測）"
           }
         ],
-        "purpose": "作業要求：10 個板型裡至少挑 3 型、至少 3 種缺陷，用物件偵測訓練到 Precision 80% 以上，再對沒看過的板子做檢測，最後匯出 model.pb 能在 Colab 載入。\n\n真正卡住的不是訓練流程，是資料尺度。缺陷框只有約 60 像素，整張板卻是 3034×1586。Custom Vision 會把輸入縮到約 512px，縮完缺陷只剩約 10px，模型根本看不到——第一次照標準流程訓練，mAP 只有 9.6%、Recall 3.1%，等於沒用。",
-        "concept": "【第一次失敗：直接上傳整圖】\n把整圖連同 Pascal VOC 標註上傳，用 General (compact) domain 做 Advanced Training。結果 mAP 9.6%、Recall 3.1%——缺陷被縮圖吃掉了。\n\n【解法：影像切塊（tiling）】\n把每張大圖以缺陷框為中心切成 600×600 的小塊，框落在塊內超過 40% 面積才保留，座標重新換算成塊內的 0–1 正規化值。缺陷在塊裡的佔比從約 2% 拉到約 12%，縮到 512px 後仍有約 60px。最終以 6 個板型、3 缺陷共切出 837 塊訓練。\n\n【偵測也要切塊】\n推論時整板一樣會被縮小，所以對 PCB_USED 與驗證板也用同樣方式切塊逐塊偵測，把預測框映射回原圖座標，再用 IoU 0.3 的 NMS 去掉重疊塊造成的重複框。\n\n【匯出與 Colab】\n要能匯出 TensorFlow 一定得用 compact domain。匯出的模型輸出是 YOLO 風格原始張量（節點 model_outputs:0），解碼（anchors + NMS）沿用 Custom Vision 官方的 object_detection.py，沒有自己重寫。Colab 端把官方解碼器、model.pb、labels.txt 一起載入就能推論。",
-        "outcome": "【Advanced Training 成果（6 板型，threshold 0.5）】\nPrecision 100%　Recall 72.3%　mAP 88.2%\nmissing_hole　P 100%　R 96.9%　AP 99.6%\nmouse_bite　　P 100%　R 65.1%　AP 82.0%\nopen_circuit　P 100%　R 54.1%　AP 83.0%\n\n【為什麼從 3 板型加到 6 板型】\n一開始只用 3 個板型（01／04／05）訓練，mAP 81.9%，但拿沒看過的板子驗證時，每張大概會多框 1 個——模型把正常、有鑽孔的 via 誤判成缺孔，因為它只看過 3 種板的 via 長相。把訓練板型加到 6 個（多了 06／07／08）後，mAP 升到 88.2%，這類誤報基本消失。\n\n【拿沒訓練過的板型驗證（09–12）】\n訓練用 6 個板型，驗證改用模型完全沒看過的 09、10、11、12 共 106 張缺陷圖：標準答案總共 538 個缺陷，模型輸出 509 個框，現在反而是略為保守（少抓約 5%），不再亂多框。在沒看過的板型上仍穩定抓到缺陷，代表泛化是真的。\n\n【誠實邊界】\nPrecision 100% 一樣是 Custom Vision 交叉驗證的數字，偏樂觀（同一張板切出的塊背景相似會高估）。三類裡 open_circuit 與 mouse_bite 的 recall 偏低（54%、65%），斷路和鼠咬比缺孔細微、形狀也不規則，會漏抓一些；要往下做應該先補這兩類資料。missing_hole 已相當穩（recall 96.9%）。\n\n【後續：檢測工具 + 人工回饋重訓】\n把模型包成一支本機網頁工具：一次拖多張板子批量偵測、依缺孔/鼠咬/斷路分色框出、彙整 NG/OK 與各類數量並匯出 CSV。再加上人工回饋迴圈——檢出結果可標記「多抓（誤報）」與「漏抓（補框）」，經人工逐筆審核核准後，只用核准的校正資料重新訓練，形成 active-learning 閉環。工具為本機 Flask 程式，金鑰留在本機。",
+        "purpose": "整板影像尺寸太大，不適合直接交給物件偵測模型。我把訓練資料切塊，並讓推論流程掃描整板後合併重複框。",
+        "concept": "訓練流程產生 600px 影像區塊；推論使用重疊視窗，最後以 NMS 整理重疊偵測框。Flask 工具支援批次檢查與人工回饋。README 所列指標來自專案評估，不能直接視為所有板型上的保證。",
+        "outcome": "專案 README 報告 mAP 82% 與 Precision 100%，並展示保留板型的驗證。系統包含影像切塊、整板掃描、結果整理和回饋流程。",
         "tech": [
           {
             "group": "影像處理",
@@ -916,7 +916,7 @@
       "category": "大學校外作品",
       "title": "開源硬體整合：QMK x STM32 數字鍵盤",
       "period": "2026",
-      "description": "整合開源鍵盤 PCB 設計與 QMK/ChibiOS 韌體框架（STM32F103）。實際貢獻：識別開源框架與硬體間的編譯衝突及時序問題，以 LLM 輔助偵錯工具逆向工程 ChibiOS HAL 三件組（chconf/halconf/mcuconf），成功重構設定檔實現完整硬體功能——USB HID 穩定識別、RGB Matrix 運作正常、VIA/VIAL 即時改鍵驗證完成。",
+      "description": "以 STM32F103 執行 QMK 數字鍵盤韌體，整合 USB HID、RGB Matrix 與 VIA/VIAL 改鍵。PCB 是以既有開源設計為基礎改版；我調整 QMK/ChibiOS HAL 設定並處理編譯問題。",
       "tags": [
         "STM32 / Cortex-M",
         "QMK / ChibiOS HAL",
@@ -935,9 +935,9 @@
             "caption": "與主鍵盤並用"
           }
         ],
-        "purpose": "市面上 USB 數字鍵盤多為封閉韌體，無法自訂鍵位邏輯、燈效或 Layer 切換；若要深入 QMK 生態，多數教學從 Pro Micro（ATmega32U4）出發，對 STM32 目標的 ChibiOS HAL 配置缺乏中文完整紀錄。\n\n專案範疇說明：本專案以現有開源鍵盤 PCB Layout 為基礎（於 EasyEDA Pro 改版以對接立創商城打板），整合 QMK 開源韌體框架，並非從零設計硬體。核心工程挑戰在於診斷並解決 QMK/ChibiOS 開源框架與 STM32F103 目標硬體之間的編譯失敗與時序衝突問題，並借助 LLM 輔助偵錯工具逆向工程正確的 ChibiOS HAL 配置。\n\n本專案目標是完整走過「從空白 PCB 到可用 USB HID 鍵盤」的全流程，並產出可重現的開源整合紀錄——包含 EasyEDA Pro 工程檔、QMK 韌體原始碼、ChibiOS 三件組配置說明。\n\n具體驗證目標：\n・PCB 設計與立創商城打板全流程\n・STM32F103 搭配 stm32duino bootloader 的韌體燒錄流程\n・QMK + ChibiOS HAL 三件組（chconf / halconf / mcuconf）配置\n・WS2812B RGB Matrix 動畫整合與過流保護設定\n・VIA / VIAL 圖形化改鍵支援",
-        "concept": "【核心技術選型決策】\n・STM32F103 vs. Arduino Pro Micro（ATmega32U4）\n  現有硬體使用 STM32F103，QMK 設定採 stm32duino bootloader。這次的重點不是從零選 MCU，而是讓既有硬體、bootloader 與 QMK/ChibiOS 設定能穩定配合。\n\n・ChibiOS vs. 裸機 HAL\n  QMK Firmware 的 STM32 目標使用 ChibiOS 作為硬體抽象層。這次排查的重點是 USB、GPIO 與時鐘設定之間的依賴，而非另寫一套裸機驅動。\n\n・EasyEDA Pro vs. KiCad\n  立創EDA Pro 與立創商城深度整合——選件、DRC 檢查、下單打板在同一平台完成，讓既有開源 PCB 的改版與送廠流程更直接。\n\n【硬體架構】\n・MCU：STM32F103；QMK 設定使用 stm32duino bootloader\n・PCB 使用 EasyEDA Pro（立創EDA）改版，已上傳完整工程檔\n・標準鍵盤矩陣（Matrix Scanning）降低 IO 使用量\n・WS2812B Addressable RGB 實現逐鍵獨立燈效\n・100nF 去耦電容配置於 MCU 電源附近\n\n【韌體架構（QMK + ChibiOS）】\n・chconf.h：ChibiOS kernel 執行緒與 tick 配置\n・halconf.h：啟用所需外設（USB、GPIO、SPI）\n・mcuconf.h：STM32 時鐘、PLL、外設時脈來源設定\n・自定義 LAYOUT_numpad_17 對應 PCB 實體配置\n・模組分離：w17.h（Layout 定義）/ w17.c（RGB Matrix 初始化）/ config.h（硬體參數）/ keymap.c（鍵位邏輯）\n\n【Layer 設計】\n・Layer 0：標準數字鍵盤輸入\n・Layer 1：RGB Matrix 控制（RM_NEXT / RM_PREV / Hue / Sat / Val / 速度）\n・使用 LT() 實現「長按切層、短按輸入」\n\n【RGB 設計】\n・採用 RGB_MATRIX（非舊版 RGBLIGHT），支援動畫模式切換\n・設定 RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 避免過流過熱\n\n【VIA / VIAL 支援】\n・使用者無需重新編譯即可即時調整鍵位與 Layer 配置",
-        "outcome": "・完成 17 鍵 USB HID 鍵盤整合流程：EasyEDA Pro PCB 改版 → 立創商城打板 → 手焊組裝 → STM32F103 bootloader 燒錄 → QMK 韌體整合\n・ChibiOS HAL 三件組（chconf / halconf / mcuconf）正確配置，USB HID 穩定識別\n・RGB Matrix 各動畫模式運作正常；RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 限制有效防止 LED 串過流\n・VIA / VIAL 圖形化改鍵驗證通過，Layer 切換與 RGB 控制均可即時調整，無需重新編譯\n・排查並修復 PCB 腳位鏡像問題（EasyEDA 封裝預設 Top/Bottom 層方向差異），為後續 PCB 設計留下可複用的 Checklist\n・完整原始碼已開源於 GitHub，含 EasyEDA 工程檔、QMK 韌體、ChibiOS 配置說明",
+        "purpose": "我想把 QMK 韌體用在 STM32 數字鍵盤上，過程中需要對齊鍵盤設定與 ChibiOS HAL 的 MCU 設定。",
+        "concept": "韌體以 STM32F103 為目標，調整 chconf、halconf 和 mcuconf，並整合 USB HID、RGB Matrix 及 VIA/VIAL。PCB 沿用既有開源設計再修改，不是從零開始設計。",
+        "outcome": "完成韌體建置與鍵盤功能整合。這裡描述的是專案設定和功能，不宣稱晶片型號讀取或延遲量測結果。",
         "tech": [
           {
             "group": "嵌入式韌體",
@@ -980,7 +980,7 @@
       "category": "大學校外作品",
       "title": "FRC 7645 — 官網與後台 CMS",
       "period": "2025",
-      "description": "35% 程式碼貢獻者。學長（65%）主導 React/Firebase/Vite 核心架構、Auth 系統、Three.js 3D 展覽廳與 Firestore 安全規則。我接手後負責：首頁大改版、留言系統（Contact 表單 → Firestore → CMS 管理 Tab 端對端）、組別身分系統、Code Splitting（JS bundle 2.7MB → 820KB）、Cloudflare Pages 部署與 TBA API 30 天快取。",
+      "description": "參與 FRC 7645 官網與 CMS 開發，完成首頁改版、訪客留言管理、組別身分介面、程式碼拆分與 The Blue Alliance 資料快取。團隊內容由 Firebase 管理，網站可在線瀏覽。",
       "tags": [
         "React",
         "Firebase",
@@ -990,20 +990,20 @@
         "localStorage 快取"
       ],
       "detail": {
-        "purpose": "FRC 7645（南港高工）需要一個對外公開的官網，以及供非技術成員管理比賽資訊、隊員名單、新聞與贊助商內容的後台 CMS。\n\n程式碼貢獻比例：\n・學長（65%）：React / Firebase / Vite 核心架構與 routing、Firebase Auth 與 i18n、TipTap 富文字編輯器與圖片壓縮上傳、Three.js 3D 展覽廳（.glb 爆炸拆解動畫）、Firestore 安全規則、設計系統（CSS 變數、bento grid、carousel）、多頁面（Blog、Robots、Sponsors、About、Profile）、SEO（sitemap、JSON-LD）。\n・本人（35%）：首頁大改版、留言系統、組別身分系統、效能優化、Cloudflare Pages 部署、TBA API 快取、CMS 重整、CLAUDE.md 工作記憶框架建立。\n\n本文件描述本人 35% 貢獻範疇。",
-        "concept": "【一、效能優化——Code Splitting & Lazy Loading】\n接手時整包 JS bundle 約 2.7MB，首屏載入明顯拖慢。以 Vite 動態 import 拆分路由層級的 chunk，配合 React.lazy + Suspense 實作 lazy loading，只在進入對應路由時才載入該頁的 JS。結果：bundle 從 2.7MB 降到 820KB（減少約 70%），FCP 明顯改善。\n\n【二、TBA API 快取——30 天 localStorage 層】\nTBA API 在比賽日高峰流量下容易觸發限流，訪客會看到空白賽況頁面。實作以端點 + 查詢字串為 key 的 30 天 localStorage 快取，每次請求驗證快取新鮮度，過期才重新 fetch 並更新快取。消除比賽日重複請求，移除限流風險。\n\n【三、留言系統——端對端實作】\nContact 頁表單送出後寫入 Firestore `messages` collection。CMS 新增「留言管理 Tab」，管理員可直接在後台查看、刪除留言，不需開 Firebase Console。從前端表單到後台管理介面都是這次新做的。\n\n同時為 `messages` collection 新增 Firestore 安全規則：`allow create: if true`（訪客可送出留言）、`allow read, delete` 限定 admin / teacher（CMS 後台存取）、`allow update: if false`（防止留言被竄改）。沒有這條規則，未驗證的訪客寫入會被 Firebase 預設拒絕。\n\n【四、組別身分系統】\nAdmin 新增多選 pill UI，讓管理員在後台勾選隊員所屬的功能組別（機構、電控、程式等）。Profile schema 新增 `showInDivision` 欄位，TeamGroup 組件根據此欄位自動過濾並顯示對應成員，取代原本需要手動維護多份靜態名單的方式。\n\n【五、首頁大改版】\n浮動贊助商泡泡以 CSS keyframe animation 實作，取代原本的 marquee 捲動元素，消除捲動卡頓。新增團隊簡介區塊與統計數字（歷屆賽季、獎項數量）。重構全域導覽列，新增 TeamTimeline.jsx（從資料陣列渲染戰隊里程碑）、Competition.jsx（消費 TBA 快取的賽事卡片，獨立處理 loading / error / empty 狀態）、MessagesPanel（CMS 留言管理）。\n\n【六、CI/CD 部署——Cloudflare Pages】\n連接 GitHub repo，設定 PR 預覽部署與 main 合併觸發正式部署。完成 nkhs.team7645.com 自訂域名路由與 Cloudflare 邊緣快取配置，快取路由 TTFB 在 100ms 以下。\n\n【七、CMS 重整】\n原始 CMS tab 分散，合併 Carousel + Cards → Homepage Management、Contact + Socials → 聯絡與社群，重新整合遺失的 Advisor Tab，新增作者 / 組別拆分欄位與留言管理 Tab。\n\n【八、CLAUDE.md 工作記憶框架】\n在多輪迭代開發過程中，以 CLAUDE.md 紀錄專案架構、命名規範與禁止修改範圍，搭配固定目錄結構，確保跨 session 的 LLM 上下文一致，避免多次重構中產生規範漂移。",
-        "outcome": "・Code Splitting 把 JS bundle 從 2.7MB 降到 820KB，FCP 明顯改善\n・留言系統上線後，聯絡資料統一進 CMS，不再需要手動轉傳\n・TBA API 快取消除比賽日限流風險\n・nkhs.team7645.com 部署以來零停機，Cloudflare 邊緣快取使快取路由 TTFB 在 100ms 以下\n・組別身分系統讓成員管理從維護靜態名單改為 Admin UI 操作",
+        "purpose": "團隊需要能自行更新賽事、成員與公告的網站。我參與官網功能與 CMS 的整理，讓部分內容能由管理介面維護。",
+        "concept": "網站使用 React 與 Firebase。工作包含首頁、訪客留言到 CMS 的流程、組別顯示設定、路由程式碼拆分，以及 The Blue Alliance 資料快取。",
+        "outcome": "官網與 CMS 已部署，訪客可瀏覽團隊資訊並留言；管理者可在 CMS 查看與處理留言。",
         "tech": [
           {
             "group": "效能優化",
             "items": [
               {
                 "name": "Code Splitting & Lazy Loading",
-                "desc": "Vite 動態 import 拆分路由層級 chunk，React.lazy + Suspense 按需載入；JS bundle 從 2.7MB 降至 820KB（約 70%）"
+                "desc": "Vite 動態 import 拆分路由層級 chunk，React.lazy + Suspense 按需載入"
               },
               {
                 "name": "TBA API localStorage 快取",
-                "desc": "以端點 + 查詢字串為 key 的 30 天快取層；每次請求驗證新鮮度；消除比賽日重複 fetch 與限流風險"
+                "desc": "以端點 + 查詢字串為 key 的 30 天快取層；每次請求驗證新鮮度；減少重複請求"
               }
             ]
           },
@@ -1021,15 +1021,6 @@
               {
                 "name": "組別身分系統",
                 "desc": "Admin 多選 pill UI 設定 `showInDivision`；TeamGroup 組件自動過濾並渲染對應成員，取代手動維護靜態名單"
-              }
-            ]
-          },
-          {
-            "group": "部署與 DevOps",
-            "items": [
-              {
-                "name": "Cloudflare Pages CI/CD",
-                "desc": "PR 預覽 + main 合併觸發正式部署；nkhs.team7645.com 自訂域名；邊緣快取使快取路由 TTFB 在 100ms 以下"
               }
             ]
           },
@@ -1054,19 +1045,10 @@
                 "desc": "Carousel + Cards → Homepage Management；Contact + Socials → 聯絡模組；補回 Advisor Tab；新增留言管理 Tab 與作者/組別拆分欄位"
               }
             ]
-          },
-          {
-            "group": "開發基礎建設",
-            "items": [
-              {
-                "name": "CLAUDE.md 工作記憶框架",
-                "desc": "紀錄專案架構、命名規範與禁止修改範圍，搭配固定目錄結構，確保跨 session LLM 上下文一致，避免多輪重構產生規範漂移"
-              }
-            ]
           }
         ],
         "demo": "https://nkhs.team7645.com/",
-        "github": ""
+        "github": "https://github.com/Jcsk7049/team7645-website"
       }
     },
     {
@@ -1075,7 +1057,7 @@
       "category": "高職選手作品",
       "title": "無線打地鼠機 (特教組教具)",
       "period": "2021 – 2022",
-      "description": "南港高工特教組委託專案，以 ESP32 + ESP-NOW 串聯一主四從五台機台，搭配電晶體繼電器驅動電路與 3D 列印機構，為特教生打造可室內外通用的無線互動教具，獲特教組正式感謝狀。",
+      "description": "為南港高工特教組製作無線打地鼠教具，以 ESP32/ESP-NOW 連接一台主機與四台遊戲機。除錯時先處理繼電器線圈反電動勢造成的元件損壞，再改善 7805 過熱問題；成品獲特教組感謝狀。",
       "tags": [
         "ESP32",
         "ESP-NOW",
@@ -1084,9 +1066,9 @@
         "Arduino"
       ],
       "detail": {
-        "purpose": "南港高工特教組委託專案，為特教生設計可在室內外通用的互動教具。需求重點：\n\n・數量少、結構簡單、易維修收納\n・操作直覺，適合特教生使用\n・室外場合不依賴電源插座\n\n參考投籃機、漂浮冰球台等遊樂器材後，選擇打地鼠機台形式，並加上無線傳輸功能實現戶外使用。",
-        "concept": "【系統架構：ESP-NOW 點對點通訊】\n選用 ESP32 + ESP-NOW 通訊協定：\n・不需 WiFi／路由器，點對點直連\n・斷線或重啟後自動重連，免操作\n・一台主機 + 四台從機，主機隨機選號發送；被選中的從機亮燈，玩家按鈕後從機回傳訊號\n\n【電路設計】\n電源 11.1V（三顆 18650 串聯）→ 7805 降壓至 5V 給 ESP32 → ESP32 GPIO 輸出 → 9013 電晶體放大 → 繼電器切換 11.1V 給 LED\n\n關鍵元件考量：\n・飛輪二極體（1N4001）並聯繼電器線圈，吸收反電動勢防止電弧損毀\n・電晶體放大解決 ESP32 GPIO 電流不足以驅動繼電器的問題\n・104 陶瓷電容於 7805 輸入輸出端去耦，穩定電壓\n\n【程式邏輯】\n主機（Master）：隨機產生 1–4 廣播給從機 → 進入 200 次迴圈等待回傳（約 10 秒）→ 收到回傳則廣播 0 重置進入下一輪；超時直接進入下一輪。\n從機（Slave）：接收編號比對自身編號決定是否亮燈 → 亮燈期間偵測按鈕 → 按下時回傳 1 → 延遲 0.1 秒後回傳 0 重置狀態（避免主機資料卡在 1）\n\n【機構設計】\n・上蓋：3D 列印（第一版）→ 木板 + 螺絲（改良版），便於替換維修\n・外殼：鋁方管 + 上蓋，頂部設計 3.5° 外傾螺絲孔強化固定\n・底蓋：強力磁鐵吸附，免工具開蓋換電池\n・主軸思維：化繁為簡，加工不過度複雜，維修要快",
-        "outcome": "【功能達成】\n・五台機台（一主四從）完整運作，室內外皆可使用\n・無線通訊穩定，斷電重啟自動重連\n・操作直覺，符合特教組需求\n・獲特教組正式感謝狀\n\n【除錯過程一：ESP32 為何一直無故燒毀】\n最初繼電器線圈沒並聯飛輪二極體。繼電器斷開的瞬間，線圈產生的反電動勢尖峰灌回電路，接連燒掉電晶體與 ESP32——換了好幾顆 ESP32 都一樣，才意識到不是程式問題，是硬體的反電動勢。並聯 1N4001 飛輪二極體吸收反電動勢後就不再損壞。這是我第一次體會到「硬體 bug 不會出現在 code 裡」。\n\n【除錯過程二：7805 過熱】\n7805 從 11.1V 線性降到 5V，壓差乘上電流全部變成它身上的熱，長時間運作會觸發過熱保護、供電不穩。理解到線性穩壓的功耗 =（Vin−Vout）×I 之後，加散熱片並移除不必要的負載才穩定。\n\n【製作心得】\n為特殊生做教具要多想幾層——不易受傷、零件好替換、化繁為簡。整個專案我在維修階段學到的（反電動勢、去耦、線性穩壓功耗）比設計階段還多。\n\n【分工（兩人專案）】\n・機構設計與加工：江嘉元\n・電路設計、製作、程式：江嘉元 + 杜權祐",
+        "purpose": "特教組需要一套方便操作與維修的互動教具。我們選擇打地鼠形式，做成一台主機控制四台遊戲機的無線系統。",
+        "concept": "ESP32 透過 ESP-NOW 傳送遊戲狀態，按鈕與繼電器控制各機台。除錯時在繼電器線圈加上 1N4001 飛輪二極體處理反電動勢，並針對 7805 線性穩壓器的發熱檢查負載與散熱。",
+        "outcome": "五台機台完成組裝並交給特教組使用，專案獲感謝狀。製作過程也讓我實際處理無線通訊、繼電器保護和線性穩壓發熱問題。",
         "images": [
           {
             "src": "/images/whack-a-mole/machines-group.jpg",
@@ -1167,7 +1149,7 @@
       "category": "高職選手作品",
       "title": "集體創作競賽機器人",
       "period": "2022",
-      "description": "代表南港高工參加第 52 屆全國技能競賽集體創作職類，三人團隊聯合設計競賽用夾取機器人。我負責全車電路：24V 鉛酸電池配電、繼電器 H 橋馬達方向控制，從電路設計、拉線到製作都是自己完成。",
+      "description": "代表南港高工參加 2022 年第 52 屆全國技能競賽集體創作職類。三人製作夾取機器人，我負責 24V 配電、繼電器 H 橋與全車配線；隊友負責機構加工和控制程式。",
       "tags": [
         "競賽機器人",
         "繼電器控制",
@@ -1175,9 +1157,9 @@
         "三人團隊"
       ],
       "detail": {
-        "purpose": "代表南港高工參加第 52 屆全國技能競賽（2022）集體創作職類。競賽規則要求三人團隊在限定時間內聯合設計並製作一台具備特定功能的機器人，目標為在場地中移動並夾取圓柱體與正方體物件。\n\n此競賽強調跨專業協作：機構、電路與程式三方必須高度整合。我負責整車電路——從電路設計、配線規劃到實際拉線製作全程自己完成。",
-        "concept": "【底盤與驅動】\n採用膠輪底盤，24V 鉛酸電池組提供主電源。以繼電器組實作 H 橋電路，每個驅動軸使用兩個繼電器切換馬達電流方向，控制前進/後退，電路結構直觀可靠。\n\n【夾爪機構】\n夾口設計同時兼容圓柱體與正方體：弧面段貼合圓柱，平面段穩定夾持方形物件，確保搬運過程不滑落。\n\n【三人分工】\n・電路設計與配線（江嘉元）：H 橋繼電器驅動電路設計、24V 系統配電、全車拉線與製作\n・機構設計與加工（學弟）：底盤結構、夾爪設計與車床/銑床構件加工\n・程式控制邏輯（團隊成員）：馬達方向控制程式",
-        "outcome": "・代表南港高工完賽第 52 屆全國技能競賽集體創作職類\n・親手完成高功率繼電器 H 橋電路設計與 24V 系統整車配線，理解大電流配線的線徑選擇與繼電器隔離\n・理解競賽機器人開發與 FRC 長期開發模式的差異——在極短時間內完成功能性整合",
+        "purpose": "競賽要求三人合作，在限定時間內完成能移動並夾取物件的機器人。我負責整車電路，與機構和程式組員一起整合。",
+        "concept": "我設計繼電器 H 橋、規劃 24V 配電並完成全車拉線。隊友負責底盤與夾爪加工，以及控制程式。",
+        "outcome": "代表學校完成第 52 屆全國技能競賽集體創作職類作品。這次合作讓我在短時間內把電路、機構與控制整合成可操作的作品。",
         "tech": [
           {
             "group": "電路設計",
@@ -1230,7 +1212,7 @@
       "title": "Swerve Drive 全向輪控制研究",
       "period": "2020 – 2023",
       "frc": true,
-      "description": "從零自行開發三代 FRC 競賽全向輪底盤，涵蓋運動學演算法、齒輪傳動設計、CNC 精密加工與 LabVIEW PID 控制，獲 2022 FRC 台灣鴻海區域賽 Innovation in Control Award。",
+      "description": "參與 FRC Swerve Drive 底盤三代迭代，工作包含 LabVIEW 運動學、齒輪傳動、CAD、CNC 與線切割。2022 年台灣鴻海區域賽獲 Innovation in Control Award。",
       "tags": [
         "LabVIEW",
         "PID Control",
@@ -1240,9 +1222,9 @@
         "3D 列印"
       ],
       "detail": {
-        "purpose": "國外強隊普遍採用 Swerve Drive，其四輪獨立轉向架構在保有全向移動優勢的同時，解決了麥克納姆輪抓地力不足、容易受外界衝擊影響的問題。然而國內幾乎沒有相關研究資料，也沒有標準中文名稱。\n\n團隊決定從零自行開發，歷經三代迭代（2020、2022、2023+），研究目標涵蓋：\n\n① 以機械結構達成全向移動載具的所有運動模式\n② 提升機器人在競賽整體的運作效率與機動性\n③ 第三代以輕量化為核心設計方向\n④ 模組化鋁板設計：驅動馬達與轉向馬達位置可互換，驅動減速比可透過換齒調整，降低組裝與維修複雜度\n⑤ 達到全程自行開發、自行加工的目標\n⑥ 在競賽現場與國際隊伍進行機構技術交流",
-        "concept": "【三代演進】\n・第一代（2020）：由學長設計，用於中科 5G 區域賽，驗證 Swerve Drive 基本可行性\n・第二代（2022）：重新設計並實際參賽，獲台灣鴻海區域賽控制創新獎\n・第三代（2022 後）：以輕量化與模組化為核心持續改良，為下一賽季備戰\n\n【運動學演算法（LabVIEW 實作）】\n以向量 X∠θ 表示輪子的方向與力道，將運動拆成三種模式疊加：\n・平移運動：四輪輸入相同角度與力道，車體不旋轉全向移動\n・迴旋運動：以四輪中心為圓心，各輪方向分別為 θ、-θ、180+θ、180-θ，原地旋轉\n・弧形運動：平移向量 + 迴旋向量加總，可以任意點為圓心做弧形軌跡\n取最大力道輪作分母正規化，確保輸出不超過馬達飽和值。\n\n【電路與控制系統】\n・驅動馬達：Falcon 500（內建 Talon FX 控制器，支援閉迴路速度控制）\n・轉向馬達：NEO 550（搭配行星減速箱）\n・旋轉編碼器：各輪獨立角度回饋，閉迴路控制轉向角度\n・主控器：roboRIO + LabVIEW 圖形化程式\n\n【減速比設計】\n・驅動：Falcon 500（6380 rpm）→ 1:7 → 911 rpm，換算線速度約 110 m/min\n・轉向：NEO 550（11000 rpm）→ 行星減速 1:28.1 → 齒輪 1:2 → 總比 1:56.2 → 196 rpm\n\n【第三代機構設計】\n・模組化鋁板：驅動馬達與轉向馬達孔位對應，可互換安裝位置；驅動齒輪區設計可換齒位，直接改變減速比\n・輕量化：多數內部齒輪改用 3D 列印（FDM），只保留馬達軸齒輪為金屬件；鋁板 CNC 偷料降重\n・防撞設計：馬達整體藏入機構內部，減少競賽碰撞損傷\n・自製車輪：取代原廠輪，抓地力提升\n\n【齒輪規格與加工】\n・M1.25/T15 正齒輪（驅動馬達軸）：線切割製作外形與內孔\n・M1.5/T24 正齒輪（轉向傳動）：線切割製作\n・M1.5/T15 直齒斜齒輪（車輪驅動換向）：線切割加工內孔\n・傳動心軸（六角柱 & 方槽截面）：CNC 銑床 + 4 爪精密夾盤，兩面分次銑削確保對稱\n・線切割作業流程：壓板固定 → 尋邊校正 XY 誤差 → 穿線 → 路徑模擬 → 切割 → 觀察剖面確認精度",
-        "outcome": "【競賽成果】\n・2022 FRC 台灣鴻海區域賽：Finalist Alliance + Innovation in Control Award\n・2020 FRC 中部科學園區 5G 數位區域賽：Excellence in Engineering Award\n\n【第三代對比第二代的提升】\n結構面：\n① 輕量化：大量齒輪改為 3D 列印，整體重量降低\n② 拆裝：複雜性下降，維修更換速度提升\n③ 模組化：驅動/轉向馬達孔位共用，可選配 NEO 或 Falcon 500\n④ 防撞：馬達完全藏入機構，降低場地碰撞損傷風險\n⑤ 車輪：自製設計，相較舊車輪抓地力提升\n\n動力面：\n① 驅動齒輪齒數可換，不修改鋁板即可調整減速比\n② NEO 升級為 Falcon 500，驅動轉速提升約 1000 rpm\n\n【個人收穫】\n・從產品開發視角理解「設計 → 製作 → 測試 → 迭代」的完整週期\n・加工能力從手工銑床、車床基礎進階到 CNC 數值加工與線切割\n・跨域整合：機構設計（Inventor）+ 電路控制 + LabVIEW 程式 + 競賽現場工程決策",
+        "purpose": "團隊持續修改 Swerve Drive 底盤，從運動控制到傳動與加工逐代調整。我參與控制程式、齒輪設計和零件製作。",
+        "concept": "我以 LabVIEW 實作全向移動運動學，並參與齒輪傳動、CAD、CNC 銑削與線切割。不同屆的底盤包含多位隊員的設計與製作成果。",
+        "outcome": "2022 年底盤參加 FRC 台灣鴻海區域賽，獲 Innovation in Control Award。作品也曾參加 2020 年中科 5G 區域賽並獲 Excellence in Engineering Award。",
         "tech": [
           {
             "group": "控制系統",

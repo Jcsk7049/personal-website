@@ -45,7 +45,8 @@
     "db:migrate:bitoguard-ensemble:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0021_bitoguard_ensemble.sql",
     "db:migrate:aws-finalist:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0022_aws_finalist_and_team.sql",
     "db:migrate:qmk-f103:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0023_qmk_f103.sql",
-    "db:migrate:skills-vap:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0024_sync_skills_detail_and_vap.sql"
+    "db:migrate:skills-vap:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0024_sync_skills_detail_and_vap.sql",
+    "db:migrate:project-copy:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0025_refresh_project_copy.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

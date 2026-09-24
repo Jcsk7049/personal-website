@@ -55,8 +55,8 @@ export default function GuestbookContact({ profile }) {
   const t = uiText[lang]
 
   return (
-    <section id="guestbook" className="wash-guestbook py-16 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section id="guestbook" className="guestbook-section wash-guestbook min-h-[calc(100svh-3rem)] py-16 md:py-24">
+      <div className="w-full px-6 md:px-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 

@@ -175,6 +175,125 @@
 }
 .page-enter { animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
+/* ── Portfolio refresh: quieter frame, clearer editorial hierarchy ── */
+:root {
+  color-scheme: light;
+  --page-width: 1400px;
+  --content-width: 980px;
+  --ink: #1D1D1F;
+  --body: #3F3F46;
+  --muted: #6E6E73;
+  --line: rgba(29, 29, 31, 0.09);
+  --paper: #F5F5F7;
+  --ease-apple: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+html { scroll-padding-top: 3rem; }
+body { background: var(--paper); }
+::selection { color: #fff; background: #0071E3; }
+
+.site-shell { overflow: clip; }
+.site-shell section[id] { scroll-margin-top: 0; }
+
+.site-shell > nav {
+  box-shadow: 0 1px 0 rgba(29, 29, 31, 0.025);
+}
+.site-shell > nav a,
+.site-shell > nav button { -webkit-tap-highlight-color: transparent; }
+
+.site-shell section:not(#hero) > div:first-child {
+  position: relative;
+}
+.site-shell section:not(#hero) > div:first-child > .mb-12,
+.site-shell section:not(#hero) > div:first-child > .mb-16 {
+  margin-bottom: clamp(2.25rem, 5vw, 4rem);
+}
+
+.experience-section {
+  background-image:
+    radial-gradient(ellipse at 92% 8%, rgba(0, 113, 227, 0.12), transparent 38%),
+    linear-gradient(135deg, #1D1D1F 0%, #222226 100%);
+}
+.experience-section .group > div:last-child {
+  transition: background-color 240ms var(--ease-apple), transform 240ms var(--ease-apple);
+}
+.experience-section .group:hover > div:last-child {
+  background-color: rgba(255,255,255,0.045);
+  transform: translateX(3px);
+}
+
+.skills-section [class*="rounded-[18px]"],
+.skills-section [class*="rounded-2xl"],
+.awards-section [class*="rounded-[18px]"],
+.awards-section [class*="rounded-2xl"] {
+  border: 1px solid rgba(29, 29, 31, 0.035);
+  box-shadow: 0 1px 2px rgba(29, 29, 31, 0.025);
+  transition: transform 240ms var(--ease-apple), box-shadow 240ms var(--ease-apple);
+}
+.skills-section [class*="rounded-[18px]"]:hover,
+.skills-section [class*="rounded-2xl"]:hover,
+.awards-section [class*="rounded-[18px]"]:hover,
+.awards-section [class*="rounded-2xl"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.075);
+}
+
+.wash-projects {
+  background:
+    radial-gradient(1000px 700px at -6% 12%, rgba(0,113,227,0.045), transparent 60%),
+    #F5F5F7;
+}
+.spotlight-card { border-radius: 21px; }
+.spotlight-card > a { min-height: 100%; }
+.spotlight-card img { transition: transform 500ms var(--ease-apple); }
+.spotlight-card:hover img { transform: scale(1.035); }
+
+.project-detail-main { min-height: calc(100vh - 3rem); }
+.project-detail-hero {
+  position: relative;
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  border-bottom: 1px solid var(--line);
+}
+.project-detail-hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 5rem;
+  height: 2px;
+  background: #0071E3;
+}
+.project-detail-section > p.whitespace-pre-line {
+  max-width: 68ch;
+  line-height: 1.78;
+  letter-spacing: -0.006em;
+}
+.project-detail-section h2 { max-width: 18ch; }
+.project-tech-row { transition: padding-left 240ms var(--ease-apple); }
+.project-tech-row:hover { padding-left: 0.45rem; }
+.guestbook-section { border-top: 1px solid rgba(29,29,31,.06); }
+.site-footer a, .site-footer button { width: fit-content; }
+
+@media (max-width: 767px) {
+  .site-shell section[id] { scroll-margin-top: 0; }
+  .site-shell section:not(#hero) { min-height: 0; }
+  .project-detail-main { padding-top: 3.5rem; }
+  .project-detail-section { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+  .project-tech-row:hover { padding-left: 0; }
+  .site-footer .flex.gap-12 { gap: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .experience-section .group > div:last-child,
+  .skills-section [class*="rounded-[18px]"],
+  .skills-section [class*="rounded-2xl"],
+  .awards-section [class*="rounded-[18px]"],
+  .awards-section [class*="rounded-2xl"],
+  .spotlight-card img,
+  .project-tech-row { transition-duration: 0.01ms !important; }
+}
+
 /* Project card hover follows the pointer without causing React renders. */
 .spotlight-card {
   --spotlight-x: 50%;
@@ -232,3 +351,100 @@
   .scroll-bounce  { animation: none !important; }
   .page-enter     { animation: none !important; }
 }
+
+/* Final visual pass: one palette, quiet surfaces, motion only where it explains state. */
+.wash-hero,
+.wash-skills,
+.wash-awards {
+  background: #F5F5F7 !important;
+}
+.wash-projects,
+.experience-section {
+  background: #1D1D1F !important;
+  color: #F5F5F7;
+}
+.wash-guestbook { background: #FFFFFF !important; }
+
+.experience-grid > div + div {
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: clamp(1.5rem, 4vw, 3.5rem);
+}
+.experience-section .group:hover > div:last-child {
+  background: transparent;
+  transform: none;
+}
+.experience-section .group > div:last-child { transition: none; }
+
+.skills-section [class*="rounded-[18px]"],
+.skills-section [class*="rounded-2xl"],
+.awards-section [class*="rounded-[18px]"],
+.awards-section [class*="rounded-2xl"] {
+  box-shadow: none;
+  border-color: transparent;
+}
+.skills-section [class*="rounded-[18px]"]:hover,
+.skills-section [class*="rounded-2xl"]:hover,
+.awards-section [class*="rounded-[18px]"]:hover,
+.awards-section [class*="rounded-2xl"]:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.spotlight-card { border-radius: 18px; }
+.spotlight-card img,
+.spotlight-card:hover img { transform: none; }
+.spotlight-glow,
+.spotlight-shade { display: none; }
+.spotlight-card > a { box-shadow: none; }
+.spotlight-card > a:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+
+.hero-eyebrow,
+.hero-name-unveil,
+.hero-line,
+.hero-cta,
+.hero-photo-in,
+.page-enter {
+  animation: none !important;
+  clip-path: none !important;
+}
+.scroll-bounce { animation: none !important; }
+.reveal,
+.reveal.is-visible,
+.card-stagger > *,
+.reveal .sh-t,
+.reveal .sh-s,
+.reveal.is-visible .sh-t,
+.reveal.is-visible .sh-s {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (max-width: 1023px) {
+  .experience-grid > div + div {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2rem 0 0;
+  }
+}
+
+/* Full-bleed portfolio layout: keep only responsive page gutters. */
+.site-shell [class*="rounded-"] { border-radius: 2px !important; }
+.site-shell .rounded-full { border-radius: 2px !important; }
+.site-shell .max-w-7xl,
+.site-shell .max-w-\[1400px\] { max-width: none; }
+.site-shell .spotlight-card { border-radius: 0; }
+.site-shell .skill-row { border-radius: 0; }
+.site-shell #projects .project-card {
+  border-radius: 8px !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #252528 !important;
+  color: #F5F5F7;
+}
+.site-shell #projects .project-card:hover {
+  background: #2B2B2F !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+.site-shell #projects { background: #1D1D1F !important; color: #F5F5F7; }
+.site-shell .skill-spec-card { border-radius: 2px; }

@@ -10,7 +10,6 @@ import Experience      from './components/Experience'
 import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
 import AwardList           from './components/AwardList'
-import DotNav              from './components/DotNav'
 import GuestbookContact    from './components/GuestbookContact'
 import NotFound        from './pages/NotFound'
 import ScrollToTop     from './components/ScrollToTop'
@@ -53,19 +52,18 @@ function HomePage() {
 
   return (
     <ActiveSectionProvider>
-    <div className="bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
-      <DotNav />
+    <div className="site-shell bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cv.profile.name} />
       <Hero            profile={cv.profile} />
       <Experience      experience={cv.experience} education={cv.education} />
-      <ProjectShowcase projects={cv.projects} />
       <SkillGrid       skills={cv.skills_matrix} detail={cv.skills_detail} />
+      <ProjectShowcase projects={cv.projects} />
       <AwardList       awards={cv.awards} />
       <GuestbookContact profile={cv.profile} />
 
       {/* ── Apple Footer ── */}
-      <footer className="bg-[#F5F5F7] border-t border-black/[0.1]">
-        <div className="max-w-[980px] mx-auto px-6">
+      <footer className="site-footer bg-[#F5F5F7] border-t border-black/[0.1]">
+        <div className="w-full px-6 md:px-10">
 
           {/* Top: brand + columns */}
           <div className="pt-10 pb-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10">

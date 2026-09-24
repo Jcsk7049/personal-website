@@ -31,27 +31,28 @@ export default function Nav({ name }) {
         className="sticky top-0 z-50 w-full h-12"
         style={{ ...FROSTED, borderBottom: '1px solid rgba(0,0,0,0.1)' }}
       >
-        <div className="max-w-[1200px] mx-auto h-full px-6 flex items-center justify-between">
+        <div className="w-full h-full px-6 md:px-10 flex items-center justify-between">
 
           {/* Brand */}
           <a
             href="#hero"
-            className="text-sm font-semibold tracking-tight text-[#1D1D1F] hover:text-[#0071E3]
+            className="text-[13px] font-semibold tracking-tight text-[#1D1D1F] hover:text-[#0071E3]
                        transition-colors duration-[240ms]"
           >
             {name}
           </a>
 
           {/* Desktop links + lang toggle */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map(({ id, label }) => (
               <a
                 key={id}
                 href={`#${id}`}
-                className={`text-xs transition-colors duration-[240ms]
+                aria-current={active === id ? 'location' : undefined}
+                className={`relative px-3 py-2 text-[12px] transition-colors duration-[240ms]
                             ${active === id
-                              ? 'text-[#1D1D1F] font-semibold'
-                              : 'text-[#86868B] font-normal hover:text-[#1D1D1F]'}`}
+                              ? 'text-[#1D1D1F] font-semibold after:absolute after:left-3 after:right-3 after:-bottom-[1px] after:h-[2px] after:bg-[#0071E3]'
+                              : 'text-[#6E6E73] font-normal hover:text-[#1D1D1F]'}`}
               >
                 {label}
               </a>
