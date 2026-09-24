@@ -17,6 +17,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
 
   return (
     <section id="skills" className="skills-section min-h-[calc(100svh-3rem)] pt-16 md:pt-24">
+      <div className="w-full px-6 md:px-10">
       <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
       <div className="mt-8 border-t border-black/10">
         {GROUPS.map(({ key, accent }) => {
@@ -37,6 +38,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
             </Link>
           )
         })}
+      </div>
       </div>
     </section>
   )
