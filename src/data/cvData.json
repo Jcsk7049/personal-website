@@ -357,12 +357,12 @@
         "github": "https://github.com/Jcsk7049/job-radar",
         "images": [
           {
-            "src": "/images/job-radar/cover.svg",
-            "caption": "職缺清單版面示意，未使用即時職缺資料"
+            "src": "/images/job-radar/cover.png",
+            "caption": "Cloudflare Pages 正式版求職看板實際運動畫面。"
           }
         ]
       },
-      "cover": "/images/job-radar/cover.svg"
+      "cover": "/images/job-radar/cover.png"
     },
     {
       "id": "analog-ic-studio",
@@ -426,12 +426,12 @@
         "demo": null,
         "images": [
           {
-            "src": "/images/analog-ic-studio/cover.svg",
-            "caption": "電路拓樸與分析流程示意，非模擬輸出或晶片實測"
+            "src": "/images/analog-ic-studio/cover.png",
+            "caption": "本機 Flask 儀表板實際畫面；此次擷取只開啟介面，未執行電路最佳化。"
           }
         ]
       },
-      "cover": "/images/analog-ic-studio/cover.svg"
+      "cover": "/images/analog-ic-studio/cover.png"
     },
     {
       "id": "vap",
@@ -716,7 +716,7 @@
     },
     {
       "id": "virtual-office",
-      "cover": "/images/virtual-office/cover.svg",
+      "cover": "/images/virtual-office/cover.png",
       "category": "大學校外作品",
       "title": "Virtual Office — 桌面像素辦公室",
       "period": "2026",
@@ -731,7 +731,7 @@
       "detail": {
         "purpose": "我想在桌面快速掌握不同專案目前的狀態，因此把專案資訊整理成一個可切換的像素辦公室。",
         "concept": "程式以 Pygame 建立七個工作室與十六個角色。專案層級的狀態感測器提供畫面資訊，使用者可切換工作室、點選角色查看動態，或將程式縮至系統匣。",
-        "outcome": "完成 Windows 桌面版的像素辦公室原型，包含工作室切換、角色狀態檢視與系統匣操作。封面為概念示意圖，並非程式截圖。",
+        "outcome": "完成 Windows 桌面版的像素辦公室原型，包含工作室切換、角色狀態檢視與系統匣操作。封面截自目前執行中的每日模擬畫面。",
         "tech": [
           {
             "group": "桌面介面",
@@ -762,8 +762,8 @@
         ],
         "images": [
           {
-            "src": "/images/virtual-office/cover.svg",
-            "caption": "像素工作室概念圖，非實際程式畫面"
+            "src": "/images/virtual-office/cover.png",
+            "caption": "本機執行中的每日模擬畫面；呈現工作室配置與角色位置。"
           }
         ]
       }
@@ -1390,6 +1390,75 @@
           {
             "src": "/images/swerve/swerve-wiring.png",
             "caption": "FRC 機器人電路系統配線圖"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nkhs-tree-map",
+      "cover": "/images/nkhs-tree-map/cover.png",
+      "category": "大學校外作品",
+      "title": "南港高工校園樹木量測 PWA",
+      "period": "2026",
+      "description": "學生掃描樹牌 QR Code，輸入量測角度、距離與樹圍，網頁計算樹高並將紀錄存進 Google Sheets；老師可管理名單、列印 QR 標籤，並在地圖檢視樹高分布。",
+      "tags": [
+        "PWA",
+        "JavaScript",
+        "Google Apps Script",
+        "Google Sheets",
+        "QR Code"
+      ],
+      "detail": {
+        "purpose": "整理校園樹木的現場量測流程，讓學生用手機登記，老師能集中查看紀錄。",
+        "concept": "學生掃描樹牌 QR Code，輸入角度、距離與樹圍；前端計算樹高，再由 Apps Script 將量測資料寫入 Google Sheets。教師端另有學生名單、樹木地圖和 QR 標籤管理頁。",
+        "outcome": "前端以原生 JavaScript 製作成可安裝的 PWA，部署在 GitHub Pages；後端使用 Google Apps Script，資料存於 Google Sheets。教師專用頁需要教師 Google 帳號登入。",
+        "tech": [
+          {
+            "group": "手機網頁",
+            "items": [
+              {
+                "name": "可安裝 PWA",
+                "desc": "以手機瀏覽器開啟量測頁，支援加入主畫面；靜態前端部署在 GitHub Pages。"
+              },
+              {
+                "name": "QRCode 掃描流程",
+                "desc": "從樹牌進入對應紀錄頁，學生填寫量測角度、距離與樹圍。"
+              }
+            ]
+          },
+          {
+            "group": "資料流程",
+            "items": [
+              {
+                "name": "樹高計算",
+                "desc": "依眼高、仰角與距離計算樹高，前端與 Apps Script 使用一致的計算規則。"
+              },
+              {
+                "name": "Google Sheets 儲存",
+                "desc": "Apps Script 接收量測紀錄並寫入試算表，教師端可匯出或管理資料。"
+              }
+            ]
+          },
+          {
+            "group": "教師工具",
+            "items": [
+              {
+                "name": "樹木地圖",
+                "desc": "在地圖上依量測高度著色；尚未量測的樹木另有標示。"
+              },
+              {
+                "name": "名單與 QR 標籤",
+                "desc": "教師登入後可管理學生名單、通行碼，並產生樹牌 QR 標籤。"
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/nkhs-tree-map",
+        "demo": "https://jcsk7049.github.io/nkhs-tree-map/public/app.html",
+        "images": [
+          {
+            "src": "/images/nkhs-tree-map/cover.png",
+            "caption": "GitHub Pages 正式版入口畫面；教師地圖和管理頁需要教師 Google 帳號。"
           }
         ]
       }

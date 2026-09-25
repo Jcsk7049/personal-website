@@ -11,6 +11,8 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-25）
 
+- **🟡 09-25 新增 NKHS 校園樹木量測 PWA、替換實際專案截圖**：NKHS、Job Radar、Analog Studio、Virtual Office 封面均改成實際瀏覽器執行畫面，中英文資料和 D1 migration 0026 已同步。教師地圖需教師 Google 帳號；TeamMatch 本機缺 Firebase 設定，目前仍保留標明為示意圖的封面，待可用測試設定或公開展示環境。待 build、migration、push、正式站確認。
+
 - **🟡 09-25 經歷／學歷／獲獎改為三欄並排**：獲獎列表調整成與經歷、學歷相同的黑底時間軸文字列，三欄同列呈現；保留 `#awards` 錨點，內容容器加寬以支援桌面三欄。待 build、push 與部署確認。
 
 - **🟡 09-25 移除首頁幾何漸層、技能等級改用灰階填色**：首頁背景改為一致淺灰；技能方塊依基礎／熟悉／進階以淺、中、深鈦灰填色，文字按底色採深色或白色以維持對比。待 build、push 與正式部署確認。
@@ -23,7 +25,7 @@
 
 - **🟡 09-25 首頁技能區整合（本輪）**：依最新回饋改為左右雙欄：左側個人介紹與照片，右側技能分類；取消 Hero 與技能之間的全寬水平分隔。導覽與區塊標題統一稱「技能」，四分類直達詳情頁。按鈕、圖片與專案卡統一 8px 圓角。`npm.cmd run build`、`git diff --check` 通過；待 commit/push 與正式部署確認。
 
-- **🟢 09-25 專案補齊與封面**：作品集由 12 個擴充為 13 個，加入 Virtual Office；Job Radar、Analog IC Studio、TeamMatch 原本沒有封面，已補 3 張概念示意圖，Analog 使用本人指定的電路示意封面。中英文 cvData、design token、sitemap、migration 0025 已更新，四張 SVG 均標明是示意圖而非真實截圖／輸出。依序執行遠端 migration 0021–0025 成功，D1 現有 13 個專案；正式 API 已回傳新專案和封面路徑。build 成功，commit `03a139a` 已推 main，正式站四張 SVG 均已驗證。
+- **🟢 09-25 專案補齊與封面（前版紀錄）**：先前以示意圖暫補 Virtual Office、Job Radar、Analog IC Studio、TeamMatch 封面；本輪已將前三個可啟動專案換成實際截圖，TeamMatch 仍受缺少 Firebase 測試設定限制。
 
 - **🟡 09-25 經歷／學歷左右留白**：再依最新參考圖將 Experience 內容限制在置中的 `max-w-[1024px]`，保留響應式內距；待 build 與部署確認。
 
@@ -233,13 +235,20 @@
 - [x] VAP/QMK 面試模擬追問題庫（2026-07-24）→ `C:\WORK SPACE\面試模擬追問-VAP-QMK.md`
       （每案 6 題追問樹 + 答題框架 + 地雷卡；**未做「實戰對練」**——本人想練再開一輪，
       由 Claude 扮面試官連續追問、抓踩線）
-- [ ] job-radar / analog-ic-studio 補 cover 與截圖（需本人提供截圖）
+- [ ] TeamMatch：提供可用的 Firebase 測試設定或公開展示網址，才能截取完整運作畫面並取代示意封面（不要提供 production 私鑰）
 - [ ] per-route og meta（需 prerender 架構，工程量大，暫緩）
 - [ ] VAP/QMK 面試模擬追問練習
 
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-09-25（新增 NKHS 校園樹木量測並改用實際運動畫面）
+
+- 依 `C:\NKHS tree map` README／交接資料新增 PWA 專案中英文介紹，加入 GitHub 與 GitHub Pages 連結、詳情及 sitemap；新增 migration 0026 與 remote 命令。
+- 以瀏覽器擷取 GitHub Pages 樹木量測入口、Job Radar 正式儀表板、Analog Studio 本機 Flask 介面，以及 Virtual Office 每日模擬執行畫面；已更新中英文圖片來源、說明與 migration 0026。Analog 截圖只展示介面，沒有執行電路最佳化。
+- 樹木教師地圖受 Google 帳號保護，未嘗試繞過登入。TeamMatch 本機缺 Firebase 設定，仍保留明確標成示意圖的封面；等待可用測試設定或公開展示環境。
+- 待 build、遠端 migration 0026、push 與部署確認。
 
 ### 2026-09-25（經歷、學歷、獲獎三欄並排）
 

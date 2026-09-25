@@ -362,12 +362,12 @@
         "github": "https://github.com/Jcsk7049/job-radar",
         "images": [
           {
-            "src": "/images/job-radar/cover.svg",
-            "caption": "Concept of the listings layout; no live job data is shown."
+            "src": "/images/job-radar/cover.png",
+            "caption": "Live Job Radar dashboard on Cloudflare Pages, captured in the browser."
           }
         ]
       },
-      "cover": "/images/job-radar/cover.svg"
+      "cover": "/images/job-radar/cover.png"
     },
     {
       "id": "analog-ic-studio",
@@ -431,12 +431,12 @@
         "demo": null,
         "images": [
           {
-            "src": "/images/analog-ic-studio/cover.svg",
-            "caption": "Illustration of circuit topology and analysis flow, not simulation output or silicon measurements."
+            "src": "/images/analog-ic-studio/cover.png",
+            "caption": "Actual local Flask dashboard; the interface was opened for this capture, without running circuit optimization."
           }
         ]
       },
-      "cover": "/images/analog-ic-studio/cover.svg"
+      "cover": "/images/analog-ic-studio/cover.png"
     },
     {
       "id": "vap",
@@ -721,7 +721,7 @@
     },
     {
       "id": "virtual-office",
-      "cover": "/images/virtual-office/cover.svg",
+      "cover": "/images/virtual-office/cover.png",
       "category": "大學校外作品",
       "title": "Virtual Office — Desktop Pixel Workspace",
       "period": "2026",
@@ -736,7 +736,7 @@
       "detail": {
         "purpose": "I wanted a quick desktop view of several projects, so I organized their status into a switchable pixel office.",
         "concept": "Built with Pygame, the app contains seven workrooms and sixteen roles. Project-level status sensors feed the scenes; users can switch rooms, inspect character activity, or minimize the app to the system tray.",
-        "outcome": "Completed a Windows desktop prototype with room switching, character status views, and system tray controls. The cover is a concept illustration, not an application screenshot.",
+        "outcome": "Completed a Windows desktop prototype with room switching, character status views, and system tray controls. The cover is a screenshot of the running daily simulation.",
         "tech": [
           {
             "group": "Desktop Interface",
@@ -767,8 +767,8 @@
         ],
         "images": [
           {
-            "src": "/images/virtual-office/cover.svg",
-            "caption": "Pixel-workroom concept illustration, not an application screenshot."
+            "src": "/images/virtual-office/cover.png",
+            "caption": "Local daily simulation showing the workroom layout and character positions."
           }
         ]
       }
@@ -1413,6 +1413,75 @@
           {
             "src": "/images/swerve/swerve-wiring.png",
             "caption": "FRC robot electrical system wiring diagram"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nkhs-tree-map",
+      "cover": "/images/nkhs-tree-map/cover.png",
+      "category": "University External Project",
+      "title": "NKHS Campus Tree Measurement PWA",
+      "period": "2026",
+      "description": "Students scan a tree-tag QR code, enter measurement angle, distance, and circumference, and save calculated tree heights to Google Sheets. Teachers can manage rosters, print QR labels, and view the height map.",
+      "tags": [
+        "PWA",
+        "JavaScript",
+        "Google Apps Script",
+        "Google Sheets",
+        "QR Code"
+      ],
+      "detail": {
+        "purpose": "Organize on-site campus tree measurements so students can submit readings by phone and teachers can review them in one place.",
+        "concept": "Students scan a tree-tag QR code and enter the angle, distance, and circumference. The frontend calculates height, then Apps Script writes the record to Google Sheets. Teacher pages provide roster, map, and QR-label tools.",
+        "outcome": "The native JavaScript frontend is an installable PWA hosted on GitHub Pages. Google Apps Script handles the backend, with records stored in Google Sheets. Teacher-only pages require a teacher Google account.",
+        "tech": [
+          {
+            "group": "Mobile Web",
+            "items": [
+              {
+                "name": "Installable PWA",
+                "desc": "Open the measurement flow in a mobile browser and add it to the home screen; the static frontend is hosted on GitHub Pages."
+              },
+              {
+                "name": "QR Measurement Flow",
+                "desc": "Scan a tree tag to open its record, then enter measurement angle, distance, and circumference."
+              }
+            ]
+          },
+          {
+            "group": "Data Flow",
+            "items": [
+              {
+                "name": "Tree-Height Calculation",
+                "desc": "Calculate height from eye level, angle, and distance using matching frontend and Apps Script rules."
+              },
+              {
+                "name": "Google Sheets Storage",
+                "desc": "Apps Script receives measurements and writes them to a spreadsheet for teacher review and export."
+              }
+            ]
+          },
+          {
+            "group": "Teacher Tools",
+            "items": [
+              {
+                "name": "Tree Map",
+                "desc": "Color map markers by measured height and distinguish trees without a reading."
+              },
+              {
+                "name": "Roster and QR Labels",
+                "desc": "After teacher sign-in, manage student rosters and access codes, then generate QR labels for tree tags."
+              }
+            ]
+          }
+        ],
+        "github": "https://github.com/Jcsk7049/nkhs-tree-map",
+        "demo": "https://jcsk7049.github.io/nkhs-tree-map/public/app.html",
+        "images": [
+          {
+            "src": "/images/nkhs-tree-map/cover.png",
+            "caption": "Live GitHub Pages entry screen. The teacher map and management pages require a teacher Google account."
           }
         ]
       }
