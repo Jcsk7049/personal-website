@@ -11,7 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-25）
 
-- **🟡 09-25 新增 NKHS 校園樹木量測 PWA、替換實際專案截圖**：NKHS、Job Radar、Analog Studio、Virtual Office 封面均改成實際瀏覽器執行畫面，中英文資料和 D1 migration 0026 已同步。教師地圖需教師 Google 帳號；TeamMatch 本機缺 Firebase 設定，目前仍保留標明為示意圖的封面，待可用測試設定或公開展示環境。待 build、migration、push、正式站確認。
+- **🟢 09-25 新增 NKHS 校園樹木量測 PWA、補實際專案截圖**：新增中英文專案資料、sitemap 與 migration 0026；NKHS、Job Radar、Analog Studio、Virtual Office 封面改成真實瀏覽器畫面。`npm.cmd run build` 通過，migration 0026 遠端成功，commit `5e744cf` 已推 main；正式 API 已回傳 NKHS，四張 PNG 正式資源均 HTTP 200 且為 `image/png`。教師地圖需教師 Google 帳號；TeamMatch 本機缺 Firebase 設定，仍標示示意封面，待可用測試環境。
 
 - **🟡 09-25 經歷／學歷／獲獎改為三欄並排**：獲獎列表調整成與經歷、學歷相同的黑底時間軸文字列，三欄同列呈現；保留 `#awards` 錨點，內容容器加寬以支援桌面三欄。待 build、push 與部署確認。
 
@@ -248,7 +248,7 @@
 - 依 `C:\NKHS tree map` README／交接資料新增 PWA 專案中英文介紹，加入 GitHub 與 GitHub Pages 連結、詳情及 sitemap；新增 migration 0026 與 remote 命令。
 - 以瀏覽器擷取 GitHub Pages 樹木量測入口、Job Radar 正式儀表板、Analog Studio 本機 Flask 介面，以及 Virtual Office 每日模擬執行畫面；已更新中英文圖片來源、說明與 migration 0026。Analog 截圖只展示介面，沒有執行電路最佳化。
 - 樹木教師地圖受 Google 帳號保護，未嘗試繞過登入。TeamMatch 本機缺 Firebase 設定，仍保留明確標成示意圖的封面；等待可用測試設定或公開展示環境。
-- 待 build、遠端 migration 0026、push 與部署確認。
+- `npm.cmd run build`、`git diff --check` 通過；遠端 migration 0026 成功，commit `5e744cf` 已推 main。正式 API 可查到 NKHS 專案，四張新封面均以正確 PNG content-type 回應 HTTP 200。
 
 ### 2026-09-25（經歷、學歷、獲獎三欄並排）
 
