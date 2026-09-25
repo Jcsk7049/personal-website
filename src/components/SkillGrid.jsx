@@ -15,9 +15,9 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="skills-section hero-skills w-full">
+    <section id="skills" className="skills-section hero-skills w-full xl:h-full xl:min-h-0 xl:flex xl:flex-col">
       <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 xl:flex-1 xl:auto-rows-fr">
         {GROUPS.map(({ key, number }) => {
           const group = t.quadrants[key]
           const items = detail?.[key]?.skills || (skills[key] || []).map(name => ({ name }))
@@ -26,7 +26,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
             <Link
               key={key}
               to={`/skills/${key}`}
-              className="skill-row skill-tile-panel group grid content-start gap-4 p-4 md:p-5 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms]"
+              className="skill-row skill-tile-panel group grid content-start xl:content-between gap-4 p-4 md:p-5 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] xl:h-full"
             >
               <div className="flex items-start gap-3">
                 <span className="pt-1 font-mono text-xs tracking-wider text-[#737C84]">{number}</span>
