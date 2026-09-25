@@ -50,7 +50,7 @@ export default function BitoCharts() {
       label: '特徵重要性（LightGBM gain）',
       data: TOP_FEATURES.map(f => f.score),
       backgroundColor: TOP_FEATURES.map((_, i) =>
-        i < 3 ? 'rgba(255,149,0,0.80)' : 'rgba(0,113,227,0.65)'
+        i < 3 ? 'rgba(81,91,100,0.80)' : 'rgba(115,124,132,0.70)'
       ),
       borderRadius: 5,
       borderSkipped: false,
@@ -158,7 +158,7 @@ export default function BitoCharts() {
             { arrow: true },
             { step: '⑥ 可解釋 AI', label: 'Bedrock + SHAP', color: 'bg-[#FF9500]/15 text-[#B36200]' },
             { arrow: true },
-            { step: '⑦ 審查介面', label: 'Streamlit', color: 'bg-[#0071E3]/10 text-[#0071E3]' },
+            { step: '⑦ 審查介面', label: 'Streamlit', color: 'bg-[#737C84]/10 text-[#737C84]' },
           ].map((item, i) =>
             item.arrow
               ? <span key={i} className="text-[#c7c7cc] font-light">→</span>

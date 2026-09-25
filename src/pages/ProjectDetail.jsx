@@ -50,7 +50,7 @@ export default function ProjectDetail() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#F5F5F7]">
         <p className="text-[#86868B]">{t.notFoundProject}</p>
-        <Link to="/" className="text-sm text-[#0066CC] hover:underline">{t.backHome}</Link>
+        <Link to="/" className="text-sm text-[#737C84] hover:underline">{t.backHome}</Link>
       </div>
     )
   }
@@ -128,8 +128,8 @@ export default function ProjectDetail() {
                   <a href={detail.demo}
                      target="_blank" rel="noopener noreferrer"
                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full
-                                bg-[#0071E3] text-white text-sm font-semibold shadow-[0_4px_14px_rgba(0,113,227,0.35)]
-                                hover:bg-[#0077ED] hover:shadow-[0_6px_18px_rgba(0,113,227,0.45)]
+                                bg-[#737C84] text-white text-sm font-semibold shadow-[0_4px_14px_rgba(115,124,132,0.35)]
+                                hover:bg-[#656E76] hover:shadow-[0_6px_18px_rgba(115,124,132,0.35)]
                                 transition-all duration-[240ms]">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
 
             {project.badge && (
               <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold
-                               bg-amber-50 text-amber-700 border border-amber-200 mb-4">
+                               bg-[#F1F2F3] text-[#59636C] border border-[#D9DEE2] mb-4">
                 {project.badge}
               </span>
             )}
@@ -229,7 +229,7 @@ export default function ProjectDetail() {
                     {detail.images[0].caption.replace(/^[^:：]*[:：]\s*/, '').split('→').map((step, i, arr) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-sm font-semibold text-[#0071E3] font-mono">
+                          <span className="text-sm font-semibold text-[#737C84] font-mono">
                             {String(i + 1).padStart(2, '0')}
                           </span>
                           <span className="text-sm font-medium text-[#1D1D1F]">{step.trim()}</span>

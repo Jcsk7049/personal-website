@@ -38,7 +38,7 @@ export default function Hero({ profile, skills, skillDetail }) {
           <div className="flex-1 min-w-0">
             {/* eyebrow 色 #636366：12px 非大字需過 WCAG AA 4.5；#86868B 只有 3.04:1（實測）→ #636366 = 5.03:1 */}
             <p className="hero-eyebrow flex items-center gap-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-[#636366] mb-7">
-              <span className="w-7 h-px bg-[#0071E3]" />{profile.contact.location}
+              <span className="w-7 h-px bg-[#737C84]" />{profile.contact.location}
             </p>
 
             <h1 className={`${nameSize} font-semibold tracking-[-0.035em] leading-[0.98] text-[#1D1D1F] mb-5 text-balance`}>
@@ -52,34 +52,34 @@ export default function Hero({ profile, skills, skillDetail }) {
             <div className="hero-cta flex flex-wrap gap-2.5">
               <button
                 onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
-                className="px-5 py-3 rounded-full bg-[#0071E3] text-white text-[13px] font-semibold
-                           hover:bg-[#0077ED] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                className="px-5 py-3 rounded-full bg-[#737C84] text-white text-[13px] font-semibold
+                           hover:bg-[#656E76] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {profile.contact.email}
               </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full border border-black/[0.12] text-[13px] text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full border border-black/[0.12] text-[13px] text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 LinkedIn
               </a>
               <a href={resumeHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full text-[13px] font-semibold
-                            border-2 border-[#0071E3] text-[#0071E3]
-                            hover:bg-[#0071E3] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            border-2 border-[#737C84] text-[#737C84]
+                            hover:bg-[#737C84] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnOnePage}
               </a>
               <a href={resumeFullHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full text-[13px] font-medium
                             border border-black/[0.12] text-[#1D1D1F]
-                            hover:border-[#0071E3] hover:text-[#0071E3] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnFull}
               </a>
             </div>

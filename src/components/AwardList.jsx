@@ -32,15 +32,15 @@ export default function AwardList({ awards }) {
                    className="flex items-center gap-5 px-6 py-6 md:px-8 md:py-7 rounded-[18px] bg-white
                               hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
                               transition-all duration-[240ms] group">
-                <div className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full bg-[#EBF4FF]">
-                  <span className="text-[#0071E3]">
+                <div className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full bg-[#E8EAEC]">
+                  <span className="text-[#737C84]">
                     <TrophyIcon size={22} />
                   </span>
                 </div>
                 <p className="text-lg md:text-xl font-semibold tracking-tight text-[#1D1D1F] leading-snug flex-1">
                   {award.title}
                 </p>
-                <span className="shrink-0 text-xs text-[#0071E3] font-mono bg-[#EBF4FF] px-3 py-1.5
+                <span className="shrink-0 text-xs text-[#737C84] font-mono bg-[#E8EAEC] px-3 py-1.5
                                  rounded-full leading-none">
                   {award.year}
                 </span>
@@ -57,14 +57,14 @@ export default function AwardList({ awards }) {
                             transition-all duration-[240ms] group bg-white
                             ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
               <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-[#EBEBED] group-hover:bg-blue-50 transition-colors duration-[240ms] overflow-hidden">
-                <span className="text-[#c7c7cc] group-hover:text-[#0071E3] transition-colors duration-[240ms]">
+                              bg-[#EBEBED] group-hover:bg-[#E8EAEC] transition-colors duration-[240ms] overflow-hidden">
+                <span className="text-[#c7c7cc] group-hover:text-[#737C84] transition-colors duration-[240ms]">
                   <TrophyIcon />
                 </span>
               </div>
               <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
               <span className="shrink-0 text-[11px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1
-                               rounded-full leading-none group-hover:bg-blue-50 group-hover:text-blue-600
+                               rounded-full leading-none group-hover:bg-[#E8EAEC] group-hover:text-[#737C84]
                                transition-colors duration-[240ms]">
                 {award.year}
               </span>

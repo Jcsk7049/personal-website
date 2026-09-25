@@ -44,12 +44,12 @@ export default function ProjectShowcase({ projects }) {
               </div>
               <div className="flex flex-col gap-3 p-5 md:p-6 flex-1">
                 <div className="flex items-center justify-between gap-3 text-[11px] text-white/45 font-mono"><span>{proj.period}</span><span className="font-sans truncate">{proj.tags?.[0]}</span></div>
-                <h3 className="text-lg font-semibold tracking-tight text-[#F5F5F7] leading-snug group-hover:text-[#9BC6FF] transition-colors">{proj.title}</h3>
-                {proj.badge && <span className="self-start px-2 py-1 border border-amber-300 bg-amber-50 text-amber-800 text-[10px] font-semibold">{proj.badge}</span>}
+                <h3 className="text-lg font-semibold tracking-tight text-[#F5F5F7] leading-snug group-hover:text-[#B8C0C6] transition-colors">{proj.title}</h3>
+                {proj.badge && <span className="self-start px-2 py-1 border border-white/20 bg-white/10 text-white/80 text-[10px] font-semibold">{proj.badge}</span>}
                 <p className="text-[13px] text-white/65 leading-[1.65]">{proj.description || proj.summary}</p>
                 <div className="mt-auto pt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-white/50">
                   {(proj.tags || []).slice(0, 4).map(tag => <span key={tag}>{tag.trim()}</span>)}
-                  <span className="ml-auto text-[#9BC6FF] font-medium">{t.viewDetail} ↗</span>
+                  <span className="ml-auto text-[#B8C0C6] font-medium">{t.viewDetail} ↗</span>
                 </div>
               </div>
             </Link>

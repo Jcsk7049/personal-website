@@ -75,8 +75,8 @@ export default function GuestbookContact({ profile }) {
               <a
                 href={`mailto:${profile.contact.email}`}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
-                           bg-[#f0f7ff] text-[#0071E3] border border-[#0071E3]/20
-                           hover:bg-[#0071E3] hover:text-white transition-colors duration-[240ms]"
+                           bg-[#F1F2F3] text-[#59636C] border border-[#737C84]/20
+                           hover:bg-[#737C84] hover:text-white transition-colors duration-[240ms]"
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
@@ -88,8 +88,8 @@ export default function GuestbookContact({ profile }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
-                           bg-[#e8f4fb] text-[#0077B5] border border-[#0077B5]/20
-                           hover:bg-[#0077B5] hover:text-white transition-colors duration-[240ms]"
+                           bg-[#F1F2F3] text-[#59636C] border border-[#737C84]/20
+                           hover:bg-[#737C84] hover:text-white transition-colors duration-[240ms]"
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.94v5.66H9.38V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.36-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.23 0z"/>
@@ -116,8 +116,8 @@ export default function GuestbookContact({ profile }) {
             <SectionHeader label={zh ? '聯絡我' : 'Contact'} sub={t.sectionSubs.contact} />
             <a
               href={`mailto:${profile.contact.email}`}
-              className="mt-10 flex flex-col items-start gap-5 p-8 rounded-[18px] bg-[#0071E3]
-                         hover:bg-[#0077ED] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,113,227,0.28)]
+              className="mt-10 flex flex-col items-start gap-5 p-8 rounded-[18px] bg-[#737C84]
+                         hover:bg-[#656E76] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(115,124,132,0.28)]
                          active:scale-[0.985] active:shadow-none
                          transition-all duration-[240ms] group"
             >

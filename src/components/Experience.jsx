@@ -13,7 +13,7 @@ export default function Experience({ experience, education }) {
       {item?.frc ? (
         <span className="absolute left-[-3px] top-[0.6rem] w-2 h-2 rounded-full bg-[#86868B] ring-[3px] ring-[#1D1D1F]" />
       ) : (
-        <div className="absolute left-0 top-[0.6rem] w-2 h-2 rounded-full bg-[#0071E3] ring-[3px] ring-[#1D1D1F]" />
+        <div className="absolute left-0 top-[0.6rem] w-2 h-2 rounded-full bg-[#737C84] ring-[3px] ring-[#1D1D1F]" />
       )}
       <div className="py-4 -ml-2 pl-7">
         <div className="flex items-start justify-between gap-4 mb-1.5">

@@ -7,13 +7,13 @@ import { uiText } from '../data/uiText'
 
 const CATEGORY_ORDER = ['data_analysis', 'programming', 'eda', 'manufacturing']
 const CATEGORY_COLOR = {
-  data_analysis: '#8BA8FF',
-  programming: '#71C9B2',
-  eda: '#F29AB1',
-  manufacturing: '#F2B66D',
+  data_analysis: '#737C84',
+  programming: '#737C84',
+  eda: '#737C84',
+  manufacturing: '#737C84',
 }
 const LEVELS = ['進階', '熟悉', '基礎']
-const LEVEL_COLOR = { '進階': '#B7A2FF', '熟悉': '#79B8FF', '基礎': '#A1A1AA' }
+const LEVEL_COLOR = { '進階': '#515B64', '熟悉': '#737C84', '基礎': '#A1A1AA' }
 
 const normKey = s => (s || '').toLowerCase().replace(/[\s()（）·・.\-—]/g, '')
 function lcsLen(a, b) {
@@ -66,7 +66,7 @@ export default function SkillDetail() {
   const handleBack = () => navigationType !== 'POP' ? navigate(-1) : navigate('/')
   if (!detail) return <div className="min-h-screen bg-[#1D1D1F] text-white flex flex-col items-center justify-center gap-4">
     <p className="text-white/60">{t.notFoundSkill}</p>
-    <Link to="/" className="text-sm text-[#79B8FF] hover:underline">{t.backHome}</Link>
+    <Link to="/" className="text-sm text-[#AEB5BA] hover:underline">{t.backHome}</Link>
   </div>
 
   const skills = detail.skills || []
@@ -131,7 +131,7 @@ export default function SkillDetail() {
               <div className="flex flex-wrap gap-x-4 gap-y-2">
                 {skill.projects.map(project => {
                   const projectId = resolveProjectId(project, cvData.projects)
-                  return projectId ? <Link key={project} to={`/projects/${projectId}`} className="text-xs text-[#9BC6FF] transition-colors hover:text-white">{project} ↗</Link> : <span key={project} className="text-xs text-white/60">{project}</span>
+                  return projectId ? <Link key={project} to={`/projects/${projectId}`} className="text-xs text-[#B8C0C6] transition-colors hover:text-white">{project} ↗</Link> : <span key={project} className="text-xs text-white/60">{project}</span>
                 })}
               </div>
             </div>}

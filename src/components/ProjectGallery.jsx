@@ -27,7 +27,7 @@ export default function ProjectGallery({ images }) {
             onClick={() => setActive(i)}
             className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-[#f5f5f7]
                        [@media(hover:hover)]:hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)] transition-all duration-[240ms]
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3]"
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-[#737C84]"
           >
             <img
               src={img.src}

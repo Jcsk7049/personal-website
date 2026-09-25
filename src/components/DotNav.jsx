@@ -53,11 +53,11 @@ export default function DotNav() {
                         ${id === 'hero'
                           ? `w-3 h-3 rounded-full
                              ${active === id
-                               ? isDark ? 'bg-white text-[#1D1D1F] scale-110' : 'bg-[#0071E3] text-white scale-110'
+                               ? isDark ? 'bg-white text-[#1D1D1F] scale-110' : 'bg-[#737C84] text-white scale-110'
                                : isDark ? 'bg-white/30 text-white/50 hover:bg-white/60' : 'bg-black/20 text-black/40 hover:bg-black/50'}`
                           : `w-2 h-2 rounded-full
                              ${active === id
-                               ? isDark ? 'bg-white scale-150' : 'bg-[#0071E3] scale-150'
+                               ? isDark ? 'bg-white scale-150' : 'bg-[#737C84] scale-150'
                                : isDark ? 'bg-white/30 hover:bg-white/60 hover:scale-110' : 'bg-black/20 hover:bg-black/50 hover:scale-110'}`
                         }`}
           >
