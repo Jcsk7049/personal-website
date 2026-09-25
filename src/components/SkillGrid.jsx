@@ -26,7 +26,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
             <Link
               key={key}
               to={`/skills/${key}`}
-              className="skill-row skill-tile-panel group grid content-start xl:content-between gap-4 p-4 md:p-5 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] xl:h-full"
+              className="skill-row skill-tile-panel group flex flex-col gap-3 p-4 md:p-5 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] xl:h-full"
             >
               <div className="flex items-start gap-3">
                 <span className="pt-1 font-mono text-xs tracking-wider text-[#737C84]">{number}</span>
@@ -40,11 +40,11 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
                 <p className="text-sm text-[#3F3F46] leading-relaxed">{detail[key].overview}</p>
               )}
 
-              <ul className="grid grid-cols-2 gap-2">
+              <ul className="grid grid-cols-2 gap-2 xl:flex-1 xl:auto-rows-fr">
                 {items.map((item, index) => (
                   <li
                     key={item.name}
-                    className={`skill-item-tile flex min-h-10 items-center justify-between gap-2 px-2.5 py-2 border border-[#E1E4E7] text-sm text-[#3F3F46] ${index % 2 === 0 ? 'bg-[#F1F2F3]' : 'bg-[#F8F8F8]'}`}
+                    className={`skill-item-tile flex min-h-12 xl:min-h-16 items-center justify-between gap-2 px-3 py-2.5 border border-[#E1E4E7] text-sm text-[#3F3F46] ${index % 2 === 0 ? 'bg-[#F1F2F3]' : 'bg-[#F8F8F8]'}`}
                   >
                     <span>{item.name}</span>
                     {item.level && <span className="shrink-0 text-xs text-[#737C84]">{t.levels[item.level] ?? item.level}</span>}
