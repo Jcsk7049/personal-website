@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import SkillGrid from './SkillGrid'
 
-export default function Hero({ profile }) {
+export default function Hero({ profile, skills, skillDetail }) {
   const [showScroll, setShowScroll] = useState(true)
   const { lang }                    = useLanguage()
   const t                           = uiText[lang]
@@ -82,7 +83,7 @@ export default function Hero({ profile }) {
           <div className="shrink-0">
             <div className="hero-photo-in flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="relative w-56 h-64 md:w-72 md:h-80 lg:w-[22rem] lg:h-[26rem] rounded-[18px] overflow-hidden
+                <div className="hero-photo-frame relative w-56 h-64 md:w-72 md:h-80 lg:w-[22rem] lg:h-[26rem] rounded-[8px] overflow-hidden
                                 bg-[#E5E5EA]">
                   {profile.avatar ? (
                     <img src={profile.avatar} alt={profile.name}
@@ -103,6 +104,7 @@ export default function Hero({ profile }) {
           </div>
 
         </div>
+        <SkillGrid skills={skills} detail={skillDetail} />
       </div>
 
       {/* Scroll indicator */}

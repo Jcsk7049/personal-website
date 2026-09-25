@@ -7,7 +7,6 @@ import { uiText } from './data/uiText'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
 import Experience      from './components/Experience'
-import SkillGrid       from './components/SkillGrid'
 import ProjectShowcase from './components/ProjectShowcase'
 import AwardList           from './components/AwardList'
 import GuestbookContact    from './components/GuestbookContact'
@@ -54,9 +53,8 @@ function HomePage() {
     <ActiveSectionProvider>
     <div className="site-shell bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cv.profile.name} />
-      <Hero            profile={cv.profile} />
+      <Hero            profile={cv.profile} skills={cv.skills_matrix} skillDetail={cv.skills_detail} />
       <Experience      experience={cv.experience} education={cv.education} />
-      <SkillGrid       skills={cv.skills_matrix} detail={cv.skills_detail} />
       <ProjectShowcase projects={cv.projects} />
       <AwardList       awards={cv.awards} />
       <GuestbookContact profile={cv.profile} />

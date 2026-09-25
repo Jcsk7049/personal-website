@@ -434,7 +434,14 @@ body { background: var(--paper); }
 .site-shell .max-w-7xl,
 .site-shell .max-w-\[1400px\] { max-width: none; }
 .site-shell .spotlight-card { border-radius: 0; }
-.site-shell .skill-row { border-radius: 0; }
+.site-shell button,
+.site-shell a[class*="rounded-"],
+.site-shell img,
+.site-shell img[class*="rounded-"],
+.site-shell .hero-photo-frame,
+.site-shell .skill-row {
+  border-radius: 8px !important;
+}
 .site-shell #projects .project-card {
   border-radius: 8px !important;
   overflow: hidden;

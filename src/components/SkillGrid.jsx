@@ -16,15 +16,15 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="skills-section min-h-[calc(100svh-3rem)] pt-16 md:pt-24">
-      <div className="w-full px-6 md:px-10">
+    <section id="skills" className="skills-section hero-skills mt-14 md:mt-20 pt-10 md:pt-12 border-t border-black/10">
+      <div className="w-full">
       <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
-      <div className="mt-8 border-t border-black/10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {GROUPS.map(({ key, accent }) => {
           const group = t.quadrants[key]
           const items = detail?.[key]?.skills || (skills[key] || []).map(name => ({ name }))
           return (
-            <Link key={key} to={`/skills/${key}`} className="skill-row grid grid-cols-1 md:grid-cols-[minmax(180px,0.28fr)_minmax(0,1fr)] gap-x-8 gap-y-3 py-6 border-b border-black/10 hover:bg-white/40 transition-colors duration-[240ms]">
+            <Link key={key} to={`/skills/${key}`} className="skill-row grid grid-cols-1 gap-y-3 p-5 border border-black/10 bg-white/60 hover:bg-white transition-colors duration-[240ms]">
               <div>
                 <p className="text-xs text-[#6E6E73] mb-1">{group.sublabel}</p>
                 <h3 className={`text-lg font-semibold tracking-tight ${accent}`}>{group.label}</h3>
