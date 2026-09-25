@@ -8,7 +8,6 @@ import Nav             from './components/Nav'
 import Hero            from './components/Hero'
 import Experience      from './components/Experience'
 import ProjectShowcase from './components/ProjectShowcase'
-import AwardList           from './components/AwardList'
 import GuestbookContact    from './components/GuestbookContact'
 import NotFound        from './pages/NotFound'
 import ScrollToTop     from './components/ScrollToTop'
@@ -54,13 +53,12 @@ function HomePage() {
     <div className="site-shell bg-[#F5F5F7] text-[#1D1D1F] font-sans antialiased">
       <Nav             name={cv.profile.name} />
       <Hero            profile={cv.profile} skills={cv.skills_matrix} skillDetail={cv.skills_detail} />
-      <Experience      experience={cv.experience} education={cv.education} />
+      <Experience      experience={cv.experience} education={cv.education} awards={cv.awards} />
       <ProjectShowcase projects={cv.projects} />
-      <AwardList       awards={cv.awards} />
       <GuestbookContact profile={cv.profile} />
 
       {/* ── Apple Footer ── */}
-      <footer className="site-footer bg-[#F5F5F7] border-t border-black/[0.1]">
+      <footer className="site-footer bg-[#1D1D1F] text-white border-t border-white/10">
         <div className="w-full px-6 md:px-10">
 
           {/* Top: brand + columns */}
@@ -68,10 +66,10 @@ function HomePage() {
 
             {/* Brand block */}
             <div className="max-w-xs">
-              <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.88)] mb-2 tracking-tight">
+              <p className="text-[13px] font-semibold text-white mb-2 tracking-tight">
                 {cv.profile.name}
               </p>
-              <p className="text-[12px] leading-[1.6] text-[rgba(0,0,0,0.56)]">
+              <p className="text-[12px] leading-[1.6] text-white/55">
                 {cv.profile.bio}
               </p>
             </div>
@@ -79,10 +77,10 @@ function HomePage() {
             {/* Link columns */}
             <div className="flex gap-12 shrink-0">
               <div className="flex flex-col gap-2.5">
-                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">{t.footer.content}</p>
+                <p className="text-[12px] font-semibold text-white mb-1">{t.footer.content}</p>
                 {t.nav.map(({ id, label }) => (
                   <a key={id} href={`#${id}`}
-                     className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#1D1D1F]"
+                     className="text-[12px] text-white/70 hover:text-white"
                      style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                     {label}
                   </a>
@@ -90,22 +88,22 @@ function HomePage() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <p className="text-[12px] font-semibold text-[rgba(0,0,0,0.88)] mb-1">{t.footer.contact}</p>
+                <p className="text-[12px] font-semibold text-white mb-1">{t.footer.contact}</p>
                 <button
                   onClick={() => { window.location.href = `mailto:${cv.profile.contact.email}` }}
-                  className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC] text-left"
+                  className="text-[12px] text-white/70 hover:text-white text-left"
                   style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   Email
                 </button>
                 <a href={`https://github.com/${cv.profile.links.github}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
+                   className="text-[12px] text-white/70 hover:text-white"
                    style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   GitHub ↗
                 </a>
                 <a href={`https://linkedin.com/in/${cv.profile.links.linkedin}`}
                    target="_blank" rel="noopener noreferrer"
-                   className="text-[12px] text-[rgba(0,0,0,0.72)] hover:text-[#0066CC]"
+                   className="text-[12px] text-white/70 hover:text-white"
                    style={{ transition: 'color 0.32s cubic-bezier(0.4,0,0.6,1)' }}>
                   LinkedIn ↗
                 </a>
@@ -114,11 +112,11 @@ function HomePage() {
           </div>
 
           {/* Bottom bar */}
-          <div className="border-t border-black/[0.1] py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-            <p className="text-[12px] text-[rgba(0,0,0,0.48)]">
+          <div className="border-t border-white/10 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <p className="text-[12px] text-white/45">
               Copyright © {new Date().getFullYear()} {cv.profile.name}. All rights reserved.
             </p>
-            <p className="text-[12px] text-[rgba(0,0,0,0.48)]">Built with React &amp; Tailwind</p>
+            <p className="text-[12px] text-white/45">Built with React &amp; Tailwind</p>
           </div>
 
         </div>

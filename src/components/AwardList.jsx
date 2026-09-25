@@ -14,16 +14,15 @@ const TrophyIcon = ({ size = 14 }) => (
   </svg>
 )
 
-export default function AwardList({ awards }) {
+export default function AwardList({ awards, embedded = false }) {
   const { lang } = useLanguage()
   const t = uiText[lang]
   const featured = awards.filter(a => a.featured)
   const regular  = awards.filter(a => !a.featured)
 
-  return (
-    <section id="awards" className="awards-section wash-awards min-h-[calc(100svh-3rem)] flex flex-col justify-center py-16 md:py-24">
-      <div className="w-full px-6 md:px-10">
-        <SectionHeader label={t.sections.awards} sub={t.sectionSubs.awards} />
+  const content = (
+      <div className="w-full">
+        <SectionHeader label={t.sections.awards} sub={t.sectionSubs.awards} invert={embedded} />
 
         {featured.length > 0 && (
           <div className="flex flex-col gap-2.5 mb-2.5">
@@ -72,6 +71,8 @@ export default function AwardList({ awards }) {
           ))}
         </div>
       </div>
-    </section>
   )
+
+  if (embedded) return <div id="awards" className="awards-section pt-16 md:pt-20">{content}</div>
+  return <section id="awards" className="awards-section wash-awards min-h-[calc(100svh-3rem)] flex flex-col justify-center py-16 md:py-24"><div className="w-full px-6 md:px-10">{content}</div></section>
 }

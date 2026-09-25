@@ -55,15 +55,15 @@ export default function GuestbookContact({ profile }) {
   const t = uiText[lang]
 
   return (
-    <section id="guestbook" className="guestbook-section wash-guestbook min-h-[calc(100svh-3rem)] py-16 md:py-24">
+    <section id="guestbook" className="guestbook-section min-h-[calc(100svh-3rem)] py-16 md:py-24 bg-[#1D1D1F] text-white">
       <div className="w-full px-6 md:px-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* ── Left: Guestbook ── */}
           <div>
-            <SectionHeader label={zh ? '留言板' : 'Guestbook'} sub={t.sectionSubs.guestbook} />
-            <p className="text-sm text-[#3F3F46] mt-3 mb-2">
+            <SectionHeader label={zh ? '留言板' : 'Guestbook'} sub={t.sectionSubs.guestbook} invert />
+            <p className="text-sm text-white/70 mt-3 mb-2">
               {zh
                 ? '有什麼想說的都可以留在這裡，需要 GitHub 帳號。'
                 : 'Leave a note or question — GitHub login required.'}
@@ -113,7 +113,7 @@ export default function GuestbookContact({ profile }) {
 
           {/* ── Right: Contact (single primary CTA) ── */}
           <div>
-            <SectionHeader label={zh ? '聯絡我' : 'Contact'} sub={t.sectionSubs.contact} />
+            <SectionHeader label={zh ? '聯絡我' : 'Contact'} sub={t.sectionSubs.contact} invert />
             <a
               href={`mailto:${profile.contact.email}`}
               className="mt-10 flex flex-col items-start gap-5 p-8 rounded-[18px] bg-[#737C84]

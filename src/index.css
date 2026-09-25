@@ -445,13 +445,13 @@ body { background: var(--paper); }
 .site-shell #projects .project-card {
   border-radius: 8px !important;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: #252528 !important;
-  color: #F5F5F7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #F5F5F7 !important;
+  color: #1D1D1F;
 }
 .site-shell #projects .project-card:hover {
-  background: #2B2B2F !important;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  background: #FFFFFF !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
-.site-shell #projects { background: #1D1D1F !important; color: #F5F5F7; }
+.site-shell #projects { background: #FFFFFF !important; color: #1D1D1F; }
 .site-shell .skill-spec-card { border-radius: 2px; }

@@ -1,7 +1,8 @@
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import AwardList from './AwardList'
 
-export default function Experience({ experience, education }) {
+export default function Experience({ experience, education, awards }) {
   const { lang } = useLanguage()
   const t = uiText[lang]
   /* ── Shared cell renderers ── */
@@ -75,6 +76,7 @@ export default function Experience({ experience, education }) {
             </div>
           </div>
         </div>
+        <AwardList awards={awards} embedded />
       </div>
     </section>
   )
