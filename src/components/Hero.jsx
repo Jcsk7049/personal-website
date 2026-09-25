@@ -40,7 +40,7 @@ export default function Hero({ profile, skills, skillDetail }) {
               <span className="hero-name-unveil inline-block">{profile.name}</span>
             </h1>
 
-            <p className="hero-line text-[clamp(1.25rem,2.7vw,1.8rem)] font-medium tracking-[-0.02em] leading-[1.28] text-[#3F3F46] max-w-[26ch] mb-9 text-balance">
+            <p className="hero-line text-[clamp(1.25rem,2.7vw,1.8rem)] font-medium tracking-[-0.02em] leading-[1.28] text-[#737C84] max-w-[26ch] mb-9 text-balance">
               {t.heroLine}
             </p>
 
