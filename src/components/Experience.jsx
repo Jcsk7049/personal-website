@@ -49,12 +49,12 @@ export default function Experience({ experience, education, awards }) {
 
   return (
     <section id="experience" className="experience-section min-h-[calc(100svh-3rem)] py-16 md:py-24 bg-[#1D1D1F] text-white">
-      <div className="mx-auto w-full max-w-[1024px] px-6 md:px-10">
+      <div className="mx-auto w-full max-w-[1600px] px-6 md:px-10">
 
         {/* anchor for #education (single, independent of responsive variants) */}
         <div id="education" aria-hidden="true" />
 
-        <div className="experience-grid grid grid-cols-1 lg:grid-cols-[1.35fr_0.85fr] gap-14 lg:gap-24">
+        <div className="experience-grid grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
           <div>
             <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] leading-[1.08] mb-9">
               {t.sections.experience}
@@ -75,8 +75,8 @@ export default function Experience({ experience, education, awards }) {
               ))}
             </div>
           </div>
+          <AwardList awards={awards} />
         </div>
-        <AwardList awards={awards} embedded />
       </div>
     </section>
   )

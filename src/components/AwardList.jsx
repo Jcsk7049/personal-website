@@ -1,78 +1,33 @@
-import SectionHeader from './SectionHeader'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
-const TrophyIcon = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
-       strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
-    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
-    <path d="M4 22h16"/>
-    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
-    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
-    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-  </svg>
-)
-
-export default function AwardList({ awards, embedded = false }) {
+export default function AwardList({ awards = [] }) {
   const { lang } = useLanguage()
   const t = uiText[lang]
-  const featured = awards.filter(a => a.featured)
-  const regular  = awards.filter(a => !a.featured)
 
-  const content = (
-      <div className="w-full">
-        <SectionHeader label={t.sections.awards} sub={t.sectionSubs.awards} invert={embedded} />
-
-        {featured.length > 0 && (
-          <div className="flex flex-col gap-2.5 mb-2.5">
-            {featured.map((award, i) => (
-              <div key={i}
-                   className="flex items-center gap-5 px-6 py-6 md:px-8 md:py-7 rounded-[18px] bg-white
-                              hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
-                              transition-all duration-[240ms] group">
-                <div className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full bg-[#E8EAEC]">
-                  <span className="text-[#737C84]">
-                    <TrophyIcon size={22} />
-                  </span>
-                </div>
-                <p className="text-lg md:text-xl font-semibold tracking-tight text-[#1D1D1F] leading-snug flex-1">
-                  {award.title}
-                </p>
-                <span className="shrink-0 text-xs text-[#737C84] font-mono bg-[#E8EAEC] px-3 py-1.5
-                                 rounded-full leading-none">
+  return (
+    <div id="awards" className="awards-column">
+      <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold tracking-[-0.03em] leading-[1.08] mb-9">
+        {t.sections.awards}
+      </h2>
+      <div className="flex flex-col gap-7">
+        {awards.map((award, index) => (
+          <div key={`${award.year}-${index}`} className="relative pl-9">
+            {index < awards.length - 1 && (
+              <div className="absolute left-[4px] top-5 bottom-[-2.75rem] w-px bg-white/15" />
+            )}
+            <span className={`absolute left-0 top-[0.6rem] w-2 h-2 rounded-full ring-[3px] ring-[#1D1D1F] ${award.featured ? 'bg-[#737C84]' : 'bg-white/45'}`} />
+            <div className="py-4 -ml-2 pl-7">
+              <div className="flex items-start justify-between gap-3 mb-1.5">
+                <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{award.title}</h3>
+                <span className="text-[11px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
                   {award.year}
                 </span>
               </div>
-            ))}
-          </div>
-        )}
-
-        <div className="grid md:grid-cols-2 gap-2.5 card-stagger">
-          {regular.map((award, i, arr) => (
-            <div key={i}
-                 className={`flex items-center gap-4 px-5 py-4 rounded-[18px] bg-white
-                            hover:shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]
-                            transition-all duration-[240ms] group bg-white
-                            ${i === arr.length - 1 && arr.length % 2 !== 0 ? 'md:col-span-2' : ''}`}>
-              <div className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full
-                              bg-[#EBEBED] group-hover:bg-[#E8EAEC] transition-colors duration-[240ms] overflow-hidden">
-                <span className="text-[#c7c7cc] group-hover:text-[#737C84] transition-colors duration-[240ms]">
-                  <TrophyIcon />
-                </span>
-              </div>
-              <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title}</p>
-              <span className="shrink-0 text-[11px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1
-                               rounded-full leading-none group-hover:bg-[#E8EAEC] group-hover:text-[#737C84]
-                               transition-colors duration-[240ms]">
-                {award.year}
-              </span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+    </div>
   )
-
-  if (embedded) return <div id="awards" className="awards-section pt-16 md:pt-20">{content}</div>
-  return <section id="awards" className="awards-section wash-awards min-h-[calc(100svh-3rem)] flex flex-col justify-center py-16 md:py-24"><div className="w-full px-6 md:px-10">{content}</div></section>
 }
