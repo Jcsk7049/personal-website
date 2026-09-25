@@ -10,6 +10,12 @@ const GROUPS = [
   { key: 'manufacturing', number: '04' },
 ]
 
+const LEVEL_TILE = {
+  '基礎': 'bg-[#E8EAEC] border-[#D8DCE0] text-[#1D1D1F]',
+  '熟悉': 'bg-[#AEB7BE] border-[#A0AAB2] text-[#1D1D1F]',
+  '進階': 'bg-[#59636C] border-[#59636C] text-white',
+}
+
 export default function SkillGrid({ skills = {}, detail = {} }) {
   const { lang } = useLanguage()
   const t = uiText[lang]
@@ -41,13 +47,13 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
               )}
 
               <ul className="grid grid-cols-2 gap-2 xl:flex-1 xl:auto-rows-fr">
-                {items.map((item, index) => (
+                {items.map(item => (
                   <li
                     key={item.name}
-                    className={`skill-item-tile flex min-h-12 xl:min-h-16 items-center justify-between gap-2 px-3 py-2.5 border border-[#E1E4E7] text-sm text-[#3F3F46] ${index % 2 === 0 ? 'bg-[#F1F2F3]' : 'bg-[#F8F8F8]'}`}
+                    className={`skill-item-tile flex min-h-12 xl:min-h-16 items-center justify-between gap-2 px-3 py-2.5 border text-sm transition-colors duration-[240ms] ${LEVEL_TILE[item.level] || 'bg-[#F1F2F3] border-[#E1E4E7] text-[#1D1D1F]'}`}
                   >
                     <span>{item.name}</span>
-                    {item.level && <span className="shrink-0 text-xs text-[#737C84]">{t.levels[item.level] ?? item.level}</span>}
+                    {item.level && <span className={`shrink-0 text-xs ${item.level === '進階' ? 'text-white/85' : 'text-[#3F3F46]'}`}>{t.levels[item.level] ?? item.level}</span>}
                   </li>
                 ))}
               </ul>
