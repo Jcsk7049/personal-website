@@ -16,10 +16,10 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="skills-section hero-skills mt-14 md:mt-20 pt-10 md:pt-12 border-t border-black/10">
+    <section id="skills" className="skills-section hero-skills w-full">
       <div className="w-full">
       <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
         {GROUPS.map(({ key, accent }) => {
           const group = t.quadrants[key]
           const items = detail?.[key]?.skills || (skills[key] || []).map(name => ({ name }))

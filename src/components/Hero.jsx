@@ -26,9 +26,10 @@ export default function Hero({ profile, skills, skillDetail }) {
     <section id="hero" className="wash-hero relative min-h-[calc(100svh-3rem)] flex flex-col justify-center pt-14 md:pt-20 pb-20 md:pb-28">
 
       <div className="w-full px-6 md:px-10 relative">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 xl:grid-cols-[1.05fr_0.95fr] xl:items-center gap-14 xl:gap-20">
 
-          {/* Left: Text（外層吃視差，內層元素吃進場） */}
+          {/* Left side: introduction and photo */}
+          <div className="flex flex-col md:flex-row md:items-center gap-10 xl:gap-12 min-w-0">
           <div className="flex-1 min-w-0">
             {/* eyebrow 色 #636366：12px 非大字需過 WCAG AA 4.5；#86868B 只有 3.04:1（實測）→ #636366 = 5.03:1 */}
             <p className="hero-eyebrow flex items-center gap-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-[#636366] mb-7">
@@ -79,11 +80,10 @@ export default function Hero({ profile, skills, skillDetail }) {
             </div>
           </div>
 
-          {/* Right: Photo（外層吃視差） */}
           <div className="shrink-0">
-            <div className="hero-photo-in flex justify-center lg:justify-end">
+            <div className="hero-photo-in flex justify-center md:justify-end">
               <div className="relative">
-                <div className="hero-photo-frame relative w-56 h-64 md:w-72 md:h-80 lg:w-[22rem] lg:h-[26rem] rounded-[8px] overflow-hidden
+                <div className="hero-photo-frame relative w-56 h-64 md:w-56 md:h-64 xl:w-[18rem] xl:h-[22rem] rounded-[8px] overflow-hidden
                                 bg-[#E5E5EA]">
                   {profile.avatar ? (
                     <img src={profile.avatar} alt={profile.name}
@@ -102,9 +102,11 @@ export default function Hero({ profile, skills, skillDetail }) {
               </div>
             </div>
           </div>
+          </div>
 
+          {/* Right side: skills */}
+          <SkillGrid skills={skills} detail={skillDetail} />
         </div>
-        <SkillGrid skills={skills} detail={skillDetail} />
       </div>
 
       {/* Scroll indicator */}
