@@ -22,15 +22,30 @@
   }
 }
 
-/* ── Ambient section washes ──
-   把死白的 #F5F5F7 換成錨定在左右 gutter 的低透明度色暈：
-   寬螢幕兩側不再是空白，手機端純背景零成本。每區用自己的 accent 色相。 */
+/* ── Section backgrounds ──
+   Hero uses titanium-gray facets; the remaining section washes retain their existing accents. */
 .wash-hero {
-  background:
-    radial-gradient(1100px 750px at -8% 18%,  rgba(0,113,227,0.07),  transparent 62%),
-    radial-gradient(950px 700px  at 108% 85%, rgba(124,58,237,0.055), transparent 62%),
-    #F5F5F7;
+  background: linear-gradient(145deg, #F7F7F8 0%, #F1F2F3 52%, #F5F5F7 100%);
 }
+.hero-geometric-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.hero-content { z-index: 1; }
+.hero-facet { position: absolute; display: block; }
+.hero-facet-a {
+  top: 3%; left: -3%; width: 58%; height: 39%;
+  background: linear-gradient(115deg, rgba(115,124,132,.12), rgba(255,255,255,.26));
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 18%);
+}
+.hero-facet-b {
+  top: 23%; left: 0; width: 56%; height: 48%;
+  background: linear-gradient(135deg, rgba(115,124,132,.08), rgba(255,255,255,.42));
+  clip-path: polygon(0 0, 100% 28%, 100% 100%, 0 73%);
+}
+.hero-facet-c {
+  top: 60%; left: -2%; width: 58%; height: 43%;
+  background: linear-gradient(145deg, rgba(255,255,255,.54), rgba(115,124,132,.08));
+  clip-path: polygon(0 0, 100% 26%, 100% 100%, 0 100%);
+}
+.skill-item-tile { border-radius: 4px; }
 .wash-projects {
   background:
     radial-gradient(1000px 700px at -6% 12%,  rgba(0,113,227,0.05),  transparent 60%),
@@ -60,10 +75,11 @@
     background-size: 100% 100%;
   }
   .wash-hero {
-    background:
-      radial-gradient(600px 420px at -20% 10%, rgba(0,113,227,0.06), transparent 60%),
-      #F5F5F7;
+    background: linear-gradient(160deg, #F7F7F8, #F1F2F3 62%, #F5F5F7);
   }
+  .hero-facet-a { width: 104%; height: 30%; }
+  .hero-facet-b { width: 100%; height: 38%; }
+  .hero-facet-c { width: 104%; height: 34%; }
   .wash-projects, .wash-awards {
     background:
       radial-gradient(560px 400px at -20% 10%, rgba(0,113,227,0.04), transparent 58%),

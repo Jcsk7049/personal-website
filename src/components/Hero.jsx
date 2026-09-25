@@ -24,8 +24,13 @@ export default function Hero({ profile, skills, skillDetail }) {
 
   return (
     <section id="hero" className="wash-hero relative min-h-[calc(100svh-3rem)] flex flex-col justify-center pt-14 md:pt-20 pb-20 md:pb-28">
+      <div className="hero-geometric-bg" aria-hidden="true">
+        <span className="hero-facet hero-facet-a" />
+        <span className="hero-facet hero-facet-b" />
+        <span className="hero-facet hero-facet-c" />
+      </div>
 
-      <div className="w-full px-6 md:px-10 relative">
+      <div className="hero-content w-full px-6 md:px-10 relative">
         <div className="grid grid-cols-1 xl:grid-cols-[1.05fr_0.95fr] xl:items-center gap-14 xl:gap-20">
 
           {/* Left side: introduction and photo */}
