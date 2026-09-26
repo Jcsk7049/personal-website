@@ -11,6 +11,8 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-26）
 
+- **🟢 09-26 技能區壓縮成單屏雙欄矩形**：五類技能排成兩欄三列，第五類 Vibe Coding 跨兩欄；首頁每類展示兩項代表能力與其餘項目數量，完整清單仍可由卡片進入詳情頁查看。縮小標題、卡片內距與技能格；本機 1280×720 瀏覽器確認技能區高度 640px、完整落在同一視窗內。`npm.cmd run build` 與 `git diff --check` 通過；待 commit/push。
+
 - **🟢 09-26 新增第五類技能「Vibe Coding 設計」**：根據 Job Radar、NKHS 樹木量測、TeamMatch、Analog Studio、Virtual Office 與 FRC 網站／韌體經驗，整理 LLM 協作、需求拆解、服務整合、迭代除錯及部署同步五項能力；新增雙語技能卡、詳情頁和管理介面分類。Build 與本機瀏覽確認通過；migration 0027 已同步 D1 且保留原四類資料；commit `29c86f6` 已部署至 Production，正式詳情頁可見五項技能。待更新本檔並推送。
 
 - **🟢 09-25 新增 NKHS 校園樹木量測 PWA、補實際專案截圖**：新增中英文專案資料、sitemap 與 migration 0026；NKHS、Job Radar、Analog Studio、Virtual Office 封面改成真實瀏覽器畫面。`npm.cmd run build` 通過，migration 0026 遠端成功，commit `5e744cf` 已推 main；正式 API 已回傳 NKHS，四張 PNG 正式資源均 HTTP 200 且為 `image/png`。教師地圖需教師 Google 帳號；TeamMatch 本機缺 Firebase 設定，仍標示示意封面，待可用測試環境。
@@ -244,6 +246,11 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-09-26（技能區壓縮與 Vibe Coding 排版）
+
+- 技能首頁調整成兩欄三列，Vibe Coding 卡跨兩欄；每類保留兩項代表能力，其餘以數量提示，完整項目由詳情頁檢視。
+- 縮小技能標題、卡片間距與技能小格；本機 1280×720 確認技能區高 640px，未超出首屏。`npm.cmd run build` 與 `git diff --check` 通過；待 commit/push。
 
 ### 2026-09-26（新增 Vibe Coding 技能分類）
 
