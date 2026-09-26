@@ -9,6 +9,7 @@ const SKILL_CAT_LABELS = {
   programming:   '程式 / Programming',
   eda:           'EDA 電路設計',
   data_analysis: '數據分析 / ML',
+  vibecoding:    'Vibe Coding / AI 協作開發',
   embedded:      '嵌入式系統',
   web:           'Web / 後端',
 }

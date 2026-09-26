@@ -8,6 +8,7 @@ const GROUPS = [
   { key: 'programming', number: '02' },
   { key: 'eda', number: '03' },
   { key: 'manufacturing', number: '04' },
+  { key: 'vibecoding', number: '05' },
 ]
 
 const LEVEL_TILE = {

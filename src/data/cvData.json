@@ -77,6 +77,13 @@
       "Feature Engineering",
       "Signal Processing",
       "SHAP / XAI"
+    ],
+    "vibecoding": [
+      "LLM 協作開發",
+      "需求拆解與垂直切片",
+      "前後端整合",
+      "迭代除錯與瀏覽器驗證",
+      "部署與資料同步"
     ]
   },
   "skills_detail": {
@@ -290,6 +297,63 @@
           "level": "熟悉",
           "desc": "手工銑床、車床的基本操作，量具怎麼用、工件怎麼夾都會，這些底子讓我後來學 CNC 進階加工上手得快一點。",
           "projects": []
+        }
+      ]
+    },
+    "vibecoding": {
+      "title": "Vibe Coding 設計",
+      "en": "Vibe Coding & Product Delivery",
+      "overview": "把需求拆成能執行、能驗證的小步驟，與 LLM 協作完成介面、資料流程、整合和部署；再回到實際執行環境檢查結果。",
+      "skills": [
+        {
+          "name": "LLM 協作開發",
+          "level": "熟悉",
+          "desc": "先描述目標、限制和完成條件，再用 LLM 協助產生或修改程式；把生成結果放回專案脈絡檢查，而不是直接照單全收。曾用於 FRC 團隊韌體除錯與個人網站、工具專案。",
+          "projects": [
+            "FRC 7645 — 官網與後台 CMS",
+            "Job Radar — 個人化求職雷達"
+          ]
+        },
+        {
+          "name": "需求拆解與垂直切片",
+          "level": "熟悉",
+          "desc": "把使用流程拆成介面、資料欄位、API 與儲存等可逐段完成的工作；先讓主要路徑跑通，再補管理、篩選和錯誤處理。",
+          "projects": [
+            "南港高工校園樹木量測 PWA",
+            "Job Radar — 個人化求職雷達",
+            "TeamMatch — 黑客松找隊友平台"
+          ]
+        },
+        {
+          "name": "前後端與服務整合",
+          "level": "熟悉",
+          "desc": "依專案選擇合適組合，串接 React／Vite、Next.js 或 Flask 介面與 Cloudflare Pages、D1、Firebase、Google Apps Script 等服務；資料與帳號設定不足時先確認邊界，不假裝功能已驗證。",
+          "projects": [
+            "Job Radar — 個人化求職雷達",
+            "南港高工校園樹木量測 PWA",
+            "TeamMatch — 黑客松找隊友平台",
+            "Analog IC Studio — 類比 IC 自動調參平台"
+          ]
+        },
+        {
+          "name": "迭代除錯與瀏覽器驗證",
+          "level": "熟悉",
+          "desc": "以錯誤訊息、網路請求和實際頁面定位問題；每次修改後啟動專案、重走主要操作，確認輸出與資料流。UI 截圖用來核對畫面，不當成功能測試的替代品。",
+          "projects": [
+            "Analog IC Studio — 類比 IC 自動調參平台",
+            "Virtual Office — 桌面像素辦公室",
+            "南港高工校園樹木量測 PWA"
+          ]
+        },
+        {
+          "name": "自動化部署與資料同步",
+          "level": "熟悉",
+          "desc": "用 Git 管理修改，透過 GitHub Actions 或 Cloudflare Pages 發佈；需要時同步 D1、Google Sheets 等資料來源，並在正式網址核對頁面和資源。",
+          "projects": [
+            "Job Radar — 個人化求職雷達",
+            "南港高工校園樹木量測 PWA",
+            "FRC 7645 — 官網與後台 CMS"
+          ]
         }
       ]
     }

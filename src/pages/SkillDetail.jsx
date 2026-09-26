@@ -5,12 +5,13 @@ import cvDataEn from '../data/cvData.en.json'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
-const CATEGORY_ORDER = ['data_analysis', 'programming', 'eda', 'manufacturing']
+const CATEGORY_ORDER = ['data_analysis', 'programming', 'eda', 'manufacturing', 'vibecoding']
 const CATEGORY_COLOR = {
   data_analysis: '#737C84',
   programming: '#737C84',
   eda: '#737C84',
   manufacturing: '#737C84',
+  vibecoding: '#737C84',
 }
 const LEVELS = ['進階', '熟悉', '基礎']
 const LEVEL_COLOR = { '進階': '#515B64', '熟悉': '#737C84', '基礎': '#A1A1AA' }

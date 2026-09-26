@@ -52,6 +52,7 @@ export const SKILL_CAT_ACCENTS = {
   programming:   'from-[#D9DEE2] to-[#737C84]',
   eda:           'from-[#D9DEE2] to-[#737C84]',
   manufacturing: 'from-[#D9DEE2] to-[#737C84]',
+  vibecoding:    'from-[#D9DEE2] to-[#737C84]',
 }
 
 export const SKILL_CAT_ACCENT_SOLID = {
@@ -59,6 +60,7 @@ export const SKILL_CAT_ACCENT_SOLID = {
   programming:   'text-[#737C84]',
   eda:           'text-[#737C84]',
   manufacturing: 'text-[#737C84]',
+  vibecoding:    'text-[#737C84]',
 }
 
 export const LEVEL_CONFIG = {

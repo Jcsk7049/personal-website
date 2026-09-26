@@ -17,7 +17,7 @@ export const uiText = {
     },
     sectionSubs: {
       projects: '從想法做到能動的東西。',
-      skills:   '從電路、韌體到資料分析。',
+      skills:   '從電路、韌體、資料分析到 AI 協作開發。',
       awards:   '高職到大學的比賽紀錄。',
       guestbook: '路過留個言也好。',
       contact:  '合作、問題都歡迎。',
@@ -43,6 +43,7 @@ export const uiText = {
       programming:   { label: '嵌入式韌體',    sublabel: 'Firmware & Embedded'        },
       eda:           { label: '電路設計',  sublabel: 'Electronic Design'    },
       manufacturing: { label: '機構加工',  sublabel: 'Manufacturing'        },
+      vibecoding:    { label: 'Vibe Coding 設計', sublabel: 'AI-assisted Product Development' },
     },
     projectSections: [
       { key: 'purpose', label: '用途',    en: 'Purpose'        },
@@ -70,7 +71,7 @@ export const uiText = {
     },
     sectionSubs: {
       projects: 'From idea to something that runs.',
-      skills:   'Four quadrants, all hands-on.',
+      skills:   'From circuits and firmware to data and AI-assisted development.',
       awards:   'Competition records, vocational school to university.',
       guestbook: 'Passing through? Leave a note.',
       contact:  'Open to collaboration or questions.',
@@ -102,6 +103,7 @@ export const uiText = {
       programming:   { label: 'Firmware & Embedded', sublabel: 'Firmware & Embedded'  },
       eda:           { label: 'Electronic Design',sublabel: 'Electronic Design'   },
       manufacturing: { label: 'Manufacturing',   sublabel: 'Manufacturing'        },
+      vibecoding:    { label: 'Vibe Coding', sublabel: 'AI-assisted Product Development' },
     },
     projectSections: [
       { key: 'purpose', label: 'Purpose',        en: 'Purpose'        },

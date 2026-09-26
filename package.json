@@ -47,7 +47,8 @@
     "db:migrate:qmk-f103:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0023_qmk_f103.sql",
     "db:migrate:skills-vap:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0024_sync_skills_detail_and_vap.sql",
     "db:migrate:project-copy:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0025_refresh_project_copy.sql",
-    "db:migrate:nkhs-tree-map:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0026_add_nkhs_tree_map_and_live_screenshots.sql"
+    "db:migrate:nkhs-tree-map:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0026_add_nkhs_tree_map_and_live_screenshots.sql",
+    "db:migrate:vibecoding:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0027_add_vibecoding_skill.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

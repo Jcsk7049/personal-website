@@ -78,6 +78,13 @@
       "Feature Engineering",
       "Signal Processing",
       "SHAP / XAI"
+    ],
+    "vibecoding": [
+      "LLM-assisted coding",
+      "Requirement slicing",
+      "Full-stack integration",
+      "Iterative debugging & browser review",
+      "Deployment & data sync"
     ]
   },
   "skills_detail": {
@@ -291,6 +298,63 @@
           "level": "熟悉",
           "desc": "Manual mill and lathe basics — measuring tools, workpiece clamping — the groundwork that made picking up advanced CNC machining easier.",
           "projects": []
+        }
+      ]
+    },
+    "vibecoding": {
+      "title": "Vibe Coding & Product Delivery",
+      "en": "Vibe Coding & Product Delivery",
+      "overview": "Turn a request into small, runnable steps; work with an LLM on the interface, data flow, integrations, and deployment, then check the result in the running project.",
+      "skills": [
+        {
+          "name": "LLM-assisted coding",
+          "level": "熟悉",
+          "desc": "Describe the goal, constraints, and acceptance conditions first, then use an LLM to draft or revise code. Review the result in the project context instead of accepting generated code blindly. Used for FRC firmware debugging and personal web/tool projects.",
+          "projects": [
+            "FRC 7645 — Website & Admin CMS",
+            "Job Radar: Personalized Job Search Dashboard"
+          ]
+        },
+        {
+          "name": "Requirement slicing",
+          "level": "熟悉",
+          "desc": "Break a workflow into interface, data fields, API, and storage tasks that can be built and checked one at a time. Get the main path running before adding admin, filters, and error handling.",
+          "projects": [
+            "NKHS Campus Tree Measurement PWA",
+            "Job Radar: Personalized Job Search Dashboard",
+            "TeamMatch — Hackathon Teammate Finder"
+          ]
+        },
+        {
+          "name": "Full-stack integration",
+          "level": "熟悉",
+          "desc": "Choose a fitting stack and connect React/Vite, Next.js, or Flask interfaces with services such as Cloudflare Pages, D1, Firebase, and Google Apps Script. Check configuration and access boundaries instead of claiming an unverified integration works.",
+          "projects": [
+            "Job Radar: Personalized Job Search Dashboard",
+            "NKHS Campus Tree Measurement PWA",
+            "TeamMatch — Hackathon Teammate Finder",
+            "Analog IC Studio — Automated Analog IC Tuning Platform"
+          ]
+        },
+        {
+          "name": "Iterative debugging & browser review",
+          "level": "熟悉",
+          "desc": "Use error messages, network requests, and the running page to locate issues. After each change, launch the project and walk through its main flow. Use screenshots to review presentation, not as a substitute for functional tests.",
+          "projects": [
+            "Analog IC Studio — Automated Analog IC Tuning Platform",
+            "Virtual Office — Desktop Pixel Workspace",
+            "NKHS Campus Tree Measurement PWA"
+          ]
+        },
+        {
+          "name": "Deployment & data sync",
+          "level": "熟悉",
+          "desc": "Track changes with Git, publish through GitHub Actions or Cloudflare Pages, sync sources such as D1 or Google Sheets when needed, and verify the production URL and assets.",
+          "projects": [
+            "Job Radar: Personalized Job Search Dashboard",
+            "NKHS Campus Tree Measurement PWA",
+            "FRC 7645 — Website & Admin CMS"
+          ]
         }
       ]
     }
