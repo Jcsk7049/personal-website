@@ -11,7 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-26）
 
-- **🟡 09-26 新增第五類技能「Vibe Coding 設計」**：根據現有 Job Radar、NKHS 樹木量測、TeamMatch、Analog Studio、Virtual Office 與 FRC 網站／韌體經驗，整理 LLM 協作、需求拆解、服務整合、迭代除錯及部署同步五項能力；新增雙語技能卡和詳情頁，並以遠端 D1 現有技能資料為底新增分類，保留後台內容。待 build、migration 0027、push 與正式站確認。
+- **🟢 09-26 新增第五類技能「Vibe Coding 設計」**：根據 Job Radar、NKHS 樹木量測、TeamMatch、Analog Studio、Virtual Office 與 FRC 網站／韌體經驗，整理 LLM 協作、需求拆解、服務整合、迭代除錯及部署同步五項能力；新增雙語技能卡、詳情頁和管理介面分類。Build 與本機瀏覽確認通過；migration 0027 已同步 D1 且保留原四類資料；commit `29c86f6` 已部署至 Production，正式詳情頁可見五項技能。待更新本檔並推送。
 
 - **🟢 09-25 新增 NKHS 校園樹木量測 PWA、補實際專案截圖**：新增中英文專案資料、sitemap 與 migration 0026；NKHS、Job Radar、Analog Studio、Virtual Office 封面改成真實瀏覽器畫面。`npm.cmd run build` 通過，migration 0026 遠端成功，commit `5e744cf` 已推 main；正式 API 已回傳 NKHS，四張 PNG 正式資源均 HTTP 200 且為 `image/png`。教師地圖需教師 Google 帳號；TeamMatch 本機缺 Firebase 設定，仍標示示意封面，待可用測試環境。
 
@@ -250,7 +250,7 @@
 - 依已完成專案整理 Vibe Coding 技能內容：LLM 協作開發、需求拆解與垂直切片、前後端與服務整合、迭代除錯／瀏覽器檢視、自動化部署與資料同步；描述保持具體並連回相關作品。
 - 首頁技能網格加入第 05 類，更新中英文標題與副標、技能詳情分類導覽、管理介面類別名稱和鈦灰設計 token。
 - 新增 migration 0027；先讀取正式 D1 現有技能資料再合併新分類，避免覆蓋後台已調整的熟練度或文字。
-- 待本機預覽、build、遠端 migration、push 與正式站確認。
+- 本機預覽確認第五卡與 `/skills/vibecoding` 詳情、五項能力和相關專案連結正常；`npm.cmd run build`、`git diff --check` 通過。D1 migration 0027 已更新四類既有區段並新增第五類，API 核對中英文資料；commit `29c86f6` 已推 main，Cloudflare Pages Production deployment `c8e65a24-7470-4cfc-adfc-8f0cbcd861df` 已部署，正式詳情頁實機瀏覽可見完整內容。
 
 ### 2026-09-25（新增 NKHS 校園樹木量測並改用實際運動畫面）
 
