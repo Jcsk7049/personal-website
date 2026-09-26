@@ -250,7 +250,7 @@
 - 依已完成專案整理 Vibe Coding 技能內容：LLM 協作開發、需求拆解與垂直切片、前後端與服務整合、迭代除錯／瀏覽器檢視、自動化部署與資料同步；描述保持具體並連回相關作品。
 - 首頁技能網格加入第 05 類，更新中英文標題與副標、技能詳情分類導覽、管理介面類別名稱和鈦灰設計 token。
 - 新增 migration 0027；先讀取正式 D1 現有技能資料再合併新分類，避免覆蓋後台已調整的熟練度或文字。
-- 本機預覽確認第五卡與 `/skills/vibecoding` 詳情、五項能力和相關專案連結正常；`npm.cmd run build`、`git diff --check` 通過。D1 migration 0027 已更新四類既有區段並新增第五類，API 核對中英文資料；commit `29c86f6` 已推 main，Cloudflare Pages Production deployment `c8e65a24-7470-4cfc-adfc-8f0cbcd861df` 已部署，正式詳情頁實機瀏覽可見完整內容。
+- 本機預覽確認第五卡與 `/skills/vibecoding` 詳情、五項能力和相關專案連結正常；`npm.cmd run build`、`git diff --check` 通過。D1 migration 0027 已更新四類既有區段並新增第五類，API 核對中英文資料；commit `29c86f6` 已推 main，Cloudflare Pages Production deployment `0e8e0ccd-f1e1-4aeb-8490-647f000bb2db` 已部署，正式詳情頁實機瀏覽可見完整內容。
 
 ### 2026-09-25（新增 NKHS 校園樹木量測並改用實際運動畫面）
 
@@ -998,3 +998,4 @@ Cloudflare preview 親眼確認、核准後才合 main；因為本 session 瀏�
 - 面試準備：14 題考古題 + VAP「復刻發現洩漏、AI 代勞 coding、判斷是我的」答法框架。
 - 早期：ProjectShowcase 卡片留空 bug 修復、PCB gallery D1 圖片路徑 migration 0009、
   Cloudflare Production/Preview 說明、資安 headers。
+
