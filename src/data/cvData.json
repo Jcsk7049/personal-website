@@ -198,11 +198,9 @@
       "skills": [
         {
           "name": "Altium Designer",
-          "level": "進階",
-          "desc": "做多層 PCB 設計的主力工具。電源規劃、阻抗匹配、DFM（可製造性設計）原則都會考慮，原理圖到 Gerber 輸出整個流程自己一個人就能搞定。",
-          "projects": [
-            "QMK x STM32 客製鍵盤"
-          ]
+          "level": "熟悉",
+          "desc": "高職時期用它設計並完成一塊電路板，從原理圖到 PCB Layout 走過完整流程。操作邏輯和 KiCAD 相近，需要時可以很快重新上手。",
+          "projects": []
         },
         {
           "name": "EasyEDA Pro（立創EDA）",

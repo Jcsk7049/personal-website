@@ -9,7 +9,9 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-09-26）
+## 📌 當前狀態快照（最後更新：2026-09-28）
+
+- **🟡 09-28 Altium 技能誠實化（本機完成，未上線）**：本人確認 Altium 只在高職設計過一塊板、可快速重新上手；QMK 鍵盤 PCB 實為 EasyEDA 改開源設計。原「進階・多層 PCB 主力・對應 QMK」改為「熟悉・高職設計完成一塊板・操作近 KiCAD」，projects 清空；中英 cvData 同步。**migration 0028**（`npm run db:migrate:altium-honest:remote`）以名稱定位只改 Altium 一筆，不動其他技能與 admin 內容——已用 node:sqlite 模擬 D1（Altium 挪位＋模擬 admin 改 KiCAD）驗證：未跑 6 FAIL → 跑後 15/15 PASS。`npm run build` 通過。**待本人：①執行 migration 0028 到遠端 D1（本機 wrangler 帳號對此 DB 無權限 7403）②同意後 push**。
 
 - **🟢 09-26 技能卡改為完整技能清單填滿卡面**：移除首頁「＋N 項」摘要，顯示每類全部技術；技能小格按卡片高度等距延展。製造類排成整列三欄以容納九項，數據分析、嵌入式、電路設計與 Vibe Coding 分別左右排列，整體仍為兩欄三列矩形。本機 1280×720 確認技能區高 640px、九項技能均顯示；`npm.cmd run build` 與 `git diff --check` 通過。介面已推至 `main`，commit `55fb5dd`。
 - **🟢 09-26 技能區壓縮成單屏雙欄矩形**：五類技能排成兩欄三列，第五類 Vibe Coding 跨兩欄；首頁每類展示兩項代表能力與其餘項目數量，完整清單仍可由卡片進入詳情頁查看。縮小標題、卡片內距與技能格；本機 1280×720 瀏覽器確認技能區高度 640px、完整落在同一視窗內。`npm.cmd run build` 與 `git diff --check` 通過；介面變更已推至 `main`，commit `6b72ad6`。
