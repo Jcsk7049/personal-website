@@ -11,6 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-28）
 
+- **🟡 09-28 技能等級依作品證據校準（本機完成，D1 待執行）**：參考 Codex 履歷證據評分，本人核定 10 項改等級（只改 level，desc／projects 不動）：深度學習、LightGBM、特徵工程、C / C++、Python、3D 列印、Inventor、AutoCAD 進階→熟悉；雷射切割 進階→基礎；Fusion 360 熟悉→基礎。中英 cvData 同步（各 10 行）。**migration 0029**（`npm.cmd run db:migrate:skill-levels:remote`）以名稱定位只改 level——node:sqlite 模擬 D1（打亂順序＋模擬 admin 改描述）驗證：改前 FAIL(4) → 10/10 PASS，且 0028 的 Altium 保留。**待本人執行 migration 0029，之後 push**。
 - **🟢 09-28 Altium 技能誠實化（D1 已上線）**：本人確認 Altium 只在高職設計過一塊板、可快速重新上手；QMK 鍵盤 PCB 實為 EasyEDA 改開源設計。原「進階・多層 PCB 主力・對應 QMK」改為「熟悉・高職設計完成一塊板・操作近 KiCAD」，projects 清空；中英 cvData 同步。**migration 0028**（`npm run db:migrate:altium-honest:remote`）以名稱定位只改 Altium 一筆，不動其他技能與 admin 內容——已用 node:sqlite 模擬 D1（Altium 挪位＋模擬 admin 改 KiCAD）驗證：未跑 6 FAIL → 跑後 15/15 PASS。`npm run build` 通過。**本人已以 `npm.cmd run db:migrate:altium-honest:remote` 執行到遠端 D1（2 queries、2 rows written）；已由正式站 `/api/sections/skills_detail`（中、英）確認 Altium＝熟悉、projects 空、eda 仍 4 項、5 分類完整。** 註：PowerShell 5 不支援 `&&`，且 `npm.ps1` 被執行原則擋下，須用 `npm.cmd`。
 
 - **🟢 09-26 技能卡改為完整技能清單填滿卡面**：移除首頁「＋N 項」摘要，顯示每類全部技術；技能小格按卡片高度等距延展。製造類排成整列三欄以容納九項，數據分析、嵌入式、電路設計與 Vibe Coding 分別左右排列，整體仍為兩欄三列矩形。本機 1280×720 確認技能區高 640px、九項技能均顯示；`npm.cmd run build` 與 `git diff --check` 通過。介面已推至 `main`，commit `55fb5dd`。

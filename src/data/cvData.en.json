@@ -95,7 +95,7 @@
       "skills": [
         {
           "name": "Deep Learning",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "I've worked with LSTM and CNN time-series models — preprocessing, hyperparameter tuning, all of it — mainly for predicting biomedical signal sequences.",
           "projects": [
             "ICU VAP Early-Warning System"
@@ -103,7 +103,7 @@
         },
         {
           "name": "LightGBM",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "Used in BitOGuard for imbalanced binary classification, blended 0.6/0.4 with XGBoost, with SHAP to inspect each feature's contribution to account-risk scores and threshold comparisons for precision and recall.",
           "projects": [
             "AWS × BitoPro Hackathon"
@@ -119,7 +119,7 @@
         },
         {
           "name": "Feature Engineering",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "Pulled out time-domain (mean, peak) and frequency-domain (FFT power spectrum) features, and handled EHR data — time-series aggregation, one-hot encoding, plenty of missing values to deal with.",
           "projects": [
             "ICU VAP Early-Warning System",
@@ -152,7 +152,7 @@
       "skills": [
         {
           "name": "C / C++",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "My go-to language for embedded firmware. Comfortable with GPIO control, interrupt handling, and memory management; also worked with ChibiOS HAL config (chconf/halconf/mcuconf) and the QMK firmware codebase on resource-constrained STM32 boards.",
           "projects": [
             "FRC Swerve Drive Research",
@@ -161,7 +161,7 @@
         },
         {
           "name": "Python",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "Hold the ITS Python international certification. Use it daily for ML pipelines (PyTorch, scikit-learn, pandas), plotting (Matplotlib), and wiring up AWS services with the SDK.",
           "projects": [
             "ICU VAP Early-Warning System",
@@ -248,7 +248,7 @@
         },
         {
           "name": "3D Printing",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "FDM printing for checking mechanical interference and making custom non-structural parts — cuts weight and machining cost without touching structural integrity.",
           "projects": [
             "FRC Swerve Drive Research",
@@ -257,7 +257,7 @@
         },
         {
           "name": "Autodesk Inventor",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "My main tool for 3D mechanism modeling — assembly interference checks and dynamic simulation to catch part collisions and tolerance issues before anything gets built.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -265,7 +265,7 @@
         },
         {
           "name": "AutoCAD",
-          "level": "進階",
+          "level": "熟悉",
           "desc": "2D engineering drawings for machining — dimensions and tolerances spelled out clearly enough for CNC operators or outside vendors to just follow.",
           "projects": [
             "FRC Swerve Drive Research"
@@ -273,7 +273,7 @@
         },
         {
           "name": "Fusion 360",
-          "level": "熟悉",
+          "level": "基礎",
           "desc": "Quick concept modeling with built-in CAM — good for early design exploration, and you can go straight from the 3D model to a machining path for small-batch parts.",
           "projects": []
         },
@@ -287,7 +287,7 @@
         },
         {
           "name": "Laser Cutting",
-          "level": "進階",
+          "level": "基礎",
           "desc": "Precision cutting of sheet metal and acrylic from CAD drawings — a quick way to make custom thin-plate parts and label panels.",
           "projects": []
         },
