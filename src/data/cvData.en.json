@@ -30,7 +30,7 @@
       "role": "Research Intern",
       "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
       "period": "2025.05 – Present",
-      "description": "I worked on an ICU VAP prediction study, handling data preparation, model comparisons, and evaluation. After the paper was accepted, I audited the data indexing, time alignment, and patient-level split, and found that the original high scores were affected by the evaluation setup and cohort-source differences. I reframed the work as a methodology audit. Accepted as a poster at IEEE GCCE 2026."
+      "description": "I worked on an ICU VAP early-warning study, handling data preparation, model comparisons, and evaluation. The initial evaluation reported an AUROC of 0.98–0.99. After the study was accepted as a poster at IEEE GCCE 2026, I kept checking the data indices, time alignment, and patient split, rerunning the evaluation after each correction. With a patient-level split, the final AUROC was 0.61. I then focused the work on understanding how evaluation choices and cohort differences affected the result."
     },
     {
       "role": "Engineering Advisor & Systems Integrator",

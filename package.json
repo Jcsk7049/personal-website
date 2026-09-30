@@ -50,7 +50,8 @@
     "db:migrate:nkhs-tree-map:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0026_add_nkhs_tree_map_and_live_screenshots.sql",
     "db:migrate:vibecoding:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0027_add_vibecoding_skill.sql",
     "db:migrate:altium-honest:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0028_altium_honest.sql",
-    "db:migrate:skill-levels:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0029_skill_levels_calibrate.sql"
+    "db:migrate:skill-levels:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0029_skill_levels_calibrate.sql",
+    "db:migrate:vap-experience:remote": "wrangler d1 execute personal-website-db --remote --file=migrations/0030_refresh_vap_experience.sql"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

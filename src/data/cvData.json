@@ -30,7 +30,7 @@
       "role": "實驗室專題生",
       "organization": "元智大學 林書彥教授實驗室",
       "period": "2025.05 – 現在",
-      "description": "參與 ICU VAP 預測研究，負責資料處理、模型比較與驗證流程。論文接受後，我重新稽核資料索引、時間對齊與病人切分，發現原先的高分受到評估條件與收案來源差異影響，因此將研究重點轉為方法學稽核。研究獲 IEEE GCCE 2026 poster 接受。"
+      "description": "參與 ICU VAP 早期預警研究，負責資料整理、模型比較與驗證。初版驗證的 AUROC 為 0.98–0.99。研究 poster 獲 IEEE GCCE 2026 接受後，我持續回查資料索引、時間對齊與病人切分，每次修正後都重新跑驗證。改用病人層切分後，最終 AUROC 為 0.61；我也將研究重點轉為釐清評估設定與收案差異如何影響結果。"
     },
     {
       "role": "Engineering Advisor & Systems Integrator",
