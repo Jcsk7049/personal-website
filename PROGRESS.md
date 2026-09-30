@@ -11,7 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-30）
 
-- **🟢 09-30 VAP 經歷改為反覆稽核與修正歷程（D1 已同步）**：中英文改寫為初版 AUROC 0.98–0.99、論文接受後回查資料索引／時間對齊／病人切分，病人層切分後最終 AUROC 0.61；不再宣稱「消除資料洩漏」。新增 migration 0030，只更新 experience 第一筆中英文描述；遠端 D1 執行 1 query、1 row written，正式 API 已核對兩語。待 commit/push。
+- **🟢 09-30 VAP 經歷改為反覆稽核與修正歷程（D1 已同步）**：中英文改寫為初版 AUROC 0.98–0.99、論文接受後回查資料索引／時間對齊／病人切分，病人層切分後最終 AUROC 0.61；不再宣稱「消除資料洩漏」。新增 migration 0030，只更新 experience 第一筆中英文描述；遠端 D1 執行 1 query、1 row written，正式 API 已核對兩語。commit `e7d9e09` 已推至 `main`。
 
 - **🟢 09-28 技能等級依作品證據校準（D1 已上線）**：參考 Codex 履歷證據評分，本人核定 10 項改等級（只改 level，desc／projects 不動）：深度學習、LightGBM、特徵工程、C / C++、Python、3D 列印、Inventor、AutoCAD 進階→熟悉；雷射切割 進階→基礎；Fusion 360 熟悉→基礎。中英 cvData 同步（各 10 行）。**migration 0029**（`npm.cmd run db:migrate:skill-levels:remote`）以名稱定位只改 level——node:sqlite 模擬 D1（打亂順序＋模擬 admin 改描述）驗證：改前 FAIL(4) → 10/10 PASS，且 0028 的 Altium 保留。本人已執行到遠端 D1（20 queries、20 rows written）；正式站 API 中英確認 20 項等級全部符合、5 分類 29 項技能完整、Altium 維持熟悉。
 - **🟢 09-28 Altium 技能誠實化（D1 已上線）**：本人確認 Altium 只在高職設計過一塊板、可快速重新上手；QMK 鍵盤 PCB 實為 EasyEDA 改開源設計。原「進階・多層 PCB 主力・對應 QMK」改為「熟悉・高職設計完成一塊板・操作近 KiCAD」，projects 清空；中英 cvData 同步。**migration 0028**（`npm run db:migrate:altium-honest:remote`）以名稱定位只改 Altium 一筆，不動其他技能與 admin 內容——已用 node:sqlite 模擬 D1（Altium 挪位＋模擬 admin 改 KiCAD）驗證：未跑 6 FAIL → 跑後 15/15 PASS。`npm run build` 通過。**本人已以 `npm.cmd run db:migrate:altium-honest:remote` 執行到遠端 D1（2 queries、2 rows written）；已由正式站 `/api/sections/skills_detail`（中、英）確認 Altium＝熟悉、projects 空、eda 仍 4 項、5 分類完整。** 註：PowerShell 5 不支援 `&&`，且 `npm.ps1` 被執行原則擋下，須用 `npm.cmd`。
@@ -200,7 +200,7 @@
 
 ## ✅ 待辦清單
 
-- [x] **09-30 VAP 經歷文案**：中英文已更新，migration 0030 已同步正式 D1；遠端 API 確認最終 AUROC 0.61。
+- [x] **09-30 VAP 經歷文案**：中英文已更新，migration 0030 已同步正式 D1；遠端 API 確認最終 AUROC 0.61；commit `e7d9e09` 已推至 `main`。
 
 ### 🔴 08-11 新增（本人動手）
 - [x] **0021 的索引 bug 已修**（09-02，commit 3ff5821）：那段 skills_detail UPDATE 直接移除，改由 0024 整包同步。
@@ -258,7 +258,7 @@
 ### 2026-09-30（VAP 經歷改寫）
 
 - 將首頁研究經歷改寫為反覆檢查資料索引、時間對齊與病人切分的過程，明確記錄初版 AUROC 0.98–0.99、病人層切分後最終 AUROC 0.61；避免再寫成「消除資料洩漏」。中英文同步更新。
-- 新增 migration 0030 僅更新 experience 第一筆描述；遠端 D1 成功（1 query、1 row written），正式 API 中英文已確認新文案。尚待 Git commit/push。
+- 新增 migration 0030 僅更新 experience 第一筆描述；遠端 D1 成功（1 query、1 row written），正式 API 中英文已確認新文案；commit `e7d9e09` 已推至 `main`。
 
 ### 2026-09-26（技能卡展示完整清單）
 
