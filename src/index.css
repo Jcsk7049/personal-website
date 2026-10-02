@@ -16,7 +16,7 @@
   ::-webkit-scrollbar-thumb:hover { background: #AEAEB2; }
 
   a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-    outline: 2px solid #737C84;
+    outline: 2px solid #687179;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -170,7 +170,7 @@
 
 html { scroll-padding-top: 3rem; }
 body { background: var(--paper); }
-::selection { color: #fff; background: #737C84; }
+::selection { color: #fff; background: #687179; }
 
 .site-shell { overflow: clip; }
 .site-shell section[id] { scroll-margin-top: 0; }
@@ -240,7 +240,7 @@ body { background: var(--paper); }
   bottom: -1px;
   width: 5rem;
   height: 2px;
-  background: #737C84;
+  background: #687179;
 }
 .project-detail-section > p.whitespace-pre-line {
   max-width: 68ch;

@@ -7,14 +7,14 @@ import { uiText } from '../data/uiText'
 
 const CATEGORY_ORDER = ['data_analysis', 'programming', 'eda', 'manufacturing', 'vibecoding']
 const CATEGORY_COLOR = {
-  data_analysis: '#737C84',
-  programming: '#737C84',
-  eda: '#737C84',
-  manufacturing: '#737C84',
-  vibecoding: '#737C84',
+  data_analysis: '#687179',
+  programming: '#687179',
+  eda: '#687179',
+  manufacturing: '#687179',
+  vibecoding: '#687179',
 }
 const LEVELS = ['進階', '熟悉', '基礎']
-const LEVEL_COLOR = { '進階': '#515B64', '熟悉': '#737C84', '基礎': '#A1A1AA' }
+const LEVEL_COLOR = { '進階': '#515B64', '熟悉': '#687179', '基礎': '#A1A1AA' }
 
 const normKey = s => (s || '').toLowerCase().replace(/[\s()（）·・.\-—]/g, '')
 function lcsLen(a, b) {
