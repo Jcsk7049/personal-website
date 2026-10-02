@@ -11,6 +11,14 @@
 
 ## 📌 當前狀態快照（最後更新：2026-09-30）
 
+- **🟢 10-02 字級尺度修正已上線**（dcea082）——用 ui-ux-pro-max skill 量測後發現：
+  頁面有 **133 個元素字級 ≤11px**（10px×65、11px×68），標題 48-52px 與導覽 12px 都對，
+  但中間的內文整層塌下去，所以看起來像「縮小版的 Apple」。
+  全域 10px→12px、11px→12px、13px→15px，專案描述與技能概述提到 15px，Hero 五顆 CTA 13px→15px。
+  實測結果：**≤11px 元素 133 → 0**；剩下的 12px 有 174 個是標籤、46 個是技能名稱，用法合理。
+  ⚠️ **admin 後台沒改**（自己用的）。**圓角與間距尚未處理**：CLAUDE.md 寫卡片 ，
+  但實際頁面是 0px×528、8px×52、4px×29、2px×16——規範與現狀矛盾，要先確認是刻意改成方正風還是漏掉。
+
 - **🟢 09-30 VAP 經歷改為反覆稽核與修正歷程（D1 已同步）**：中英文改寫為初版 AUROC 0.98–0.99、論文接受後回查資料索引／時間對齊／病人切分，病人層切分後最終 AUROC 0.61；不再宣稱「消除資料洩漏」。新增 migration 0030，只更新 experience 第一筆中英文描述；遠端 D1 執行 1 query、1 row written，正式 API 已核對兩語。commit `e7d9e09` 已推至 `main`。
 
 - **🟢 09-28 技能等級依作品證據校準（D1 已上線）**：參考 Codex 履歷證據評分，本人核定 10 項改等級（只改 level，desc／projects 不動）：深度學習、LightGBM、特徵工程、C / C++、Python、3D 列印、Inventor、AutoCAD 進階→熟悉；雷射切割 進階→基礎；Fusion 360 熟悉→基礎。中英 cvData 同步（各 10 行）。**migration 0029**（`npm.cmd run db:migrate:skill-levels:remote`）以名稱定位只改 level——node:sqlite 模擬 D1（打亂順序＋模擬 admin 改描述）驗證：改前 FAIL(4) → 10/10 PASS，且 0028 的 Altium 保留。本人已執行到遠端 D1（20 queries、20 rows written）；正式站 API 中英確認 20 項等級全部符合、5 分類 29 項技能完整、Altium 維持熟悉。
