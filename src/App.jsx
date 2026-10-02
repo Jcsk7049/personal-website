@@ -66,7 +66,7 @@ function HomePage() {
 
             {/* Brand block */}
             <div className="max-w-xs">
-              <p className="text-[13px] font-semibold text-white mb-2 tracking-tight">
+              <p className="text-[15px] font-semibold text-white mb-2 tracking-tight">
                 {cv.profile.name}
               </p>
               <p className="text-[12px] leading-[1.6] text-white/55">

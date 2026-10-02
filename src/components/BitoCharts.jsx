@@ -164,7 +164,7 @@ export default function BitoCharts() {
               ? <span key={i} className="text-[#c7c7cc] font-light">→</span>
               : (
                 <div key={i} className={`px-3 py-2 rounded-xl ${item.color}`}>
-                  <p className="text-[10px] opacity-60 mb-0.5">{item.step}</p>
+                  <p className="text-[12px] opacity-60 mb-0.5">{item.step}</p>
                   <p className="font-semibold">{item.label}</p>
                 </div>
               )

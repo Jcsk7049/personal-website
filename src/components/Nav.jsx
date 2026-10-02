@@ -36,7 +36,7 @@ export default function Nav({ name }) {
           {/* Brand */}
           <a
             href="#hero"
-            className="text-[13px] font-semibold tracking-tight text-[#1D1D1F] hover:text-[#737C84]
+            className="text-[15px] font-semibold tracking-tight text-[#1D1D1F] hover:text-[#737C84]
                        transition-colors duration-[240ms]"
           >
             {name}

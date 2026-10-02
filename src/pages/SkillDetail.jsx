@@ -123,12 +123,12 @@ export default function SkillDetail() {
           {skills.map((skill, index) => <article key={`${skill.name}-${index}`} className="skill-spec-card flex min-w-0 flex-col border border-white/10 bg-[#242427] p-5 md:p-6" style={{ borderTopColor: color }}>
             <div className="mb-7 flex items-start justify-between gap-4">
               <span className="font-mono text-xs" style={{ color }}>{String(index + 1).padStart(2, '0')}</span>
-              <span className="flex items-center gap-2 text-[11px] text-white/55"><LevelDots level={skill.level} />{t.levels?.[skill.level] || skill.level}</span>
+              <span className="flex items-center gap-2 text-[12px] text-white/55"><LevelDots level={skill.level} />{t.levels?.[skill.level] || skill.level}</span>
             </div>
             <h2 className="text-xl font-semibold leading-snug tracking-tight text-white">{skill.name}</h2>
             <p className="mt-3 flex-1 text-sm leading-6 text-white/62">{skill.desc}</p>
             {skill.projects?.length > 0 && <div className="mt-6 border-t border-white/10 pt-4">
-              <p className="mb-2 text-[10px] font-medium uppercase tracking-[.15em] text-white/40">{t.appliedProjects}</p>
+              <p className="mb-2 text-[12px] font-medium uppercase tracking-[.15em] text-white/40">{t.appliedProjects}</p>
               <div className="flex flex-wrap gap-x-4 gap-y-2">
                 {skill.projects.map(project => {
                   const projectId = resolveProjectId(project, cvData.projects)

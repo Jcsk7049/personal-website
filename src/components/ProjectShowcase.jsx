@@ -11,7 +11,7 @@ export { accent }
 export function CategoryBadge({ category, className = '' }) {
   const { lang } = useLanguage()
   if (!category) return null
-  return <span className={`inline-block px-2 py-1 border border-black/10 bg-[#F5F5F7] text-[#3F3F46] text-[11px] font-medium ${className}`}>{uiText[lang].categoryLabel(category)}</span>
+  return <span className={`inline-block px-2 py-1 border border-black/10 bg-[#F5F5F7] text-[#3F3F46] text-[12px] font-medium ${className}`}>{uiText[lang].categoryLabel(category)}</span>
 }
 
 export default function ProjectShowcase({ projects }) {
@@ -29,8 +29,8 @@ export default function ProjectShowcase({ projects }) {
             const count = cat === '全部' ? projects.length : projects.filter(p => p.category === cat).length
             const selected = activeCategory === cat
             return <button key={cat} onClick={() => setActiveCategory(CATEGORIES[t.categories.indexOf(cat)] ?? cat)} aria-pressed={selected}
-              className={`flex items-center gap-2 px-3 py-2 border text-[13px] font-medium transition-colors duration-[240ms] ${selected ? 'bg-[#737C84] text-white border-[#737C84]' : 'bg-[#F5F5F7] text-[#3F3F46] border-black/[0.08] hover:bg-[#E8EAEC]'}`}>
-              {t.categoryLabel(cat)} <span className={`text-[11px] font-mono ${selected ? 'text-white/75' : 'text-[#86868B]'}`}>{count}</span>
+              className={`flex items-center gap-2 px-3 py-2 border text-[15px] font-medium transition-colors duration-[240ms] ${selected ? 'bg-[#737C84] text-white border-[#737C84]' : 'bg-[#F5F5F7] text-[#3F3F46] border-black/[0.08] hover:bg-[#E8EAEC]'}`}>
+              {t.categoryLabel(cat)} <span className={`text-[12px] font-mono ${selected ? 'text-white/75' : 'text-[#86868B]'}`}>{count}</span>
             </button>
           })}
         </div>
@@ -40,13 +40,13 @@ export default function ProjectShowcase({ projects }) {
               <div className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${accent(proj.id)}`}>
                 {proj.cover && <img src={proj.cover} alt={proj.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />}
                 <div className="absolute top-3 left-3"><CategoryBadge category={proj.category} /></div>
-                {proj.frc && <span className="absolute bottom-3 right-3 px-2 py-1 bg-black/65 text-white text-[10px] font-semibold tracking-wide">FRC</span>}
+                {proj.frc && <span className="absolute bottom-3 right-3 px-2 py-1 bg-black/65 text-white text-[12px] font-semibold tracking-wide">FRC</span>}
               </div>
               <div className="flex flex-col gap-3 p-5 md:p-6 flex-1">
-                <div className="flex items-center justify-between gap-3 text-[11px] text-[#86868B] font-mono"><span>{proj.period}</span><span className="font-sans truncate">{proj.tags?.[0]}</span></div>
+                <div className="flex items-center justify-between gap-3 text-[12px] text-[#86868B] font-mono"><span>{proj.period}</span><span className="font-sans truncate">{proj.tags?.[0]}</span></div>
                 <h3 className="text-lg font-semibold tracking-tight text-[#1D1D1F] leading-snug group-hover:text-[#59636C] transition-colors">{proj.title}</h3>
-                {proj.badge && <span className="self-start px-2 py-1 border border-black/10 bg-white text-[#3F3F46] text-[10px] font-semibold">{proj.badge}</span>}
-                <p className="text-[13px] text-[#3F3F46] leading-[1.65]">{proj.description || proj.summary}</p>
+                {proj.badge && <span className="self-start px-2 py-1 border border-black/10 bg-white text-[#3F3F46] text-[12px] font-semibold">{proj.badge}</span>}
+                <p className="text-[15px] text-[#3F3F46] leading-[1.65]">{proj.description || proj.summary}</p>
                 <div className="mt-auto pt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#6E6E73]">
                   {(proj.tags || []).slice(0, 4).map(tag => <span key={tag}>{tag.trim()}</span>)}
                   <span className="ml-auto text-[#59636C] font-medium">{t.viewDetail} ↗</span>

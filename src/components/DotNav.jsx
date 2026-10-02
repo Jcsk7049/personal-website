@@ -36,7 +36,7 @@ export default function DotNav() {
         <div key={id} className="relative flex items-center justify-end">
           {/* Tooltip */}
           <span
-            className={`absolute right-6 text-[11px] px-2 py-0.5 rounded-md whitespace-nowrap pointer-events-none
+            className={`absolute right-6 text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap pointer-events-none
                         transition-all duration-[240ms]
                         ${isDark ? 'bg-white/90 text-[#1D1D1F]' : 'bg-[#1D1D1F]/90 text-white'}
                         ${hovered === id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-1'}`}

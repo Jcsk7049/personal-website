@@ -31,7 +31,7 @@ export default function Hero({ profile, skills, skillDetail }) {
           <div className="flex flex-col md:flex-row md:items-center gap-10 xl:gap-12 min-w-0">
           <div className="flex-1 min-w-0">
             {/* eyebrow 色 #636366：12px 非大字需過 WCAG AA 4.5；#86868B 只有 3.04:1（實測）→ #636366 = 5.03:1 */}
-            <p className="hero-eyebrow flex items-center gap-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-[#636366] mb-7">
+            <p className="hero-eyebrow flex items-center gap-3 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#636366] mb-7">
               <span className="w-7 h-px bg-[#737C84]" />{profile.contact.location}
             </p>
 
@@ -46,32 +46,32 @@ export default function Hero({ profile, skills, skillDetail }) {
             <div className="hero-cta flex flex-wrap gap-2.5">
               <button
                 onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
-                className="px-5 py-3 rounded-full bg-[#737C84] text-white text-[13px] font-semibold
+                className="px-5 py-3 rounded-full bg-[#737C84] text-white text-[15px] font-semibold
                            hover:bg-[#656E76] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {profile.contact.email}
               </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-3 rounded-full border border-black/[0.12] text-[13px] text-[#1D1D1F]
+                 className="px-5 py-3 rounded-full border border-black/[0.12] text-[15px] text-[#1D1D1F]
                             hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-3 rounded-full border border-black/[0.12] text-[13px] text-[#1D1D1F]
+                 className="px-5 py-3 rounded-full border border-black/[0.12] text-[15px] text-[#1D1D1F]
                             hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 LinkedIn
               </a>
               <a href={resumeHref}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-3 rounded-full text-[13px] font-semibold
+                 className="px-5 py-3 rounded-full text-[15px] font-semibold
                             border-2 border-[#737C84] text-[#737C84]
                             hover:bg-[#737C84] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnOnePage}
               </a>
               <a href={resumeFullHref}
                  target="_blank" rel="noopener noreferrer"
-                 className="px-5 py-3 rounded-full text-[13px] font-medium
+                 className="px-5 py-3 rounded-full text-[15px] font-medium
                             border border-black/[0.12] text-[#1D1D1F]
                             hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnFull}
@@ -112,7 +112,7 @@ export default function Hero({ profile, skills, skillDetail }) {
       <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
                        pointer-events-none transition-opacity duration-500
                        ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
-        <span className="text-[11px] tracking-[0.15em] uppercase text-[#86868B] scroll-bounce">{t.scrollHint}</span>
+        <span className="text-[12px] tracking-[0.15em] uppercase text-[#86868B] scroll-bounce">{t.scrollHint}</span>
         <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent scroll-bounce"
              style={{ animationDelay: '0.15s' }} />
       </div>

@@ -19,7 +19,7 @@ export default function Experience({ experience, education, awards }) {
       <div className="py-4 -ml-2 pl-7">
         <div className="flex items-start justify-between gap-4 mb-1.5">
           <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{item?.role}</h3>
-          <span className="text-[11px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
+          <span className="text-[12px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
             {item?.period}
           </span>
         </div>
@@ -38,7 +38,7 @@ export default function Experience({ experience, education, awards }) {
       <div className="py-4 -ml-2 pl-7">
         <div className="flex items-start justify-between gap-4 mb-1.5">
           <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{item?.school}</h3>
-          <span className="text-[11px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
+          <span className="text-[12px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
             {item?.period}
           </span>
         </div>

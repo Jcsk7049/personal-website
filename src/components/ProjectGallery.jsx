@@ -37,7 +37,7 @@ export default function ProjectGallery({ images }) {
             />
             <div className="absolute inset-0 bg-[#1D1D1F]/0 [@media(hover:hover)]:group-hover:bg-[#1D1D1F]/30
                             transition-all duration-[240ms] flex items-end pointer-events-none">
-              <p className="w-full px-3 py-2 text-[11px] text-white font-medium
+              <p className="w-full px-3 py-2 text-[12px] text-white font-medium
                              translate-y-2 opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100
                              transition-all duration-[240ms] bg-gradient-to-t from-black/60 to-transparent">
                 {img.caption}

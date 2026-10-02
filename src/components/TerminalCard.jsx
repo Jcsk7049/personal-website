@@ -7,7 +7,7 @@ export default function TerminalCard({ lines }) {
       <div className="flex items-center gap-1.5 px-5 py-3 border-b border-white/10">
         {DOTS.map((c, i) => <span key={i} className={`w-2.5 h-2.5 rounded-full ${c}`} />)}
       </div>
-      <div className="px-5 py-4 font-mono text-[13px] leading-[1.9] overflow-x-auto">
+      <div className="px-5 py-4 font-mono text-[15px] leading-[1.9] overflow-x-auto">
         {lines.map(({ marker, file, label }, i) => (
           <div key={i} className="whitespace-nowrap">
             <span className="text-[#86868B]">{marker}</span>{' '}
