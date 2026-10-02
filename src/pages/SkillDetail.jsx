@@ -90,7 +90,7 @@ export default function SkillDetail() {
           {CATEGORY_ORDER.map(key => {
             const label = t.quadrants?.[key]?.label || key
             return key === id
-              ? <span key={key} className="border px-3 py-2 text-xs font-medium" style={{ borderColor: `${color}75`, color, background: `${color}12` }}>{label}</span>
+              ? <span key={key} className="border px-3 py-2 text-xs font-semibold text-white" style={{ borderColor: color, background: color }}>{label}</span>
               : <Link key={key} to={`/skills/${key}`} className="border border-black/10 px-3 py-2 text-xs text-[#6E6E73] transition-colors hover:border-black/25 hover:text-[#1D1D1F]">{label}</Link>
           })}
         </div>
