@@ -49,7 +49,7 @@ export default function Experience({ experience, education, awards }) {
 
   return (
     <section id="experience" className="experience-section min-h-[calc(100svh-3rem)] py-16 md:py-24 bg-[#1D1D1F] text-white">
-      <div className="mx-auto w-full max-w-[1600px] px-6 md:px-10">
+      <div className="mx-auto w-full max-w-[1920px] px-6 md:px-12">
 
         {/* anchor for #education (single, independent of responsive variants) */}
         <div id="education" aria-hidden="true" />
