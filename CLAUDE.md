@@ -91,8 +91,14 @@ public/
 - 動畫：UI 互動 `duration-[240ms]`、內容 reveal `0.32s`，easing 一律 `cubic-bezier(0.4,0,0.6,1)`
 - 標題字重：`font-semibold`（600，不用 bold），letter-spacing `-0.02em`
 - 區塊標題：Apple 商店式「粗體開頭。灰色補述。」（SectionHeader 的 label + sub）
-- 圓角：`rounded-[18px]`（卡片）、`rounded-[980px]`（CTA pill）、`rounded-full`（badge）
-- 卡片：白底無邊框，hover 才出現陰影 `shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]`
+- 字級：正文與專案描述 `text-[15px]`，標籤／meta／技能項目 `text-[12px]`，導覽 `text-[12px]`，
+  區塊標題 28–36px，Hero 48–56px。**不要再出現 10–11px** —— 2026-10-02 全站量到 133 個元素
+  字級 ≤11px（標題與導覽都對，中間內文整層塌掉），已一次修正，別再用 `text-[10px]`／`text-[11px]`。
+- 圓角：**列表／網格卡片一律直角** —— 專案卡、技能卡、經歷列都不加圓角。
+  浮層與媒體容器才用 `rounded-2xl`／`rounded-[18px]`（圖表、終端機卡、BrowserFrame、燈箱、聯絡 CTA 區塊）。
+  按鈕與 badge 用 `rounded-full`。**2026-10-02 定案維持方正風**，不要把卡片改回圓角。
+- 卡片：專案卡 `bg-[#F5F5F7]` 灰底、無邊框、無圓角，hover 才出現陰影
+  `shadow-[rgba(0,0,0,0.08)_2px_4px_12px_0px]`；badge 與標籤用 `border border-black/10` 一像素細框。
 - Nav 高度：`h-12`（48px），frosted glass：`rgba(245,245,247,0.85) + blur(20px)`
 - 內容寬度：`max-w-[980px]`（詳情頁）、`max-w-7xl`（首頁）
 
