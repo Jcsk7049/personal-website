@@ -34,7 +34,7 @@ export default function ProfileTab({ toast }) {
         preview={
           <div className="max-w-3xl flex flex-col lg:flex-row lg:items-center gap-10">
             <div className="flex-1">
-              <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#86868B] mb-8">
+              <p className="text-xs font-medium tracking-[0.2em] uppercase text-[#6E6E73] mb-8">
                 {d.contact?.location || '地點'}
               </p>
               <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-[-0.015em] leading-none text-[#1D1D1F] mb-4">

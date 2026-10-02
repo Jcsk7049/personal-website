@@ -51,7 +51,7 @@ export default function AwardsTab({ toast }) {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-[#86868B]">共 {items.zh.length} 筆</p>
+        <p className="text-sm text-[#6E6E73]">共 {items.zh.length} 筆</p>
         <div className="flex gap-2">
           <Btn variant="ghost" onClick={addNew}>+ 新增</Btn>
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存全部'}</Btn>
@@ -67,7 +67,7 @@ export default function AwardsTab({ toast }) {
                   <span className="text-[#c7c7cc]"><TrophyIcon /></span>
                 </div>
                 <p className="text-sm text-[#1D1D1F] leading-relaxed flex-1">{award.title || '（獎項名稱）'}</p>
-                <span className="shrink-0 text-[11px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1 rounded-full leading-none">
+                <span className="shrink-0 text-[12px] text-[#3F3F46] font-mono bg-[#EBEBED] px-2.5 py-1 rounded-full leading-none">
                   {award.year}
                 </span>
               </div>
@@ -86,7 +86,7 @@ export default function AwardsTab({ toast }) {
                     onDragStart={e => { setDragIdx(i); e.dataTransfer.effectAllowed = 'move' }}
                     onDragEnd={() => setDragIdx(null)}
                     className="absolute left-3 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing
-                               text-[#C7C7CC] hover:text-[#86868B] transition-colors duration-[240ms]"
+                               text-[#C7C7CC] hover:text-[#6E6E73] transition-colors duration-[240ms]"
                     title="拖拉調整順序">
                 <DragHandleIcon />
               </span>
@@ -97,7 +97,7 @@ export default function AwardsTab({ toast }) {
                 <F label="年份">
                   <input className={inp} value={zh.year || ''} onChange={e => { updateZh(i, 'year', e.target.value); updateEn(i, 'year', e.target.value) }} placeholder="2025" />
                 </F>
-                <button type="button" onClick={() => remove(i)} className="mt-5 text-[#86868B] hover:text-red-500 text-xl leading-none">×</button>
+                <button type="button" onClick={() => remove(i)} className="mt-5 text-[#6E6E73] hover:text-red-500 text-xl leading-none">×</button>
               </div>
               <F label="Award Title (EN)">
                 <input className={inp} value={items.en[i]?.title || ''} onChange={e => updateEn(i, 'title', e.target.value)} />

@@ -26,7 +26,7 @@ export function LangTab({ lang, setLang }) {
     <div className="inline-flex gap-0.5 bg-black/[0.05] rounded-lg p-0.5">
       {[['zh', '中文'], ['en', 'EN']].map(([v, label]) => (
         <button key={v} type="button" onClick={() => setLang(v)}
-          className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${lang === v ? 'bg-white shadow text-[#1D1D1F]' : 'text-[#86868B] hover:text-[#1D1D1F]'}`}>
+          className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${lang === v ? 'bg-white shadow text-[#1D1D1F]' : 'text-[#6E6E73] hover:text-[#1D1D1F]'}`}>
           {label}
         </button>
       ))}
@@ -56,7 +56,7 @@ export function EditorWithPreview({ children, preview, previewBg = '#F5F5F7' }) 
       <div className="flex-1 min-w-0 sticky top-20 self-start" style={{ height: 'calc(100vh - 120px)' }}>
         <div className="h-full rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col">
           <div className="px-4 py-2 border-b border-black/[0.06] shrink-0 bg-white">
-            <span className="text-xs font-medium text-[#86868B]">即時預覽（網站樣式）</span>
+            <span className="text-xs font-medium text-[#6E6E73]">即時預覽（網站樣式）</span>
           </div>
           <div className="flex-1 overflow-auto p-6" style={{ background: previewBg }}>
             {preview}
@@ -75,7 +75,7 @@ export function F({ label, hint, children }) {
     <div className="space-y-1">
       <div className="flex items-baseline gap-1.5">
         <label className="text-xs font-medium text-[#3F3F46]">{label}</label>
-        {hint && <span className="text-xs text-[#86868B]">{hint}</span>}
+        {hint && <span className="text-xs text-[#6E6E73]">{hint}</span>}
       </div>
       {children}
     </div>
@@ -175,7 +175,7 @@ export function ImageUploadBtn({ onUploaded }) {
         onDragLeave={() => setDrag(false)}
         onDrop={e => { e.preventDefault(); setDrag(false); upload(e.dataTransfer.files[0]) }}
         className={`flex items-center justify-center gap-2 h-16 rounded-xl border-2 border-dashed cursor-pointer transition-colors text-sm
-          ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#86868B] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
+          ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#6E6E73] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
       >
         {uploading ? '上傳中…' : '點擊或拖曳圖片上傳'}
         <input type="file" accept="image/*" className="hidden" onChange={e => upload(e.target.files[0])} />

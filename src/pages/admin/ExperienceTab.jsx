@@ -14,11 +14,11 @@ function ExpItem({ zh, en, onZh, onEn, onDelete }) {
       <div className="flex items-center justify-between px-4 py-3 cursor-pointer select-none" onClick={() => setOpen(o => !o)}>
         <div>
           <p className="text-sm font-medium">{zh.role || '（未命名）'}</p>
-          <p className="text-xs text-[#86868B]">{zh.organization} · {zh.period}</p>
+          <p className="text-xs text-[#6E6E73]">{zh.organization} · {zh.period}</p>
         </div>
         <div className="flex items-center gap-2">
-          <button type="button" onClick={e => { e.stopPropagation(); onDelete() }} className="text-xs text-[#86868B] hover:text-red-500">刪除</button>
-          <span className="text-[#86868B] text-sm">{open ? '▲' : '▼'}</span>
+          <button type="button" onClick={e => { e.stopPropagation(); onDelete() }} className="text-xs text-[#6E6E73] hover:text-red-500">刪除</button>
+          <span className="text-[#6E6E73] text-sm">{open ? '▲' : '▼'}</span>
         </div>
       </div>
       {open && (
@@ -64,7 +64,7 @@ export default function ExperienceTab({ toast }) {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-[#86868B]">共 {items.zh.length} 筆</p>
+        <p className="text-sm text-[#6E6E73]">共 {items.zh.length} 筆</p>
         <div className="flex gap-2">
           <Btn variant="ghost" onClick={addNew}>+ 新增</Btn>
           <Btn onClick={save} disabled={saving}>{saving ? '儲存中…' : '儲存全部'}</Btn>
@@ -81,7 +81,7 @@ export default function ExperienceTab({ toast }) {
                 <div className="p-5 rounded-2xl bg-white/[0.03] -ml-2 pl-7">
                   <div className="flex items-start justify-between gap-4 mb-1.5">
                     <h3 className="text-base font-bold tracking-tight text-white leading-snug">{item.role || '（職稱）'}</h3>
-                    <span className="text-[10px] text-white/50 font-mono bg-white/10 px-2.5 py-1
+                    <span className="text-[12px] text-white/50 font-mono bg-white/10 px-2.5 py-1
                                      rounded-full whitespace-nowrap shrink-0 leading-none mt-0.5">
                       {item.period}
                     </span>

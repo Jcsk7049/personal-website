@@ -29,14 +29,14 @@ function TechEditor({ value = [], onChange }) {
         <div key={i} className="rounded-xl border border-black/10 p-3 space-y-2">
           <div className="flex gap-2 items-start">
             <input className={inp} placeholder="群組名稱" value={g.group || ''} onChange={e => setGroup(i, 'group', e.target.value)} />
-            <button type="button" onClick={() => removeGroup(i)} className="mt-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+            <button type="button" onClick={() => removeGroup(i)} className="mt-2 text-[#6E6E73] hover:text-red-500 text-lg leading-none">×</button>
           </div>
           <div className="space-y-2">
             {(g.items || []).map((it, k) => (
               <div key={k} className="grid grid-cols-[1fr_2fr_auto] gap-2 items-start">
                 <input className={inp} placeholder="項目名稱" value={it.name || ''} onChange={e => setItem(i, k, 'name', e.target.value)} />
                 <textarea className={ta} rows={2} placeholder="說明" value={it.desc || ''} onChange={e => setItem(i, k, 'desc', e.target.value)} />
-                <button type="button" onClick={() => removeItem(i, k)} className="mt-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+                <button type="button" onClick={() => removeItem(i, k)} className="mt-2 text-[#6E6E73] hover:text-red-500 text-lg leading-none">×</button>
               </div>
             ))}
             <button type="button" onClick={() => addItem(i)} className="text-xs text-[#0071E3] hover:underline">+ 新增項目</button>
@@ -65,7 +65,7 @@ function ImagesEditor({ value = [], onChange }) {
               <input className={inp} placeholder="圖片路徑 /api/images/xxx 或 /images/xxx/cover.png" value={img.src || ''} onChange={e => set(i, 'src', e.target.value)} />
               <input className={inp} placeholder="說明文字（選填）" value={img.caption || ''} onChange={e => set(i, 'caption', e.target.value)} />
             </div>
-            <button type="button" onClick={() => remove(i)} className="mt-2 text-[#86868B] hover:text-red-500 text-xl leading-none shrink-0">×</button>
+            <button type="button" onClick={() => remove(i)} className="mt-2 text-[#6E6E73] hover:text-red-500 text-xl leading-none shrink-0">×</button>
           </div>
         </div>
       ))}
@@ -91,11 +91,11 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               {d.category && (
-                <span className={`inline-block px-2.5 py-0.5 rounded-full border text-[11px] font-medium tracking-wide ${CATEGORY_STYLES[d.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
+                <span className={`inline-block px-2.5 py-0.5 rounded-full border text-[12px] font-medium tracking-wide ${CATEGORY_STYLES[d.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
                   {d.category}
                 </span>
               )}
-              {d.period && <span className="text-[12px] font-mono text-[#86868B] tracking-wide">{d.period}</span>}
+              {d.period && <span className="text-[12px] font-mono text-[#6E6E73] tracking-wide">{d.period}</span>}
             </div>
             <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-4 leading-[1.07]">
               {d.title || '（標題）'}
@@ -125,7 +125,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
           <div className="divide-y divide-black/[0.06]">
             {PROJECT_SECTIONS.map(({ key, label, en: enLabel }) => (
               <div key={key} className="py-10 first:pt-0">
-                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">{enLabel}</p>
+                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73] mb-2">{enLabel}</p>
                 <h2 className="text-xl font-bold tracking-[-0.003em] text-[#1D1D1F] mb-5 leading-tight">{label}</h2>
 
                 {key === 'outcome' && (detail.images || []).length > 0 && (
@@ -141,7 +141,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
                   <div className="space-y-6">
                     {detail.tech.map((group, gi) => (
                       <div key={gi}>
-                        <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">{group.group}</p>
+                        <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73] mb-2">{group.group}</p>
                         <div className="grid grid-cols-1 gap-2">
                           {(group.items || []).map((item, ii) => (
                             typeof item === 'string' ? (
@@ -163,7 +163,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
                   <p className="text-sm text-[#3F3F46] leading-[1.6] max-w-xl whitespace-pre-line">{detail[key]}</p>
                 ) : (
                   <div className="h-16 rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)] flex items-center justify-center">
-                    <p className="text-xs text-[#86868B]">（內容待填寫）</p>
+                    <p className="text-xs text-[#6E6E73]">（內容待填寫）</p>
                   </div>
                 )}
               </div>
@@ -198,7 +198,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
       </F>
 
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">語言相關欄位</p>
+        <p className="text-xs font-semibold text-[#6E6E73] uppercase tracking-widest">語言相關欄位</p>
         <LangTab lang={lang} setLang={setLang} />
       </div>
 
@@ -230,7 +230,7 @@ function ProjectEditor({ zh, en, onZh, onEn, isNew }) {
       </F>
 
       <div className="border-t border-black/[0.06] pt-4 space-y-4">
-        <p className="text-xs font-semibold text-[#86868B] uppercase tracking-widest">詳細說明（Detail）</p>
+        <p className="text-xs font-semibold text-[#6E6E73] uppercase tracking-widest">詳細說明（Detail）</p>
         <F label="做這個的原因">
           <textarea className={ta} rows={10} value={d.detail?.purpose || ''} onChange={e => setDet('purpose', e.target.value)} />
         </F>
@@ -368,7 +368,7 @@ export default function ProjectsTab({ toast }) {
   return (
     <div className="max-w-3xl mx-auto space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-[#86868B]">共 {projects.length} 個專案</p>
+        <p className="text-sm text-[#6E6E73]">共 {projects.length} 個專案</p>
         <Btn onClick={openNew}>+ 新增專案</Btn>
       </div>
       <div className="space-y-2">
@@ -381,7 +381,7 @@ export default function ProjectsTab({ toast }) {
                           transition-all duration-[240ms] group
                           ${dragId === p.id ? 'opacity-40' : ''}`}>
             {/* Drag handle */}
-            <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#86868B] transition-colors duration-[240ms]"
+            <span className="shrink-0 cursor-grab active:cursor-grabbing text-[#C7C7CC] group-hover:text-[#6E6E73] transition-colors duration-[240ms]"
                   style={{ touchAction: 'none' }}
                   onPointerDown={e => onHandlePointerDown(e, p.id)}
                   title="拖拉調整順序">
@@ -400,13 +400,13 @@ export default function ProjectsTab({ toast }) {
               <p className="text-sm font-medium text-[#1D1D1F] truncate">{p.title}</p>
               <div className="flex items-center gap-2 mt-1">
                 {p.category && (
-                  <span className={`inline-block px-2 py-0.5 rounded-full border text-[10px] font-medium tracking-wide ${CATEGORY_STYLES[p.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
+                  <span className={`inline-block px-2 py-0.5 rounded-full border text-[12px] font-medium tracking-wide ${CATEGORY_STYLES[p.category] || 'bg-gray-50 text-gray-500 border-gray-200'}`}>
                     {p.category}
                   </span>
                 )}
-                <span className="text-[11px] text-[#86868B] font-mono">{p.id}</span>
-                <span className="text-[11px] text-[#C7C7CC]">·</span>
-                <span className="text-[11px] text-[#86868B] font-mono">{p.period}</span>
+                <span className="text-[12px] text-[#6E6E73] font-mono">{p.id}</span>
+                <span className="text-[12px] text-[#C7C7CC]">·</span>
+                <span className="text-[12px] text-[#6E6E73] font-mono">{p.period}</span>
               </div>
             </div>
 

@@ -181,7 +181,7 @@ function RSection({ title, children, defaultOpen = false }) {
       <button type="button" onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between px-5 py-3.5 text-left hover:bg-black/[0.02] transition-colors">
         <span className="text-sm font-semibold text-[#1D1D1F]">{title}</span>
-        <span className="text-[#86868B]">{open ? '▲' : '▼'}</span>
+        <span className="text-[#6E6E73]">{open ? '▲' : '▼'}</span>
       </button>
       {open && <div className="px-5 pb-5 pt-1 border-t border-black/[0.06] space-y-3">{children}</div>}
     </div>
@@ -196,7 +196,7 @@ function ListEditor({ items, setItems, emptyItem, renderRow }) {
     <div className="space-y-2">
       {items.map((item, i) => (
         <div key={i} className="relative bg-black/[0.02] rounded-xl p-3 space-y-2">
-          <button type="button" onClick={() => remove(i)} className="absolute top-2 right-2 text-[#86868B] hover:text-red-500 text-lg leading-none">×</button>
+          <button type="button" onClick={() => remove(i)} className="absolute top-2 right-2 text-[#6E6E73] hover:text-red-500 text-lg leading-none">×</button>
           {renderRow(item, i, (f, v) => update(i, f, v))}
         </div>
       ))}
@@ -231,7 +231,7 @@ export default function ResumeTab({ toast }) {
     finally { setSaving(false) }
   }
 
-  if (!data) return <p className="text-sm text-[#86868B]">載入中…</p>
+  if (!data) return <p className="text-sm text-[#6E6E73]">載入中…</p>
 
   const previewHTML = generateResumeHTML(data)
 
@@ -326,7 +326,7 @@ export default function ResumeTab({ toast }) {
 
       {/* Skills */}
       <RSection title="技術">
-        <p className="text-xs text-[#86868B]">等級：<b>a</b> = 進階　<b>b</b> = 熟悉　<b>c</b> = 基礎</p>
+        <p className="text-xs text-[#6E6E73]">等級：<b>a</b> = 進階　<b>b</b> = 熟悉　<b>c</b> = 基礎</p>
         <ListEditor
           items={data.skills}
           setItems={v => set('skills', v)}
@@ -368,8 +368,8 @@ export default function ResumeTab({ toast }) {
       <div className="flex-1 min-w-0 sticky top-14 self-start" style={{height:'calc(100vh - 80px)'}}>
         <div className="h-full rounded-2xl shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden bg-white flex flex-col">
           <div className="px-4 py-2 border-b border-black/[0.06] flex items-center gap-2 shrink-0">
-            <span className="text-xs font-medium text-[#86868B]">即時預覽</span>
-            <span className="text-xs text-[#86868B]">（編輯後自動更新）</span>
+            <span className="text-xs font-medium text-[#6E6E73]">即時預覽</span>
+            <span className="text-xs text-[#6E6E73]">（編輯後自動更新）</span>
           </div>
           <iframe srcDoc={previewHTML} className="flex-1 w-full border-0" title="resume preview" />
         </div>

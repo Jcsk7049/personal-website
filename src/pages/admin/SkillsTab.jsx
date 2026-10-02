@@ -93,7 +93,7 @@ function SkillDetailEditor({ value, onChange, lang }) {
                         value={s.level || '基礎'} onChange={e => setSkill(i, 'level', e.target.value)}>
                   {SKILL_LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
-                <button type="button" onClick={() => delSkill(i)} className="shrink-0 text-[#86868B] hover:text-red-500 text-lg leading-none px-1">×</button>
+                <button type="button" onClick={() => delSkill(i)} className="shrink-0 text-[#6E6E73] hover:text-red-500 text-lg leading-none px-1">×</button>
               </div>
               <div className="flex items-center gap-1 px-0.5">
                 {[1, 2, 3].map(n => (
@@ -135,7 +135,7 @@ function SkillDetailPage({ cat, detailZh, detailEn, onChangeZh, onChangeEn, onBa
           <div className="max-w-3xl -m-6 mb-0">
             <div className={`h-[3px] w-full bg-gradient-to-r ${SKILL_CAT_ACCENTS[cat] || 'from-gray-300 to-gray-400'}`} />
             <div className="p-6">
-            <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
+            <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73] mb-3">
               {value.en || ''}
             </p>
             <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.02em] text-[#1D1D1F] mb-5 leading-[1.07]">
@@ -151,7 +151,7 @@ function SkillDetailPage({ cat, detailZh, detailEn, onChangeZh, onChangeEn, onBa
                   <div key={i} className="bg-white rounded-2xl p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.08)] flex flex-col gap-3">
                     <div className="flex items-start justify-between gap-3">
                       <h2 className="text-base font-bold tracking-tight text-[#1D1D1F] leading-snug">{skill.name || '（技能名稱）'}</h2>
-                      <span className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none ${cfg.badge}`}>{skill.level}</span>
+                      <span className={`shrink-0 px-2.5 py-1 rounded-full text-[12px] font-semibold leading-none ${cfg.badge}`}>{skill.level}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       {[1, 2, 3].map(n => (
@@ -259,7 +259,7 @@ export default function SkillsTab({ toast }) {
                   {skillList.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/[0.06]">
                       {skillList.map(s => (
-                        <span key={s.name} className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${(LEVEL_CONFIG[s.level] || LEVEL_CONFIG['基礎']).badge}`}>
+                        <span key={s.name} className={`text-[12px] font-mono px-2 py-0.5 rounded-full ${(LEVEL_CONFIG[s.level] || LEVEL_CONFIG['基礎']).badge}`}>
                           {s.name} · {s.level}
                         </span>
                       ))}
@@ -301,7 +301,7 @@ export default function SkillsTab({ toast }) {
                            bg-[#F5F5F7] hover:bg-[#EBEBED] transition-colors duration-[240ms] group">
                 <span className="text-xs font-medium text-[#1D1D1F]">
                   技能詳情與精熟度
-                  <span className="ml-1.5 text-[#86868B] font-mono">{skillCount} 項</span>
+                  <span className="ml-1.5 text-[#6E6E73] font-mono">{skillCount} 項</span>
                 </span>
                 <span className="text-xs text-[#0071E3] font-medium opacity-0 group-hover:opacity-100
                                  -translate-x-1 group-hover:translate-x-0 transition-all duration-[240ms]">
