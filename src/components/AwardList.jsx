@@ -19,8 +19,8 @@ export default function AwardList({ awards = [] }) {
             <span className={`absolute left-0 top-[0.6rem] w-2 h-2 rounded-full ring-[3px] ring-[#1D1D1F] ${award.featured ? 'bg-[#687179]' : 'bg-white/45'}`} />
             <div className="py-4 -ml-2 pl-7">
               <div className="flex items-start justify-between gap-3 mb-1.5">
-                <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{award.title}</h3>
-                <span className="text-[12px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
+                <h3 className="text-lg font-semibold tracking-tight text-white leading-snug">{award.title}</h3>
+                <span className="text-[13px] text-white/55 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
                   {award.year}
                 </span>
               </div>

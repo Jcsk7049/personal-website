@@ -18,13 +18,13 @@ export default function Experience({ experience, education, awards }) {
       )}
       <div className="py-4 -ml-2 pl-7">
         <div className="flex items-start justify-between gap-4 mb-1.5">
-          <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{item?.role}</h3>
-          <span className="text-[12px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
+          <h3 className="text-lg font-semibold tracking-tight text-white leading-snug">{item?.role}</h3>
+          <span className="text-[13px] text-white/55 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
             {item?.period}
           </span>
         </div>
-        <p className="text-sm text-white/65 mb-2 font-medium">{item?.organization}</p>
-        <p className="text-sm text-white/75 leading-[1.7] whitespace-pre-line max-w-[68ch]">{item?.description}</p>
+        <p className="text-[15px] text-white/70 mb-2 font-medium">{item?.organization}</p>
+        <p className="text-base text-white/80 leading-[1.75] whitespace-pre-line max-w-[68ch]">{item?.description}</p>
       </div>
     </div>
   )
@@ -37,12 +37,12 @@ export default function Experience({ experience, education, awards }) {
       <div className="absolute left-0 top-[0.6rem] w-2 h-2 rounded-full bg-white/45 ring-[3px] ring-[#1D1D1F]" />
       <div className="py-4 -ml-2 pl-7">
         <div className="flex items-start justify-between gap-4 mb-1.5">
-          <h3 className="text-base font-semibold tracking-tight text-white leading-snug">{item?.school}</h3>
-          <span className="text-[12px] text-white/50 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
+          <h3 className="text-lg font-semibold tracking-tight text-white leading-snug">{item?.school}</h3>
+          <span className="text-[13px] text-white/55 font-mono whitespace-nowrap shrink-0 leading-none mt-1">
             {item?.period}
           </span>
         </div>
-        <p className="text-sm text-white/65 leading-relaxed whitespace-pre-line">{item?.degree}</p>
+        <p className="text-[15px] text-white/70 leading-relaxed whitespace-pre-line">{item?.degree}</p>
       </div>
     </div>
   )
