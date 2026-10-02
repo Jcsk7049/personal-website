@@ -48,7 +48,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
                 <p className="text-[15px] text-[#3F3F46] leading-snug">{detail[key].overview}</p>
               )}
 
-              <ul className={`grid min-h-0 grid-cols-2 gap-1 xl:flex-1 xl:content-start ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
+              <ul className={`grid min-h-0 grid-cols-2 gap-1 xl:flex-1 xl:auto-rows-fr ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
                 {items.map(item => (
                   <li
                     key={item.name}
