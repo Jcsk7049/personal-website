@@ -8,10 +8,10 @@ export default function NotFound() {
       </p>
       <div className="text-center space-y-2 -mt-4">
         <p className="text-xl font-semibold text-[#1D1D1F]">找不到此頁面</p>
-        <p className="text-sm text-[#86868B]">這個頁面不存在或已被移除。</p>
+        <p className="text-sm text-[#6E6E73]">這個頁面不存在或已被移除。</p>
       </div>
       <Link to="/"
-            className="px-6 py-2.5 rounded-full bg-[#737C84] text-white text-sm font-medium
+            className="px-6 py-2.5 rounded-full bg-[#687179] text-white text-sm font-medium
                        hover:bg-[#656E76] hover:scale-[1.03] active:scale-95 transition-all duration-[240ms]">
         返回首頁
       </Link>

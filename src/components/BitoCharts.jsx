@@ -158,7 +158,7 @@ export default function BitoCharts() {
             { arrow: true },
             { step: '⑥ 可解釋 AI', label: 'Bedrock + SHAP', color: 'bg-[#FF9500]/15 text-[#B36200]' },
             { arrow: true },
-            { step: '⑦ 審查介面', label: 'Streamlit', color: 'bg-[#737C84]/10 text-[#737C84]' },
+            { step: '⑦ 審查介面', label: 'Streamlit', color: 'bg-[#687179]/10 text-[#687179]' },
           ].map((item, i) =>
             item.arrow
               ? <span key={i} className="text-[#c7c7cc] font-light">→</span>

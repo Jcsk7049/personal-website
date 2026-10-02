@@ -29,8 +29,8 @@ export default function ProjectShowcase({ projects }) {
             const count = cat === '全部' ? projects.length : projects.filter(p => p.category === cat).length
             const selected = activeCategory === cat
             return <button key={cat} onClick={() => setActiveCategory(CATEGORIES[t.categories.indexOf(cat)] ?? cat)} aria-pressed={selected}
-              className={`flex items-center gap-2 px-3 py-2 border text-[15px] font-medium transition-colors duration-[240ms] ${selected ? 'bg-[#737C84] text-white border-[#737C84]' : 'bg-[#F5F5F7] text-[#3F3F46] border-black/[0.08] hover:bg-[#E8EAEC]'}`}>
-              {t.categoryLabel(cat)} <span className={`text-[12px] font-mono ${selected ? 'text-white/75' : 'text-[#86868B]'}`}>{count}</span>
+              className={`flex items-center gap-2 px-3 py-2 border text-[15px] font-medium transition-colors duration-[240ms] ${selected ? 'bg-[#687179] text-white border-[#687179]' : 'bg-[#F5F5F7] text-[#3F3F46] border-black/[0.08] hover:bg-[#E8EAEC]'}`}>
+              {t.categoryLabel(cat)} <span className={`text-[12px] font-mono ${selected ? 'text-white/75' : 'text-[#6E6E73]'}`}>{count}</span>
             </button>
           })}
         </div>
@@ -43,7 +43,7 @@ export default function ProjectShowcase({ projects }) {
                 {proj.frc && <span className="absolute bottom-3 right-3 px-2 py-1 bg-black/65 text-white text-[12px] font-semibold tracking-wide">FRC</span>}
               </div>
               <div className="flex flex-col gap-3 p-5 md:p-6 flex-1">
-                <div className="flex items-center justify-between gap-3 text-[12px] text-[#86868B] font-mono"><span>{proj.period}</span><span className="font-sans truncate">{proj.tags?.[0]}</span></div>
+                <div className="flex items-center justify-between gap-3 text-[12px] text-[#6E6E73] font-mono"><span>{proj.period}</span><span className="font-sans truncate">{proj.tags?.[0]}</span></div>
                 <h3 className="text-lg font-semibold tracking-tight text-[#1D1D1F] leading-snug group-hover:text-[#59636C] transition-colors">{proj.title}</h3>
                 {proj.badge && <span className="self-start px-2 py-1 border border-black/10 bg-white text-[#3F3F46] text-[12px] font-semibold">{proj.badge}</span>}
                 <p className="text-[15px] text-[#3F3F46] leading-[1.65]">{proj.description || proj.summary}</p>

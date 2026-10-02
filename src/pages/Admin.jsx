@@ -57,7 +57,7 @@ export default function Admin() {
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/" target="_blank" rel="noreferrer" className="text-xs text-[#86868B] hover:text-[#1D1D1F]">← 回網站</a>
+            <a href="/" target="_blank" rel="noreferrer" className="text-xs text-[#6E6E73] hover:text-[#1D1D1F]">← 回網站</a>
             <Btn sm variant="ghost" onClick={clear}>登出</Btn>
           </div>
         </div>

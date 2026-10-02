@@ -37,10 +37,10 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
               className={`skill-row skill-tile-panel group flex min-h-0 flex-col gap-1.5 p-2.5 md:p-3 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] xl:h-full ${layout}`}
             >
               <div className="flex items-start gap-2.5">
-                <span className="pt-0.5 font-mono text-[12px] tracking-wider text-[#737C84]">{number}</span>
+                <span className="pt-0.5 font-mono text-[12px] tracking-wider text-[#687179]">{number}</span>
                 <div className="min-w-0">
                   <p className="truncate text-[12px] text-[#6E6E73]">{group.sublabel}</p>
-                  <h3 className="text-sm font-semibold tracking-tight text-[#737C84]">{group.label}</h3>
+                  <h3 className="text-sm font-semibold tracking-tight text-[#687179]">{group.label}</h3>
                 </div>
               </div>
 

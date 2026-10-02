@@ -10,10 +10,10 @@ export default function TerminalCard({ lines }) {
       <div className="px-5 py-4 font-mono text-[15px] leading-[1.9] overflow-x-auto">
         {lines.map(({ marker, file, label }, i) => (
           <div key={i} className="whitespace-nowrap">
-            <span className="text-[#86868B]">{marker}</span>{' '}
+            <span className="text-[#6E6E73]">{marker}</span>{' '}
             <span className="text-[#F5F5F7]">{file}</span>{' '}
             <span className="text-[#6E6E73]">→</span>{' '}
-            <span className="text-[#86868B]">{label}</span>
+            <span className="text-[#6E6E73]">{label}</span>
           </div>
         ))}
       </div>

@@ -32,48 +32,48 @@ export default function Hero({ profile, skills, skillDetail }) {
           <div className="flex-1 min-w-0">
             {/* eyebrow 色 #636366：12px 非大字需過 WCAG AA 4.5；#86868B 只有 3.04:1（實測）→ #636366 = 5.03:1 */}
             <p className="hero-eyebrow flex items-center gap-3 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#636366] mb-7">
-              <span className="w-7 h-px bg-[#737C84]" />{profile.contact.location}
+              <span className="w-7 h-px bg-[#687179]" />{profile.contact.location}
             </p>
 
             <h1 className={`${nameSize} font-semibold tracking-[-0.035em] leading-[0.98] text-[#1D1D1F] mb-5 text-balance`}>
               <span className="hero-name-unveil inline-block">{profile.name}</span>
             </h1>
 
-            <p className="hero-line text-[clamp(1.25rem,2.7vw,1.8rem)] font-medium tracking-[-0.02em] leading-[1.28] text-[#737C84] max-w-[26ch] mb-9 text-balance">
+            <p className="hero-line text-[clamp(1.25rem,2.7vw,1.8rem)] font-medium tracking-[-0.02em] leading-[1.28] text-[#687179] max-w-[26ch] mb-9 text-balance">
               {t.heroLine}
             </p>
 
             <div className="hero-cta flex flex-wrap gap-2.5">
               <button
                 onClick={() => { window.location.href = `mailto:${profile.contact.email}` }}
-                className="px-5 py-3 rounded-full bg-[#737C84] text-white text-[15px] font-semibold
+                className="px-5 py-3 rounded-full bg-[#687179] text-white text-[15px] font-semibold
                            hover:bg-[#656E76] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {profile.contact.email}
               </button>
               <a href={`https://github.com/${profile.links.github}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full border border-black/[0.12] text-[15px] text-[#1D1D1F]
-                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#687179] hover:text-[#687179] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 GitHub
               </a>
               <a href={`https://linkedin.com/in/${profile.links.linkedin}`}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full border border-black/[0.12] text-[15px] text-[#1D1D1F]
-                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#687179] hover:text-[#687179] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 LinkedIn
               </a>
               <a href={resumeHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full text-[15px] font-semibold
-                            border-2 border-[#737C84] text-[#737C84]
-                            hover:bg-[#737C84] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            border-2 border-[#687179] text-[#687179]
+                            hover:bg-[#687179] hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnOnePage}
               </a>
               <a href={resumeFullHref}
                  target="_blank" rel="noopener noreferrer"
                  className="px-5 py-3 rounded-full text-[15px] font-medium
                             border border-black/[0.12] text-[#1D1D1F]
-                            hover:border-[#737C84] hover:text-[#737C84] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
+                            hover:border-[#687179] hover:text-[#687179] hover:scale-[1.02] active:scale-95 transition-all duration-[240ms]">
                 {t.resumeBtnFull}
               </a>
             </div>
@@ -112,7 +112,7 @@ export default function Hero({ profile, skills, skillDetail }) {
       <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
                        pointer-events-none transition-opacity duration-500
                        ${showScroll ? 'opacity-100' : 'opacity-0'}`}>
-        <span className="text-[12px] tracking-[0.15em] uppercase text-[#86868B] scroll-bounce">{t.scrollHint}</span>
+        <span className="text-[12px] tracking-[0.15em] uppercase text-[#6E6E73] scroll-bounce">{t.scrollHint}</span>
         <div className="w-px h-10 bg-gradient-to-b from-gray-300 to-transparent scroll-bounce"
              style={{ animationDelay: '0.15s' }} />
       </div>

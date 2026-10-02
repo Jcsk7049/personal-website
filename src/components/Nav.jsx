@@ -36,7 +36,7 @@ export default function Nav({ name }) {
           {/* Brand */}
           <a
             href="#hero"
-            className="text-[15px] font-semibold tracking-tight text-[#1D1D1F] hover:text-[#737C84]
+            className="text-[15px] font-semibold tracking-tight text-[#1D1D1F] hover:text-[#687179]
                        transition-colors duration-[240ms]"
           >
             {name}
@@ -51,7 +51,7 @@ export default function Nav({ name }) {
                 aria-current={active === id ? 'location' : undefined}
                 className={`relative px-3 py-2 text-[12px] transition-colors duration-[240ms]
                             ${active === id
-                              ? 'text-[#1D1D1F] font-semibold after:absolute after:left-3 after:right-3 after:-bottom-[1px] after:h-[2px] after:bg-[#737C84]'
+                              ? 'text-[#1D1D1F] font-semibold after:absolute after:left-3 after:right-3 after:-bottom-[1px] after:h-[2px] after:bg-[#687179]'
                               : 'text-[#6E6E73] font-normal hover:text-[#1D1D1F]'}`}
               >
                 {label}
@@ -64,9 +64,9 @@ export default function Nav({ name }) {
               className="flex items-center gap-0.5 min-h-11 min-w-11 justify-center text-xs"
               aria-label="Switch language"
             >
-              <span className={`transition-colors duration-[240ms] ${lang === 'zh' ? 'text-[#737C84] font-semibold' : 'text-[#86868B]'}`}>中</span>
+              <span className={`transition-colors duration-[240ms] ${lang === 'zh' ? 'text-[#687179] font-semibold' : 'text-[#6E6E73]'}`}>中</span>
               <span className="text-[#C7C7CC] mx-0.5">/</span>
-              <span className={`transition-colors duration-[240ms] ${lang === 'en' ? 'text-[#737C84] font-semibold' : 'text-[#86868B]'}`}>EN</span>
+              <span className={`transition-colors duration-[240ms] ${lang === 'en' ? 'text-[#687179] font-semibold' : 'text-[#6E6E73]'}`}>EN</span>
             </button>
           </div>
 
@@ -77,9 +77,9 @@ export default function Nav({ name }) {
               className="flex items-center gap-0.5 min-h-11 min-w-11 justify-center text-xs"
               aria-label="Switch language"
             >
-              <span className={lang === 'zh' ? 'text-[#737C84] font-semibold' : 'text-[#86868B]'}>中</span>
+              <span className={lang === 'zh' ? 'text-[#687179] font-semibold' : 'text-[#6E6E73]'}>中</span>
               <span className="text-[#C7C7CC] mx-0.5">/</span>
-              <span className={lang === 'en' ? 'text-[#737C84] font-semibold' : 'text-[#86868B]'}>EN</span>
+              <span className={lang === 'en' ? 'text-[#687179] font-semibold' : 'text-[#6E6E73]'}>EN</span>
             </button>
 
             <button
@@ -130,11 +130,11 @@ export default function Nav({ name }) {
               href={`#${id}`}
               onClick={() => setMobileOpen(false)}
               className={`flex items-center px-6 h-14 text-sm transition-colors duration-[240ms]
-                          ${active === id ? 'text-[#1D1D1F] font-semibold' : 'text-[#86868B]'}`}
+                          ${active === id ? 'text-[#1D1D1F] font-semibold' : 'text-[#6E6E73]'}`}
               style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
             >
               {active === id && (
-                <span className="w-[3px] h-4 rounded-full bg-[#737C84] mr-3 shrink-0" />
+                <span className="w-[3px] h-4 rounded-full bg-[#687179] mr-3 shrink-0" />
               )}
               {label}
             </a>

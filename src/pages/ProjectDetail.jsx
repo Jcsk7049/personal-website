@@ -49,8 +49,8 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#F5F5F7]">
-        <p className="text-[#86868B]">{t.notFoundProject}</p>
-        <Link to="/" className="text-sm text-[#737C84] hover:underline">{t.backHome}</Link>
+        <p className="text-[#6E6E73]">{t.notFoundProject}</p>
+        <Link to="/" className="text-sm text-[#687179] hover:underline">{t.backHome}</Link>
       </div>
     )
   }
@@ -76,7 +76,7 @@ export default function ProjectDetail() {
         <div className="w-full px-6 md:px-10 h-full flex items-center justify-between gap-4">
           <button
             onClick={handleBack}
-            className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-[240ms] shrink-0"
+            className="flex items-center gap-1.5 text-sm text-[#6E6E73] hover:text-[#1D1D1F] transition-colors duration-[240ms] shrink-0"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6"/>
@@ -100,7 +100,7 @@ export default function ProjectDetail() {
             <div className="flex items-center gap-3 mb-5">
               {project.category && <CategoryBadge category={project.category} />}
               {project.period && (
-                <span className="text-[12px] font-mono text-[#86868B] tracking-wide">
+                <span className="text-[12px] font-mono text-[#6E6E73] tracking-wide">
                   {project.period}
                 </span>
               )}
@@ -128,7 +128,7 @@ export default function ProjectDetail() {
                   <a href={detail.demo}
                      target="_blank" rel="noopener noreferrer"
                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full
-                                bg-[#737C84] text-white text-sm font-semibold shadow-[0_4px_14px_rgba(115,124,132,0.35)]
+                                bg-[#687179] text-white text-sm font-semibold shadow-[0_4px_14px_rgba(115,124,132,0.35)]
                                 hover:bg-[#656E76] hover:shadow-[0_6px_18px_rgba(115,124,132,0.35)]
                                 transition-all duration-[240ms]">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -146,7 +146,7 @@ export default function ProjectDetail() {
                 <span className={`text-[3.5rem] font-bold tracking-[-0.04em] leading-none ${accentSolid}`}>
                   {project.metric.replace(/[a-zA-Z\s]/g, '')}
                 </span>
-                <span className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B]">
+                <span className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73]">
                   {project.metric.replace(/[\d.+]/g, '').trim() || 'AUROC'}
                 </span>
               </div>
@@ -176,7 +176,7 @@ export default function ProjectDetail() {
               <div key={key} className="project-detail-section py-12 md:py-16 first:pt-0" data-reveal>
 
                 {/* 2-layer: eyebrow + title */}
-                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-2">
+                <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73] mb-2">
                   {en}
                 </p>
                 <h2 className="text-[clamp(1.75rem,3.2vw,2.5rem)] font-semibold tracking-[-0.02em] text-[#1D1D1F] mb-8 leading-[1.1] text-balance">
@@ -229,7 +229,7 @@ export default function ProjectDetail() {
                     {detail.images[0].caption.replace(/^[^:：]*[:：]\s*/, '').split('→').map((step, i, arr) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-sm font-semibold text-[#737C84] font-mono">
+                          <span className="text-sm font-semibold text-[#687179] font-mono">
                             {String(i + 1).padStart(2, '0')}
                           </span>
                           <span className="text-sm font-medium text-[#1D1D1F]">{step.trim()}</span>
@@ -245,7 +245,7 @@ export default function ProjectDetail() {
                   <div className="space-y-10">
                     {detail.tech.map(group => (
                       <div key={group.group}>
-                        <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#86868B] mb-3">
+                        <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[#6E6E73] mb-3">
                           {group.group}
                         </p>
                         <div className="grid grid-cols-1 gap-0 border-t border-black/[0.08]">
@@ -269,7 +269,7 @@ export default function ProjectDetail() {
                 ) : (
                   <div className="h-20 rounded-2xl bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.06)]
                                   flex items-center justify-center">
-                    <p className="text-sm text-[#86868B]">
+                    <p className="text-sm text-[#6E6E73]">
                       {lang === 'en' ? '(Content coming soon)' : '（內容待填寫）'}
                     </p>
                   </div>
