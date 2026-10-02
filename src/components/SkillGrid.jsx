@@ -45,14 +45,14 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
               </div>
 
               {detail?.[key]?.overview && (
-                <p className="line-clamp-1 text-[15px] text-[#3F3F46] leading-snug">{detail[key].overview}</p>
+                <p className="text-[15px] text-[#3F3F46] leading-snug">{detail[key].overview}</p>
               )}
 
-              <ul className={`grid min-h-0 grid-cols-2 gap-1 xl:flex-1 xl:auto-rows-fr ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
+              <ul className={`grid min-h-0 grid-cols-2 gap-1 xl:flex-1 xl:content-start ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
                 {items.map(item => (
                   <li
                     key={item.name}
-                    className={`skill-item-tile flex min-h-6 items-center justify-between gap-1 px-1.5 py-0.5 border text-[12px] transition-colors duration-[240ms] ${LEVEL_TILE[item.level] || 'bg-[#F1F2F3] border-[#E1E4E7] text-[#1D1D1F]'}`}
+                    className={`skill-item-tile flex min-h-9 items-center justify-between gap-1 px-1.5 py-0.5 border text-[12px] transition-colors duration-[240ms] ${LEVEL_TILE[item.level] || 'bg-[#F1F2F3] border-[#E1E4E7] text-[#1D1D1F]'}`}
                   >
                     <span className="min-w-0 truncate">{item.name}</span>
                     {item.level && <span className={`shrink-0 text-[12px] ${item.level === '進階' ? 'text-white/85' : 'text-[#3F3F46]'}`}>{t.levels[item.level] ?? item.level}</span>}
