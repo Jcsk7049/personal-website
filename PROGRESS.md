@@ -9,9 +9,9 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-10-11）
+## 📌 當前狀態快照（最後更新：2026-10-12）
 
-- **🟡 10-11 個人網站優化已完成本機修改**：首頁 1280px 斷點改為自然高度，補上「嵌入式韌體・軟硬整合・FAE」定位；詳情頁由 Pages Functions 讀取 D1 產生分享用 OG metadata，sitemap 補上 Vibe Coding；退休會以 fallback JSON 覆寫線上 D1 的 `/api/init`；API 回應補安全標頭，圖片上傳改為檢查 JPEG/PNG/WebP/GIF 簽章並拒絕 SVG；圖表維持詳情頁延遲載入。`react-router-dom` 升至 7.18.4，`npm audit fix` 套用相容範圍更新。`npm run build`、`git diff --check`、Functions 語法檢查通過，`npm audit --omit=dev` 為 0 漏洞；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。未改 D1；本輪將推送 main 觸發 Cloudflare Pages Production 部署，之後核對 Pages Functions 與 OG metadata。
+- **🟡 10-12 個人網站優化待重新部署**：優化改動在 `473c825` 已推上 main，但首次 Cloudflare build 因 npm 10 驗證 lockfile 發現 Vitest 的 Vite 8 peer dependency／esbuild 0.28.2 未鎖定而失敗。以 Cloudflare 同版 npm 10.9.2 重產 `package-lock.json`，`npm ci --dry-run`、`npm run build`、`git diff --check` 通過。修正後待提交推送並確認 Production 成功，再核對 Pages Functions、API 安全標頭與 OG metadata。未改 D1；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。
 
 - **🟢 10-02 配色無障礙修正已上線**（16d9e61）——量測 41 組前景/背景，**12 組不過 WCAG AA 4.5:1**：
   #86868B on #F5F5F7 = 3.33:1（40 處，最大宗，而且它是 CLAUDE.md 色票裡的「弱化」色）、
@@ -268,14 +268,20 @@
       （每案 6 題追問樹 + 答題框架 + 地雷卡；**未做「實戰對練」**——本人想練再開一輪，
       由 Claude 扮面試官連續追問、抓踩線）
 - [ ] TeamMatch：提供可用的 Firebase 測試設定或公開展示網址，才能截取完整運作畫面並取代示意封面（不要提供 production 私鑰）
-- [x] per-route OG metadata 已改用 Pages Functions 唯讀查 D1 注入，無需 prerender；本機完成，待部署 Preview 驗證 D1 查詢、語言分流、社群預覽與 canonical。
-- [ ] **10-11 本機已補 API headers、停用 `/api/init`、圖片簽章驗證**：部署 Preview 後確認所有 API 回應標頭及管理員圖片上傳；不對正式 D1 執行初始化。
+- [x] per-route OG metadata 已改用 Pages Functions 唯讀查 D1 注入，無需 prerender；本機完成，待重新部署後驗證 D1 查詢、語言分流、社群預覽與 canonical。
+- [ ] **10-11 本機已補 API headers、停用 `/api/init`、圖片簽章驗證**：修正 lockfile 並重新部署 Production 後確認 API 回應標頭及管理員圖片上傳；不對正式 D1 執行初始化。
 - [ ] **10-11 完整 npm audit 尚餘 14 個開發相依漏洞**：需評估 Tailwind 4、Vite 8、Wrangler 4.149 升級相容性後另行處理；production dependencies audit 為 0。
 - [ ] VAP/QMK 面試模擬追問練習
 
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-10-12 — Cloudflare build lockfile 修復（進行中）
+- 使用者確認已登入 Cloudflare Dashboard，讀取 `chiangjywebsite` Production deployment `004edbcc-9496-474f-82ab-acf06739761c` 的 Build log。
+- 錯誤發生在 `npm ci`：`package-lock.json` 未包含 npm 10 解析出的 Vitest/Vite peer `esbuild@0.28.2` 及平台套件；不是 Vite build 或 Functions 出錯。
+- 用 npm 10.9.2 更新 lockfile；`npm@10.9.2 ci --dry-run`、`npm run build`、`git diff --check` 通過。尚未提交／推送修正，需確認新 Production 部署與正式站端點。
+- 未修改 D1，亦未執行 migration。
 
 ### 2026-10-11（網站 SEO、API 安全與首頁響應式優化）
 
