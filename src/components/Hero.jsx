@@ -23,9 +23,9 @@ export default function Hero({ profile, skills, skillDetail }) {
     : 'text-[clamp(3.5rem,9vw,6rem)]'
 
   return (
-    <section id="hero" className="wash-hero relative min-h-[calc(100svh-3rem)] flex flex-col justify-center pt-14 md:pt-20 pb-20 md:pb-28 xl:justify-start xl:py-4">
-      <div className="hero-content w-full px-6 md:px-10 relative xl:flex-1 xl:flex">
-        <div className="grid grid-cols-1 xl:grid-cols-[1.05fr_0.95fr] xl:items-stretch gap-14 xl:gap-20 xl:flex-1">
+    <section id="hero" className="wash-hero relative min-h-[calc(100svh-3rem)] flex flex-col justify-center pt-14 md:pt-20 pb-20 md:pb-28 2xl:justify-start 2xl:py-4">
+      <div className="hero-content w-full px-6 md:px-10 relative 2xl:flex-1 2xl:flex">
+        <div className="hero-layout grid grid-cols-1 2xl:grid-cols-[1.05fr_0.95fr] 2xl:items-stretch gap-14 2xl:gap-20 2xl:flex-1">
 
           {/* Left side: introduction and photo */}
           <div className="flex flex-col md:flex-row md:items-center gap-10 xl:gap-12 min-w-0">
@@ -41,6 +41,10 @@ export default function Hero({ profile, skills, skillDetail }) {
 
             <p className="hero-line text-[clamp(1.25rem,2.7vw,1.8rem)] font-medium tracking-[-0.02em] leading-[1.28] text-[#687179] max-w-[26ch] mb-9 text-balance">
               {t.heroLine}
+            </p>
+
+            <p className="hero-roleline -mt-5 mb-7 text-[15px] leading-relaxed text-[#3F3F46]">
+              {t.heroRole}
             </p>
 
             <div className="hero-cta flex flex-wrap gap-2.5">

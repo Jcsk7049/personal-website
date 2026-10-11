@@ -19,9 +19,21 @@ export async function onRequestGet(context) {
   return json(rows.results, 200, request)
 }
 
-const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
-const ALLOWED_EXT  = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']
+const MIME_EXT = {
+  'image/jpeg': ['jpg', 'jpeg'],
+  'image/png': ['png'],
+  'image/webp': ['webp'],
+  'image/gif': ['gif'],
+}
 const MAX_SIZE     = 5 * 1024 * 1024 // 5MB
+
+function detectImageMime(bytes) {
+  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return 'image/jpeg'
+  if (bytes.length >= 8 && [137, 80, 78, 71, 13, 10, 26, 10].every((value, i) => bytes[i] === value)) return 'image/png'
+  if (bytes.length >= 6 && ['GIF87a', 'GIF89a'].some(signature => signature.split('').every((char, i) => bytes[i] === char.charCodeAt(0)))) return 'image/gif'
+  if (bytes.length >= 12 && String.fromCharCode(...bytes.subarray(0, 4)) === 'RIFF' && String.fromCharCode(...bytes.subarray(8, 12)) === 'WEBP') return 'image/webp'
+  return null
+}
 
 export async function onRequestPost(context) {
   const { request, env } = context
@@ -30,12 +42,14 @@ export async function onRequestPost(context) {
   if (!file || typeof file === 'string') return json({ error: 'no file' }, 400, request)
   if (file.size > MAX_SIZE) return json({ error: 'file too large (max 5MB)' }, 400, request)
 
-  const mime = file.type || 'image/jpeg'
-  if (!ALLOWED_MIME.includes(mime)) return json({ error: 'unsupported file type' }, 400, request)
   const ext = (file.name.split('.').pop() || '').toLowerCase()
-  if (!ALLOWED_EXT.includes(ext)) return json({ error: 'unsupported file extension' }, 400, request)
+  const buffer = await file.arrayBuffer()
+  const mime = detectImageMime(new Uint8Array(buffer))
+  if (!mime || !MIME_EXT[mime].includes(ext) || file.type !== mime) {
+    return json({ error: 'unsupported or mismatched image type' }, 400, request)
+  }
   const name = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const b64  = arrayBufferToBase64(await file.arrayBuffer())
+  const b64  = arrayBufferToBase64(buffer)
 
   await env.DB.prepare(
     'INSERT INTO images (name, data, mime) VALUES (?, ?, ?) ON CONFLICT(name) DO UPDATE SET data=excluded.data, mime=excluded.mime'

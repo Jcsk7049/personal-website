@@ -8,6 +8,7 @@ import { CategoryBadge } from '../components/ProjectShowcase'
 import { PROJECT_ACCENTS, PROJECT_ACCENT_SOLID } from '../data/designTokens'
 import TerminalCard from '../components/TerminalCard'
 import BrowserFrame from '../components/BrowserFrame'
+import { resetPageMetadata, updatePageMetadata } from '../lib/seo'
 
 const VapCharts = lazy(() => import('../components/VapCharts'))
 const BitoCharts = lazy(() => import('../components/BitoCharts'))
@@ -23,9 +24,17 @@ export default function ProjectDetail() {
   const project         = cvData.projects.find(p => p.id === id)
 
   useEffect(() => {
-    if (project) document.title = `${project.title} — 江嘉元`
-    return () => { document.title = '江嘉元' }
-  }, [project])
+    if (project) {
+      updatePageMetadata({
+        title: `${project.title} — 江嘉元`,
+        description: project.description,
+        image: project.cover,
+        path: `/projects/${id}${lang === 'en' ? '?lang=en' : ''}`,
+        type: 'article',
+      })
+    }
+    return () => resetPageMetadata()
+  }, [id, lang, project])
 
   /* ── Scroll reveal ── */
   useEffect(() => {

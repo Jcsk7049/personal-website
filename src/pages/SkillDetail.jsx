@@ -4,6 +4,7 @@ import cvDataZh from '../data/cvData.json'
 import cvDataEn from '../data/cvData.en.json'
 import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
+import { resetPageMetadata, updatePageMetadata } from '../lib/seo'
 
 const CATEGORY_ORDER = ['data_analysis', 'programming', 'eda', 'manufacturing', 'vibecoding']
 const CATEGORY_COLOR = {
@@ -60,9 +61,15 @@ export default function SkillDetail() {
   const color = CATEGORY_COLOR[id] || '#A1A1AA'
 
   useEffect(() => {
-    if (detail) document.title = `${detail.title} — 江嘉元`
-    return () => { document.title = '江嘉元 — 個人履歷' }
-  }, [detail])
+    if (detail) {
+      updatePageMetadata({
+        title: `${detail.title} — 江嘉元`,
+        description: detail.overview,
+        path: `/skills/${id}${lang === 'en' ? '?lang=en' : ''}`,
+      })
+    }
+    return () => resetPageMetadata()
+  }, [detail, id, lang])
 
   const handleBack = () => navigationType !== 'POP' ? navigate(-1) : navigate('/')
   if (!detail) return <div className="min-h-screen bg-[#F5F5F7] text-[#1D1D1F] flex flex-col items-center justify-center gap-4">

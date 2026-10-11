@@ -9,7 +9,9 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-09-30）
+## 📌 當前狀態快照（最後更新：2026-10-11）
+
+- **🟡 10-11 個人網站優化已完成本機修改**：首頁 1280px 斷點改為自然高度，補上「嵌入式韌體・軟硬整合・FAE」定位；詳情頁由 Pages Functions 讀取 D1 產生分享用 OG metadata，sitemap 補上 Vibe Coding；退休會以 fallback JSON 覆寫線上 D1 的 `/api/init`；API 回應補安全標頭，圖片上傳改為檢查 JPEG/PNG/WebP/GIF 簽章並拒絕 SVG；圖表維持詳情頁延遲載入。`react-router-dom` 升至 7.18.4，`npm audit fix` 套用相容範圍更新。`npm run build`、`git diff --check`、Functions 語法檢查通過，`npm audit --omit=dev` 為 0 漏洞；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。未改 D1；本輪將推送 main 觸發 Cloudflare Pages Production 部署，之後核對 Pages Functions 與 OG metadata。
 
 - **🟢 10-02 配色無障礙修正已上線**（16d9e61）——量測 41 組前景/背景，**12 組不過 WCAG AA 4.5:1**：
   #86868B on #F5F5F7 = 3.33:1（40 處，最大宗，而且它是 CLAUDE.md 色票裡的「弱化」色）、
@@ -266,12 +268,22 @@
       （每案 6 題追問樹 + 答題框架 + 地雷卡；**未做「實戰對練」**——本人想練再開一輪，
       由 Claude 扮面試官連續追問、抓踩線）
 - [ ] TeamMatch：提供可用的 Firebase 測試設定或公開展示網址，才能截取完整運作畫面並取代示意封面（不要提供 production 私鑰）
-- [ ] per-route og meta（需 prerender 架構，工程量大，暫緩）
+- [x] per-route OG metadata 已改用 Pages Functions 唯讀查 D1 注入，無需 prerender；本機完成，待部署 Preview 驗證 D1 查詢、語言分流、社群預覽與 canonical。
+- [ ] **10-11 本機已補 API headers、停用 `/api/init`、圖片簽章驗證**：部署 Preview 後確認所有 API 回應標頭及管理員圖片上傳；不對正式 D1 執行初始化。
+- [ ] **10-11 完整 npm audit 尚餘 14 個開發相依漏洞**：需評估 Tailwind 4、Vite 8、Wrangler 4.149 升級相容性後另行處理；production dependencies audit 為 0。
 - [ ] VAP/QMK 面試模擬追問練習
 
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-10-11（網站 SEO、API 安全與首頁響應式優化）
+
+- 首頁左右分欄延後至 2xl，筆電尺寸使用自然高度，避免 1280×720 技能面板被固定高度裁切；補上嵌入式韌體／軟硬整合／FAE 求職方向，保留 `develop.ing`。
+- 加入專案與技能路由的 Cloudflare Pages Functions，唯讀查詢 D1 並注入分享標題、摘要、封面與 canonical；支援 `?lang=en`，sitemap 新增 `/skills/vibecoding`。React 詳情頁同步更新瀏覽器 metadata。
+- `/api/init` 改回 410，避免舊 GET 初始化端點將本機 fallback JSON 覆寫至 D1；API 回應加入安全標頭。圖片上傳僅接受 JPEG、PNG、WebP、GIF，並比對檔案簽章、MIME、副檔名；舊 SVG 資料不受影響。
+- 移除圖表套件手動首頁分包；建置輸出確認 `dist/index.html` 只 preload React vendor，VAP／BitOGuard 圖表各留在延遲載入模組。`react-router-dom` 更新至 7.18.4；相容範圍內 `npm audit fix` 更新 44 個套件。
+- 驗證：`npm.cmd run build` 成功、`git diff --check` 通過、Pages Functions `node --check` 通過、`npm.cmd audit --omit=dev` 為 0。未執行測試；完整 audit 尚有 14 個開發依賴漏洞，需跨大版本升級才有修補。未讀寫 D1；本輪推 main 觸發 Production 部署，之後核對 Functions、社群預覽與 API 標頭。
 
 ### 2026-09-30（VAP 經歷改寫）
 

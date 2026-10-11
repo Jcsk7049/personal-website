@@ -144,7 +144,11 @@ export function ImageUploadBtn({ onUploaded }) {
   const [error, setError] = useState('')
 
   const upload = async (file) => {
-    if (!file || !file.type.startsWith('image/')) return
+    if (!file) return
+    if (!['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.type)) {
+      setError('只接受 JPEG、PNG、WebP 或 GIF 圖片')
+      return
+    }
     setUploading(true)
     setError('')
     try {
@@ -178,7 +182,7 @@ export function ImageUploadBtn({ onUploaded }) {
           ${drag ? 'border-[#0071E3] bg-blue-50 text-[#0071E3]' : 'border-black/10 text-[#6E6E73] hover:border-[#0071E3] hover:text-[#0071E3]'}`}
       >
         {uploading ? '上傳中…' : '點擊或拖曳圖片上傳'}
-        <input type="file" accept="image/*" className="hidden" onChange={e => upload(e.target.files[0])} />
+        <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" className="hidden" onChange={e => upload(e.target.files[0])} />
       </label>
       {error && <p className="text-xs text-red-500">{error}</p>}
     </div>

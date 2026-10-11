@@ -4,11 +4,11 @@ import { useLanguage } from '../context/LanguageContext'
 import { uiText } from '../data/uiText'
 
 const GROUPS = [
-  { key: 'data_analysis', number: '01', layout: 'xl:col-start-1 xl:row-start-1' },
-  { key: 'programming', number: '02', layout: 'xl:col-start-2 xl:row-start-1' },
-  { key: 'eda', number: '03', layout: 'xl:col-start-1 xl:row-start-3' },
-  { key: 'manufacturing', number: '04', layout: 'md:col-span-2 xl:col-span-2 xl:row-start-2' },
-  { key: 'vibecoding', number: '05', layout: 'md:col-span-2 xl:col-span-1 xl:col-start-2 xl:row-start-3' },
+  { key: 'data_analysis', number: '01', layout: '2xl:col-start-1 2xl:row-start-1' },
+  { key: 'programming', number: '02', layout: '2xl:col-start-2 2xl:row-start-1' },
+  { key: 'eda', number: '03', layout: '2xl:col-start-1 2xl:row-start-3' },
+  { key: 'manufacturing', number: '04', layout: 'md:col-span-2 2xl:col-span-2 2xl:row-start-2' },
+  { key: 'vibecoding', number: '05', layout: 'md:col-span-2 2xl:col-span-1 2xl:col-start-2 2xl:row-start-3' },
 ]
 
 const LEVEL_TILE = {
@@ -22,9 +22,9 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
   const t = uiText[lang]
 
   return (
-    <section id="skills" className="skills-section hero-skills w-full xl:h-full xl:min-h-0 xl:max-h-[calc(100svh-5rem)] xl:flex xl:flex-col">
+    <section id="skills" className="skills-section hero-skills w-full 2xl:h-full 2xl:min-h-0 2xl:max-h-[calc(100svh-5rem)] 2xl:flex 2xl:flex-col">
       <SectionHeader label={t.sections.skills} sub={t.sectionSubs.skills} compact />
-      <div className="grid min-h-0 grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 xl:flex-1 xl:grid-rows-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 2xl:min-h-0 2xl:flex-1 2xl:grid-rows-3">
         {GROUPS.map(({ key, number, layout }) => {
           const group = t.quadrants[key]
           const items = detail?.[key]?.skills || (skills[key] || []).map(name => ({ name }))
@@ -34,7 +34,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
             <Link
               key={key}
               to={`/skills/${key}`}
-              className={`skill-row skill-tile-panel group flex min-h-0 flex-col gap-1.5 p-2.5 md:p-3 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] xl:h-full ${layout}`}
+              className={`skill-row skill-tile-panel group flex min-h-0 flex-col gap-1.5 p-2.5 md:p-3 border border-[#D8DCE0] bg-white/75 hover:bg-white transition-colors duration-[240ms] 2xl:h-full ${layout}`}
             >
               <div className="flex items-start gap-2.5">
                 <span className="pt-0.5 font-mono text-[12px] tracking-wider text-[#687179]">{number}</span>
@@ -48,7 +48,7 @@ export default function SkillGrid({ skills = {}, detail = {} }) {
                 <p className="text-[15px] text-[#3F3F46] leading-snug">{detail[key].overview}</p>
               )}
 
-              <ul className={`grid min-h-0 grid-cols-2 gap-1 xl:flex-1 xl:auto-rows-fr ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
+              <ul className={`grid grid-cols-2 gap-1 2xl:min-h-0 2xl:flex-1 2xl:auto-rows-fr ${isManufacturing ? 'md:grid-cols-3' : ''}`}>
                 {items.map(item => (
                   <li
                     key={item.name}
