@@ -11,7 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-10-12）
 
-- **🟡 10-12 個人網站優化待重新部署**：優化改動在 `473c825` 已推上 main，但首次 Cloudflare build 因 npm 10 驗證 lockfile 發現 Vitest 的 Vite 8 peer dependency／esbuild 0.28.2 未鎖定而失敗。以 Cloudflare 同版 npm 10.9.2 重產 `package-lock.json`，`npm ci --dry-run`、`npm run build`、`git diff --check` 通過。修正後待提交推送並確認 Production 成功，再核對 Pages Functions、API 安全標頭與 OG metadata。未改 D1；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。
+- **🟢 10-12 個人網站優化已部署 Production**：`473c825` 的首次 build 因 lockfile 漏掉 Vitest/Vite peer 的 esbuild 0.28.2 失敗；以 npm 10.9.2 修正後提交 `bc40942`，Cloudflare Pages Production build 成功。正式站確認 `/api/init` 回 410、`/api/projects` 有安全標頭、VAP 與 Vibe Coding 詳情頁輸出專屬 OG metadata/canonical，均 HTTP 200（`/api/init` 除外為預期 410）。未改 D1；管理員圖片上傳尚未登入驗證；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。Build 有既有 `_redirects` catch-all 被 Cloudflare 忽略的警告，已確認上述深層路由可正常回應。
 
 - **🟢 10-02 配色無障礙修正已上線**（16d9e61）——量測 41 組前景/背景，**12 組不過 WCAG AA 4.5:1**：
   #86868B on #F5F5F7 = 3.33:1（40 處，最大宗，而且它是 CLAUDE.md 色票裡的「弱化」色）、
@@ -268,8 +268,9 @@
       （每案 6 題追問樹 + 答題框架 + 地雷卡；**未做「實戰對練」**——本人想練再開一輪，
       由 Claude 扮面試官連續追問、抓踩線）
 - [ ] TeamMatch：提供可用的 Firebase 測試設定或公開展示網址，才能截取完整運作畫面並取代示意封面（不要提供 production 私鑰）
-- [x] per-route OG metadata 已改用 Pages Functions 唯讀查 D1 注入，無需 prerender；本機完成，待重新部署後驗證 D1 查詢、語言分流、社群預覽與 canonical。
-- [ ] **10-11 本機已補 API headers、停用 `/api/init`、圖片簽章驗證**：修正 lockfile 並重新部署 Production 後確認 API 回應標頭及管理員圖片上傳；不對正式 D1 執行初始化。
+- [x] per-route OG metadata 已改用 Pages Functions 唯讀查 D1 注入，無需 prerender；10-12 Production 已確認 VAP／Vibe Coding 的 OG 標題、描述、圖片與 canonical。
+- [x] **10-11 API headers 與 `/api/init` 保護已部署 Production**：`/api/init` 回 410，`/api/projects` 回應含安全標頭；未對正式 D1 執行初始化。
+- [ ] 管理員圖片上傳只允許 JPEG/PNG/WebP/GIF 並驗 MIME／檔案簽章；仍待登入後實際上傳驗證。
 - [ ] **10-11 完整 npm audit 尚餘 14 個開發相依漏洞**：需評估 Tailwind 4、Vite 8、Wrangler 4.149 升級相容性後另行處理；production dependencies audit 為 0。
 - [ ] VAP/QMK 面試模擬追問練習
 
@@ -277,11 +278,12 @@
 
 ## 📓 工作日誌（新→舊）
 
-### 2026-10-12 — Cloudflare build lockfile 修復（進行中）
+### 2026-10-12 — Cloudflare Production 部署完成
 - 使用者確認已登入 Cloudflare Dashboard，讀取 `chiangjywebsite` Production deployment `004edbcc-9496-474f-82ab-acf06739761c` 的 Build log。
 - 錯誤發生在 `npm ci`：`package-lock.json` 未包含 npm 10 解析出的 Vitest/Vite peer `esbuild@0.28.2` 及平台套件；不是 Vite build 或 Functions 出錯。
-- 用 npm 10.9.2 更新 lockfile；`npm@10.9.2 ci --dry-run`、`npm run build`、`git diff --check` 通過。尚未提交／推送修正，需確認新 Production 部署與正式站端點。
-- 未修改 D1，亦未執行 migration。
+- 用 npm 10.9.2 更新 lockfile；`npm@10.9.2 ci --dry-run`、`npm run build`、`git diff --check` 通過。commit `bc40942` 已推 main，Cloudflare Production deployment `53a2527e-eb44-4d7a-81f8-c3ef9c9ef746` 成功。
+- 正式站確認 `/api/init`=410、`/api/projects`=200 並有安全標頭；`/projects/vap`、`/skills/vibecoding`=200，含專屬 OG metadata、canonical。Cloudflare 提示 `_redirects` 的 `/* /index.html 200` catch-all 因 infinite loop 被略過；以上深層路由實測正常。
+- 未修改 D1，亦未執行 migration。管理員圖片上傳尚未驗證。
 
 ### 2026-10-11（網站 SEO、API 安全與首頁響應式優化）
 
