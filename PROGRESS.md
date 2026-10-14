@@ -11,6 +11,9 @@
 
 ## 📌 當前狀態快照（最後更新：2026-10-14）
 
+- **🟢 10-14 新增通用履歷、研華版僅本機保留**：Production 網站提交 `63552df`／deployment `5bd27494-b642-4075-98e0-18c291f8fa7f` 已成功。首頁 `/resume-zh.pdf` 改為通用版，版本頁提供通用／AE／SI／FAE 四份；通用版不指定職稱，補入 Job Radar 與 BitOGuard，保留控制、電路、加工、研究稽核及 AI 協作交付。研華 PDF／HTML 移至 `.local-resumes/2026-10-14/`，已被 Git 忽略且不含於 dist；舊網址 302 返回履歷版本頁。PDF 一頁、四個可點連結；正式 PDF 雜湊、首頁入口、版本頁和 HTML 的桌機／手機檢查通過。本次僅更改靜態履歷與 UI 標籤，未改 D1。
+
+
 - **🟢 10-14 履歷與作品內容已同步 D1／部署 Production**：網站提交 `ec8e6b8` 已推 `main`，Cloudflare Pages deployment `1f55f3bb-d392-45ca-a1c5-3c465bf1b1d9` 建置成功。先備份 D1 公開內容至 repo 外，再執行 migration 0031（10 queries）及 0032（修復打地鼠英文 JSON 的多餘跳脫，不改文字）。正式 API 六區塊與 15 個專案，中英文逐項與本機一致；27 項正式站檢查通過，四份新版 PDF 與 AE 別名 SHA-256 均與本機相同。Chrome 桌機 1440px／手機 390px 的首頁及 VAP 詳情頁無水平溢出、無 pageerror。本機 build、14/14 repo tests 通過；其他巢狀 worktree 的複製測試未納入。來源履歷未改，舊公開檔仍備份在公開目錄外。
 - **🟢 10-12 個人網站優化已部署 Production**：`473c825` 的首次 build 因 lockfile 漏掉 Vitest/Vite peer 的 esbuild 0.28.2 失敗；以 npm 10.9.2 修正後提交 `bc40942`，Cloudflare Pages Production build 成功。正式站確認 `/api/init` 回 410、`/api/projects` 有安全標頭、VAP 與 Vibe Coding 詳情頁輸出專屬 OG metadata/canonical，均 HTTP 200（`/api/init` 除外為預期 410）。未改 D1；管理員圖片上傳尚未登入驗證；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。Build 有既有 `_redirects` catch-all 被 Cloudflare 忽略的警告，已確認上述深層路由可正常回應。
 
@@ -221,6 +224,8 @@
 
 ## ✅ 待辦清單
 
+- [x] **10-14 通用履歷與職務版本調整**：通用版為預設下載；研華僅本機保存，AE／SI／FAE 保留；Production 已確認。
+
 - [x] **10-14 履歷內容同步與部署**：0031／0032 已執行遠端 D1，Production `ec8e6b8` 建置成功；正式站 27 項檢查與桌機／手機驗證通過。
 
 
@@ -281,6 +286,14 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-10-14 — 通用履歷、研華版移出公開資產
+- 依使用者「不只投 AE／SI／FAE」新增通用中文履歷，不指定應徵職稱；加入 Job Radar、BitOGuard，保留個人／團隊分工、AI 協助實作、教師測試與 Agent 個人原型等界線。通用摘要標示電機系大四在學，預期畢業、實習窗口、英文程度、VAP 0.61 與預定 poster 報告日期均保留。
+- 新增 `public/resume/resume-General.html` 與 `public/resume-General-2026-10-14.pdf`；`resume-zh.html`／`resume-zh.pdf` 改為通用版，首頁中英文標籤同步。版本頁首列通用，其後 AE／SI／FAE；AE 不再稱為通用版。
+- 研華 PDF／HTML 原樣移至 `.local-resumes/2026-10-14/`，SHA-256／位元組與改動前相同，Git ignore 確認；目前公開與 dist 均無研華檔。兩個旧公開網址加 302 轉向版本頁。原始求職資料未改，AE／SI／FAE PDF 位元組未變。
+- 以 Chrome 產生 PDF，pypdf 確認一頁、四個聯絡／作品集連結與事實欄位；Poppler 轉 PNG 視覺確認完整且無裁切。Build 通過；目前 repo tests 14/14 通過（排除巢狀其他 worktree），未新增測試。
+- 網站提交 `63552df` 已推 main，GitHub Cloudflare Pages check completed/success，Production deployment `5bd27494-b642-4075-98e0-18c291f8fa7f`。正式四份 PDF 與本機雜湊一致，`resume-zh.pdf` 符合通用版；研華 PDF／HTML 兩舊網址實測 302。桌機 1440px、手機 390px 的版本頁、履歷 HTML 及首頁入口正常，無水平溢出或 pageerror。本輪未讀寫遠端 D1。
+- 檢查報告、手機截圖與產生腳本保存在 repo 外 `C:\Users\user\.codex\backups\personal-website\2026-10-14-general-resume/`；僅進度紀錄的提交以 `[CI Skip]` 推送。
 
 ### 2026-10-14 — D1 同步與 Cloudflare Production 部署
 - 使用者授權同步與部署。確認 OAuth 具備 D1／Pages write scope，目標為 `chiangjywebsite`／`personal-website-db`；Git 起始乾淨、僅有前次履歷提交待推。
