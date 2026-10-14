@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { LanguageProvider } from '../../context/LanguageContext'
 import { uiText } from '../../data/uiText'
 import Hero from '../Hero'
@@ -12,9 +13,11 @@ const profile = {
 
 function renderHero() {
   return render(
-    <LanguageProvider>
-      <Hero profile={profile} />
-    </LanguageProvider>
+    <MemoryRouter>
+      <LanguageProvider>
+        <Hero profile={profile} />
+      </LanguageProvider>
+    </MemoryRouter>
   )
 }
 

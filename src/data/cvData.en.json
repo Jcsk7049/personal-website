@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Chiang Jia Yuan",
-    "title": "Hardware/Software Integration · From PCB to Firmware to Data",
-    "bio": "With a mechatronics background, I have worked on circuits, PCB design, embedded firmware, and data analysis. I am studying electrical engineering. After my ICU VAP paper was accepted, I audited its data and evaluation pipeline, found that the original results were affected by the evaluation setup and cohort differences, and reframed the work as a methodology audit. Accepted as a poster at IEEE GCCE 2026.",
+    "title": "Product Applications · Systems Integration · FAE",
+    "bio": "I am an Electrical Engineering bachelor’s student at Yuan Ze University, expected to graduate in September 2027. My work spans FRC robots, PCB revision and soldering/debugging, and requirements, permissions, and acceptance for a teacher-commissioned system. I am interested in product applications, systems integration, and FAE roles. I can intern Jan 11–Feb 22, 2027 and July–August 2027; I cannot maintain an in-person schedule during the semester. English reading is intermediate; listening, speaking, and writing are basic.",
     "avatar": "/455AD532-F2CF-492B-B26C-CEB9053049D5.jpg",
     "contact": {
       "email": "johnjia9491@gmail.com",
@@ -16,7 +16,7 @@
   "education": [
     {
       "school": "Yuan Ze University",
-      "degree": "B.S. Electrical Engineering",
+      "degree": "B.S. Electrical Engineering | In progress, expected Sep 2027",
       "period": "2024.09 – 2027.09"
     },
     {
@@ -27,23 +27,23 @@
   ],
   "experience": [
     {
-      "role": "Research Intern",
+      "role": "Research Project Student",
       "organization": "Yuan Ze Univ. — Prof. Lin Shu-Yan's Lab",
       "period": "2025.05 – Present",
-      "description": "I worked on an ICU VAP early-warning study, handling data preparation, model comparisons, and evaluation. The initial evaluation reported an AUROC of 0.98–0.99. After the study was accepted as a poster at IEEE GCCE 2026, I kept checking the data indices, time alignment, and patient split, rerunning the evaluation after each correction. With a patient-level split, the final AUROC was 0.61. I then focused the work on understanding how evaluation choices and cohort differences affected the result."
+      "description": "I handled data preparation, model comparisons, and evaluation audits for an ICU VAP early-warning study. After acceptance, I rechecked data indexing, time alignment, and patient-level splits; the corrected AUROC is about 0.61. This is a model-evaluation result on single-center data, not evidence of clinical performance. The first-author paper was accepted as an IEEE GCCE 2026 poster, scheduled for October 29, 2026."
     },
     {
-      "role": "Engineering Advisor & Systems Integrator",
+      "role": "FRC Team Advisor (Non-employee)",
       "organization": "FRC TEAM 7645",
       "period": "2023 – Present",
-      "description": "Engineering Advisor since 2023.\nPreviously:\nOwned robot systems architecture — multi-sensor fusion, PID closed-loop motor control tuning, and hardware/software interface definition; shifted to an operational advisory role as that system was retired.\nNow:\nIntroduced LLM-assisted tools that cut the trial-and-error firmware debugging cycle by about a week, and coach newer members to debug from root cause instead of line-by-line guessing. Also rebuilt the team website to cut repetitive PR inquiries.",
+      "description": "I contribute as a team advisor, not as an employee. My hands-on work in FRC robot integration includes Inventor mechanical modeling, CNC machining, and LabVIEW kinematics and PID tuning. More recently, I have used an LLM to help review firmware-debugging steps and worked with students to trace issues from error messages.",
       "frc": true
     },
     {
       "role": "Competitive Athlete",
       "organization": "Nangang VHS NK-MTC 7645",
       "period": "2020.06 – 2023.09",
-      "description": "The team's utility player — the bridge between mechanical, software, electrical, and PR. Competed in 2 FRC international regional events over 3 years (2020 CSIA 5G Regional and 2022 Taiwan Foxconn Regional), and took part in the National Skills Competition (Team Project category) and the National Vocational High School Craft Competition (Digital Electronics)."
+      "description": "Represented Nangang Vocational High School in FRC and National Skills Competition events. On the three-person team robot, I handled 24V power distribution, the relay H-bridge, and vehicle wiring; teammates handled mechanical fabrication and control software. FRC team results are listed separately in the project and awards sections."
     }
   ],
   "skills_matrix": {
@@ -91,12 +91,12 @@
     "data_analysis": {
       "title": "Data Analysis",
       "en": "Data Analysis",
-      "overview": "Mostly working with biomedical signals and clinical data — I go through the whole loop myself, from cleaning raw data and building features to training models and checking the results.",
+      "overview": "I have prepared clinical data, built features, and compared models. After paper acceptance, I also audited indexing, time alignment, and evaluation splits.",
       "skills": [
         {
           "name": "Deep Learning",
           "level": "熟悉",
-          "desc": "I've worked with LSTM and CNN time-series models — preprocessing, hyperparameter tuning, all of it — mainly for predicting biomedical signal sequences.",
+          "desc": "Built and compared LSTM time-series models with TensorFlow/Keras and reran patient-level evaluation. The corrected AUROC is about 0.61 on single-center data; this does not establish clinical prediction performance.",
           "projects": [
             "ICU VAP Early-Warning System"
           ]
@@ -104,7 +104,7 @@
         {
           "name": "LightGBM",
           "level": "熟悉",
-          "desc": "Used in BitOGuard for imbalanced binary classification, blended 0.6/0.4 with XGBoost, with SHAP to inspect each feature's contribution to account-risk scores and threshold comparisons for precision and recall.",
+          "desc": "Used with XGBoost in a BitOGuard team project and applied SHAP to inspect feature contributions; results depend on the competition data and evaluation setup.",
           "projects": [
             "AWS × BitoPro Hackathon"
           ]
@@ -112,7 +112,7 @@
         {
           "name": "XGBoost",
           "level": "熟悉",
-          "desc": "Blended with LightGBM at 0.4 weight in BitOGuard (alone: OOF AUC 0.827); also used in DSP and signal-classification coursework.",
+          "desc": "Combined with LightGBM in the BitOGuard team project; also used for signal-classification coursework.",
           "projects": [
             "AWS × BitoPro Hackathon"
           ]
@@ -120,7 +120,7 @@
         {
           "name": "Feature Engineering",
           "level": "熟悉",
-          "desc": "Pulled out time-domain (mean, peak) and frequency-domain (FFT power spectrum) features, and handled EHR data — time-series aggregation, one-hot encoding, plenty of missing values to deal with.",
+          "desc": "Prepared time- and frequency-domain features and clinical time-series fields; later audited indexing and time alignment in the VAP study.",
           "projects": [
             "ICU VAP Early-Warning System",
             "AWS × BitoPro Hackathon"
@@ -129,7 +129,7 @@
         {
           "name": "Signal Filtering",
           "level": "熟悉",
-          "desc": "Band-pass filtering, Z-score normalization, missing-value imputation — basically cleaning up physiological signals so the model isn't thrown off by noise.",
+          "desc": "Applied filtering, normalization, and missing-value handling in coursework and research preprocessing, checking results against each data source.",
           "projects": [
             "ICU VAP Early-Warning System"
           ]
@@ -137,7 +137,7 @@
         {
           "name": "Data Structuring",
           "level": "熟悉",
-          "desc": "EHR ETL cleaning and AWS Glue graph-based multi-hop analysis — turning messy unstructured data into feature matrices the model can actually train on.",
+          "desc": "Used Python and pandas to prepare clinical data and analysis fields. The VAP audit corrected time-alignment and field issues.",
           "projects": [
             "ICU VAP Early-Warning System",
             "AWS × BitoPro Hackathon"
@@ -148,12 +148,12 @@
     "programming": {
       "title": "Programming",
       "en": "Programming",
-      "overview": "I've touched everything from embedded firmware to ML pipelines — C/C++ for the hardware side, Python for data and models.",
+      "overview": "I use C/C++ for embedded work and Python for data preparation and model comparisons. I have also implemented FRC motion control in LabVIEW.",
       "skills": [
         {
           "name": "C / C++",
-          "level": "熟悉",
-          "desc": "My go-to language for embedded firmware. Comfortable with GPIO control, interrupt handling, and memory management; also worked with ChibiOS HAL config (chconf/halconf/mcuconf) and the QMK firmware codebase on resource-constrained STM32 boards.",
+          "level": "基礎",
+          "desc": "Basic C/C++ experience. In the QMK/STM32 project, I adjusted ChibiOS HAL settings and investigated build errors; I do not claim advanced low-level driver or register development.",
           "projects": [
             "FRC Swerve Drive Research",
             "QMK × STM32 Custom Numpad"
@@ -162,7 +162,7 @@
         {
           "name": "Python",
           "level": "熟悉",
-          "desc": "Hold the ITS Python international certification. Use it daily for ML pipelines (PyTorch, scikit-learn, pandas), plotting (Matplotlib), and wiring up AWS services with the SDK.",
+          "desc": "Used for data preparation, model comparison, and coursework. Some website and tool implementation was assisted by an LLM; I handled requirements, integration, and hands-on checks.",
           "projects": [
             "ICU VAP Early-Warning System",
             "AWS × BitoPro Hackathon"
@@ -171,7 +171,7 @@
         {
           "name": "LabVIEW",
           "level": "熟悉",
-          "desc": "Used graphical programming to build vector-composition kinematics and PID closed-loop control, running live on a competition robot — that project won the 2022 FRC Innovation in Control Award.",
+          "desc": "Implemented kinematics and PID control in the FRC Swerve project. The Control Innovation Award was a team result.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
@@ -179,7 +179,7 @@
         {
           "name": "Arduino",
           "level": "熟悉",
-          "desc": "My go-to for quick prototypes — wired up ESP32 wireless, sensor readings, and relay control to validate hardware ideas fast.",
+          "desc": "Worked with ESP-NOW communication and relay control on an ESP32 wireless teaching aid, including physical debugging.",
           "projects": [
             "Wireless Whack-a-Mole"
           ]
@@ -193,47 +193,63 @@
       ]
     },
     "eda": {
-      "title": "Electronic Design",
+      "title": "Circuit Design & Measurement",
       "en": "Electronic Design Automation",
-      "overview": "I've done the full flow from schematic to PCB layout with Altium, EasyEDA Pro, and KiCAD — most comfortable with power management and MCU peripheral circuits.",
+      "overview": "I have revised an open-source PCB, soldered and debugged circuits, and measured lab circuits. I have used Altium before and need a refresher.",
       "skills": [
         {
           "name": "Altium Designer",
-          "level": "熟悉",
-          "desc": "Used it in vocational high school to design and complete a PCB, covering the full flow from schematic to layout. Its workflow is close to KiCAD, so I can pick it back up quickly when needed.",
+          "level": "基礎",
+          "desc": "Used Altium to complete a PCB in vocational high school. I need a refresher and do not claim high-speed multilayer board experience.",
           "projects": []
         },
         {
           "name": "EasyEDA Pro (LCEDA)",
           "level": "熟悉",
-          "desc": "A browser-based EDA tool hooked into the LCSC parts library — footprints are ready to use and you can order a prototype in one click. Used it for the QMK numpad PCB, from schematic to layout to Gerber export.",
+          "desc": "Used to revise the open-source QMK/STM32 numpad PCB and prepare board files; I also soldered, flashed, and function-checked the assembled board.",
           "projects": [
             "QMK × STM32 Custom Numpad"
           ]
         },
         {
           "name": "KiCAD",
-          "level": "熟悉",
-          "desc": "Open-source EDA I reach for on personal projects when I need a board fast — comfortable with library management and 3D footprint preview, good for early-stage concept checks.",
+          "level": "基礎",
+          "desc": "Have used KiCad schematic and PCB tools; tool exposure is not presented as proficiency.",
           "projects": []
         },
         {
           "name": "OrCAD",
           "level": "基礎",
-          "desc": "Basic schematic drawing and SPICE simulation — used it to check passive component choices and power circuit behavior.",
+          "desc": "Used for schematic and basic simulation coursework; this is not a claim of full production-design experience.",
           "projects": []
+        },
+        {
+          "name": "BJT Audio Amplifier Debugging",
+          "level": "熟悉",
+          "desc": "Built a two-stage BJT audio-amplifier PCB for a sophomore lab. After two rebuilds, I fixed a copper short and mirrored component footprints; an 8Ω speaker played audio.",
+          "projects": [
+            "Analog Circuit Lab: Audio Amplifier PCB"
+          ]
+        },
+        {
+          "name": "RC/RL Oscilloscope Measurements",
+          "level": "基礎",
+          "desc": "Used an oscilloscope to observe and record RC/RL circuit responses in electronics laboratory work.",
+          "projects": [
+            "Sophomore Spring Electronics Circuit Lab"
+          ]
         }
       ]
     },
     "manufacturing": {
       "title": "Manufacturing",
       "en": "Manufacturing",
-      "overview": "From design to physical parts — CNC milling, 3D printing, metal welding, laser cutting. Modeling in Inventor, toolpaths in Mastercam.",
+      "overview": "I have contributed to mechanical design and physical fabrication. Inventor modeling, CNC, wire EDM, and 3D printing experience comes from team projects.",
       "skills": [
         {
           "name": "CNC Milling",
           "level": "基礎",
-          "desc": "Precision aluminum machining on CNC mills — I plan toolpaths and design fixtures myself, and it's noticeably more accurate and repeatable than manual milling.",
+          "desc": "Participated in CNC milling on an FRC team project, machining mechanical parts from drawings. My role varied by chassis generation.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
@@ -241,15 +257,15 @@
         {
           "name": "Mastercam",
           "level": "基礎",
-          "desc": "CAM software for CNC — import a 3D model, plan toolpaths (drilling, 2D/3D pocketing, contour milling, dynamic milling, chamfering), simulate it, then output the NC program. Used it for the Swerve Drive's aluminum wheel plates and drive shafts.",
+          "desc": "Used Mastercam for toolpaths on FRC robot parts. I do not present the team’s full fabrication workflow as work completed independently.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
         },
         {
           "name": "3D Printing",
-          "level": "熟悉",
-          "desc": "FDM printing for checking mechanical interference and making custom non-structural parts — cuts weight and machining cost without touching structural integrity.",
+          "level": "基礎",
+          "desc": "Worked with FDM parts and mechanical fit on robot projects; descriptions are limited to parts I handled.",
           "projects": [
             "FRC Swerve Drive Research",
             "Wireless Whack-a-Mole"
@@ -258,15 +274,15 @@
         {
           "name": "Autodesk Inventor",
           "level": "熟悉",
-          "desc": "My main tool for 3D mechanism modeling — assembly interference checks and dynamic simulation to catch part collisions and tolerance issues before anything gets built.",
+          "desc": "Used for FRC mechanical modeling; multiple team members designed and built each chassis generation.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
         },
         {
           "name": "AutoCAD",
-          "level": "熟悉",
-          "desc": "2D engineering drawings for machining — dimensions and tolerances spelled out clearly enough for CNC operators or outside vendors to just follow.",
+          "level": "基礎",
+          "desc": "Have used AutoCAD for 2D drawings and dimensions; I do not claim proficiency in complete machining drawing tolerances.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
@@ -280,7 +296,7 @@
         {
           "name": "Metal Welding",
           "level": "基礎",
-          "desc": "Basic MIG/TIG welding for the FRC robot's steel tube chassis — paying attention to bead uniformity and structural strength.",
+          "desc": "Worked with metal structures in team builds; fabrication tasks were shared according to team roles.",
           "projects": [
             "FRC Swerve Drive Research"
           ]
@@ -288,13 +304,13 @@
         {
           "name": "Laser Cutting",
           "level": "基礎",
-          "desc": "Precision cutting of sheet metal and acrylic from CAD drawings — a quick way to make custom thin-plate parts and label panels.",
+          "desc": "Have used sheet and part cutting in team builds; experience is limited to work I handled.",
           "projects": []
         },
         {
           "name": "Basic Machining",
-          "level": "熟悉",
-          "desc": "Manual mill and lathe basics — measuring tools, workpiece clamping — the groundwork that made picking up advanced CNC machining easier.",
+          "level": "基礎",
+          "desc": "Basic exposure to manual machining equipment and measuring tools through vocational coursework and robot builds.",
           "projects": []
         }
       ]
@@ -302,21 +318,23 @@
     "vibecoding": {
       "title": "Vibe Coding & Product Delivery",
       "en": "Vibe Coding & Product Delivery",
-      "overview": "Turn a request into small, runnable steps; work with an LLM on the interface, data flow, integrations, and deployment, then check the result in the running project.",
+      "overview": "I turn requirements into flows, fields, and acceptance criteria, then work with an LLM on implementation. I own the direction, integration, and hands-on review.",
       "skills": [
         {
           "name": "LLM-assisted coding",
           "level": "熟悉",
-          "desc": "Describe the goal, constraints, and acceptance conditions first, then use an LLM to draft or revise code. Review the result in the project context instead of accepting generated code blindly. Used for FRC firmware debugging and personal web/tool projects.",
+          "desc": "I define the goal, constraints, and acceptance criteria before asking an LLM to help with implementation and tests. I check the result against requirements on the teacher-commissioned tree system and personal Agent prototype.",
           "projects": [
             "FRC 7645 — Website & Admin CMS",
-            "Job Radar: Personalized Job Search Dashboard"
+            "Job Radar: Personalized Job Search Dashboard",
+            "Cross-Project AI Agent Prototype",
+            "Teacher-Commissioned Campus Tree Measurement System"
           ]
         },
         {
           "name": "Requirement slicing",
           "level": "熟悉",
-          "desc": "Break a workflow into interface, data fields, API, and storage tasks that can be built and checked one at a time. Get the main path running before adding admin, filters, and error handling.",
+          "desc": "For the campus tree system, I defined student/teacher flows and role permissions, then split them into features that could be accepted one at a time.",
           "projects": [
             "NKHS Campus Tree Measurement PWA",
             "Job Radar: Personalized Job Search Dashboard",
@@ -326,18 +344,19 @@
         {
           "name": "Full-stack integration",
           "level": "熟悉",
-          "desc": "Choose a fitting stack and connect React/Vite, Next.js, or Flask interfaces with services such as Cloudflare Pages, D1, Firebase, and Google Apps Script. Check configuration and access boundaries instead of claiming an unverified integration works.",
+          "desc": "The teacher-commissioned system uses Google Apps Script, Sheets, and a PWA; the cross-project Agent connects an LLM API with shared records. Each project’s usage status is stated separately.",
           "projects": [
             "Job Radar: Personalized Job Search Dashboard",
             "NKHS Campus Tree Measurement PWA",
             "TeamMatch — Hackathon Teammate Finder",
-            "Analog IC Studio — Automated Analog IC Tuning Platform"
+            "Analog IC Studio — Automated Analog IC Tuning Platform",
+            "Cross-Project AI Agent Prototype"
           ]
         },
         {
           "name": "Iterative debugging & browser review",
           "level": "熟悉",
-          "desc": "Use error messages, network requests, and the running page to locate issues. After each change, launch the project and walk through its main flow. Use screenshots to review presentation, not as a substitute for functional tests.",
+          "desc": "Prepared automated tests, GitHub Actions CI, and handover docs for the tree system. Teachers are testing it; it has not been formally adopted.",
           "projects": [
             "Analog IC Studio — Automated Analog IC Tuning Platform",
             "Virtual Office — Desktop Pixel Workspace",
@@ -346,8 +365,8 @@
         },
         {
           "name": "Deployment & data sync",
-          "level": "熟悉",
-          "desc": "Track changes with Git, publish through GitHub Actions or Cloudflare Pages, sync sources such as D1 or Google Sheets when needed, and verify the production URL and assets.",
+          "level": "基礎",
+          "desc": "Used Git, GitHub PRs, and GitHub Actions CI to manage and check project work. The personal Agent is still in personal testing; I have no enterprise deployment experience.",
           "projects": [
             "Job Radar: Personalized Job Search Dashboard",
             "NKHS Campus Tree Measurement PWA",
@@ -484,7 +503,7 @@
               },
               {
                 "name": "Cloud deploy",
-                "desc": "Docker (apt ngspice + Flask) on Hugging Face Spaces; currently unavailable"
+                "desc": "The public demo is currently unavailable, so this page describes the local prototype without claiming a hosted deployment."
               }
             ]
           }
@@ -507,7 +526,7 @@
       "category": "大學專題作品",
       "title": "ICU VAP Prediction: Pilot Methodology Validation",
       "period": "2025 – Present",
-      "description": "A single-center ICU study at Far Eastern Memorial Hospital with 107 patients. After acceptance, I reviewed indexing, time alignment, and evaluation splits and found that window-level splitting and differences in patient sources could inflate results. The current data do not support a clinical performance claim. Accepted as an IEEE GCCE 2026 poster.",
+      "description": "A single-center ICU study at Far Eastern Memorial Hospital. After acceptance, I audited data indexing, time alignment, and patient-level splits; the corrected AUROC is about 0.61 and is not evidence of clinical prediction performance. First-author paper accepted as an IEEE GCCE 2026 poster, scheduled for October 29, 2026.",
       "badge": "IEEE GCCE 2026 · Poster",
       "tags": [
         "LSTM · Time-Series",
@@ -533,7 +552,7 @@
         ],
         "purpose": "The study began by asking whether ICU time series could predict VAP. A post-submission audit found issues in data processing and evaluation, so I examined how those conditions affected the results.",
         "concept": "I checked patient, time-window, and label alignment, and whether the same patient appeared in both training and test data. Ventilator brand and enrollment year were also associated with labels, so source effects cannot be ruled out.",
-        "outcome": "The study currently supports conclusions about evaluation limits: window-level splitting can inflate scores, and source differences may provide shortcuts. Assessing clinical signals will require consistent sources and clear time definitions. Accepted as an IEEE GCCE 2026 poster.",
+        "outcome": "After acceptance, I continued correcting data indexing, time alignment, and patient-level splits; the corrected AUROC is about 0.61. This single-center analysis documents limitations in the data and evaluation pipeline, not clinical performance. The first-author paper was accepted as an IEEE GCCE 2026 poster, scheduled for October 29, 2026.",
         "tech": [
           {
             "group": "Deep Learning",
@@ -1058,13 +1077,13 @@
       "category": "大學校外作品",
       "title": "Open-Source Hardware Integration: QMK × STM32 Numpad",
       "period": "2026",
-      "description": "A QMK numpad firmware project targeting STM32F103, with USB HID, RGB Matrix, and VIA/VIAL remapping. The PCB revises an existing open-source design. I adjusted QMK/ChibiOS HAL settings and resolved build issues.",
+      "description": "Revised an open-source PCB design, soldered and flashed an STM32F103, and checked basic keyboard functions. I adjusted existing QMK/ChibiOS HAL settings and investigated build issues.",
       "tags": [
-        "STM32 / Cortex-M",
-        "QMK / ChibiOS HAL",
-        "USB HID · STM32duino",
-        "WS2812B RGB Matrix",
-        "EasyEDA Pro"
+        "STM32F103",
+        "QMK",
+        "ChibiOS HAL",
+        "Open-source PCB revision",
+        "Soldering and validation"
       ],
       "detail": {
         "images": [
@@ -1077,37 +1096,33 @@
             "caption": "In use alongside main keyboard"
           }
         ],
-        "purpose": "I wanted to run QMK firmware on an STM32 numpad and had to align the keyboard configuration with the ChibiOS HAL settings.",
-        "concept": "The firmware targets STM32F103 and configures chconf, halconf, and mcuconf alongside USB HID, RGB Matrix, and VIA/VIAL. The PCB is a revision of an existing open-source design, not a from-scratch layout.",
-        "outcome": "The firmware build and keyboard features are integrated. This describes the project configuration and features; it does not claim chip readback or latency measurements.",
+        "purpose": "Configure QMK firmware for an STM32 numpad, revise the physical board, and verify basic functions.",
+        "concept": "I modified an existing open-source PCB design and adjusted settings within the existing QMK/ChibiOS project, using build errors to trace configuration issues.",
+        "outcome": "Completed the open-source PCB revision, soldering, firmware flashing, and basic functional checks.",
         "tech": [
           {
-            "group": "Embedded Firmware",
+            "group": "Firmware Setup and Validation",
             "items": [
               {
-                "name": "HAL Peripheral Configuration",
-                "desc": "Reverse-engineered and restructured ChibiOS chconf/halconf/mcuconf triple config using LLM-assisted debugging to resolve compilation failures and timing conflicts between the open-source QMK framework and STM32F103 hardware; correctly set USB, GPIO clock sources, and PLL; understood RTOS tick and peripheral initialization ordering dependencies"
+                "name": "QMK/ChibiOS HAL Settings",
+                "desc": "Adjusted settings in the existing QMK/ChibiOS project and checked build errors iteratively."
               },
               {
-                "name": "Keyboard Matrix Scanning",
-                "desc": "Designed 5×4 ROW2COL matrix with 5ms debounce supporting 17 keys on minimal IO; understood ghost key causes and diode protection principles"
-              },
-              {
-                "name": "RGB Matrix Driver",
-                "desc": "Integrated WS2812B per-key addressing; Hue/Sat/Val 3D color control; set max brightness 120 to prevent USB overcurrent; understood animation mode switching and SPI timing"
-              },
-              {
-                "name": "Layer & Tap-Hold",
-                "desc": "LT() for hold-to-layer, tap-to-input; understanding how QMK tap-hold decision window (tapping_term) affects typing feel and tuning"
+                "name": "STM32 Flashing and Functional Check",
+                "desc": "Flashed the STM32F103 and checked basic key input on the physical numpad."
               }
             ]
           },
           {
-            "group": "PCB Design",
+            "group": "PCB Implementation",
             "items": [
               {
-                "name": "MCU Peripheral Circuit",
-                "desc": "Verified the STM32F103 USB connection, 100nF decoupling capacitors, and flashing configuration on the existing open-source PCB; completed the adaptation and fabrication files in EasyEDA Pro"
+                "name": "Open-Source PCB Revision",
+                "desc": "Modified an existing open-source board; the PCB was not designed from scratch."
+              },
+              {
+                "name": "Soldering and Assembly",
+                "desc": "Soldered and assembled the board, then performed basic power-on checks."
               }
             ]
           }
@@ -1372,7 +1387,7 @@
       "title": "Swerve Drive Omnidirectional Research",
       "period": "2020 – 2023",
       "frc": true,
-      "description": "Worked across three iterations of an FRC swerve-drive chassis, including LabVIEW kinematics, gear transmission, CAD, CNC milling, and wire EDM. The 2022 robot received the Innovation in Control Award at the FRC Taiwan Fuhong Regional.",
+      "description": "Contributed across three FRC swerve-drive generations. My hands-on work included Inventor modeling, CNC machining, and LabVIEW kinematics and PID tuning. The 2022 award was a team competition result.",
       "tags": [
         "LabVIEW",
         "PID Control",
@@ -1382,9 +1397,9 @@
         "3D Printing"
       ],
       "detail": {
-        "purpose": "The team iterated on its swerve-drive chassis, changing motion control, transmission, and fabrication between versions. I contributed to the control code, gear design, and part production.",
-        "concept": "I implemented omnidirectional kinematics in LabVIEW and worked on gear transmission, CAD, CNC milling, and wire EDM. The chassis versions represent design and fabrication work across multiple team members.",
-        "outcome": "The 2022 chassis competed at the FRC Taiwan Fuhong Regional and received the Innovation in Control Award. An earlier robot competed at the 2020 FRC Central Taiwan 5G Regional and received the Excellence in Engineering Award.",
+        "purpose": "The FRC team revised its swerve chassis across generations. I contributed to some modeling, fabrication, and control work; each version was designed and built by multiple team members.",
+        "concept": "My work included Inventor mechanical modeling, CNC machining, and implementing kinematics and tuning PID in LabVIEW. Other mechanical, wiring, and assembly tasks were completed across the team.",
+        "outcome": "The team received the 2022 FRC Taiwan Foxconn Regional Innovation in Control Award; the 2020 award is also a team result. This page identifies my own areas of contribution.",
         "tech": [
           {
             "group": "Control System",
@@ -1482,10 +1497,10 @@
     {
       "id": "nkhs-tree-map",
       "cover": "/images/nkhs-tree-map/cover.png",
-      "category": "University External Project",
-      "title": "NKHS Campus Tree Measurement PWA",
+      "category": "大學校外作品",
+      "title": "Teacher-Commissioned Campus Tree Measurement System",
       "period": "2026",
-      "description": "Students scan a tree-tag QR code, enter measurement angle, distance, and circumference, and save calculated tree heights to Google Sheets. Teachers can manage rosters, print QR labels, and view the height map.",
+      "description": "I defined student and teacher workflows, role permissions, system architecture, acceptance, and handover; AI assisted with implementation and tests. The system includes QR measurement, teacher management, and map views, with automated tests, GitHub Actions CI, and handover docs. Teachers are testing it; it has not been formally adopted.",
       "tags": [
         "PWA",
         "JavaScript",
@@ -1494,16 +1509,16 @@
         "QR Code"
       ],
       "detail": {
-        "purpose": "Organize on-site campus tree measurements so students can submit readings by phone and teachers can review them in one place.",
-        "concept": "Students scan a tree-tag QR code and enter the angle, distance, and circumference. The frontend calculates height, then Apps Script writes the record to Google Sheets. Teacher pages provide roster, map, and QR-label tools.",
-        "outcome": "The native JavaScript frontend is an installable PWA hosted on GitHub Pages. Google Apps Script handles the backend, with records stored in Google Sheets. Teacher-only pages require a teacher Google account.",
+        "purpose": "At a teacher’s request, I organized the campus tree measurement workflow so students can record readings in the field and teachers can manage rosters, review data, and take over maintenance.",
+        "concept": "I handled requirements, student/teacher workflows, role permissions, architecture, and acceptance criteria. Students scan a tree-tag QR code to submit measurements; teachers manage records and view a map. AI assisted with implementation and tests, which I checked against the intended workflow.",
+        "outcome": "The project includes automated tests, GitHub Actions CI, and handover documentation. Teachers are currently testing it; it has not been formally adopted and is not presented as an official school system.",
         "tech": [
           {
             "group": "Mobile Web",
             "items": [
               {
                 "name": "Installable PWA",
-                "desc": "Open the measurement flow in a mobile browser and add it to the home screen; the static frontend is hosted on GitHub Pages."
+                "desc": "The measurement flow opens in a mobile browser and can be added to the home screen; deployment is described according to the current project configuration."
               },
               {
                 "name": "QR Measurement Flow",
@@ -1533,7 +1548,7 @@
               },
               {
                 "name": "Roster and QR Labels",
-                "desc": "After teacher sign-in, manage student rosters and access codes, then generate QR labels for tree tags."
+                "desc": "Teacher tools manage rosters, role permissions, and tree-tag QR labels; teachers are testing these pages, and the system has not been formally adopted."
               }
             ]
           }
@@ -1546,6 +1561,45 @@
             "caption": "Live GitHub Pages entry screen. The teacher map and management pages require a teacher Google account."
           }
         ]
+      }
+    },
+    {
+      "id": "cross-project-agent",
+      "category": "大學校外作品",
+      "title": "Cross-Project AI Agent Prototype",
+      "period": "2026",
+      "description": "I defined the requirements and architecture and connected an LLM API so multiple projects can share records and decision context. AI assisted with implementation. It is currently for personal testing only.",
+      "tags": [
+        "LLM API",
+        "AI-assisted development",
+        "Shared records",
+        "Requirements & architecture"
+      ],
+      "detail": {
+        "purpose": "I wanted to preserve confirmed records and decisions across projects instead of restating requirements each time.",
+        "concept": "I defined requirements and architecture and connected an LLM API with shared records. AI assisted with implementation; I checked data flow and outputs against expectations.",
+        "outcome": "This is a prototype in personal testing, with no enterprise deployment or formal usage case.",
+        "tech": [
+          {
+            "group": "Requirements & Integration",
+            "items": [
+              {
+                "name": "Requirements and Architecture",
+                "desc": "I documented the use cases and requirements for shared data and decision context."
+              },
+              {
+                "name": "LLM API Integration",
+                "desc": "Connected an LLM API to provide shared records in project context; currently for personal testing only."
+              },
+              {
+                "name": "AI-Assisted Implementation and Review",
+                "desc": "AI assisted implementation; I checked requirements and tested in my own environment."
+              }
+            ]
+          }
+        ],
+        "github": "",
+        "images": []
       }
     }
   ],

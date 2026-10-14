@@ -14,8 +14,9 @@ export default function Hero({ profile, skills, skillDetail }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const resumeHref     = lang === 'en' ? '/resume-en.pdf'      : '/resume-zh.pdf'
-  const resumeFullHref = lang === 'en' ? '/resume-en-full.pdf' : '/resume-zh-full.pdf'
+  // The current source resumes are Chinese-only; avoid linking to stale English PDFs.
+  const resumeHref = '/resume-zh.pdf'
+  const resumeFullHref = '/resume-versions.html'
 
   // 名字字級：中文三字可放到 96px；英文較長，min/max 略收允許換行。
   const nameSize = lang === 'en'
@@ -46,6 +47,12 @@ export default function Hero({ profile, skills, skillDetail }) {
             <p className="hero-roleline -mt-5 mb-7 text-[15px] leading-relaxed text-[#3F3F46]">
               {t.heroRole}
             </p>
+
+            {profile.bio && (
+              <p className="mb-7 max-w-[58ch] text-[14px] leading-relaxed text-[#6E6E73]">
+                {profile.bio}
+              </p>
+            )}
 
             <div className="hero-cta flex flex-wrap gap-2.5">
               <button

@@ -9,8 +9,9 @@
 
 ---
 
-## 📌 當前狀態快照（最後更新：2026-10-12）
+## 📌 當前狀態快照（最後更新：2026-10-14）
 
+- **🟡 10-14 履歷與作品內容本機更新完成，尚未同步 D1／部署**：依 2026-10-14 四份履歷與可編輯 HTML，修正中英文網站資料、AE/SI/FAE/研華 Agent 履歷版本、履歷入口及 SEO metadata。VAP 只列修正後 AUROC 約 0.61、GCCE poster 預定 10/29；學位仍在學且預計 2027/09 畢業，實習窗口與英文程度已列明；修正 FRC 個人／團隊分工和 QMK／STM32 描述，新增跨專案 Agent，樹木系統標示教師測試中，未宣稱正式採用。四份 PDF 各一頁、連結可用；舊版 PDF 存在 repo 內、公開目錄外的 `resume/archive_before_2026-10-14/`。本機 migration 0031 已用 SQLite 記憶體資料庫驗證，未執行遠端 D1。`npm run build` 通過；目前 repo 測試 14/14 通過（排除其他 worktree 的複製測試），未過濾的測試會讀取 `.claude/worktrees/personal-website-optimization-fbca13/` 並有 11 項失敗。桌機 1440px、手機 390px 及履歷手機頁檢查沒有水平溢出；本輪未部署、未推送。
 - **🟢 10-12 個人網站優化已部署 Production**：`473c825` 的首次 build 因 lockfile 漏掉 Vitest/Vite peer 的 esbuild 0.28.2 失敗；以 npm 10.9.2 修正後提交 `bc40942`，Cloudflare Pages Production build 成功。正式站確認 `/api/init` 回 410、`/api/projects` 有安全標頭、VAP 與 Vibe Coding 詳情頁輸出專屬 OG metadata/canonical，均 HTTP 200（`/api/init` 除外為預期 410）。未改 D1；管理員圖片上傳尚未登入驗證；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。Build 有既有 `_redirects` catch-all 被 Cloudflare 忽略的警告，已確認上述深層路由可正常回應。
 
 - **🟢 10-02 配色無障礙修正已上線**（16d9e61）——量測 41 組前景/背景，**12 組不過 WCAG AA 4.5:1**：
@@ -278,6 +279,12 @@
 
 ## 📓 工作日誌（新→舊）
 
+### 2026-10-14 — 履歷與網站內容本機更新
+- 先讀專案規則與完整 PROGRESS，確認 repo 起始 Git 工作目錄乾淨；讀取四份 2026-10-14 履歷 PDF 與四份 HTML 來源。未修改 `C:\Users\user\find job agent` 原始檔。
+- 更新 `cvData.json`／`cvData.en.json` 的簡介、學歷、經歷、技能與專案，補入畢業預期、實習時段、英文程度、樹木量測系統分工與測試狀態、跨專案 Agent 個人原型；VAP 改列修正後 AUROC 約 0.61 與預定報告日期。QMK／STM32 與 FRC 只列本人已確認的工作範圍；移除首頁舊求職定位與未確認的 Docker 熟練宣稱。
+- 建立四份校正版履歷 HTML/PDF；一般入口指向 AE 中文版，多版本頁提供 SI、FAE、研華 AI Agent。各 PDF 一頁且含 email、GitHub、LinkedIn、作品集四個可點連結。舊公開 PDF 與 HTML 保存在 repo 根目錄 `resume/archive_before_2026-10-14/`，不會被 Vite 當公開資產發布。
+- 新增本機 migration 0031 供未來同步 D1；以 SQLite 記憶體資料庫確認 SQL 可執行，沒有讀寫遠端 D1。Build 通過；目前 repo tests 14/14 通過，需排除 `.claude/worktrees/personal-website-optimization-fbca13/` 的複製測試。未過濾全套測試 11 項失敗均在該巢狀 worktree，主要是它自己的 Nav／ProjectDetail 測試與目前程式不同步。
+- Chrome 實機視窗檢查首頁桌機 1440px、手機 390px，及履歷 HTML 手機版；無水平溢出。四個 PDF 網址、AE 別名與履歷版本頁皆回 HTTP 200。未部署、未推送；正式 D1 尚未同步，等待後續明確安排。
 ### 2026-10-12 — Cloudflare Production 部署完成
 - 使用者確認已登入 Cloudflare Dashboard，讀取 `chiangjywebsite` Production deployment `004edbcc-9496-474f-82ab-acf06739761c` 的 Build log。
 - 錯誤發生在 `npm ci`：`package-lock.json` 未包含 npm 10 解析出的 Vitest/Vite peer `esbuild@0.28.2` 及平台套件；不是 Vite build 或 Functions 出錯。

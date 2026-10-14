@@ -27,8 +27,8 @@ function HomePage() {
 
   useEffect(() => {
     document.title = lang === 'en'
-      ? 'Chiang Jia Yuan — Hardware/Software Integration'
-      : '江嘉元 — 軟硬整合 · 從 PCB 到韌體到資料'
+      ? 'Chiang Jia Yuan — Product Applications · Systems Integration · FAE'
+      : '江嘉元 — 產品應用 AE・系統整合 SI・FAE'
   }, [lang])
 
   useEffect(() => {

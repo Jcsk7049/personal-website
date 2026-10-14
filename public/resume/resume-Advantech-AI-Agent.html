@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>江嘉元 履歷｜研華 AI Agent 實習版</title>
+<!-- ponytail: 字體走 CDN，離線時退回系統 serif；需要完全離線再改內嵌 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #e8e8e8; }
+  body {
+    font-family: "Computer Modern Serif", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: 9.4pt; line-height: 1.32; color: #111;
+  }
+  .page {
+    width: 210mm; min-height: 297mm; margin: 12px auto; background: #fff;
+    padding: 9mm 13mm 7mm;
+    box-shadow: 0 1px 6px rgba(0,0,0,.25);
+  }
+  @media print { html { background: none; } .page { margin: 0; box-shadow: none; } }
+
+  header { text-align: center; margin-bottom: 2.2mm; }
+  h1 { font-size: 20pt; font-weight: 700; letter-spacing: .06em; line-height: 1.1; }
+  h1 .en { font-variant: small-caps; font-weight: 400; font-size: 14pt; letter-spacing: .04em; margin-left: .4em; }
+  .tagline { font-style: italic; font-size: 10.4pt; margin-top: 1mm; }
+  .contact { font-size: 8.8pt; margin-top: .8mm; }
+  .contact span + span::before { content: "·"; margin: 0 .5em; }
+  a { color: inherit; text-decoration: none; }
+
+  h2 {
+    font-variant: small-caps; font-weight: 600; font-size: 11pt; letter-spacing: .05em;
+    border-bottom: .5pt solid #111; margin: 2.2mm 0 1mm; padding-bottom: .3mm;
+  }
+  .summary { text-align: justify; }
+  .availability { margin-top: 1mm; font-size: 8.6pt; }
+
+  .entry { margin-bottom: 1.1mm; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .row b { font-weight: 700; }
+  .row .org { font-style: italic; }
+  .row .when { white-space: nowrap; font-size: 8.8pt; }
+  ul { margin: .4mm 0 0 4.2mm; }
+  li { margin-bottom: .2mm; text-align: justify; }
+  li::marker { font-size: 7pt; }
+
+  .skills { display: grid; grid-template-columns: auto 1fr; column-gap: 3mm; row-gap: .4mm; }
+  .skills dt { font-weight: 700; white-space: nowrap; }
+  .awards .row { margin-bottom: .3mm; }
+  .vc { font-size: 7.6pt; font-variant: small-caps; border: .4pt solid #555; border-radius: 2px; padding: 0 .35em; white-space: nowrap; }
+
+@media screen {
+  body { max-width: 100%; margin: 0 auto; padding: 20px; }
+  @media (max-width: 640px) {
+    body { padding: 14px; }
+    .row { align-items: flex-start; gap: 8px; }
+    .when { flex: 0 0 auto; }
+    header .row { flex-wrap: wrap; }
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>江嘉元<span class="en">Jiayuan Jiang</span></h1>
+  <div class="tagline">做過電路、機器人控制、韌體與系統整合的電機系學生</div>
+  <div class="contact">
+    <span>台北市</span>
+    <span><a href="mailto:johnjia9491@gmail.com">johnjia9491@gmail.com</a></span>
+    <span><a href="https://github.com/Jcsk7049">GitHub: Jcsk7049</a></span>
+    <span><a href="https://www.linkedin.com/in/jiayuan-jiang0901/">LinkedIn</a></span>
+    <span><a href="https://personal-website-1kf.pages.dev/">作品集：personal-website-1kf.pages.dev</a></span>
+  </div>
+</header>
+
+<h2>Summary　摘要</h2>
+<p class="summary">元智大學電機系學士班在學，預計 2027 年 9 月畢業，具使用者需求釐清、系統流程與權限規劃、功能驗收及交接經驗。教師委託系統與 LLM API Agent 原型採 AI 協助實作，本人負責需求、架構與結果驗證。<b>應徵方向：AI Agent／自動化服務實習。</b></p><p class="availability">可實習：2027/1/11–2/22、2027/7–8；學期間無法持續到班。英文：讀中等，聽／說／寫略懂。</p>
+
+<h2>Skills　技能</h2>
+<dl class="skills">
+  <dt>控制與韌體整合</dt><dd>LabVIEW／PID、Arduino／ESP32；QMK／STM32F103 設定、燒錄與除錯；C/C++ 基礎，暫存器層持續補強</dd>
+  <dt>電路與量測</dt><dd>PCB 改版、焊接、24V 配電；BJT 音放與 RC/RL 實驗之示波器操作；Altium／EasyEDA／OrCAD 接觸經驗，Altium 需複習</dd>
+  <dt>機構與加工</dt><dd>Inventor、AutoCAD、Mastercam、CNC 銑床、線切割、3D 列印</dd>
+  <dt>資料與 AI 應用</dt><dd>Python 資料處理、TensorFlow/Keras 模型比較與驗證；LLM API 應用整合、Prompt 需求與情境設計（AI 協助實作）</dd>
+  <dt>測試與交付</dt><dd>需求／角色權限規劃、功能驗收、Bug 重現與追蹤；Git／GitHub PR、GitHub Actions CI；Markdown 操作與交接文件</dd>
+</dl>
+
+<h2>Education　學歷</h2>
+<div class="entry">
+  <div class="row"><span><b>元智大學</b>　電機工程學系 學士班在學</span><span class="when">2024.09 – 2027.09（預計）</span></div>
+  <div class="row"><span><b>南港高工</b>　電子科</span><span class="when">2020.09 – 2023.06</span></div>
+</div>
+
+<h2>Experience　團隊與研究經歷</h2>
+<div class="entry">
+  <div class="row"><span><b>FRC 團隊顧問（非正式聘僱）</b>　<span class="org">FRC TEAM 7645</span></span><span class="when">2023 – 現在</span></div>
+  <ul>
+    <li>以團隊顧問身份參與，非正式聘僱。本人實作範圍包括 Inventor 機構建模、CNC 加工，以及 LabVIEW 運動學與 PID 調校；其他系統成果由團隊共同完成。</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>專題生</b>　<span class="org">元智大學 林書彥教授實驗室</span></span><span class="when">2025.05 – 現在</span></div>
+  <ul>
+    <li>參與 ICU VAP 預測研究（亞東紀念醫院合作），負責資料處理、模型比較與驗證流程</li>
+    <li>論文獲 IEEE GCCE 2026 poster 接受後，我重新檢查資料索引、時間對齊與病人層切分；修正後 AUROC 約 0.61。這是單中心資料的模型評估結果，不代表臨床預測效能。第一作者 poster 預定 2026 年 10 月 29 日報告。</li>
+    <li>EIT 拔管預測前期研究：負責原始 EIT 資料前處理</li>
+  </ul>
+</div>
+
+<h2>Projects　作品</h2>
+<div class="entry">
+  <div class="row"><span><b>教師委託：校園樹木量測系統</b>　<span class="org">PWA・Google Apps Script・GitHub Actions</span></span><span class="when">2026</span></div>
+  <ul><li>將教師需求轉成學生 QR 填報、教師管理、權限、地圖及匯出流程；本人負責需求、架構與驗收，AI 協助程式與測試實作</li><li>依情境重現問題並確認修正，專案含自動化測試、CI、操作及交接文件；目前由教師測試使用，尚非正式採用</li></ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>跨專案知識共享 AI Agent 原型</b>　<span class="org">LLM API・AI 協作開發</span></span><span class="when">2026</span></div>
+  <ul><li>規劃跨專案紀錄與決策脈絡共享流程，串接 LLM API；本人負責需求、架構及情境驗收，AI 協助實作，目前個人測試使用中</li></ul>
+</div>
+
+<div class="entry">
+  <div class="row"><span><b>Swerve Drive 全向輪底盤：機構設計與感測整合</b>　<span class="org">FRC・Inventor・CNC・LabVIEW</span></span><span class="when">2020 – 2023</span></div>
+  <ul>
+    <li>參與團隊 Swerve 底盤三代迭代；本人負責 Inventor 建模與 CNC 加工相關工作，設計與製作由隊員共同完成</li>
+    <li>在 LabVIEW 實作運動學與 PID 調整；2022 台灣鴻海區域賽團隊獲控制創新獎</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>全國技能競賽集體創作：夾取機器人</b>　<span class="org">第 52 屆・南港高工代表</span></span><span class="when">2022</span></div>
+  <ul>
+    <li>三人團隊製作夾取機器人，負責 24V 配電、繼電器 H 橋與全車配線；隊友負責機構加工與控制程式</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>QMK × STM32 數字鍵盤</b>　<span class="org">STM32F103・QMK</span></span><span class="when">2026</span></div>
+  <ul>
+    <li>以開源 PCB 設計為基礎改版，完成焊接、燒錄與基本功能驗證；調整 QMK／ChibiOS HAL 設定並排查編譯問題。</li>
+  </ul>
+</div>
+
+
+
+
+
+<h2>Honors &amp; Research　獎項與研究</h2>
+<div class="awards">
+  <div class="row"><span>IEEE GCCE 2026（神戶）論文錄取・poster・第一作者</span><span class="when">2026</span></div>
+  <div class="row"><span>2022 FRC 台灣鴻海區域賽　亞軍聯盟＋控制創新獎（Innovation in Control）</span><span class="when">2022</span></div>
+  <div class="row"><span>第 52 屆全國技能競賽　集體創作職類代表　｜　111 學年度工科賽　數位電子職類代表</span><span class="when">2022</span></div>
+  <div class="row"><span>2020 FRC 中科 5G 區域賽　團隊獲最佳工業設計獎</span><span class="when">2020</span></div>
+</div>
+
+</div>
+</body>
+</html>

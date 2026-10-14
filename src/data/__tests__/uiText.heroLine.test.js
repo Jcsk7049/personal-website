@@ -3,9 +3,9 @@ import { uiText } from '../uiText'
 
 describe('uiText.heroLine', () => {
   it('中文主張存在且為定案文案', () => {
-    expect(uiText.zh.heroLine).toBe('硬體到軟體，中間那段我來。')
+    expect(uiText.zh.heroLine).toBe('develop.ing')
   })
   it('英文主張存在且為定案文案', () => {
-    expect(uiText.en.heroLine).toBe('Hardware to software — the part in between is mine.')
+    expect(uiText.en.heroLine).toBe('develop.ing')
   })
 })
