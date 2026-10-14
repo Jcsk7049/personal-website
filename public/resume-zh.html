@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>江嘉元 履歷｜AE 版</title>
+<title>江嘉元 履歷｜通用版</title>
 <!-- ponytail: 字體走 CDN，離線時退回系統 serif；需要完全離線再改內嵌 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
@@ -67,7 +67,7 @@
 </style>
 </head>
 <body>
-<a class="resume-download" href="/resume-zh.pdf" download="江嘉元_履歷_AE_2026-10-14.pdf">下載 AE 履歷 PDF</a>
+<a class="resume-download" href="/resume-zh.pdf" download="江嘉元_通用履歷_2026-10-14.pdf">下載通用履歷 PDF</a>
 <div class="page">
 
 <header>
@@ -83,13 +83,13 @@
 </header>
 
 <h2>Summary　摘要</h2>
-<p class="summary">元智大學電機系學士班在學，預計 2027 年 9 月畢業，具機器人控制、軟硬體整合及故障排查經驗；在教師委託系統與 AI Agent 原型中負責需求、流程規劃及驗收，AI 協助實作。<b>求職方向：產品應用工程師（AE）。</b></p><p class="availability">可實習：2027/1/11–2/22、2027/7–8；學期間無法持續到班。英文：讀中等，聽／說／寫略懂。</p>
+<p class="summary">元智大學電機系大四、學士班在學，預計 2027 年 9 月畢業。做過電路焊接與量測、FRC 機構加工和運動控制、臨床資料處理及軟體工具整合。在教師委託系統與個人 Agent 原型中，我負責需求、流程、架構與驗收，AI 協助程式和測試實作。</p><p class="availability">可實習：2027/1/11–2/22、2027/7–8；學期間無法持續到班。英文：讀中等，聽／說／寫略懂。</p>
 
 <h2>Skills　技能</h2>
 <dl class="skills">
   <dt>控制與韌體整合</dt><dd>LabVIEW／PID、Arduino／ESP32；QMK／STM32F103 設定、燒錄與除錯；C/C++ 基礎，暫存器層持續補強</dd>
-  <dt>電路與量測</dt><dd>PCB 改版、焊接、24V 配電；BJT 音放與 RC/RL 實驗之示波器操作；Altium／EasyEDA／OrCAD 接觸經驗，Altium 需複習</dd>
-  <dt>機構與加工</dt><dd>Inventor、AutoCAD、Mastercam、CNC 銑床、線切割、3D 列印</dd>
+  <dt>電路與量測</dt><dd>PCB 改版與焊接；技能競賽負責 24V 配電、繼電器 H 橋與全車配線；BJT 音放除錯、RC/RL 示波器量測；Altium 曾使用，需複習</dd>
+  <dt>機構與加工</dt><dd>FRC 專案中的 Inventor 建模與 CNC 加工；接觸 AutoCAD、Mastercam、線切割與 3D 列印</dd>
   <dt>資料與 AI 應用</dt><dd>Python 資料處理、TensorFlow/Keras 模型比較與驗證；LLM API 應用整合、Prompt 需求與情境設計（AI 協助實作）</dd>
   <dt>測試與交付</dt><dd>需求／角色權限規劃、功能驗收、Bug 重現與追蹤；Git／GitHub PR、GitHub Actions CI；Markdown 操作與交接文件</dd>
 </dl>
@@ -112,48 +112,39 @@
   <ul>
     <li>參與 ICU VAP 預測研究（亞東紀念醫院合作），負責資料處理、模型比較與驗證流程</li>
     <li>論文獲 IEEE GCCE 2026 poster 接受後，我重新檢查資料索引、時間對齊與病人層切分；修正後 AUROC 約 0.61。這是單中心資料的模型評估結果，不代表臨床預測效能。第一作者 poster 預定 2026 年 10 月 29 日報告。</li>
-    <li>EIT 拔管預測前期研究：負責原始 EIT 資料前處理</li>
   </ul>
 </div>
 
 <h2>Projects　作品</h2>
 <div class="entry">
-  <div class="row"><span><b>教師委託：校園樹木量測系統</b>　<span class="org">PWA・Google Apps Script・GitHub Actions</span></span><span class="when">2026</span></div>
-  <ul><li>將教師需求轉成學生 QR 填報、教師管理、權限、地圖及匯出流程；本人負責需求、架構與驗收，AI 協助程式與測試實作</li><li>依情境重現問題並確認修正，專案含自動化測試、CI、操作及交接文件；目前由教師測試使用，尚非正式採用</li></ul>
+  <div class="row"><span><b>教師委託：校園樹木量測系統</b>　<span class="org">PWA・Apps Script・Google Sheets</span></span><span class="when">2026</span></div>
+  <ul><li>本人負責需求、學生／教師流程、角色權限、架構與驗收交接；AI 協助程式與測試實作。含自動化測試、GitHub Actions CI、操作及交接文件，目前教師測試使用中，尚非正式採用。</li></ul>
 </div>
 <div class="entry">
   <div class="row"><span><b>跨專案知識共享 AI Agent 原型</b>　<span class="org">LLM API・AI 協作開發</span></span><span class="when">2026</span></div>
-  <ul><li>規劃跨專案紀錄與決策脈絡共享流程，串接 LLM API；本人負責需求、架構及情境驗收，AI 協助實作，目前個人測試使用中</li></ul>
-</div>
-
-<div class="entry">
-  <div class="row"><span><b>Swerve Drive 全向輪底盤：機構設計與感測整合</b>　<span class="org">FRC・Inventor・CNC・LabVIEW</span></span><span class="when">2020 – 2023</span></div>
-  <ul>
-    <li>參與團隊 Swerve 底盤三代迭代；本人負責 Inventor 建模與 CNC 加工相關工作，設計與製作由隊員共同完成</li>
-    <li>在 LabVIEW 實作運動學與 PID 調整；2022 台灣鴻海區域賽團隊獲控制創新獎</li>
-  </ul>
+  <ul><li>本人提出需求與架構，串接 LLM API 共享專案紀錄及決策脈絡；AI 協助實作，目前個人測試使用中。</li></ul>
 </div>
 <div class="entry">
-  <div class="row"><span><b>全國技能競賽集體創作：夾取機器人</b>　<span class="org">第 52 屆・南港高工代表</span></span><span class="when">2022</span></div>
-  <ul>
-    <li>三人團隊製作夾取機器人，負責 24V 配電、繼電器 H 橋與全車配線；隊友負責機構加工與控制程式</li>
-  </ul>
+  <div class="row"><span><b>Job Radar：個人化求職雷達</b>　<span class="org">職缺整理・篩選與排序</span></span><span class="when">2026</span></div>
+  <ul><li>整理 104、Cake 與 LinkedIn 職缺，依個人技能與條件排序並附推薦理由；清單每日更新，可按來源、職類與關鍵字篩選，申請前再確認原始職缺。</li></ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>BitOGuard：交易帳戶風險辨識</b>　<span class="org">LightGBM・XGBoost・SHAP</span></span><span class="when">2026</span></div>
+  <ul><li>三人團隊參加 AWS × BitoPro 黑客松，以 32 項行為特徵建立加權模型並檢視預測依據；團隊進入決賽並完賽，未獲名次，結果限於競賽資料。</li></ul>
+</div>
+<div class="entry">
+  <div class="row"><span><b>Swerve Drive 全向輪底盤</b>　<span class="org">FRC・Inventor・CNC・LabVIEW</span></span><span class="when">2020 – 2023</span></div>
+  <ul><li>參與團隊三代底盤迭代；本人親手實作 Inventor 建模、CNC 加工與 LabVIEW 運動學、PID 調校，其他設計與製作由隊員共同完成。</li></ul>
 </div>
 <div class="entry">
   <div class="row"><span><b>QMK × STM32 數字鍵盤</b>　<span class="org">STM32F103・QMK</span></span><span class="when">2026</span></div>
-  <ul>
-    <li>以開源 PCB 設計為基礎改版，完成焊接、燒錄與基本功能驗證；調整 QMK／ChibiOS HAL 設定並排查編譯問題。</li>
-  </ul>
+  <ul><li>以開源 PCB 為基礎改版，完成焊接、燒錄與基本功能驗證；調整 QMK／ChibiOS HAL 設定並排查編譯問題。</li></ul>
 </div>
-
-
-
-
 
 <h2>Honors &amp; Research　獎項與研究</h2>
 <div class="awards">
   <div class="row"><span>IEEE GCCE 2026（神戶）論文錄取・poster・第一作者</span><span class="when">2026</span></div>
-  <div class="row"><span>2022 FRC 台灣鴻海區域賽　亞軍聯盟＋控制創新獎（Innovation in Control）</span><span class="when">2022</span></div>
+  <div class="row"><span>2022 FRC 台灣鴻海區域賽　團隊獲亞軍聯盟＋控制創新獎（Innovation in Control）</span><span class="when">2022</span></div>
   <div class="row"><span>第 52 屆全國技能競賽　集體創作職類代表　｜　111 學年度工科賽　數位電子職類代表</span><span class="when">2022</span></div>
   <div class="row"><span>2020 FRC 中科 5G 區域賽　團隊獲最佳工業設計獎</span><span class="when">2020</span></div>
 </div>

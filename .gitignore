@@ -26,3 +26,6 @@ Thumbs.db
 
 # superpowers brainstorming mockups
 .superpowers/
+
+# Private job-specific resumes kept locally, outside website assets
+.local-resumes/
