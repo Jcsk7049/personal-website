@@ -11,7 +11,7 @@
 
 ## 📌 當前狀態快照（最後更新：2026-10-14）
 
-- **🟡 10-14 履歷與作品內容本機更新完成，尚未同步 D1／部署**：依 2026-10-14 四份履歷與可編輯 HTML，修正中英文網站資料、AE/SI/FAE/研華 Agent 履歷版本、履歷入口及 SEO metadata。VAP 只列修正後 AUROC 約 0.61、GCCE poster 預定 10/29；學位仍在學且預計 2027/09 畢業，實習窗口與英文程度已列明；修正 FRC 個人／團隊分工和 QMK／STM32 描述，新增跨專案 Agent，樹木系統標示教師測試中，未宣稱正式採用。四份 PDF 各一頁、連結可用；舊版 PDF 存在 repo 內、公開目錄外的 `resume/archive_before_2026-10-14/`。本機 migration 0031 已用 SQLite 記憶體資料庫驗證，未執行遠端 D1。`npm run build` 通過；目前 repo 測試 14/14 通過（排除其他 worktree 的複製測試），未過濾的測試會讀取 `.claude/worktrees/personal-website-optimization-fbca13/` 並有 11 項失敗。桌機 1440px、手機 390px 及履歷手機頁檢查沒有水平溢出；本輪未部署、未推送。
+- **🟢 10-14 履歷與作品內容已同步 D1／部署 Production**：網站提交 `ec8e6b8` 已推 `main`，Cloudflare Pages deployment `1f55f3bb-d392-45ca-a1c5-3c465bf1b1d9` 建置成功。先備份 D1 公開內容至 repo 外，再執行 migration 0031（10 queries）及 0032（修復打地鼠英文 JSON 的多餘跳脫，不改文字）。正式 API 六區塊與 15 個專案，中英文逐項與本機一致；27 項正式站檢查通過，四份新版 PDF 與 AE 別名 SHA-256 均與本機相同。Chrome 桌機 1440px／手機 390px 的首頁及 VAP 詳情頁無水平溢出、無 pageerror。本機 build、14/14 repo tests 通過；其他巢狀 worktree 的複製測試未納入。來源履歷未改，舊公開檔仍備份在公開目錄外。
 - **🟢 10-12 個人網站優化已部署 Production**：`473c825` 的首次 build 因 lockfile 漏掉 Vitest/Vite peer 的 esbuild 0.28.2 失敗；以 npm 10.9.2 修正後提交 `bc40942`，Cloudflare Pages Production build 成功。正式站確認 `/api/init` 回 410、`/api/projects` 有安全標頭、VAP 與 Vibe Coding 詳情頁輸出專屬 OG metadata/canonical，均 HTTP 200（`/api/init` 除外為預期 410）。未改 D1；管理員圖片上傳尚未登入驗證；完整 audit 仍有 14 個開發依賴漏洞，修補需升級 Tailwind/Vite/Wrangler 大版本。Build 有既有 `_redirects` catch-all 被 Cloudflare 忽略的警告，已確認上述深層路由可正常回應。
 
 - **🟢 10-02 配色無障礙修正已上線**（16d9e61）——量測 41 組前景/背景，**12 組不過 WCAG AA 4.5:1**：
@@ -221,6 +221,9 @@
 
 ## ✅ 待辦清單
 
+- [x] **10-14 履歷內容同步與部署**：0031／0032 已執行遠端 D1，Production `ec8e6b8` 建置成功；正式站 27 項檢查與桌機／手機驗證通過。
+
+
 - [x] **09-30 VAP 經歷文案**：中英文已更新，migration 0030 已同步正式 D1；遠端 API 確認最終 AUROC 0.61；commit `e7d9e09` 已推至 `main`。
 
 ### 🔴 08-11 新增（本人動手）
@@ -278,6 +281,14 @@
 ---
 
 ## 📓 工作日誌（新→舊）
+
+### 2026-10-14 — D1 同步與 Cloudflare Production 部署
+- 使用者授權同步與部署。確認 OAuth 具備 D1／Pages write scope，目標為 `chiangjywebsite`／`personal-website-db`；Git 起始乾淨、僅有前次履歷提交待推。
+- 遠端公開內容先匯出至 `C:\Users\user\.codex\backups\personal-website\2026-10-14-resume-deploy\public-content-before.sql`，備份不進 repo。比對遠端與部署前本機來源，圖片、排序及無關區塊一致；舊 profile.bio 改為已校正版本。
+- migration 0031 遠端完成 10 queries；備份比對發現 whack-a-mole 英文 JSON 多餘跳脫，以 0032 修復 1 query、1 row，文字內容與既有英文 JSON 一致。15 個專案兩語 JSON 全部有效，六區塊與全部專案經正式 API 逐項讀回符合本機。
+- `npm.cmd run build`、本 repo tests 14/14（排除巢狀其他 worktree）及 migration 對備份的 SQLite 模擬通過；網站與 SQL 提交 `ec8e6b8` 已推 `main`。GitHub Cloudflare Pages check completed/success；Production deployment `1f55f3bb-d392-45ca-a1c5-3c465bf1b1d9`。
+- 正式站 27 項檢查通過：中英資料、首頁新履歷入口、AE/SI/FAE/研華 Agent PDF、AE 別名、履歷版本頁、VAP／樹木系統／跨專案 Agent／Vibe Coding 深層路由及 `/api/init` 預期 410。PDF SHA-256 逐一相同；Chrome 桌機 1440px、手機 390px 首頁與 VAP 詳情無水平溢出、無 pageerror；截圖及讀回報告在相同 repo 外備份目錄。
+- 僅更新本進度紀錄的後續提交使用官方支援的 `[CI Skip]`，避免相同網站內容重建。未處理仍需登入的管理員圖片上傳驗證。
 
 ### 2026-10-14 — 履歷與網站內容本機更新
 - 先讀專案規則與完整 PROGRESS，確認 repo 起始 Git 工作目錄乾淨；讀取四份 2026-10-14 履歷 PDF 與四份 HTML 來源。未修改 `C:\Users\user\find job agent` 原始檔。
