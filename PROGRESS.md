@@ -287,6 +287,13 @@
 
 ## 📓 工作日誌（新→舊）
 
+### 2026-10-24 — 舊站退役：全站 301 導向新作品集
+- 本人決定舊站不再維護，改為導向新站 https://portfolio.crysnowkiller1.workers.dev/ （新站專案資料夾 C:\NEW website：Astro + Cloudflare Workers + D1，中英雙語，主要讀者為 AE／SI／FAE 招募者）。
+- 做法：`public/_redirects` 只留一條 `/* → 新站首頁 301`，移除原本的兩條履歷 302 與 SPA 的 `/* /index.html 200`。Cloudflare Pages 與 Netlify 都讀這個檔。
+- 原因：舊站 VAP 內容仍含院方數字與舊版敘事；新站已改成不含院方數字的版本。
+- 注意：舊網址下的履歷 PDF（resume-*.pdf）也會一併導向新站首頁；寄出的舊履歷裡的作品集連結仍可使用（會轉到新站）。
+- 未完：本機已 commit，尚未 push；push 後 Cloudflare Pages 會自動部署，需驗證 https://personal-website-1kf.pages.dev/ 回 301。
+
 ### 2026-10-14 — 通用履歷、研華版移出公開資產
 - 依使用者「不只投 AE／SI／FAE」新增通用中文履歷，不指定應徵職稱；加入 Job Radar、BitOGuard，保留個人／團隊分工、AI 協助實作、教師測試與 Agent 個人原型等界線。通用摘要標示電機系大四在學，預期畢業、實習窗口、英文程度、VAP 0.61 與預定 poster 報告日期均保留。
 - 新增 `public/resume/resume-General.html` 與 `public/resume-General-2026-10-14.pdf`；`resume-zh.html`／`resume-zh.pdf` 改為通用版，首頁中英文標籤同步。版本頁首列通用，其後 AE／SI／FAE；AE 不再稱為通用版。
