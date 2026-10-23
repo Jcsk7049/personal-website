@@ -1,3 +1,3 @@
-/resume-Advantech-AI-Agent-2026-10-14.pdf /resume-versions.html 302
-/resume/resume-Advantech-AI-Agent.html /resume-versions.html 302
-/*	/index.html	200
+# 2026-10-24 本人決定：舊站退役，全部導向新作品集（Astro + Cloudflare Workers）。
+# 不保留舊路徑對應（新站路由是 /zh-tw/…、/en/…），一律導到新站首頁，避免 404。
+/*	https://portfolio.crysnowkiller1.workers.dev/	301
